@@ -25,7 +25,7 @@ namespace TestGame1
 		Camera camera;
 		KeyboardState previousKeyboardState;
 		int previousScrollValue;
-        SpriteFont font;
+		SpriteFont font;
 
 		public Game1 ()
 		{
@@ -68,17 +68,14 @@ namespace TestGame1
 			}
 
 			base.Initialize ();
-            previousKeyboardState = Keyboard.GetState();
+			previousKeyboardState = Keyboard.GetState ();
 
-            try
-            {
-                font = Content.Load<SpriteFont>("Font");
-            }
-            catch (ContentLoadException ex)
-            {
-                font = null;
-                Console.WriteLine(ex.Message);
-            }
+			try {
+				font = Content.Load<SpriteFont> ("Font");
+			} catch (ContentLoadException ex) {
+				font = null;
+				Console.WriteLine (ex.Message);
+			}
 		}
 
 		/// <summary>
@@ -156,9 +153,9 @@ namespace TestGame1
 			// fullscreen
 			if (IsKeyDown (Keys.F) || IsKeyDown (Keys.F11)) {
 				graphics.ToggleFullScreen ();
-                graphics.PreferredBackBufferWidth = 1440;
-                graphics.PreferredBackBufferHeight = 900;
-                graphics.ApplyChanges();
+				graphics.PreferredBackBufferWidth = 1440;
+				graphics.PreferredBackBufferHeight = 900;
+				graphics.ApplyChanges ();
 			}
 
 			// scroll wheel zoom
@@ -214,7 +211,7 @@ namespace TestGame1
 
 			var vertices = new VertexPositionColor[lines.Count * 4];
 
-			Vector3 last = new Vector3(0,0,0);
+			Vector3 last = new Vector3 (0, 0, 0);
 			for (int n = 0; n < lines.Count; n++) {
 				Vector3 p1 = lines [n].From.Vector () + offset;
 				Vector3 p2 = lines [n].To.Vector () + offset;
@@ -229,10 +226,9 @@ namespace TestGame1
 				vertices [4 * n + 2].Position = p1;
 				vertices [4 * n + 3].Position = p2;
 
-				Console.WriteLine (vertices [4 * n + 2]);
+				//Console.WriteLine (vertices [4 * n + 2]);
 				last = p2;
 			}
-			Console.WriteLine (lines.SelectedLine);
 			for (int n = 0; n < lines.Count*4; n++) {
 				if (n % 4 >= 2) {
 					vertices [n].Color = Color.White;
@@ -264,14 +260,13 @@ namespace TestGame1
 			vertices [5].Position = new Vector3 (0, 0, +length);
 			vertices [5].Color = Color.Yellow;
 			graphics.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3);
-            if (font != null)
-            {
-                spriteBatch.Begin();
-                spriteBatch.DrawString(font, "X: " + (int)MathHelper.ToDegrees(camera.AngleX) % 360, new Vector2(20, 20), Color.Green);
-                spriteBatch.DrawString(font, "Y: " + (int)MathHelper.ToDegrees(camera.AngleY) % 360, new Vector2(20, 50), Color.Red);
-                spriteBatch.DrawString(font, "Z: " + (int)MathHelper.ToDegrees(camera.AngleZ) % 360, new Vector2(20, 80), Color.Yellow);
-                spriteBatch.End();
-            }
+			if (font != null) {
+				spriteBatch.Begin ();
+				spriteBatch.DrawString (font, "X: " + (int)MathHelper.ToDegrees (camera.AngleX) % 360, new Vector2 (20, 20), Color.Green);
+				spriteBatch.DrawString (font, "Y: " + (int)MathHelper.ToDegrees (camera.AngleY) % 360, new Vector2 (20, 50), Color.Red);
+				spriteBatch.DrawString (font, "Z: " + (int)MathHelper.ToDegrees (camera.AngleZ) % 360, new Vector2 (20, 80), Color.Yellow);
+				spriteBatch.End ();
+			}
 		}
 
 		private void DrawCircle ()

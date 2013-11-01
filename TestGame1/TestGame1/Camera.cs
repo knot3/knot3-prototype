@@ -18,6 +18,8 @@ namespace TestGame1
 		private GraphicsDeviceManager graphics;
 		private BasicEffect basicEffect;
 
+		Matrix WorldMatrix { get; set; }
+
 		Matrix ViewMatrix { get; set; }
 
 		Matrix ProjectionMatrix { get; set; }
@@ -110,22 +112,20 @@ namespace TestGame1
 		public void Draw (GameTime gameTime)
 		{ 
 			// setting up rotation
-			/*
-			Matrix rotationMatrixY = Matrix.CreateRotationY (3 * angleY);
-			Vector3 transformedReferenceY = Vector3.Transform (camPosition, rotationMatrixY);
-			Matrix rotationMatrixZ = Matrix.CreateRotationZ (3 * angleZ);
-			Vector3 transformedReferenceZ = Vector3.Transform (camPosition, rotationMatrixZ);
-			Vector3 cameraLookat = camPosition + transformedReferenceY + transformedReferenceZ;
-			ViewMatrix = Matrix.CreateLookAt (transformedReferenceY +transformedReferenceZ, camTarget, camUpVector);
-			*/
 
+			/*
 			Matrix rotationMatrixX = Matrix.CreateRotationX (angleX);
 			Matrix rotationMatrixY = Matrix.CreateRotationY (angleY);
 			Matrix rotationMatrixZ = Matrix.CreateRotationZ (angleZ);
 			ViewMatrix = Matrix.CreateTranslation (angleX, angleY, angleZ)
 				* rotationMatrixX * rotationMatrixY * rotationMatrixZ *
 				Matrix.CreateLookAt (camPosition, camTarget, camUpVector);
+			*/
 
+			ViewMatrix = Matrix.CreateLookAt (camPosition, camTarget, camUpVector);
+			WorldMatrix = Matrix.CreateFromYawPitchRoll (angleY, angleX, angleZ);
+
+			basicEffect.World = WorldMatrix;
 			basicEffect.View = ViewMatrix;
 			basicEffect.Projection = ProjectionMatrix;
 		}

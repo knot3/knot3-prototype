@@ -118,7 +118,10 @@ namespace TestGame1
 		private int _SelectedLine = -1;
 
 		public int SelectedLine {
-			set { _SelectedLine = (Nodes.Count + value) % Nodes.Count;}
+			set {
+				_SelectedLine = (Nodes.Count + value) % Nodes.Count;
+				Console.WriteLine ("selected line: " + _SelectedLine);
+			}
 			get { return _SelectedLine;}
 		}
 	}
