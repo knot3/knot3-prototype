@@ -84,6 +84,7 @@ namespace TestGame1
 		/// </summary>
 		protected override void LoadContent ()
 		{
+			Node.Scale = 100;
 			camera.LoadContent ();
 
 			// Create a new SpriteBatch, which can be used to draw textures.
@@ -160,9 +161,11 @@ namespace TestGame1
 
 			// scroll wheel zoom
 			if (mouseState.ScrollWheelValue < previousScrollValue || keyboardState.IsKeyDown (Keys.OemPlus)) {
-				camera.zoom (-10);
+				Node.Scale -= 10;
+				//camera.zoom (-10);
 			} else if (mouseState.ScrollWheelValue > previousScrollValue || keyboardState.IsKeyDown (Keys.OemMinus)) {
-				camera.zoom (+10);
+				Node.Scale += 10;
+				//camera.zoom (+10);
 			}
 
 			if (IsKeyDown (Keys.Y)) {
@@ -206,7 +209,6 @@ namespace TestGame1
 
 		private void DrawLines ()
 		{
-			Node.Scale = 100;
 			Vector3 offset = new Vector3 (10, 10, 10);
 
 			var vertices = new VertexPositionColor[lines.Count * 4];
