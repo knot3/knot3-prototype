@@ -24,8 +24,8 @@ namespace TestGame1
 
 		Matrix ProjectionMatrix { get; set; }
 
-		private Vector3 camPosition;
-		private Vector3 camTarget;
+		public Vector3 camPosition;
+		public Vector3 camTarget;
 		private Vector3 camUpVector;
 		private float viewAngle;
 		private float aspectRatio;
@@ -57,9 +57,9 @@ namespace TestGame1
  
 		private void SetUpCamera ()
 		{
-			camPosition = new Vector3 (700, 0, 0);
-			camTarget = new Vector3 (0, 0, 1);
-			camUpVector = new Vector3 (0, 1, 0);
+			camPosition = new Vector3 (0, 0, -500);
+			camTarget = new Vector3 (0, 0, 0);
+			camUpVector = Vector3.Up;
 			ViewMatrix = Matrix.CreateLookAt (camPosition, camTarget, camUpVector);
  
 			viewAngle = MathHelper.PiOver4;
@@ -92,16 +92,16 @@ namespace TestGame1
 			if (keyboardState.IsKeyDown (Keys.E))
 				angleX -= wasdAngle;
 
-			Vector3 targetDiffLR = new Vector3 (0, 0, 10);
-			Vector3 targetDiffUD = new Vector3 (0, 10, 0);
+			//Vector3 targetDiffLR = new Vector3 (0, 0, 10);
+			//Vector3 targetDiffUD = new Vector3 (10, 0, 0);
 			if (keyboardState.IsKeyDown (Keys.Left))
-				camTarget += targetDiffLR;
+				camPosition += 10 * Vector3.Left;
 			if (keyboardState.IsKeyDown (Keys.Right))
-				camTarget -= targetDiffLR;
+				camPosition += 10 * Vector3.Right;
 			if (keyboardState.IsKeyDown (Keys.Up))
-				camTarget += targetDiffUD;
+				camPosition += 10 * Vector3.Forward;
 			if (keyboardState.IsKeyDown (Keys.Down))
-				camTarget -= targetDiffUD;
+				camPosition += 10 * Vector3.Backward;
 
 			if (rotateY)
 				angleY += 0.005f;
@@ -144,6 +144,16 @@ namespace TestGame1
 			direction.Normalize ();
  
 			return new Ray (nearPoint, direction);
+		}
+
+		public Vector3 Degrees {
+			get {
+				return new Vector3 (
+					(int)MathHelper.ToDegrees (AngleX) % 360,
+					(int)MathHelper.ToDegrees (AngleY) % 360,
+					(int)MathHelper.ToDegrees (AngleZ) % 360
+				);
+			}
 		}
 	}
 }
