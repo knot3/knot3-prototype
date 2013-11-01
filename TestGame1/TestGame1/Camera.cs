@@ -27,7 +27,11 @@ namespace TestGame1
 		public Vector3 camPosition;
 		public Vector3 camTarget;
 		private Vector3 camUpVector;
-		private float viewAngle;
+		private float foV;
+		public float FoV {
+			get {return foV;}
+			set {foV = value > 100 ? 100 : value < 40 ? 40 : value;}
+		}
 		private float aspectRatio;
 		private float nearPlane;
 		private float farPlane;
@@ -62,11 +66,10 @@ namespace TestGame1
 			camUpVector = Vector3.Up;
 			ViewMatrix = Matrix.CreateLookAt (camPosition, camTarget, camUpVector);
  
-			viewAngle = MathHelper.PiOver4;
+			FoV = MathHelper.PiOver4;
 			aspectRatio = graphics.GraphicsDevice.Viewport.AspectRatio;
 			nearPlane = 0.5f;
 			farPlane = 5000.0f;
-			ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (viewAngle, aspectRatio, nearPlane, farPlane);
 		}
 
 		public void LoadContent ()
@@ -132,6 +135,7 @@ namespace TestGame1
 
 			ViewMatrix = Matrix.CreateLookAt (camPosition, camTarget, camUpVector);
 			WorldMatrix = Matrix.CreateFromYawPitchRoll (angleY, angleX, angleZ);
+			ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians(FoV), aspectRatio, nearPlane, farPlane);
 
 			basicEffect.World = WorldMatrix;
 			basicEffect.View = ViewMatrix;

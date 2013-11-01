@@ -161,11 +161,10 @@ namespace TestGame1
 
 			// scroll wheel zoom
 			if (mouseState.ScrollWheelValue < previousScrollValue || keyboardState.IsKeyDown (Keys.OemPlus)) {
-				Node.Scale -= 10;
-				//camera.zoom (-10);
+				//Node.Scale += 5;
+				camera.FoV -= 10;
 			} else if (mouseState.ScrollWheelValue > previousScrollValue || keyboardState.IsKeyDown (Keys.OemMinus)) {
-				Node.Scale += 10;
-				//camera.zoom (+10);
+				camera.FoV += 10;
 			}
 
 			if (IsKeyDown (Keys.Y)) {
@@ -281,10 +280,8 @@ namespace TestGame1
 				spriteBatch.DrawString (font, ""+camera.camTarget.Y, new Vector2 (width3, height), Color.Red);
 				spriteBatch.DrawString (font, ""+camera.camTarget.Z, new Vector2 (width4, height), Color.Yellow);
 				height += 20;
-				spriteBatch.DrawString (font, "Cam Pos: ", new Vector2 (width1, height), Color.White);
-				spriteBatch.DrawString (font, ""+camera.camPosition.X, new Vector2 (width2, height), Color.Green);
-				spriteBatch.DrawString (font, ""+camera.camPosition.Y, new Vector2 (width3, height), Color.Red);
-				spriteBatch.DrawString (font, ""+camera.camPosition.Z, new Vector2 (width4, height), Color.Yellow);
+				spriteBatch.DrawString (font, "FoV: ", new Vector2 (width1, height), Color.White);
+				spriteBatch.DrawString (font, ""+camera.FoV, new Vector2 (width2, height), Color.White);
 				spriteBatch.End ();
 			}
 		}
