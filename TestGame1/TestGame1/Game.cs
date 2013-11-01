@@ -263,7 +263,7 @@ namespace TestGame1
 			if (font != null) {
 				spriteBatch.Begin ();
 				int height = 20;
-				int width1 = 20, width2 = 120, width3 = 180, width4 = 240;
+				int width1 = 20, width2 = 140, width3 = 200, width4 = 260;
 				spriteBatch.DrawString (font, "Rotation: ", new Vector2 (width1, height), Color.White);
 				spriteBatch.DrawString (font, ""+camera.Degrees.X, new Vector2 (width2, height), Color.Green);
 				spriteBatch.DrawString (font, ""+camera.Degrees.Y, new Vector2 (width3, height), Color.Red);
