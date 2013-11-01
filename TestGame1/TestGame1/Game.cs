@@ -267,9 +267,9 @@ namespace TestGame1
             if (font != null)
             {
                 spriteBatch.Begin();
-                spriteBatch.DrawString(font, "X: " + (int)MathHelper.ToDegrees(camera.AngleX), new Vector2(20, 20), Color.Green);
-                spriteBatch.DrawString(font, "Y: " + (int)MathHelper.ToDegrees(camera.AngleY), new Vector2(20, 50), Color.Red);
-                spriteBatch.DrawString(font, "Z: " + (int)MathHelper.ToDegrees(camera.AngleZ), new Vector2(20, 80), Color.Yellow);
+                spriteBatch.DrawString(font, "X: " + (int)MathHelper.ToDegrees(camera.AngleX) % 360, new Vector2(20, 20), Color.Green);
+                spriteBatch.DrawString(font, "Y: " + (int)MathHelper.ToDegrees(camera.AngleY) % 360, new Vector2(20, 50), Color.Red);
+                spriteBatch.DrawString(font, "Z: " + (int)MathHelper.ToDegrees(camera.AngleZ) % 360, new Vector2(20, 80), Color.Yellow);
                 spriteBatch.End();
             }
 		}
