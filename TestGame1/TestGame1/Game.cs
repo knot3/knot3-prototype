@@ -168,13 +168,11 @@ namespace TestGame1
 				camera.zoom (+10);
 			}
 
-			
 			if (IsKeyDown (Keys.Y)) {
 				lines.SelectedLine -= 1;
 			} else if (IsKeyDown (Keys.X)) {
 				lines.SelectedLine += 1;
 			}
-
 
 			// test
 			if (mouseState.LeftButton == ButtonState.Pressed) {
