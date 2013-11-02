@@ -120,8 +120,15 @@ namespace TestGame1
 
 		public void Update (GameTime gameTime)
 		{
+			UpdateKeys (gameTime);
+			UpdateMouse (gameTime);
+		}
+
+		public void UpdateKeys (GameTime gameTime)
+		{
 			KeyboardState keyboardState = Keyboard.GetState ();
 
+			// W,A,S,D,Q,E
 			float wasdAngle = 0.01f;
 			if (keyboardState.IsKeyDown (Keys.W))
 				angleZ += wasdAngle;
@@ -136,23 +143,27 @@ namespace TestGame1
 			if (keyboardState.IsKeyDown (Keys.E))
 				angleX -= wasdAngle;
 
+			// Arrow Keys
+			Vector2 keyboardMove = Vector2.Zero;
 			if (keyboardState.IsKeyDown (Keys.Left)) {
-				camTarget -= wasdSpeed * Vector3.Left;
-				camPosition -= wasdSpeed * Vector3.Left;
+				keyboardMove += new Vector2 (-1, 0);
 			}
 			if (keyboardState.IsKeyDown (Keys.Right)) {
-				camTarget -= wasdSpeed * Vector3.Right;
-				camPosition -= wasdSpeed * Vector3.Right;
+				keyboardMove += new Vector2 (1, 0);
 			}
 			if (keyboardState.IsKeyDown (Keys.Up)) {
-				camTarget -= wasdSpeed * Vector3.Forward;
-				camPosition -= wasdSpeed * Vector3.Forward;
+				keyboardMove += new Vector2 (0, -1);
 			}
 			if (keyboardState.IsKeyDown (Keys.Down)) {
-				camTarget -= wasdSpeed * Vector3.Backward;
-				camPosition -= wasdSpeed * Vector3.Backward;
+				keyboardMove += new Vector2 (0, 1);
+			}
+			if (keyboardMove.Length () > 0) {
+				keyboardMove *= wasdSpeed;
+				camTarget = camTarget.MoveLinear (keyboardMove, camUpVector, TargetVector);
+				camPosition = camPosition.MoveLinear (keyboardMove, camUpVector, TargetVector);
 			}
 
+			// Plus/Minus Keys
 			if (keyboardState.IsKeyDown (Keys.OemPlus) && wasdSpeed < 20) {
 				wasdSpeed += 1;
 			}
@@ -160,19 +171,24 @@ namespace TestGame1
 				wasdSpeed -= 1;
 			}
 
+			// Enter key
 			if (keyboardState.IsKeyDown (Keys.Enter)) {
 				camTarget = new Vector3 (0, 0, 0);
 			}
 
-            if (rotateX)
-                angleX += 0.005f;
-            if (rotateY)
-                angleY += 0.005f;
+			// auto rotation
+			if (rotateX)
+				angleX += 0.005f;
+			if (rotateY)
+				angleY += 0.005f;
 			if (rotateZ)
 				angleZ += 0.005f;
+			
+		}
 
+		public void UpdateMouse (GameTime gameTime)
+		{
 			MouseState currentMouseState = Mouse.GetState ();
-
 			if (currentMouseState != previousMouseState) {
 				Vector2 mouse = new Vector2 (currentMouseState.X - previousMouseState.X, currentMouseState.Y - previousMouseState.Y);
 
@@ -191,16 +207,12 @@ namespace TestGame1
 					arcball.Pitch += (mouse.Y / 1000);
 
 				} else if (currentMouseState.LeftButton == ButtonState.Pressed) {
-					camPosition = camTarget + Vector3.Transform (camPosition - camTarget, 
-					                                             Matrix.CreateRotationY (MathHelper.Pi / 300f * mouse.X));
-					camPosition = camTarget + Vector3.Transform (camPosition - camTarget, 
-					                                             Matrix.CreateRotationX (MathHelper.Pi / 200f * mouse.Y));
+					camPosition = camTarget + (camPosition - camTarget).RotateY (MathHelper.Pi / 300f * mouse.X);
+					camPosition = camTarget + (camPosition - camTarget).RotateX (MathHelper.Pi / 200f * mouse.Y);
 
 				} else {
-					//camTarget -= new Vector3 (mouse.X, mouse.Y, 0);
-					Vector3 side = Vector3.Cross (camUpVector, TargetVector);
-					camTarget -= side * mouse.X;
-					camTarget -= Vector3.Cross (side, TargetVector) * -mouse.Y;
+					// camTarget -= new Vector3 (mouse.X, mouse.Y, 0);
+					camTarget = camTarget.MoveLinear (mouse, camUpVector, TargetVector);
 				}
 				ResetMousePosition ();
 			}
