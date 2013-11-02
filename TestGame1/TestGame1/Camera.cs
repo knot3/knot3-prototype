@@ -46,11 +46,6 @@ namespace TestGame1
 		public int wasdSpeed = 10;
 		private MouseState previousMouseState;
 
-		public void zoom (int i)
-		{
-			camPosition += new Vector3 (i, 0, 0);
-		}
-
 		public float AngleX { get { return angleX; } }
 
 		public float AngleY { get { return angleY; } }
@@ -142,10 +137,10 @@ namespace TestGame1
 			if (currentMouseState != previousMouseState) {
 				float xDifference = currentMouseState.X - previousMouseState.X;
 				float yDifference = currentMouseState.Y - previousMouseState.Y;
-				angleY -= 1 * xDifference;
-				angleX -= 1 * yDifference;
-				ResetMousePosition ();
-				currentMouseState = previousMouseState;
+				Console.WriteLine("xDifference: "+xDifference);
+				camTarget += new Vector3(xDifference, yDifference, 0);
+				//ResetMousePosition ();
+				previousMouseState = currentMouseState;
 			}
 		}
 
