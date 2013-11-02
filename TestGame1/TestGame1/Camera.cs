@@ -138,9 +138,9 @@ namespace TestGame1
 				float xDifference = currentMouseState.X - previousMouseState.X;
 				float yDifference = currentMouseState.Y - previousMouseState.Y;
 				Console.WriteLine("xDifference: "+xDifference);
-				camTarget += new Vector3(xDifference, yDifference, 0);
-				//ResetMousePosition ();
-				previousMouseState = currentMouseState;
+				camTarget -= new Vector3(xDifference, yDifference, 0);
+				ResetMousePosition ();
+				previousMouseState = Mouse.GetState ();
 			}
 		}
 
