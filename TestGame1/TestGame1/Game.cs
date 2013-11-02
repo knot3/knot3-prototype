@@ -60,15 +60,7 @@ namespace TestGame1
 			basicEffect.View = Matrix.CreateLookAt (new Vector3 (0, 0, -1000), new Vector3 (0, 0, 1), new Vector3 (0, 1, 0));
 			basicEffect.Projection = Matrix.CreatePerspectiveFieldOfView (MathHelper.PiOver4, GraphicsDevice.Viewport.AspectRatio, 1.0f, 2000.0f);
 
-			camera = new Camera (graphics, basicEffect);
-
-			if (0 == 1) {
-				basicEffect.Projection = Matrix.CreateOrthographicOffCenter (
-				0, GraphicsDevice.Viewport.Width,     // left, right
-				GraphicsDevice.Viewport.Height, 0,    // bottom, top
-				0, 1
-				);
-			}
+			camera = new Camera (graphics, basicEffect, this);
 
 			base.Initialize ();
 			previousKeyboardState = Keyboard.GetState ();
@@ -89,6 +81,7 @@ namespace TestGame1
 		{
 			Node.Scale = 100;
 			camera.LoadContent ();
+
 
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch (GraphicsDevice);
@@ -247,7 +240,7 @@ namespace TestGame1
 				if (n % 4 >= 2) {
 					vertices [n].Color = Color.White;
 				} else {
-					vertices [n].Color = Color.Gray;
+					vertices [n].Color = Color.Wheat;
 				}
 			}
 			for (int n = 0; n < lines.Count; n++) {
@@ -275,8 +268,8 @@ namespace TestGame1
 			vertices [5].Color = Color.Yellow;
 			graphics.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3);
 			if (font != null) {
+				spriteBatch.Begin ();
 				try {
-					spriteBatch.Begin ();
 					int height = 20;
 					int width1 = 20, width2 = 140, width3 = 200, width4 = 260;
 					spriteBatch.DrawString (font, "Rotation: ", new Vector2 (width1, height), Color.White);
@@ -299,11 +292,13 @@ namespace TestGame1
 					height += 20;
 					spriteBatch.DrawString (font, "Distance: ", new Vector2 (width1, height), Color.White);
 					spriteBatch.DrawString (font, "" + camera.TargetDistance, new Vector2 (width2, height), Color.White);
-					spriteBatch.End ();
+
 				} catch (ArgumentException exp) {
-					Console.WriteLine (exp.Message);
-				}catch(InvalidOperationException exp) {
+					Console.WriteLine (exp.ToString());
+				} catch (InvalidOperationException exp) {
+					Console.WriteLine (exp.ToString());
 				}
+				spriteBatch.End ();
 			}
 		}
 

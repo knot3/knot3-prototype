@@ -17,6 +17,7 @@ namespace TestGame1
 	{
 		private GraphicsDeviceManager graphics;
 		private BasicEffect basicEffect;
+		private Game game;
 
 		Matrix WorldMatrix { get; set; }
 
@@ -38,31 +39,34 @@ namespace TestGame1
 		private float nearPlane;
 		private float farPlane;
 		private float angleX = 0f;//MathHelper.Pi / 4;
-		private float angleY = -0.4f;
-		private float angleZ = -0.4f;//MathHelper.Pi/2;
+		private float angleY = 0f;
+		private float angleZ = 0f;//MathHelper.Pi/2;
 		private bool rotateX = false;
 		private bool rotateY = false;
 		private bool rotateZ = false;
 		public int wasdSpeed = 10;
 		private MouseState previousMouseState;
 		public bool FullscreenToggled;
-		private float constantDistance;
-        public ArcBallCamera arcball;
+
+		// arcball
+		public ArcBallCamera arcball;
+
 		public float AngleX { get { return angleX; } }
 
 		public float AngleY { get { return angleY; } }
 
 		public float AngleZ { get { return angleZ; } }
- 
-		public Camera (GraphicsDeviceManager graphics, BasicEffect basicEffect)
+
+		public Camera (GraphicsDeviceManager graphics, BasicEffect basicEffect, Game game)
 		{
 			this.graphics = graphics;
 			this.basicEffect = basicEffect;
+			this.game = game;
 		}
  
 		private void SetUpCamera ()
 		{
-			camPosition = new Vector3 (0, 0, -500);
+			camPosition = new Vector3 (400, 400, 1000);
 			camTarget = new Vector3 (0, 0, 0);
 			camUpVector = Vector3.Up;
 			ViewMatrix = Matrix.CreateLookAt (camPosition, camTarget, camUpVector);
@@ -70,8 +74,10 @@ namespace TestGame1
 			FoV = MathHelper.PiOver4;
 			aspectRatio = graphics.GraphicsDevice.Viewport.AspectRatio;
 			nearPlane = 0.5f;
-			farPlane = 5000.0f;
-            arcball = new ArcBallCamera(aspectRatio, FoV, camTarget, camUpVector, nearPlane, farPlane);
+			farPlane = 10000.0f;
+
+			// arcball
+			arcball = new ArcBallCamera (aspectRatio, FoV, camTarget, camUpVector, nearPlane, farPlane);
 
 			FullscreenToggled = false;
 			ResetMousePosition ();
@@ -130,33 +136,34 @@ namespace TestGame1
 			if (keyboardState.IsKeyDown (Keys.E))
 				angleX -= wasdAngle;
 
-			//Vector3 targetDiffLR = new Vector3 (0, 0, 10);
-			//Vector3 targetDiffUD = new Vector3 (10, 0, 0);
-			
-            
-           //if (keyboardState.IsKeyDown (Keys.Left)) {
-           //     camTarget -= wasdSpeed * Vector3.Left;
-           //     camPosition -= wasdSpeed * Vector3.Left;
-           // }
-           // if (keyboardState.IsKeyDown (Keys.Right)) {
-           //     camTarget -= wasdSpeed * Vector3.Right;
-           //     camPosition -= wasdSpeed * Vector3.Right;
-           // }
-           // if (keyboardState.IsKeyDown (Keys.Up)) {
-           //     camTarget -= wasdSpeed * Vector3.Forward;
-           //     camPosition -= wasdSpeed * Vector3.Forward;
-           // }
-           // if (keyboardState.IsKeyDown (Keys.Down)) {
-           //     camTarget -= wasdSpeed * Vector3.Backward;
-           //     camPosition -= wasdSpeed * Vector3.Backward;
-           // }
-           // if (keyboardState.IsKeyDown (Keys.OemPlus) && wasdSpeed < 20) {
-           //     wasdSpeed += 1;
-           // }
-           // if (keyboardState.IsKeyDown (Keys.OemMinus) && wasdSpeed > 1) {
-           //     wasdSpeed -= 1;
-           // }
-     
+			if (keyboardState.IsKeyDown (Keys.Left)) {
+				camTarget -= wasdSpeed * Vector3.Left;
+				camPosition -= wasdSpeed * Vector3.Left;
+			}
+			if (keyboardState.IsKeyDown (Keys.Right)) {
+				camTarget -= wasdSpeed * Vector3.Right;
+				camPosition -= wasdSpeed * Vector3.Right;
+			}
+			if (keyboardState.IsKeyDown (Keys.Up)) {
+				camTarget -= wasdSpeed * Vector3.Forward;
+				camPosition -= wasdSpeed * Vector3.Forward;
+			}
+			if (keyboardState.IsKeyDown (Keys.Down)) {
+				camTarget -= wasdSpeed * Vector3.Backward;
+				camPosition -= wasdSpeed * Vector3.Backward;
+			}
+
+			if (keyboardState.IsKeyDown (Keys.OemPlus) && wasdSpeed < 20) {
+				wasdSpeed += 1;
+			}
+			if (keyboardState.IsKeyDown (Keys.OemMinus) && wasdSpeed > 1) {
+				wasdSpeed -= 1;
+			}
+
+			if (keyboardState.IsKeyDown (Keys.Enter)) {
+				camTarget = new Vector3 (0, 0, 0);
+			}
+
 			if (rotateY)
 				angleY += 0.005f;
 			if (rotateZ)
@@ -166,84 +173,52 @@ namespace TestGame1
 
 			if (currentMouseState != previousMouseState) {
 				Vector2 mouse = new Vector2 (currentMouseState.X - previousMouseState.X, currentMouseState.Y - previousMouseState.Y);
-				if (FullscreenToggled)
+
+				Console.WriteLine ("mouse: " + mouse + ", currentMouseState=(" +
+					currentMouseState.X + "," + currentMouseState.Y +
+					"), previousMouseState=(" + previousMouseState.X + "," + previousMouseState.Y + ")"
+				);
+
+				if (FullscreenToggled) {
 					FullscreenToggled = false;
-                else if (currentMouseState.RightButton == ButtonState.Pressed)
-                {
 
-                    // target immer null bei rechtsklick
-                    camTarget = new Vector3(0, 0, 0);
+				} else if (currentMouseState.RightButton == ButtonState.Pressed) {
+					camTarget = new Vector3 (0, 0, 0);
 
-                    // konstante distanz speichern, falls neuer rechtsklick
-                    //float distance = TargetDistance;
-                    //if (constantDistance == 0)
-                    //    constantDistance = distance;
+					arcball.Yaw += (mouse.X / 1000);
+					arcball.Pitch += (mouse.Y / 1000);
 
-                    // X und Y reduzieren, sodass sqrt(..) lösbar ist
-                    //while (Math.Pow (camTarget.X - camPosition.X - mouse.X, 2) 
-                    //    + Math.Pow (camTarget.Y - camPosition.Y - mouse.Y, 2) >
-                    //    Math.Pow (constantDistance, 2)) {
-                    //    camPosition.X *= 0.99f;
-                    //    camPosition.Y *= 0.99f;
-                    //}
+				} else if (currentMouseState.LeftButton == ButtonState.Pressed) {
+					camPosition = camTarget + Vector3.Transform (camPosition - camTarget, 
+					                                             Matrix.CreateRotationY (MathHelper.Pi / 300f * mouse.X));
+					camPosition = camTarget + Vector3.Transform (camPosition - camTarget, 
+					                                             Matrix.CreateRotationX (MathHelper.Pi / 200f * mouse.Y));
 
-                    //Console.WriteLine ("vorher: constantDistance=" + constantDistance + ", distance=" + distance + ", camTarget=(" + camTarget + "), camPosition=(" + camPosition + ") -= (" + mouse + ",0)"
-                    //);
-
-                    //// formel
-                    //float zp = (float)(camTarget.Z - Math.Sqrt (Math.Pow (constantDistance, 2) 
-                    //    - Math.Pow (camTarget.X - camPosition.X - mouse.X, 2) 
-                    //    - Math.Pow (camTarget.Y - camPosition.Y - mouse.Y, 2)
-                    //));
-
-                    //Console.WriteLine ("zp=" + zp);
-                    //// neue position
-                    //camPosition -= new Vector3 (mouse.X, mouse.Y, 0);
-                    //camPosition.Z = zp;
-                    //Console.WriteLine ("nachher: distance=" + TargetDistance);
-
-
-                    //(distance * distance - (camPosition.X + mouse.X) * camTarget.X - 
-                    //(camPosition.Y + mouse.Y) * camTarget.Y) /(1+ camTarget.Z));
-
-                    /*while (TargetDistance > distance + 10) {
-                        camPosition += (camTarget - camPosition) / TargetDistance;
-                        Console.WriteLine ("TargetDistance = " + TargetDistance + ", distance=" + distance);
-                    }*/
-                    //} else {
-                    //    camTarget -= new Vector3 (mouse.X, mouse.Y, 0);
-                    //    constantDistance = 0;
-                    //}
-
-                    arcball.Yaw += (mouse.X/1000);
-                    arcball.Pitch += (mouse.Y / 1000);
-
-                    ResetMousePosition();
-                }
+				} else {
+					//camTarget -= new Vector3 (mouse.X, mouse.Y, 0);
+					Vector3 side = Vector3.Cross (camUpVector, TargetVector);
+					camTarget -= side * mouse.X;
+					camTarget -= Vector3.Cross (side, TargetVector) * -mouse.Y;
+				}
+				ResetMousePosition ();
 			}
 		}
 
 		public void Draw (GameTime gameTime)
 		{ 
-			// setting up rotation
 
-			/*
-			Matrix rotationMatrixX = Matrix.CreateRotationX (angleX);
-			Matrix rotationMatrixY = Matrix.CreateRotationY (angleY);
-			Matrix rotationMatrixZ = Matrix.CreateRotationZ (angleZ);
-			ViewMatrix = Matrix.CreateTranslation (angleX, angleY, angleZ)
-				* rotationMatrixX * rotationMatrixY * rotationMatrixZ *
-				Matrix.CreateLookAt (camPosition, camTarget, camUpVector);
-			*/
+			if (Mouse.GetState ().RightButton == ButtonState.Pressed) {
+				// arcball
+				WorldMatrix = Matrix.CreateFromYawPitchRoll (angleY, angleX, angleZ);
+				ViewMatrix = arcball.ViewMatrix;
+				ProjectionMatrix = arcball.ProjectionMatrix;
 
-            //ViewMatrix = Matrix.CreateLookAt (camPosition, camTarget, camUpVector);
-            WorldMatrix = Matrix.CreateFromYawPitchRoll (angleY, angleX, angleZ);
-            //ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FoV), aspectRatio, nearPlane, farPlane);
-
-            ViewMatrix = arcball.ViewMatrix;
-          
-            ProjectionMatrix = arcball.ProjectionMatrix;
-
+			} else {
+				// setting up rotation
+				ViewMatrix = Matrix.CreateLookAt (camPosition, camTarget, camUpVector);
+				WorldMatrix = Matrix.CreateFromYawPitchRoll (angleY, angleX, angleZ);
+				ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FoV), aspectRatio, nearPlane, farPlane);
+			}
 
 			basicEffect.World = WorldMatrix;
 			basicEffect.View = ViewMatrix;

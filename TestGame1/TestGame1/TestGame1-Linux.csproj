@@ -44,6 +44,8 @@
     <Compile Include="Nodes.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Test.cs" />
+    <Compile Include="ArcBallCamera.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

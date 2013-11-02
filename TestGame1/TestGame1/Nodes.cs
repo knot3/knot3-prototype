@@ -77,13 +77,6 @@ namespace TestGame1
 			From = from;
 			To = to;
 		}
-
-		public enum LineState
-		{
-			NONE,
-			SELECTED
-		}
-		;
 	}
 
 	public class LineList
