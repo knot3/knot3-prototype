@@ -179,10 +179,13 @@ namespace TestGame1
 
 					float zp;
 					if (true) {
-						zp = (float)(camTarget.Z - Math.Sqrt (Math.Pow (constantDistance, 2) 
+						zp = (float)(Math.Pow (constantDistance, 2) 
 							- Math.Pow (camTarget.X - camPosition.X - mouse.X, 2) 
-							- Math.Pow (camTarget.Y - camPosition.Y - mouse.Y, 2)
-						));
+							- Math.Pow (camTarget.Y - camPosition.Y - mouse.Y, 2));
+						if (zp > 0)
+							zp = (float)(camTarget.Z - Math.Sqrt (zp));
+						else
+							zp = -(float)(camTarget.Z - Math.Sqrt (-zp));
 					} else {
 						zp = 0;
 					}
