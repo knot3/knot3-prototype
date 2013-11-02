@@ -173,10 +173,11 @@ namespace TestGame1
 
 			// scroll wheel zoom
 			if (mouseState.ScrollWheelValue < previousScrollValue) {
-				//Node.Scale += 5;
-				camera.FoV -= 10;
+				//camera.FoV -= 10;
+				camera.TargetDistance -= 10;
 			} else if (mouseState.ScrollWheelValue > previousScrollValue) {
-				camera.FoV += 10;
+				//camera.FoV += 10;
+				camera.TargetDistance += 10;
 			}
 
 			if (IsKeyDown (Keys.Y)) {
@@ -278,22 +279,25 @@ namespace TestGame1
 				int height = 20;
 				int width1 = 20, width2 = 140, width3 = 200, width4 = 260;
 				spriteBatch.DrawString (font, "Rotation: ", new Vector2 (width1, height), Color.White);
-				spriteBatch.DrawString (font, ""+camera.Degrees.X, new Vector2 (width2, height), Color.Green);
-				spriteBatch.DrawString (font, ""+camera.Degrees.Y, new Vector2 (width3, height), Color.Red);
-				spriteBatch.DrawString (font, ""+camera.Degrees.Z, new Vector2 (width4, height), Color.Yellow);
+				spriteBatch.DrawString (font, "" + camera.Degrees.X, new Vector2 (width2, height), Color.Green);
+				spriteBatch.DrawString (font, "" + camera.Degrees.Y, new Vector2 (width3, height), Color.Red);
+				spriteBatch.DrawString (font, "" + camera.Degrees.Z, new Vector2 (width4, height), Color.Yellow);
 				height += 20;
 				spriteBatch.DrawString (font, "Cam Pos: ", new Vector2 (width1, height), Color.White);
-				spriteBatch.DrawString (font, ""+camera.camPosition.X, new Vector2 (width2, height), Color.Green);
-				spriteBatch.DrawString (font, ""+camera.camPosition.Y, new Vector2 (width3, height), Color.Red);
-				spriteBatch.DrawString (font, ""+camera.camPosition.Z, new Vector2 (width4, height), Color.Yellow);
+				spriteBatch.DrawString (font, "" + camera.camPosition.X, new Vector2 (width2, height), Color.Green);
+				spriteBatch.DrawString (font, "" + camera.camPosition.Y, new Vector2 (width3, height), Color.Red);
+				spriteBatch.DrawString (font, "" + camera.camPosition.Z, new Vector2 (width4, height), Color.Yellow);
 				height += 20;
 				spriteBatch.DrawString (font, "Cam Target: ", new Vector2 (width1, height), Color.White);
-				spriteBatch.DrawString (font, ""+camera.camTarget.X, new Vector2 (width2, height), Color.Green);
-				spriteBatch.DrawString (font, ""+camera.camTarget.Y, new Vector2 (width3, height), Color.Red);
-				spriteBatch.DrawString (font, ""+camera.camTarget.Z, new Vector2 (width4, height), Color.Yellow);
+				spriteBatch.DrawString (font, "" + camera.camTarget.X, new Vector2 (width2, height), Color.Green);
+				spriteBatch.DrawString (font, "" + camera.camTarget.Y, new Vector2 (width3, height), Color.Red);
+				spriteBatch.DrawString (font, "" + camera.camTarget.Z, new Vector2 (width4, height), Color.Yellow);
 				height += 20;
 				spriteBatch.DrawString (font, "FoV: ", new Vector2 (width1, height), Color.White);
-				spriteBatch.DrawString (font, ""+camera.FoV, new Vector2 (width2, height), Color.White);
+				spriteBatch.DrawString (font, "" + camera.FoV, new Vector2 (width2, height), Color.White);
+				height += 20;
+				spriteBatch.DrawString (font, "Distance: ", new Vector2 (width1, height), Color.White);
+				spriteBatch.DrawString (font, "" + camera.TargetDistance, new Vector2 (width2, height), Color.White);
 				spriteBatch.End ();
 			}
 		}

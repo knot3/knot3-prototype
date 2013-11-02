@@ -83,6 +83,22 @@ namespace TestGame1
 			SetUpCamera ();
 		}
 
+		public float TargetDistance {
+			get {
+				Vector3 toTarget = camTarget - camPosition;
+				return toTarget.Length ();
+			}
+			set {
+				Vector3 toTarget = camTarget - camPosition;
+				toTarget.Normalize ();
+				camPosition -= toTarget * (TargetDistance - value);
+
+				if (TargetDistance < 100) {
+					camPosition -= toTarget * (100 - TargetDistance);
+				}
+			}
+		}
+
 		public void Update (GameTime gameTime)
 		{
 			KeyboardState keyboardState = Keyboard.GetState ();
@@ -137,8 +153,8 @@ namespace TestGame1
 			if (currentMouseState != previousMouseState) {
 				float xDifference = currentMouseState.X - previousMouseState.X;
 				float yDifference = currentMouseState.Y - previousMouseState.Y;
-				Console.WriteLine("xDifference: "+xDifference);
-				camTarget -= new Vector3(xDifference, yDifference, 0);
+				Console.WriteLine ("xDifference: " + xDifference);
+				camTarget -= new Vector3 (xDifference, yDifference, 0);
 				ResetMousePosition ();
 				previousMouseState = Mouse.GetState ();
 			}
