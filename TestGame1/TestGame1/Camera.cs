@@ -168,31 +168,38 @@ namespace TestGame1
 					FullscreenToggled = false;
 				else if (currentMouseState.RightButton == ButtonState.Pressed) {
 
+					// target immer null bei rechtsklick
 					camTarget = new Vector3 (0, 0, 0);
 
+					// konstante distanz speichern, falls neuer rechtsklick
 					float distance = TargetDistance;
 					if (constantDistance == 0)
 						constantDistance = distance;
 
+					// X und Y reduzieren, sodass sqrt(..) lösbar ist
+					while (Math.Pow (camTarget.X - camPosition.X - mouse.X, 2) 
+						+ Math.Pow (camTarget.Y - camPosition.Y - mouse.Y, 2) >
+						Math.Pow (constantDistance, 2)) {
+						camPosition.X *= 0.99f;
+						camPosition.Y *= 0.99f;
+					}
+
 					Console.WriteLine ("vorher: constantDistance=" + constantDistance + ", distance=" + distance + ", camTarget=(" + camTarget + "), camPosition=(" + camPosition + ") -= (" + mouse + ",0)"
 					);
 
-					float zp;
-					if (true) {
-						zp = (float)(Math.Pow (constantDistance, 2) 
-							- Math.Pow (camTarget.X - camPosition.X - mouse.X, 2) 
-							- Math.Pow (camTarget.Y - camPosition.Y - mouse.Y, 2));
-						if (zp > 0)
-							zp = (float)(camTarget.Z - Math.Sqrt (zp));
-						else
-							zp = -(float)(camTarget.Z - Math.Sqrt (-zp));
-					} else {
-						zp = 0;
-					}
+					// formel
+					float zp = (float)(camTarget.Z - Math.Sqrt (Math.Pow (constantDistance, 2) 
+						- Math.Pow (camTarget.X - camPosition.X - mouse.X, 2) 
+						- Math.Pow (camTarget.Y - camPosition.Y - mouse.Y, 2)
+					));
+
 					Console.WriteLine ("zp=" + zp);
+					// neue position
 					camPosition -= new Vector3 (mouse.X, mouse.Y, 0);
 					camPosition.Z = zp;
 					Console.WriteLine ("nachher: distance=" + TargetDistance);
+
+
 					//(distance * distance - (camPosition.X + mouse.X) * camTarget.X - 
 					//(camPosition.Y + mouse.Y) * camTarget.Y) /(1+ camTarget.Z));
 
