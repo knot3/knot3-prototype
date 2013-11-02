@@ -54,22 +54,33 @@ namespace TestGame1
 			return v;
 		}
 
-        public static Ray GetMouseRay(Vector2 mousePosition, GraphicsDeviceManager graphics, Matrix ProjectionMatrix, Matrix ViewMatrix)
-        {
-            Viewport viewport = graphics.GraphicsDevice.Viewport;
+		public static Ray GetMouseRay (Vector2 mousePosition, GraphicsDeviceManager graphics, Matrix ProjectionMatrix, Matrix ViewMatrix)
+		{
+			Viewport viewport = graphics.GraphicsDevice.Viewport;
 
-            Vector3 nearPoint = new Vector3(mousePosition, 0);
-            Vector3 farPoint = new Vector3(mousePosition, 1);
+			Vector3 nearPoint = new Vector3 (mousePosition, 0);
+			Vector3 farPoint = new Vector3 (mousePosition, 1);
 
-            nearPoint = viewport.Unproject(nearPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
-            farPoint = viewport.Unproject(farPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
+			nearPoint = viewport.Unproject (nearPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
+			farPoint = viewport.Unproject (farPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
 
-            Vector3 direction = farPoint - nearPoint;
-            direction.Normalize();
+			Vector3 direction = farPoint - nearPoint;
+			direction.Normalize ();
 
-            return new Ray(nearPoint, direction);
-        }
-        
+			return new Ray (nearPoint, direction);
+		}
+
+		private static void DrawCircle (GraphicsDeviceManager graphics)
+		{
+			var vertices = new VertexPositionColor[100];
+			for (int i = 0; i < 99; i++) {
+				float angle = (float)(i / 100.0 * Math.PI * 2);
+				vertices [i].Position = new Vector3 (200 + (float)Math.Cos (angle) * 100, 200 + (float)Math.Sin (angle) * 100, 0);
+				vertices [i].Color = Color.Black;
+			}
+			vertices [99] = vertices [0];
+			graphics.GraphicsDevice.DrawUserPrimitives<VertexPositionColor> (PrimitiveType.LineStrip, vertices, 0, 99);
+		}
 	}
 }
 

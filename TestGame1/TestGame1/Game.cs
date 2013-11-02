@@ -14,63 +14,66 @@ namespace TestGame1
 	/// <summary>
 	/// This is the main type for your game
 	/// </summary>
-	public class Game1 : Microsoft.Xna.Framework.Game
+	public class Game : Microsoft.Xna.Framework.Game
 	{
-		GraphicsDeviceManager graphics;
-		SpriteBatch spriteBatch;
-		BasicEffect basicEffect;
-		Color backColor = Color.CornflowerBlue;
-		NodeList nodes;
-		LineList lines;
-		Camera camera;
-		KeyboardState previousKeyboardState;
-		int previousScrollValue;
-		SpriteFont font;
-		int defaultWidth = 1280;
-		int defaultHeight = 720;
+		// graphics-related classes
+		private GraphicsDeviceManager graphics;
+		private SpriteBatch spriteBatch;
+		private BasicEffect basicEffect;
 
-		public Game1 ()
+		// nodes
+		private NodeList nodes;
+		private LineList lines;
+
+		// fonts and colors
+		private SpriteFont font;
+		private Color backColor = Color.CornflowerBlue;
+		public static Size defaultSize = new Size (1280, 720);
+
+		// custom classes
+		private Input input;
+		private Camera camera;
+
+		// debug
+		public static bool Debug = true;
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="TestGame1.Game"/> class.
+		/// </summary>
+		public Game ()
 		{
 			graphics = new GraphicsDeviceManager (this);
 			
-			graphics.PreferredBackBufferWidth = defaultWidth;
-			graphics.PreferredBackBufferHeight = defaultHeight;
+			graphics.PreferredBackBufferWidth = defaultSize.Width;
+			graphics.PreferredBackBufferHeight = defaultSize.Height;
 
 			graphics.IsFullScreen = false;
 			graphics.ApplyChanges ();
 
 			Content.RootDirectory = "Content";
 			Window.Title = "Test Game 1";
-
-			nodes = new NodeList ();
-			lines = new LineList (nodes);
 		}
 
 		/// <summary>
-		/// Allows the game to perform any initialization it needs to before starting to run.
-		/// This is where it can query for any required services and load any non-graphic
-		/// related content.  Calling base.Initialize will enumerate through any components
-		/// and initialize them as well.
+		/// Initialize the Game.
 		/// </summary>
 		protected override void Initialize ()
 		{
-			// TODO: Add your initialization logic here
+			// basic effect
 			basicEffect = new BasicEffect (GraphicsDevice);
 			basicEffect.VertexColorEnabled = true;
 			basicEffect.View = Matrix.CreateLookAt (new Vector3 (0, 0, -1000), new Vector3 (0, 0, 1), new Vector3 (0, 1, 0));
 			basicEffect.Projection = Matrix.CreatePerspectiveFieldOfView (MathHelper.PiOver4, GraphicsDevice.Viewport.AspectRatio, 1.0f, 2000.0f);
 
+			// camera
 			camera = new Camera (graphics, basicEffect, this);
 
-			base.Initialize ();
-			previousKeyboardState = Keyboard.GetState ();
+			// input
+			input = new Input (Camera, graphics, this);
+			input.SaveStates ();
 
-			try {
-				font = Content.Load<SpriteFont> ("Font");
-			} catch (ContentLoadException ex) {
-				font = null;
-				Console.WriteLine (ex.Message);
-			}
+			// base method
+			base.Initialize ();
 		}
 
 		/// <summary>
@@ -79,14 +82,26 @@ namespace TestGame1
 		/// </summary>
 		protected override void LoadContent ()
 		{
+			// load fonts
+			try {
+				font = Content.Load<SpriteFont> ("Font");
+			} catch (ContentLoadException ex) {
+				font = null;
+				Console.WriteLine (ex.Message);
+			}
+
+			// load nodes
 			Node.Scale = 100;
-			camera.LoadContent ();
+			nodes = new NodeList ();
+			lines = new LineList (nodes);
 
+			// load camera
+			Camera.LoadContent ();
 
-			// Create a new SpriteBatch, which can be used to draw textures.
+			// create a new SpriteBatch, which can be used to draw textures
 			spriteBatch = new SpriteBatch (GraphicsDevice);
 
-			// TODO: use this.Content to load your game content here
+			// add some default nodes
 			nodes.Add (new Node (0, 0, 0));
 			nodes.Add (new Node (0, 1, 0));
 			nodes.Add (new Node (1, 1, 0));
@@ -115,82 +130,27 @@ namespace TestGame1
 		protected override void Update (GameTime gameTime)
 		{
 			UpdateInput ();
-			camera.Update (gameTime);
+			// camera
+			Camera.Update (gameTime);
+			// input
+			Input.Update (gameTime);
+			Input.SaveStates ();
+			// base method
 			base.Update (gameTime);
-		}
-
-		private bool IsKeyDown (Keys key)
-		{
-			KeyboardState keyboardState = Keyboard.GetState ();
-			// Is the key down?
-			if (keyboardState.IsKeyDown (key)) {
-				// If not down last update, key has just been pressed.
-				if (!previousKeyboardState.IsKeyDown (key)) {
-					return true;
-				}
-			}
-			return false;
 		}
 
 		private void UpdateInput ()
 		{
-			KeyboardState keyboardState = Keyboard.GetState ();
-			MouseState mouseState = Mouse.GetState (); 
-
 			// change background color
-			if (IsKeyDown (Keys.Space)) {
+			if (Keys.Space.IsDown ()) {
 				backColor = new Color (backColor.R, backColor.G, (byte)~backColor.B);
 			}
 
-			// allows the game to exit
-			if (IsKeyDown (Keys.Escape)) {
-				this.Exit ();
-			}
-
-			// fullscreen
-			if (IsKeyDown (Keys.F) || IsKeyDown (Keys.F11)) {
-				
-				if (graphics.IsFullScreen == false) {
-					graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
-					graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-				} else {
-					graphics.PreferredBackBufferWidth = defaultWidth;
-					graphics.PreferredBackBufferHeight = defaultHeight;
-				}
-				graphics.ToggleFullScreen ();
-				graphics.ApplyChanges ();
-				camera.FullscreenToggled = true;
-			}
-
-			// scroll wheel zoom
-			if (mouseState.ScrollWheelValue < previousScrollValue) {
-				camera.TargetDistance -= 10;
-                // arcball
-                camera.arcball.Zoom -= 10; 
-			} else if (mouseState.ScrollWheelValue > previousScrollValue) {
-				camera.TargetDistance += 10;
-                // arcball
-                camera.arcball.Zoom += 10; 
-			}
-
-			if (IsKeyDown (Keys.Y)) {
+			if (Keys.Y.IsDown ()) {
 				lines.SelectedLine -= 1;
-			} else if (IsKeyDown (Keys.X)) {
+			} else if (Keys.X.IsDown ()) {
 				lines.SelectedLine += 1;
 			}
-
-			// test
-			if (mouseState.LeftButton == ButtonState.Pressed) {
-				int x = Convert.ToInt32 (mouseState.X) / 16;
-				int y = Convert.ToInt32 (mouseState.Y) / 16 + 1;
-
-				//tiles [x, y] = null;//Left button Clicked, Change Texture here!
-
-			}
-
-			// Update saved state.
-			previousScrollValue = mouseState.ScrollWheelValue;
-			previousKeyboardState = keyboardState;
 		}
 
 		/// <summary>
@@ -206,9 +166,8 @@ namespace TestGame1
 				DrawLines ();
 			}
 
-			camera.Draw (gameTime);
+			Camera.Draw (gameTime);
 			DrawCoordinates ();
-
 			base.Draw (gameTime);
 		}
 
@@ -273,45 +232,37 @@ namespace TestGame1
 					int height = 20;
 					int width1 = 20, width2 = 140, width3 = 200, width4 = 260;
 					spriteBatch.DrawString (font, "Rotation: ", new Vector2 (width1, height), Color.White);
-					spriteBatch.DrawString (font, "" + camera.Degrees.X, new Vector2 (width2, height), Color.Green);
-					spriteBatch.DrawString (font, "" + camera.Degrees.Y, new Vector2 (width3, height), Color.Red);
-					spriteBatch.DrawString (font, "" + camera.Degrees.Z, new Vector2 (width4, height), Color.Yellow);
+					spriteBatch.DrawString (font, "" + Camera.RotationAngle.Degrees.X, new Vector2 (width2, height), Color.Green);
+					spriteBatch.DrawString (font, "" + Camera.RotationAngle.Degrees.Y, new Vector2 (width3, height), Color.Red);
+					spriteBatch.DrawString (font, "" + Camera.RotationAngle.Degrees.Z, new Vector2 (width4, height), Color.Yellow);
 					height += 20;
 					spriteBatch.DrawString (font, "Cam Pos: ", new Vector2 (width1, height), Color.White);
-					spriteBatch.DrawString (font, "" + camera.camPosition.X, new Vector2 (width2, height), Color.Green);
-					spriteBatch.DrawString (font, "" + camera.camPosition.Y, new Vector2 (width3, height), Color.Red);
-					spriteBatch.DrawString (font, "" + camera.camPosition.Z, new Vector2 (width4, height), Color.Yellow);
+					spriteBatch.DrawString (font, "" + Camera.Position.X, new Vector2 (width2, height), Color.Green);
+					spriteBatch.DrawString (font, "" + Camera.Position.Y, new Vector2 (width3, height), Color.Red);
+					spriteBatch.DrawString (font, "" + Camera.Position.Z, new Vector2 (width4, height), Color.Yellow);
 					height += 20;
 					spriteBatch.DrawString (font, "Cam Target: ", new Vector2 (width1, height), Color.White);
-					spriteBatch.DrawString (font, "" + camera.camTarget.X, new Vector2 (width2, height), Color.Green);
-					spriteBatch.DrawString (font, "" + camera.camTarget.Y, new Vector2 (width3, height), Color.Red);
-					spriteBatch.DrawString (font, "" + camera.camTarget.Z, new Vector2 (width4, height), Color.Yellow);
+					spriteBatch.DrawString (font, "" + Camera.Target.X, new Vector2 (width2, height), Color.Green);
+					spriteBatch.DrawString (font, "" + Camera.Target.Y, new Vector2 (width3, height), Color.Red);
+					spriteBatch.DrawString (font, "" + Camera.Target.Z, new Vector2 (width4, height), Color.Yellow);
 					height += 20;
 					spriteBatch.DrawString (font, "FoV: ", new Vector2 (width1, height), Color.White);
-					spriteBatch.DrawString (font, "" + camera.FoV, new Vector2 (width2, height), Color.White);
+					spriteBatch.DrawString (font, "" + Camera.FoV, new Vector2 (width2, height), Color.White);
 					height += 20;
 					spriteBatch.DrawString (font, "Distance: ", new Vector2 (width1, height), Color.White);
-					spriteBatch.DrawString (font, "" + camera.TargetDistance, new Vector2 (width2, height), Color.White);
+					spriteBatch.DrawString (font, "" + Camera.TargetDistance, new Vector2 (width2, height), Color.White);
 
 				} catch (ArgumentException exp) {
-					Console.WriteLine (exp.ToString());
+					Console.WriteLine (exp.ToString ());
 				} catch (InvalidOperationException exp) {
-					Console.WriteLine (exp.ToString());
+					Console.WriteLine (exp.ToString ());
 				}
 				spriteBatch.End ();
 			}
 		}
 
-		private void DrawCircle ()
-		{
-			var vertices = new VertexPositionColor[100];
-			for (int i = 0; i < 99; i++) {
-				float angle = (float)(i / 100.0 * Math.PI * 2);
-				vertices [i].Position = new Vector3 (200 + (float)Math.Cos (angle) * 100, 200 + (float)Math.Sin (angle) * 100, 0);
-				vertices [i].Color = Color.Black;
-			}
-			vertices [99] = vertices [0];
-			graphics.GraphicsDevice.DrawUserPrimitives<VertexPositionColor> (PrimitiveType.LineStrip, vertices, 0, 99);
-		}
+		public Camera Camera { get { return camera; } }
+
+		public Input Input { get { return input; } }
 	}
 }

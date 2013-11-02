@@ -47,6 +47,7 @@
     <Compile Include="Test.cs" />
     <Compile Include="ArcBallCamera.cs" />
     <Compile Include="Vectors.cs" />
+    <Compile Include="Input.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
