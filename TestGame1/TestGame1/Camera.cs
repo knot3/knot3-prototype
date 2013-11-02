@@ -28,10 +28,12 @@ namespace TestGame1
 		public Vector3 camTarget;
 		private Vector3 camUpVector;
 		private float foV;
+
 		public float FoV {
-			get {return foV;}
-			set {foV = value > 100 ? 100 : value < 40 ? 40 : value;}
+			get { return foV;}
+			set { foV = value > 100 ? 100 : value < 40 ? 40 : value;}
 		}
+
 		private float aspectRatio;
 		private float nearPlane;
 		private float farPlane;
@@ -41,6 +43,8 @@ namespace TestGame1
 		private bool rotateX = false;
 		private bool rotateY = false;
 		private bool rotateZ = false;
+		public int wasdSpeed = 10;
+		private MouseState previousMouseState;
 
 		public void zoom (int i)
 		{
@@ -70,6 +74,13 @@ namespace TestGame1
 			aspectRatio = graphics.GraphicsDevice.Viewport.AspectRatio;
 			nearPlane = 0.5f;
 			farPlane = 5000.0f;
+
+			ResetMousePosition ();
+		}
+
+		private void ResetMousePosition ()
+		{
+			Mouse.SetPosition (graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
 		}
 
 		public void LoadContent ()
@@ -98,26 +109,44 @@ namespace TestGame1
 			//Vector3 targetDiffLR = new Vector3 (0, 0, 10);
 			//Vector3 targetDiffUD = new Vector3 (10, 0, 0);
 			if (keyboardState.IsKeyDown (Keys.Left)) {
-				camTarget -= 10* Vector3.Left;
-				camPosition -= 10 * Vector3.Left;
+				camTarget -= wasdSpeed * Vector3.Left;
+				camPosition -= wasdSpeed * Vector3.Left;
 			}
 			if (keyboardState.IsKeyDown (Keys.Right)) {
-				camTarget -= 10* Vector3.Right;
-				camPosition -= 10 * Vector3.Right;
+				camTarget -= wasdSpeed * Vector3.Right;
+				camPosition -= wasdSpeed * Vector3.Right;
 			}
 			if (keyboardState.IsKeyDown (Keys.Up)) {
-				camTarget -= 10* Vector3.Forward;
-				camPosition -= 10 * Vector3.Forward;
+				camTarget -= wasdSpeed * Vector3.Forward;
+				camPosition -= wasdSpeed * Vector3.Forward;
 			}
 			if (keyboardState.IsKeyDown (Keys.Down)) {
-				camTarget -= 10* Vector3.Backward;
-				camPosition -= 10 * Vector3.Backward;
+				camTarget -= wasdSpeed * Vector3.Backward;
+				camPosition -= wasdSpeed * Vector3.Backward;
+			}
+
+			if (keyboardState.IsKeyDown (Keys.OemPlus) && wasdSpeed < 20) {
+				wasdSpeed += 1;
+			}
+			if (keyboardState.IsKeyDown (Keys.OemMinus) && wasdSpeed > 1) {
+				wasdSpeed -= 1;
 			}
 
 			if (rotateY)
 				angleY += 0.005f;
 			if (rotateZ)
 				angleZ += 0.005f;
+
+			MouseState currentMouseState = Mouse.GetState ();
+
+			if (currentMouseState != previousMouseState) {
+				float xDifference = currentMouseState.X - previousMouseState.X;
+				float yDifference = currentMouseState.Y - previousMouseState.Y;
+				angleY -= 1 * xDifference;
+				angleX -= 1 * yDifference;
+				ResetMousePosition ();
+				currentMouseState = previousMouseState;
+			}
 		}
 
 		public void Draw (GameTime gameTime)
@@ -135,7 +164,7 @@ namespace TestGame1
 
 			ViewMatrix = Matrix.CreateLookAt (camPosition, camTarget, camUpVector);
 			WorldMatrix = Matrix.CreateFromYawPitchRoll (angleY, angleX, angleZ);
-			ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians(FoV), aspectRatio, nearPlane, farPlane);
+			ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FoV), aspectRatio, nearPlane, farPlane);
 
 			basicEffect.World = WorldMatrix;
 			basicEffect.View = ViewMatrix;

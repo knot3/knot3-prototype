@@ -160,10 +160,10 @@ namespace TestGame1
 			}
 
 			// scroll wheel zoom
-			if (mouseState.ScrollWheelValue < previousScrollValue || keyboardState.IsKeyDown (Keys.OemPlus)) {
+			if (mouseState.ScrollWheelValue < previousScrollValue) {
 				//Node.Scale += 5;
 				camera.FoV -= 10;
-			} else if (mouseState.ScrollWheelValue > previousScrollValue || keyboardState.IsKeyDown (Keys.OemMinus)) {
+			} else if (mouseState.ScrollWheelValue > previousScrollValue) {
 				camera.FoV += 10;
 			}
 
