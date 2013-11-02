@@ -132,11 +132,11 @@ namespace TestGame1
 			}
 			if (keyboardState.IsKeyDown (Keys.Up)) {
 				camTarget -= wasdSpeed * Vector3.Forward;
-				camPosition -= wasdSpeed * Vector3.Forward;
+                camPosition -= wasdSpeed * Vector3.Forward;
 			}
 			if (keyboardState.IsKeyDown (Keys.Down)) {
 				camTarget -= wasdSpeed * Vector3.Backward;
-				camPosition -= wasdSpeed * Vector3.Backward;
+                camPosition -= wasdSpeed * Vector3.Backward;
 			}
 
 			if (keyboardState.IsKeyDown (Keys.OemPlus) && wasdSpeed < 20) {
@@ -159,8 +159,12 @@ namespace TestGame1
 				Console.WriteLine ("xDifference: " + xDifference);
 				if (FullscreenToggled)
 					FullscreenToggled = false;
-				else
-					camTarget -= new Vector3 (xDifference, yDifference, 0);
+                else if (currentMouseState.RightButton == ButtonState.Pressed)
+                {
+                    camPosition -= new Vector3(xDifference, yDifference, 0);
+                }
+                else
+                    camTarget -= new Vector3(xDifference, yDifference, 0);
 				ResetMousePosition ();
 			}
 		}
