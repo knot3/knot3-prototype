@@ -169,6 +169,7 @@ namespace TestGame1
                 }
                 graphics.ToggleFullScreen();
                 graphics.ApplyChanges();
+				camera.FullscreenToggled = true;
             }
 
 			// scroll wheel zoom

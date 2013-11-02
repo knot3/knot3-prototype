@@ -45,6 +45,7 @@ namespace TestGame1
 		private bool rotateZ = false;
 		public int wasdSpeed = 10;
 		private MouseState previousMouseState;
+		public bool FullscreenToggled;
 
 		public float AngleX { get { return angleX; } }
 
@@ -70,12 +71,14 @@ namespace TestGame1
 			nearPlane = 0.5f;
 			farPlane = 5000.0f;
 
+			FullscreenToggled = false;
 			ResetMousePosition ();
 		}
 
-		private void ResetMousePosition ()
+		public void ResetMousePosition ()
 		{
 			Mouse.SetPosition (graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
+			previousMouseState = Mouse.GetState ();
 		}
 
 		public void LoadContent ()
@@ -154,9 +157,11 @@ namespace TestGame1
 				float xDifference = currentMouseState.X - previousMouseState.X;
 				float yDifference = currentMouseState.Y - previousMouseState.Y;
 				Console.WriteLine ("xDifference: " + xDifference);
-				camTarget -= new Vector3 (xDifference, yDifference, 0);
+				if (FullscreenToggled)
+					FullscreenToggled = false;
+				else
+					camTarget -= new Vector3 (xDifference, yDifference, 0);
 				ResetMousePosition ();
-				previousMouseState = Mouse.GetState ();
 			}
 		}
 
