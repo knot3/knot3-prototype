@@ -172,10 +172,12 @@ namespace TestGame1
 			// scroll wheel zoom
 			if (mouseState.ScrollWheelValue < previousScrollValue) {
 				//camera.FoV -= 10;
-				camera.TargetDistance -= 10;
+				//camera.TargetDistance -= 10;
+                camera.arcball.Zoom -= 10; 
 			} else if (mouseState.ScrollWheelValue > previousScrollValue) {
 				//camera.FoV += 10;
-				camera.TargetDistance += 10;
+				//camera.TargetDistance += 10;
+                camera.arcball.Zoom += 10; 
 			}
 
 			if (IsKeyDown (Keys.Y)) {
