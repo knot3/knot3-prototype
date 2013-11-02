@@ -26,12 +26,15 @@ namespace TestGame1
 		KeyboardState previousKeyboardState;
 		int previousScrollValue;
 		SpriteFont font;
+        int defaultWidth=1280;
+        int defaultHeight=720;
 
 		public Game1 ()
 		{
 			graphics = new GraphicsDeviceManager (this);
-			graphics.PreferredBackBufferWidth = 1280;
-			graphics.PreferredBackBufferHeight = 720;
+			
+            graphics.PreferredBackBufferWidth = defaultWidth;
+			graphics.PreferredBackBufferHeight = defaultHeight;
 
 			graphics.IsFullScreen = false;
 			graphics.ApplyChanges ();
@@ -153,11 +156,20 @@ namespace TestGame1
 
 			// fullscreen
 			if (IsKeyDown (Keys.F) || IsKeyDown (Keys.F11)) {
-				graphics.ToggleFullScreen ();
-				graphics.PreferredBackBufferWidth = 1440;
-				graphics.PreferredBackBufferHeight = 900;
-				graphics.ApplyChanges ();
-			}
+				
+                if (graphics.IsFullScreen == false)
+                {
+                    graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+                    graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+                }
+                else
+                {
+                    graphics.PreferredBackBufferWidth = defaultWidth;
+                    graphics.PreferredBackBufferHeight =defaultHeight;
+                }
+                graphics.ToggleFullScreen();
+                graphics.ApplyChanges();
+            }
 
 			// scroll wheel zoom
 			if (mouseState.ScrollWheelValue < previousScrollValue) {
