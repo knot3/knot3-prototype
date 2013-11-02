@@ -47,7 +47,7 @@ namespace TestGame1
 		private MouseState previousMouseState;
 		public bool FullscreenToggled;
 		private float constantDistance;
-
+        public ArcBallCamera arcball;
 		public float AngleX { get { return angleX; } }
 
 		public float AngleY { get { return angleY; } }
@@ -71,6 +71,7 @@ namespace TestGame1
 			aspectRatio = graphics.GraphicsDevice.Viewport.AspectRatio;
 			nearPlane = 0.5f;
 			farPlane = 5000.0f;
+            arcball = new ArcBallCamera(aspectRatio, FoV, camTarget, camUpVector, nearPlane, farPlane);
 
 			FullscreenToggled = false;
 			ResetMousePosition ();
@@ -131,30 +132,31 @@ namespace TestGame1
 
 			//Vector3 targetDiffLR = new Vector3 (0, 0, 10);
 			//Vector3 targetDiffUD = new Vector3 (10, 0, 0);
-			if (keyboardState.IsKeyDown (Keys.Left)) {
-				camTarget -= wasdSpeed * Vector3.Left;
-				camPosition -= wasdSpeed * Vector3.Left;
-			}
-			if (keyboardState.IsKeyDown (Keys.Right)) {
-				camTarget -= wasdSpeed * Vector3.Right;
-				camPosition -= wasdSpeed * Vector3.Right;
-			}
-			if (keyboardState.IsKeyDown (Keys.Up)) {
-				camTarget -= wasdSpeed * Vector3.Forward;
-				camPosition -= wasdSpeed * Vector3.Forward;
-			}
-			if (keyboardState.IsKeyDown (Keys.Down)) {
-				camTarget -= wasdSpeed * Vector3.Backward;
-				camPosition -= wasdSpeed * Vector3.Backward;
-			}
-
-			if (keyboardState.IsKeyDown (Keys.OemPlus) && wasdSpeed < 20) {
-				wasdSpeed += 1;
-			}
-			if (keyboardState.IsKeyDown (Keys.OemMinus) && wasdSpeed > 1) {
-				wasdSpeed -= 1;
-			}
-
+			
+            
+           //if (keyboardState.IsKeyDown (Keys.Left)) {
+           //     camTarget -= wasdSpeed * Vector3.Left;
+           //     camPosition -= wasdSpeed * Vector3.Left;
+           // }
+           // if (keyboardState.IsKeyDown (Keys.Right)) {
+           //     camTarget -= wasdSpeed * Vector3.Right;
+           //     camPosition -= wasdSpeed * Vector3.Right;
+           // }
+           // if (keyboardState.IsKeyDown (Keys.Up)) {
+           //     camTarget -= wasdSpeed * Vector3.Forward;
+           //     camPosition -= wasdSpeed * Vector3.Forward;
+           // }
+           // if (keyboardState.IsKeyDown (Keys.Down)) {
+           //     camTarget -= wasdSpeed * Vector3.Backward;
+           //     camPosition -= wasdSpeed * Vector3.Backward;
+           // }
+           // if (keyboardState.IsKeyDown (Keys.OemPlus) && wasdSpeed < 20) {
+           //     wasdSpeed += 1;
+           // }
+           // if (keyboardState.IsKeyDown (Keys.OemMinus) && wasdSpeed > 1) {
+           //     wasdSpeed -= 1;
+           // }
+     
 			if (rotateY)
 				angleY += 0.005f;
 			if (rotateZ)
@@ -166,52 +168,58 @@ namespace TestGame1
 				Vector2 mouse = new Vector2 (currentMouseState.X - previousMouseState.X, currentMouseState.Y - previousMouseState.Y);
 				if (FullscreenToggled)
 					FullscreenToggled = false;
-				else if (currentMouseState.RightButton == ButtonState.Pressed) {
+                else if (currentMouseState.RightButton == ButtonState.Pressed)
+                {
 
-					// target immer null bei rechtsklick
-					camTarget = new Vector3 (0, 0, 0);
+                    // target immer null bei rechtsklick
+                    camTarget = new Vector3(0, 0, 0);
 
-					// konstante distanz speichern, falls neuer rechtsklick
-					float distance = TargetDistance;
-					if (constantDistance == 0)
-						constantDistance = distance;
+                    // konstante distanz speichern, falls neuer rechtsklick
+                    //float distance = TargetDistance;
+                    //if (constantDistance == 0)
+                    //    constantDistance = distance;
 
-					// X und Y reduzieren, sodass sqrt(..) lösbar ist
-					while (Math.Pow (camTarget.X - camPosition.X - mouse.X, 2) 
-						+ Math.Pow (camTarget.Y - camPosition.Y - mouse.Y, 2) >
-						Math.Pow (constantDistance, 2)) {
-						camPosition.X *= 0.99f;
-						camPosition.Y *= 0.99f;
-					}
+                    // X und Y reduzieren, sodass sqrt(..) lösbar ist
+                    //while (Math.Pow (camTarget.X - camPosition.X - mouse.X, 2) 
+                    //    + Math.Pow (camTarget.Y - camPosition.Y - mouse.Y, 2) >
+                    //    Math.Pow (constantDistance, 2)) {
+                    //    camPosition.X *= 0.99f;
+                    //    camPosition.Y *= 0.99f;
+                    //}
 
-					Console.WriteLine ("vorher: constantDistance=" + constantDistance + ", distance=" + distance + ", camTarget=(" + camTarget + "), camPosition=(" + camPosition + ") -= (" + mouse + ",0)"
-					);
+                    //Console.WriteLine ("vorher: constantDistance=" + constantDistance + ", distance=" + distance + ", camTarget=(" + camTarget + "), camPosition=(" + camPosition + ") -= (" + mouse + ",0)"
+                    //);
 
-					// formel
-					float zp = (float)(camTarget.Z - Math.Sqrt (Math.Pow (constantDistance, 2) 
-						- Math.Pow (camTarget.X - camPosition.X - mouse.X, 2) 
-						- Math.Pow (camTarget.Y - camPosition.Y - mouse.Y, 2)
-					));
+                    //// formel
+                    //float zp = (float)(camTarget.Z - Math.Sqrt (Math.Pow (constantDistance, 2) 
+                    //    - Math.Pow (camTarget.X - camPosition.X - mouse.X, 2) 
+                    //    - Math.Pow (camTarget.Y - camPosition.Y - mouse.Y, 2)
+                    //));
 
-					Console.WriteLine ("zp=" + zp);
-					// neue position
-					camPosition -= new Vector3 (mouse.X, mouse.Y, 0);
-					camPosition.Z = zp;
-					Console.WriteLine ("nachher: distance=" + TargetDistance);
+                    //Console.WriteLine ("zp=" + zp);
+                    //// neue position
+                    //camPosition -= new Vector3 (mouse.X, mouse.Y, 0);
+                    //camPosition.Z = zp;
+                    //Console.WriteLine ("nachher: distance=" + TargetDistance);
 
 
-					//(distance * distance - (camPosition.X + mouse.X) * camTarget.X - 
-					//(camPosition.Y + mouse.Y) * camTarget.Y) /(1+ camTarget.Z));
+                    //(distance * distance - (camPosition.X + mouse.X) * camTarget.X - 
+                    //(camPosition.Y + mouse.Y) * camTarget.Y) /(1+ camTarget.Z));
 
-					/*while (TargetDistance > distance + 10) {
-						camPosition += (camTarget - camPosition) / TargetDistance;
-						Console.WriteLine ("TargetDistance = " + TargetDistance + ", distance=" + distance);
-					}*/
-				} else {
-					camTarget -= new Vector3 (mouse.X, mouse.Y, 0);
-					constantDistance = 0;
-				}
-				ResetMousePosition ();
+                    /*while (TargetDistance > distance + 10) {
+                        camPosition += (camTarget - camPosition) / TargetDistance;
+                        Console.WriteLine ("TargetDistance = " + TargetDistance + ", distance=" + distance);
+                    }*/
+                    //} else {
+                    //    camTarget -= new Vector3 (mouse.X, mouse.Y, 0);
+                    //    constantDistance = 0;
+                    //}
+
+                    arcball.Yaw += (mouse.X/1000);
+                    arcball.Pitch += (mouse.Y / 1000);
+
+                    ResetMousePosition();
+                }
 			}
 		}
 
@@ -228,9 +236,14 @@ namespace TestGame1
 				Matrix.CreateLookAt (camPosition, camTarget, camUpVector);
 			*/
 
-			ViewMatrix = Matrix.CreateLookAt (camPosition, camTarget, camUpVector);
-			WorldMatrix = Matrix.CreateFromYawPitchRoll (angleY, angleX, angleZ);
-			ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FoV), aspectRatio, nearPlane, farPlane);
+            //ViewMatrix = Matrix.CreateLookAt (camPosition, camTarget, camUpVector);
+            WorldMatrix = Matrix.CreateFromYawPitchRoll (angleY, angleX, angleZ);
+            //ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FoV), aspectRatio, nearPlane, farPlane);
+
+            ViewMatrix = arcball.ViewMatrix;
+          
+            ProjectionMatrix = arcball.ProjectionMatrix;
+
 
 			basicEffect.World = WorldMatrix;
 			basicEffect.View = ViewMatrix;
