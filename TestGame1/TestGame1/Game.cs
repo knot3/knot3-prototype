@@ -69,7 +69,7 @@ namespace TestGame1
 			camera = new Camera (graphics, basicEffect, this);
 
 			// input
-			input = new Input (Camera, graphics, this);
+			input = new Input (camera, graphics, this);
 			input.SaveStates ();
 
 			// base method
@@ -96,7 +96,7 @@ namespace TestGame1
 			lines = new LineList (nodes);
 
 			// load camera
-			Camera.LoadContent ();
+			camera.LoadContent ();
 
 			// create a new SpriteBatch, which can be used to draw textures
 			spriteBatch = new SpriteBatch (GraphicsDevice);
@@ -129,17 +129,17 @@ namespace TestGame1
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update (GameTime gameTime)
 		{
-			UpdateInput ();
+			Updateinput ();
 			// camera
-			Camera.Update (gameTime);
+			camera.Update (gameTime);
 			// input
-			Input.Update (gameTime);
-			Input.SaveStates ();
+			input.Update (gameTime);
+			input.SaveStates ();
 			// base method
 			base.Update (gameTime);
 		}
 
-		private void UpdateInput ()
+		private void Updateinput ()
 		{
 			// change background color
 			if (Keys.Space.IsDown ()) {
@@ -166,7 +166,7 @@ namespace TestGame1
 				DrawLines ();
 			}
 
-			Camera.Draw (gameTime);
+			camera.Draw (gameTime);
 			DrawCoordinates ();
 			base.Draw (gameTime);
 		}
@@ -232,25 +232,25 @@ namespace TestGame1
 					int height = 20;
 					int width1 = 20, width2 = 140, width3 = 200, width4 = 260;
 					spriteBatch.DrawString (font, "Rotation: ", new Vector2 (width1, height), Color.White);
-					spriteBatch.DrawString (font, "" + Camera.RotationAngle.Degrees.X, new Vector2 (width2, height), Color.Green);
-					spriteBatch.DrawString (font, "" + Camera.RotationAngle.Degrees.Y, new Vector2 (width3, height), Color.Red);
-					spriteBatch.DrawString (font, "" + Camera.RotationAngle.Degrees.Z, new Vector2 (width4, height), Color.Yellow);
+					spriteBatch.DrawString (font, "" + camera.RotationAngle.Degrees.X, new Vector2 (width2, height), Color.Green);
+					spriteBatch.DrawString (font, "" + camera.RotationAngle.Degrees.Y, new Vector2 (width3, height), Color.Red);
+					spriteBatch.DrawString (font, "" + camera.RotationAngle.Degrees.Z, new Vector2 (width4, height), Color.Yellow);
 					height += 20;
 					spriteBatch.DrawString (font, "Cam Pos: ", new Vector2 (width1, height), Color.White);
-					spriteBatch.DrawString (font, "" + Camera.Position.X, new Vector2 (width2, height), Color.Green);
-					spriteBatch.DrawString (font, "" + Camera.Position.Y, new Vector2 (width3, height), Color.Red);
-					spriteBatch.DrawString (font, "" + Camera.Position.Z, new Vector2 (width4, height), Color.Yellow);
+					spriteBatch.DrawString (font, "" + camera.Position.X, new Vector2 (width2, height), Color.Green);
+					spriteBatch.DrawString (font, "" + camera.Position.Y, new Vector2 (width3, height), Color.Red);
+					spriteBatch.DrawString (font, "" + camera.Position.Z, new Vector2 (width4, height), Color.Yellow);
 					height += 20;
 					spriteBatch.DrawString (font, "Cam Target: ", new Vector2 (width1, height), Color.White);
-					spriteBatch.DrawString (font, "" + Camera.Target.X, new Vector2 (width2, height), Color.Green);
-					spriteBatch.DrawString (font, "" + Camera.Target.Y, new Vector2 (width3, height), Color.Red);
-					spriteBatch.DrawString (font, "" + Camera.Target.Z, new Vector2 (width4, height), Color.Yellow);
+					spriteBatch.DrawString (font, "" + camera.Target.X, new Vector2 (width2, height), Color.Green);
+					spriteBatch.DrawString (font, "" + camera.Target.Y, new Vector2 (width3, height), Color.Red);
+					spriteBatch.DrawString (font, "" + camera.Target.Z, new Vector2 (width4, height), Color.Yellow);
 					height += 20;
 					spriteBatch.DrawString (font, "FoV: ", new Vector2 (width1, height), Color.White);
-					spriteBatch.DrawString (font, "" + Camera.FoV, new Vector2 (width2, height), Color.White);
+					spriteBatch.DrawString (font, "" + camera.FoV, new Vector2 (width2, height), Color.White);
 					height += 20;
 					spriteBatch.DrawString (font, "Distance: ", new Vector2 (width1, height), Color.White);
-					spriteBatch.DrawString (font, "" + Camera.TargetDistance, new Vector2 (width2, height), Color.White);
+					spriteBatch.DrawString (font, "" + camera.TargetDistance, new Vector2 (width2, height), Color.White);
 
 				} catch (ArgumentException exp) {
 					Console.WriteLine (exp.ToString ());
