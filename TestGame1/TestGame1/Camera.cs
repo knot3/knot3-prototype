@@ -164,8 +164,10 @@ namespace TestGame1
 				camTarget = new Vector3 (0, 0, 0);
 			}
 
-			if (rotateY)
-				angleY += 0.005f;
+            if (rotateX)
+                angleX += 0.005f;
+            if (rotateY)
+                angleY += 0.005f;
 			if (rotateZ)
 				angleZ += 0.005f;
 
@@ -223,22 +225,6 @@ namespace TestGame1
 			basicEffect.World = WorldMatrix;
 			basicEffect.View = ViewMatrix;
 			basicEffect.Projection = ProjectionMatrix;
-		}
-
-		public Ray GetMouseRay (Vector2 mousePosition)
-		{
-			Viewport viewport = graphics.GraphicsDevice.Viewport;
-
-			Vector3 nearPoint = new Vector3 (mousePosition, 0);
-			Vector3 farPoint = new Vector3 (mousePosition, 1);
- 
-			nearPoint = viewport.Unproject (nearPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
-			farPoint = viewport.Unproject (farPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
- 
-			Vector3 direction = farPoint - nearPoint;
-			direction.Normalize ();
- 
-			return new Ray (nearPoint, direction);
 		}
 
 		public Vector3 Degrees {

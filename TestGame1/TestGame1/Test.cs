@@ -6,11 +6,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TestGame1
 {
-	public class Test
+	public static class Test
 	{
-		public Test ()
-		{
-		}
 
 		//In a 2D grid, returns the angle to a specified point from the +X axis 
 		private static float ArcTanAngle (float X, float Y)
@@ -57,6 +54,22 @@ namespace TestGame1
 			return v;
 		}
 
+        public static Ray GetMouseRay(Vector2 mousePosition, GraphicsDeviceManager graphics, Matrix ProjectionMatrix, Matrix ViewMatrix)
+        {
+            Viewport viewport = graphics.GraphicsDevice.Viewport;
+
+            Vector3 nearPoint = new Vector3(mousePosition, 0);
+            Vector3 farPoint = new Vector3(mousePosition, 1);
+
+            nearPoint = viewport.Unproject(nearPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
+            farPoint = viewport.Unproject(farPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
+
+            Vector3 direction = farPoint - nearPoint;
+            direction.Normalize();
+
+            return new Ray(nearPoint, direction);
+        }
+        
 	}
 }
 
