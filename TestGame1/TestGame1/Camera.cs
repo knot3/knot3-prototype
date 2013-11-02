@@ -46,6 +46,7 @@ namespace TestGame1
 		public int wasdSpeed = 10;
 		private MouseState previousMouseState;
 		public bool FullscreenToggled;
+		private float constantDistance;
 
 		public float AngleX { get { return angleX; } }
 
@@ -86,35 +87,29 @@ namespace TestGame1
 			SetUpCamera ();
 		}
 
-        public float TargetDistance
-        {
-            get
-            {
-                Vector3 toTarget = camTarget - camPosition;
-                return toTarget.Length();
-            }
-            set
-            {
-                Vector3 toTarget = camTarget - camPosition;
-                toTarget.Normalize();
-                camPosition -= toTarget * (TargetDistance - value);
+		public float TargetDistance {
+			get {
+				Vector3 toTarget = camTarget - camPosition;
+				return toTarget.Length ();
+			}
+			set {
+				Vector3 toTarget = camTarget - camPosition;
+				toTarget.Normalize ();
+				camPosition -= toTarget * (TargetDistance - value);
 
-                if (TargetDistance < 100)
-                {
-                    camPosition -= toTarget * (100 - TargetDistance);
-                }
-            }
-        }
+				if (TargetDistance < 100) {
+					camPosition -= toTarget * (100 - TargetDistance);
+				}
+			}
+		}
 
-        public Vector3 TargetVector
-        {
-            get
-            {
-                Vector3 toTarget = camTarget - camPosition;
-                toTarget.Normalize();
-                return toTarget;
-            }
-        }
+		public Vector3 TargetVector {
+			get {
+				Vector3 toTarget = camTarget - camPosition;
+				toTarget.Normalize ();
+				return toTarget;
+			}
+		}
 
 		public void Update (GameTime gameTime)
 		{
@@ -146,11 +141,11 @@ namespace TestGame1
 			}
 			if (keyboardState.IsKeyDown (Keys.Up)) {
 				camTarget -= wasdSpeed * Vector3.Forward;
-                camPosition -= wasdSpeed * Vector3.Forward;
+				camPosition -= wasdSpeed * Vector3.Forward;
 			}
 			if (keyboardState.IsKeyDown (Keys.Down)) {
 				camTarget -= wasdSpeed * Vector3.Backward;
-                camPosition -= wasdSpeed * Vector3.Backward;
+				camPosition -= wasdSpeed * Vector3.Backward;
 			}
 
 			if (keyboardState.IsKeyDown (Keys.OemPlus) && wasdSpeed < 20) {
@@ -168,30 +163,44 @@ namespace TestGame1
 			MouseState currentMouseState = Mouse.GetState ();
 
 			if (currentMouseState != previousMouseState) {
-				float xDifference = currentMouseState.X - previousMouseState.X;
-				float yDifference = currentMouseState.Y - previousMouseState.Y;
+				Vector2 mouse = new Vector2 (currentMouseState.X - previousMouseState.X, currentMouseState.Y - previousMouseState.Y);
 				if (FullscreenToggled)
 					FullscreenToggled = false;
-                else if (currentMouseState.RightButton == ButtonState.Pressed)
-                {
-                    Console.WriteLine("camPosition=(" + camPosition.X + "," + camPosition.Y + "," + camPosition.Z
-                        + ") -= (" + xDifference + "," + yDifference+",0)");
-                    float distance = TargetDistance;
-                    float zp = (float)Math.Pow(camPosition.X + xDifference - camTarget.X, 2)
-                        + (float)Math.Pow(camPosition.Y + yDifference - camTarget.Y, 2) - distance;
-                    if (zp > 0)
-                        zp = (float)Math.Sqrt(zp) / camTarget.Z;
-                    if (zp < 0)
-                        zp = -(float)Math.Sqrt(-zp) / camTarget.Z;
-                    camPosition -= new Vector3(xDifference, yDifference, zp);
-                        //(distance * distance - (camPosition.X + xDifference) * camTarget.X - 
-                    //(camPosition.Y + yDifference) * camTarget.Y) /(1+ camTarget.Z));
+				else if (currentMouseState.RightButton == ButtonState.Pressed) {
 
-                    //while (TargetDistance > distance)
-                    //    camPosition -= new Vector3(0, 0, TargetVector.Z);
-                }
-                else
-                    camTarget -= new Vector3(xDifference, yDifference, 0);
+					camTarget = new Vector3 (0, 0, 0);
+
+					float distance = TargetDistance;
+					if (constantDistance == 0)
+						constantDistance = distance;
+
+					Console.WriteLine ("vorher: constantDistance=" + constantDistance + ", distance=" + distance + ", camTarget=(" + camTarget + "), camPosition=(" + camPosition + ") -= (" + mouse + ",0)"
+					);
+
+					float zp;
+					if (true) {
+						zp = (float)(camTarget.Z - Math.Sqrt (Math.Pow (constantDistance, 2) 
+							- Math.Pow (camTarget.X - camPosition.X - mouse.X, 2) 
+							- Math.Pow (camTarget.Y - camPosition.Y - mouse.Y, 2)
+						));
+					} else {
+						zp = 0;
+					}
+					Console.WriteLine ("zp=" + zp);
+					camPosition -= new Vector3 (mouse.X, mouse.Y, 0);
+					camPosition.Z = zp;
+					Console.WriteLine ("nachher: distance=" + TargetDistance);
+					//(distance * distance - (camPosition.X + mouse.X) * camTarget.X - 
+					//(camPosition.Y + mouse.Y) * camTarget.Y) /(1+ camTarget.Z));
+
+					/*while (TargetDistance > distance + 10) {
+						camPosition += (camTarget - camPosition) / TargetDistance;
+						Console.WriteLine ("TargetDistance = " + TargetDistance + ", distance=" + distance);
+					}*/
+				} else {
+					camTarget -= new Vector3 (mouse.X, mouse.Y, 0);
+					constantDistance = 0;
+				}
 				ResetMousePosition ();
 			}
 		}

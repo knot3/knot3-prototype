@@ -26,14 +26,14 @@ namespace TestGame1
 		KeyboardState previousKeyboardState;
 		int previousScrollValue;
 		SpriteFont font;
-        int defaultWidth=1280;
-        int defaultHeight=720;
+		int defaultWidth = 1280;
+		int defaultHeight = 720;
 
 		public Game1 ()
 		{
 			graphics = new GraphicsDeviceManager (this);
 			
-            graphics.PreferredBackBufferWidth = defaultWidth;
+			graphics.PreferredBackBufferWidth = defaultWidth;
 			graphics.PreferredBackBufferHeight = defaultHeight;
 
 			graphics.IsFullScreen = false;
@@ -157,20 +157,17 @@ namespace TestGame1
 			// fullscreen
 			if (IsKeyDown (Keys.F) || IsKeyDown (Keys.F11)) {
 				
-                if (graphics.IsFullScreen == false)
-                {
-                    graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
-                    graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-                }
-                else
-                {
-                    graphics.PreferredBackBufferWidth = defaultWidth;
-                    graphics.PreferredBackBufferHeight =defaultHeight;
-                }
-                graphics.ToggleFullScreen();
-                graphics.ApplyChanges();
+				if (graphics.IsFullScreen == false) {
+					graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+					graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+				} else {
+					graphics.PreferredBackBufferWidth = defaultWidth;
+					graphics.PreferredBackBufferHeight = defaultHeight;
+				}
+				graphics.ToggleFullScreen ();
+				graphics.ApplyChanges ();
 				camera.FullscreenToggled = true;
-            }
+			}
 
 			// scroll wheel zoom
 			if (mouseState.ScrollWheelValue < previousScrollValue) {
@@ -276,30 +273,35 @@ namespace TestGame1
 			vertices [5].Color = Color.Yellow;
 			graphics.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3);
 			if (font != null) {
-				spriteBatch.Begin ();
-				int height = 20;
-				int width1 = 20, width2 = 140, width3 = 200, width4 = 260;
-				spriteBatch.DrawString (font, "Rotation: ", new Vector2 (width1, height), Color.White);
-				spriteBatch.DrawString (font, "" + camera.Degrees.X, new Vector2 (width2, height), Color.Green);
-				spriteBatch.DrawString (font, "" + camera.Degrees.Y, new Vector2 (width3, height), Color.Red);
-				spriteBatch.DrawString (font, "" + camera.Degrees.Z, new Vector2 (width4, height), Color.Yellow);
-				height += 20;
-				spriteBatch.DrawString (font, "Cam Pos: ", new Vector2 (width1, height), Color.White);
-				spriteBatch.DrawString (font, "" + camera.camPosition.X, new Vector2 (width2, height), Color.Green);
-				spriteBatch.DrawString (font, "" + camera.camPosition.Y, new Vector2 (width3, height), Color.Red);
-				spriteBatch.DrawString (font, "" + camera.camPosition.Z, new Vector2 (width4, height), Color.Yellow);
-				height += 20;
-				spriteBatch.DrawString (font, "Cam Target: ", new Vector2 (width1, height), Color.White);
-				spriteBatch.DrawString (font, "" + camera.camTarget.X, new Vector2 (width2, height), Color.Green);
-				spriteBatch.DrawString (font, "" + camera.camTarget.Y, new Vector2 (width3, height), Color.Red);
-				spriteBatch.DrawString (font, "" + camera.camTarget.Z, new Vector2 (width4, height), Color.Yellow);
-				height += 20;
-				spriteBatch.DrawString (font, "FoV: ", new Vector2 (width1, height), Color.White);
-				spriteBatch.DrawString (font, "" + camera.FoV, new Vector2 (width2, height), Color.White);
-				height += 20;
-				spriteBatch.DrawString (font, "Distance: ", new Vector2 (width1, height), Color.White);
-				spriteBatch.DrawString (font, "" + camera.TargetDistance, new Vector2 (width2, height), Color.White);
-				spriteBatch.End ();
+				try {
+					spriteBatch.Begin ();
+					int height = 20;
+					int width1 = 20, width2 = 140, width3 = 200, width4 = 260;
+					spriteBatch.DrawString (font, "Rotation: ", new Vector2 (width1, height), Color.White);
+					spriteBatch.DrawString (font, "" + camera.Degrees.X, new Vector2 (width2, height), Color.Green);
+					spriteBatch.DrawString (font, "" + camera.Degrees.Y, new Vector2 (width3, height), Color.Red);
+					spriteBatch.DrawString (font, "" + camera.Degrees.Z, new Vector2 (width4, height), Color.Yellow);
+					height += 20;
+					spriteBatch.DrawString (font, "Cam Pos: ", new Vector2 (width1, height), Color.White);
+					spriteBatch.DrawString (font, "" + camera.camPosition.X, new Vector2 (width2, height), Color.Green);
+					spriteBatch.DrawString (font, "" + camera.camPosition.Y, new Vector2 (width3, height), Color.Red);
+					spriteBatch.DrawString (font, "" + camera.camPosition.Z, new Vector2 (width4, height), Color.Yellow);
+					height += 20;
+					spriteBatch.DrawString (font, "Cam Target: ", new Vector2 (width1, height), Color.White);
+					spriteBatch.DrawString (font, "" + camera.camTarget.X, new Vector2 (width2, height), Color.Green);
+					spriteBatch.DrawString (font, "" + camera.camTarget.Y, new Vector2 (width3, height), Color.Red);
+					spriteBatch.DrawString (font, "" + camera.camTarget.Z, new Vector2 (width4, height), Color.Yellow);
+					height += 20;
+					spriteBatch.DrawString (font, "FoV: ", new Vector2 (width1, height), Color.White);
+					spriteBatch.DrawString (font, "" + camera.FoV, new Vector2 (width2, height), Color.White);
+					height += 20;
+					spriteBatch.DrawString (font, "Distance: ", new Vector2 (width1, height), Color.White);
+					spriteBatch.DrawString (font, "" + camera.TargetDistance, new Vector2 (width2, height), Color.White);
+					spriteBatch.End ();
+				} catch (ArgumentException exp) {
+					Console.WriteLine (exp.Message);
+				}catch(InvalidOperationException exp) {
+				}
 			}
 		}
 
