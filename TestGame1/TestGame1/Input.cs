@@ -55,9 +55,9 @@ namespace TestGame1
                     arcballMove += new Vector2(0, -1);
                 if (keyboardState.IsKeyDown(Keys.S))
                     arcballMove += new Vector2(0, 1);
-				if (keyboardState.IsKeyDown (Keys.Q))
-					keyboardMove += new Vector3 (0, -1, 0);
-				if (keyboardState.IsKeyDown (Keys.E))
+                if (keyboardState.IsKeyDown(Keys.LeftShift))
+                    keyboardMove += new Vector3(0, -1, 0);
+                if (keyboardState.IsKeyDown(Keys.LeftControl))
 					keyboardMove += new Vector3 (0, 1, 0);
 			} else if (wasdMode == WasdMode.FPS) {
 				if (keyboardState.IsKeyDown (Keys.A))
@@ -68,9 +68,9 @@ namespace TestGame1
 					keyboardMove += new Vector3 (0, 0, -1);
 				if (keyboardState.IsKeyDown (Keys.S))
 					keyboardMove += new Vector3 (0, 0, 1);
-				if (keyboardState.IsKeyDown (Keys.Q))
+				if (keyboardState.IsKeyDown (Keys.LeftShift))
 					keyboardMove += new Vector3 (0, -1, 0);
-				if (keyboardState.IsKeyDown (Keys.E))
+				if (keyboardState.IsKeyDown (Keys.LeftControl))
 					keyboardMove += new Vector3 (0, 1, 0);
 			} else if (wasdMode == WasdMode.ROTATION) {
 				float wasdAngle = 0.01f;
@@ -123,9 +123,12 @@ namespace TestGame1
 			}
 
 			// Enter key
-			if (keyboardState.IsKeyDown (Keys.Enter)) {
-				// set target to (0,0,0)
-				camera.Target = Vector3.Zero;
+            if (keyboardState.IsKeyDown(Keys.Enter))
+            {
+                // set target to (0,0,0)
+                camera.Target = Vector3.Zero;
+                // set position to default
+                camera.Target = camera.DefaultPosition;
 			}
 
 			// fullscreen

@@ -83,7 +83,7 @@ namespace TestGame1
 		{
 			if (Enabled) {
 				DrawBorders (gameTime);
-				//DrawTest (gameTime);
+				DrawTest (gameTime);
 			}
 		}
 		
@@ -94,8 +94,10 @@ namespace TestGame1
 				foreach (BasicEffect effect in mesh.Effects) {
 					if (game.Input.KeyboardState.IsKeyDown (Keys.L)) {
 						effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
+                    }else {
+                        effect.LightingEnabled = false;
 					}
-					effect.World = camera.WorldMatrix;
+					effect.World = Matrix.CreateScale(0.01f) * Matrix.CreateTranslation(camera.Target);  //camera.WorldMatrix*0.001f;
 					effect.View = camera.ViewMatrix;
 					effect.Projection = camera.ProjectionMatrix;
 				}
