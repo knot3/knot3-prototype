@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -18,21 +19,20 @@ namespace TestGame1
 	{
 		// graphics-related classes
 		private GraphicsDeviceManager graphics;
-		private SpriteBatch spriteBatch;
 		private BasicEffect basicEffect;
 
 		// nodes
 		private NodeList nodes;
 		private LineList lines;
 
-		// fonts and colors
-		private SpriteFont font;
+		// colors, ...
 		private Color backColor = Color.CornflowerBlue;
 		public static Size defaultSize = new Size (1280, 720);
 
 		// custom classes
 		private Input input;
 		private Camera camera;
+		private Overlay overlay;
 
 		// debug
 		public static bool Debug = true;
@@ -72,6 +72,9 @@ namespace TestGame1
 			input = new Input (camera, graphics, this);
 			input.SaveStates ();
 
+			// overlay
+			overlay = new Overlay (camera, graphics, this);
+
 			// base method
 			base.Initialize ();
 		}
@@ -82,14 +85,6 @@ namespace TestGame1
 		/// </summary>
 		protected override void LoadContent ()
 		{
-			// load fonts
-			try {
-				font = Content.Load<SpriteFont> ("Font");
-			} catch (ContentLoadException ex) {
-				font = null;
-				Console.WriteLine (ex.Message);
-			}
-
 			// load nodes
 			Node.Scale = 100;
 			nodes = new NodeList ();
@@ -98,8 +93,8 @@ namespace TestGame1
 			// load camera
 			camera.LoadContent ();
 
-			// create a new SpriteBatch, which can be used to draw textures
-			spriteBatch = new SpriteBatch (GraphicsDevice);
+			// load overlay
+			overlay.LoadContent ();
 
 			// add some default nodes
 			nodes.Add (new Node (0, 0, 0));
@@ -167,7 +162,7 @@ namespace TestGame1
 			}
 
 			camera.Draw (gameTime);
-			DrawCoordinates ();
+			overlay.Draw (gameTime);
 			base.Draw (gameTime);
 		}
 
@@ -207,58 +202,6 @@ namespace TestGame1
 				vertices [4 * n + 3].Color = lines.Color (n);
 			}
 			graphics.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, lines.Count * 2); 
-		}
-
-		private void DrawCoordinates ()
-		{
-			int length = 1000;
-			var vertices = new VertexPositionColor[6];
-			vertices [0].Position = new Vector3 (-length, 0, 0);
-			vertices [0].Color = Color.Green;
-			vertices [1].Position = new Vector3 (+length, 0, 0);
-			vertices [1].Color = Color.Green;
-			vertices [2].Position = new Vector3 (0, -length, 0);
-			vertices [2].Color = Color.Red;
-			vertices [3].Position = new Vector3 (0, +length, 0);
-			vertices [3].Color = Color.Red;
-			vertices [4].Position = new Vector3 (0, 0, -length);
-			vertices [4].Color = Color.Yellow;
-			vertices [5].Position = new Vector3 (0, 0, +length);
-			vertices [5].Color = Color.Yellow;
-			graphics.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3);
-			if (font != null) {
-				spriteBatch.Begin ();
-				try {
-					int height = 20;
-					int width1 = 20, width2 = 140, width3 = 200, width4 = 260;
-					spriteBatch.DrawString (font, "Rotation: ", new Vector2 (width1, height), Color.White);
-					spriteBatch.DrawString (font, "" + camera.RotationAngle.Degrees.X, new Vector2 (width2, height), Color.Green);
-					spriteBatch.DrawString (font, "" + camera.RotationAngle.Degrees.Y, new Vector2 (width3, height), Color.Red);
-					spriteBatch.DrawString (font, "" + camera.RotationAngle.Degrees.Z, new Vector2 (width4, height), Color.Yellow);
-					height += 20;
-					spriteBatch.DrawString (font, "Cam Pos: ", new Vector2 (width1, height), Color.White);
-					spriteBatch.DrawString (font, "" + camera.Position.X, new Vector2 (width2, height), Color.Green);
-					spriteBatch.DrawString (font, "" + camera.Position.Y, new Vector2 (width3, height), Color.Red);
-					spriteBatch.DrawString (font, "" + camera.Position.Z, new Vector2 (width4, height), Color.Yellow);
-					height += 20;
-					spriteBatch.DrawString (font, "Cam Target: ", new Vector2 (width1, height), Color.White);
-					spriteBatch.DrawString (font, "" + camera.Target.X, new Vector2 (width2, height), Color.Green);
-					spriteBatch.DrawString (font, "" + camera.Target.Y, new Vector2 (width3, height), Color.Red);
-					spriteBatch.DrawString (font, "" + camera.Target.Z, new Vector2 (width4, height), Color.Yellow);
-					height += 20;
-					spriteBatch.DrawString (font, "FoV: ", new Vector2 (width1, height), Color.White);
-					spriteBatch.DrawString (font, "" + camera.FoV, new Vector2 (width2, height), Color.White);
-					height += 20;
-					spriteBatch.DrawString (font, "Distance: ", new Vector2 (width1, height), Color.White);
-					spriteBatch.DrawString (font, "" + camera.TargetDistance, new Vector2 (width2, height), Color.White);
-
-				} catch (ArgumentException exp) {
-					Console.WriteLine (exp.ToString ());
-				} catch (InvalidOperationException exp) {
-					Console.WriteLine (exp.ToString ());
-				}
-				spriteBatch.End ();
-			}
 		}
 
 		public Camera Camera { get { return camera; } }

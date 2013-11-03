@@ -188,7 +188,7 @@ namespace TestGame1
 		}
 	}
 
-	public static class Extensions
+	public static class InputExtensions
 	{
 		public static bool IsDown (this Keys key)
 		{

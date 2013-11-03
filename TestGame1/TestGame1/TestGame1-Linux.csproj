@@ -48,6 +48,7 @@
     <Compile Include="ArcBallCamera.cs" />
     <Compile Include="Vectors.cs" />
     <Compile Include="Input.cs" />
+    <Compile Include="Overlay.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
