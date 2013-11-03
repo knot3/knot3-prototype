@@ -135,8 +135,11 @@ namespace TestGame1
 				} else if (MouseState.LeftButton == ButtonState.Pressed) {
 					camera.Position = camera.Target + 
 						(camera.Position - camera.Target).RotateY (MathHelper.Pi / 300f * mouseMove.X);
-					camera.Position = camera.Target + 
-						(camera.Position - camera.Target).RotateX (MathHelper.Pi / 200f * mouseMove.Y);
+					//camera.Position = camera.Target + 
+					//	(camera.Position - camera.Target).RotateX (MathHelper.Pi / 200f * mouseMove.Y);
+                    camera.Position = camera.Target + 
+						(camera.Position - camera.Target).RotateAroundVector (
+                       - Vector3.Cross (camera.UpVector, camera.TargetVector),MathHelper.Pi / 200f * mouseMove.Y);
 
 				} else {
 					// camTarget -= new Vector3 (mouse.X, mouse.Y, 0);
