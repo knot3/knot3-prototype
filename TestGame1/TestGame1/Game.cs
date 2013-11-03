@@ -150,11 +150,25 @@ namespace TestGame1
 			}
 
 			// select lines
-			if (Keys.Y.IsDown ()) {
+			if (Keys.Y.IsDown () || Keys.NumPad1.IsDown ()) {
 				lines.SelectedLine -= 1;
-			} else if (Keys.X.IsDown ()) {
+			} else if (Keys.X.IsDown () || Keys.NumPad3.IsDown ()) {
 				lines.SelectedLine += 1;
 			}
+
+			// move lines
+			if (Keys.NumPad8.IsDown ())
+				lines.InsertAt (lines.SelectedLine, Vector3.Up);
+			if (Keys.NumPad2.IsDown ())
+				lines.InsertAt (lines.SelectedLine, Vector3.Down);
+			if (Keys.NumPad4.IsDown ())
+				lines.InsertAt (lines.SelectedLine, Vector3.Left);
+			if (Keys.NumPad6.IsDown ())
+				lines.InsertAt (lines.SelectedLine, Vector3.Right);
+			if (Keys.NumPad7.IsDown ())
+				lines.InsertAt (lines.SelectedLine, Vector3.Forward);
+			if (Keys.NumPad9.IsDown ())
+				lines.InsertAt (lines.SelectedLine, Vector3.Backward);
 		}
 
 		/// <summary>
@@ -167,6 +181,8 @@ namespace TestGame1
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
 
 			//Test.Lightning(basicEffect);
+			GraphicsDevice.BlendState = BlendState.Opaque;
+			GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
 			world.Draw (gameTime);
 			basicEffect.CurrentTechnique.Passes [0].Apply ();

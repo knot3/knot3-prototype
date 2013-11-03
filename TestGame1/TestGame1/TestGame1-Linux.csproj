@@ -51,6 +51,7 @@
     <Compile Include="Overlay.cs" />
     <Compile Include="DrawLines.cs" />
     <Compile Include="World.cs" />
+    <Compile Include="Quad.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
