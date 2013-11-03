@@ -36,7 +36,7 @@ namespace TestGame1
 		private DrawLines drawLines;
 
 		// debug
-		public static bool Debug = true;
+		public static bool Debug = false;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TestGame1.Game"/> class.

@@ -25,15 +25,15 @@ namespace TestGame1
 			return Vector3.Transform (vectorToRotate, Matrix.CreateRotationY (angleRadians));
 		}
 
-        public static Vector3 RotateZ(this Vector3 vectorToRotate, float angleRadians)
-        {
-            return Vector3.Transform(vectorToRotate, Matrix.CreateRotationZ(angleRadians));
-        }
+		public static Vector3 RotateZ (this Vector3 vectorToRotate, float angleRadians)
+		{
+			return Vector3.Transform (vectorToRotate, Matrix.CreateRotationZ (angleRadians));
+		}
 
-        public static Vector3 RotateAroundVector(this Vector3 vectorToRotate, Vector3 axis, float angleRadians)
-        {
-            return Vector3.Transform(vectorToRotate, Matrix.CreateFromAxisAngle(axis, angleRadians));
-        }
+		public static Vector3 RotateAroundVector (this Vector3 vectorToRotate, Vector3 axis, float angleRadians)
+		{
+			return Vector3.Transform (vectorToRotate, Matrix.CreateFromAxisAngle (axis, angleRadians));
+		}
 	}
 
 	public class Angles3
@@ -87,14 +87,18 @@ namespace TestGame1
 
 		public static Angles3 operator + (Angles3 a, Angles3 b)
 		{
-			return new Angles3(a.v + b.v);
+			return new Angles3 (a.v + b.v);
 		}
 	}
 
-	public class Size  {
+	public class Size
+	{
 		public int Width { get; set; }
+
 		public int Height { get; set; }
-		public Size(int width, int height) {
+
+		public Size (int width, int height)
+		{
 			Width = width;
 			Height = height;
 		}
