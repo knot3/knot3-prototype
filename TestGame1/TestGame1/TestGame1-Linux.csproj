@@ -49,6 +49,7 @@
     <Compile Include="Vectors.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Overlay.cs" />
+    <Compile Include="DrawLines.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

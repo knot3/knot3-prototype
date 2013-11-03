@@ -33,6 +33,7 @@ namespace TestGame1
 		private Input input;
 		private Camera camera;
 		private Overlay overlay;
+		private DrawLines drawLines;
 
 		// debug
 		public static bool Debug = true;
@@ -74,6 +75,9 @@ namespace TestGame1
 
 			// overlay
 			overlay = new Overlay (camera, graphics, this);
+
+			// line drawing
+			drawLines = new DrawLines (camera, graphics, this);
 
 			// base method
 			base.Initialize ();
@@ -141,6 +145,7 @@ namespace TestGame1
 				backColor = new Color (backColor.R, backColor.G, (byte)~backColor.B);
 			}
 
+			// select lines
 			if (Keys.Y.IsDown ()) {
 				lines.SelectedLine -= 1;
 			} else if (Keys.X.IsDown ()) {
@@ -157,51 +162,10 @@ namespace TestGame1
 			graphics.GraphicsDevice.Clear (backColor);
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
 
-			if (nodes.Count > 0) {
-				DrawLines ();
-			}
-
+			drawLines.Draw (lines, gameTime);
 			camera.Draw (gameTime);
 			overlay.Draw (gameTime);
 			base.Draw (gameTime);
-		}
-
-		private void DrawLines ()
-		{
-			Vector3 offset = new Vector3 (10, 10, 10);
-
-			var vertices = new VertexPositionColor[lines.Count * 4];
-
-			Vector3 last = new Vector3 (0, 0, 0);
-			for (int n = 0; n < lines.Count; n++) {
-				Vector3 p1 = lines [n].From.Vector () + offset;
-				Vector3 p2 = lines [n].To.Vector () + offset;
-
-				var diff = p1 - p2;
-				diff.Normalize ();
-				p1 = p1 - 10 * diff;
-				p2 = p2 + 10 * diff;
-
-				vertices [4 * n + 0].Position = n == 0 ? p1 : last;
-				vertices [4 * n + 1].Position = p1;
-				vertices [4 * n + 2].Position = p1;
-				vertices [4 * n + 3].Position = p2;
-
-				//Console.WriteLine (vertices [4 * n + 2]);
-				last = p2;
-			}
-			for (int n = 0; n < lines.Count*4; n++) {
-				if (n % 4 >= 2) {
-					vertices [n].Color = Color.White;
-				} else {
-					vertices [n].Color = Color.Wheat;
-				}
-			}
-			for (int n = 0; n < lines.Count; n++) {
-				vertices [4 * n + 2].Color = lines.Color (n);
-				vertices [4 * n + 3].Color = lines.Color (n);
-			}
-			graphics.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, lines.Count * 2); 
 		}
 
 		public Camera Camera { get { return camera; } }
