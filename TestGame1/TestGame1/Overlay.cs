@@ -98,20 +98,28 @@ namespace TestGame1
 				DrawString (camera.RotationAngle.Degrees.Z, width4, height, Color.Yellow);
 				height += 20;
 				DrawString ("Cam Pos: ", width1, height, Color.White);
-				DrawString (camera.Position.X, width2, height, Color.Green);
-				DrawString (camera.Position.Y, width3, height, Color.Red);
-				DrawString (camera.Position.Z, width4, height, Color.Yellow);
+				DrawString ((int)camera.Position.X, width2, height, Color.Green);
+				DrawString ((int)camera.Position.Y, width3, height, Color.Red);
+				DrawString ((int)camera.Position.Z, width4, height, Color.Yellow);
 				height += 20;
 				DrawString ("Cam Target: ", width1, height, Color.White);
-				DrawString (camera.Target.X, width2, height, Color.Green);
-				DrawString (camera.Target.Y, width3, height, Color.Red);
-				DrawString (camera.Target.Z, width4, height, Color.Yellow);
+				DrawString ((int)camera.Target.X, width2, height, Color.Green);
+				DrawString ((int)camera.Target.Y, width3, height, Color.Red);
+				DrawString ((int)camera.Target.Z, width4, height, Color.Yellow);
 				height += 20;
 				DrawString ("FoV: ", width1, height, Color.White);
 				DrawString (camera.FoV, width2, height, Color.White);
 				height += 20;
 				DrawString ("Distance: ", width1, height, Color.White);
 				DrawString (camera.TargetDistance, width2, height, Color.White);
+				height += 20;
+				DrawString ("WASD: ", width1, height, Color.White);
+				string wasdMode =
+					  game.Input.wasdMode == Input.WasdMode.ARCBALL ? "Arcball"
+					: game.Input.wasdMode == Input.WasdMode.FPS ? "FPS"
+					: game.Input.wasdMode == Input.WasdMode.ROTATION ? "Rotation"
+					: "unknown";
+				DrawString (wasdMode, width2, height, Color.White);
 
 				spriteBatch.End ();
 			}

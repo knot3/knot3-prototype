@@ -21,6 +21,7 @@ namespace TestGame1
 		private GraphicsDeviceManager graphics;
 		private int wasdSpeed = 10;
 		private bool FullscreenToggled;
+		public WasdMode wasdMode = WasdMode.ARCBALL;
 		public static KeyboardState PreviousKeyboardState;
 		public static MouseState PreviousMouseState;
 
@@ -41,38 +42,76 @@ namespace TestGame1
 		private void UpdateKeys (GameTime gameTime)
 		{
 			KeyboardState keyboardState = Keyboard.GetState ();
+			Vector3 keyboardMove = Vector3.Zero;
+			Vector2 arcballMove = Vector2.Zero;
 
 			// W,A,S,D,Q,E
-			float wasdAngle = 0.01f;
-			if (keyboardState.IsKeyDown (Keys.W))
-				camera.RotationAngle.Z += wasdAngle;
-			if (keyboardState.IsKeyDown (Keys.S))
-				camera.RotationAngle.Z -= wasdAngle;
-			if (keyboardState.IsKeyDown (Keys.A))
-				camera.RotationAngle.Y -= wasdAngle;
-			if (keyboardState.IsKeyDown (Keys.D))
-				camera.RotationAngle.Y += wasdAngle;
-			if (keyboardState.IsKeyDown (Keys.Q))
-				camera.RotationAngle.X += wasdAngle;
-			if (keyboardState.IsKeyDown (Keys.E))
-				camera.RotationAngle.X -= wasdAngle;
+			if (wasdMode == WasdMode.ARCBALL) {
+				if (keyboardState.IsKeyDown (Keys.A))
+					arcballMove += new Vector2 (-1, 0);
+				if (keyboardState.IsKeyDown (Keys.D))
+					arcballMove += new Vector2 (1, 0);
+				if (keyboardState.IsKeyDown (Keys.W))
+					keyboardMove += new Vector3 (0, 0, -1);
+				if (keyboardState.IsKeyDown (Keys.S))
+					keyboardMove += new Vector3 (0, 0, 1);
+				if (keyboardState.IsKeyDown (Keys.Q))
+					keyboardMove += new Vector3 (0, -1, 0);
+				if (keyboardState.IsKeyDown (Keys.E))
+					keyboardMove += new Vector3 (0, 1, 0);
+			} else if (wasdMode == WasdMode.FPS) {
+				if (keyboardState.IsKeyDown (Keys.A))
+					keyboardMove += new Vector3 (-1, 0, 0);
+				if (keyboardState.IsKeyDown (Keys.D))
+					keyboardMove += new Vector3 (1, 0, 0);
+				if (keyboardState.IsKeyDown (Keys.W))
+					keyboardMove += new Vector3 (0, 0, -1);
+				if (keyboardState.IsKeyDown (Keys.S))
+					keyboardMove += new Vector3 (0, 0, 1);
+				if (keyboardState.IsKeyDown (Keys.Q))
+					keyboardMove += new Vector3 (0, -1, 0);
+				if (keyboardState.IsKeyDown (Keys.E))
+					keyboardMove += new Vector3 (0, 1, 0);
+			} else if (wasdMode == WasdMode.ROTATION) {
+				float wasdAngle = 0.01f;
+				if (keyboardState.IsKeyDown (Keys.W))
+					camera.RotationAngle.Z += wasdAngle;
+				if (keyboardState.IsKeyDown (Keys.S))
+					camera.RotationAngle.Z -= wasdAngle;
+				if (keyboardState.IsKeyDown (Keys.A))
+					camera.RotationAngle.Y -= wasdAngle;
+				if (keyboardState.IsKeyDown (Keys.D))
+					camera.RotationAngle.Y += wasdAngle;
+				if (keyboardState.IsKeyDown (Keys.Q))
+					camera.RotationAngle.X += wasdAngle;
+				if (keyboardState.IsKeyDown (Keys.E))
+					camera.RotationAngle.X -= wasdAngle;
+			}
 
 			// Arrow Keys
-			Vector2 keyboardMove = Vector2.Zero;
 			if (keyboardState.IsKeyDown (Keys.Left))
-				keyboardMove += new Vector2 (-1, 0);
+				keyboardMove += new Vector3 (-1, 0, 0);
 			if (keyboardState.IsKeyDown (Keys.Right))
-				keyboardMove += new Vector2 (1, 0);
+				keyboardMove += new Vector3 (1, 0, 0);
 			if (keyboardState.IsKeyDown (Keys.Up))
-				keyboardMove += new Vector2 (0, -1);
+				keyboardMove += new Vector3 (0, -1, 0);
 			if (keyboardState.IsKeyDown (Keys.Down))
-				keyboardMove += new Vector2 (0, 1);
+				keyboardMove += new Vector3 (0, 1, 0);
+
+			// apply keyboard movements
 			if (keyboardMove.Length () > 0) {
 				keyboardMove *= wasdSpeed;
-
 				// linear move, target and position
 				camera.Target = camera.Target.MoveLinear (keyboardMove, camera.UpVector, camera.TargetVector);
 				camera.Position = camera.Position.MoveLinear (keyboardMove, camera.UpVector, camera.TargetVector);
+			}
+
+			// apply arcball movements
+			if (arcballMove.Length () > 0) {
+				arcballMove *= 3;
+				camera.Position = camera.Target + (camera.Position - camera.Target).ArcBallMove (
+						arcballMove, camera.UpVector, camera.TargetVector
+				);
 			}
 
 			// Plus/Minus Keys
@@ -102,6 +141,21 @@ namespace TestGame1
 				graphics.ToggleFullScreen ();
 				graphics.ApplyChanges ();
 				FullscreenToggled = true;
+			}
+
+			// switch WASD mode
+			if (Keys.Tab.IsDown ()) {
+				switch (wasdMode) {
+				case WasdMode.ARCBALL:
+					wasdMode = WasdMode.FPS;
+					break;
+				case WasdMode.FPS:
+					wasdMode = WasdMode.ROTATION;
+					break;
+				case WasdMode.ROTATION:
+					wasdMode = WasdMode.ARCBALL;
+					break;
+				}
 			}
 
 			// allows the game to exit
@@ -136,12 +190,8 @@ namespace TestGame1
 				}
 				// left mouse button pressed
 				else if (MouseState.LeftButton == ButtonState.Pressed) {
-					camera.Position = camera.Target + (camera.Position - camera.Target).RotateY (
-						MathHelper.Pi / 300f * mouseMove.X
-					);
-					camera.Position = camera.Target + (camera.Position - camera.Target).RotateAroundVector (
-                       	-Vector3.Cross (camera.UpVector, camera.TargetVector),
-						MathHelper.Pi / 200f * mouseMove.Y
+					camera.Position = camera.Target + (camera.Position - camera.Target).ArcBallMove (
+						mouseMove, camera.UpVector, camera.TargetVector
 					);
 				}
 				// no mouse button
@@ -188,6 +238,13 @@ namespace TestGame1
 			get {
 				return Keyboard.GetState ();
 			}
+		}
+
+		public enum WasdMode
+		{
+			ARCBALL,
+			FPS,
+			ROTATION
 		}
 	}
 
