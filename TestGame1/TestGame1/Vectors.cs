@@ -52,6 +52,15 @@ namespace TestGame1
 		{
 			return Vector3.Transform (vectorToRotate, Matrix.CreateFromAxisAngle (axis, angleRadians));
 		}
+
+		public static Vector3 Clamp (this Vector3 v, Vector3 lower, Vector3 higher)
+		{
+			return new Vector3 (
+				MathHelper.Clamp (v.X, lower.X, higher.X),
+				MathHelper.Clamp (v.Y, lower.Y, higher.Y),
+				MathHelper.Clamp (v.Z, lower.Z, higher.Z)
+			);
+		}
 	}
 
 	public class Angles3

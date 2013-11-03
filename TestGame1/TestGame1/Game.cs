@@ -169,6 +169,7 @@ namespace TestGame1
 			//Test.Lightning(basicEffect);
 
 			world.Draw (gameTime);
+			basicEffect.CurrentTechnique.Passes [0].Apply ();
 			drawLines.Draw (lines, gameTime);
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
 			overlay.Draw (gameTime);
@@ -180,5 +181,7 @@ namespace TestGame1
 		public Camera Camera { get { return camera; } }
 
 		public Input Input { get { return input; } }
+
+		public World World { get { return world; } }
 	}
 }

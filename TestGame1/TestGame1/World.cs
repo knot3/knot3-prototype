@@ -47,8 +47,8 @@ namespace TestGame1
 			this.basicEffect = basicEffect;
 			this.game = game;
 
-			size = new Vector3 (4000, 200, 4000);
-			position = -size / 2;
+			size = new Vector3 (4000, 1000, 4000);
+			position = new Vector3 (-2000, -100, -2000);
 
 			// create a new SpriteBatch, which can be used to draw textures
 			spriteBatch = new SpriteBatch (graphics.GraphicsDevice);
@@ -56,6 +56,11 @@ namespace TestGame1
 			model = game.Content.Load<Model> ("Test3D");
 			dummyTexture = new Texture2D (graphics.GraphicsDevice, 1, 1);
 			dummyTexture.SetData (new Color[] { Color.Red });
+		}
+
+		public Vector3 Clamp (Vector3 v)
+		{
+			return v.Clamp(position, position+size);
 		}
 		
 		public void Draw (GameTime gameTime)
