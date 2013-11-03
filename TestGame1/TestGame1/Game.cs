@@ -33,6 +33,7 @@ namespace TestGame1
 		private Input input;
 		private Camera camera;
 		private Overlay overlay;
+		private World world;
 		private DrawLines drawLines;
 
 		// debug
@@ -75,6 +76,9 @@ namespace TestGame1
 
 			// overlay
 			overlay = new Overlay (camera, graphics, this);
+
+			// overlay
+			world = new World (camera, graphics, basicEffect, this);
 
 			// line drawing
 			drawLines = new DrawLines (camera, graphics, this);
@@ -162,9 +166,14 @@ namespace TestGame1
 			graphics.GraphicsDevice.Clear (backColor);
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
 
+			//Test.Lightning(basicEffect);
+
+			world.Draw (gameTime);
 			drawLines.Draw (lines, gameTime);
-			camera.Draw (gameTime);
+			basicEffect.CurrentTechnique.Passes [0].Apply ();
 			overlay.Draw (gameTime);
+			basicEffect.CurrentTechnique.Passes [0].Apply ();
+			camera.Draw (gameTime);
 			base.Draw (gameTime);
 		}
 

@@ -19,7 +19,7 @@ namespace TestGame1
 		// graphics-related classes
 		private GraphicsDeviceManager graphics;
 		private SpriteBatch spriteBatch;
-		
+
 		// custom classes
 		private Game game;
 		private Camera camera;
@@ -68,7 +68,7 @@ namespace TestGame1
 
 		private void DrawCoordinates (GameTime gameTime)
 		{
-			int length = 1000;
+			int length = 2000;
 			var vertices = new VertexPositionColor[6];
 			vertices [0].Position = new Vector3 (-length, 0, 0);
 			vertices [0].Color = Color.Green;

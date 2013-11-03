@@ -70,14 +70,9 @@ namespace TestGame1
 				//Console.WriteLine (vertices [4 * n + 2]);
 				last = p2;
 			}
-			for (int n = 0; n < lines.Count*4; n++) {
-				if (n % 4 >= 2) {
-					vertices [n].Color = Color.White;
-				} else {
-					vertices [n].Color = Color.Wheat;
-				}
-			}
 			for (int n = 0; n < lines.Count; n++) {
+				vertices [4 * n + 0].Color = Color.Black;
+				vertices [4 * n + 1].Color = Color.Black;
 				vertices [4 * n + 2].Color = lines.Color (n);
 				vertices [4 * n + 3].Color = lines.Color (n);
 			}

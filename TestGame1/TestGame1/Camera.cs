@@ -20,11 +20,11 @@ namespace TestGame1
 		private GraphicsDeviceManager graphics;
 		private BasicEffect basicEffect;
 
-		Matrix WorldMatrix { get; set; }
+		public Matrix WorldMatrix { get; private set; }
 
-		Matrix ViewMatrix { get; set; }
+		public Matrix ViewMatrix { get; private set; }
 
-		Matrix ProjectionMatrix { get; set; }
+		public Matrix ProjectionMatrix { get; private set; }
 
 		public Vector3 Position { get; set; }
 

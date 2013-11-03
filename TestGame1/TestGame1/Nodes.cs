@@ -105,7 +105,7 @@ namespace TestGame1
 
 		public Color Color (int i)
 		{
-			return SelectedLine == i ? Microsoft.Xna.Framework.Color.Red : Microsoft.Xna.Framework.Color.White;
+			return SelectedLine == i ? Microsoft.Xna.Framework.Color.Red : Microsoft.Xna.Framework.Color.Black;
 		}
 
 		private int _SelectedLine = -1;

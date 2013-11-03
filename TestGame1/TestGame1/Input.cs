@@ -158,6 +158,11 @@ namespace TestGame1
 				}
 			}
 
+			// Test Textures
+			if (Keys.T.IsDown()) {
+				World.Enabled = !World.Enabled;
+			}
+
 			// allows the game to exit
 			if (Keys.Escape.IsDown ()) {
 				game.Exit ();
