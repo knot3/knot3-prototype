@@ -64,15 +64,13 @@ namespace TestGame1
 
 		public static Vector3 Clamp (this Vector3 v, int minLength, int maxLength)
 		{
-			Vector3 clamped;
 			if (v.Length () < minLength) {
-				clamped = clamped * minLength / v.Length ();
+				return v * minLength / v.Length ();
 			} else if (v.Length () > maxLength) {
-				clamped = clamped * maxLength / v.Length ();
+                return v * maxLength / v.Length();
 			} else {
-				clamped = v;
+                return v;
 			}
-			return clamped;
 		}
 
 		public static float Clamp (this float v, int min, int max)
