@@ -67,11 +67,12 @@ namespace TestGame1
 
 		public void Update (GameTime gameTime)
 		{
-			double millis = gameTime.TotalGameTime.TotalMilliseconds;
-			bool leftButtonReleased = input.MouseState.LeftButton == ButtonState.Released;
-			bool rightButtonReleased = input.MouseState.RightButton == ButtonState.Released;
+			//bool leftButtonReleased = input.MouseState.LeftButton == ButtonState.Released;
+			//bool rightButtonReleased = input.MouseState.RightButton == ButtonState.Released;
+			// leftButtonReleased && rightButtonReleased
 
-			if (Enabled && millis > lastRayCheck + 200 && leftButtonReleased && rightButtonReleased) {
+			double millis = gameTime.TotalGameTime.TotalMilliseconds;
+			if (Enabled && millis > lastRayCheck + 200 && input.CurrentInputAction != InputAction.ArcballMove) {
 				lastRayCheck = millis;
 
 				Ray ray = camera.GetMouseRay (new Vector2 (game.Input.MouseState.X, game.Input.MouseState.Y));

@@ -102,14 +102,18 @@ namespace TestGame1
 				// linear move, target and position
 				camera.Target = camera.Target.MoveLinear (keyboardMove, camera.UpVector, camera.TargetVector);
 				camera.Position = camera.Position.MoveLinear (keyboardMove, camera.UpVector, camera.TargetVector);
+				CurrentInputAction = InputAction.FPSMove;
 			}
 
 			// apply arcball movements
 			if (arcballMove.Length () > 0) {
 				arcballMove *= 3;
+				camera.Target = new Vector3 (camera.ArcballTarget.X, camera.Target.Y, camera.ArcballTarget.Z);
+				camera.TargetDistance = camera.TargetDistance.Clamp (200, 10000);
 				camera.Position = camera.ArcballTarget + (camera.Position - camera.ArcballTarget).ArcBallMove (
 						arcballMove, camera.UpVector, camera.TargetVector
 				);
+				CurrentInputAction = InputAction.ArcballMove;
 			}
 
 			// Plus/Minus Keys
@@ -193,43 +197,47 @@ namespace TestGame1
 					);
 				}
 
-				bool moveTarget = false, moveArcball = false;
+				InputAction action;
 				// grab mouse movement
 				if (GrabMouseMovement) {
 					// left mouse button pressed
 					if (MouseState.LeftButton == ButtonState.Pressed)
-						moveArcball = true;
+						action = InputAction.ArcballMove;
 					// right mouse button pressed
 					else if (MouseState.RightButton == ButtonState.Pressed)
-						moveArcball = true;
+						action = InputAction.ArcballMove;
 					// no mouse button
 					else
-						moveTarget = true;
+						action = InputAction.TargetMove;
 				}
 				// don't grab mouse movement
 				else {
 					// left mouse button pressed
 					if (MouseState.LeftButton == ButtonState.Pressed)
-						moveTarget = true;
+						action = InputAction.TargetMove;
 					// right mouse button pressed
 					else if (MouseState.RightButton == ButtonState.Pressed)
-						moveArcball = true;
+						action = InputAction.ArcballMove;
+					// no mouse button
+					else
+						action = InputAction.FreeMouse;
 				}
 
+				switch (action) {
 				// arcball move
-				if (moveArcball) {
-					// camera.Target = new Vector3 (0, 0, 0);
-					// camera.arcball.Yaw += (mouseMove.X / 1000);
-					// camera.arcball.Pitch += (mouseMove.Y / 1000);
-					camera.Target = new Vector3(camera.ArcballTarget.X, camera.Target.Y, camera.ArcballTarget.Z);
+				case InputAction.ArcballMove:
+					camera.Target = new Vector3 (camera.ArcballTarget.X, camera.Target.Y, camera.ArcballTarget.Z);
+					camera.TargetDistance = camera.TargetDistance.Clamp (200, 10000);
 					camera.Position = camera.ArcballTarget + (camera.Position - camera.ArcballTarget).ArcBallMove (
 						mouseMove, camera.UpVector, camera.TargetVector
 					);
-				}
+					break;
 				// move the target vector
-				if (moveTarget) {
+				case InputAction.TargetMove:
 					camera.Target = camera.Target.MoveLinear (mouseMove, camera.UpVector, camera.TargetVector);
+					break;
 				}
+				CurrentInputAction = action;
 
 				// scroll wheel zoom
 				if (MouseState.ScrollWheelValue < PreviousMouseState.ScrollWheelValue) {
@@ -282,6 +290,16 @@ namespace TestGame1
 			FPS,
 			ROTATION
 		}
+
+		public InputAction CurrentInputAction { get; private set; }
+	}
+
+	public enum InputAction
+	{
+		ArcballMove,
+		TargetMove,
+		FreeMouse,
+		FPSMove
 	}
 
 	public static class InputExtensions

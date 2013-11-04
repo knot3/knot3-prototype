@@ -62,6 +62,24 @@ namespace TestGame1
 			);
 		}
 
+		public static Vector3 Clamp (this Vector3 v, int minLength, int maxLength)
+		{
+			Vector3 clamped;
+			if (v.Length () < minLength) {
+				clamped = clamped * minLength / v.Length ();
+			} else if (v.Length () > maxLength) {
+				clamped = clamped * maxLength / v.Length ();
+			} else {
+				clamped = v;
+			}
+			return clamped;
+		}
+
+		public static float Clamp (this float v, int min, int max)
+		{
+			return MathHelper.Clamp (v, min, max);
+		}
+
 		public static BoundingSphere[] Bounds (this Model model)
 		{
 			BoundingSphere[] bounds = new BoundingSphere[model.Meshes.Count];

@@ -79,6 +79,7 @@ namespace TestGame1
 
 			// overlay
 			world = new World (this);
+			World.Enabled = true;
 
 			// line drawing
 			drawLines = new DrawLines (this);
