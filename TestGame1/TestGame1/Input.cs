@@ -14,23 +14,21 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace TestGame1
 {
-	public class Input
+	public class Input : GameClass
 	{
-		private Game game;
-		private Camera camera;
-		private GraphicsDeviceManager graphics;
 		private int wasdSpeed = 10;
 		private bool FullscreenToggled;
 		public WasdMode wasdMode = WasdMode.ARCBALL;
 		public static KeyboardState PreviousKeyboardState;
 		public static MouseState PreviousMouseState;
 
-		public Input (Camera camera, GraphicsDeviceManager graphics, Game game)
+		public bool GrabMouseMovement { get; set; }
+
+		public Input (Game game)
+			: base(game)
 		{
-			this.camera = camera;
-			this.graphics = graphics;
-			this.game = game;
 			FullscreenToggled = false;
+			GrabMouseMovement = true;
 		}
 
 		public void Update (GameTime gameTime)
@@ -51,13 +49,13 @@ namespace TestGame1
 					arcballMove += new Vector2 (-1, 0);
 				if (keyboardState.IsKeyDown (Keys.D))
 					arcballMove += new Vector2 (1, 0);
-                if (keyboardState.IsKeyDown(Keys.W))
-                    arcballMove += new Vector2(0, -1);
-                if (keyboardState.IsKeyDown(Keys.S))
-                    arcballMove += new Vector2(0, 1);
-                if (keyboardState.IsKeyDown(Keys.LeftShift))
-                    keyboardMove += new Vector3(0, -1, 0);
-                if (keyboardState.IsKeyDown(Keys.LeftControl))
+				if (keyboardState.IsKeyDown (Keys.W))
+					arcballMove += new Vector2 (0, -1);
+				if (keyboardState.IsKeyDown (Keys.S))
+					arcballMove += new Vector2 (0, 1);
+				if (keyboardState.IsKeyDown (Keys.LeftShift))
+					keyboardMove += new Vector3 (0, -1, 0);
+				if (keyboardState.IsKeyDown (Keys.LeftControl))
 					keyboardMove += new Vector3 (0, 1, 0);
 			} else if (wasdMode == WasdMode.FPS) {
 				if (keyboardState.IsKeyDown (Keys.A))
@@ -123,12 +121,16 @@ namespace TestGame1
 			}
 
 			// Enter key
-            if (keyboardState.IsKeyDown(Keys.Enter))
-            {
-                // set target to (0,0,0)
-                camera.Target = Vector3.Zero;
-                // set position to default
-                camera.Target = camera.DefaultPosition;
+			if (keyboardState.IsKeyDown (Keys.Enter)) {
+				// set target to (0,0,0)
+				camera.Target = Vector3.Zero;
+				// set position to default
+				camera.Position = camera.DefaultPosition;
+			}
+
+			// grab mouse movent
+			if (Keys.LeftAlt.IsDown ()) {
+				GrabMouseMovement = !GrabMouseMovement;
 			}
 
 			// fullscreen
@@ -162,7 +164,7 @@ namespace TestGame1
 			}
 
 			// Test Textures
-			if (Keys.T.IsDown()) {
+			if (Keys.T.IsDown ()) {
 				World.Enabled = !World.Enabled;
 			}
 
@@ -174,7 +176,12 @@ namespace TestGame1
 
 		private void UpdateMouse (GameTime gameTime)
 		{
-			if (MouseState != PreviousMouseState) {
+			// fullscreen recently toggled?
+			if (FullscreenToggled) {
+				FullscreenToggled = false;
+				camera.Target += Vector3.Up;
+
+			} else if (MouseState != PreviousMouseState) {
 				// mouse movements
 				Vector2 mouseMove = new Vector2 (MouseState.X - PreviousMouseState.X, MouseState.Y - PreviousMouseState.Y);
 
@@ -185,26 +192,41 @@ namespace TestGame1
 					);
 				}
 
-				// fullscreen?
-				if (FullscreenToggled) {
-					FullscreenToggled = false;
+				bool moveTarget = false, moveArcball = false;
+				// grab mouse movement
+				if (GrabMouseMovement) {
+					// left mouse button pressed
+					if (MouseState.LeftButton == ButtonState.Pressed)
+						moveArcball = true;
+					// right mouse button pressed
+					else if (MouseState.RightButton == ButtonState.Pressed)
+						moveArcball = true;
+					// no mouse button
+					else
+						moveTarget = true;
 				}
-				// right mouse button pressed
-				else if (MouseState.RightButton == ButtonState.Pressed) {
-					camera.Target = new Vector3 (0, 0, 0);
+				// don't grab mouse movement
+				else {
+					// left mouse button pressed
+					if (MouseState.LeftButton == ButtonState.Pressed)
+						moveTarget = true;
+					// right mouse button pressed
+					else if (MouseState.RightButton == ButtonState.Pressed)
+						moveArcball = true;
+				}
 
-					camera.arcball.Yaw += (mouseMove.X / 1000);
-					camera.arcball.Pitch += (mouseMove.Y / 1000);
-				}
-				// left mouse button pressed
-				else if (MouseState.LeftButton == ButtonState.Pressed) {
+				// arcball move
+				if (moveArcball) {
+					// camera.Target = new Vector3 (0, 0, 0);
+					// camera.arcball.Yaw += (mouseMove.X / 1000);
+					// camera.arcball.Pitch += (mouseMove.Y / 1000);
+
 					camera.Position = camera.Target + (camera.Position - camera.Target).ArcBallMove (
 						mouseMove, camera.UpVector, camera.TargetVector
 					);
 				}
-				// no mouse button
-				else {
-					// camTarget -= new Vector3 (mouse.X, mouse.Y, 0);
+				// move the target vector
+				if (moveTarget) {
 					camera.Target = camera.Target.MoveLinear (mouseMove, camera.UpVector, camera.TargetVector);
 				}
 
@@ -212,11 +234,11 @@ namespace TestGame1
 				if (MouseState.ScrollWheelValue < PreviousMouseState.ScrollWheelValue) {
 					camera.TargetDistance -= 10;
 					// arcball
-					camera.arcball.Zoom -= 10; 
+					// camera.arcball.Zoom -= 10; 
 				} else if (MouseState.ScrollWheelValue > PreviousMouseState.ScrollWheelValue) {
 					camera.TargetDistance += 10;
 					// arcball
-					camera.arcball.Zoom += 10; 
+					// camera.arcball.Zoom += 10; 
 				}
 			}
 		}
@@ -224,16 +246,21 @@ namespace TestGame1
 		public void ResetMousePosition ()
 		{
 			if (MouseState != PreviousMouseState) {
-				Mouse.SetPosition (graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
-				PreviousMouseState = Mouse.GetState ();
+				if (GrabMouseMovement
+					|| (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Pressed)
+					|| (MouseState.RightButton == ButtonState.Pressed && PreviousMouseState.RightButton == ButtonState.Pressed)
+				    ) {
+					Mouse.SetPosition (graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
+				}
 			}
+			PreviousMouseState = MouseState;
 		}
 
 		public void SaveStates ()
 		{
 			ResetMousePosition ();
 			// Update saved state.
-			PreviousKeyboardState = Keyboard.GetState ();
+			PreviousKeyboardState = KeyboardState;
 		}
 
 		public MouseState MouseState {

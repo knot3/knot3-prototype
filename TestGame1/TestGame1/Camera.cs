@@ -14,11 +14,8 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace TestGame1
 {
-	public class Camera
+	public class Camera : GameClass
 	{
-		private Game game;
-		private GraphicsDeviceManager graphics;
-		private BasicEffect basicEffect;
 
 		public Matrix WorldMatrix { get; private set; }
 
@@ -26,7 +23,7 @@ namespace TestGame1
 
 		public Matrix ProjectionMatrix { get; private set; }
 
-        public Vector3 DefaultPosition { get; private set; }
+		public Vector3 DefaultPosition { get; private set; }
 
 		public Vector3 Position { get; set; }
 
@@ -47,31 +44,23 @@ namespace TestGame1
 		private float nearPlane;
 		private float farPlane;
 
-		// arcball
-		public ArcBallCamera arcball;
-
-		public Camera (GraphicsDeviceManager graphics, BasicEffect basicEffect, Game game)
+		public Camera (Game game)
+			: base(game)
 		{
-			this.graphics = graphics;
-			this.basicEffect = basicEffect;
-			this.game = game;
 		}
  
 		private void SetUpCamera ()
-        {
-            DefaultPosition = new Vector3(400, 400, 1000);
-            Position = DefaultPosition;
+		{
+			DefaultPosition = new Vector3 (400, 400, 1000);
+			Position = DefaultPosition;
 			Target = new Vector3 (0, 0, 0);
 			UpVector = Vector3.Up;
 			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
  
 			FoV = MathHelper.PiOver4;
-			aspectRatio = graphics.GraphicsDevice.Viewport.AspectRatio;
+			aspectRatio = device.Viewport.AspectRatio;
 			nearPlane = 0.5f;
 			farPlane = 10000.0f;
-
-			// arcball
-			arcball = new ArcBallCamera (aspectRatio, FoV, Target, UpVector, nearPlane, farPlane);
 
 			game.Input.ResetMousePosition ();
 		}
@@ -95,22 +84,23 @@ namespace TestGame1
 		public void Draw (GameTime gameTime)
 		{ 
 
-			if (Mouse.GetState ().RightButton == ButtonState.Pressed) {
-				// arcball
-				WorldMatrix = Matrix.CreateFromYawPitchRoll (RotationAngle.Y, RotationAngle.X, RotationAngle.Z);
-				ViewMatrix = arcball.ViewMatrix;
-				ProjectionMatrix = arcball.ProjectionMatrix;
+			//if (Mouse.GetState ().RightButton == ButtonState.Pressed) {
+			//	// arcball
+			//	WorldMatrix = Matrix.CreateFromYawPitchRoll (RotationAngle.Y, RotationAngle.X, RotationAngle.Z);
+			//	ViewMatrix = arcball.ViewMatrix;
+			//	ProjectionMatrix = arcball.ProjectionMatrix;
+			//}
 
-			} else {
-				// setting up rotation
-				ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
-				WorldMatrix = Matrix.CreateFromYawPitchRoll (RotationAngle.Y, RotationAngle.X, RotationAngle.Z);
-				ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FoV), aspectRatio, nearPlane, farPlane);
-			}
 
-			basicEffect.World = WorldMatrix;
-			basicEffect.View = ViewMatrix;
-			basicEffect.Projection = ProjectionMatrix;
+
+			// setting up rotation
+			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
+			WorldMatrix = Matrix.CreateFromYawPitchRoll (RotationAngle.Y, RotationAngle.X, RotationAngle.Z);
+			ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FoV), aspectRatio, nearPlane, farPlane);
+			
+			game.basicEffect.World = WorldMatrix;
+			game.basicEffect.View = ViewMatrix;
+			game.basicEffect.Projection = ProjectionMatrix;
 		}
 
 		public float TargetDistance {

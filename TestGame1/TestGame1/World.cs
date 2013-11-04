@@ -16,21 +16,12 @@ namespace TestGame1
 {
 	public class World
 	{
-		// graphics-related classes
-		private GraphicsDeviceManager graphics;
-		private SpriteBatch spriteBatch;
-		private BasicEffect basicEffect;
-		
 		// custom classes
 		private Game game;
 		private Camera camera;
-		private Floor3D floor;
-		private TexturedRectangle quad;
 
-		// fonts
-		private Texture2D dummyTexture;
-		private Model model;
-		private Rectangle dummyRectangle;
+		// game objects
+		private List<GameObject> objects;
 
 		// world data
 		private Vector3 position;
@@ -42,36 +33,24 @@ namespace TestGame1
 		/// <summary>
 		/// Initializes a new Overlay-
 		/// </summary>
-		public World (Camera camera, GraphicsDeviceManager graphics, BasicEffect basicEffect, Game game)
+		public World (Game game)
 		{
-			this.camera = camera;
-			this.graphics = graphics;
-			this.basicEffect = basicEffect;
 			this.game = game;
+			this.camera = game.Camera;
 
 			size = new Vector3 (4000, 1000, 4000);
 			position = new Vector3 (-2000, -100, -2000);
 
-			// create a new SpriteBatch, which can be used to draw textures
-			spriteBatch = new SpriteBatch (graphics.GraphicsDevice);
+			objects = new List<GameObject> ();
 
-			// load test texture
-			try {
-				model = game.Content.Load<Model> ("Test3D");
-			} catch (ContentLoadException ex) {
-				model = null;
-				Console.WriteLine (ex.ToString ());
-			}
+			// some game objects
+			objects.Add(new TexturedRectangle (game, new Vector3 (200, 200, 200), Vector3.Left, 400, Vector3.Up, 50));
+			objects.Add(new TestModel (game));
+			// the floor
+			objects.Add(new TexturedRectangle (game, new Vector3 (0, -200, 0), Vector3.Left, 1000, Vector3.Forward, 1000));
 
 			// create floor
-			floor = new Floor3D (graphics.GraphicsDevice, position, size, game);
-			quad = new TexturedRectangle (graphics.GraphicsDevice, game,
-				new Vector3 (200, 200, 200), Vector3.Backward, Vector3.Up, 400, 50
-			);
-
-			// ...
-			dummyTexture = new Texture2D (graphics.GraphicsDevice, 1, 1);
-			dummyTexture.SetData (new Color[] { Color.Red });
+			//floor = new Floor3D (graphics.GraphicsDevice, position, size, game);
 		}
 
 		public Vector3 Clamp (Vector3 v)
@@ -82,39 +61,40 @@ namespace TestGame1
 		public void Draw (GameTime gameTime)
 		{
 			if (Enabled) {
-				DrawBorders (gameTime);
-				DrawTest (gameTime);
+				foreach (GameObject obj in objects) {
+					obj.Draw (gameTime);
+				}
 			}
 		}
-		
-		public void DrawTest (GameTime gameTime)
+	}
+
+	public class TestModel : GameObject
+	{
+		private Model model;
+
+		public TestModel (Game game)
+			: base(game)
+		{
+			// load test model
+			model = LoadModel ("Test3D");
+		}
+
+		public override void DrawObject ()
 		{
 			// test:
 			foreach (ModelMesh mesh in model.Meshes) {
 				foreach (BasicEffect effect in mesh.Effects) {
 					if (game.Input.KeyboardState.IsKeyDown (Keys.L)) {
 						effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
-                    }else {
-                        effect.LightingEnabled = false;
+					} else {
+						effect.LightingEnabled = false;
 					}
-					effect.World = Matrix.CreateScale(0.01f) * Matrix.CreateTranslation(camera.Target);  //camera.WorldMatrix*0.001f;
+					effect.World = Matrix.CreateScale (0.01f) * Matrix.CreateTranslation (camera.Target);  //camera.WorldMatrix*0.001f;
 					effect.View = camera.ViewMatrix;
 					effect.Projection = camera.ProjectionMatrix;
 				}
 				mesh.Draw ();
 			}
-
-		}
-
-		private void DrawBorders (GameTime gameTime)
-		{
-			// var floorColors = new Color[1] {
-			//     Color.CornflowerBlue
-			// };
-
-			BasicEffect eff = new BasicEffect (graphics.GraphicsDevice);
-			//floor.Draw (camera, eff);
-			quad.Draw (camera, eff);
 		}
 	}
 
@@ -140,263 +120,60 @@ namespace TestGame1
 
 	}
 
-	public class TexturedRectangle2
+	public abstract class GameObject
 	{
-		//Attributes
-		private Vector3[] edges;
-		private GraphicsDevice device;
-		private Game game;
-		//...
-		private VertexPositionNormalTexture[] vertices;
-		private VertexBuffer vertexBuffer;
-		private IndexBuffer indexBuffer;
-		private Texture2D texture;
+		protected Game game;
+		protected BasicEffect basicEffect;
 
-		//Constructor
-		public TexturedRectangle2 (GraphicsDevice device, Game game, Vector3[] edges)
-		{
-			this.device = device;
-			this.edges = edges;
-			this.game = game;
-			BuildBuffer ();
+		protected GraphicsDevice device {
+			get { return game.GraphicsDevice; }
 		}
 
-		//Build our vertex buffer
-		private void BuildBuffer ()
+		protected Camera camera {
+			get { return game.Camera; }
+		}
+
+		public GameObject (Game game)
+		{
+			this.game = game;
+		}
+
+		public void Draw (GameTime gameTime)
+		{
+			basicEffect = new BasicEffect (device);
+			basicEffect.World = camera.WorldMatrix;
+			basicEffect.View = camera.ViewMatrix;
+			basicEffect.Projection = camera.ProjectionMatrix;
+			DrawObject ();
+		}
+
+		public abstract void DrawObject ();
+
+		protected Texture2D LoadTexture (string name)
 		{
 			try {
-				texture = game.Content.Load<Texture2D> ("background");
+				return game.Content.Load<Texture2D> (name);
 			} catch (ContentLoadException ex) {
 				Console.WriteLine (ex.ToString ());
-				texture = null;
-				return;
-			}
-			// Vertices erstellen und zuweisen.
-			vertices = new VertexPositionNormalTexture[4];
-
-			vertices [0].Position = edges [0];
-			vertices [0].TextureCoordinate = new Vector2 (0.0f, 1.0f);
-			vertices [0].Normal = Vector3.Forward;
-
-			vertices [1].Position = edges [1];
-			vertices [1].TextureCoordinate = new Vector2 (0.0f, 0.0f);
-			vertices [1].Normal = Vector3.Forward;
-
-			vertices [2].Position = edges [2];
-			vertices [2].TextureCoordinate = new Vector2 (1.0f, 1.0f);
-			vertices [2].Normal = Vector3.Forward;
-
-			vertices [3].Position = edges [3];
-			vertices [3].TextureCoordinate = new Vector2 (1.0f, 0.0f);
-			vertices [3].Normal = Vector3.Forward;
-
-			vertexBuffer = new VertexBuffer (
-		        device,
-		        typeof(VertexPositionNormalTexture),
-		        vertices.Length,
-		        BufferUsage.WriteOnly
-			);
-
-			vertexBuffer.SetData (vertices);
-
-			// Indices erstellen und zuweisen.
-			var indices = new int[12];
-
-			// 1. Dreieck Vordersiete
-			indices [0] = 2;
-			indices [1] = 1;
-			indices [2] = 0;
-
-			// 2. Dreieck Vordersiete
-			indices [3] = 2;
-			indices [4] = 3;
-			indices [5] = 1;
-
-			// 1. Dreieck Rueckseite
-			indices [6] = 0;
-			indices [7] = 1;
-			indices [8] = 2;
-
-			// 2. Dreieck Rueckseite
-			indices [9] = 1;
-			indices [10] = 3;
-			indices [11] = 2;
-
-			indexBuffer = new IndexBuffer (
-		        device,
-		        typeof(int),
-		        indices.Length,
-		        BufferUsage.WriteOnly
-			);
-			indexBuffer.SetData (indices);
-		}
-
-		//Draw method
-		public void Draw (Camera camera, BasicEffect effect)
-		{
-			if (texture != null) {
-				effect.World = camera.WorldMatrix;
-				effect.View = camera.ViewMatrix;
-				effect.Projection = camera.ProjectionMatrix;
-
-			
-				if (game.Input.KeyboardState.IsKeyDown (Keys.L)) {
-					effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
-				}
-    
-				//effect.TextureEnabled = true; 
-				effect.Texture = texture;
-				effect.TextureEnabled = true;
-				effect.VertexColorEnabled = false;
-				//effect.VertexColorEnabled = true;
-
-				effect.CurrentTechnique.Passes [0].Apply ();
-
-				foreach (EffectPass pass in effect.CurrentTechnique.Passes) {
-					pass.Apply ();
-
-					device.SetVertexBuffer (vertexBuffer);
-					device.Indices = indexBuffer;
-					//effect.DirectionalLight0.Enabled = true;
-					//effect.DirectionalLight0.DiffuseColor = Color.Pink.ToVector3();
-					//effect.DirectionalLight0.Direction = Vector3.Backward;
-
-					device.DrawIndexedPrimitives (PrimitiveType.TriangleList, 0, 0, vertices.Length, 0, 4);
-
-					pass.Apply ();
-				}
+				return null;
 			}
 		}
-	}
 
-	public class Floor3D
-	{
-		//Attributes
-		private Vector3 position;
-		private Vector3 size;
-		private GraphicsDevice device;
-		private Game game;
-		//...
-		private VertexPositionNormalTexture[] vertices;
-		private VertexBuffer vertexBuffer;
-		private IndexBuffer indexBuffer;
-		private Texture2D texture;
-
-		//Constructor
-		public Floor3D (GraphicsDevice device, Vector3 position, Vector3 size, Game game)
-		{
-			this.device = device;
-			this.position = position;
-			this.size = size;
-			this.game = game;
-			BuildFloorBuffer ();
-		}
-
-		//Build our vertex buffer
-		private void BuildFloorBuffer ()
+		protected Model LoadModel (string name)
 		{
 			try {
-				texture = game.Content.Load<Texture2D> ("background");
+				return game.Content.Load<Model> (name);
 			} catch (ContentLoadException ex) {
 				Console.WriteLine (ex.ToString ());
-				texture = null;
-				return;
+				return null;
 			}
-			// Vertices erstellen und zuweisen.
-			vertices = new VertexPositionNormalTexture[4];
-
-			vertices [0].Position = new Vector3 (position.X, position.Y, position.Z);
-			vertices [0].TextureCoordinate = new Vector2 (0.0f, 1.0f);
-			vertices [0].Normal = Vector3.Forward;
-
-			vertices [1].Position = new Vector3 (position.X, position.Y, position.Z + size.Z);
-			vertices [1].TextureCoordinate = new Vector2 (0.0f, 0.0f);
-			vertices [1].Normal = Vector3.Forward;
-
-			vertices [2].Position = new Vector3 (position.X + size.X, position.Y, position.Z);
-			vertices [2].TextureCoordinate = new Vector2 (1.0f, 1.0f);
-			vertices [2].Normal = Vector3.Forward;
-
-			vertices [3].Position = new Vector3 (position.X + size.X, position.Y, position.Z + size.Z);
-			vertices [3].TextureCoordinate = new Vector2 (1.0f, 0.0f);
-			vertices [3].Normal = Vector3.Forward;
-
-			vertexBuffer = new VertexBuffer (
-		        device,
-		        typeof(VertexPositionNormalTexture),
-		        vertices.Length,
-		        BufferUsage.WriteOnly
-			);
-
-			vertexBuffer.SetData (vertices);
-
-			// Indices erstellen und zuweisen.
-			var indices = new int[12];
-
-			// 1. Dreieck Vordersiete
-			indices [0] = 2;
-			indices [1] = 1;
-			indices [2] = 0;
-
-			// 2. Dreieck Vordersiete
-			indices [3] = 2;
-			indices [4] = 3;
-			indices [5] = 1;
-
-			// 1. Dreieck Rueckseite
-			indices [6] = 0;
-			indices [7] = 1;
-			indices [8] = 2;
-
-			// 2. Dreieck Rueckseite
-			indices [9] = 1;
-			indices [10] = 3;
-			indices [11] = 2;
-
-			indexBuffer = new IndexBuffer (
-		        device,
-		        typeof(int),
-		        indices.Length,
-		        BufferUsage.WriteOnly
-			);
-			indexBuffer.SetData (indices);
 		}
 
-		//Draw method
-		public void Draw (Camera camera, BasicEffect effect)
+		protected Texture2D DummyTexture ()
 		{
-			if (texture != null) {
-				effect.World = camera.WorldMatrix;
-				effect.View = camera.ViewMatrix;
-				effect.Projection = camera.ProjectionMatrix;
-
-			
-				if (game.Input.KeyboardState.IsKeyDown (Keys.L)) {
-					effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
-				}
-    
-				//effect.TextureEnabled = true; 
-				effect.Texture = texture;
-				effect.TextureEnabled = true;
-				effect.VertexColorEnabled = false;
-				//effect.VertexColorEnabled = true;
-
-				effect.CurrentTechnique.Passes [0].Apply ();
-
-				foreach (EffectPass pass in effect.CurrentTechnique.Passes) {
-					pass.Apply ();
-
-					device.SetVertexBuffer (vertexBuffer);
-					device.Indices = indexBuffer;
-					//effect.DirectionalLight0.Enabled = true;
-					//effect.DirectionalLight0.DiffuseColor = Color.Pink.ToVector3();
-					//effect.DirectionalLight0.Direction = Vector3.Backward;
-
-					device.DrawIndexedPrimitives (PrimitiveType.TriangleList, 0, 0, vertices.Length, 0, 4);
-
-					pass.Apply ();
-				}
-			}
+			Texture2D dummyTexture = new Texture2D (device, 1, 1);
+			dummyTexture.SetData (new Color[] { Color.Red });
+			return dummyTexture;
 		}
 	}
 }

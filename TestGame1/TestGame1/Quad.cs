@@ -9,10 +9,8 @@ using Microsoft.Xna.Framework.Content;
 
 namespace TestGame1
 {
-	public class TexturedRectangle
+	public class TexturedRectangle : GameObject
 	{
-		private GraphicsDevice device;
-		private Game game;
 		public Vector3 Origin;
 		public Vector3 UpperLeft;
 		public Vector3 LowerLeft;
@@ -25,39 +23,30 @@ namespace TestGame1
 		public short[] Indexes;
 		private Texture2D texture;
 
-		public TexturedRectangle (GraphicsDevice device, Game game, Vector3 origin, Vector3 normal, Vector3 up, 
-				float width, float height)
+		public TexturedRectangle (Game game, Vector3 origin, Vector3 left,  
+				float width, Vector3 up, float height)
+			: base(game)
 		{
-			this.device = device;
-			this.game = game;
-
-			Vertices = new VertexPositionNormalTexture[4];
-			Indexes = new short[6];
 			Origin = origin;
-			Normal = normal;
+			Left = left;
 			Up = up;
 
 			// Calculate the quad corners
-			Left = Vector3.Cross (normal, Up);
+			Normal = Vector3.Cross (Left, Up);
 			Vector3 uppercenter = (Up * height / 2) + origin;
 			UpperLeft = uppercenter + (Left * width / 2);
 			UpperRight = uppercenter - (Left * width / 2);
 			LowerLeft = UpperLeft - (Up * height);
 			LowerRight = UpperRight - (Up * height);
 
-			FillVertices ();
+			texture = LoadTexture ("background");
+			if (texture != null) {
+				FillVertices ();
+			}
 		}
         
 		private void FillVertices ()
 		{
-			try {
-				texture = game.Content.Load<Texture2D> ("background");
-			} catch (ContentLoadException ex) {
-				Console.WriteLine (ex.ToString ());
-				texture = null;
-				return;
-			}
-
 			// Fill in texture coordinates to display full texture
 			// on quad
 			Vector2 textureUpperLeft = new Vector2 (0.0f, 0.0f);
@@ -65,11 +54,11 @@ namespace TestGame1
 			Vector2 textureLowerLeft = new Vector2 (0.0f, 1.0f);
 			Vector2 textureLowerRight = new Vector2 (1.0f, 1.0f);
 
+			Vertices = new VertexPositionNormalTexture[4];
 			// Provide a normal for each vertex
 			for (int i = 0; i < Vertices.Length; i++) {
 				Vertices [i].Normal = Normal;
 			}
-
 			// Set the position and texture coordinate for each
 			// vertex
 			Vertices [0].Position = LowerLeft;
@@ -84,38 +73,40 @@ namespace TestGame1
 
 			// Set the index buffer for each vertex, using
 			// clockwise winding
+			Indexes = new short[12];
 			Indexes [0] = 0;
 			Indexes [1] = 1;
 			Indexes [2] = 2;
 			Indexes [3] = 2;
 			Indexes [4] = 1;
 			Indexes [5] = 3;
+			
+			Indexes [6] = 2;
+			Indexes [7] = 1;
+			Indexes [8] = 0;
+			Indexes [9] = 3;
+			Indexes [10] = 1;
+			Indexes [11] = 2;
 		}
 
-		public void Draw (Camera camera, BasicEffect effect)
+		public override void DrawObject ()
 		{
-			effect = new BasicEffect (device);
-			effect.AmbientLightColor = new Vector3 (0.8f, 0.8f, 0.8f);
+			basicEffect.AmbientLightColor = new Vector3 (0.8f, 0.8f, 0.8f);
 			//effect.LightingEnabled = true;
-			effect.World = camera.WorldMatrix;
-			effect.View = camera.ViewMatrix;
-			effect.Projection = camera.ProjectionMatrix;
-			effect.TextureEnabled = true;
-			effect.VertexColorEnabled = false;
-			effect.Texture = texture;
+			basicEffect.TextureEnabled = true;
+			basicEffect.VertexColorEnabled = false;
+			basicEffect.Texture = texture;
 
-			
+			if (game.Input.KeyboardState.IsKeyDown (Keys.L)) {
+				basicEffect.EnableDefaultLighting ();  // Beleuchtung aktivieren
+			}
 
-			foreach (EffectPass pass in effect.CurrentTechnique.Passes) {
+			foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes) {
 				pass.Apply ();
 
-				
-				device.DrawUserIndexedPrimitives
-                    <VertexPositionNormalTexture> (
-                    PrimitiveType.TriangleList,
-                    Vertices, 0, 4,
-                    Indexes, 0, 2);
-
+				device.DrawUserIndexedPrimitives<VertexPositionNormalTexture> (
+                    PrimitiveType.TriangleList, Vertices, 0, Vertices.Length, Indexes, 0, Indexes.Length / 3
+				);
 			}
 		}
 	}

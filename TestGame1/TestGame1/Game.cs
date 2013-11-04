@@ -19,7 +19,7 @@ namespace TestGame1
 	{
 		// graphics-related classes
 		private GraphicsDeviceManager graphics;
-		private BasicEffect basicEffect;
+		public BasicEffect basicEffect;
 
 		// nodes
 		private NodeList nodes;
@@ -37,7 +37,7 @@ namespace TestGame1
 		private DrawLines drawLines;
 
 		// debug
-		public static bool Debug = false;
+		public static bool Debug = true;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TestGame1.Game"/> class.
@@ -68,20 +68,20 @@ namespace TestGame1
 			basicEffect.Projection = Matrix.CreatePerspectiveFieldOfView (MathHelper.PiOver4, GraphicsDevice.Viewport.AspectRatio, 1.0f, 2000.0f);
 
 			// camera
-			camera = new Camera (graphics, basicEffect, this);
+			camera = new Camera (this);
 
 			// input
-			input = new Input (camera, graphics, this);
+			input = new Input (this);
 			input.SaveStates ();
 
 			// overlay
-			overlay = new Overlay (camera, graphics, this);
+			overlay = new Overlay (this);
 
 			// overlay
-			world = new World (camera, graphics, basicEffect, this);
+			world = new World (this);
 
 			// line drawing
-			drawLines = new DrawLines (camera, graphics, this);
+			drawLines = new DrawLines (this);
 
 			// base method
 			base.Initialize ();
@@ -199,5 +199,37 @@ namespace TestGame1
 		public Input Input { get { return input; } }
 
 		public World World { get { return world; } }
+		
+		public GraphicsDeviceManager Graphics { get { return graphics; } }
+	}
+
+	public abstract class GameClass
+	{
+		protected Game game;
+
+		protected GraphicsDevice device {
+			get { return game.GraphicsDevice; }
+		}
+
+		protected GraphicsDeviceManager graphics {
+			get { return game.Graphics; }
+		}
+
+		protected Camera camera {
+			get { return game.Camera; }
+		}
+
+		protected Input input {
+			get { return game.Input; }
+		}
+
+		protected World world {
+			get { return game.World; }
+		}
+
+		public GameClass (Game game)
+		{
+			this.game = game;
+		}
 	}
 }

@@ -14,15 +14,10 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace TestGame1
 {
-	public class Overlay
+	public class Overlay : GameClass
 	{
 		// graphics-related classes
-		private GraphicsDeviceManager graphics;
 		private SpriteBatch spriteBatch;
-
-		// custom classes
-		private Game game;
-		private Camera camera;
 
 		// fonts
 		private SpriteFont font;
@@ -30,12 +25,9 @@ namespace TestGame1
 		/// <summary>
 		/// Initializes a new Overlay-
 		/// </summary>
-		public Overlay (Camera camera, GraphicsDeviceManager graphics, Game game)
+		public Overlay (Game game)
+			: base(game)
 		{
-			this.camera = camera;
-			this.graphics = graphics;
-			this.game = game;
-
 			// create a new SpriteBatch, which can be used to draw textures
 			spriteBatch = new SpriteBatch (graphics.GraphicsDevice);
 		}

@@ -14,23 +14,15 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace TestGame1
 {
-	public class DrawLines
+	public class DrawLines : GameClass
 	{
-		// graphics-related classes
-		private GraphicsDeviceManager graphics;
-
-		// custom classes
-		private Game game;
-		private Camera camera;
 
 		/// <summary>
 		/// Initializes a new Overlay-
 		/// </summary>
-		public DrawLines (Camera camera, GraphicsDeviceManager graphics, Game game)
+		public DrawLines (Game game)
+			: base(game)
 		{
-			this.camera = camera;
-			this.graphics = graphics;
-			this.game = game;
 		}
 
 		/// <summary>
