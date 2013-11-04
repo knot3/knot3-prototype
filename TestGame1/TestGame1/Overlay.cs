@@ -54,7 +54,8 @@ namespace TestGame1
 		/// </param>
 		public void Draw (GameTime gameTime)
 		{
-			DrawCoordinates (gameTime);
+            DrawCoordinates(gameTime);
+            DrawCursor();
 			DrawOverlay (gameTime);
 		}
 
@@ -83,7 +84,7 @@ namespace TestGame1
 				spriteBatch.Begin ();
 
 				int height = 20;
-				int width1 = 20, width2 = 140, width3 = 200, width4 = 260;
+				int width1 = 20, width2 = 150, width3 = 210, width4 = 270;
 				DrawString ("Rotation: ", width1, height, Color.White);
 				DrawString (camera.RotationAngle.Degrees.X, width2, height, Color.Green);
 				DrawString (camera.RotationAngle.Degrees.Y, width3, height, Color.Red);
@@ -138,6 +139,16 @@ namespace TestGame1
 		{
 			DrawString ("" + n, width, height, color);
 		}
+
+        private void DrawCursor()
+        {
+            spriteBatch.Begin();
+            
+            Texture2D cursorTex = game.Content.Load<Texture2D>("cursor");
+            spriteBatch.Draw(cursorTex, new Vector2(input.MouseState.X, input.MouseState.Y), Color.White);
+
+            spriteBatch.End();
+        }
 	}
 }
 
