@@ -124,6 +124,7 @@ namespace TestGame1
 			if (keyboardState.IsKeyDown (Keys.Enter)) {
 				// set target to (0,0,0)
 				camera.Target = Vector3.Zero;
+				camera.ArcballTarget = new Vector3 (0, 0, 0);
 				// set position to default
 				camera.Position = camera.DefaultPosition;
 			}

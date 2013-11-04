@@ -99,6 +99,11 @@ namespace TestGame1
 				DrawString ((int)camera.Target.Y, width3, height, Color.Red);
 				DrawString ((int)camera.Target.Z, width4, height, Color.Yellow);
 				height += 20;
+				DrawString ("Arcball Target: ", width1, height, Color.White);
+				DrawString ((int)camera.ArcballTarget.X, width2, height, Color.Green);
+				DrawString ((int)camera.ArcballTarget.Y, width3, height, Color.Red);
+				DrawString ((int)camera.ArcballTarget.Z, width4, height, Color.Yellow);
+				height += 20;
 				DrawString ("FoV: ", width1, height, Color.White);
 				DrawString (camera.FoV, width2, height, Color.White);
 				height += 20;

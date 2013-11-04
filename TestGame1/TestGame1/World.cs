@@ -30,6 +30,8 @@ namespace TestGame1
 		// enabled?
 		public static bool Enabled { get; set; }
 
+		private double lastRayCheck = 0;
+
 		/// <summary>
 		/// Initializes a new Overlay-
 		/// </summary>
@@ -44,10 +46,10 @@ namespace TestGame1
 			objects = new List<GameObject> ();
 
 			// some game objects
-			objects.Add(new TexturedRectangle (game, new Vector3 (200, 200, 200), Vector3.Left, 400, Vector3.Up, 50));
-			objects.Add(new TestModel (game));
+			objects.Add (new TexturedRectangle (game, new Vector3 (200, 200, 200), Vector3.Left, 400, Vector3.Up, 50));
+			objects.Add (new TestModel (game));
 			// the floor
-			objects.Add(new TexturedRectangle (game, new Vector3 (0, -200, 0), Vector3.Left, 1000, Vector3.Forward, 1000));
+			objects.Add (new TexturedRectangle (game, new Vector3 (0, 0, 0), Vector3.Left, 1000, Vector3.Forward, 1000));
 
 			// create floor
 			//floor = new Floor3D (graphics.GraphicsDevice, position, size, game);
@@ -66,17 +68,51 @@ namespace TestGame1
 				}
 			}
 		}
+
+		public void Update (GameTime gameTime)
+		{
+			if (Enabled && gameTime.TotalGameTime.TotalMilliseconds > lastRayCheck + 1000) {
+				lastRayCheck = gameTime.TotalGameTime.TotalMilliseconds;
+
+				Ray ray = camera.GetMouseRay (new Vector2 (game.Input.MouseState.X, game.Input.MouseState.Y));
+
+				Nullable<float> nearestDistance = null;
+				GameObject nearestObject = null;
+				foreach (GameObject obj in objects) {
+					Nullable<float> distance = obj.Intersects (ray);
+					if (distance != null) {
+						Console.WriteLine ("time=" + (int)gameTime.ElapsedGameTime.TotalMilliseconds +
+							", obj = " + obj + ", distance = " + MathHelper.Clamp ((float)distance, 0, 100000)
+						);
+						if (distance > 0 && (nearestDistance == null || distance < nearestDistance)) {
+							nearestDistance = distance;
+							nearestObject = obj;
+						}
+					}
+				}
+				if (nearestObject != null) {
+					//Vector3 newTarget = camera.Position + Vector3.Normalize (camera.TargetVector) * (float)nearestDistance;
+					Vector3 newTarget = nearestObject.Center ();
+					// if ((camera.Target - newTarget).Length () > 20) {
+					camera.ArcballTarget = newTarget;
+				}
+			}
+		}
 	}
 
 	public class TestModel : GameObject
 	{
 		private Model model;
+		private float scale;
+		private Vector3 position;
 
 		public TestModel (Game game)
 			: base(game)
 		{
 			// load test model
 			model = LoadModel ("Test3D");
+			scale = 0.1f;
+			position = new Vector3 (-200, 200, 200);
 		}
 
 		public override void DrawObject ()
@@ -89,12 +125,34 @@ namespace TestGame1
 					} else {
 						effect.LightingEnabled = false;
 					}
-					effect.World = Matrix.CreateScale (0.01f) * Matrix.CreateTranslation (camera.Target);  //camera.WorldMatrix*0.001f;
+					// effect.World = Matrix.CreateScale (0.01f) * Matrix.CreateTranslation (camera.Target);  //camera.WorldMatrix*0.001f;
+					effect.World = Matrix.CreateScale (scale) * Matrix.CreateTranslation (position);  //camera.WorldMatrix*0.001f;
 					effect.View = camera.ViewMatrix;
 					effect.Projection = camera.ProjectionMatrix;
 				}
 				mesh.Draw ();
 			}
+		}
+
+		public override Nullable<float> Intersects (Ray ray)
+		{
+			foreach (BoundingSphere sphere in model.Bounds()) {
+				Nullable<float> intersection = ray.Intersects (sphere.Scale (scale).Translate (position));
+				if (intersection != null) {
+					return intersection;
+				}
+			}
+			return null;
+		}
+
+		public override Vector3 Center ()
+		{
+			Vector3 center = Vector3.Zero;
+			int count = model.Meshes.Count;
+			foreach (ModelMesh mesh in model.Meshes) {
+				center += mesh.BoundingSphere.Center / count;
+			}
+			return center / scale + position;
 		}
 	}
 
@@ -175,6 +233,10 @@ namespace TestGame1
 			dummyTexture.SetData (new Color[] { Color.Red });
 			return dummyTexture;
 		}
+
+		public abstract Nullable<float> Intersects (Ray ray);
+
+		public abstract Vector3 Center ();
 	}
 }
 

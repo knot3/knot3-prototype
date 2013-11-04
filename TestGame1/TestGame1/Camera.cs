@@ -29,6 +29,8 @@ namespace TestGame1
 
 		public Vector3 Target { get; set; }
 
+		public Vector3 ArcballTarget { get; set; }
+
 		public Vector3 UpVector { get; private set; }
 
 		private float foV;
@@ -54,6 +56,7 @@ namespace TestGame1
 			DefaultPosition = new Vector3 (400, 400, 1000);
 			Position = DefaultPosition;
 			Target = new Vector3 (0, 0, 0);
+			ArcballTarget = new Vector3 (0, 0, 0);
 			UpVector = Vector3.Up;
 			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
  
@@ -125,6 +128,22 @@ namespace TestGame1
 				toTarget.Normalize ();
 				return toTarget;
 			}
+		}
+
+		public Ray GetMouseRay (Vector2 mouse)
+		{
+			Viewport viewport = device.Viewport;
+
+			Vector3 nearPoint = new Vector3 (mouse, 0);
+			Vector3 farPoint = new Vector3 (mouse, 1);
+
+			nearPoint = viewport.Unproject (nearPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
+			farPoint = viewport.Unproject (farPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
+
+			Vector3 direction = farPoint - nearPoint;
+			direction.Normalize ();
+
+			return new Ray (nearPoint, direction);
 		}
 	}
 }

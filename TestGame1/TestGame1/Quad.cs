@@ -22,14 +22,17 @@ namespace TestGame1
 		public VertexPositionNormalTexture[] Vertices;
 		public short[] Indexes;
 		private Texture2D texture;
+		private float Width;
+		private float Height;
 
-		public TexturedRectangle (Game game, Vector3 origin, Vector3 left,  
-				float width, Vector3 up, float height)
+		public TexturedRectangle (Game game, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
 			: base(game)
 		{
 			Origin = origin;
 			Left = left;
+			Width = width;
 			Up = up;
+			Height = height;
 
 			// Calculate the quad corners
 			Normal = Vector3.Cross (Left, Up);
@@ -108,6 +111,37 @@ namespace TestGame1
                     PrimitiveType.TriangleList, Vertices, 0, Vertices.Length, Indexes, 0, Indexes.Length / 3
 				);
 			}
+		}
+
+		private Vector3 Length ()
+		{
+			return Left * Width + Up * Height;
+		}
+		
+		public BoundingBox[] Bounds ()
+		{
+			//Console.WriteLine ("LowerLeft=" + LowerLeft + ", UpperRight=" + UpperRight + ", BoundingBox=" + LowerLeft.Bounds (UpperRight - LowerLeft));
+			//return LowerLeft.Bounds (UpperRight - LowerLeft + new Vector3 (1, 1, 1));
+			return new BoundingBox[]{
+				LowerLeft.Bounds (UpperRight - LowerLeft), LowerRight.Bounds (UpperLeft - LowerRight),
+				UpperRight.Bounds (LowerLeft - UpperRight), UpperLeft.Bounds (LowerRight - UpperLeft)
+			};
+		}
+
+		public override Nullable<float> Intersects (Ray ray)
+		{
+			foreach (BoundingBox bounds in Bounds()) {
+				Nullable<float> distance = ray.Intersects (bounds);
+				if (distance != null)
+					return distance;
+			}
+			return null;
+		}
+
+		public override Vector3 Center ()
+		{
+			Console.WriteLine ("Center=" + (LowerLeft + (UpperRight - LowerLeft) / 2));
+			return LowerLeft + (UpperRight - LowerLeft) / 2;
 		}
 	}
 }

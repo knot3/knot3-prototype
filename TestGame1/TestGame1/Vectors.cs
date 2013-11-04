@@ -61,6 +61,31 @@ namespace TestGame1
 				MathHelper.Clamp (v.Z, lower.Z, higher.Z)
 			);
 		}
+
+		public static BoundingSphere[] Bounds (this Model model)
+		{
+			BoundingSphere[] bounds = new BoundingSphere[model.Meshes.Count];
+			int i = 0;
+			foreach (ModelMesh mesh in model.Meshes) {
+				bounds [i++] = mesh.BoundingSphere;
+			}
+			return bounds;
+		}
+
+		public static BoundingBox Bounds (this Vector3 a, Vector3 diff)
+		{
+			return new BoundingBox (a, a + diff);
+		}
+
+		public static BoundingSphere Scale (this BoundingSphere sphere, float scale)
+		{
+			return new BoundingSphere (sphere.Center, sphere.Radius * scale);
+		}
+
+		public static BoundingSphere Translate (this BoundingSphere sphere, Vector3 position)
+		{
+			return new BoundingSphere (Vector3.Transform (sphere.Center, Matrix.CreateTranslation (position)), sphere.Radius);
+		}
 	}
 
 	public class Angles3
