@@ -40,8 +40,8 @@ namespace TestGame1
 			this.game = game;
 			this.camera = game.Camera;
 
-			size = new Vector3 (4000, 1000, 4000);
-			position = new Vector3 (-2000, -100, -2000);
+			size = new Vector3 (2000, 1000, 2000);
+			position = new Vector3 (-1000, -100, -1000);
 
 			objects = new List<GameObject> ();
 
@@ -49,7 +49,9 @@ namespace TestGame1
 			objects.Add (new TexturedRectangle (game, new Vector3 (200, 200, 200), Vector3.Left, 400, Vector3.Up, 50));
 			objects.Add (new TestModel (game));
 			// the floor
-			objects.Add (new TexturedRectangle (game, new Vector3 (0, 0, 0), Vector3.Left, 1000, Vector3.Forward, 1000));
+			objects.Add (new TexturedRectangle (game, position + new Vector3 (size.X, 0, size.Z) / 2,
+				Vector3.Left, size.X, Vector3.Forward, size.Z)
+			);
 
 			// create floor
 			//floor = new Floor3D (graphics.GraphicsDevice, position, size, game);
