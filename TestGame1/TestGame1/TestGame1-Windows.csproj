@@ -148,7 +148,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="TestGame1Content-Windows.contentproj">
+    <ProjectReference Include="Content\TestGame1Content-Windows.contentproj">
       <Project>{CD33049E-0B5F-42BA-B816-658DEDF50DEA}</Project>
       <Name>TestGame1Content-Windows</Name>
       <XnaReferenceType>Content</XnaReferenceType>
