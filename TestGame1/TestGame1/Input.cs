@@ -107,7 +107,7 @@ namespace TestGame1
 			// apply arcball movements
 			if (arcballMove.Length () > 0) {
 				arcballMove *= 3;
-				camera.Position = camera.Target + (camera.Position - camera.Target).ArcBallMove (
+				camera.Position = camera.ArcballTarget + (camera.Position - camera.ArcballTarget).ArcBallMove (
 						arcballMove, camera.UpVector, camera.TargetVector
 				);
 			}
@@ -221,8 +221,8 @@ namespace TestGame1
 					// camera.Target = new Vector3 (0, 0, 0);
 					// camera.arcball.Yaw += (mouseMove.X / 1000);
 					// camera.arcball.Pitch += (mouseMove.Y / 1000);
-
-					camera.Position = camera.Target + (camera.Position - camera.Target).ArcBallMove (
+					camera.Target = new Vector3(camera.ArcballTarget.X, camera.Target.Y, camera.ArcballTarget.Z);
+					camera.Position = camera.ArcballTarget + (camera.Position - camera.ArcballTarget).ArcBallMove (
 						mouseMove, camera.UpVector, camera.TargetVector
 					);
 				}

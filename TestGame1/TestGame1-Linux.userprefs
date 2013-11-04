@@ -2,18 +2,27 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="TestGame1/Input.cs">
     <Files>
-      <File FileName="TestGame1/Game.cs" Line="87" Column="32" />
+      <File FileName="TestGame1/Game.cs" Line="207" Column="29" />
       <File FileName="TestGame1/Camera.cs" Line="59" Column="42" />
       <File FileName="TestGame1/Nodes.cs" Line="111" Column="4" />
       <File FileName="TestGame1/Vectors.cs" Line="88" Column="4" />
-      <File FileName="TestGame1/Input.cs" Line="286" Column="12" />
-      <File FileName="TestGame1/Overlay.cs" Line="105" Column="42" />
+      <File FileName="TestGame1/Input.cs" Line="247" Column="1" />
+      <File FileName="TestGame1/Overlay.cs" Line="145" Column="10" />
       <File FileName="TestGame1/DrawLines.cs" Line="25" Column="4" />
-      <File FileName="TestGame1/World.cs" Line="52" Column="63" />
+      <File FileName="TestGame1/World.cs" Line="45" Column="1" />
       <File FileName="TestGame1/Test.cs" Line="235" Column="14" />
       <File FileName="TestGame1/Quad.cs" Line="124" Column="77" />
-      <File FileName="TestGame1/Mono.cs" Line="30" Column="37" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="TestGame1-Linux" expanded="True">
+            <Node name="Content" expanded="True" />
+            <Node name="Input.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

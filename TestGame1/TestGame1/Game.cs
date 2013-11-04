@@ -139,7 +139,7 @@ namespace TestGame1
 			input.Update (gameTime);
 			input.SaveStates ();
 			// world
-			world.Update(gameTime);
+			world.Update (gameTime);
 			// base method
 			base.Update (gameTime);
 		}
@@ -203,6 +203,11 @@ namespace TestGame1
 		public World World { get { return world; } }
 		
 		public GraphicsDeviceManager Graphics { get { return graphics; } }
+
+		public static bool IsRunningOnMono ()
+		{
+			return Type.GetType ("Mono.Runtime") != null;
+		}
 	}
 
 	public abstract class GameClass

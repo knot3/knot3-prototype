@@ -68,7 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
-    <None Include="Content\background.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
@@ -82,6 +81,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\background.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\cursor.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

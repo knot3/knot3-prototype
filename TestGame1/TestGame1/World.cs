@@ -14,12 +14,8 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace TestGame1
 {
-	public class World
+	public class World : GameClass
 	{
-		// custom classes
-		private Game game;
-		private Camera camera;
-
 		// game objects
 		private List<GameObject> objects;
 
@@ -36,10 +32,8 @@ namespace TestGame1
 		/// Initializes a new Overlay-
 		/// </summary>
 		public World (Game game)
+			: base(game)
 		{
-			this.game = game;
-			this.camera = game.Camera;
-
 			size = new Vector3 (2000, 1000, 2000);
 			position = new Vector3 (-1000, -100, -1000);
 
@@ -73,8 +67,12 @@ namespace TestGame1
 
 		public void Update (GameTime gameTime)
 		{
-			if (Enabled && gameTime.TotalGameTime.TotalMilliseconds > lastRayCheck + 1000) {
-				lastRayCheck = gameTime.TotalGameTime.TotalMilliseconds;
+			double millis = gameTime.TotalGameTime.TotalMilliseconds;
+			bool leftButtonReleased = input.MouseState.LeftButton == ButtonState.Released;
+			bool rightButtonReleased = input.MouseState.RightButton == ButtonState.Released;
+
+			if (Enabled && millis > lastRayCheck + 200 && leftButtonReleased && rightButtonReleased) {
+				lastRayCheck = millis;
 
 				Ray ray = camera.GetMouseRay (new Vector2 (game.Input.MouseState.X, game.Input.MouseState.Y));
 
@@ -83,7 +81,7 @@ namespace TestGame1
 				foreach (GameObject obj in objects) {
 					Nullable<float> distance = obj.Intersects (ray);
 					if (distance != null) {
-						Console.WriteLine ("time=" + (int)gameTime.ElapsedGameTime.TotalMilliseconds +
+						Console.WriteLine ("time=" + (int)gameTime.TotalGameTime.TotalMilliseconds +
 							", obj = " + obj + ", distance = " + MathHelper.Clamp ((float)distance, 0, 100000)
 						);
 						if (distance > 0 && (nearestDistance == null || distance < nearestDistance)) {

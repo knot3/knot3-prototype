@@ -54,8 +54,8 @@ namespace TestGame1
 		/// </param>
 		public void Draw (GameTime gameTime)
 		{
-            DrawCoordinates(gameTime);
-            DrawCursor();
+			DrawCoordinates (gameTime);
+			DrawCursor ();
 			DrawOverlay (gameTime);
 		}
 
@@ -140,15 +140,17 @@ namespace TestGame1
 			DrawString ("" + n, width, height, color);
 		}
 
-        private void DrawCursor()
-        {
-            spriteBatch.Begin();
+		private void DrawCursor ()
+		{
+			if (!Game.IsRunningOnMono ()) {
+				spriteBatch.Begin ();
             
-            Texture2D cursorTex = game.Content.Load<Texture2D>("cursor");
-            spriteBatch.Draw(cursorTex, new Vector2(input.MouseState.X, input.MouseState.Y), Color.White);
+				Texture2D cursorTex = game.Content.Load<Texture2D> ("cursor");
+				spriteBatch.Draw (cursorTex, new Vector2 (input.MouseState.X, input.MouseState.Y), Color.White);
 
-            spriteBatch.End();
-        }
+				spriteBatch.End ();
+			}
+		}
 	}
 }
 
