@@ -196,6 +196,7 @@ namespace TestGame1
 		public GameObject (Game game)
 		{
 			this.game = game;
+			basicEffect = new BasicEffect (device);
 		}
 
 		public virtual void Update (GameTime gameTime)
@@ -204,7 +205,6 @@ namespace TestGame1
 
 		public void Draw (GameTime gameTime)
 		{
-			basicEffect = new BasicEffect (device);
 			basicEffect.World = camera.WorldMatrix;
 			basicEffect.View = camera.ViewMatrix;
 			basicEffect.Projection = camera.ProjectionMatrix;
