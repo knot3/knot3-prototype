@@ -79,7 +79,6 @@ namespace TestGame1
 
 			// overlay
 			world = new World (this);
-			World.Enabled = true;
 
 			// line drawing
 			drawLines = new DrawLines (this);
@@ -147,6 +146,12 @@ namespace TestGame1
 
 		private void Updateinput ()
 		{
+			// allows the game to exit
+			if (Keys.Escape.IsDown ()) {
+				this.Exit ();
+				return;
+			}
+
 			// change background color
 			if (Keys.Space.IsDown ()) {
 				backColor = new Color (backColor.R, backColor.G, (byte)~backColor.B);

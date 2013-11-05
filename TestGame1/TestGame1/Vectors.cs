@@ -1,8 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Net;
+using Microsoft.Xna.Framework.Storage;
 
 namespace TestGame1
 {
@@ -101,6 +109,11 @@ namespace TestGame1
 		public static BoundingSphere Translate (this BoundingSphere sphere, Vector3 position)
 		{
 			return new BoundingSphere (Vector3.Transform (sphere.Center, Matrix.CreateTranslation (position)), sphere.Radius);
+		}
+
+		public static Vector2 ToVector2 (this MouseState state)
+		{
+			return new Vector2(state.X, state.Y);
 		}
 	}
 

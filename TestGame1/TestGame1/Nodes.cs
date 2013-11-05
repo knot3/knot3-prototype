@@ -59,6 +59,17 @@ namespace TestGame1
 		{
 			return !(a == b);
 		}
+		
+		public override bool Equals (object obj)
+		{
+			Node other = obj as Node;
+			return X == other.X || Y == other.Y || Z == other.Z;
+		}
+
+		public override int GetHashCode ()
+		{
+			return X ^ Y ^ Z;
+		}
 	}
 
 	public class NodeList
@@ -209,11 +220,13 @@ namespace TestGame1
 		public void RemoveAt (int i)
 		{
 			// TODO
-			Node a = Nodes [i - 1];
-			Node b = Nodes [i];
-			Node c = Nodes [i + 1];
-			Compact ();
-			Nodes.Print ();
+			/*
+			 * Node a = Nodes [i - 1];
+			 * Node b = Nodes [i];
+			 * Node c = Nodes [i + 1];
+			 * Compact ();
+			 * Nodes.Print ();
+			 */
 		}
 
 		public void Compact ()
