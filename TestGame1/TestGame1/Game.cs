@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -140,6 +141,8 @@ namespace TestGame1
 			input.SaveStates ();
 			// world
 			world.Update (gameTime);
+			// overlay
+			overlay.Update (gameTime);
 			// base method
 			base.Update (gameTime);
 		}
@@ -213,6 +216,14 @@ namespace TestGame1
 		public static bool IsRunningOnMono ()
 		{
 			return Type.GetType ("Mono.Runtime") != null;
+		}
+
+		public static TimeSpan Time (Action action)
+		{
+			Stopwatch stopwatch = Stopwatch.StartNew ();
+			action ();
+			stopwatch.Stop ();
+			return stopwatch.Elapsed;
 		}
 	}
 

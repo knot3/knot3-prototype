@@ -112,14 +112,11 @@ namespace TestGame1
 
 		public override void Update (GameTime gameTime)
 		{
-            if (game.Input.KeyboardState.IsKeyDown(Keys.U))
-            {
-                Position = Position.RotateY(MathHelper.PiOver4 / 100f);
-            }
-            else
-            {
-                //Position = BasePosition;
-            }
+			if (game.Input.KeyboardState.IsKeyDown (Keys.U)) {
+				Position = Position.RotateY (MathHelper.PiOver4 / 100f);
+			} else {
+				//Position = BasePosition;
+			}
 		}
 	}
 	
@@ -131,6 +128,8 @@ namespace TestGame1
 
 		protected float Scale { get; set; }
 
+		protected ModelMesh[] ModelMeshes;
+
 		public GameModel (Game game, string modelname, Vector3 position, float scale)
 			: base(game)
 		{
@@ -138,12 +137,13 @@ namespace TestGame1
 			Model = LoadModel (modelname);
 			Position = position;
 			Scale = scale;
+			ModelMeshes = Model.Meshes.ToArray ();
 		}
 
 		public override void DrawObject ()
 		{
 			// test:
-			foreach (ModelMesh mesh in Model.Meshes) {
+			foreach (ModelMesh mesh in ModelMeshes) {
 				foreach (BasicEffect effect in mesh.Effects) {
 					if (game.Input.KeyboardState.IsKeyDown (Keys.L)) {
 						effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
@@ -200,7 +200,6 @@ namespace TestGame1
 
 		public virtual void Update (GameTime gameTime)
 		{
-
 		}
 
 		public void Draw (GameTime gameTime)

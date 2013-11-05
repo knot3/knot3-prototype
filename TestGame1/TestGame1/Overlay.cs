@@ -55,8 +55,14 @@ namespace TestGame1
 		public void Draw (GameTime gameTime)
 		{
 			DrawCoordinates (gameTime);
-			DrawCursor ();
+			DrawCursor (gameTime);
 			DrawOverlay (gameTime);
+			DrawFPS (gameTime);
+		}
+		
+		public void Update (GameTime gameTime)
+		{
+			UpdateFPS (gameTime);
 		}
 
 		private void DrawCoordinates (GameTime gameTime)
@@ -80,58 +86,58 @@ namespace TestGame1
 
 		private void DrawOverlay (GameTime gameTime)
 		{
-			if (font != null) {
-				spriteBatch.Begin ();
+			spriteBatch.Begin ();
 
-				int height = 20;
-				int width1 = 20, width2 = 150, width3 = 210, width4 = 270;
-				DrawString ("Rotation: ", width1, height, Color.White);
-				DrawString (camera.RotationAngle.Degrees.X, width2, height, Color.Green);
-				DrawString (camera.RotationAngle.Degrees.Y, width3, height, Color.Red);
-				DrawString (camera.RotationAngle.Degrees.Z, width4, height, Color.Yellow);
-				height += 20;
-				DrawString ("Cam Pos: ", width1, height, Color.White);
-				DrawString ((int)camera.Position.X, width2, height, Color.Green);
-				DrawString ((int)camera.Position.Y, width3, height, Color.Red);
-				DrawString ((int)camera.Position.Z, width4, height, Color.Yellow);
-				height += 20;
-				DrawString ("Cam Target: ", width1, height, Color.White);
-				DrawString ((int)camera.Target.X, width2, height, Color.Green);
-				DrawString ((int)camera.Target.Y, width3, height, Color.Red);
-				DrawString ((int)camera.Target.Z, width4, height, Color.Yellow);
-				height += 20;
-				DrawString ("Arcball Target: ", width1, height, Color.White);
-				DrawString ((int)camera.ArcballTarget.X, width2, height, Color.Green);
-				DrawString ((int)camera.ArcballTarget.Y, width3, height, Color.Red);
-				DrawString ((int)camera.ArcballTarget.Z, width4, height, Color.Yellow);
-				height += 20;
-				DrawString ("FoV: ", width1, height, Color.White);
-				DrawString (camera.FoV, width2, height, Color.White);
-				height += 20;
-				DrawString ("Distance: ", width1, height, Color.White);
-				DrawString (camera.TargetDistance, width2, height, Color.White);
-				height += 20;
-				DrawString ("WASD: ", width1, height, Color.White);
-				string wasdMode =
+			int height = 20;
+			int width1 = 20, width2 = 150, width3 = 210, width4 = 270;
+			DrawString ("Rotation: ", width1, height, Color.White);
+			DrawString (camera.RotationAngle.Degrees.X, width2, height, Color.Green);
+			DrawString (camera.RotationAngle.Degrees.Y, width3, height, Color.Red);
+			DrawString (camera.RotationAngle.Degrees.Z, width4, height, Color.Yellow);
+			height += 20;
+			DrawString ("Cam Pos: ", width1, height, Color.White);
+			DrawString ((int)camera.Position.X, width2, height, Color.Green);
+			DrawString ((int)camera.Position.Y, width3, height, Color.Red);
+			DrawString ((int)camera.Position.Z, width4, height, Color.Yellow);
+			height += 20;
+			DrawString ("Cam Target: ", width1, height, Color.White);
+			DrawString ((int)camera.Target.X, width2, height, Color.Green);
+			DrawString ((int)camera.Target.Y, width3, height, Color.Red);
+			DrawString ((int)camera.Target.Z, width4, height, Color.Yellow);
+			height += 20;
+			DrawString ("Arcball Target: ", width1, height, Color.White);
+			DrawString ((int)camera.ArcballTarget.X, width2, height, Color.Green);
+			DrawString ((int)camera.ArcballTarget.Y, width3, height, Color.Red);
+			DrawString ((int)camera.ArcballTarget.Z, width4, height, Color.Yellow);
+			height += 20;
+			DrawString ("FoV: ", width1, height, Color.White);
+			DrawString (camera.FoV, width2, height, Color.White);
+			height += 20;
+			DrawString ("Distance: ", width1, height, Color.White);
+			DrawString (camera.TargetDistance, width2, height, Color.White);
+			height += 20;
+			DrawString ("WASD: ", width1, height, Color.White);
+			string wasdMode =
 					  game.Input.wasdMode == Input.WasdMode.ARCBALL ? "Arcball"
 					: game.Input.wasdMode == Input.WasdMode.FPS ? "FPS"
 					: game.Input.wasdMode == Input.WasdMode.ROTATION ? "Rotation"
 					: "unknown";
-				DrawString (wasdMode, width2, height, Color.White);
+			DrawString (wasdMode, width2, height, Color.White);
 
-				spriteBatch.End ();
-			}
+			spriteBatch.End ();
 		}
 
 		private void DrawString (string str, int width, int height, Color color)
 		{
-			try {
-				spriteBatch.DrawString (font, str, new Vector2 (width, height), color);
+			if (font != null) {
+				try {
+					spriteBatch.DrawString (font, str, new Vector2 (width, height), color);
 
-			} catch (ArgumentException exp) {
-				Console.WriteLine (exp.ToString ());
-			} catch (InvalidOperationException exp) {
-				Console.WriteLine (exp.ToString ());
+				} catch (ArgumentException exp) {
+					Console.WriteLine (exp.ToString ());
+				} catch (InvalidOperationException exp) {
+					Console.WriteLine (exp.ToString ());
+				}
 			}
 		}
 
@@ -140,22 +146,44 @@ namespace TestGame1
 			DrawString ("" + n, width, height, color);
 		}
 
-		private void DrawCursor ()
+		private void DrawCursor (GameTime gameTime)
 		{
 			if (!Game.IsRunningOnMono ()) {
 				spriteBatch.Begin ();
             
 				Texture2D cursorTex = game.Content.Load<Texture2D> ("cursor");
-                if (input.GrabMouseMovement || input.MouseState.LeftButton == ButtonState.Pressed
-                    || input.MouseState.RightButton == ButtonState.Pressed)
-                {
-					spriteBatch.Draw (cursorTex, graphics.GraphicsDevice.Viewport.Center(), Color.White);
+				if (input.GrabMouseMovement || input.MouseState.LeftButton == ButtonState.Pressed
+					|| input.MouseState.RightButton == ButtonState.Pressed) {
+					spriteBatch.Draw (cursorTex, graphics.GraphicsDevice.Viewport.Center (), Color.White);
 				} else {
 					spriteBatch.Draw (cursorTex, new Vector2 (input.MouseState.X, input.MouseState.Y), Color.White);
 				}
 
 				spriteBatch.End ();
 			}
+		}
+		
+		int _total_frames = 0;
+		float _elapsed_time = 0.0f;
+		int _fps = 0;
+
+		private void UpdateFPS (GameTime gameTime)
+		{
+			_elapsed_time += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+			if (_elapsed_time >= 1000.0f) {
+				_fps = _total_frames;
+				_total_frames = 0;
+				_elapsed_time = 0;
+			}
+		}
+
+		private void DrawFPS (GameTime gameTime)
+		{
+			_total_frames++;
+			spriteBatch.Begin ();
+			DrawString ("FPS: " + _fps, device.Viewport.Width - 150, 20, Color.White);
+			spriteBatch.End ();
 		}
 	}
 }

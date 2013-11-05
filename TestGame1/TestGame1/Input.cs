@@ -249,7 +249,7 @@ namespace TestGame1
 					|| (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Pressed)
 					|| (MouseState.RightButton == ButtonState.Pressed && PreviousMouseState.RightButton == ButtonState.Pressed)
 				    ) {
-					Mouse.SetPosition (graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
+					Mouse.SetPosition (device.Viewport.Width / 2, device.Viewport.Height / 2);
 				}
 			}
 			PreviousMouseState = MouseState;
