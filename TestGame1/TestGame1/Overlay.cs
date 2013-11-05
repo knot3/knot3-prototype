@@ -146,7 +146,11 @@ namespace TestGame1
 				spriteBatch.Begin ();
             
 				Texture2D cursorTex = game.Content.Load<Texture2D> ("cursor");
-				spriteBatch.Draw (cursorTex, new Vector2 (input.MouseState.X, input.MouseState.Y), Color.White);
+				if (input.GrabMouseMovement) {
+					spriteBatch.Draw (cursorTex, graphics.GraphicsDevice.Viewport.Center(), Color.White);
+				} else {
+					spriteBatch.Draw (cursorTex, new Vector2 (input.MouseState.X, input.MouseState.Y), Color.White);
+				}
 
 				spriteBatch.End ();
 			}

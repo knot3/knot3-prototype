@@ -115,6 +115,11 @@ namespace TestGame1
 		{
 			return new Vector2(state.X, state.Y);
 		}
+
+		public static Vector2 Center (this Viewport viewport)
+		{
+			return new Vector2(viewport.Width, viewport.Height) / 2;
+		}
 	}
 
 	public class Angles3
