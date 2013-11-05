@@ -63,8 +63,7 @@ namespace TestGame1
 		protected override void Initialize ()
         {
             // vsync
-            graphics.SynchronizeWithVerticalRetrace = false;
-            this.IsFixedTimeStep = false;
+            VSync = true;
 
             // anti aliasing
             graphics.GraphicsDevice.PresentationParameters.MultiSampleCount = 4;
@@ -212,6 +211,19 @@ namespace TestGame1
 			camera.Draw (gameTime);
 			base.Draw (gameTime);
 		}
+
+        public bool VSync
+        {
+            get
+            {
+                return graphics.SynchronizeWithVerticalRetrace;
+            }
+            set
+            {
+                graphics.SynchronizeWithVerticalRetrace = value;
+                this.IsFixedTimeStep = value;
+            }
+        }
 
 		public Camera Camera { get { return camera; } }
 

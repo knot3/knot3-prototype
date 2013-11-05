@@ -149,7 +149,6 @@ namespace TestGame1
 
 		public override Vector3 Center ()
 		{
-			Console.WriteLine ("Center=" + (LowerLeft + (UpperRight - LowerLeft) / 2));
 			return LowerLeft + (UpperRight - LowerLeft) / 2;
 		}
 	}
