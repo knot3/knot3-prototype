@@ -50,14 +50,6 @@ namespace TestGame1
 			graphics.PreferredBackBufferWidth = defaultSize.Width;
 			graphics.PreferredBackBufferHeight = defaultSize.Height;
 
-			// vsync
-			graphics.SynchronizeWithVerticalRetrace = false;
-			this.IsFixedTimeStep = false;
-
-			// anti aliasing
-			graphics.GraphicsDevice.PresentationParameters.MultiSampleCount = 4;
-			graphics.PreferMultiSampling = true;
-
 			graphics.IsFullScreen = false;
 			graphics.ApplyChanges ();
 
@@ -69,7 +61,15 @@ namespace TestGame1
 		/// Initialize the Game.
 		/// </summary>
 		protected override void Initialize ()
-		{
+        {
+            // vsync
+            graphics.SynchronizeWithVerticalRetrace = false;
+            this.IsFixedTimeStep = false;
+
+            // anti aliasing
+            graphics.GraphicsDevice.PresentationParameters.MultiSampleCount = 4;
+            graphics.PreferMultiSampling = true;
+
 			// basic effect
 			basicEffect = new BasicEffect (GraphicsDevice);
 			basicEffect.VertexColorEnabled = true;
