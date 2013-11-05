@@ -112,8 +112,14 @@ namespace TestGame1
 
 		public override void Update (GameTime gameTime)
 		{
-			Position = BasePosition;
-			//Position = Position.RotateY(MathHelper.PiOver4/100f);
+            if (game.Input.KeyboardState.IsKeyDown(Keys.U))
+            {
+                Position = Position.RotateY(MathHelper.PiOver4 / 100f);
+            }
+            else
+            {
+                //Position = BasePosition;
+            }
 		}
 	}
 	
