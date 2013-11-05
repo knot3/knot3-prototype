@@ -128,14 +128,16 @@ namespace TestGame1
 			if (keyboardState.IsKeyDown (Keys.Enter)) {
 				// set target to (0,0,0)
 				camera.Target = Vector3.Zero;
-				camera.ArcballTarget = new Vector3 (0, 0, 0);
 				// set position to default
 				camera.Position = camera.DefaultPosition;
+				// don't select a game object
+				world.SelectedObject = null;
 			}
 
 			// grab mouse movent
 			if (Keys.LeftAlt.IsDown ()) {
 				GrabMouseMovement = !GrabMouseMovement;
+				world.SelectedObject = null;
 			}
 
 			// fullscreen
@@ -203,8 +205,13 @@ namespace TestGame1
 				// don't grab mouse movement
 				else {
 					// left mouse button pressed
-					if (MouseState.LeftButton == ButtonState.Pressed)
-						action = InputAction.TargetMove;
+					if (MouseState.LeftButton == ButtonState.Pressed) {
+						if (world.SelectedObject != null && world.SelectedObject.IsMovable)
+							action = InputAction.SelectedObjectMove;
+						else
+							action = InputAction.TargetMove;
+						//mouseMove *= -1;
+					}
 					// right mouse button pressed
 					else if (MouseState.RightButton == ButtonState.Pressed)
 						action = InputAction.ArcballMove;
@@ -245,9 +252,9 @@ namespace TestGame1
 		public void ResetMousePosition ()
 		{
 			if (MouseState != PreviousMouseState) {
-				if (GrabMouseMovement
-					|| (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Pressed)
-					|| (MouseState.RightButton == ButtonState.Pressed && PreviousMouseState.RightButton == ButtonState.Pressed)
+				if (GrabMouseMovement || CurrentInputAction == InputAction.ArcballMove
+					//|| (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Pressed)
+					//|| (MouseState.RightButton == ButtonState.Pressed && PreviousMouseState.RightButton == ButtonState.Pressed)
 				    ) {
 					Mouse.SetPosition (device.Viewport.Width / 2, device.Viewport.Height / 2);
 				}
@@ -289,7 +296,8 @@ namespace TestGame1
 		ArcballMove,
 		TargetMove,
 		FreeMouse,
-		FPSMove
+		FPSMove,
+		SelectedObjectMove
 	}
 
 	public static class InputExtensions

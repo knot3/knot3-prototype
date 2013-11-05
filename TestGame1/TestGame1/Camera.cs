@@ -29,8 +29,6 @@ namespace TestGame1
 
 		public Vector3 Target { get; set; }
 
-		public Vector3 ArcballTarget { get; set; }
-
 		public Vector3 UpVector { get; private set; }
 
 		private float foV;
@@ -56,7 +54,6 @@ namespace TestGame1
 			DefaultPosition = new Vector3 (400, 400, 1000);
 			Position = DefaultPosition;
 			Target = new Vector3 (0, 0, 0);
-			ArcballTarget = new Vector3 (0, 0, 0);
 			UpVector = Vector3.Up;
 			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
  
@@ -144,6 +141,15 @@ namespace TestGame1
 			direction.Normalize ();
 
 			return new Ray (nearPoint, direction);
+		}
+
+		public Vector3 ArcballTarget {
+			get {
+				if (world.SelectedObject != null)
+					return world.SelectedObject.Center ();
+				else
+					return Vector3.Zero;
+			}
 		}
 	}
 }

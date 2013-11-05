@@ -38,7 +38,7 @@ namespace TestGame1
 		private DrawLines drawLines;
 
 		// debug
-		public static bool Debug = false;
+		public static bool Debug = true;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TestGame1.Game"/> class.
@@ -146,9 +146,9 @@ namespace TestGame1
 			camera.Update (gameTime);
 			// input
 			input.Update (gameTime);
-			input.SaveStates ();
 			// world
 			world.Update (gameTime);
+			input.SaveStates ();
 			// overlay
 			overlay.Update (gameTime);
 			// base method

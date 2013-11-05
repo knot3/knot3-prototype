@@ -19,6 +19,8 @@ namespace TestGame1
 		// game objects
 		private List<GameObject> objects;
 
+		public GameObject SelectedObject { get; set; }
+
 		// world data
 		private Vector3 position;
 		private Vector3 size;
@@ -36,7 +38,9 @@ namespace TestGame1
 			objects = new List<GameObject> ();
 
 			// some game objects
-			objects.Add (new TexturedRectangle (game, new Vector3 (200, 200, 200), Vector3.Left, 400, Vector3.Up, 50));
+			TexturedRectangle rect = new TexturedRectangle (game, new Vector3 (200, 200, 200), Vector3.Left, 400, Vector3.Up, 50);
+			rect.IsMovable = true;
+			objects.Add (rect);
 			// the floor
 			objects.Add (new TexturedRectangle (game, position + new Vector3 (size.X, 0, size.Z) / 2,
 				Vector3.Left, size.X, Vector3.Forward, size.Z)
@@ -66,9 +70,11 @@ namespace TestGame1
 			UpdateMouseRay (gameTime);
 
 			// spawn a game object
-			if (game.Input.KeyboardState.IsKeyDown (Keys.Z)) {
-				objects.Add (new GameModel (game, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
-				// objects.Add (new TestModel (game, "Test3D", new Vector3 (200, 200, 200), 0.1f));
+			if (Keys.Z.IsDown()) {
+				//objects.Add (new GameModel (game, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
+				var obj = new TestModel (game, "Test3D", new Vector3 (200, 200, 200), 0.1f);
+				obj.IsMovable = true;
+				objects.Add (obj);
 			}
 		}
 
@@ -80,47 +86,44 @@ namespace TestGame1
 
 				Ray ray = camera.GetMouseRay (game.Input.MouseState.ToVector2 ());
 
-				Nullable<float> nearestDistance = null;
-				GameObject nearestObject = null;
+				GameObjectDistance nearest = null;
 				foreach (GameObject obj in objects) {
 					Nullable<float> distance = obj.Intersects (ray);
 					if (distance != null) {
 						//Console.WriteLine ("time=" + (int)gameTime.TotalGameTime.TotalMilliseconds +
 						//	", obj = " + obj + ", distance = " + MathHelper.Clamp ((float)distance, 0, 100000)
 						//);
-						if (distance > 0 && (nearestDistance == null || distance < nearestDistance)) {
-							nearestDistance = distance;
-							nearestObject = obj;
+						if (distance > 0 && (nearest == null || distance < nearest.Distance)) {
+							nearest = new GameObjectDistance () { Object=obj, Distance=distance.Value };
 						}
 					}
 				}
-				if (nearestObject != null) {
-					//Vector3 newTarget = camera.Position + Vector3.Normalize (camera.TargetVector) * (float)nearestDistance;
-					Vector3 newTarget = nearestObject.Center ();
-					// if ((camera.Target - newTarget).Length () > 20) {
-					camera.ArcballTarget = newTarget;
+				if (nearest != null) {
+					SelectedObject = nearest.Object;
 				}
 			}
 		}
 	}
+
+	public sealed class GameObjectDistance
+	{
+		public GameObject Object;
+		public float Distance;
+	}
 	
 	public class TestModel : GameModel
 	{
-		private Vector3 BasePosition;
-
 		public TestModel (Game game, string modelname, Vector3 position, float scale)
 			: base(game, modelname, position, scale)
 		{
-			BasePosition = position;
 		}
 
 		public override void Update (GameTime gameTime)
 		{
 			if (game.Input.KeyboardState.IsKeyDown (Keys.U)) {
 				Position = Position.RotateY (MathHelper.PiOver4 / 100f);
-			} else {
-				//Position = BasePosition;
 			}
+			base.Update (gameTime);
 		}
 	}
 	
@@ -128,7 +131,7 @@ namespace TestGame1
 	{
 		protected Model Model { get; set; }
 
-		protected Vector3 Position { get; set; }
+		protected override Vector3 Position { get; set; }
 
 		protected float Scale { get; set; }
 
@@ -197,6 +200,10 @@ namespace TestGame1
 			get { return game.Camera; }
 		}
 
+		protected abstract Vector3 Position { get; set; }
+
+		public bool IsMovable { get; set; }
+
 		public GameObject (Game game)
 		{
 			this.game = game;
@@ -205,6 +212,21 @@ namespace TestGame1
 
 		public virtual void Update (GameTime gameTime)
 		{
+			// check whether is object is movable and whether it is selected
+			if (IsMovable && game.World.SelectedObject == this) {
+				// is SelectedObjectMove the current input action?
+				if (game.Input.CurrentInputAction == InputAction.SelectedObjectMove) {
+					Plane GroundPlane = new Plane (camera.Target, Vector3.Up,
+							camera.Target + Vector3.Cross (Vector3.Up, camera.TargetVector));
+					Ray ray = camera.GetMouseRay (game.Input.MouseState.ToVector2 ());
+					float? position = ray.Intersects (GroundPlane);
+					float previousLength = (Position - camera.Position).Length ();
+					if (position.HasValue)
+						Position = ray.Position + ray.Direction * position.Value;
+					float currentLength = (Position - camera.Position).Length ();
+					Position = camera.Position + (Position - camera.Position) * previousLength / currentLength;
+				}
+			}
 		}
 
 		public void Draw (GameTime gameTime)

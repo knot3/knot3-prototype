@@ -25,22 +25,31 @@ namespace TestGame1
 		private float Width;
 		private float Height;
 
+		protected override Vector3 Position {
+			get {
+				return Origin;
+			}
+			set {
+				Origin = value;
+				// Calculate the quad corners
+				Normal = Vector3.Cross (Left, Up);
+				Vector3 uppercenter = (Up * Height / 2) + value;
+				UpperLeft = uppercenter + (Left * Width / 2);
+				UpperRight = uppercenter - (Left * Width / 2);
+				LowerLeft = UpperLeft - (Up * Height);
+				LowerRight = UpperRight - (Up * Height);
+				FillVertices ();
+			}
+		}
+
 		public TexturedRectangle (Game game, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
 			: base(game)
 		{
-			Origin = origin;
 			Left = left;
 			Width = width;
 			Up = up;
 			Height = height;
-
-			// Calculate the quad corners
-			Normal = Vector3.Cross (Left, Up);
-			Vector3 uppercenter = (Up * height / 2) + origin;
-			UpperLeft = uppercenter + (Left * width / 2);
-			UpperRight = uppercenter - (Left * width / 2);
-			LowerLeft = UpperLeft - (Up * height);
-			LowerRight = UpperRight - (Up * height);
+			Position = origin;
 
 			texture = LoadTexture ("background");
 			if (texture != null) {
