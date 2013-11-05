@@ -37,8 +37,6 @@ namespace TestGame1
 
 			// some game objects
 			objects.Add (new TexturedRectangle (game, new Vector3 (200, 200, 200), Vector3.Left, 400, Vector3.Up, 50));
-			objects.Add (new GameModel (game, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
-			objects.Add (new TestModel (game, "Test3D", new Vector3 (200, 200, 200), 0.1f));
 			// the floor
 			objects.Add (new TexturedRectangle (game, position + new Vector3 (size.X, 0, size.Z) / 2,
 				Vector3.Left, size.X, Vector3.Forward, size.Z)
@@ -66,6 +64,12 @@ namespace TestGame1
 
 			// mouse ray selection
 			UpdateMouseRay (gameTime);
+
+			// spawn a game object
+			if (game.Input.KeyboardState.IsKeyDown (Keys.Z)) {
+				objects.Add (new GameModel (game, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
+				// objects.Add (new TestModel (game, "Test3D", new Vector3 (200, 200, 200), 0.1f));
+			}
 		}
 
 		public void UpdateMouseRay (GameTime gameTime)
@@ -81,9 +85,9 @@ namespace TestGame1
 				foreach (GameObject obj in objects) {
 					Nullable<float> distance = obj.Intersects (ray);
 					if (distance != null) {
-						Console.WriteLine ("time=" + (int)gameTime.TotalGameTime.TotalMilliseconds +
-							", obj = " + obj + ", distance = " + MathHelper.Clamp ((float)distance, 0, 100000)
-						);
+						//Console.WriteLine ("time=" + (int)gameTime.TotalGameTime.TotalMilliseconds +
+						//	", obj = " + obj + ", distance = " + MathHelper.Clamp ((float)distance, 0, 100000)
+						//);
 						if (distance > 0 && (nearestDistance == null || distance < nearestDistance)) {
 							nearestDistance = distance;
 							nearestObject = obj;
