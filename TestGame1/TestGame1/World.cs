@@ -38,11 +38,11 @@ namespace TestGame1
 			objects = new List<GameObject> ();
 
 			// some game objects
-			TexturedRectangle rect = new TexturedRectangle (game, new Vector3 (200, 200, 200), Vector3.Left, 400, Vector3.Up, 50);
+			TexturedRectangle rect = new TexturedRectangle (game, "image1", new Vector3 (400, 400, -400), Vector3.Right+Vector3.Backward, 400, Vector3.Up, 50);
 			rect.IsMovable = true;
 			objects.Add (rect);
 			// the floor
-			objects.Add (new TexturedRectangle (game, position + new Vector3 (size.X, 0, size.Z) / 2,
+			objects.Add (new TexturedRectangle (game, "floor", position + new Vector3 (size.X, 0, size.Z) / 2,
 				Vector3.Left, size.X, Vector3.Forward, size.Z)
 			);
 		}
@@ -81,7 +81,9 @@ namespace TestGame1
 		public void UpdateMouseRay (GameTime gameTime)
 		{
 			double millis = gameTime.TotalGameTime.TotalMilliseconds;
-			if (millis > lastRayCheck + 250 && input.CurrentInputAction != InputAction.ArcballMove) {
+            if (millis > lastRayCheck + 250 && (input.CurrentInputAction == InputAction.TargetMove
+                 || input.CurrentInputAction == InputAction.FreeMouse))
+            {
 				lastRayCheck = millis;
 
 				Ray ray = camera.GetMouseRay (game.Input.MouseState.ToVector2 ());
