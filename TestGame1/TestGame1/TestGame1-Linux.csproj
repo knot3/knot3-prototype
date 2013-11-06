@@ -58,7 +58,7 @@
     <Compile Include="Overlay.cs" />
     <Compile Include="DrawLines.cs" />
     <Compile Include="World.cs" />
-    <Compile Include="Quad.cs" />
+    <Compile Include="Rectangle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -74,10 +74,13 @@
     <Content Include="Content\Test3D.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\background.xnb">
+    <Content Include="Content\cursor.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\cursor.xnb">
+    <Content Include="Content\image1.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\floor.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
