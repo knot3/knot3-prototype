@@ -81,6 +81,16 @@ namespace TestGame1
 			}
 		}
 
+		public static Vector2 PrimaryDirection (this Vector2 v)
+		{
+			if (v.X.Abs () > v.Y.Abs ())
+				return Vector2.Normalize (new Vector2 (v.X, 0));
+			else if (v.Y.Abs () > v.X.Abs ())
+				return Vector2.Normalize (new Vector2 (0, v.Y));
+			else
+				return Vector2.Zero;
+		}
+
 		public static Vector3 PrimaryDirection (this Vector3 v)
 		{
 			if (v.X.Abs () > v.Y.Abs () && v.X.Abs () > v.Z.Abs ())
@@ -102,7 +112,7 @@ namespace TestGame1
 				copy.Y = 0;
 			else if (wrongDirection.Z != 0)
 				copy.Z = 0;
-			return copy.PrimaryDirection();
+			return copy.PrimaryDirection ();
 		}
 
 		public static float Abs (this float v)

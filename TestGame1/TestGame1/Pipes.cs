@@ -83,7 +83,7 @@ namespace TestGame1
 			: base(game)
 		{
 			pipes = new List<Pipe> ();
-			pipeCache = new PipeCache(game);
+			pipeCache = new PipeCache (game);
 			Position = Vector3.Zero; //new Vector3 (10, 10, 10);
 		}
 
@@ -100,10 +100,10 @@ namespace TestGame1
 			pipes.Clear ();
 
 			for (int n = 0; n < lines.Count; n++) {
-				pipes.Add (pipeCache[lines, n, Position]);
+				pipes.Add (pipeCache [lines, n, Position]);
 			}
-			if (world.SelectedObject is Pipe)
-				world.SelectedObject = pipes [lines.SelectedLine];
+			//if (world.SelectedObject is Pipe)
+			//	world.SelectedObject = pipes [lines.SelectedLine];
 		}
 		
 		public override void DrawObject (GameTime gameTime)
@@ -188,26 +188,52 @@ namespace TestGame1
 			base.DrawObject (gameTime);
 		}
 
+		private Vector2 previousMousePosition = Vector2.Zero;
+
 		public override void Update (GameTime gameTime)
 		{
 			// check whether is object is movable and whether it is selected
 			if (IsSelected () == true) {
 				// is SelectedObjectMove the current input action?
 				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
-					Plane groundPlane = CurrentGroundPlane ();
-					Ray ray = CurrentMouseRay ();
-					Vector3? mousePosition = CurrentMousePosition (ray, groundPlane);
-					if (mousePosition.HasValue) {
-						Vector3 move = mousePosition.Value - Position;
-						Console.WriteLine ("length=" + move.Length ().Abs ()
-							+ ", move=" + move
-						);
-						if (move.Length ().Abs () > 20) {
-							Vector3 direction = move.PrimaryDirectionExcept (Direction);
-							Lines.InsertAt (LineNumber, direction);
-						}
+					if (previousMousePosition == Vector2.Zero) {
+						previousMousePosition = input.MouseState.ToVector2 ();
 					}
+					Move ();
+				} else {
+					previousMousePosition = Vector2.Zero;
 				}
+			}
+		}
+
+		private void _Move ()
+		{
+			Plane groundPlane = CurrentGroundPlane ();
+			Ray ray = CurrentMouseRay ();
+			Vector3? mousePosition = CurrentMousePosition (ray, groundPlane);
+			if (mousePosition.HasValue) {
+				Vector3 move = mousePosition.Value - Position;
+				Console.WriteLine ("length=" + move.Length ().Abs ()
+					+ ", move=" + move
+				);
+				if (move.Length ().Abs () > 20) {
+					Vector3 direction = move.PrimaryDirectionExcept (Direction);
+					Lines.InsertAt (LineNumber, direction);
+				}
+			}
+		}
+
+		private void Move ()
+		{
+			Vector2 currentMousePosition = input.MouseState.ToVector2 ();
+			Vector2 mouseMove = currentMousePosition - previousMousePosition;
+			Vector2 direction2D = mouseMove.PrimaryDirection ();
+			if (direction2D != Vector2.Zero && mouseMove.Length ().Abs () > 10) {
+				Vector3 direction3D = Vector3.Zero;
+				if (Direction.Y == 0) {
+					direction3D = new Vector3(direction2D.X, 0, direction2D.Y);
+				}
+				Lines.InsertAt (LineNumber, direction3D);
 			}
 		}
 
