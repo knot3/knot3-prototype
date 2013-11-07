@@ -38,7 +38,7 @@ namespace TestGame1
 			objects = new List<GameObject> ();
 
 			// some game objects
-			TexturedRectangle rect = new TexturedRectangle (game, "image1", new Vector3 (400, 400, -400), Vector3.Right+Vector3.Backward, 400, Vector3.Up, 50);
+			TexturedRectangle rect = new TexturedRectangle (game, "image1", new Vector3 (400, 400, -400), Vector3.Right + Vector3.Backward, 400, Vector3.Up, 50);
 			rect.IsMovable = true;
 			objects.Add (rect);
 			// the floor
@@ -50,6 +50,11 @@ namespace TestGame1
 		public Vector3 Clamp (Vector3 v)
 		{
 			return v.Clamp (position, position + size);
+		}
+		
+		public void Add (GameObject obj)
+		{
+			objects.Add (obj);
 		}
 		
 		public void Draw (GameTime gameTime)
@@ -70,13 +75,13 @@ namespace TestGame1
 			UpdateMouseRay (gameTime);
 
 			// spawn a game object
-			if (Keys.Z.IsDown()) {
+			if (Keys.Z.IsDown ()) {
 				//objects.Add (new GameModel (game, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
 				var obj = new TestModel (game, "Test3D", new Vector3 (200, 200, 200), 0.1f);
 				obj.IsMovable = true;
 				objects.Add (obj);
 			}
-			if (Keys.P.IsDown()) {
+			if (Keys.P.IsDown ()) {
 				//objects.Add (new GameModel (game, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
 				var obj = new TestModel (game, "pipe1", new Vector3 (-200, 200, -200), 100f);
 				obj.IsMovable = true;
@@ -87,9 +92,8 @@ namespace TestGame1
 		public void UpdateMouseRay (GameTime gameTime)
 		{
 			double millis = gameTime.TotalGameTime.TotalMilliseconds;
-            if (millis > lastRayCheck + 250 && (input.CurrentInputAction == InputAction.TargetMove
-                 || input.CurrentInputAction == InputAction.FreeMouse))
-            {
+			if (millis > lastRayCheck + 250 && (input.CurrentInputAction == InputAction.TargetMove
+				|| input.CurrentInputAction == InputAction.FreeMouse)) {
 				lastRayCheck = millis;
 
 				Ray ray = camera.GetMouseRay (game.Input.MouseState.ToVector2 ());
@@ -139,9 +143,11 @@ namespace TestGame1
 	{
 		protected Model Model { get; set; }
 
-		protected override Vector3 Position { get; set; }
-
 		protected float Scale { get; set; }
+
+		protected Angles3 Rotation { get; set; }
+
+		protected override Vector3 Position { get; set; }
 
 		protected ModelMesh[] ModelMeshes;
 
@@ -150,12 +156,28 @@ namespace TestGame1
 		{
 			// load test model
 			Model = LoadModel (modelname);
-			Position = position;
 			Scale = scale;
+			Rotation = Angles3.Zero;
+			Position = position;
 			ModelMeshes = Model.Meshes.ToArray ();
 		}
 
-		public override void DrawObject ()
+		public GameModel (Game game, Model model, Vector3 position, float scale)
+			: base(game)
+		{
+			// load test model
+			Model = model;
+			Scale = scale;
+			Rotation = Angles3.Zero;
+			Position = position;
+			ModelMeshes = Model.Meshes.ToArray ();
+		}
+
+		public virtual void UpdateEffect (BasicEffect effect)
+		{
+		}
+
+		public override void DrawObject (GameTime gameTime)
 		{
 			// test:
 			foreach (ModelMesh mesh in ModelMeshes) {
@@ -165,7 +187,10 @@ namespace TestGame1
 					} else {
 						effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
 					}
-					effect.World = Matrix.CreateScale (Scale) * Matrix.CreateTranslation (Position);
+					UpdateEffect (effect);
+					effect.World = Matrix.CreateScale (Scale)
+						* Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
+						* Matrix.CreateTranslation (Position);
 					effect.View = camera.ViewMatrix;
 					effect.Projection = camera.ProjectionMatrix;
 				}
@@ -242,10 +267,10 @@ namespace TestGame1
 			basicEffect.World = camera.WorldMatrix;
 			basicEffect.View = camera.ViewMatrix;
 			basicEffect.Projection = camera.ProjectionMatrix;
-			DrawObject ();
+			DrawObject (gameTime);
 		}
 
-		public abstract void DrawObject ();
+		public abstract void DrawObject (GameTime gameTime);
 
 		protected Texture2D LoadTexture (string name)
 		{
@@ -257,13 +282,21 @@ namespace TestGame1
 			}
 		}
 
+		private static Dictionary<string, Model> modelCache = new Dictionary<string, Model> ();
+
 		protected Model LoadModel (string name)
 		{
-			try {
-				return game.Content.Load<Model> (name);
-			} catch (ContentLoadException ex) {
-				Console.WriteLine (ex.ToString ());
-				return null;
+			if (modelCache.ContainsKey (name)) {
+				return modelCache [name];
+			} else {
+				try {
+					Model model = game.Content.Load<Model> (name);
+					modelCache [name] = model;
+					return model;
+				} catch (ContentLoadException ex) {
+					Console.WriteLine (ex.ToString ());
+					return null;
+				}
 			}
 		}
 

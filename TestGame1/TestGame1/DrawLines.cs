@@ -16,10 +16,6 @@ namespace TestGame1
 {
 	public class DrawLines : GameClass
 	{
-
-		/// <summary>
-		/// Initializes a new Overlay-
-		/// </summary>
 		public DrawLines (Game game)
 			: base(game)
 		{

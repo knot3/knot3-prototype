@@ -101,7 +101,7 @@ namespace TestGame1
 			Indexes [11] = 2;
 		}
 
-		public override void DrawObject ()
+		public override void DrawObject (GameTime gameTime)
 		{
 			basicEffect.AmbientLightColor = new Vector3 (0.8f, 0.8f, 0.8f);
 			//effect.LightingEnabled = true;

@@ -59,6 +59,7 @@
     <Compile Include="DrawLines.cs" />
     <Compile Include="World.cs" />
     <Compile Include="Rectangle.cs" />
+    <Compile Include="DrawPipes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

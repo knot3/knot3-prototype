@@ -36,6 +36,7 @@ namespace TestGame1
 		private Overlay overlay;
 		private World world;
 		private DrawLines drawLines;
+		private DrawPipes drawPipes;
 
 		// debug
 		public static bool Debug = true;
@@ -61,13 +62,13 @@ namespace TestGame1
 		/// Initialize the Game.
 		/// </summary>
 		protected override void Initialize ()
-        {
-            // vsync
-            VSync = true;
+		{
+			// vsync
+			VSync = true;
 
-            // anti aliasing
-            graphics.GraphicsDevice.PresentationParameters.MultiSampleCount = 4;
-            graphics.PreferMultiSampling = true;
+			// anti aliasing
+			graphics.GraphicsDevice.PresentationParameters.MultiSampleCount = 4;
+			graphics.PreferMultiSampling = true;
 
 			// basic effect
 			basicEffect = new BasicEffect (GraphicsDevice);
@@ -90,6 +91,9 @@ namespace TestGame1
 
 			// line drawing
 			drawLines = new DrawLines (this);
+
+			// pipe drawing
+			drawPipes = new DrawPipes (this);
 
 			// base method
 			base.Initialize ();
@@ -122,6 +126,8 @@ namespace TestGame1
 			nodes.Add (new Node (1, 1, 1));
 			nodes.Add (new Node (0, 1, 1));
 			nodes.Add (new Node (0, 0, 1));
+
+			drawPipes.Update (lines, new GameTime());
 		}
 
 		/// <summary>
@@ -140,7 +146,7 @@ namespace TestGame1
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update (GameTime gameTime)
 		{
-			Updateinput ();
+			UpdateInput (gameTime);
 			// camera
 			camera.Update (gameTime);
 			// input
@@ -154,7 +160,7 @@ namespace TestGame1
 			base.Update (gameTime);
 		}
 
-		private void Updateinput ()
+		private void UpdateInput (GameTime gameTime)
 		{
 			// allows the game to exit
 			if (Keys.Escape.IsDown ()) {
@@ -202,6 +208,7 @@ namespace TestGame1
 			GraphicsDevice.BlendState = BlendState.Opaque;
 			GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
+			drawPipes.Draw (gameTime);
 			world.Draw (gameTime);
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
 			drawLines.Draw (lines, gameTime);
@@ -212,18 +219,15 @@ namespace TestGame1
 			base.Draw (gameTime);
 		}
 
-        public bool VSync
-        {
-            get
-            {
-                return graphics.SynchronizeWithVerticalRetrace;
-            }
-            set
-            {
-                graphics.SynchronizeWithVerticalRetrace = value;
-                this.IsFixedTimeStep = value;
-            }
-        }
+		public bool VSync {
+			get {
+				return graphics.SynchronizeWithVerticalRetrace;
+			}
+			set {
+				graphics.SynchronizeWithVerticalRetrace = value;
+				this.IsFixedTimeStep = value;
+			}
+		}
 
 		public Camera Camera { get { return camera; } }
 
