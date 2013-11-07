@@ -59,6 +59,14 @@ namespace TestGame1
 			Position = Vector3.Zero; //new Vector3 (10, 10, 10);
 		}
 
+		public override void Update (GameTime gameTime)
+		{
+			for (int i = 0; i < pipes.Count; ++i) {
+				Pipe pipe = pipes[i];
+				pipe.Update(gameTime);
+			}
+		}
+
 		public void UpdatePipes (LineList lines)
 		{
 			pipes.Clear ();
@@ -159,6 +167,28 @@ namespace TestGame1
 		public override void DrawObject (GameTime gameTime)
 		{
 			base.DrawObject (gameTime);
+		}
+
+		public override void Update (GameTime gameTime)
+		{
+			// check whether is object is movable and whether it is selected
+			if (Selected == true) {
+				// is SelectedObjectMove the current input action?
+				if (game.Input.CurrentInputAction == InputAction.SelectedObjectMove) {
+					Plane groundPlane = CurrentGroundPlane ();
+					Ray ray = CurrentMouseRay ();
+					Vector3 mousePosition = CurrentMousePosition (ray, groundPlane);
+					Vector3 move = mousePosition - Position;
+					Console.WriteLine("length="+move.Length().Abs()
+						+ ", move="+move);
+					if (move.Length ().Abs() > 50) {
+						Vector3 direction = move.PrimaryDirection ();
+						if (direction != Vector3.Zero) {
+							Lines.InsertAt (LineNumber, direction);
+						}
+					}
+				}
+			}
 		}
 
 		/*public override GameObjectDistance Intersects (Ray ray)

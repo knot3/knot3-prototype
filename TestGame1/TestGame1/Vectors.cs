@@ -75,10 +75,27 @@ namespace TestGame1
 			if (v.Length () < minLength) {
 				return v * minLength / v.Length ();
 			} else if (v.Length () > maxLength) {
-                return v * maxLength / v.Length();
+				return v * maxLength / v.Length ();
 			} else {
-                return v;
+				return v;
 			}
+		}
+
+		public static Vector3 PrimaryDirection (this Vector3 v)
+		{
+			if (v.X.Abs () > v.Y.Abs () && v.X.Abs () > v.Z.Abs ())
+				return Vector3.Normalize (new Vector3 (v.X, 0, 0));
+			else if (v.Y.Abs () > v.X.Abs () && v.Y.Abs () > v.Z.Abs ())
+				return Vector3.Normalize (new Vector3 (0, v.Y, 0));
+			else if (v.Z.Abs () > v.Y.Abs () && v.Z.Abs () > v.X.Abs ())
+				return Vector3.Normalize (new Vector3 (0, 0, v.Z));
+			else
+				return Vector3.Zero;
+		}
+
+		public static float Abs (this float v)
+		{
+			return Math.Abs (v);
 		}
 
 		public static float Clamp (this float v, int min, int max)
@@ -113,12 +130,12 @@ namespace TestGame1
 
 		public static Vector2 ToVector2 (this MouseState state)
 		{
-			return new Vector2(state.X, state.Y);
+			return new Vector2 (state.X, state.Y);
 		}
 
 		public static Vector2 Center (this Viewport viewport)
 		{
-			return new Vector2(viewport.Width, viewport.Height) / 2;
+			return new Vector2 (viewport.Width, viewport.Height) / 2;
 		}
 	}
 

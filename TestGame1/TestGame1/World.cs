@@ -259,21 +259,39 @@ namespace TestGame1
 			basicEffect = new BasicEffect (device);
 		}
 
+		protected Plane CurrentGroundPlane ()
+		{
+			Plane groundPlane = new Plane (camera.Target, camera.Target+Vector3.Up,
+							camera.Target+Vector3.Cross (Vector3.Up, camera.TargetVector));
+			Console.WriteLine("groundPlane="+groundPlane);
+			return groundPlane;
+		}
+
+		protected Ray CurrentMouseRay ()
+		{
+			Ray ray = camera.GetMouseRay (game.Input.MouseState.ToVector2 ());
+			return ray;
+		}
+
+		protected Vector3 CurrentMousePosition (Ray ray, Plane groundPlane)
+		{
+			float? position = ray.Intersects (groundPlane);
+			float previousLength = (Position - camera.Position).Length ();
+			if (position.HasValue)
+				Position = ray.Position + ray.Direction * position.Value;
+			float currentLength = (Position - camera.Position).Length ();
+			return camera.Position + (Position - camera.Position) * previousLength / currentLength;
+		}
+
 		public virtual void Update (GameTime gameTime)
 		{
 			// check whether is object is movable and whether it is selected
 			if (IsMovable && game.World.SelectedObject == this) {
 				// is SelectedObjectMove the current input action?
 				if (game.Input.CurrentInputAction == InputAction.SelectedObjectMove) {
-					Plane GroundPlane = new Plane (camera.Target, Vector3.Up,
-							camera.Target + Vector3.Cross (Vector3.Up, camera.TargetVector));
-					Ray ray = camera.GetMouseRay (game.Input.MouseState.ToVector2 ());
-					float? position = ray.Intersects (GroundPlane);
-					float previousLength = (Position - camera.Position).Length ();
-					if (position.HasValue)
-						Position = ray.Position + ray.Direction * position.Value;
-					float currentLength = (Position - camera.Position).Length ();
-					Position = camera.Position + (Position - camera.Position) * previousLength / currentLength;
+					Plane groundPlane = CurrentGroundPlane ();
+					Ray ray = CurrentMouseRay ();
+					Position = CurrentMousePosition (ray, groundPlane);
 				}
 			}
 		}
