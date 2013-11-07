@@ -56,10 +56,10 @@
     <Compile Include="Vectors.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Overlay.cs" />
-    <Compile Include="DrawLines.cs" />
     <Compile Include="World.cs" />
     <Compile Include="Rectangle.cs" />
-    <Compile Include="DrawPipes.cs" />
+    <Compile Include="Pipes.cs" />
+    <Compile Include="Lines.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
