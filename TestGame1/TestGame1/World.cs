@@ -49,8 +49,12 @@ namespace TestGame1
 
 		public float SelectedObjectDistance {
 			get {
-				Vector3 toTarget = SelectedObject.Center () - camera.Position;
-				return toTarget.Length ();
+				if (SelectedObject != null) {
+					Vector3 toTarget = SelectedObject.Center () - camera.Position;
+					return toTarget.Length ();
+				} else {
+					return 0;
+				}
 			}
 		}
 
@@ -261,9 +265,9 @@ namespace TestGame1
 
 		protected Plane CurrentGroundPlane ()
 		{
-			Plane groundPlane = new Plane (camera.Target, camera.Target+Vector3.Up,
-							camera.Target+Vector3.Cross (Vector3.Up, camera.TargetVector));
-			Console.WriteLine("groundPlane="+groundPlane);
+			Plane groundPlane = new Plane (Position, Position + Vector3.Up,
+							Position + Vector3.Normalize (Vector3.Cross (Vector3.Up, Position - camera.Position)));
+			Console.WriteLine ("groundPlane=" + groundPlane);
 			return groundPlane;
 		}
 
@@ -273,14 +277,17 @@ namespace TestGame1
 			return ray;
 		}
 
-		protected Vector3 CurrentMousePosition (Ray ray, Plane groundPlane)
+		protected Vector3? CurrentMousePosition (Ray ray, Plane groundPlane)
 		{
-			float? position = ray.Intersects (groundPlane);
+			float? planeDistance = ray.Intersects (groundPlane);
 			float previousLength = (Position - camera.Position).Length ();
-			if (position.HasValue)
-				Position = ray.Position + ray.Direction * position.Value;
-			float currentLength = (Position - camera.Position).Length ();
-			return camera.Position + (Position - camera.Position) * previousLength / currentLength;
+			if (planeDistance.HasValue) {
+				Vector3 planePosition = ray.Position + ray.Direction * planeDistance.Value;
+				float currentLength = (planePosition - camera.Position).Length ();
+				return camera.Position + (planePosition - camera.Position) * previousLength / currentLength;
+			} else {
+				return null;
+			}
 		}
 
 		public virtual void Update (GameTime gameTime)
@@ -291,7 +298,10 @@ namespace TestGame1
 				if (game.Input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					Plane groundPlane = CurrentGroundPlane ();
 					Ray ray = CurrentMouseRay ();
-					Position = CurrentMousePosition (ray, groundPlane);
+					Vector3? newPosition = CurrentMousePosition (ray, groundPlane);
+					if (newPosition.HasValue) {
+						Position = newPosition.Value;
+					}
 				}
 			}
 		}

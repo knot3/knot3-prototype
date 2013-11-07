@@ -96,25 +96,25 @@ namespace TestGame1
 			DrawString (camera.RotationAngle.Degrees.Z, width4, height, Color.Yellow);
 			height += 20;
 			DrawString ("Cam Pos: ", width1, height, Color.White);
-			DrawString ((int)camera.Position.X, width2, height, Color.Green);
-			DrawString ((int)camera.Position.Y, width3, height, Color.Red);
-			DrawString ((int)camera.Position.Z, width4, height, Color.Yellow);
+			DrawVectorCoordinates (camera.Position, width2, width3, width4, height);
 			height += 20;
 			DrawString ("Cam Target: ", width1, height, Color.White);
-			DrawString ((int)camera.Target.X, width2, height, Color.Green);
-			DrawString ((int)camera.Target.Y, width3, height, Color.Red);
-			DrawString ((int)camera.Target.Z, width4, height, Color.Yellow);
-			height += 20;
-			DrawString ("Arcball Target: ", width1, height, Color.White);
-			DrawString ((int)camera.ArcballTarget.X, width2, height, Color.Green);
-			DrawString ((int)camera.ArcballTarget.Y, width3, height, Color.Red);
-			DrawString ((int)camera.ArcballTarget.Z, width4, height, Color.Yellow);
-			height += 20;
-			DrawString ("FoV: ", width1, height, Color.White);
-			DrawString (camera.FoV, width2, height, Color.White);
+			DrawVectorCoordinates (camera.Target, width2, width3, width4, height);
 			height += 20;
 			DrawString ("Distance: ", width1, height, Color.White);
 			DrawString (camera.TargetDistance, width2, height, Color.White);
+			height += 20;
+			DrawString ("Selected Object: ", width1, height, Color.White);
+			if (world.SelectedObject != null) {
+				Vector3 selectedObjectCenter = world.SelectedObject.Center ();
+				DrawVectorCoordinates (selectedObjectCenter, width2, width3, width4, height);
+			}
+			height += 20;
+			DrawString ("Distance: ", width1, height, Color.White);
+			DrawString (world.SelectedObjectDistance, width2, height, Color.White);
+			height += 20;
+			DrawString ("FoV: ", width1, height, Color.White);
+			DrawString (camera.FoV, width2, height, Color.White);
 			height += 20;
 			DrawString ("WASD: ", width1, height, Color.White);
 			string wasdMode =
@@ -125,6 +125,13 @@ namespace TestGame1
 			DrawString (wasdMode, width2, height, Color.White);
 
 			spriteBatch.End ();
+		}
+
+		private void DrawVectorCoordinates (Vector3 vector, int width2, int width3, int width4, int height)
+		{
+			DrawString ((int)vector.X, width2, height, Color.Green);
+			DrawString ((int)vector.Y, width3, height, Color.Red);
+			DrawString ((int)vector.Z, width4, height, Color.Yellow);
 		}
 
 		private void DrawString (string str, int width, int height, Color color)
@@ -152,9 +159,8 @@ namespace TestGame1
 				spriteBatch.Begin ();
             
 				Texture2D cursorTex = game.Content.Load<Texture2D> ("cursor");
-                if (input.GrabMouseMovement || input.CurrentInputAction == InputAction.TargetMove
-                     || input.CurrentInputAction == InputAction.ArcballMove)
-                {
+				if (input.GrabMouseMovement || input.CurrentInputAction == InputAction.TargetMove
+					|| input.CurrentInputAction == InputAction.ArcballMove) {
 					spriteBatch.Draw (cursorTex, graphics.GraphicsDevice.Viewport.Center (), Color.White);
 				} else {
 					spriteBatch.Draw (cursorTex, new Vector2 (input.MouseState.X, input.MouseState.Y), Color.White);

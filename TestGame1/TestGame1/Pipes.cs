@@ -62,8 +62,8 @@ namespace TestGame1
 		public override void Update (GameTime gameTime)
 		{
 			for (int i = 0; i < pipes.Count; ++i) {
-				Pipe pipe = pipes[i];
-				pipe.Update(gameTime);
+				Pipe pipe = pipes [i];
+				pipe.Update (gameTime);
 			}
 		}
 
@@ -177,14 +177,17 @@ namespace TestGame1
 				if (game.Input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					Plane groundPlane = CurrentGroundPlane ();
 					Ray ray = CurrentMouseRay ();
-					Vector3 mousePosition = CurrentMousePosition (ray, groundPlane);
-					Vector3 move = mousePosition - Position;
-					Console.WriteLine("length="+move.Length().Abs()
-						+ ", move="+move);
-					if (move.Length ().Abs() > 50) {
-						Vector3 direction = move.PrimaryDirection ();
-						if (direction != Vector3.Zero) {
-							Lines.InsertAt (LineNumber, direction);
+					Vector3? mousePosition = CurrentMousePosition (ray, groundPlane);
+					if (mousePosition.HasValue) {
+						Vector3 move = mousePosition.Value - Position;
+						Console.WriteLine ("length=" + move.Length ().Abs ()
+							+ ", move=" + move
+						);
+						if (move.Length ().Abs () > 20) {
+							Vector3 direction = move.PrimaryDirection ();
+							if (direction != Vector3.Zero) {
+								Lines.InsertAt (LineNumber, direction);
+							}
 						}
 					}
 				}
