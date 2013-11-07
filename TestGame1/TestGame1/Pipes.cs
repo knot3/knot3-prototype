@@ -45,10 +45,37 @@ namespace TestGame1
 		}
 	}
 
+	public class PipeCache : GameClass
+	{
+		// cache
+		private Dictionary<Line, Pipe> pipeCache = new Dictionary<Line, Pipe> ();
+
+		public PipeCache (Game game)
+			: base(game)
+		{
+		}
+
+		public Pipe this [LineList lines, int n, Vector3 offset] {
+			get {
+				if (pipeCache.ContainsKey (lines [n])) {
+					return pipeCache [lines [n]];
+				} else {
+					Vector3 p1 = lines [n].From.Vector () + offset;
+					Vector3 p2 = lines [n].To.Vector () + offset;
+
+					Pipe pipe = new Pipe (game, lines, n, p1, p2, 10);
+					pipeCache [lines [n]] = pipe;
+					return pipe;
+				}
+			}
+		}
+	}
+
 	public class Pipes : GameObject
 	{
 		// pipes
 		private List<Pipe> pipes;
+		private PipeCache pipeCache;
 
 		protected override Vector3 Position { get; set; }
 
@@ -56,6 +83,7 @@ namespace TestGame1
 			: base(game)
 		{
 			pipes = new List<Pipe> ();
+			pipeCache = new PipeCache(game);
 			Position = Vector3.Zero; //new Vector3 (10, 10, 10);
 		}
 
@@ -72,11 +100,7 @@ namespace TestGame1
 			pipes.Clear ();
 
 			for (int n = 0; n < lines.Count; n++) {
-				Vector3 p1 = lines [n].From.Vector () + Position;
-				Vector3 p2 = lines [n].To.Vector () + Position;
-
-				Pipe pipe = new Pipe (game, lines, n, p1, p2, 10);
-				pipes.Add (pipe);
+				pipes.Add (pipeCache[lines, n, Position]);
 			}
 			if (world.SelectedObject is Pipe)
 				world.SelectedObject = pipes [lines.SelectedLine];
@@ -142,7 +166,7 @@ namespace TestGame1
 			}
 		}
 
-		public virtual void OnSelected ()
+		public override void OnSelected ()
 		{
 			Lines.SelectedLine = LineNumber;
 		}
@@ -167,7 +191,7 @@ namespace TestGame1
 		public override void Update (GameTime gameTime)
 		{
 			// check whether is object is movable and whether it is selected
-			if (IsSelected() == true) {
+			if (IsSelected () == true) {
 				// is SelectedObjectMove the current input action?
 				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					Plane groundPlane = CurrentGroundPlane ();

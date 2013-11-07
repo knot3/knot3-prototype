@@ -63,7 +63,7 @@ namespace TestGame1
 		public override bool Equals (object obj)
 		{
 			Node other = obj as Node;
-			return X == other.X || Y == other.Y || Z == other.Z;
+			return X == other.X && Y == other.Y && Z == other.Z;
 		}
 
 		public override int GetHashCode ()
@@ -155,6 +155,38 @@ namespace TestGame1
 		{
 			From = from;
 			To = to;
+		}
+
+		public static bool operator == (Line a, Line b)
+		{
+			// If both are null, or both are same instance, return true.
+			if (System.Object.ReferenceEquals (a, b)) {
+				return true;
+			}
+
+			// If one is null, but not both, return false.
+			if (((object)a == null) || ((object)b == null)) {
+				return false;
+			}
+
+			// Return true if the fields match:
+			return a.From == b.From && a.To == b.To;
+		}
+
+		public static bool operator != (Line a, Line b)
+		{
+			return !(a == b);
+		}
+		
+		public override bool Equals (object obj)
+		{
+			Line other = obj as Line;
+			return From == other.From && To == other.To;
+		}
+
+		public override int GetHashCode ()
+		{
+			return From.GetHashCode() ^ To.GetHashCode();
 		}
 	}
 
