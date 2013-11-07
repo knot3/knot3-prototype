@@ -200,24 +200,32 @@ namespace TestGame1
 			get { return _SelectedLine;}
 		}
 
-		public void InsertAt (int i, Vector3 direction)
+		public bool InsertAt (int i, Vector3 direction)
 		{
-			Console.WriteLine ("InsertAt: selected=" + i + ", direction=" + direction);
-			if (Nodes.Count >= 2) {
-				Node a = Nodes [i];
-				Node b = Nodes [i + 1];
-				Vector3 directionAB = Vector3.Normalize (a.Vector () - b.Vector ());
-				if (directionAB != direction && directionAB != -direction) {
-					Nodes.InsertAt (i + 1, new Node[]{ a + direction, b + direction });
-					SelectedLine = i + 1;
+			bool successful = false;
+			if (direction != Vector3.Zero) {
+				Console.WriteLine ("InsertAt: selected=" + i + ", direction=" + direction);
+				if (Nodes.Count >= 2) {
+					Node a = Nodes [i];
+					Node b = Nodes [i + 1];
+					Vector3 directionAB = Vector3.Normalize (a.Vector () - b.Vector ());
+					if (directionAB != direction && directionAB != -direction) {
+						Nodes.InsertAt (i + 1, new Node[]{ a + direction, b + direction });
+						SelectedLine = i + 1;
+						successful = true;
+					}
+					Nodes.Print ();
+					Compact ();
+				} else {
+					Nodes.Add (new Node (0, 0, 0));
+					Nodes.Add (new Node (0, 0, 0) + direction);
+					successful = true;
 				}
-				Nodes.Print ();
-				Compact ();
-			} else {
-				Nodes.Add (new Node (0, 0, 0));
-				Nodes.Add (new Node (0, 0, 0) + direction);
+				if (successful) {
+					LinesChanged ();
+				}
 			}
-			LinesChanged();
+			return successful;
 		}
 
 		public void RemoveAt (int i)
@@ -232,8 +240,9 @@ namespace TestGame1
 			 */
 		}
 
-		public void Compact ()
+		public bool Compact ()
 		{
+			bool successful = false;
 			bool done = false;
 			while (!done) {
 				done = true;
@@ -243,6 +252,7 @@ namespace TestGame1
 							SelectedLine -= 2;
 						Nodes.RemoveAt (new int[]{i + 2, i + 1});
 						done = false;
+						successful = true;
 						break;
 					}
 					if (Nodes [i] == Nodes [i + 1] && Nodes.Count >= 3) {
@@ -250,10 +260,12 @@ namespace TestGame1
 							SelectedLine -= 1;
 						Nodes.RemoveAt (new int[]{i + 1});
 						done = false;
+						successful = true;
 						break;
 					}
 				}
 			}
+			return successful;
 		}
 	}
 }

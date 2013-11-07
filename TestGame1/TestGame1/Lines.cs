@@ -36,7 +36,7 @@ namespace TestGame1
 
 		private void DrawRoundedLines (LineList lines)
 		{
-			Vector3 offset = new Vector3 (10, 10, 10);
+			Vector3 offset = Vector3.Zero; //new Vector3 (10, 10, 10);
 
 			var vertices = new VertexPositionColor[lines.Count * 4];
 

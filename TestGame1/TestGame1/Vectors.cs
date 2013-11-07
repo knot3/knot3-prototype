@@ -93,6 +93,18 @@ namespace TestGame1
 				return Vector3.Zero;
 		}
 
+		public static Vector3 PrimaryDirectionExcept (this Vector3 v, Vector3 wrongDirection)
+		{
+			Vector3 copy = v;
+			if (wrongDirection.X != 0)
+				copy.X = 0;
+			else if (wrongDirection.Y != 0)
+				copy.Y = 0;
+			else if (wrongDirection.Z != 0)
+				copy.Z = 0;
+			return copy.PrimaryDirection();
+		}
+
 		public static float Abs (this float v)
 		{
 			return Math.Abs (v);

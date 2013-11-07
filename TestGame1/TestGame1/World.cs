@@ -18,8 +18,20 @@ namespace TestGame1
 	{
 		// game objects
 		private List<GameObject> objects;
+		private GameObject _selectedObject;
 
-		public GameObject SelectedObject { get; set; }
+		public GameObject SelectedObject {
+			get { return _selectedObject; }
+			set {
+				if (_selectedObject != value) {
+					if (_selectedObject != null)
+						_selectedObject.OnUnselected ();
+					_selectedObject = value; 
+					if (_selectedObject != null)
+						_selectedObject.OnSelected ();
+				}
+			}
+		}
 
 		// world data
 		private Vector3 position;
@@ -107,7 +119,7 @@ namespace TestGame1
 				|| input.CurrentInputAction == InputAction.FreeMouse)) {
 				lastRayCheck = millis;
 
-				Ray ray = camera.GetMouseRay (game.Input.MouseState.ToVector2 ());
+				Ray ray = camera.GetMouseRay (input.MouseState.ToVector2 ());
 
 				GameObjectDistance nearest = null;
 				foreach (GameObject obj in objects) {
@@ -121,12 +133,8 @@ namespace TestGame1
 						}
 					}
 				}
-				if (nearest != null && SelectedObject != nearest.Object) {
-					if (SelectedObject != null)
-						SelectedObject.Selected = false;
+				if (nearest != null) {
 					SelectedObject = nearest.Object;
-					if (SelectedObject != null)
-						SelectedObject.Selected = true;
 				}
 			}
 		}
@@ -147,7 +155,7 @@ namespace TestGame1
 
 		public override void Update (GameTime gameTime)
 		{
-			if (game.Input.KeyboardState.IsKeyDown (Keys.U)) {
+			if (input.KeyboardState.IsKeyDown (Keys.U)) {
 				Position = Position.RotateY (MathHelper.PiOver4 / 100f);
 			}
 			base.Update (gameTime);
@@ -197,7 +205,7 @@ namespace TestGame1
 			// test:
 			foreach (ModelMesh mesh in ModelMeshes) {
 				foreach (BasicEffect effect in mesh.Effects) {
-					if (game.Input.KeyboardState.IsKeyDown (Keys.L)) {
+					if (input.KeyboardState.IsKeyDown (Keys.L)) {
 						effect.LightingEnabled = false;
 					} else {
 						effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
@@ -238,28 +246,17 @@ namespace TestGame1
 		}
 	}
 
-	public abstract class GameObject
+	public abstract class GameObject : GameClass
 	{
-		protected Game game;
 		protected BasicEffect basicEffect;
-
-		protected GraphicsDevice device {
-			get { return game.GraphicsDevice; }
-		}
-
-		protected Camera camera {
-			get { return game.Camera; }
-		}
 
 		protected abstract Vector3 Position { get; set; }
 
 		public bool IsMovable { get; set; }
 
-		public virtual bool Selected { get; set; }
-
 		public GameObject (Game game)
+			: base(game)
 		{
-			this.game = game;
 			basicEffect = new BasicEffect (device);
 		}
 
@@ -273,7 +270,7 @@ namespace TestGame1
 
 		protected Ray CurrentMouseRay ()
 		{
-			Ray ray = camera.GetMouseRay (game.Input.MouseState.ToVector2 ());
+			Ray ray = camera.GetMouseRay (input.MouseState.ToVector2 ());
 			return ray;
 		}
 
@@ -293,9 +290,9 @@ namespace TestGame1
 		public virtual void Update (GameTime gameTime)
 		{
 			// check whether is object is movable and whether it is selected
-			if (IsMovable && game.World.SelectedObject == this) {
+			if (IsMovable && world.SelectedObject == this) {
 				// is SelectedObjectMove the current input action?
-				if (game.Input.CurrentInputAction == InputAction.SelectedObjectMove) {
+				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					Plane groundPlane = CurrentGroundPlane ();
 					Ray ray = CurrentMouseRay ();
 					Vector3? newPosition = CurrentMousePosition (ray, groundPlane);
@@ -354,6 +351,18 @@ namespace TestGame1
 		public abstract GameObjectDistance Intersects (Ray ray);
 
 		public abstract Vector3 Center ();
+
+		public bool IsSelected() {
+			return world.SelectedObject == this;
+		}
+
+		public virtual void OnSelected ()
+		{
+		}
+
+		public virtual void OnUnselected ()
+		{
+		}
 	}
 }
 

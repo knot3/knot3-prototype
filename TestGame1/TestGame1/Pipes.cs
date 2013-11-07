@@ -23,7 +23,7 @@ namespace TestGame1
 			: base(game)
 		{
 			pipes = new Pipes (game);
-			game.World.Add (pipes);
+			world.Add (pipes);
 		}
 
 		/// <summary>
@@ -78,6 +78,8 @@ namespace TestGame1
 				Pipe pipe = new Pipe (game, lines, n, p1, p2, 10);
 				pipes.Add (pipe);
 			}
+			if (world.SelectedObject is Pipe)
+				world.SelectedObject = pipes [lines.SelectedLine];
 		}
 		
 		public override void DrawObject (GameTime gameTime)
@@ -90,7 +92,7 @@ namespace TestGame1
 		public override GameObjectDistance Intersects (Ray ray)
 		{
 			GameObjectDistance nearest = null;
-			if (!game.Input.GrabMouseMovement) {
+			if (!input.GrabMouseMovement) {
 				foreach (Pipe pipe in pipes) {
 					GameObjectDistance intersection = pipe.Intersects (ray);
 					if (intersection != null) {
@@ -140,25 +142,18 @@ namespace TestGame1
 			}
 		}
 
-		public override bool Selected {
-			get {
-				return base.Selected;
-			}
-			set {
-				base.Selected = value;
-				if (value == true) {
-					Lines.SelectedLine = LineNumber;
-				}
-			}
+		public virtual void OnSelected ()
+		{
+			Lines.SelectedLine = LineNumber;
 		}
 
 		public override void UpdateEffect (BasicEffect effect)
 		{
-			if (game.World.SelectedObject == this) {
+			if (world.SelectedObject == this) {
 				effect.FogEnabled = true;
 				effect.FogColor = Color.Chartreuse.ToVector3 (); // For best results, ake this color whatever your background is.
-				effect.FogStart = game.World.SelectedObjectDistance - 100;
-				effect.FogEnd = game.World.SelectedObjectDistance + 200;
+				effect.FogStart = world.SelectedObjectDistance - 100;
+				effect.FogEnd = world.SelectedObjectDistance + 200;
 			} else {
 				effect.FogEnabled = false;
 			}
@@ -172,9 +167,9 @@ namespace TestGame1
 		public override void Update (GameTime gameTime)
 		{
 			// check whether is object is movable and whether it is selected
-			if (Selected == true) {
+			if (IsSelected() == true) {
 				// is SelectedObjectMove the current input action?
-				if (game.Input.CurrentInputAction == InputAction.SelectedObjectMove) {
+				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					Plane groundPlane = CurrentGroundPlane ();
 					Ray ray = CurrentMouseRay ();
 					Vector3? mousePosition = CurrentMousePosition (ray, groundPlane);
@@ -184,10 +179,8 @@ namespace TestGame1
 							+ ", move=" + move
 						);
 						if (move.Length ().Abs () > 20) {
-							Vector3 direction = move.PrimaryDirection ();
-							if (direction != Vector3.Zero) {
-								Lines.InsertAt (LineNumber, direction);
-							}
+							Vector3 direction = move.PrimaryDirectionExcept (Direction);
+							Lines.InsertAt (LineNumber, direction);
 						}
 					}
 				}
@@ -196,8 +189,8 @@ namespace TestGame1
 
 		/*public override GameObjectDistance Intersects (Ray ray)
 		{
-			Vector3 min = PosFrom;// - 10*Vector3.Cross (Direction, game.Camera.TargetVector);
-			Vector3 max = PosTo;// + 10*Vector3.Cross (Direction, game.Camera.TargetVector);
+			Vector3 min = PosFrom;// - 10*Vector3.Cross (Direction, camera.TargetVector);
+			Vector3 max = PosTo;// + 10*Vector3.Cross (Direction, camera.TargetVector);
 			BoundingBox bounds = new BoundingBox (min, max);
 			Console.WriteLine("bounds: "+bounds);
 			Nullable<float> distance = ray.Intersects (bounds);
