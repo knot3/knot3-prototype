@@ -206,7 +206,8 @@ namespace TestGame1
 				else {
 					// left mouse button pressed
 					if (MouseState.LeftButton == ButtonState.Pressed) {
-						if (world.SelectedObject != null && world.SelectedObject.IsMovable)
+						if (world.SelectedObject != null && (world.SelectedObject.IsMovable
+						    	|| world.SelectedObject is Pipe))
 							action = InputAction.SelectedObjectMove;
 						else
 							action = InputAction.TargetMove;

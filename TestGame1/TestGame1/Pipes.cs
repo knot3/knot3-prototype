@@ -56,7 +56,7 @@ namespace TestGame1
 			: base(game)
 		{
 			pipes = new List<Pipe> ();
-			Position = new Vector3 (10, 10, 10);
+			Position = Vector3.Zero; //new Vector3 (10, 10, 10);
 		}
 
 		public void UpdatePipes (LineList lines)
@@ -105,24 +105,29 @@ namespace TestGame1
 	{
 		private LineList Lines;
 		private int LineNumber;
+		private Vector3 PosFrom;
+		private Vector3 PosTo;
+		private Vector3 Direction;
 
 		public Pipe (Game game, LineList lines, int lineNumber, Vector3 posFrom, Vector3 posTo, float scale)
 			: base(game, "pipe1", posFrom + (posTo-posFrom)/2, scale)
 		{
 			Lines = lines;
 			LineNumber = lineNumber;
+			PosFrom = posFrom;
+			PosTo = posTo;
 
-			Vector3 direction = posTo - posFrom;
-			direction.Normalize ();
+			Direction = posTo - posFrom;
+			Direction.Normalize ();
 
-			if (direction.Y == 1) {
+			if (Direction.Y == 1) {
 				Rotation.X = MathHelper.ToRadians (90);
-			} else if (direction.Y == -1) {
+			} else if (Direction.Y == -1) {
 				Rotation.X = MathHelper.ToRadians (270);
 			}
-			if (direction.X == 1) {
+			if (Direction.X == 1) {
 				Rotation.Y = MathHelper.ToRadians (90);
-			} else if (direction.X == -1) {
+			} else if (Direction.X == -1) {
 				Rotation.Y = MathHelper.ToRadians (270);
 			}
 		}
@@ -145,7 +150,7 @@ namespace TestGame1
 				effect.FogEnabled = true;
 				effect.FogColor = Color.Chartreuse.ToVector3 (); // For best results, ake this color whatever your background is.
 				effect.FogStart = game.World.SelectedObjectDistance - 100;
-				effect.FogEnd = game.World.SelectedObjectDistance + 100;
+				effect.FogEnd = game.World.SelectedObjectDistance + 200;
 			} else {
 				effect.FogEnabled = false;
 			}
@@ -155,6 +160,23 @@ namespace TestGame1
 		{
 			base.DrawObject (gameTime);
 		}
+
+		/*public override GameObjectDistance Intersects (Ray ray)
+		{
+			Vector3 min = PosFrom;// - 10*Vector3.Cross (Direction, game.Camera.TargetVector);
+			Vector3 max = PosTo;// + 10*Vector3.Cross (Direction, game.Camera.TargetVector);
+			BoundingBox bounds = new BoundingBox (min, max);
+			Console.WriteLine("bounds: "+bounds);
+			Nullable<float> distance = ray.Intersects (bounds);
+			if (distance != null) {
+				GameObjectDistance intersection = new GameObjectDistance () {
+						Object=this, Distance=distance.Value
+					};
+				return intersection;
+			}
+			return null;
+		}*/
 	}
+
 }
 
