@@ -32,10 +32,10 @@ namespace TestGame1
 		/// <param name='gameTime'>
 		/// Game time.
 		/// </param>
-		public void Update (LineList lines, GameTime gameTime)
+		public void Update (LineList lines)
 		{
 			if (lines.Count > 0) {
-				pipes.UpdatePipes (lines, gameTime);
+				pipes.UpdatePipes (lines);
 			}
 		}
 		
@@ -59,7 +59,7 @@ namespace TestGame1
 			Position = new Vector3 (10, 10, 10);
 		}
 
-		public void UpdatePipes (LineList lines, GameTime gameTime)
+		public void UpdatePipes (LineList lines)
 		{
 			pipes.Clear ();
 
@@ -67,7 +67,7 @@ namespace TestGame1
 				Vector3 p1 = lines [n].From.Vector () + Position;
 				Vector3 p2 = lines [n].To.Vector () + Position;
 
-				Pipe pipe = new Pipe (game, p1, p2, 10);
+				Pipe pipe = new Pipe (game, lines, n, p1, p2, 10);
 				pipes.Add (pipe);
 			}
 		}
@@ -79,9 +79,20 @@ namespace TestGame1
 			}
 		}
 
-		public override Nullable<float> Intersects (Ray ray)
+		public override GameObjectDistance Intersects (Ray ray)
 		{
-			return null;
+			GameObjectDistance nearest = null;
+			if (!game.Input.GrabMouseMovement) {
+				foreach (Pipe pipe in pipes) {
+					GameObjectDistance intersection = pipe.Intersects (ray);
+					if (intersection != null) {
+						if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
+							nearest = intersection;
+						}
+					}
+				}
+			}
+			return nearest;
 		}
 
 		public override Vector3 Center ()
@@ -92,9 +103,15 @@ namespace TestGame1
 	
 	public class Pipe : GameModel
 	{
-		public Pipe (Game game, Vector3 posFrom, Vector3 posTo, float scale)
+		private LineList Lines;
+		private int LineNumber;
+
+		public Pipe (Game game, LineList lines, int lineNumber, Vector3 posFrom, Vector3 posTo, float scale)
 			: base(game, "pipe1", posFrom + (posTo-posFrom)/2, scale)
 		{
+			Lines = lines;
+			LineNumber = lineNumber;
+
 			Vector3 direction = posTo - posFrom;
 			direction.Normalize ();
 
@@ -110,13 +127,27 @@ namespace TestGame1
 			}
 		}
 
+		public override bool Selected {
+			get {
+				return base.Selected;
+			}
+			set {
+				base.Selected = value;
+				if (value == true) {
+					Lines.SelectedLine = LineNumber;
+				}
+			}
+		}
+
 		public override void UpdateEffect (BasicEffect effect)
 		{
 			if (game.World.SelectedObject == this) {
 				effect.FogEnabled = true;
-				effect.FogColor = Color.CornflowerBlue.ToVector3 (); // For best results, ake this color whatever your background is.
-				effect.FogStart = 9.75f;
-				effect.FogEnd = 10.25f;
+				effect.FogColor = Color.Chartreuse.ToVector3 (); // For best results, ake this color whatever your background is.
+				effect.FogStart = game.World.SelectedObjectDistance - 100;
+				effect.FogEnd = game.World.SelectedObjectDistance + 100;
+			} else {
+				effect.FogEnabled = false;
 			}
 		}
 

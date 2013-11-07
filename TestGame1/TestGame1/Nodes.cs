@@ -162,6 +162,8 @@ namespace TestGame1
 	{
 		private NodeList Nodes;
 
+		public Action LinesChanged { get; set; }
+
 		public LineList (NodeList nodes)
 		{
 			Nodes = nodes;
@@ -215,6 +217,7 @@ namespace TestGame1
 				Nodes.Add (new Node (0, 0, 0));
 				Nodes.Add (new Node (0, 0, 0) + direction);
 			}
+			LinesChanged();
 		}
 
 		public void RemoveAt (int i)

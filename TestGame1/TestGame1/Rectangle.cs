@@ -137,12 +137,16 @@ namespace TestGame1
 			};
 		}
 
-		public override Nullable<float> Intersects (Ray ray)
+		public override GameObjectDistance Intersects (Ray ray)
 		{
 			foreach (BoundingBox bounds in Bounds()) {
 				Nullable<float> distance = ray.Intersects (bounds);
-				if (distance != null)
-					return distance;
+				if (distance != null) {
+					GameObjectDistance intersection = new GameObjectDistance () {
+						Object=this, Distance=distance.Value
+					};
+					return intersection;
+				}
 			}
 			return null;
 		}

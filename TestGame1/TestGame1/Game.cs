@@ -39,7 +39,7 @@ namespace TestGame1
 		private DrawPipes drawPipes;
 
 		// debug
-		public static bool Debug = true;
+		public static bool Debug = false;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TestGame1.Game"/> class.
@@ -109,6 +109,9 @@ namespace TestGame1
 			Node.Scale = 100;
 			nodes = new NodeList ();
 			lines = new LineList (nodes);
+			lines.LinesChanged = ()=>{
+				drawPipes.Update (lines);
+			};
 
 			// load camera
 			camera.LoadContent ();
@@ -127,7 +130,7 @@ namespace TestGame1
 			nodes.Add (new Node (0, 1, 1));
 			nodes.Add (new Node (0, 0, 1));
 
-			drawPipes.Update (lines, new GameTime());
+			drawPipes.Update (lines);
 		}
 
 		/// <summary>

@@ -47,6 +47,13 @@ namespace TestGame1
 			);
 		}
 
+		public float SelectedObjectDistance {
+			get {
+				Vector3 toTarget = SelectedObject.Center () - camera.Position;
+				return toTarget.Length ();
+			}
+		}
+
 		public Vector3 Clamp (Vector3 v)
 		{
 			return v.Clamp (position, position + size);
@@ -92,7 +99,7 @@ namespace TestGame1
 		public void UpdateMouseRay (GameTime gameTime)
 		{
 			double millis = gameTime.TotalGameTime.TotalMilliseconds;
-			if (millis > lastRayCheck + 250 && (input.CurrentInputAction == InputAction.TargetMove
+			if (millis > lastRayCheck + 100 && (input.CurrentInputAction == InputAction.TargetMove
 				|| input.CurrentInputAction == InputAction.FreeMouse)) {
 				lastRayCheck = millis;
 
@@ -100,18 +107,22 @@ namespace TestGame1
 
 				GameObjectDistance nearest = null;
 				foreach (GameObject obj in objects) {
-					Nullable<float> distance = obj.Intersects (ray);
-					if (distance != null) {
+					GameObjectDistance intersection = obj.Intersects (ray);
+					if (intersection != null) {
 						//Console.WriteLine ("time=" + (int)gameTime.TotalGameTime.TotalMilliseconds +
 						//	", obj = " + obj + ", distance = " + MathHelper.Clamp ((float)distance, 0, 100000)
 						//);
-						if (distance > 0 && (nearest == null || distance < nearest.Distance)) {
-							nearest = new GameObjectDistance () { Object=obj, Distance=distance.Value };
+						if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
+							nearest = intersection;
 						}
 					}
 				}
-				if (nearest != null) {
+				if (nearest != null && SelectedObject != nearest.Object) {
+					if (SelectedObject != null)
+						SelectedObject.Selected = false;
 					SelectedObject = nearest.Object;
+					if (SelectedObject != null)
+						SelectedObject.Selected = true;
 				}
 			}
 		}
@@ -198,11 +209,14 @@ namespace TestGame1
 			}
 		}
 
-		public override Nullable<float> Intersects (Ray ray)
+		public override GameObjectDistance Intersects (Ray ray)
 		{
 			foreach (BoundingSphere sphere in Model.Bounds()) {
-				Nullable<float> intersection = ray.Intersects (sphere.Scale (Scale).Translate (Position));
-				if (intersection != null) {
+				Nullable<float> distance = ray.Intersects (sphere.Scale (Scale).Translate (Position));
+				if (distance != null) {
+					GameObjectDistance intersection = new GameObjectDistance () {
+						Object=this, Distance=distance.Value
+					};
 					return intersection;
 				}
 			}
@@ -236,6 +250,8 @@ namespace TestGame1
 		protected abstract Vector3 Position { get; set; }
 
 		public bool IsMovable { get; set; }
+
+		public virtual bool Selected { get; set; }
 
 		public GameObject (Game game)
 		{
@@ -307,7 +323,7 @@ namespace TestGame1
 			return dummyTexture;
 		}
 
-		public abstract Nullable<float> Intersects (Ray ray);
+		public abstract GameObjectDistance Intersects (Ray ray);
 
 		public abstract Vector3 Center ();
 	}
