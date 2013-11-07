@@ -109,7 +109,7 @@ namespace TestGame1
 			Node.Scale = 100;
 			nodes = new NodeList ();
 			lines = new LineList (nodes);
-			lines.LinesChanged = ()=>{
+			lines.LinesChanged = () => {
 				drawPipes.Update (lines);
 			};
 
