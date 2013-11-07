@@ -232,7 +232,7 @@ namespace TestGame1
 				effect.Projection = camera.ProjectionMatrix;
 
 			
-				if (game.Input.KeyboardState.IsKeyDown (Keys.L)) {
+				if (!game.Input.KeyboardState.IsKeyDown (Keys.L)) {
 					effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
 				}
     

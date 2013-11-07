@@ -76,6 +76,12 @@ namespace TestGame1
 				obj.IsMovable = true;
 				objects.Add (obj);
 			}
+			if (Keys.P.IsDown()) {
+				//objects.Add (new GameModel (game, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
+				var obj = new TestModel (game, "pipe1", new Vector3 (-200, 200, -200), 100f);
+				obj.IsMovable = true;
+				objects.Add (obj);
+			}
 		}
 
 		public void UpdateMouseRay (GameTime gameTime)
@@ -155,9 +161,9 @@ namespace TestGame1
 			foreach (ModelMesh mesh in ModelMeshes) {
 				foreach (BasicEffect effect in mesh.Effects) {
 					if (game.Input.KeyboardState.IsKeyDown (Keys.L)) {
-						effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
-					} else {
 						effect.LightingEnabled = false;
+					} else {
+						effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
 					}
 					effect.World = Matrix.CreateScale (Scale) * Matrix.CreateTranslation (Position);
 					effect.View = camera.ViewMatrix;
