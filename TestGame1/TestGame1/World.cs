@@ -157,7 +157,7 @@ namespace TestGame1
 
 		public override void Update (GameTime gameTime)
 		{
-			if (input.KeyboardState.IsKeyDown (Keys.U)) {
+			if (Keys.U.IsHeldDown()) {
 				Position = Position.RotateY (MathHelper.PiOver4 / 100f);
 			}
 			base.Update (gameTime);
@@ -207,7 +207,7 @@ namespace TestGame1
 			// test:
 			foreach (ModelMesh mesh in ModelMeshes) {
 				foreach (BasicEffect effect in mesh.Effects) {
-					if (input.KeyboardState.IsKeyDown (Keys.L)) {
+					if (Keys.L.IsHeldDown()) {
 						effect.LightingEnabled = false;
 					} else {
 						effect.EnableDefaultLighting ();  // Beleuchtung aktivieren

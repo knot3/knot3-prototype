@@ -39,61 +39,60 @@ namespace TestGame1
 
 		private void UpdateKeys (GameTime gameTime)
 		{
-			KeyboardState keyboardState = Keyboard.GetState ();
 			Vector3 keyboardMove = Vector3.Zero;
 			Vector2 arcballMove = Vector2.Zero;
 
 			// W,A,S,D,Q,E
 			if (wasdMode == WasdMode.ARCBALL) {
-				if (keyboardState.IsKeyDown (Keys.A))
+				if (Keys.A.IsHeldDown())
 					arcballMove += new Vector2 (-1, 0);
-				if (keyboardState.IsKeyDown (Keys.D))
+				if (Keys.D.IsHeldDown())
 					arcballMove += new Vector2 (1, 0);
-				if (keyboardState.IsKeyDown (Keys.W))
+				if (Keys.W.IsHeldDown())
 					arcballMove += new Vector2 (0, -1);
-				if (keyboardState.IsKeyDown (Keys.S))
+				if (Keys.S.IsHeldDown())
 					arcballMove += new Vector2 (0, 1);
-				if (keyboardState.IsKeyDown (Keys.LeftShift))
+				if (Keys.LeftShift.IsHeldDown())
 					keyboardMove += new Vector3 (0, -1, 0);
-				if (keyboardState.IsKeyDown (Keys.LeftControl))
+				if (Keys.LeftControl.IsHeldDown())
 					keyboardMove += new Vector3 (0, 1, 0);
 			} else if (wasdMode == WasdMode.FPS) {
-				if (keyboardState.IsKeyDown (Keys.A))
+				if (Keys.A.IsHeldDown())
 					keyboardMove += new Vector3 (-1, 0, 0);
-				if (keyboardState.IsKeyDown (Keys.D))
+				if (Keys.D.IsHeldDown())
 					keyboardMove += new Vector3 (1, 0, 0);
-				if (keyboardState.IsKeyDown (Keys.W))
+				if (Keys.W.IsHeldDown())
 					keyboardMove += new Vector3 (0, 0, -1);
-				if (keyboardState.IsKeyDown (Keys.S))
+				if (Keys.S.IsHeldDown())
 					keyboardMove += new Vector3 (0, 0, 1);
-				if (keyboardState.IsKeyDown (Keys.LeftShift))
+				if (Keys.LeftShift.IsHeldDown())
 					keyboardMove += new Vector3 (0, -1, 0);
-				if (keyboardState.IsKeyDown (Keys.LeftControl))
+				if (Keys.LeftControl.IsHeldDown())
 					keyboardMove += new Vector3 (0, 1, 0);
 			} else if (wasdMode == WasdMode.ROTATION) {
 				float wasdAngle = 0.01f;
-				if (keyboardState.IsKeyDown (Keys.W))
+				if (Keys.W.IsHeldDown())
 					camera.RotationAngle.Z += wasdAngle;
-				if (keyboardState.IsKeyDown (Keys.S))
+				if (Keys.S.IsHeldDown())
 					camera.RotationAngle.Z -= wasdAngle;
-				if (keyboardState.IsKeyDown (Keys.A))
+				if (Keys.A.IsHeldDown())
 					camera.RotationAngle.Y -= wasdAngle;
-				if (keyboardState.IsKeyDown (Keys.D))
+				if (Keys.D.IsHeldDown())
 					camera.RotationAngle.Y += wasdAngle;
-				if (keyboardState.IsKeyDown (Keys.Q))
+				if (Keys.Q.IsHeldDown())
 					camera.RotationAngle.X += wasdAngle;
-				if (keyboardState.IsKeyDown (Keys.E))
+				if (Keys.E.IsHeldDown())
 					camera.RotationAngle.X -= wasdAngle;
 			}
 
 			// Arrow Keys
-			if (keyboardState.IsKeyDown (Keys.Left))
+			if (Keys.Left.IsHeldDown())
 				keyboardMove += new Vector3 (-1, 0, 0);
-			if (keyboardState.IsKeyDown (Keys.Right))
+			if (Keys.Right.IsHeldDown())
 				keyboardMove += new Vector3 (1, 0, 0);
-			if (keyboardState.IsKeyDown (Keys.Up))
+			if (Keys.Up.IsHeldDown())
 				keyboardMove += new Vector3 (0, -1, 0);
-			if (keyboardState.IsKeyDown (Keys.Down))
+			if (Keys.Down.IsHeldDown())
 				keyboardMove += new Vector3 (0, 1, 0);
 
 			// apply keyboard movements
@@ -117,15 +116,15 @@ namespace TestGame1
 			}
 
 			// Plus/Minus Keys
-			if (keyboardState.IsKeyDown (Keys.OemPlus) && wasdSpeed < 20) {
+			if (Keys.OemPlus.IsHeldDown() && wasdSpeed < 20) {
 				wasdSpeed += 1;
 			}
-			if (keyboardState.IsKeyDown (Keys.OemMinus) && wasdSpeed > 1) {
+			if (Keys.OemMinus.IsHeldDown() && wasdSpeed > 1) {
 				wasdSpeed -= 1;
 			}
 
 			// Enter key
-			if (keyboardState.IsKeyDown (Keys.Enter)) {
+			if (Keys.Enter.IsHeldDown()) {
 				// set target to (0,0,0)
 				camera.Target = Vector3.Zero;
 				// set position to default
@@ -314,6 +313,12 @@ namespace TestGame1
 				}
 			}
 			return false;
+		}
+		public static bool IsHeldDown (this Keys key)
+		{
+			KeyboardState keyboardState = Keyboard.GetState ();
+			// Is the key down?
+			return keyboardState.IsKeyDown (key);
 		}
 	}
 }

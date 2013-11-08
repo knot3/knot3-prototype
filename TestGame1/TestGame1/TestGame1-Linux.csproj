@@ -60,6 +60,7 @@
     <Compile Include="Rectangle.cs" />
     <Compile Include="Pipes.cs" />
     <Compile Include="Lines.cs" />
+    <Compile Include="GameState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

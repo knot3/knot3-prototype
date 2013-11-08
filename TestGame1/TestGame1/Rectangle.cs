@@ -109,7 +109,7 @@ namespace TestGame1
 			basicEffect.VertexColorEnabled = false;
 			basicEffect.Texture = texture;
 
-			if (game.Input.KeyboardState.IsKeyDown (Keys.L)) {
+			if (Keys.L.IsHeldDown()) {
 				basicEffect.EnableDefaultLighting ();  // Beleuchtung aktivieren
 			}
 

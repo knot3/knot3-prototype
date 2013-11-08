@@ -73,8 +73,6 @@ namespace TestGame1
 			// basic effect
 			basicEffect = new BasicEffect (GraphicsDevice);
 			basicEffect.VertexColorEnabled = true;
-			basicEffect.View = Matrix.CreateLookAt (new Vector3 (0, 0, -1000), new Vector3 (0, 0, 1), new Vector3 (0, 1, 0));
-			basicEffect.Projection = Matrix.CreatePerspectiveFieldOfView (MathHelper.PiOver4, GraphicsDevice.Viewport.AspectRatio, 1.0f, 2000.0f);
 
 			// camera
 			camera = new Camera (this);
