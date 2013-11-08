@@ -95,10 +95,10 @@ namespace TestGame1
 			DrawString (camera.RotationAngle.Degrees.Y, width3, height, Color.Red);
 			DrawString (camera.RotationAngle.Degrees.Z, width4, height, Color.Yellow);
 			height += 20;
-			DrawString ("Cam Pos: ", width1, height, Color.White);
+			DrawString ("Camera Position: ", width1, height, Color.White);
 			DrawVectorCoordinates (camera.Position, width2, width3, width4, height);
 			height += 20;
-			DrawString ("Cam Target: ", width1, height, Color.White);
+			DrawString ("Camera Target: ", width1, height, Color.White);
 			DrawVectorCoordinates (camera.Target, width2, width3, width4, height);
 			height += 20;
 			DrawString ("Distance: ", width1, height, Color.White);

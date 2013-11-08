@@ -50,9 +50,11 @@ namespace TestGame1
 			objects = new List<GameObject> ();
 
 			// some game objects
-			TexturedRectangle rect = new TexturedRectangle (game, "image1", new Vector3 (400, 400, -400), Vector3.Right + Vector3.Backward, 400, Vector3.Up, 50);
-			rect.IsMovable = true;
-			objects.Add (rect);
+
+			// TexturedRectangle rect = new TexturedRectangle (game, "image1", new Vector3 (400, 400, -400), Vector3.Right + Vector3.Backward, 400, Vector3.Up, 50);
+			// rect.IsMovable = true;
+			// objects.Add (rect);
+
 			// the floor
 			objects.Add (new TexturedRectangle (game, "floor", position + new Vector3 (size.X, 0, size.Z) / 2,
 				Vector3.Left, size.X, Vector3.Forward, size.Z)

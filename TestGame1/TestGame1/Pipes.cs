@@ -55,16 +55,16 @@ namespace TestGame1
 		{
 		}
 
-		public Pipe this [LineList lines, int n, Vector3 offset] {
+		public Pipe this [LineList lines, Line line, Vector3 offset] {
 			get {
-				if (pipeCache.ContainsKey (lines [n])) {
-					return pipeCache [lines [n]];
+				if (pipeCache.ContainsKey (line)) {
+					return pipeCache [line];
 				} else {
-					Vector3 p1 = lines [n].From.Vector () + offset;
-					Vector3 p2 = lines [n].To.Vector () + offset;
+					Vector3 p1 = line.From.Vector () + offset;
+					Vector3 p2 = line.To.Vector () + offset;
 
-					Pipe pipe = new Pipe (game, lines, n, p1, p2, 10);
-					pipeCache [lines [n]] = pipe;
+					Pipe pipe = new Pipe (game, lines, line, p1, p2, 10);
+					pipeCache [line] = pipe;
 					return pipe;
 				}
 			}
@@ -100,7 +100,7 @@ namespace TestGame1
 			pipes.Clear ();
 
 			for (int n = 0; n < lines.Count; n++) {
-				pipes.Add (pipeCache [lines, n, Position]);
+				pipes.Add (pipeCache [lines, lines [n], Position]);
 			}
 			//if (world.SelectedObject is Pipe)
 			//	world.SelectedObject = pipes [lines.SelectedLine];
@@ -138,16 +138,16 @@ namespace TestGame1
 	public class Pipe : GameModel
 	{
 		private LineList Lines;
-		private int LineNumber;
+		private Line Line;
 		private Vector3 PosFrom;
 		private Vector3 PosTo;
 		private Vector3 Direction;
 
-		public Pipe (Game game, LineList lines, int lineNumber, Vector3 posFrom, Vector3 posTo, float scale)
+		public Pipe (Game game, LineList lines, Line line, Vector3 posFrom, Vector3 posTo, float scale)
 			: base(game, "pipe1", posFrom + (posTo-posFrom)/2, scale)
 		{
 			Lines = lines;
-			LineNumber = lineNumber;
+			Line = line;
 			PosFrom = posFrom;
 			PosTo = posTo;
 
@@ -168,7 +168,11 @@ namespace TestGame1
 
 		public override void OnSelected ()
 		{
-			Lines.SelectedLine = LineNumber;
+			try {
+				Lines.SelectedLine = Lines [Line];
+			} catch (ArgumentOutOfRangeException exp) {
+				Console.WriteLine (exp.ToString ());
+			}
 		}
 
 		public override void UpdateEffect (BasicEffect effect)
@@ -188,7 +192,7 @@ namespace TestGame1
 			base.DrawObject (gameTime);
 		}
 
-		private Vector2 previousMousePosition = Vector2.Zero;
+		private Vector3 previousMousePosition = Vector3.Zero;
 
 		public override void Update (GameTime gameTime)
 		{
@@ -196,12 +200,13 @@ namespace TestGame1
 			if (IsSelected () == true) {
 				// is SelectedObjectMove the current input action?
 				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
-					if (previousMousePosition == Vector2.Zero) {
-						previousMousePosition = input.MouseState.ToVector2 ();
+					if (previousMousePosition == Vector3.Zero) {
+						previousMousePosition = device.Viewport.Unproject (new Vector3 (input.MouseState.ToVector2 (), 1f),
+								camera.ProjectionMatrix, camera.ViewMatrix, Matrix.Identity);
 					}
 					Move ();
 				} else {
-					previousMousePosition = Vector2.Zero;
+					previousMousePosition = Vector3.Zero;
 				}
 			}
 		}
@@ -218,22 +223,29 @@ namespace TestGame1
 				);
 				if (move.Length ().Abs () > 20) {
 					Vector3 direction = move.PrimaryDirectionExcept (Direction);
-					Lines.InsertAt (LineNumber, direction);
+					try {
+						Lines.InsertAt (Lines [Line], direction);
+					} catch (ArgumentOutOfRangeException exp) {
+						Console.WriteLine (exp.ToString ());
+					}
 				}
 			}
 		}
 
 		private void Move ()
 		{
-			Vector2 currentMousePosition = input.MouseState.ToVector2 ();
-			Vector2 mouseMove = currentMousePosition - previousMousePosition;
-			Vector2 direction2D = mouseMove.PrimaryDirection ();
-			if (direction2D != Vector2.Zero && mouseMove.Length ().Abs () > 10) {
-				Vector3 direction3D = Vector3.Zero;
-				if (Direction.Y == 0) {
-					direction3D = new Vector3(direction2D.X, 0, direction2D.Y);
+			Vector3 currentMousePosition = device.Viewport.Unproject (new Vector3 (input.MouseState.ToVector2 (), 1f),
+								camera.ProjectionMatrix, camera.ViewMatrix, Matrix.Identity);
+
+			Vector3 mouseMove = currentMousePosition - previousMousePosition;
+			Console.WriteLine ("mouseMove=" + mouseMove);
+			Vector3 direction3D = mouseMove.PrimaryDirection ();
+			if (direction3D != Vector3.Zero && mouseMove.Length ().Abs () > 10) {
+				try {
+					Lines.InsertAt (Lines [Line], direction3D);
+				} catch (ArgumentOutOfRangeException exp) {
+					Console.WriteLine (exp.ToString ());
 				}
-				Lines.InsertAt (LineNumber, direction3D);
 			}
 		}
 

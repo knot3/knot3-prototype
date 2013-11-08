@@ -207,6 +207,17 @@ namespace TestGame1
 			}
 		}
 
+		public int this [Line line] {
+			get {
+				for (int i = 0; i < Nodes.Count; ++i) {
+					if (Nodes [i] == line.From && Nodes[i+1] == line.To) {
+						return i;
+					}
+				}
+				throw new ArgumentOutOfRangeException("line does not exist!");
+			}
+		}
+
 		public int Count {
 			get {
 				if (Nodes.Count >= 2)
@@ -229,7 +240,9 @@ namespace TestGame1
 				Console.WriteLine ("selected line: " + _SelectedLine);
 				Nodes.Print ();
 			}
-			get { return _SelectedLine;}
+			get {
+				return _SelectedLine;
+			}
 		}
 
 		public bool InsertAt (int i, Vector3 direction)

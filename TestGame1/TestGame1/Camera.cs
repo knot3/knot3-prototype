@@ -51,7 +51,7 @@ namespace TestGame1
  
 		private void SetUpCamera ()
 		{
-			DefaultPosition = new Vector3 (400, 400, 1500);
+			DefaultPosition = new Vector3 (400, 400, 1000);
 			Position = DefaultPosition;
 			Target = new Vector3 (0, 0, 0);
 			UpVector = Vector3.Up;
