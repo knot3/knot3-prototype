@@ -211,27 +211,6 @@ namespace TestGame1
 			}
 		}
 
-		private void _Move ()
-		{
-			Plane groundPlane = CurrentGroundPlane ();
-			Ray ray = CurrentMouseRay ();
-			Vector3? mousePosition = CurrentMousePosition (ray, groundPlane);
-			if (mousePosition.HasValue) {
-				Vector3 move = mousePosition.Value - Position;
-				Console.WriteLine ("length=" + move.Length ().Abs ()
-					+ ", move=" + move
-				);
-				if (move.Length ().Abs () > 20) {
-					Vector3 direction = move.PrimaryDirectionExcept (Direction);
-					try {
-						Lines.InsertAt (Lines [Line], direction);
-					} catch (ArgumentOutOfRangeException exp) {
-						Console.WriteLine (exp.ToString ());
-					}
-				}
-			}
-		}
-
 		private void Move ()
 		{
 			Vector3 currentMousePosition = device.Viewport.Unproject (new Vector3 (input.MouseState.ToVector2 (), 1f),

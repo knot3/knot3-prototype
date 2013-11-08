@@ -28,7 +28,7 @@ namespace TestGame1
 			: base(game)
 		{
 			FullscreenToggled = false;
-			GrabMouseMovement = true;
+			GrabMouseMovement = false;
 		}
 
 		public void Update (GameTime gameTime)
