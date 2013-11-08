@@ -44,8 +44,8 @@ namespace TestGame1
 		private float nearPlane;
 		private float farPlane;
 
-		public Camera (Game game)
-			: base(game)
+		public Camera (GameState state)
+			: base(state)
 		{
 		}
  
@@ -62,7 +62,7 @@ namespace TestGame1
 			nearPlane = 0.5f;
 			farPlane = 10000.0f;
 
-			game.Input.ResetMousePosition ();
+			input.ResetMousePosition ();
 		}
 
 		public void LoadContent ()
@@ -81,26 +81,16 @@ namespace TestGame1
 			RotationAngle += AutoRotation;
 		}
 
-		public void Draw (GameTime gameTime)
+		public void Draw (BasicEffect basicEffect, GameTime gameTime)
 		{ 
-
-			//if (Mouse.GetState ().RightButton == ButtonState.Pressed) {
-			//	// arcball
-			//	WorldMatrix = Matrix.CreateFromYawPitchRoll (RotationAngle.Y, RotationAngle.X, RotationAngle.Z);
-			//	ViewMatrix = arcball.ViewMatrix;
-			//	ProjectionMatrix = arcball.ProjectionMatrix;
-			//}
-
-
-
 			// setting up rotation
 			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
 			WorldMatrix = Matrix.CreateFromYawPitchRoll (RotationAngle.Y, RotationAngle.X, RotationAngle.Z);
 			ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FoV), aspectRatio, nearPlane, farPlane);
 			
-			game.basicEffect.World = WorldMatrix;
-			game.basicEffect.View = ViewMatrix;
-			game.basicEffect.Projection = ProjectionMatrix;
+			basicEffect.World = WorldMatrix;
+			basicEffect.View = ViewMatrix;
+			basicEffect.Projection = ProjectionMatrix;
 		}
 
 		public float TargetDistance {

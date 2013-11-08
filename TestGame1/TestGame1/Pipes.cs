@@ -19,8 +19,8 @@ namespace TestGame1
 		// pipes
 		private Pipes pipes;
 
-		public DrawPipes (Game game)
-			: base(game)
+		public DrawPipes (GameState state)
+			: base(state)
 		{
 			pipes = new Pipes (game);
 			world.Add (pipes);

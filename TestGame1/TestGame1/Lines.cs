@@ -16,8 +16,8 @@ namespace TestGame1
 {
 	public class DrawLines : GameClass
 	{
-		public DrawLines (Game game)
-			: base(game)
+		public DrawLines (GameState state)
+			: base(state)
 		{
 		}
 

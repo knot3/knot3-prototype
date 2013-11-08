@@ -20,23 +20,12 @@ namespace TestGame1
 	{
 		// graphics-related classes
 		private GraphicsDeviceManager graphics;
-		public BasicEffect basicEffect;
-
-		// nodes
-		private NodeList nodes;
-		private LineList lines;
-
-		// colors, ...
-		private Color backColor = Color.CornflowerBlue;
-		public static Size defaultSize = new Size (1280, 720);
 
 		// custom classes
-		private Input input;
-		private Camera camera;
-		private Overlay overlay;
-		private World world;
-		private DrawLines drawLines;
-		private DrawPipes drawPipes;
+		public GameState State { get; private set; }
+
+		// colors, sizes, ...
+		public static Size DefaultSize = new Size (1280, 720);
 
 		// debug
 		public static bool Debug = false;
@@ -48,8 +37,8 @@ namespace TestGame1
 		{
 			graphics = new GraphicsDeviceManager (this);
 			
-			graphics.PreferredBackBufferWidth = defaultSize.Width;
-			graphics.PreferredBackBufferHeight = defaultSize.Height;
+			graphics.PreferredBackBufferWidth = DefaultSize.Width;
+			graphics.PreferredBackBufferHeight = DefaultSize.Height;
 
 			graphics.IsFullScreen = false;
 			graphics.ApplyChanges ();
@@ -70,29 +59,6 @@ namespace TestGame1
 			graphics.GraphicsDevice.PresentationParameters.MultiSampleCount = 4;
 			graphics.PreferMultiSampling = true;
 
-			// basic effect
-			basicEffect = new BasicEffect (GraphicsDevice);
-			basicEffect.VertexColorEnabled = true;
-
-			// camera
-			camera = new Camera (this);
-
-			// input
-			input = new Input (this);
-			input.SaveStates ();
-
-			// overlay
-			overlay = new Overlay (this);
-
-			// overlay
-			world = new World (this);
-
-			// line drawing
-			drawLines = new DrawLines (this);
-
-			// pipe drawing
-			drawPipes = new DrawPipes (this);
-
 			// base method
 			base.Initialize ();
 		}
@@ -103,32 +69,8 @@ namespace TestGame1
 		/// </summary>
 		protected override void LoadContent ()
 		{
-			// load nodes
-			Node.Scale = 100;
-			nodes = new NodeList ();
-			lines = new LineList (nodes);
-			lines.LinesChanged += () => {
-				drawPipes.Update (lines);
-			};
-
-			// load camera
-			camera.LoadContent ();
-
-			// load overlay
-			overlay.LoadContent ();
-
-			// add some default nodes
-			nodes.Add (new Node (0, 0, 0));
-			nodes.Add (new Node (0, 1, 0));
-			nodes.Add (new Node (1, 1, 0));
-			nodes.Add (new Node (1, 0, 0));
-
-			nodes.Add (new Node (1, 0, 1));
-			nodes.Add (new Node (1, 1, 1));
-			nodes.Add (new Node (0, 1, 1));
-			nodes.Add (new Node (0, 0, 1));
-
-			drawPipes.Update (lines);
+			GameStates.Initialize(this);
+			State = GameStates.ConstructionMode;
 		}
 
 		/// <summary>
@@ -148,15 +90,8 @@ namespace TestGame1
 		protected override void Update (GameTime gameTime)
 		{
 			UpdateInput (gameTime);
-			// camera
-			camera.Update (gameTime);
-			// input
-			input.Update (gameTime);
-			// world
-			world.Update (gameTime);
-			input.SaveStates ();
-			// overlay
-			overlay.Update (gameTime);
+			// current game state
+			State = State.Update(gameTime);
 			// base method
 			base.Update (gameTime);
 		}
@@ -164,36 +99,10 @@ namespace TestGame1
 		private void UpdateInput (GameTime gameTime)
 		{
 			// allows the game to exit
-			if (Keys.Escape.IsDown ()) {
+			if (Keys.Back.IsDown ()) {
 				this.Exit ();
 				return;
 			}
-
-			// change background color
-			if (Keys.Space.IsDown ()) {
-				backColor = new Color (backColor.R, backColor.G, (byte)~backColor.B);
-			}
-
-			// select lines
-			if (Keys.Y.IsDown () || Keys.NumPad1.IsDown ()) {
-				lines.SelectedLine -= 1;
-			} else if (Keys.X.IsDown () || Keys.NumPad3.IsDown ()) {
-				lines.SelectedLine += 1;
-			}
-
-			// move lines
-			if (Keys.NumPad8.IsDown ())
-				lines.InsertAt (lines.SelectedLine, Vector3.Up);
-			if (Keys.NumPad2.IsDown ())
-				lines.InsertAt (lines.SelectedLine, Vector3.Down);
-			if (Keys.NumPad4.IsDown ())
-				lines.InsertAt (lines.SelectedLine, Vector3.Left);
-			if (Keys.NumPad6.IsDown ())
-				lines.InsertAt (lines.SelectedLine, Vector3.Right);
-			if (Keys.NumPad7.IsDown ())
-				lines.InsertAt (lines.SelectedLine, Vector3.Forward);
-			if (Keys.NumPad9.IsDown ())
-				lines.InsertAt (lines.SelectedLine, Vector3.Backward);
 		}
 
 		/// <summary>
@@ -202,21 +111,9 @@ namespace TestGame1
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw (GameTime gameTime)
 		{
-			graphics.GraphicsDevice.Clear (backColor);
-			basicEffect.CurrentTechnique.Passes [0].Apply ();
-
-			//Test.Lightning(basicEffect);
-			GraphicsDevice.BlendState = BlendState.Opaque;
-			GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-
-			drawPipes.Draw (gameTime);
-			world.Draw (gameTime);
-			basicEffect.CurrentTechnique.Passes [0].Apply ();
-			drawLines.Draw (lines, gameTime);
-			basicEffect.CurrentTechnique.Passes [0].Apply ();
-			overlay.Draw (gameTime);
-			basicEffect.CurrentTechnique.Passes [0].Apply ();
-			camera.Draw (gameTime);
+			// current game state
+			State.Draw(gameTime);
+			// base class
 			base.Draw (gameTime);
 		}
 
@@ -229,12 +126,6 @@ namespace TestGame1
 				this.IsFixedTimeStep = value;
 			}
 		}
-
-		public Camera Camera { get { return camera; } }
-
-		public Input Input { get { return input; } }
-
-		public World World { get { return world; } }
 		
 		public GraphicsDeviceManager Graphics { get { return graphics; } }
 
@@ -249,36 +140,6 @@ namespace TestGame1
 			action ();
 			stopwatch.Stop ();
 			return stopwatch.Elapsed;
-		}
-	}
-
-	public abstract class GameClass
-	{
-		protected Game game;
-
-		protected GraphicsDevice device {
-			get { return game.GraphicsDevice; }
-		}
-
-		protected GraphicsDeviceManager graphics {
-			get { return game.Graphics; }
-		}
-
-		protected Camera camera {
-			get { return game.Camera; }
-		}
-
-		protected Input input {
-			get { return game.Input; }
-		}
-
-		protected World world {
-			get { return game.World; }
-		}
-
-		public GameClass (Game game)
-		{
-			this.game = game;
 		}
 	}
 }

@@ -41,8 +41,8 @@ namespace TestGame1
 		/// <summary>
 		/// Initializes a new Overlay
 		/// </summary>
-		public World (Game game)
-			: base(game)
+		public World (GameState state)
+			: base(state)
 		{
 			size = new Vector3 (2000, 1000, 2000);
 			position = new Vector3 (-1000, -100, -1000);

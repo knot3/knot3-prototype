@@ -61,6 +61,8 @@
     <Compile Include="Pipes.cs" />
     <Compile Include="Lines.cs" />
     <Compile Include="GameState.cs" />
+    <Compile Include="ConstructionMode.cs" />
+    <Compile Include="GameClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

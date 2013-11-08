@@ -24,8 +24,8 @@ namespace TestGame1
 
 		public bool GrabMouseMovement { get; set; }
 
-		public Input (Game game)
-			: base(game)
+		public Input (GameState state)
+			: base(state)
 		{
 			FullscreenToggled = false;
 			GrabMouseMovement = false;
@@ -146,8 +146,8 @@ namespace TestGame1
 					graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
 					graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
 				} else {
-					graphics.PreferredBackBufferWidth = Game.defaultSize.Width;
-					graphics.PreferredBackBufferHeight = Game.defaultSize.Height;
+					graphics.PreferredBackBufferWidth = Game.DefaultSize.Width;
+					graphics.PreferredBackBufferHeight = Game.DefaultSize.Height;
 				}
 				graphics.ToggleFullScreen ();
 				graphics.ApplyChanges ();

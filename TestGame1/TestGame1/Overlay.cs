@@ -25,8 +25,8 @@ namespace TestGame1
 		/// <summary>
 		/// Initializes a new Overlay-
 		/// </summary>
-		public Overlay (Game game)
-			: base(game)
+		public Overlay (GameState state)
+			: base(state)
 		{
 			// create a new SpriteBatch, which can be used to draw textures
 			spriteBatch = new SpriteBatch (graphics.GraphicsDevice);
@@ -118,9 +118,9 @@ namespace TestGame1
 			height += 20;
 			DrawString ("WASD: ", width1, height, Color.White);
 			string wasdMode =
-					  game.Input.wasdMode == Input.WasdMode.ARCBALL ? "Arcball"
-					: game.Input.wasdMode == Input.WasdMode.FPS ? "FPS"
-					: game.Input.wasdMode == Input.WasdMode.ROTATION ? "Rotation"
+					  input.wasdMode == Input.WasdMode.ARCBALL ? "Arcball"
+					: input.wasdMode == Input.WasdMode.FPS ? "FPS"
+					: input.wasdMode == Input.WasdMode.ROTATION ? "Rotation"
 					: "unknown";
 			DrawString (wasdMode, width2, height, Color.White);
 
