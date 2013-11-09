@@ -42,8 +42,8 @@ namespace TestGame1
 			}
 		}
 
-		public TexturedRectangle (Game game, string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
-			: base(game)
+		public TexturedRectangle (GameState state, string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
+			: base(state)
 		{
 			Left = left;
 			Width = width;

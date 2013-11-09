@@ -56,7 +56,7 @@ namespace TestGame1
 			// objects.Add (rect);
 
 			// the floor
-			objects.Add (new TexturedRectangle (game, "floor", position + new Vector3 (size.X, 0, size.Z) / 2,
+			objects.Add (new TexturedRectangle (state, "floor", position + new Vector3 (size.X, 0, size.Z) / 2,
 				Vector3.Left, size.X, Vector3.Forward, size.Z)
 			);
 		}
@@ -101,14 +101,14 @@ namespace TestGame1
 
 			// spawn a game object
 			if (Keys.Z.IsDown ()) {
-				//objects.Add (new GameModel (game, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
-				var obj = new TestModel (game, "Test3D", new Vector3 (200, 200, 200), 0.1f);
+				//objects.Add (new GameModel (state, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
+				var obj = new TestModel (state, "Test3D", new Vector3 (200, 200, 200), 0.1f);
 				obj.IsMovable = true;
 				objects.Add (obj);
 			}
 			if (Keys.P.IsDown ()) {
-				//objects.Add (new GameModel (game, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
-				var obj = new TestModel (game, "pipe1", new Vector3 (-200, 200, -200), 100f);
+				//objects.Add (new GameModel (state, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
+				var obj = new TestModel (state, "pipe1", new Vector3 (-200, 200, -200), 100f);
 				obj.IsMovable = true;
 				objects.Add (obj);
 			}
@@ -150,8 +150,8 @@ namespace TestGame1
 	
 	public class TestModel : GameModel
 	{
-		public TestModel (Game game, string modelname, Vector3 position, float scale)
-			: base(game, modelname, position, scale)
+		public TestModel (GameState state, string modelname, Vector3 position, float scale)
+			: base(state, modelname, position, scale)
 		{
 		}
 
@@ -176,8 +176,8 @@ namespace TestGame1
 
 		protected ModelMesh[] ModelMeshes;
 
-		public GameModel (Game game, string modelname, Vector3 position, float scale)
-			: base(game)
+		public GameModel (GameState state, string modelname, Vector3 position, float scale)
+			: base(state)
 		{
 			// load test model
 			Model = LoadModel (modelname);
@@ -187,8 +187,8 @@ namespace TestGame1
 			ModelMeshes = Model.Meshes.ToArray ();
 		}
 
-		public GameModel (Game game, Model model, Vector3 position, float scale)
-			: base(game)
+		public GameModel (GameState state, Model model, Vector3 position, float scale)
+			: base(state)
 		{
 			// load test model
 			Model = model;
@@ -256,8 +256,8 @@ namespace TestGame1
 
 		public bool IsMovable { get; set; }
 
-		public GameObject (Game game)
-			: base(game)
+		public GameObject (GameState state)
+			: base(state)
 		{
 			basicEffect = new BasicEffect (device);
 		}
@@ -318,7 +318,7 @@ namespace TestGame1
 		protected Texture2D LoadTexture (string name)
 		{
 			try {
-				return game.Content.Load<Texture2D> (name);
+				return content.Load<Texture2D> (name);
 			} catch (ContentLoadException ex) {
 				Console.WriteLine (ex.ToString ());
 				return null;
@@ -333,7 +333,7 @@ namespace TestGame1
 				return modelCache [name];
 			} else {
 				try {
-					Model model = game.Content.Load<Model> (name);
+					Model model = content.Load<Model> (name);
 					modelCache [name] = model;
 					return model;
 				} catch (ContentLoadException ex) {

@@ -15,47 +15,32 @@ namespace TestGame1
 {
 	public abstract class GameClass
 	{
-		protected Game game;
-
-		protected GraphicsDevice device {
-			get { return game.GraphicsDevice; }
+		public GameClass (GameState state)
+		{
+			this.state = state;
 		}
 
-		protected GraphicsDeviceManager graphics {
-			get { return game.Graphics; }
-		}
-		
-		private GameState _state;
+		protected GameState state { get; private set; }
 
-		protected GameState state {
-			get { return _state != null ? _state : game.State; }
-		}
+		protected GraphicsDevice device { get { return state.device; } }
+
+		protected GraphicsDeviceManager graphics { get { return state.graphics; } }
+
+		protected ContentManager content { get { return state.content; } }
 
 		protected virtual Camera camera {
 			get { return state.camera; }
-			set { }
+			set {}
 		}
 
 		protected virtual Input input {
 			get { return state.input; }
-			set { }
+			set {}
 		}
 
 		protected virtual World world {
 			get { return state.world; }
-			set { }
-		}
-
-		public GameClass (GameState state)
-		{
- 			this.game = state.game;
-			this._state = state;
-		}
-
-		public GameClass (Game game)
-		{
-			this.game = game;
-			this._state = null;
+			set {}
 		}
 	}
 }

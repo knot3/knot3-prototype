@@ -26,13 +26,8 @@ namespace TestGame1
 		private Color backColor = Color.CornflowerBlue;
 
 		// custom classes
-		protected override Input input { get; set; }
-
-		protected override Camera camera { get; set; }
 
 		protected Overlay overlay { get; set; }
-
-		protected override World world { get; set; }
 
 		private DrawLines drawLines;
 		private DrawPipes drawPipes;
@@ -58,23 +53,23 @@ namespace TestGame1
 			basicEffect.VertexColorEnabled = true;
 
 			// camera
-			camera = new Camera (state);
+			camera = new Camera (this);
 
 			// input
-			input = new Input (state);
+			input = new Input (this);
 			input.SaveStates ();
 
 			// overlay
-			overlay = new Overlay (state);
+			overlay = new Overlay (this);
 
 			// overlay
-			world = new World (state);
+			world = new World (this);
 
 			// line drawing
-			drawLines = new DrawLines (state);
+			drawLines = new DrawLines (this);
 
 			// pipe drawing
-			drawPipes = new DrawPipes (state);
+			drawPipes = new DrawPipes (this);
 			
 			// load nodes
 			Node.Scale = 100;
@@ -177,7 +172,6 @@ namespace TestGame1
 
 		public override void Unload ()
 		{
-
 		}
 	}
 }

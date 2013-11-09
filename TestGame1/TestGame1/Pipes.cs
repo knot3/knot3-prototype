@@ -22,7 +22,7 @@ namespace TestGame1
 		public DrawPipes (GameState state)
 			: base(state)
 		{
-			pipes = new Pipes (game);
+			pipes = new Pipes (state);
 			world.Add (pipes);
 		}
 
@@ -50,8 +50,8 @@ namespace TestGame1
 		// cache
 		private Dictionary<Line, Pipe> pipeCache = new Dictionary<Line, Pipe> ();
 
-		public PipeCache (Game game)
-			: base(game)
+		public PipeCache (GameState state)
+			: base(state)
 		{
 		}
 
@@ -63,7 +63,7 @@ namespace TestGame1
 					Vector3 p1 = line.From.Vector () + offset;
 					Vector3 p2 = line.To.Vector () + offset;
 
-					Pipe pipe = new Pipe (game, lines, line, p1, p2, 10);
+					Pipe pipe = new Pipe (state, lines, line, p1, p2, 10);
 					pipeCache [line] = pipe;
 					return pipe;
 				}
@@ -79,11 +79,11 @@ namespace TestGame1
 
 		protected override Vector3 Position { get; set; }
 
-		public Pipes (Game game)
-			: base(game)
+		public Pipes (GameState state)
+			: base(state)
 		{
 			pipes = new List<Pipe> ();
-			pipeCache = new PipeCache (game);
+			pipeCache = new PipeCache (state);
 			Position = Vector3.Zero; //new Vector3 (10, 10, 10);
 		}
 
@@ -143,8 +143,8 @@ namespace TestGame1
 		private Vector3 PosTo;
 		private Vector3 Direction;
 
-		public Pipe (Game game, LineList lines, Line line, Vector3 posFrom, Vector3 posTo, float scale)
-			: base(game, "pipe1", posFrom + (posTo-posFrom)/2, scale)
+		public Pipe (GameState state, LineList lines, Line line, Vector3 posFrom, Vector3 posTo, float scale)
+			: base(state, "pipe1", posFrom + (posTo-posFrom)/2, scale)
 		{
 			Lines = lines;
 			Line = line;

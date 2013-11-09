@@ -39,7 +39,7 @@ namespace TestGame1
 		{
 			// load fonts
 			try {
-				font = game.Content.Load<SpriteFont> ("Font");
+				font = content.Load<SpriteFont> ("Font");
 			} catch (ContentLoadException ex) {
 				font = null;
 				Console.WriteLine (ex.Message);
@@ -158,7 +158,7 @@ namespace TestGame1
 			if (!Game.IsRunningOnMono ()) {
 				spriteBatch.Begin ();
             
-				Texture2D cursorTex = game.Content.Load<Texture2D> ("cursor");
+				Texture2D cursorTex = content.Load<Texture2D> ("cursor");
 				if (input.GrabMouseMovement || input.CurrentInputAction == InputAction.TargetMove
 					|| input.CurrentInputAction == InputAction.ArcballMove) {
 					spriteBatch.Draw (cursorTex, graphics.GraphicsDevice.Viewport.Center (), Color.White);

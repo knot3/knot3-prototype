@@ -13,16 +13,26 @@ using Microsoft.Xna.Framework.Media;
 
 namespace TestGame1
 {
-	public abstract class GameState : GameClass
+	public abstract class GameState
 	{
+		protected Game game;
+
 		public GameState (Game game)
-			: base(game)
 		{
+			this.game = game;
 		}
 
-		protected GameState state {
-			get { return this; }
-		}
+		public Input input { get; protected set; }
+
+		public Camera camera { get; protected set; }
+
+		public World world { get; protected set; }
+
+		public GraphicsDevice device { get { return game.GraphicsDevice; } }
+
+		public GraphicsDeviceManager graphics { get { return game.Graphics; } }
+
+		public ContentManager content { get { return game.Content; } }
 		
 		public abstract void Initialize ();
 
@@ -37,9 +47,10 @@ namespace TestGame1
 	{
 		public static ConstructionMode ConstructionMode;
 
-		public static void Initialize(Game game) {
-			ConstructionMode = new ConstructionMode(game);
-			ConstructionMode.Initialize();
+		public static void Initialize (Game game)
+		{
+			ConstructionMode = new ConstructionMode (game);
+			ConstructionMode.Initialize ();
 		}
 	}
 }
