@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace TestGame1
 {
-	public class ConstructionMode : GameState
+	public class KnotMode : GameState
 	{
 		// graphics-related classes
 		public BasicEffect basicEffect;
@@ -38,7 +38,7 @@ namespace TestGame1
 		/// <param name='game'>
 		/// Game.
 		/// </param>
-		public ConstructionMode (Game game)
+		public KnotMode (Game game)
 			: base(game)
 		{
 		}
@@ -56,13 +56,13 @@ namespace TestGame1
 			camera = new Camera (this);
 
 			// input
-			input = new Input (this);
+			input = new KnotModeInput (this);
 			input.SaveStates ();
 
 			// overlay
 			overlay = new Overlay (this);
 
-			// overlay
+			// world
 			world = new World (this);
 
 			// line drawing
@@ -118,15 +118,15 @@ namespace TestGame1
 
 		private GameState UpdateInput (GameTime gameTime)
 		{
-			// allows the game to exit
+			// when is escape is pressed, go to start screen
 			if (Keys.Escape.IsDown ()) {
 				return GameStates.StartScreen;
 			}
 
 			// change background color
-			if (Keys.Space.IsDown ()) {
-				backColor = new Color (backColor.R, backColor.G, (byte)~backColor.B);
-			}
+			//if (Keys.Space.IsDown ()) {
+			//	backColor = new Color (backColor.R, backColor.G, (byte)~backColor.B);
+			//}
 
 			// select lines
 			if (Keys.Y.IsDown () || Keys.NumPad1.IsDown ()) {

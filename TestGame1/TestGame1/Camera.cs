@@ -61,8 +61,6 @@ namespace TestGame1
 			aspectRatio = device.Viewport.AspectRatio;
 			nearPlane = 0.5f;
 			farPlane = 10000.0f;
-
-			input.ResetMousePosition ();
 		}
 
 		public void LoadContent ()

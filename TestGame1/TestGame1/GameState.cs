@@ -45,14 +45,14 @@ namespace TestGame1
 	
 	static class GameStates
 	{
-		public static ConstructionMode ConstructionMode;
+		public static KnotMode KnotMode;
 		public static StartScreen StartScreen;
 
 		public static void Initialize (Game game)
 		{
-			ConstructionMode = new ConstructionMode (game);
+			KnotMode = new KnotMode (game);
 			StartScreen = new StartScreen (game);
-			ConstructionMode.Initialize ();
+			KnotMode.Initialize ();
 			StartScreen.Initialize ();
 		}
 	}

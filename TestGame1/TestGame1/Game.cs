@@ -23,6 +23,7 @@ namespace TestGame1
 
 		// custom classes
 		public GameState State { get; private set; }
+		private GameState NextState { get; set; }
 
 		// colors, sizes, ...
 		public static Size DefaultSize = new Size (1280, 720);
@@ -70,7 +71,7 @@ namespace TestGame1
 		protected override void LoadContent ()
 		{
 			GameStates.Initialize(this);
-			State = GameStates.StartScreen;
+			NextState = GameStates.StartScreen;
 		}
 
 		/// <summary>
@@ -89,9 +90,10 @@ namespace TestGame1
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update (GameTime gameTime)
 		{
+			State = NextState;
 			UpdateInput (gameTime);
 			// current game state
-			State = State.Update(gameTime);
+			NextState = State.Update(gameTime);
 			// base method
 			base.Update (gameTime);
 		}

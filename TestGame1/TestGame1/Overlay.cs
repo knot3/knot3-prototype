@@ -118,9 +118,9 @@ namespace TestGame1
 			height += 20;
 			DrawString ("WASD: ", width1, height, Color.White);
 			string wasdMode =
-					  input.wasdMode == Input.WasdMode.ARCBALL ? "Arcball"
-					: input.wasdMode == Input.WasdMode.FPS ? "FPS"
-					: input.wasdMode == Input.WasdMode.ROTATION ? "Rotation"
+					  input.WASDMode == WASDMode.ArcballMode ? "Arcball"
+					: input.WASDMode == WASDMode.FirstPersonMode ? "FPS"
+					: input.WASDMode == WASDMode.RotationMode ? "Rotation"
 					: "unknown";
 			DrawString (wasdMode, width2, height, Color.White);
 

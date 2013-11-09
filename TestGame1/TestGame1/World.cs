@@ -157,7 +157,7 @@ namespace TestGame1
 
 		public override void Update (GameTime gameTime)
 		{
-			if (Keys.U.IsHeldDown()) {
+			if (Keys.U.IsHeldDown ()) {
 				Position = Position.RotateY (MathHelper.PiOver4 / 100f);
 			}
 			base.Update (gameTime);
@@ -207,7 +207,7 @@ namespace TestGame1
 			// test:
 			foreach (ModelMesh mesh in ModelMeshes) {
 				foreach (BasicEffect effect in mesh.Effects) {
-					if (Keys.L.IsHeldDown()) {
+					if (Keys.L.IsHeldDown ()) {
 						effect.LightingEnabled = false;
 					} else {
 						effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
@@ -354,7 +354,8 @@ namespace TestGame1
 
 		public abstract Vector3 Center ();
 
-		public bool IsSelected() {
+		public bool IsSelected ()
+		{
 			return world.SelectedObject == this;
 		}
 

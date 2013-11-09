@@ -33,9 +33,13 @@ namespace TestGame1
 		
 		public override void Initialize ()
 		{
+			// input
+			input = new StartScreenInput (this);
+			input.SaveStates ();
+
+			// menu
 			menu.Initialize ();
-			
-			menu.Add ("New Game", Keys.Space, () => NextGameState = GameStates.ConstructionMode);
+			menu.Add ("New Game", Keys.Space, () => NextGameState = GameStates.KnotMode);
 			menu.Add ("Options", Keys.O, () => game.Exit ());
 			menu.Add ("Exit", Keys.Escape, () => game.Exit ());
 		}
@@ -43,7 +47,14 @@ namespace TestGame1
 		public override GameState Update (GameTime gameTime)
 		{
 			NextGameState = this;
+
+			// menu
 			menu.Update (gameTime);
+
+			// input
+			input.Update (gameTime);
+			input.SaveStates ();
+
 			return NextGameState;
 		}
 
@@ -144,31 +155,39 @@ namespace TestGame1
 			Padding = new Vector2 (font.LineSpacing * 0.5f, font.LineSpacing * 0.5f);
 		}
 
-		Point previousMousePosition;
-
 		public void Update (GameTime gameTime)
+		{
+			updateMouseSelection (gameTime);
+
+			if (Mouse.GetState ().LeftButton == ButtonState.Pressed || Keys.Enter.IsDown ()) {
+				onMouseClick (gameTime);
+			}
+			
+			foreach (MenuItem item in Items) {
+				item.Update (gameTime);
+			}
+		}
+		
+		private Point previousMousePosition;
+
+		private void updateMouseSelection (GameTime gameTime)
 		{
 			Point mousePosition = Mouse.GetState ().ToPoint ();
 			if (mousePosition != previousMousePosition) {
-				updateMouseSelection (mousePosition, gameTime);
-			}
-			previousMousePosition = mousePosition;
-
-			if (Mouse.GetState ().LeftButton == ButtonState.Pressed || Keys.Enter.IsDown()) {
 				foreach (MenuItem item in Items) {
-					if (item.ItemState == MenuItemState.Selected) {
-						item.Activate ();
-					}
+					bool selected = item.bounds ().Contains (mousePosition);
+					item.ItemState = selected ? MenuItemState.Selected : MenuItemState.Normal;
 				}
 			}
+			previousMousePosition = mousePosition;
 		}
 
-		private void updateMouseSelection (Point mousePosition, GameTime gameTime)
+		private void onMouseClick (GameTime gameTime)
 		{
 			foreach (MenuItem item in Items) {
-				bool selected = item.bounds ().Contains (mousePosition);
-				item.ItemState = selected ? MenuItemState.Selected : MenuItemState.Normal;
-				item.Update (gameTime);
+				if (item.ItemState == MenuItemState.Selected) {
+					item.Activate ();
+				}
 			}
 		}
 
@@ -227,6 +246,11 @@ namespace TestGame1
 
 		public void Update (GameTime gameTime)
 		{
+			foreach (Keys key in Keys) {
+				if (key.IsDown ()) {
+					Activate ();
+				}
+			}
 		}
 
 		public void Draw (SpriteBatch spriteBatch, SpriteFont font, GameTime gameTime)
@@ -275,8 +299,9 @@ namespace TestGame1
 			return new Rectangle (topLeft.X, topLeft.Y, size.X, size.Y);
 		}
 
-		public void Activate() {
-			OnClick();
+		public void Activate ()
+		{
+			OnClick ();
 		}
 	}
 }
