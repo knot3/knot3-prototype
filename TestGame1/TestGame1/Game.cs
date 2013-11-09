@@ -70,7 +70,7 @@ namespace TestGame1
 		protected override void LoadContent ()
 		{
 			GameStates.Initialize(this);
-			State = GameStates.ConstructionMode;
+			State = GameStates.StartScreen;
 		}
 
 		/// <summary>

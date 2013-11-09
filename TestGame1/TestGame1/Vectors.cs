@@ -155,9 +155,29 @@ namespace TestGame1
 			return new Vector2 (state.X, state.Y);
 		}
 
+		public static Point ToPoint (this MouseState state)
+		{
+			return new Point (state.X, state.Y);
+		}
+
+		public static Vector2 ToVector2 (this Viewport viewport)
+		{
+			return new Vector2 (viewport.Width, viewport.Height);
+		}
+
 		public static Vector2 Center (this Viewport viewport)
 		{
 			return new Vector2 (viewport.Width, viewport.Height) / 2;
+		}
+
+		public static Point ToPoint (this Vector2 v)
+		{
+			return new Point ((int)v.X, (int)v.Y);
+		}
+
+		public static Point Plus (this Point a, Point b)
+		{
+			return new Point (a.X + b.X, a.Y + b.Y);
 		}
 	}
 

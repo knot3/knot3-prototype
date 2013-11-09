@@ -120,7 +120,7 @@ namespace TestGame1
 		{
 			// allows the game to exit
 			if (Keys.Escape.IsDown ()) {
-				return this;
+				return GameStates.StartScreen;
 			}
 
 			// change background color

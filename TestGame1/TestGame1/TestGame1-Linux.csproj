@@ -63,6 +63,8 @@
     <Compile Include="GameState.cs" />
     <Compile Include="ConstructionMode.cs" />
     <Compile Include="GameClass.cs" />
+    <Compile Include="StartScreen.cs" />
+    <Compile Include="Textures.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
