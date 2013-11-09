@@ -111,7 +111,11 @@
     <Compile Include="ArcBallCamera.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameClass.cs" />
+    <Compile Include="GameState.cs" />
     <Compile Include="Input.cs" />
+    <Compile Include="KnotMode.cs" />
+    <Compile Include="KnotModeInput.cs" />
     <Compile Include="Lines.cs" />
     <Compile Include="Nodes.cs" />
     <Compile Include="Overlay.cs" />
@@ -119,7 +123,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Rectangle.cs" />
+    <Compile Include="StartScreen.cs" />
+    <Compile Include="StartScreenInput.cs" />
     <Compile Include="Test.cs" />
+    <Compile Include="Textures.cs" />
     <Compile Include="Vectors.cs" />
     <Compile Include="World.cs" />
   </ItemGroup>
