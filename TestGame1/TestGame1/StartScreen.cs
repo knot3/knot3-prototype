@@ -121,7 +121,7 @@ namespace TestGame1
 			}
 			ItemSize += new Vector2 (200, font.LineSpacing * 0.5f);
 			Position = (viewport.ToVector2 () - size ()) / 2;
-			Console.WriteLine ("viewport=" + viewport.ToVector2 () + ", size=" + size () + " => position=" + Position);
+			//Console.WriteLine ("viewport=" + viewport.ToVector2 () + ", size=" + size () + " => position=" + Position);
 		}
 
 		public Vector2 size ()
