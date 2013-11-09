@@ -108,7 +108,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArcBallCamera.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameClass.cs" />
@@ -125,7 +124,6 @@
     <Compile Include="Rectangle.cs" />
     <Compile Include="StartScreen.cs" />
     <Compile Include="StartScreenInput.cs" />
-    <Compile Include="Test.cs" />
     <Compile Include="Textures.cs" />
     <Compile Include="Vectors.cs" />
     <Compile Include="World.cs" />

@@ -107,7 +107,7 @@ namespace TestGame1
 					ItemSize = minSize;
 				}
 			}
-			ItemSize += new Vector2 (200, font.LineSpacing * 1.5f);
+			ItemSize += new Vector2 (200, font.LineSpacing * 0.5f);
 			Position = (viewport.ToVector2 () - size ()) / 2;
 			Console.WriteLine ("viewport=" + viewport.ToVector2 () + ", size=" + size () + " => position=" + Position);
 		}
@@ -144,7 +144,7 @@ namespace TestGame1
 
 			// load fonts
 			try {
-				font = content.Load<SpriteFont> ("Font");
+				font = content.Load<SpriteFont> ("MenuFont");
 			} catch (ContentLoadException ex) {
 				font = null;
 				Console.WriteLine (ex.Message);
@@ -289,7 +289,7 @@ namespace TestGame1
 
 		public Vector2 MinimumSize (SpriteFont font)
 		{
-			return font.MeasureString (Text) + new Vector2 (font.LineSpacing, font.LineSpacing) * 0.2f;
+            return font.MeasureString(Text) + new Vector2(font.LineSpacing, font.LineSpacing) * 0.2f;
 		}
 
 		public Rectangle bounds ()
