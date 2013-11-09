@@ -55,7 +55,6 @@ namespace TestGame1
 		public void Draw (GameTime gameTime)
 		{
 			DrawCoordinates (gameTime);
-			DrawCursor (gameTime);
 			DrawOverlay (gameTime);
 			DrawFPS (gameTime);
 		}
@@ -151,23 +150,6 @@ namespace TestGame1
 		private void DrawString (float n, int width, int height, Color color)
 		{
 			DrawString ("" + n, width, height, color);
-		}
-
-		private void DrawCursor (GameTime gameTime)
-		{
-			if (!Game.IsRunningOnMono ()) {
-				spriteBatch.Begin ();
-            
-				Texture2D cursorTex = content.Load<Texture2D> ("cursor");
-				if (input.GrabMouseMovement || input.CurrentInputAction == InputAction.TargetMove
-					|| input.CurrentInputAction == InputAction.ArcballMove) {
-					spriteBatch.Draw (cursorTex, graphics.GraphicsDevice.Viewport.Center (), Color.White);
-				} else {
-					spriteBatch.Draw (cursorTex, new Vector2 (input.MouseState.X, input.MouseState.Y), Color.White);
-				}
-
-				spriteBatch.End ();
-			}
 		}
 		
 		int _total_frames = 0;

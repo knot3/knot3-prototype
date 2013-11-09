@@ -26,8 +26,8 @@ namespace TestGame1
 		private Color backColor = Color.CornflowerBlue;
 
 		// custom classes
-
-		protected Overlay overlay { get; set; }
+		private MousePointer pointer;
+		private Overlay overlay;
 
 		private DrawLines drawLines;
 		private DrawPipes drawPipes;
@@ -61,6 +61,9 @@ namespace TestGame1
 
 			// overlay
 			overlay = new Overlay (this);
+
+			// pointer
+			pointer = new MousePointer (this);
 
 			// world
 			world = new World (this);
@@ -112,6 +115,8 @@ namespace TestGame1
 			input.SaveStates ();
 			// overlay
 			overlay.Update (gameTime);
+			// pointer
+			pointer.Update (gameTime);
 
 			return state;
 		}
@@ -166,6 +171,7 @@ namespace TestGame1
 			drawLines.Draw (lines, gameTime);
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
 			overlay.Draw (gameTime);
+			pointer.Draw (gameTime);
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
 			camera.Draw (basicEffect, gameTime);
 		}

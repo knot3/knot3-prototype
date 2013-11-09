@@ -51,8 +51,6 @@
     <Compile Include="Nodes.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="Test.cs" />
-    <Compile Include="ArcBallCamera.cs" />
     <Compile Include="Vectors.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Overlay.cs" />
@@ -67,6 +65,7 @@
     <Compile Include="KnotMode.cs" />
     <Compile Include="KnotModeInput.cs" />
     <Compile Include="StartScreenInput.cs" />
+    <Compile Include="Mouse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -95,6 +94,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\pipe1.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MenuFont.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

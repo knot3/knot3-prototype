@@ -23,6 +23,7 @@ namespace TestGame1
 		private Menu menu;
 
 		// ...
+		private MousePointer pointer;
 		private GameState NextGameState;
 
 		public StartScreen (Game game)
@@ -36,6 +37,9 @@ namespace TestGame1
 			// input
 			input = new StartScreenInput (this);
 			input.SaveStates ();
+
+			// pointer
+			pointer = new MousePointer (this);
 
 			// menu
 			menu.Initialize ();
@@ -55,14 +59,22 @@ namespace TestGame1
 			input.Update (gameTime);
 			input.SaveStates ();
 
+			// pointer
+			pointer.Update (gameTime);
+
 			return NextGameState;
 		}
 
 		public override void Draw (GameTime gameTime)
 		{
-			menu.Align (device.Viewport);
 			graphics.GraphicsDevice.Clear (backColor);
+
+			// menu
+			menu.Align (device.Viewport);
 			menu.Draw (gameTime);
+
+			// pointer
+			pointer.Draw (gameTime);
 		}
 
 		public override void Unload ()
@@ -289,7 +301,7 @@ namespace TestGame1
 
 		public Vector2 MinimumSize (SpriteFont font)
 		{
-            return font.MeasureString(Text) + new Vector2(font.LineSpacing, font.LineSpacing) * 0.2f;
+			return font.MeasureString (Text) + new Vector2 (font.LineSpacing, font.LineSpacing) * 0.2f;
 		}
 
 		public Rectangle bounds ()
