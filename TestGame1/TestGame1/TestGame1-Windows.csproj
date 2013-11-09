@@ -116,6 +116,7 @@
     <Compile Include="KnotMode.cs" />
     <Compile Include="KnotModeInput.cs" />
     <Compile Include="Lines.cs" />
+    <Compile Include="Mouse.cs" />
     <Compile Include="Nodes.cs" />
     <Compile Include="Overlay.cs" />
     <Compile Include="Pipes.cs" />
