@@ -164,17 +164,62 @@ namespace TestGame1
 		}
 	}
 	
+	public class CachedGameModel : GameModel
+	{
+		public CachedGameModel (GameState state, string modelname, Vector3 position, float scale)
+			: base(state, modelname, position, scale)
+		{
+		}
+
+		public CachedGameModel (GameState state, Model model, Vector3 position, float scale)
+			: base(state, model, position, scale)
+		{
+		}
+
+		private float _scale;
+		private Angles3 _rotation;
+		private Vector3 _position;
+		private Matrix _worldMatrix;
+
+		private void UpdateWorldMatrix ()
+		{
+			if (Scale != _scale || Rotation != _rotation || Position != _position) {
+				_worldMatrix = Matrix.CreateScale (Scale)
+					* Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
+					* Matrix.CreateTranslation (Position);
+				_scale = Scale;
+				_rotation = Rotation;
+				_position = Position;
+			}
+		}
+
+		protected override Matrix WorldMatrix {
+			get {
+				UpdateWorldMatrix();
+				return _worldMatrix;
+			}
+		}
+	}
+	
 	public class GameModel : GameObject
 	{
-		protected Model Model { get; set; }
+		protected virtual Model Model { get; set; }
 
-		protected float Scale { get; set; }
+		protected virtual float Scale { get; set; }
 
-		protected Angles3 Rotation { get; set; }
+		protected virtual Angles3 Rotation { get; set; }
 
 		protected override Vector3 Position { get; set; }
 
 		protected ModelMesh[] ModelMeshes;
+
+		protected virtual Matrix WorldMatrix {
+			get {
+				return Matrix.CreateScale (Scale)
+					* Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
+					* Matrix.CreateTranslation (Position);
+			}
+		}
 
 		public GameModel (GameState state, string modelname, Vector3 position, float scale)
 			: base(state)

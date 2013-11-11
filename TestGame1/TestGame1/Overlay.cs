@@ -90,9 +90,9 @@ namespace TestGame1
 			int height = 20;
 			int width1 = 20, width2 = 150, width3 = 210, width4 = 270;
 			DrawString ("Rotation: ", width1, height, Color.White);
-			DrawString (camera.RotationAngle.Degrees.X, width2, height, Color.Green);
-			DrawString (camera.RotationAngle.Degrees.Y, width3, height, Color.Red);
-			DrawString (camera.RotationAngle.Degrees.Z, width4, height, Color.Yellow);
+			DrawString (camera.RotationAngle.ToDegrees().X, width2, height, Color.Green);
+			DrawString (camera.RotationAngle.ToDegrees().Y, width3, height, Color.Red);
+			DrawString (camera.RotationAngle.ToDegrees().Z, width4, height, Color.Yellow);
 			height += 20;
 			DrawString ("Camera Position: ", width1, height, Color.White);
 			DrawVectorCoordinates (camera.Position, width2, width3, width4, height);

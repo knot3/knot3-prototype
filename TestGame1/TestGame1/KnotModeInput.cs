@@ -180,7 +180,7 @@ namespace TestGame1
 					// left mouse button pressed
 					if (MouseState.LeftButton == ButtonState.Pressed) {
 						if (world.SelectedObject != null && (world.SelectedObject.IsMovable
-							|| world.SelectedObject is Pipe))
+							|| world.SelectedObject is PipeModel))
 							action = InputAction.SelectedObjectMove;
 						else
 							action = InputAction.TargetMove;

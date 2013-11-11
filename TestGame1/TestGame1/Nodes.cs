@@ -68,7 +68,7 @@ namespace TestGame1
 
 		public override int GetHashCode ()
 		{
-			return X ^ Y ^ Z;
+			return X * 10000 + Y * 100 + Z;
 		}
 	}
 
@@ -186,7 +186,7 @@ namespace TestGame1
 
 		public override int GetHashCode ()
 		{
-			return From.GetHashCode() ^ To.GetHashCode();
+			return From.GetHashCode () * 10 + To.GetHashCode ();
 		}
 	}
 
@@ -210,11 +210,11 @@ namespace TestGame1
 		public int this [Line line] {
 			get {
 				for (int i = 0; i < Nodes.Count; ++i) {
-					if (Nodes [i] == line.From && Nodes[i+1] == line.To) {
+					if (Nodes [i] == line.From && Nodes [i + 1] == line.To) {
 						return i;
 					}
 				}
-				throw new ArgumentOutOfRangeException("line does not exist!");
+				throw new ArgumentOutOfRangeException ("line does not exist!");
 			}
 		}
 

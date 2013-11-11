@@ -45,71 +45,60 @@ namespace TestGame1
 		}
 	}
 
-	public class PipeCache : GameClass
-	{
-		// cache
-		private Dictionary<Line, Pipe> pipeCache = new Dictionary<Line, Pipe> ();
-
-		public PipeCache (GameState state)
-			: base(state)
-		{
-		}
-
-		public Pipe this [LineList lines, Line line, Vector3 offset] {
-			get {
-				if (pipeCache.ContainsKey (line)) {
-					return pipeCache [line];
-				} else {
-					Vector3 p1 = line.From.Vector () + offset;
-					Vector3 p2 = line.To.Vector () + offset;
-
-					Pipe pipe = new Pipe (state, lines, line, p1, p2, 10);
-					pipeCache [line] = pipe;
-					return pipe;
-				}
-			}
-		}
-	}
-
 	public class Pipes : GameObject
 	{
-		// pipes
-		private List<Pipe> pipes;
-		private PipeCache pipeCache;
+		// pipes and knots
+		private List<PipeModel> pipes;
+		private List<KnotModel> knots;
+		private PipeModelCache pipeCache;
+		private KnotModelCache knotCache;
 
 		protected override Vector3 Position { get; set; }
 
 		public Pipes (GameState state)
 			: base(state)
 		{
-			pipes = new List<Pipe> ();
-			pipeCache = new PipeCache (state);
+			pipes = new List<PipeModel> ();
+			knots = new List<KnotModel> ();
+			pipeCache = new PipeModelCache (state);
+			knotCache = new KnotModelCache (state);
 			Position = Vector3.Zero; //new Vector3 (10, 10, 10);
 		}
 
 		public override void Update (GameTime gameTime)
 		{
 			for (int i = 0; i < pipes.Count; ++i) {
-				Pipe pipe = pipes [i];
-				pipe.Update (gameTime);
+				pipes [i].Update (gameTime);
+			}
+			for (int i = 0; i < knots.Count; ++i) {
+				knots [i].Update (gameTime);
 			}
 		}
 
 		public void UpdatePipes (LineList lines)
 		{
 			pipes.Clear ();
-
 			for (int n = 0; n < lines.Count; n++) {
-				pipes.Add (pipeCache [lines, lines [n], Position]);
+				PipeModel pipe = pipeCache [lines, lines [n], Position];
+				pipe.OnDataChange = () => UpdatePipes(lines);
+				pipes.Add (pipe);
 			}
-			//if (world.SelectedObject is Pipe)
-			//	world.SelectedObject = pipes [lines.SelectedLine];
+
+			knots.Clear ();
+			for (int n = 0; n < lines.Count; n++) {
+				KnotModel knot = knotCache [lines, lines [n], lines [n + 1], Position];
+				// knot.OnDataChange = () => UpdatePipes(lines);
+				knots.Add (knot);
+			}
 		}
 		
 		public override void DrawObject (GameTime gameTime)
 		{
-			foreach (Pipe pipe in pipes) {
+			foreach (PipeModel pipe in pipes) {
 				pipe.Draw (gameTime);
+			}
+			foreach (KnotModel knot in knots) {
+				knot.Draw (gameTime);
 			}
 		}
 
@@ -117,7 +106,7 @@ namespace TestGame1
 		{
 			GameObjectDistance nearest = null;
 			if (!input.GrabMouseMovement) {
-				foreach (Pipe pipe in pipes) {
+				foreach (PipeModel pipe in pipes) {
 					GameObjectDistance intersection = pipe.Intersects (ray);
 					if (intersection != null) {
 						if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
@@ -135,15 +124,31 @@ namespace TestGame1
 		}
 	}
 	
-	public class Pipe : GameModel
+	public class KnotModel : GameModel
+	{
+		private LineList Lines;
+		private Line LineA;
+		private Line LineB;
+
+		public KnotModel (GameState state, LineList lines, Line lineA, Line lineB, Vector3 position, float scale)
+			: base(state, "knot1", position, scale)
+		{
+			Lines = lines;
+			LineA = lineA;
+			LineB = lineB;
+		}
+	}
+	
+	public class PipeModel : GameModel
 	{
 		private LineList Lines;
 		private Line Line;
 		private Vector3 PosFrom;
 		private Vector3 PosTo;
 		private Vector3 Direction;
+		public Action OnDataChange = () => {};
 
-		public Pipe (GameState state, LineList lines, Line line, Vector3 posFrom, Vector3 posTo, float scale)
+		public PipeModel (GameState state, LineList lines, Line line, Vector3 posFrom, Vector3 posTo, float scale)
 			: base(state, "pipe1", posFrom + (posTo-posFrom)/2, scale)
 		{
 			Lines = lines;
@@ -155,15 +160,17 @@ namespace TestGame1
 			Direction.Normalize ();
 
 			if (Direction.Y == 1) {
-				Rotation.X = MathHelper.ToRadians (90);
+				Rotation += Angles3.FromDegrees(90, 0, 0);
 			} else if (Direction.Y == -1) {
-				Rotation.X = MathHelper.ToRadians (270);
+				Rotation += Angles3.FromDegrees(270, 0, 0);
 			}
 			if (Direction.X == 1) {
-				Rotation.Y = MathHelper.ToRadians (90);
+				Rotation += Angles3.FromDegrees(0, 90, 0);
 			} else if (Direction.X == -1) {
-				Rotation.Y = MathHelper.ToRadians (270);
+				Rotation += Angles3.FromDegrees(0, 270, 0);
 			}
+
+			Rotation = Rotation;
 		}
 
 		public override void OnSelected ()
@@ -243,6 +250,55 @@ namespace TestGame1
 			}
 			return null;
 		}*/
+	}
+
+	public class PipeModelCache : GameClass
+	{
+		// cache
+		private Dictionary<Line, PipeModel> pipeCache = new Dictionary<Line, PipeModel> ();
+
+		public PipeModelCache (GameState state)
+			: base(state)
+		{
+		}
+
+		public PipeModel this [LineList lines, Line line, Vector3 offset] {
+			get {
+				if (pipeCache.ContainsKey (line)) {
+					return pipeCache [line];
+				} else {
+					Vector3 p1 = line.From.Vector () + offset;
+					Vector3 p2 = line.To.Vector () + offset;
+
+					PipeModel pipe = new PipeModel (state, lines, line, p1, p2, 10f);
+					pipeCache [line] = pipe;
+					return pipe;
+				}
+			}
+		}
+	}
+
+	public class KnotModelCache : GameClass
+	{
+		// cache
+		private Dictionary<Line, KnotModel> knotCache = new Dictionary<Line, KnotModel> ();
+
+		public KnotModelCache (GameState state)
+			: base(state)
+		{
+		}
+
+		public KnotModel this [LineList lines, Line lineA, Line lineB, Vector3 offset] {
+			get {
+				if (knotCache.ContainsKey (lineA)) {
+					return knotCache [lineA];
+				} else {
+					KnotModel knot = new KnotModel (state, lines, lineA, lineB, lineA.To.Vector (), 5f);
+					knotCache [lineA] = knot;
+					return knot;
+				}
+			}
+		}
 	}
 
 }
