@@ -23,6 +23,7 @@ namespace TestGame1
 
 		// custom classes
 		public GameState State { get; private set; }
+
 		private GameState NextState { get; set; }
 
 		// colors, sizes, ...
@@ -70,7 +71,7 @@ namespace TestGame1
 		/// </summary>
 		protected override void LoadContent ()
 		{
-			GameStates.Initialize(this);
+			GameStates.Initialize (this);
 			NextState = GameStates.StartScreen;
 		}
 
@@ -93,7 +94,7 @@ namespace TestGame1
 			State = NextState;
 			UpdateInput (gameTime);
 			// current game state
-			NextState = State.Update(gameTime);
+			NextState = State.Update (gameTime);
 			// base method
 			base.Update (gameTime);
 		}
@@ -114,7 +115,8 @@ namespace TestGame1
 		protected override void Draw (GameTime gameTime)
 		{
 			// current game state
-			State.Draw(gameTime);
+			State.Draw (gameTime);
+
 			// base class
 			base.Draw (gameTime);
 		}
@@ -130,11 +132,6 @@ namespace TestGame1
 		}
 		
 		public GraphicsDeviceManager Graphics { get { return graphics; } }
-
-		public static bool IsRunningOnMono ()
-		{
-			return Type.GetType ("Mono.Runtime") != null;
-		}
 
 		public static TimeSpan Time (Action action)
 		{

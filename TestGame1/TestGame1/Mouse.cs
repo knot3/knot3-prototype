@@ -56,7 +56,7 @@ namespace TestGame1
 
 		private void DrawCursor (GameTime gameTime)
 		{
-			if (!Game.IsRunningOnMono ()) {
+			if (!Mono.IsRunningOnMono ()) {
 				spriteBatch.Begin ();
             
 				Texture2D cursorTex = content.Load<Texture2D> ("cursor");

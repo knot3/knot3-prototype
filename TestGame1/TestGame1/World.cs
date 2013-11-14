@@ -264,6 +264,7 @@ namespace TestGame1
 					effect.View = camera.ViewMatrix;
 					effect.Projection = camera.ProjectionMatrix;
 				}
+
 				mesh.Draw ();
 			}
 		}

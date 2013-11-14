@@ -66,6 +66,10 @@
     <Compile Include="KnotModeInput.cs" />
     <Compile Include="StartScreenInput.cs" />
     <Compile Include="Mouse.cs" />
+    <Compile Include="Shader.cs" />
+    <Compile Include="Mono.cs" />
+    <Compile Include="PostProcessing.cs" />
+    <Compile Include="BlurEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -102,8 +106,10 @@
     <Content Include="Content\knot1.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\pipe2.xnb">
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameShader Include="Content\blur.mgfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </MonoGameShader>
   </ItemGroup>
 </Project>

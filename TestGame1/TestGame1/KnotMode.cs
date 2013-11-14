@@ -17,6 +17,8 @@ namespace TestGame1
 	{
 		// graphics-related classes
 		public BasicEffect basicEffect;
+		public List<PostProcessing> postProcessing;
+		public int currentPostProcessing;
 
 		// nodes
 		private NodeList nodes;
@@ -28,7 +30,6 @@ namespace TestGame1
 		// custom classes
 		private MousePointer pointer;
 		private Overlay overlay;
-
 		private DrawLines drawLines;
 		private DrawPipes drawPipes;
 
@@ -51,6 +52,14 @@ namespace TestGame1
 			// basic effect
 			basicEffect = new BasicEffect (game.GraphicsDevice);
 			basicEffect.VertexColorEnabled = true;
+
+			// post processing effects
+			postProcessing = new List<PostProcessing> ();
+			postProcessing.Add (new NoPostProcessing (this));
+			postProcessing.Add (new BlurEffect (this));
+			foreach (PostProcessing	pp in postProcessing) {
+				pp.LoadContent();
+			}
 
 			// camera
 			camera = new Camera (this);
@@ -153,12 +162,18 @@ namespace TestGame1
 				lines.InsertAt (lines.SelectedLine, Vector3.Forward);
 			if (Keys.NumPad9.IsDown ())
 				lines.InsertAt (lines.SelectedLine, Vector3.Backward);
-			
+
+			// post processing effects
+			if (Keys.O.IsDown ())
+				currentPostProcessing++;
+
 			return this;
 		}
 
 		public override void Draw (GameTime gameTime)
 		{
+			postProcessing [currentPostProcessing % postProcessing.Count].Begin (gameTime);
+
 			graphics.GraphicsDevice.Clear (backColor);
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
 
@@ -174,6 +189,8 @@ namespace TestGame1
 			pointer.Draw (gameTime);
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
 			camera.Draw (basicEffect, gameTime);
+
+			postProcessing [currentPostProcessing % postProcessing.Count].End (gameTime);
 		}
 
 		public override void Unload ()
