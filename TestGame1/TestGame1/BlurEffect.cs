@@ -34,7 +34,7 @@ namespace TestGame1
 			if (renderTarget == null) {
 				PresentationParameters pp = device.PresentationParameters;
 				renderTarget = new RenderTarget2D (device, pp.BackBufferWidth, pp.BackBufferHeight,
-			    	false, SurfaceFormat.Color, DepthFormat.Depth24);
+                    false, SurfaceFormat.Color, DepthFormat.Depth24, 1, RenderTargetUsage.DiscardContents);
 			}
 			device.SetRenderTarget (renderTarget);
 		}
@@ -42,16 +42,22 @@ namespace TestGame1
 		public override void End (GameTime gameTime)
 		{
 			try {
-				device.SetRenderTarget (null);
-				device.Textures [1] = renderTarget;
+                device.SetRenderTarget(null);
+                device.Clear(Color.Black);
+                //device.Textures[1] = renderTarget;
 				SpriteBatch spriteBatch = new SpriteBatch (device);
-				spriteBatch.Begin (0, null, null, null, null, testEffect);
+                spriteBatch.Begin(SpriteSortMode.Immediate, null);
+                //spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied); 
+//				spriteBatch.Begin (0, null, null, null, null, testEffect);
 				testEffect.CurrentTechnique = testEffect.Techniques ["BlurTest1"];
-                testEffect.Parameters["MatrixTransform"].SetValue(camera.ProjectionMatrix);
-				spriteBatch.Draw (renderTarget, Vector2.Zero, Color.White); 
-				foreach (EffectPass pass in testEffect.CurrentTechnique.Passes) {
+                //testEffect.Parameters["World"].SetValue(camera.WorldMatrix);
+                //testEffect.Parameters["View"].SetValue(camera.ViewMatrix);
+                //testEffect.Parameters["Projection"].SetValue(camera.ProjectionMatrix);
+                foreach (EffectPass pass in testEffect.CurrentTechnique.Passes)
+                {
 					pass.Apply ();
-				}
+                }
+                spriteBatch.Draw(renderTarget, Vector2.Zero, Color.White); 
 				spriteBatch.End ();
 			} catch (NullReferenceException ex) {
 				Console.WriteLine (ex.ToString ());
