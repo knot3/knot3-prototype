@@ -47,6 +47,7 @@ namespace TestGame1
 				SpriteBatch spriteBatch = new SpriteBatch (device);
 				spriteBatch.Begin (0, null, null, null, null, testEffect);
 				testEffect.CurrentTechnique = testEffect.Techniques ["BlurTest1"];
+                testEffect.Parameters["MatrixTransform"].SetValue(camera.ProjectionMatrix);
 				spriteBatch.Draw (renderTarget, Vector2.Zero, Color.White); 
 				foreach (EffectPass pass in testEffect.CurrentTechnique.Passes) {
 					pass.Apply ();
