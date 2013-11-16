@@ -40,23 +40,23 @@ namespace TestGame1
 					arcballMove += new Vector2 (0, -1);
 				if (Keys.S.IsHeldDown ())
 					arcballMove += new Vector2 (0, 1);
-				if (Keys.LeftShift.IsHeldDown ())
-					keyboardMove += new Vector3 (0, -1, 0);
-				if (Keys.LeftControl.IsHeldDown ())
-					keyboardMove += new Vector3 (0, 1, 0);
+				if (Keys.R.IsHeldDown ())
+					keyboardMove += new Vector3 (0, 0, -1);
+				if (Keys.F.IsHeldDown ())
+					keyboardMove += new Vector3 (0, 0, 1);
 			} else if (WASDMode == WASDMode.FirstPersonMode) {
 				if (Keys.A.IsHeldDown ())
 					keyboardMove += new Vector3 (-1, 0, 0);
 				if (Keys.D.IsHeldDown ())
 					keyboardMove += new Vector3 (1, 0, 0);
 				if (Keys.W.IsHeldDown ())
-					keyboardMove += new Vector3 (0, 0, -1);
-				if (Keys.S.IsHeldDown ())
-					keyboardMove += new Vector3 (0, 0, 1);
-				if (Keys.LeftShift.IsHeldDown ())
 					keyboardMove += new Vector3 (0, -1, 0);
-				if (Keys.LeftControl.IsHeldDown ())
+				if (Keys.S.IsHeldDown ())
 					keyboardMove += new Vector3 (0, 1, 0);
+				if (Keys.R.IsHeldDown ())
+					keyboardMove += new Vector3 (0, 0, -1);
+				if (Keys.F.IsHeldDown ())
+					keyboardMove += new Vector3 (0, 0, 1);
 			} else if (WASDMode == WASDMode.RotationMode) {
 				float wasdAngle = 0.01f;
 				if (Keys.W.IsHeldDown ())
@@ -96,7 +96,7 @@ namespace TestGame1
 			if (arcballMove.Length () > 0) {
 				arcballMove *= 3;
 				camera.Target = new Vector3 (camera.ArcballTarget.X, camera.Target.Y, camera.ArcballTarget.Z);
-				camera.TargetDistance = camera.TargetDistance.Clamp (200, 10000);
+				camera.TargetDistance = camera.TargetDistance.Clamp (500, 10000);
 				camera.Position = camera.ArcballTarget + (camera.Position - camera.ArcballTarget).ArcBallMove (
 						arcballMove, camera.UpVector, camera.TargetVector
 				);
@@ -198,7 +198,7 @@ namespace TestGame1
 				// arcball move
 				case InputAction.ArcballMove:
 					camera.Target = new Vector3 (camera.ArcballTarget.X, camera.Target.Y, camera.ArcballTarget.Z);
-					camera.TargetDistance = camera.TargetDistance.Clamp (200, 10000);
+					camera.TargetDistance = camera.TargetDistance.Clamp (500, 10000);
 					camera.Position = camera.ArcballTarget + (camera.Position - camera.ArcballTarget).ArcBallMove (
 						mouseMove, camera.UpVector, camera.TargetVector
 					);
@@ -212,11 +212,11 @@ namespace TestGame1
 
 				// scroll wheel zoom
 				if (MouseState.ScrollWheelValue < PreviousMouseState.ScrollWheelValue) {
-					camera.TargetDistance -= 20;
+					camera.TargetDistance -= 40;
 					// arcball
 					// camera.arcball.Zoom -= 10; 
 				} else if (MouseState.ScrollWheelValue > PreviousMouseState.ScrollWheelValue) {
-					camera.TargetDistance += 20;
+					camera.TargetDistance += 40;
 					// arcball
 					// camera.arcball.Zoom += 10; 
 				}

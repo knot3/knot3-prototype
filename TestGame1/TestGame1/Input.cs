@@ -50,7 +50,7 @@ namespace TestGame1
 		protected virtual void UpdateKeys (GameTime gameTime)
 		{
 			// fullscreen
-			if (Keys.F.IsDown () || Keys.F11.IsDown ()) {
+			if (Keys.G.IsDown () || Keys.F11.IsDown ()) {
 				Console.WriteLine ("Fullscreen Toggle");
 				if (graphics.IsFullScreen == false) {
 					graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
