@@ -151,6 +151,17 @@ namespace TestGame1
 			return new BoundingSphere (Vector3.Transform (sphere.Center, Matrix.CreateTranslation (position)), sphere.Radius);
 		}
 
+		public static BoundingBox Scale (this BoundingBox box, float scale)
+		{
+			return new BoundingBox (box.Min*scale, box.Max*scale);
+		}
+
+		public static BoundingBox Translate (this BoundingBox box, Vector3 position)
+		{
+			Matrix translation = Matrix.CreateTranslation (position);
+			return new BoundingBox (Vector3.Transform (box.Min, translation), Vector3.Transform (box.Max, translation));
+		}
+
 		public static Vector2 ToVector2 (this MouseState state)
 		{
 			return new Vector2 (state.X, state.Y);

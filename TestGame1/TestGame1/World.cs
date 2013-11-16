@@ -137,7 +137,7 @@ namespace TestGame1
 					}
 				}
 				if (nearest != null) {
-					SelectObject(nearest.Object, gameTime);
+					SelectObject (nearest.Object, gameTime);
 				}
 			}
 		}
@@ -287,8 +287,9 @@ namespace TestGame1
 
 		public override GameObjectDistance Intersects (Ray ray)
 		{
-			foreach (BoundingSphere sphere in Model.Bounds()) {
-				Nullable<float> distance = ray.Intersects (sphere.Scale (Scale).Translate (Position));
+			foreach (BoundingSphere _sphere in Model.Bounds()) {
+				BoundingSphere sphere = _sphere.Scale (Scale).Translate (Position);
+				float? distance = ray.Intersects (sphere);
 				if (distance != null) {
 					GameObjectDistance intersection = new GameObjectDistance () {
 						Object=this, Distance=distance.Value

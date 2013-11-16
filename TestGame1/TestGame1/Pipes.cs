@@ -157,6 +157,7 @@ namespace TestGame1
 		private Vector3 PosFrom;
 		private Vector3 PosTo;
 		private Vector3 Direction;
+		private BoundingSphere[] Bounds;
 		public Action OnDataChange = () => {};
 
 		public PipeModel (GameState state, EdgeList edges, Edge edge, Vector3 posFrom, Vector3 posTo, float scale)
@@ -182,6 +183,13 @@ namespace TestGame1
 			}
 
 			Rotation = Rotation;
+
+			float length = (posTo - posFrom).Length ();
+			Bounds = new BoundingSphere[(int)(length / (Scale / 4))];
+			for (int offset = 0; offset < (int)(length / (Scale / 4)); ++offset) {
+				Bounds [offset] = new BoundingSphere (posFrom + Direction * offset * (Scale / 4), Scale);
+				Console.WriteLine ("sphere[" + offset + "]=" + Bounds [offset]);
+			}
 		}
 
 		public override void OnSelected (GameTime gameTime)
@@ -217,12 +225,13 @@ namespace TestGame1
 			foreach (ModelMesh mesh in ModelMeshes) {
 				foreach (BasicEffect effect in mesh.Effects) {
 					if (Edges.SelectedEdges.Contains (Edge)) {
-						effect.DiffuseColor = Color.White.ToVector3();
+						effect.DiffuseColor = Color.White.ToVector3 ();
 					} else {
 						effect.DiffuseColor = Edge.Color.ToVector3 ();
 					}
 				}
 			}
+
 			base.DrawObject (gameTime);
 		}
 
@@ -289,21 +298,19 @@ namespace TestGame1
 			}
 		}
 
-		/*public override GameObjectDistance Intersects (Ray ray)
+		public override GameObjectDistance Intersects (Ray ray)
 		{
-			Vector3 min = PosFrom;// - 10*Vector3.Cross (Direction, camera.TargetVector);
-			Vector3 max = PosTo;// + 10*Vector3.Cross (Direction, camera.TargetVector);
-			BoundingBox bounds = new BoundingBox (min, max);
-			Console.WriteLine("bounds: "+bounds);
-			Nullable<float> distance = ray.Intersects (bounds);
-			if (distance != null) {
-				GameObjectDistance intersection = new GameObjectDistance () {
+			foreach (BoundingSphere sphere in Bounds) {
+				float? distance = ray.Intersects (sphere);
+				if (distance != null) {
+					GameObjectDistance intersection = new GameObjectDistance () {
 						Object=this, Distance=distance.Value
 					};
-				return intersection;
+					return intersection;
+				}
 			}
 			return null;
-		}*/
+		}
 	}
 
 	public class PipeModelCache : GameClass
