@@ -36,7 +36,7 @@ namespace TestGame1
 		{
 			// input
 			input = new StartScreenInput (this);
-			input.SaveStates ();
+			input.SaveStates (null);
 
 			// pointer
 			pointer = new MousePointer (this);
@@ -57,7 +57,7 @@ namespace TestGame1
 
 			// input
 			input.Update (gameTime);
-			input.SaveStates ();
+			input.SaveStates (gameTime);
 
 			// pointer
 			pointer.Update (gameTime);

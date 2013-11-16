@@ -20,11 +20,13 @@ namespace TestGame1
 		protected static bool FullscreenToggled;
 		public static KeyboardState PreviousKeyboardState;
 		public static MouseState PreviousMouseState;
+		public static int LastLeftButtonPress;
 
 		public bool GrabMouseMovement { get; set; }
 
 		// input modes
 		public InputAction CurrentInputAction { get; protected set; }
+
 		public WASDMode WASDMode { get; protected set; }
 
 		/// <summary>
@@ -69,24 +71,21 @@ namespace TestGame1
 		{
 		}
 
-		public virtual void SaveStates ()
+		public virtual void SaveStates (GameTime gameTime)
 		{
 			// update saved state.
-			PreviousMouseState = MouseState;
 			PreviousKeyboardState = KeyboardState;
-		}
-
-		public MouseState MouseState {
-			get {
-				return Mouse.GetState ();
+			PreviousMouseState = MouseState;
+			if (gameTime != null) {
+				if (MouseState.LeftButton == ButtonState.Pressed) {
+					LastLeftButtonPress = gameTime.TotalGameTime.Milliseconds;
+				}
 			}
 		}
 
-		public KeyboardState KeyboardState {
-			get {
-				return Keyboard.GetState ();
-			}
-		}
+		public static MouseState MouseState { get { return Mouse.GetState (); } }
+
+		public static KeyboardState KeyboardState { get { return Keyboard.GetState (); } }
 	}
 
 	public enum InputAction
@@ -119,11 +118,37 @@ namespace TestGame1
 			}
 			return false;
 		}
+
 		public static bool IsHeldDown (this Keys key)
 		{
 			KeyboardState keyboardState = Keyboard.GetState ();
 			// Is the key down?
 			return keyboardState.IsKeyDown (key);
+		}
+
+		public static bool IsLeftClick (this MouseState state, GameTime gameTime)
+		{
+			if (state.LeftButton == ButtonState.Pressed && Input.PreviousMouseState.LeftButton != ButtonState.Pressed) {
+				Console.WriteLine ("IsLeftClick=true");
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		public static bool IsLeftDoubleClick (this MouseState state, GameTime gameTime)
+		{
+			if (state.IsLeftClick (gameTime)) {
+				int timeDiff = gameTime.TotalGameTime.Milliseconds - Input.LastLeftButtonPress;
+				if (timeDiff < 1000 && timeDiff > 10) {
+					Console.WriteLine ("IsLeftDoubleClick=true");
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
 		}
 	}
 }

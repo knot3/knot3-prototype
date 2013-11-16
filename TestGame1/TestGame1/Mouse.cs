@@ -64,7 +64,7 @@ namespace TestGame1
 					|| input.CurrentInputAction == InputAction.ArcballMove) {
 					spriteBatch.Draw (cursorTex, graphics.GraphicsDevice.Viewport.Center (), Color.White);
 				} else {
-					spriteBatch.Draw (cursorTex, new Vector2 (input.MouseState.X, input.MouseState.Y), Color.White);
+					spriteBatch.Draw (cursorTex, new Vector2 (Input.MouseState.X, Input.MouseState.Y), Color.White);
 				}
 
 				spriteBatch.End ();

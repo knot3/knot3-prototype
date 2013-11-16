@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -178,6 +179,16 @@ namespace TestGame1
 		public static Point Plus (this Point a, Point b)
 		{
 			return new Point (a.X + b.X, a.Y + b.Y);
+		}
+
+		public static string Join (this string delimiter, List<int> list)
+		{
+			StringBuilder builder = new StringBuilder ();
+			foreach (int elem in list) {
+				// Append each int to the StringBuilder overload.
+				builder.Append (elem).Append (delimiter);
+			}
+			return builder.ToString ();
 		}
 	}
 

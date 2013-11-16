@@ -61,8 +61,8 @@ namespace TestGame1
 			for (int n = 0; n < lines.Count; n++) {
 				vertices [4 * n + 0].Color = Color.Black;
 				vertices [4 * n + 1].Color = Color.Black;
-				vertices [4 * n + 2].Color = lines.Color (n);
-				vertices [4 * n + 3].Color = lines.Color (n);
+				vertices [4 * n + 2].Color = Color.Black;
+				vertices [4 * n + 3].Color = Color.Black;
 			}
 			graphics.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, lines.Count * 2); 
 		}

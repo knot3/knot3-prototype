@@ -110,7 +110,7 @@ namespace TestGame1
 			}
 			height += 20;
 			DrawString ("Distance: ", width1, height, Color.White);
-			DrawString (world.SelectedObjectDistance, width2, height, Color.White);
+			DrawString (world.SelectedObjectDistance(), width2, height, Color.White);
 			height += 20;
 			DrawString ("FoV: ", width1, height, Color.White);
 			DrawString (camera.FoV, width2, height, Color.White);

@@ -184,13 +184,8 @@ namespace TestGame1
 			Rotation = Rotation;
 		}
 
-		public override void OnSelected ()
+		public override void OnSelected (GameTime gameTime)
 		{
-			try {
-				Lines.SelectedLine = Lines [Line];
-			} catch (ArgumentOutOfRangeException exp) {
-				Console.WriteLine (exp.ToString ());
-			}
 		}
 
 		public override void UpdateEffect (BasicEffect effect)
@@ -198,8 +193,8 @@ namespace TestGame1
 			if (world.SelectedObject == this) {
 				effect.FogEnabled = true;
 				effect.FogColor = Color.White.ToVector3 (); // For best results, ake this color whatever your background is.
-				effect.FogStart = world.SelectedObjectDistance - 100;
-				effect.FogEnd = world.SelectedObjectDistance + 200;
+				effect.FogStart = world.SelectedObjectDistance () - 100;
+				effect.FogEnd = world.SelectedObjectDistance () + 200;
 			} else {
 				effect.FogEnabled = false;
 			}
@@ -221,14 +216,37 @@ namespace TestGame1
 		{
 			// check whether this object is selected
 			if (IsSelected () == true) {
+
+				// if the left mouse button is pressed, select the edge
+				if (Input.MouseState.IsLeftClick (gameTime)) {
+					try {
+						if (Keys.LeftControl.IsHeldDown ()) {
+							List<int> selection = Lines.SelectedLines;
+							selection.Add (Lines [Line]);
+							Lines.SelectedLines = selection;
+						} else if (Keys.LeftShift.IsHeldDown ()) {
+							List<int> selection = Lines.SelectedLines;
+							selection.Add (Lines [Line]);
+							Lines.SelectedLines = selection;
+						} else {
+							Lines.SelectedLines = new List<int> (){Lines [Line]};
+						}
+					} catch (ArgumentOutOfRangeException exp) {
+						Console.WriteLine (exp.ToString ());
+					}
+				}
+
 				// change color?
 				if (Keys.C.IsDown ()) {
 					Line.Color = Node.RandomColor ();
 				}
+				if (Input.MouseState.IsLeftDoubleClick (gameTime)) {
+				}
+
 				// is SelectedObjectMove the current input action?
 				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					if (previousMousePosition == Vector3.Zero) {
-						previousMousePosition = device.Viewport.Unproject (new Vector3 (input.MouseState.ToVector2 (), 1f),
+						previousMousePosition = device.Viewport.Unproject (new Vector3 (Input.MouseState.ToVector2 (), 1f),
 								camera.ProjectionMatrix, camera.ViewMatrix, Matrix.Identity);
 					}
 					Move ();
@@ -240,13 +258,13 @@ namespace TestGame1
 
 		private void Move ()
 		{
-			Vector3 currentMousePosition = device.Viewport.Unproject (new Vector3 (input.MouseState.ToVector2 (), 1f),
+			Vector3 currentMousePosition = device.Viewport.Unproject (new Vector3 (Input.MouseState.ToVector2 (), 1f),
 								camera.ProjectionMatrix, camera.ViewMatrix, Matrix.Identity);
 
 			Vector3 mouseMove = currentMousePosition - previousMousePosition;
 			Console.WriteLine ("mouseMove=" + mouseMove);
 			Vector3 direction3D = mouseMove.PrimaryDirection ();
-			if (direction3D != Vector3.Zero && mouseMove.Length ().Abs () > 10) {
+			if (direction3D != Vector3.Zero && mouseMove.Length ().Abs () > 30) {
 				try {
 					Lines.InsertAt (Lines [Line], direction3D);
 				} catch (ArgumentOutOfRangeException exp) {

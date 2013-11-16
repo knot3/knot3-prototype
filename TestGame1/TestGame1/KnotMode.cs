@@ -66,7 +66,7 @@ namespace TestGame1
 
 			// input
 			input = new KnotModeInput (this);
-			input.SaveStates ();
+			input.SaveStates (null);
 
 			// overlay
 			overlay = new Overlay (this);
@@ -121,7 +121,7 @@ namespace TestGame1
 			input.Update (gameTime);
 			// world
 			world.Update (gameTime);
-			input.SaveStates ();
+			input.SaveStates (gameTime);
 			// overlay
 			overlay.Update (gameTime);
 			// pointer
@@ -142,26 +142,19 @@ namespace TestGame1
 			//	backColor = new Color (backColor.R, backColor.G, (byte)~backColor.B);
 			//}
 
-			// select lines
-			if (Keys.Y.IsDown () || Keys.NumPad1.IsDown ()) {
-				lines.SelectedLine -= 1;
-			} else if (Keys.X.IsDown () || Keys.NumPad3.IsDown ()) {
-				lines.SelectedLine += 1;
-			}
-
 			// move lines
 			if (Keys.NumPad8.IsDown ())
-				lines.InsertAt (lines.SelectedLine, Vector3.Up);
+				lines.InsertAt (lines.SelectedLines, Vector3.Up);
 			if (Keys.NumPad2.IsDown ())
-				lines.InsertAt (lines.SelectedLine, Vector3.Down);
+				lines.InsertAt (lines.SelectedLines, Vector3.Down);
 			if (Keys.NumPad4.IsDown ())
-				lines.InsertAt (lines.SelectedLine, Vector3.Left);
+				lines.InsertAt (lines.SelectedLines, Vector3.Left);
 			if (Keys.NumPad6.IsDown ())
-				lines.InsertAt (lines.SelectedLine, Vector3.Right);
+				lines.InsertAt (lines.SelectedLines, Vector3.Right);
 			if (Keys.NumPad7.IsDown ())
-				lines.InsertAt (lines.SelectedLine, Vector3.Forward);
+				lines.InsertAt (lines.SelectedLines, Vector3.Forward);
 			if (Keys.NumPad9.IsDown ())
-				lines.InsertAt (lines.SelectedLine, Vector3.Backward);
+				lines.InsertAt (lines.SelectedLines, Vector3.Backward);
 
 			// post processing effects
 			if (Keys.O.IsDown ())

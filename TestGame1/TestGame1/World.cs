@@ -20,18 +20,7 @@ namespace TestGame1
 		private List<GameObject> objects;
 		private GameObject _selectedObject;
 
-		public GameObject SelectedObject {
-			get { return _selectedObject; }
-			set {
-				if (_selectedObject != value) {
-					if (_selectedObject != null)
-						_selectedObject.OnUnselected ();
-					_selectedObject = value; 
-					if (_selectedObject != null)
-						_selectedObject.OnSelected ();
-				}
-			}
-		}
+		public GameObject SelectedObject { get { return _selectedObject; } }
 
 		// world data
 		private Vector3 position;
@@ -61,14 +50,26 @@ namespace TestGame1
 			);
 		}
 
-		public float SelectedObjectDistance {
-			get {
-				if (SelectedObject != null) {
-					Vector3 toTarget = SelectedObject.Center () - camera.Position;
-					return toTarget.Length ();
-				} else {
-					return 0;
+		public void SelectObject (GameObject obj, GameTime gameTime)
+		{
+			if (_selectedObject != obj) {
+				if (_selectedObject != null) {
+					_selectedObject.OnUnselected (gameTime);
 				}
+				_selectedObject = obj; 
+				if (_selectedObject != null) {
+					_selectedObject.OnSelected (gameTime);
+				}
+			}
+		}
+
+		public float SelectedObjectDistance ()
+		{
+			if (SelectedObject != null) {
+				Vector3 toTarget = SelectedObject.Center () - camera.Position;
+				return toTarget.Length ();
+			} else {
+				return 0;
 			}
 		}
 
@@ -121,7 +122,7 @@ namespace TestGame1
 				|| input.CurrentInputAction == InputAction.FreeMouse)) {
 				lastRayCheck = millis;
 
-				Ray ray = camera.GetMouseRay (input.MouseState.ToVector2 ());
+				Ray ray = camera.GetMouseRay (Input.MouseState.ToVector2 ());
 
 				GameObjectDistance nearest = null;
 				foreach (GameObject obj in objects) {
@@ -136,7 +137,7 @@ namespace TestGame1
 					}
 				}
 				if (nearest != null) {
-					SelectedObject = nearest.Object;
+					SelectObject(nearest.Object, gameTime);
 				}
 			}
 		}
@@ -195,7 +196,7 @@ namespace TestGame1
 
 		protected override Matrix WorldMatrix {
 			get {
-				UpdateWorldMatrix();
+				UpdateWorldMatrix ();
 				return _worldMatrix;
 			}
 		}
@@ -203,6 +204,8 @@ namespace TestGame1
 	
 	public class GameModel : GameObject
 	{
+		#region Properties
+
 		protected virtual Model Model { get; set; }
 
 		protected virtual float Scale { get; set; }
@@ -220,6 +223,10 @@ namespace TestGame1
 					* Matrix.CreateTranslation (Position);
 			}
 		}
+
+		#endregion Properties
+
+		#region Constructors
 
 		public GameModel (GameState state, string modelname, Vector3 position, float scale)
 			: base(state)
@@ -242,10 +249,15 @@ namespace TestGame1
 			Position = position;
 			ModelMeshes = Model.Meshes.ToArray ();
 		}
+		
+		#endregion Constructors
 
 		public virtual void UpdateEffect (BasicEffect effect)
 		{
 		}
+
+
+		#region Draw
 
 		public override void DrawObject (GameTime gameTime)
 		{
@@ -268,6 +280,10 @@ namespace TestGame1
 				mesh.Draw ();
 			}
 		}
+
+		#endregion Draw
+
+		#region Intersection
 
 		public override GameObjectDistance Intersects (Ray ray)
 		{
@@ -292,6 +308,8 @@ namespace TestGame1
 			}
 			return center / Scale + Position;
 		}
+		
+		#endregion Intersection
 	}
 
 	public abstract class GameObject : GameClass
@@ -308,6 +326,8 @@ namespace TestGame1
 			basicEffect = new BasicEffect (device);
 		}
 
+		#region Move
+
 		protected Plane CurrentGroundPlane ()
 		{
 			Plane groundPlane = new Plane (Position, Position + Vector3.Up,
@@ -318,7 +338,7 @@ namespace TestGame1
 
 		protected Ray CurrentMouseRay ()
 		{
-			Ray ray = camera.GetMouseRay (input.MouseState.ToVector2 ());
+			Ray ray = camera.GetMouseRay (Input.MouseState.ToVector2 ());
 			return ray;
 		}
 
@@ -351,6 +371,10 @@ namespace TestGame1
 			}
 		}
 
+		#endregion Move
+
+		#region Draw
+
 		public void Draw (GameTime gameTime)
 		{
 			basicEffect.World = camera.WorldMatrix;
@@ -360,6 +384,10 @@ namespace TestGame1
 		}
 
 		public abstract void DrawObject (GameTime gameTime);
+
+		#endregion Draw
+
+		#region Textures and Models
 
 		protected Texture2D LoadTexture (string name)
 		{
@@ -396,22 +424,32 @@ namespace TestGame1
 			return dummyTexture;
 		}
 
+		#endregion Textures and Models
+
+		#region Intersection
+
 		public abstract GameObjectDistance Intersects (Ray ray);
 
 		public abstract Vector3 Center ();
+
+		#endregion Intersection
+
+		#region Selection
 
 		public bool IsSelected ()
 		{
 			return world.SelectedObject == this;
 		}
 
-		public virtual void OnSelected ()
+		public virtual void OnSelected (GameTime gameTime)
 		{
 		}
 
-		public virtual void OnUnselected ()
+		public virtual void OnUnselected (GameTime gameTime)
 		{
 		}
+
+		#endregion Selection
 	}
 }
 

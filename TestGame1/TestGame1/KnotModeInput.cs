@@ -118,13 +118,13 @@ namespace TestGame1
 				// set position to default
 				camera.Position = camera.DefaultPosition;
 				// don't select a game object
-				world.SelectedObject = null;
+				world.SelectObject(null, gameTime);
 			}
 
 			// grab mouse movent
 			if (Keys.LeftAlt.IsDown ()) {
 				GrabMouseMovement = !GrabMouseMovement;
-				world.SelectedObject = null;
+				world.SelectObject(null, gameTime);
 			}
 
 			// switch WASD mode
@@ -225,11 +225,10 @@ namespace TestGame1
 			base.UpdateMouse (gameTime);
 		}
 
-		public override void SaveStates ()
+		public override void SaveStates (GameTime gameTime)
 		{
 			ResetMousePosition ();
-
-			base.SaveStates();
+			base.SaveStates(gameTime);
 		}
 
 		private void ResetMousePosition ()
