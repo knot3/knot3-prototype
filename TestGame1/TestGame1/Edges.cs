@@ -6,26 +6,33 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TestGame1
 {
-	
-
-	public class Line
+	public class Edge
 	{
-		public Node From { get; private set; }
+		public Node FromNode { get; private set; }
 
-		public Node To { get; private set; }
+		public Node ToNode { get; private set; }
 
-		public Line (Node from, Node to)
+		public Edge (Node from, Node to)
 		{
-			From = from;
-			To = to;
+			FromNode = from;
+			ToNode = to;
 		}
 
 		public Color Color {
-			get { return From.Color; }
-			set { From.Color = value; }
+			get { return FromNode.Color; }
+			set { FromNode.Color = value; }
 		}
 
-		public static bool operator == (Line a, Line b)
+		public string ID {
+			get { return FromNode.ID + "-" + ToNode.ID; }
+		}
+
+		public Vector3 Direction ()
+		{
+			return Vector3.Normalize (FromNode.Vector () - ToNode.Vector ());
+		}
+
+		public static bool operator == (Edge a, Edge b)
 		{
 			// If both are null, or both are same instance, return true.
 			if (System.Object.ReferenceEquals (a, b)) {
@@ -38,52 +45,85 @@ namespace TestGame1
 			}
 
 			// Return true if the fields match:
-			return a.From == b.From && a.To == b.To;
+			return a.FromNode == b.FromNode && a.ToNode == b.ToNode;
 		}
 
-		public static bool operator != (Line a, Line b)
+		public static bool operator != (Edge a, Edge b)
 		{
 			return !(a == b);
 		}
 		
 		public override bool Equals (object obj)
 		{
-			Line other = obj as Line;
-			return From == other.From && To == other.To;
+			Edge other = obj as Edge;
+			return FromNode == other.FromNode && ToNode == other.ToNode;
 		}
 
 		public override int GetHashCode ()
 		{
-			return From.GetHashCode () * 10 + To.GetHashCode ();
+			return FromNode.GetHashCode () * 10 + ToNode.GetHashCode ();
 		}
 	}
 
-	public class LineList
+	public class EdgeList
 	{
 		private NodeList Nodes;
 
 		public Action LinesChanged { get; set; }
 
-		public LineList (NodeList nodes)
+		public EdgeList (NodeList nodes)
 		{
 			Nodes = nodes;
 		}
 
-		public Line this [int i] {
+		public Edge this [int i] {
 			get {
-				return new Line (Nodes [i], Nodes [i + 1]);
+				return At (i);
 			}
 		}
 
-		public int this [Line line] {
+		public Edge At (int i)
+		{
+			return new Edge (Nodes [i], Nodes [i + 1]);
+		}
+
+		/*public Edge this [string id] {
 			get {
 				for (int i = 0; i < Nodes.Count; ++i) {
-					if (Nodes [i] == line.From && Nodes [i + 1] == line.To) {
-						return i;
+					Edge edge = new Edge (Nodes [i], Nodes [i + 1]);
+					if (edge.ID == id) {
+						return edge;
 					}
 				}
-				throw new ArgumentOutOfRangeException ("line does not exist!");
+				throw new ArgumentOutOfRangeException ("edge does not exist!");
 			}
+		}
+
+		/// <summary>
+		/// Return an identifier for the specified edge
+		/// </summary>
+		/// <param name='line'>
+		/// Line.
+		/// </param>
+		public string this [Edge edge] {
+			get {
+				for (int i = 0; i < Nodes.Count; ++i) {
+					if (Nodes [i] == edge.FromNode && Nodes [i + 1] == edge.ToNode) {
+						return edge.ID;
+					}
+				}
+				throw new ArgumentOutOfRangeException ("edge does not exist!");
+			}
+		}*/
+
+		public int IndexOf (Edge edge)
+		{
+			for (int i = 0; i < Nodes.Count; ++i) {
+				if (Nodes [i] == edge.FromNode && Nodes [i + 1] == edge.ToNode) {
+					return i;
+				}
+			}
+			throw new ArgumentOutOfRangeException ("edge does not exist!");
 		}
 
 		public int Count {
@@ -95,42 +135,51 @@ namespace TestGame1
 			}
 		}
 
-		private List<int> _SelectedLines = new List<int> ();
+		private List<Edge> _SelectedEdges = new List<Edge> ();
 
-		public List<int> SelectedLines {
+		public List<Edge> SelectedEdges {
 			set {
-				_SelectedLines = new List<int>();
-				foreach (int sel in value) {
-					_SelectedLines.Add ((Nodes.Count + sel) % Nodes.Count);
+				//_SelectedEdges = new List<int> ();
+				//foreach (Edge sel in value) {
+				//	_SelectedEdges.Add ((Nodes.Count + sel) % Nodes.Count);
+				//}
+				_SelectedEdges = value;
+				Console.Write ("selected lines: ");
+				foreach (Edge edge in _SelectedEdges) {
+					Console.Write (edge.ID + " ");
 				}
-				Console.WriteLine ("selected lines: " + " ".Join(_SelectedLines));
+				Console.WriteLine ();
 				Nodes.Print ();
 			}
 			get {
-				return _SelectedLines;
+				return _SelectedEdges;
 			}
 		}
 
-		public bool InsertAt (List<int> i, Vector3 direction)
+		public bool InsertAt (List<Edge> selected, Vector3 direction)
 		{
-			if (i.Count == 1) {
-				return InsertAt (i [0], direction);
+			if (selected.Count == 1) {
+				return InsertAt (selected [0], direction);
 			}
 			return false;
 		}
 
-		public bool InsertAt (int i, Vector3 direction)
+		public bool InsertAt (Edge i, Vector3 direction)
 		{
 			bool successful = false;
 			if (direction != Vector3.Zero) {
-				Console.WriteLine ("InsertAt: selected=" + i + ", direction=" + direction);
+				Console.WriteLine ("InsertAt: selected=" + IndexOf(i) + ", direction=" + direction);
 				if (Nodes.Count >= 2) {
-					Node a = Nodes [i];
-					Node b = Nodes [i + 1];
-					Vector3 directionAB = Vector3.Normalize (a.Vector () - b.Vector ());
+					Node a = i.FromNode;
+					Node b = i.ToNode;
+					Vector3 directionAB = i.Direction ();
 					if (directionAB != direction && directionAB != -direction) {
-						Nodes.InsertAt (i + 1, new Node[]{ a + direction, b + direction });
-						SelectedLines = new List<int> (){i + 1};
+						Nodes.InsertAt (IndexOf (i) + 1, new Node[] {
+							a + direction,
+							b + direction
+						}
+						);
+						////SelectedEdges = new List<Edge> (){this[IndexOf (i)  + 1]};
 						successful = true;
 					}
 					Nodes.Print ();
@@ -166,21 +215,21 @@ namespace TestGame1
 			while (!done) {
 				done = true;
 				for (int i = 0; i < Nodes.Count; ++i) {
-					if (Nodes [i] == Nodes [i + 2] && Nodes.Count >= 4) {
-						for (int j = 0; j < SelectedLines.Count; ++j) {
-							if (SelectedLines [j] > i)
-								SelectedLines [j] -= 2;
-						}
+					if (Nodes [i].Vector() == Nodes [i + 2].Vector() && Nodes.Count >= 4) {
+						////for (int j = 0; j < SelectedEdges.Count; ++j) {
+						////	if (IndexOf(SelectedEdges [j]) > i)
+						////		SelectedEdges [j] -= 2;
+						////}
 						Nodes.RemoveAt (new int[]{i + 2, i + 1});
 						done = false;
 						successful = true;
 						break;
 					}
-					if (Nodes [i] == Nodes [i + 1] && Nodes.Count >= 3) {
-						for (int j = 0; j < SelectedLines.Count; ++j) {
-							if (SelectedLines [j] > i)
-								SelectedLines [j] -= 1;
-						}
+					if (Nodes [i].Vector() == Nodes [i + 1].Vector() && Nodes.Count >= 3) {
+						////for (int j = 0; j < SelectedLines.Count; ++j) {
+						////	if (SelectedLines [j] > i)
+						////		SelectedLines [j] -= 1;
+						////}
 						Nodes.RemoveAt (new int[]{i + 1});
 						done = false;
 						successful = true;

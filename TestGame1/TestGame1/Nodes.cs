@@ -18,7 +18,7 @@ namespace TestGame1
 
 		public int ID { get; private set; }
 
-		public static int LastID = 0;
+		private static List<int> UsedIDs = new List<int> ();
 
 		public Node (int x, int y, int z)
 		{
@@ -26,7 +26,10 @@ namespace TestGame1
 			Y = y;
 			Z = z;
 			Color = DefaultColor;
-			ID = ++LastID;
+			do {
+				ID = r.Next () % 10000;
+			} while (UsedIDs.Contains(ID));
+			UsedIDs.Add (ID);
 		}
 
 		public static int Scale { get; set; }
@@ -59,7 +62,7 @@ namespace TestGame1
 			}
 
 			// Return true if the fields match:
-			return a.X == b.X && a.Y == b.Y && a.Z == b.Z;
+			return a.ID == b.ID; //a.X == b.X && a.Y == b.Y && a.Z == b.Z;
 		}
 
 		public static bool operator != (Node a, Node b)
@@ -70,7 +73,7 @@ namespace TestGame1
 		public override bool Equals (object obj)
 		{
 			Node other = obj as Node;
-			return X == other.X && Y == other.Y && Z == other.Z;
+			return ID == other.ID; //X == other.X && Y == other.Y && Z == other.Z;
 		}
 
 		public override int GetHashCode ()
@@ -79,11 +82,16 @@ namespace TestGame1
 		}
 		
 		private static Random r = new Random ();
+		public static List<Color> Colors = new List<Color> (){
+			Color.Chartreuse, Color.Coral, Color.DeepPink, Color.ForestGreen,
+			Color.Gold, Color.MidnightBlue, Color.MediumSpringGreen, Color.Teal
+		};
 		public static Color DefaultColor = RandomColor ();
 
 		public static Color RandomColor ()
 		{
-			return new Color ((float)r.NextDouble (), (float)r.NextDouble (), (float)r.NextDouble ());
+			return Colors[r.Next()%Colors.Count];
+			// new Color ((float)r.NextDouble (), (float)r.NextDouble (), (float)r.NextDouble ());
 		}
 	}
 
@@ -103,6 +111,16 @@ namespace TestGame1
 					i += list.Count;
 				}
 				list [i % list.Count] = value;
+			}
+		}
+
+		public int IndexOf (Node node)
+		{
+			int index = list.IndexOf (node);
+			if (index >= 0) {
+				return index;
+			} else {
+				throw new ArgumentOutOfRangeException ("node " + node + " does not exist!");
 			}
 		}
 

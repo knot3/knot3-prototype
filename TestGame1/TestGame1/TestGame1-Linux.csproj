@@ -69,8 +69,8 @@
     <Compile Include="Mono.cs" />
     <Compile Include="PostProcessing.cs" />
     <Compile Include="BlurEffect.cs" />
-    <Compile Include="Knots.cs" />
     <Compile Include="Edges.cs" />
+    <Compile Include="Nodes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

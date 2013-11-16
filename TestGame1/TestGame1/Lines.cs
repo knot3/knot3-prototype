@@ -27,14 +27,14 @@ namespace TestGame1
 		/// <param name='gameTime'>
 		/// Game time.
 		/// </param>
-		public void Draw (LineList lines, GameTime gameTime)
+		public void Draw (EdgeList edges, GameTime gameTime)
 		{
-			if (lines.Count > 0) {
-				DrawRoundedLines (lines);
+			if (edges.Count > 0) {
+				DrawRoundedLines (edges);
 			}
 		}
 
-		private void DrawRoundedLines (LineList lines)
+		private void DrawRoundedLines (EdgeList lines)
 		{
 			Vector3 offset = Vector3.Zero; //new Vector3 (10, 10, 10);
 
@@ -42,8 +42,8 @@ namespace TestGame1
 
 			Vector3 last = new Vector3 (0, 0, 0);
 			for (int n = 0; n < lines.Count; n++) {
-				Vector3 p1 = lines [n].From.Vector () + offset;
-				Vector3 p2 = lines [n].To.Vector () + offset;
+				Vector3 p1 = lines [n].FromNode.Vector () + offset;
+				Vector3 p2 = lines [n].ToNode.Vector () + offset;
 
 				var diff = p1 - p2;
 				diff.Normalize ();

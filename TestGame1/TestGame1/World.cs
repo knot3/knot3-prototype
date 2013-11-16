@@ -252,7 +252,7 @@ namespace TestGame1
 		
 		#endregion Constructors
 
-		public virtual void UpdateEffect (BasicEffect effect)
+		public virtual void UpdateEffect (BasicEffect effect, GameTime gameTime)
 		{
 		}
 
@@ -269,7 +269,7 @@ namespace TestGame1
 					} else {
 						effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
 					}
-					UpdateEffect (effect);
+					UpdateEffect (effect, gameTime);
 					effect.World = Matrix.CreateScale (Scale)
 						* Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
 						* Matrix.CreateTranslation (Position);

@@ -32,7 +32,7 @@ namespace TestGame1
 		/// <param name='gameTime'>
 		/// Game time.
 		/// </param>
-		public void Update (LineList lines)
+		public void Update (EdgeList lines)
 		{
 			if (lines.Count > 0) {
 				pipes.UpdatePipes (lines);
@@ -75,18 +75,18 @@ namespace TestGame1
 			}
 		}
 
-		public void UpdatePipes (LineList lines)
+		public void UpdatePipes (EdgeList edges)
 		{
 			pipes.Clear ();
-			for (int n = 0; n < lines.Count; n++) {
-				PipeModel pipe = pipeCache [lines, lines [n], Position];
-				pipe.OnDataChange = () => UpdatePipes (lines);
+			for (int n = 0; n < edges.Count; n++) {
+				PipeModel pipe = pipeCache [edges, edges [n], Position];
+				pipe.OnDataChange = () => UpdatePipes (edges);
 				pipes.Add (pipe);
 			}
 
 			knots.Clear ();
-			for (int n = 0; n < lines.Count; n++) {
-				KnotModel knot = knotCache [lines, lines [n], lines [n + 1], Position];
+			for (int n = 0; n < edges.Count; n++) {
+				KnotModel knot = knotCache [edges, edges [n], edges [n + 1], Position];
 				// knot.OnDataChange = () => UpdatePipes(lines);
 				knots.Add (knot);
 			}
@@ -126,21 +126,21 @@ namespace TestGame1
 	
 	public class KnotModel : GameModel
 	{
-		private LineList Lines;
-		private Line LineA;
-		private Line LineB;
+		private EdgeList Edges;
+		private Edge EdgeA;
+		private Edge EdgeB;
 
-		public KnotModel (GameState state, LineList lines, Line lineA, Line lineB, Vector3 position, float scale)
+		public KnotModel (GameState state, EdgeList edges, Edge edgeA, Edge edgeB, Vector3 position, float scale)
 			: base(state, "knot1", position, scale)
 		{
-			Lines = lines;
-			LineA = lineA;
-			LineB = lineB;
+			Edges = edges;
+			EdgeA = edgeA;
+			EdgeB = edgeB;
 		}
 
 		public override void DrawObject (GameTime gameTime)
 		{
-			Vector3 mix = (LineA.Color.ToVector3 () + LineB.Color.ToVector3 ()) / 2;
+			Vector3 mix = (EdgeA.Color.ToVector3 () + EdgeB.Color.ToVector3 ()) / 2;
 			foreach (ModelMesh mesh in ModelMeshes) {
 				foreach (BasicEffect effect in mesh.Effects) {
 					effect.DiffuseColor = mix;
@@ -152,18 +152,18 @@ namespace TestGame1
 	
 	public class PipeModel : GameModel
 	{
-		private LineList Lines;
-		private Line Line;
+		private EdgeList Edges;
+		private Edge Edge;
 		private Vector3 PosFrom;
 		private Vector3 PosTo;
 		private Vector3 Direction;
 		public Action OnDataChange = () => {};
 
-		public PipeModel (GameState state, LineList lines, Line line, Vector3 posFrom, Vector3 posTo, float scale)
+		public PipeModel (GameState state, EdgeList edges, Edge edge, Vector3 posFrom, Vector3 posTo, float scale)
 			: base(state, "pipe1", posFrom + (posTo-posFrom)/2, scale)
 		{
-			Lines = lines;
-			Line = line;
+			Edges = edges;
+			Edge = edge;
 			PosFrom = posFrom;
 			PosTo = posTo;
 
@@ -188,13 +188,25 @@ namespace TestGame1
 		{
 		}
 
-		public override void UpdateEffect (BasicEffect effect)
+		public override void UpdateEffect (BasicEffect effect, GameTime gameTime)
 		{
+			float distance = (Center () - camera.Position).Length ();
 			if (world.SelectedObject == this) {
 				effect.FogEnabled = true;
+				float fogIntensity = (gameTime.TotalGameTime.Milliseconds % 1000 - 500) / 5;
+				if (fogIntensity < 0)
+					fogIntensity = 0 - fogIntensity;
 				effect.FogColor = Color.White.ToVector3 (); // For best results, ake this color whatever your background is.
-				effect.FogStart = world.SelectedObjectDistance () - 100;
-				effect.FogEnd = world.SelectedObjectDistance () + 200;
+				effect.FogStart = distance - 100 - fogIntensity;
+				effect.FogEnd = distance + 200 - fogIntensity;
+			} else if (Edges.SelectedEdges.Contains (Edge)) {
+				effect.FogEnabled = false;
+				float fogIntensity = (gameTime.TotalGameTime.Milliseconds % 1000 - 500) / 5;
+				if (fogIntensity < 0)
+					fogIntensity = 0 - fogIntensity;
+				effect.FogColor = Color.White.ToVector3 (); // For best results, ake this color whatever your background is.
+				effect.FogStart = distance - 100 - 100;
+				effect.FogEnd = distance + 200 - 100;
 			} else {
 				effect.FogEnabled = false;
 			}
@@ -204,7 +216,11 @@ namespace TestGame1
 		{
 			foreach (ModelMesh mesh in ModelMeshes) {
 				foreach (BasicEffect effect in mesh.Effects) {
-					effect.DiffuseColor = Line.Color.ToVector3 ();
+					if (Edges.SelectedEdges.Contains (Edge)) {
+						effect.DiffuseColor = Color.White.ToVector3();
+					} else {
+						effect.DiffuseColor = Edge.Color.ToVector3 ();
+					}
 				}
 			}
 			base.DrawObject (gameTime);
@@ -221,15 +237,15 @@ namespace TestGame1
 				if (Input.MouseState.IsLeftClick (gameTime)) {
 					try {
 						if (Keys.LeftControl.IsHeldDown ()) {
-							List<int> selection = Lines.SelectedLines;
-							selection.Add (Lines [Line]);
-							Lines.SelectedLines = selection;
+							List<Edge> selection = Edges.SelectedEdges;
+							selection.Add (Edge);
+							Edges.SelectedEdges = selection;
 						} else if (Keys.LeftShift.IsHeldDown ()) {
-							List<int> selection = Lines.SelectedLines;
-							selection.Add (Lines [Line]);
-							Lines.SelectedLines = selection;
+							List<Edge> selection = Edges.SelectedEdges;
+							selection.Add (Edge);
+							Edges.SelectedEdges = selection;
 						} else {
-							Lines.SelectedLines = new List<int> (){Lines [Line]};
+							Edges.SelectedEdges = new List<Edge> (){Edge};
 						}
 					} catch (ArgumentOutOfRangeException exp) {
 						Console.WriteLine (exp.ToString ());
@@ -238,7 +254,7 @@ namespace TestGame1
 
 				// change color?
 				if (Keys.C.IsDown ()) {
-					Line.Color = Node.RandomColor ();
+					Edge.Color = Node.RandomColor ();
 				}
 				if (Input.MouseState.IsLeftDoubleClick (gameTime)) {
 				}
@@ -266,7 +282,7 @@ namespace TestGame1
 			Vector3 direction3D = mouseMove.PrimaryDirection ();
 			if (direction3D != Vector3.Zero && mouseMove.Length ().Abs () > 30) {
 				try {
-					Lines.InsertAt (Lines [Line], direction3D);
+					Edges.InsertAt (Edges.SelectedEdges, direction3D);
 				} catch (ArgumentOutOfRangeException exp) {
 					Console.WriteLine (exp.ToString ());
 				}
@@ -293,23 +309,23 @@ namespace TestGame1
 	public class PipeModelCache : GameClass
 	{
 		// cache
-		private Dictionary<Line, PipeModel> pipeCache = new Dictionary<Line, PipeModel> ();
+		private Dictionary<Edge, PipeModel> pipeCache = new Dictionary<Edge, PipeModel> ();
 
 		public PipeModelCache (GameState state)
 			: base(state)
 		{
 		}
 
-		public PipeModel this [LineList lines, Line line, Vector3 offset] {
+		public PipeModel this [EdgeList edges, Edge edge, Vector3 offset] {
 			get {
-				if (pipeCache.ContainsKey (line)) {
-					return pipeCache [line];
+				if (pipeCache.ContainsKey (edge)) {
+					return pipeCache [edge];
 				} else {
-					Vector3 p1 = line.From.Vector () + offset;
-					Vector3 p2 = line.To.Vector () + offset;
+					Vector3 p1 = edge.FromNode.Vector () + offset;
+					Vector3 p2 = edge.ToNode.Vector () + offset;
 
-					PipeModel pipe = new PipeModel (state, lines, line, p1, p2, 10f);
-					pipeCache [line] = pipe;
+					PipeModel pipe = new PipeModel (state, edges, edge, p1, p2, 10f);
+					pipeCache [edge] = pipe;
 					return pipe;
 				}
 			}
@@ -319,20 +335,20 @@ namespace TestGame1
 	public class KnotModelCache : GameClass
 	{
 		// cache
-		private Dictionary<Line, KnotModel> knotCache = new Dictionary<Line, KnotModel> ();
+		private Dictionary<Edge, KnotModel> knotCache = new Dictionary<Edge, KnotModel> ();
 
 		public KnotModelCache (GameState state)
 			: base(state)
 		{
 		}
 
-		public KnotModel this [LineList lines, Line lineA, Line lineB, Vector3 offset] {
+		public KnotModel this [EdgeList edges, Edge edgeA, Edge edgeB, Vector3 offset] {
 			get {
-				if (knotCache.ContainsKey (lineA)) {
-					return knotCache [lineA];
+				if (knotCache.ContainsKey (edgeA)) {
+					return knotCache [edgeA];
 				} else {
-					KnotModel knot = new KnotModel (state, lines, lineA, lineB, lineA.To.Vector (), 5f);
-					knotCache [lineA] = knot;
+					KnotModel knot = new KnotModel (state, edges, edgeA, edgeB, edgeA.ToNode.Vector (), 5f);
+					knotCache [edgeA] = knot;
 					return knot;
 				}
 			}
