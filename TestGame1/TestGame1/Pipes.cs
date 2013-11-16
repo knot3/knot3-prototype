@@ -199,22 +199,24 @@ namespace TestGame1
 		public override void UpdateEffect (BasicEffect effect, GameTime gameTime)
 		{
 			float distance = (Center () - camera.Position).Length ();
-			if (world.SelectedObject == this) {
+			if (Edges.SelectedEdges.Contains (Edge)) {
+				effect.FogEnabled = true;
+				float fogIntensity = ((int)gameTime.TotalGameTime.TotalMilliseconds % 2000 - 1000) / 10;
+				if (fogIntensity < 0)
+					fogIntensity = 0 - fogIntensity;
+				effect.FogColor = Color.White.ToVector3 ();
+				effect.FogStart = distance - 100 - fogIntensity;
+				effect.FogEnd = distance + 200 - fogIntensity;
+
+			} else if (world.SelectedObject == this) {
 				effect.FogEnabled = true;
 				float fogIntensity = (gameTime.TotalGameTime.Milliseconds % 1000 - 500) / 5;
 				if (fogIntensity < 0)
 					fogIntensity = 0 - fogIntensity;
-				effect.FogColor = Color.White.ToVector3 (); // For best results, ake this color whatever your background is.
-				effect.FogStart = distance - 100 - fogIntensity;
-				effect.FogEnd = distance + 200 - fogIntensity;
-			} else if (Edges.SelectedEdges.Contains (Edge)) {
-				effect.FogEnabled = false;
-				float fogIntensity = (gameTime.TotalGameTime.Milliseconds % 1000 - 500) / 5;
-				if (fogIntensity < 0)
-					fogIntensity = 0 - fogIntensity;
-				effect.FogColor = Color.White.ToVector3 (); // For best results, ake this color whatever your background is.
-				effect.FogStart = distance - 100 - 100;
-				effect.FogEnd = distance + 200 - 100;
+				effect.FogColor = Color.White.ToVector3 ();
+				effect.FogStart = distance - 100;
+				effect.FogEnd = distance + 200;
+
 			} else {
 				effect.FogEnabled = false;
 			}
@@ -226,6 +228,7 @@ namespace TestGame1
 				foreach (BasicEffect effect in mesh.Effects) {
 					if (Edges.SelectedEdges.Contains (Edge)) {
 						effect.DiffuseColor = Color.White.ToVector3 ();
+						effect.DiffuseColor = Edge.Color.ToVector3 ();
 					} else {
 						effect.DiffuseColor = Edge.Color.ToVector3 ();
 					}
@@ -239,7 +242,7 @@ namespace TestGame1
 
 		public override void Update (GameTime gameTime)
 		{
-			// check whether this object is selected
+			// check whether this object is hovered
 			if (IsSelected () == true) {
 
 				// if the left mouse button is pressed, select the edge
@@ -261,13 +264,6 @@ namespace TestGame1
 					}
 				}
 
-				// change color?
-				if (Keys.C.IsDown ()) {
-					Edge.Color = Node.RandomColor ();
-				}
-				if (Input.MouseState.IsLeftDoubleClick (gameTime)) {
-				}
-
 				// is SelectedObjectMove the current input action?
 				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					if (previousMousePosition == Vector3.Zero) {
@@ -277,6 +273,18 @@ namespace TestGame1
 					Move ();
 				} else {
 					previousMousePosition = Vector3.Zero;
+				}
+			}
+
+			// check whether this edge is one of the selected edges
+			if (Edges.SelectedEdges.Contains (Edge)) {
+				
+				// change color?
+				if (Keys.C.IsDown ()) {
+					Edge.Color = Node.RandomColor (gameTime);
+				}
+
+				if (Input.MouseState.IsLeftDoubleClick (gameTime)) {
 				}
 			}
 		}

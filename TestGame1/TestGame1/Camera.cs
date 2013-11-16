@@ -97,12 +97,11 @@ namespace TestGame1
 				return toTarget.Length ();
 			}
 			set {
-				Vector3 toTarget = Target - Position;
-				toTarget.Normalize ();
-				Position -= toTarget * (TargetDistance - value);
-
-				if (TargetDistance < 100) {
-					Position -= toTarget * (100 - TargetDistance);
+				Vector3 toPosition = Position - Target;
+				if (Math.Abs (value) > 300) {
+					Position = Target + toPosition * value / toPosition.Length ();
+				} else {
+					Position = Target + toPosition * 300 / toPosition.Length ();
 				}
 			}
 		}

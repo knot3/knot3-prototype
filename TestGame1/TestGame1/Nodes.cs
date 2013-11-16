@@ -93,6 +93,11 @@ namespace TestGame1
 			return Colors[r.Next()%Colors.Count];
 			// new Color ((float)r.NextDouble (), (float)r.NextDouble (), (float)r.NextDouble ());
 		}
+
+		public static Color RandomColor (GameTime gameTime)
+		{
+			return Colors[(int)gameTime.TotalGameTime.TotalSeconds%Colors.Count];
+		}
 	}
 
 	public class NodeList
