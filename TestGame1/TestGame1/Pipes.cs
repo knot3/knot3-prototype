@@ -80,7 +80,7 @@ namespace TestGame1
 			pipes.Clear ();
 			for (int n = 0; n < lines.Count; n++) {
 				PipeModel pipe = pipeCache [lines, lines [n], Position];
-				pipe.OnDataChange = () => UpdatePipes(lines);
+				pipe.OnDataChange = () => UpdatePipes (lines);
 				pipes.Add (pipe);
 			}
 
@@ -137,6 +137,17 @@ namespace TestGame1
 			LineA = lineA;
 			LineB = lineB;
 		}
+
+		public override void DrawObject (GameTime gameTime)
+		{
+			Vector3 mix = (LineA.Color.ToVector3 () + LineB.Color.ToVector3 ()) / 2;
+			foreach (ModelMesh mesh in ModelMeshes) {
+				foreach (BasicEffect effect in mesh.Effects) {
+					effect.DiffuseColor = mix;
+				}
+			}
+			base.DrawObject (gameTime);
+		}
 	}
 	
 	public class PipeModel : GameModel
@@ -160,14 +171,14 @@ namespace TestGame1
 			Direction.Normalize ();
 
 			if (Direction.Y == 1) {
-				Rotation += Angles3.FromDegrees(90, 0, 0);
+				Rotation += Angles3.FromDegrees (90, 0, 0);
 			} else if (Direction.Y == -1) {
-				Rotation += Angles3.FromDegrees(270, 0, 0);
+				Rotation += Angles3.FromDegrees (270, 0, 0);
 			}
 			if (Direction.X == 1) {
-				Rotation += Angles3.FromDegrees(0, 90, 0);
+				Rotation += Angles3.FromDegrees (0, 90, 0);
 			} else if (Direction.X == -1) {
-				Rotation += Angles3.FromDegrees(0, 270, 0);
+				Rotation += Angles3.FromDegrees (0, 270, 0);
 			}
 
 			Rotation = Rotation;
@@ -186,7 +197,7 @@ namespace TestGame1
 		{
 			if (world.SelectedObject == this) {
 				effect.FogEnabled = true;
-				effect.FogColor = Color.Chartreuse.ToVector3 (); // For best results, ake this color whatever your background is.
+				effect.FogColor = Color.White.ToVector3 (); // For best results, ake this color whatever your background is.
 				effect.FogStart = world.SelectedObjectDistance - 100;
 				effect.FogEnd = world.SelectedObjectDistance + 200;
 			} else {
@@ -196,6 +207,11 @@ namespace TestGame1
 
 		public override void DrawObject (GameTime gameTime)
 		{
+			foreach (ModelMesh mesh in ModelMeshes) {
+				foreach (BasicEffect effect in mesh.Effects) {
+					effect.DiffuseColor = Line.Color.ToVector3 ();
+				}
+			}
 			base.DrawObject (gameTime);
 		}
 
@@ -203,8 +219,13 @@ namespace TestGame1
 
 		public override void Update (GameTime gameTime)
 		{
-			// check whether is object is movable and whether it is selected
+			// check whether this object is selected
 			if (IsSelected () == true) {
+				// change color?
+				if (Keys.C.IsDown ()) {
+					System.Random r = new System.Random ();
+					Line.Color = new Color ((float)r.NextDouble (), (float)r.NextDouble (), (float)r.NextDouble ());
+				}
 				// is SelectedObjectMove the current input action?
 				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					if (previousMousePosition == Vector3.Zero) {

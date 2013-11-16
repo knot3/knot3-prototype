@@ -15,6 +15,8 @@ namespace TestGame1
 
 		public int Z { get; private set; }
 
+		public Color Color { get; set; }
+
 		public Node (int x, int y, int z)
 		{
 			X = x;
@@ -155,6 +157,11 @@ namespace TestGame1
 		{
 			From = from;
 			To = to;
+		}
+
+		public Color Color {
+			get { return From.Color; }
+			set { From.Color = value; }
 		}
 
 		public static bool operator == (Line a, Line b)
