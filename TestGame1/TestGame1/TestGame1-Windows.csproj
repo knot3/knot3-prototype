@@ -110,6 +110,7 @@
   <ItemGroup>
     <Compile Include="BlurEffect.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="Edges.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameClass.cs" />
     <Compile Include="GameState.cs" />
@@ -117,6 +118,9 @@
     <Compile Include="KnotMode.cs" />
     <Compile Include="KnotModeInput.cs" />
     <Compile Include="Lines.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="MenuButton.cs" />
+    <Compile Include="MenuScreen.cs" />
     <Compile Include="Mono.cs" />
     <Compile Include="Mouse.cs" />
     <Compile Include="Nodes.cs" />
