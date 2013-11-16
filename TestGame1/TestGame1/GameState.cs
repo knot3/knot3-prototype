@@ -28,9 +28,11 @@ namespace TestGame1
 
 		public World world { get; protected set; }
 
+		public GraphicsDeviceManager graphics { get { return game.Graphics; } }
+
 		public GraphicsDevice device { get { return game.GraphicsDevice; } }
 
-		public GraphicsDeviceManager graphics { get { return game.Graphics; } }
+		public Viewport viewport { get { return device.Viewport; } }
 
 		public ContentManager content { get { return game.Content; } }
 		

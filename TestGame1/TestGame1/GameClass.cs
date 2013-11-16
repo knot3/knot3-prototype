@@ -22,9 +22,11 @@ namespace TestGame1
 
 		protected GameState state { get; private set; }
 
+		protected GraphicsDeviceManager graphics { get { return state.graphics; } }
+
 		protected GraphicsDevice device { get { return state.device; } }
 
-		protected GraphicsDeviceManager graphics { get { return state.graphics; } }
+		protected Viewport viewport { get { return state.device.Viewport; } }
 
 		protected ContentManager content { get { return state.content; } }
 

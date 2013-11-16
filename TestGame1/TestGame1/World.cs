@@ -232,7 +232,7 @@ namespace TestGame1
 			: base(state)
 		{
 			// load test model
-			Model = LoadModel (modelname);
+			Model = LoadModel (content, modelname);
 			Scale = scale;
 			Rotation = Angles3.Zero;
 			Position = position;
@@ -390,7 +390,7 @@ namespace TestGame1
 
 		#region Textures and Models
 
-		protected Texture2D LoadTexture (string name)
+		public static Texture2D LoadTexture (ContentManager content, string name)
 		{
 			try {
 				return content.Load<Texture2D> (name);
@@ -402,7 +402,7 @@ namespace TestGame1
 
 		private static Dictionary<string, Model> modelCache = new Dictionary<string, Model> ();
 
-		protected Model LoadModel (string name)
+		public static Model LoadModel (ContentManager content, string name)
 		{
 			if (modelCache.ContainsKey (name)) {
 				return modelCache [name];

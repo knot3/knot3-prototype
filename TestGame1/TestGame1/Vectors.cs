@@ -153,7 +153,7 @@ namespace TestGame1
 
 		public static BoundingBox Scale (this BoundingBox box, float scale)
 		{
-			return new BoundingBox (box.Min*scale, box.Max*scale);
+			return new BoundingBox (box.Min * scale, box.Max * scale);
 		}
 
 		public static BoundingBox Translate (this BoundingBox box, Vector3 position)
@@ -200,6 +200,18 @@ namespace TestGame1
 				builder.Append (elem).Append (delimiter);
 			}
 			return builder.ToString ();
+		}
+
+		public static Vector2 Scale (this Vector2 v, Viewport viewport)
+		{
+			Vector2 max = viewport.ToVector2 ();
+			return new Vector2 ((v * max).X, (v * max).Y);
+		}
+
+		public static Rectangle Scale (this Rectangle rect, Viewport viewport)
+		{
+			Point max = viewport.ToVector2 ().ToPoint ();
+			return new Rectangle (rect.X * max.X / 1000, rect.Y * max.Y / 1000, rect.Width * max.X / 1000, rect.Height * max.Y / 1000);
 		}
 	}
 
