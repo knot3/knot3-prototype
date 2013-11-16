@@ -22,6 +22,7 @@ namespace TestGame1
 			X = x;
 			Y = y;
 			Z = z;
+			Color = DefaultColor;
 		}
 
 		public static int Scale { get; set; }
@@ -71,6 +72,14 @@ namespace TestGame1
 		public override int GetHashCode ()
 		{
 			return X * 10000 + Y * 100 + Z;
+		}
+		
+		private static Random r = new Random ();
+		public static Color DefaultColor = RandomColor ();
+
+		public static Color RandomColor ()
+		{
+			return new Color ((float)r.NextDouble (), (float)r.NextDouble (), (float)r.NextDouble ());
 		}
 	}
 

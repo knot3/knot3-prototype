@@ -223,8 +223,7 @@ namespace TestGame1
 			if (IsSelected () == true) {
 				// change color?
 				if (Keys.C.IsDown ()) {
-					System.Random r = new System.Random ();
-					Line.Color = new Color ((float)r.NextDouble (), (float)r.NextDouble (), (float)r.NextDouble ());
+					Line.Color = Node.RandomColor ();
 				}
 				// is SelectedObjectMove the current input action?
 				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
