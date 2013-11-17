@@ -61,8 +61,6 @@
     <Compile Include="GameClass.cs" />
     <Compile Include="StartScreen.cs" />
     <Compile Include="Textures.cs" />
-    <Compile Include="KnotMode.cs" />
-    <Compile Include="KnotModeInput.cs" />
     <Compile Include="StartScreenInput.cs" />
     <Compile Include="Mouse.cs" />
     <Compile Include="Shader.cs" />
@@ -74,6 +72,8 @@
     <Compile Include="Menu.cs" />
     <Compile Include="MenuButton.cs" />
     <Compile Include="MenuScreen.cs" />
+    <Compile Include="CreativeMode.cs" />
+    <Compile Include="CreativeModeInput.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

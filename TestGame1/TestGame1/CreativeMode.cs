@@ -13,12 +13,11 @@ using Microsoft.Xna.Framework.Media;
 
 namespace TestGame1
 {
-	public class KnotMode : GameState
+	public class CreativeMode : GameState
 	{
 		// graphics-related classes
 		public BasicEffect basicEffect;
-		public List<PostProcessing> postProcessing;
-		public int currentPostProcessing;
+		public List<PostProcessing> PostProcessingEffects;
 
 		// nodes
 		private NodeList nodes;
@@ -39,7 +38,7 @@ namespace TestGame1
 		/// <param name='game'>
 		/// Game.
 		/// </param>
-		public KnotMode (Game game)
+		public CreativeMode (Game game)
 			: base(game)
 		{
 		}
@@ -54,11 +53,11 @@ namespace TestGame1
 			basicEffect.VertexColorEnabled = true;
 
 			// post processing effects
-			postProcessing = new List<PostProcessing> ();
-			postProcessing.Add (new NoPostProcessing (this));
-			postProcessing.Add (new BlurEffect (this));
-			foreach (PostProcessing	pp in postProcessing) {
-				pp.LoadContent();
+			PostProcessingEffects = new List<PostProcessing> ();
+			PostProcessingEffects.Add (new NoPostProcessing (this));
+			PostProcessingEffects.Add (new BlurEffect (this));
+			foreach (PostProcessing	pp in PostProcessingEffects) {
+				pp.LoadContent ();
 			}
 
 			// camera
@@ -158,14 +157,14 @@ namespace TestGame1
 
 			// post processing effects
 			if (Keys.O.IsDown ())
-				currentPostProcessing++;
+				PostProcessing = PostProcessingEffects [(PostProcessingEffects.IndexOf (PostProcessing) + 1) % PostProcessingEffects.Count];
 
 			return this;
 		}
 
 		public override void Draw (GameTime gameTime)
 		{
-			postProcessing [currentPostProcessing % postProcessing.Count].Begin (gameTime);
+			PostProcessing.Begin (gameTime);
 
 			graphics.GraphicsDevice.Clear (backColor);
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
@@ -183,7 +182,7 @@ namespace TestGame1
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
 			camera.Draw (basicEffect, gameTime);
 
-			postProcessing [currentPostProcessing % postProcessing.Count].End (gameTime);
+			PostProcessing.End (gameTime);
 		}
 
 		public override void Unload ()

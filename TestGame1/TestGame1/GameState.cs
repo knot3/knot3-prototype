@@ -17,9 +17,13 @@ namespace TestGame1
 	{
 		protected Game game;
 
+		public PostProcessing PostProcessing { get; set; }
+
 		public GameState (Game game)
 		{
 			this.game = game;
+			this.PostProcessing = new NoPostProcessing (this);
+			this.PostProcessing.LoadContent();
 		}
 
 		public Input input { get; protected set; }
@@ -47,14 +51,14 @@ namespace TestGame1
 	
 	static class GameStates
 	{
-		public static KnotMode KnotMode;
+		public static CreativeMode CreativeMode;
 		public static StartScreen StartScreen;
 
 		public static void Initialize (Game game)
 		{
-			KnotMode = new KnotMode (game);
+			CreativeMode = new CreativeMode (game);
 			StartScreen = new StartScreen (game);
-			KnotMode.Initialize ();
+			CreativeMode.Initialize ();
 			StartScreen.Initialize ();
 		}
 	}

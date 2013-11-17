@@ -41,9 +41,9 @@ namespace TestGame1
 
 			// menu
 			menu.Initialize ();
-			menu.Add ("Creative", Keys.Space, () => NextGameState = GameStates.KnotMode,
+			menu.Add ("Creative", Keys.Space, () => NextGameState = GameStates.CreativeMode,
 			          0.700f, 0.250f, 0.960f, 0.380f, HorizontalAlignment.Center);
-			menu.Add ("Challenge", Keys.RightWindows, () => NextGameState = GameStates.KnotMode,
+			menu.Add ("Challenge", Keys.RightWindows, () => NextGameState = GameStates.CreativeMode,
 			          0.000f, 0.050f, 0.380f, 0.190f, HorizontalAlignment.Center);
 			menu.Add ("Options", Keys.O, () => game.Exit (),
 			          0.260f, 0.840f, 0.480f, 0.950f, HorizontalAlignment.Center);

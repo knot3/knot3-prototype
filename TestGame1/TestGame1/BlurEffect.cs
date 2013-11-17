@@ -39,7 +39,7 @@ namespace TestGame1
 			base.End (gameTime);
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (SpriteBatch spriteBatch, GameTime gameTime)
 		{
 			testEffect.CurrentTechnique = testEffect.Techniques ["BlurTest1"];
 			//testEffect.Parameters["World"].SetValue(camera.WorldMatrix);
@@ -48,6 +48,8 @@ namespace TestGame1
 			foreach (EffectPass pass in testEffect.CurrentTechnique.Passes) {
 				pass.Apply ();
 			}
+
+			spriteBatch.Draw (RenderTarget, Vector2.Zero, Color.White);
 		}
 	}
 }

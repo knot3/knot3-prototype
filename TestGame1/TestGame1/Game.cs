@@ -91,10 +91,19 @@ namespace TestGame1
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update (GameTime gameTime)
 		{
-			State = NextState;
+			// change game state?
+			if (State != NextState) {
+				NextState.PostProcessing = new FadeEffect(NextState, State);
+				NextState.PostProcessing.LoadContent();
+				State = NextState;
+			}
+
+			// global keyboard ans mouse input 
 			UpdateInput (gameTime);
-			// current game state
+
+			// set the next game state
 			NextState = State.Update (gameTime);
+
 			// base method
 			base.Update (gameTime);
 		}

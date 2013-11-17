@@ -1,23 +1,23 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TestGame1/MenuButton.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TestGame1/PostProcessing.cs">
     <Files>
       <File FileName="TestGame1/Input.cs" Line="138" Column="3" />
       <File FileName="TestGame1/Shader.cs" Line="34" Column="18" />
-      <File FileName="TestGame1/PostProcessing.cs" Line="17" Column="50" />
-      <File FileName="TestGame1/BlurEffect.cs" Line="22" Column="1" />
       <File FileName="TestGame1/Nodes.cs" Line="94" Column="48" />
       <File FileName="TestGame1/Pipes.cs" Line="283" Column="28" />
-      <File FileName="TestGame1/KnotMode.cs" Line="157" Column="40" />
-      <File FileName="TestGame1/KnotModeInput.cs" Line="205" Column="2" />
+      <File FileName="TestGame1/CreativeModeInput.cs" Line="205" Column="2" />
       <File FileName="TestGame1/Edges.cs" Line="175" Column="43" />
-      <File FileName="TestGame1/World.cs" Line="235" Column="32" />
       <File FileName="TestGame1/Camera.cs" Line="95" Column="9" />
-      <File FileName="TestGame1/StartScreen.cs" Line="41" Column="4" />
+      <File FileName="TestGame1/StartScreen.cs" Line="46" Column="91" />
       <File FileName="TestGame1/Menu.cs" Line="45" Column="101" />
       <File FileName="TestGame1/MenuButton.cs" Line="92" Column="1" />
-      <File FileName="TestGame1/MenuScreen.cs" Line="97" Column="53" />
+      <File FileName="TestGame1/MenuScreen.cs" Line="89" Column="22" />
       <File FileName="TestGame1/Vectors.cs" Line="207" Column="40" />
+      <File FileName="TestGame1/World.cs" Line="421" Column="64" />
+      <File FileName="TestGame1/PostProcessing.cs" Line="106" Column="69" />
+      <File FileName="TestGame1/GameState.cs" Line="27" Column="4" />
+      <File FileName="TestGame1/Game.cs" Line="90" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

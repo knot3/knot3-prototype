@@ -74,6 +74,8 @@ namespace TestGame1
 		
 		public override void Draw (GameTime gameTime)
 		{
+			PostProcessing.Begin (gameTime);
+
 			graphics.GraphicsDevice.Clear (backColor);
 
 			// subclass...
@@ -83,6 +85,8 @@ namespace TestGame1
 
 			// pointer
 			pointer.Draw (gameTime);
+
+			PostProcessing.End (gameTime);
 		}
 
 		public abstract void DrawMenu (GameTime gameTime);

@@ -115,8 +115,8 @@
     <Compile Include="GameClass.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="Input.cs" />
-    <Compile Include="KnotMode.cs" />
-    <Compile Include="KnotModeInput.cs" />
+    <Compile Include="CreativeMode.cs" />
+    <Compile Include="CreativeModeInput.cs" />
     <Compile Include="Lines.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MenuButton.cs" />

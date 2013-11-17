@@ -28,30 +28,24 @@ namespace TestGame1
 		public abstract void End (GameTime gameTime);
 	}
 
-	public class NoPostProcessing : PostProcessing
+	public class NoPostProcessing : RenderTargetPostProcessing
 	{
 		public NoPostProcessing (GameState state)
 			: base(state)
 		{
 		}
 
-		public override void LoadContent ()
+		public override void Draw (SpriteBatch spriteBatch, GameTime gameTime)
 		{
-		}
-
-		public override void Begin (GameTime gameTime)
-		{
-		}
-
-		public override void End (GameTime gameTime)
-		{
+			spriteBatch.Draw (RenderTarget, Vector2.Zero, Color.White);
 		}
 	}
 
 	public abstract class RenderTargetPostProcessing : PostProcessing
 	{
 		private Dictionary<Point, RenderTarget2D> renderTargets;
-		private RenderTarget2D renderTarget;
+
+		public RenderTarget2D RenderTarget { get; private set; }
 
 		public RenderTargetPostProcessing (GameState state)
 			: base(state)
@@ -71,8 +65,8 @@ namespace TestGame1
 				renderTargets [resolution] = new RenderTarget2D (device, resolution.X, resolution.Y,
                     false, SurfaceFormat.Color, DepthFormat.Depth24, 1, RenderTargetUsage.DiscardContents);
 			}
-			renderTarget = renderTargets [resolution];
-			device.SetRenderTarget (renderTarget);
+			RenderTarget = renderTargets [resolution];
+			device.SetRenderTarget (RenderTarget);
 		}
 
 		public override void End (GameTime gameTime)
@@ -82,18 +76,47 @@ namespace TestGame1
 				device.Clear (Color.Black);
 				//device.Textures[1] = renderTarget;
 				SpriteBatch spriteBatch = new SpriteBatch (device);
-				spriteBatch.Begin (SpriteSortMode.Immediate, null);
+				spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 
-				Draw (gameTime);
+				Draw (spriteBatch, gameTime);
 
-				spriteBatch.Draw (renderTarget, Vector2.Zero, Color.White); 
 				spriteBatch.End ();
 			} catch (NullReferenceException ex) {
 				Console.WriteLine (ex.ToString ());
 			}
 		}
 
-		public abstract void Draw (GameTime gameTime);
+		public abstract void Draw (SpriteBatch spriteBatch, GameTime gameTime);
+	}
+
+	public class FadeEffect : RenderTargetPostProcessing
+	{
+		private RenderTarget2D lastFrame;
+		private float alpha;
+
+		public FadeEffect (GameState state, GameState oldState)
+			: base(state)
+		{
+			if (oldState != null && oldState.PostProcessing is RenderTargetPostProcessing) {
+				lastFrame = (oldState.PostProcessing as RenderTargetPostProcessing).RenderTarget;
+				alpha = 1.0f;
+			}
+		}
+
+		public override void Draw (SpriteBatch spriteBatch, GameTime gameTime)
+		{
+			spriteBatch.Draw (RenderTarget, Vector2.Zero, Color.White * (1-alpha));
+
+			if (lastFrame != null) {
+				alpha -= 0.05f;
+				Console.WriteLine ("alpha=" + alpha);
+				spriteBatch.Draw (lastFrame, Vector2.Zero, new Rectangle (0, 0, viewport.Width, viewport.Height), Color.White * alpha);
+			}
+			if (alpha <= 0) {
+				lastFrame = null;
+				alpha = 0.0f;
+			}
+		}
 	}
 }
 
