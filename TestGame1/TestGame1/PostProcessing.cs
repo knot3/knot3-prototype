@@ -109,7 +109,7 @@ namespace TestGame1
 
 			if (lastFrame != null) {
 				alpha -= 0.05f;
-				Console.WriteLine ("alpha=" + alpha);
+				// Console.WriteLine ("alpha=" + alpha);
 				spriteBatch.Draw (lastFrame, Vector2.Zero, new Rectangle (0, 0, viewport.Width, viewport.Height), Color.White * alpha);
 			}
 			if (alpha <= 0) {

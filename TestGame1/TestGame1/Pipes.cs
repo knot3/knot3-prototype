@@ -188,7 +188,7 @@ namespace TestGame1
 			Bounds = new BoundingSphere[(int)(length / (Scale / 4))];
 			for (int offset = 0; offset < (int)(length / (Scale / 4)); ++offset) {
 				Bounds [offset] = new BoundingSphere (posFrom + Direction * offset * (Scale / 4), Scale);
-				Console.WriteLine ("sphere[" + offset + "]=" + Bounds [offset]);
+				//Console.WriteLine ("sphere[" + offset + "]=" + Bounds [offset]);
 			}
 		}
 
@@ -204,9 +204,9 @@ namespace TestGame1
 				float fogIntensity = ((int)gameTime.TotalGameTime.TotalMilliseconds % 2000 - 1000) / 10;
 				if (fogIntensity < 0)
 					fogIntensity = 0 - fogIntensity;
-				effect.FogColor = Color.White.ToVector3 ();
-				effect.FogStart = distance - 100 - fogIntensity;
-				effect.FogEnd = distance + 200 - fogIntensity;
+				effect.FogColor = Color.Black.ToVector3 ();
+				effect.FogStart = distance - 150 - fogIntensity;
+				effect.FogEnd = distance + 150 - fogIntensity;
 
 			} else if (world.SelectedObject == this) {
 				effect.FogEnabled = true;
@@ -250,29 +250,29 @@ namespace TestGame1
 					try {
 						// CTRL
 						if (Keys.LeftControl.IsHeldDown ()) {
+							Edges.SelectEdge (Edge, true);
+						}
+						// Shift
+						else if (Keys.LeftShift.IsHeldDown ()) {
 							List<Edge> selection = Edges.SelectedEdges;
-							selection.Add (Edge);
-							Edges.SelectedEdges = selection;
-							// Shift
-						} else if (Keys.LeftShift.IsHeldDown ()) {
-							List<Edge> selection = Edges.SelectedEdges;
-							if (selection.Count == 0) {
-								selection.Add (Edge);
-							} else {
+							if (selection.Count != 0) {
 								Edge last = selection [selection.Count - 1];
-								selection.AddRange(Edges.Interval(last, Edge));
-								selection.Add (Edge);
+								Edges.SelectEdges (Edges.Interval (last, Edge).ToArray (), true);
 							}
-							Edges.SelectedEdges = selection;
-							// mouse click only
-						} else {
-							Edges.SelectedEdges = new List<Edge> (){Edge};
+							Edges.SelectEdge (Edge, true);
+						}
+						// mouse click only
+						else {
+							Edges.SelectEdge (Edge, false);
 						}
 					} catch (ArgumentOutOfRangeException exp) {
 						Console.WriteLine (exp.ToString ());
 					}
 				}
+			}
 
+			// check whether this edge is one of the selected edges
+			if (IsSelected () == true) {
 				// is SelectedObjectMove the current input action?
 				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					if (previousMousePosition == Vector3.Zero) {
@@ -300,17 +300,23 @@ namespace TestGame1
 
 		private void Move ()
 		{
-			Vector3 currentMousePosition = device.Viewport.Unproject (new Vector3 (Input.MouseState.ToVector2 (), 1f),
-								camera.ProjectionMatrix, camera.ViewMatrix, Matrix.Identity);
-
+			Vector3 currentMousePosition = device.Viewport.Unproject (
+					new Vector3 (Input.MouseState.ToVector2 (), 1f),
+					camera.ProjectionMatrix, camera.ViewMatrix, Matrix.Identity
+			);
 			Vector3 mouseMove = currentMousePosition - previousMousePosition;
-			Console.WriteLine ("mouseMove=" + mouseMove);
-			Vector3 direction3D = mouseMove.PrimaryDirection ();
-			if (direction3D != Vector3.Zero && mouseMove.Length ().Abs () > 30) {
-				try {
-					Edges.InsertAt (Edges.SelectedEdges, direction3D);
-				} catch (ArgumentOutOfRangeException exp) {
-					Console.WriteLine (exp.ToString ());
+
+			if (mouseMove != Vector3.Zero) {
+				Console.WriteLine ("mouseMove=" + mouseMove);
+				Vector3 direction3D = mouseMove.PrimaryDirection ();
+				if (mouseMove.PrimaryVector ().Length ().Abs () > 50) {
+					try {
+						Edges.SelectEdge (Edge, true);
+						Edges.InsertAt (Edges.SelectedEdges, direction3D);
+						Edges.SelectEdge ();
+					} catch (ArgumentOutOfRangeException exp) {
+						Console.WriteLine (exp.ToString ());
+					}
 				}
 			}
 		}

@@ -82,26 +82,36 @@ namespace TestGame1
 			}
 		}
 
-		public static Vector2 PrimaryDirection (this Vector2 v)
+		public static Vector2 PrimaryVector (this Vector2 v)
 		{
 			if (v.X.Abs () > v.Y.Abs ())
-				return Vector2.Normalize (new Vector2 (v.X, 0));
+				return new Vector2 (v.X, 0);
 			else if (v.Y.Abs () > v.X.Abs ())
-				return Vector2.Normalize (new Vector2 (0, v.Y));
+				return new Vector2 (0, v.Y);
 			else
 				return Vector2.Zero;
 		}
 
-		public static Vector3 PrimaryDirection (this Vector3 v)
+		public static Vector3 PrimaryVector (this Vector3 v)
 		{
 			if (v.X.Abs () > v.Y.Abs () && v.X.Abs () > v.Z.Abs ())
-				return Vector3.Normalize (new Vector3 (v.X, 0, 0));
+				return new Vector3 (v.X, 0, 0);
 			else if (v.Y.Abs () > v.X.Abs () && v.Y.Abs () > v.Z.Abs ())
-				return Vector3.Normalize (new Vector3 (0, v.Y, 0));
+				return new Vector3 (0, v.Y, 0);
 			else if (v.Z.Abs () > v.Y.Abs () && v.Z.Abs () > v.X.Abs ())
-				return Vector3.Normalize (new Vector3 (0, 0, v.Z));
+				return new Vector3 (0, 0, v.Z);
 			else
 				return Vector3.Zero;
+		}
+
+		public static Vector2 PrimaryDirection (this Vector2 v)
+		{
+			return Vector2.Normalize (v.PrimaryVector ());
+		}
+
+		public static Vector3 PrimaryDirection (this Vector3 v)
+		{
+			return Vector3.Normalize (v.PrimaryVector ());
 		}
 
 		public static Vector3 PrimaryDirectionExcept (this Vector3 v, Vector3 wrongDirection)

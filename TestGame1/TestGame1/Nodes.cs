@@ -44,6 +44,11 @@ namespace TestGame1
 			return new Node (a.X + (int)b.X, a.Y + (int)b.Y, a.Z + (int)b.Z);
 		}
 
+		public static Vector3 operator - (Node a, Node b)
+		{
+			return new Vector3 (a.X - b.X, a.Y - b.Y, a.Z - b.Z);
+		}
+
 		public Vector3 Vector ()
 		{
 			return new Vector3 (X * Scale, Y * Scale, Z * Scale);
@@ -89,13 +94,18 @@ namespace TestGame1
 
 		public static Color RandomColor ()
 		{
-			return Colors[r.Next()%Colors.Count];
+			return Colors [r.Next () % Colors.Count];
 			// new Color ((float)r.NextDouble (), (float)r.NextDouble (), (float)r.NextDouble ());
 		}
 
 		public static Color RandomColor (GameTime gameTime)
 		{
-			return Colors[(int)gameTime.TotalGameTime.TotalSeconds%Colors.Count];
+			return Colors [(int)gameTime.TotalGameTime.TotalSeconds % Colors.Count];
+		}
+
+		public override string ToString ()
+		{
+			return "(" + X + "," + Y + "," + Z + ")";
 		}
 	}
 
@@ -170,15 +180,15 @@ namespace TestGame1
 			}
 		}
 
-		public void Print ()
+		public override string ToString ()
 		{
 			string str = "";
 			foreach (Node node in list) {
 				if (str.Length > 0)
 					str += ", ";
-				str += "(" + node.X + "," + node.Y + "," + node.Z + ")";
+				str += node;
 			}
-			Console.WriteLine (str);
+			return str;
 		}
 	}
 }

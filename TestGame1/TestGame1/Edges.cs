@@ -74,6 +74,7 @@ namespace TestGame1
 		public EdgeList (NodeList nodes)
 		{
 			Nodes = nodes;
+			SelectedEdges = new List<Edge> ();
 		}
 
 		public Edge this [int i] {
@@ -159,25 +160,35 @@ namespace TestGame1
 			}
 		}
 
-		private List<Edge> _SelectedEdges = new List<Edge> ();
+		public List<Edge> SelectedEdges { get; private set; }
 
-		public List<Edge> SelectedEdges {
-			set {
-				//_SelectedEdges = new List<int> ();
-				//foreach (Edge sel in value) {
-				//	_SelectedEdges.Add ((Nodes.Count + sel) % Nodes.Count);
-				//}
-				_SelectedEdges = value;
-				Console.Write ("selected lines: ");
-				foreach (Edge edge in _SelectedEdges) {
-					Console.Write (edge.ID + " ");
-				}
-				Console.WriteLine ();
-				Nodes.Print ();
+		public void SelectEdge (Edge selection, bool append = false)
+		{
+			if (!append)
+				SelectedEdges.Clear ();
+			SelectedEdges.Add (selection);
+		}
+
+		public void SelectEdges (Edge[] selection, bool append = false)
+		{
+			if (!append)
+				SelectedEdges.Clear ();
+			SelectedEdges.AddRange (selection);
+		}
+
+		public void SelectEdge ()
+		{
+			SelectedEdges .Clear ();
+		}
+
+		public void PrintSelectedEdges ()
+		{
+			Console.Write ("selected edges: ");
+			foreach (Edge edge in SelectedEdges) {
+				Console.Write (edge.ID + " ");
 			}
-			get {
-				return _SelectedEdges;
-			}
+			Console.WriteLine ();
+			Console.WriteLine ("nodes: " + Nodes);
 		}
 
 		public bool InsertAt (List<Edge> selected, Vector3 direction)
@@ -188,26 +199,46 @@ namespace TestGame1
 			return false;
 		}
 
-		public bool InsertAt (Edge i, Vector3 direction)
+		public bool InsertAt (Edge selection, Vector3 direction)
 		{
 			bool successful = false;
 			if (direction != Vector3.Zero) {
-				Console.WriteLine ("InsertAt: selected=" + IndexOf (i) + ", direction=" + direction);
+				Console.WriteLine ("InsertAt: selected=" + IndexOf (selection) + ", direction=" + direction);
 				if (Nodes.Count >= 2) {
-					Node a = i.FromNode;
-					Node b = i.ToNode;
-					Vector3 directionAB = i.Direction ();
+					Node a = selection.FromNode;
+					Node b = selection.ToNode;
+					Vector3 directionAB = selection.Direction ();
 					if (directionAB != direction && directionAB != -direction) {
-						Nodes.InsertAt (IndexOf (i) + 1, new Node[] {
+						Nodes.InsertAt (IndexOf (selection) + 1, new Node[] {
 							a + direction,
 							b + direction
 						}
 						);
 						////SelectedEdges = new List<Edge> (){this[IndexOf (i)  + 1]};
 						successful = true;
+
+					} else {
+						Console.WriteLine ("before: " + Nodes);
+						int fromIndex = IndexOf (selection) + 1;
+						int toIndex = -1;
+						for (int k = fromIndex; k < Nodes.Count+fromIndex-1; ++k) {
+							Vector3 directionK = this [k].Direction ();
+							if (directionK == -directionAB) {
+								Console.WriteLine ("Nodes[" + k + "] =" + Nodes [k] + " same direction");
+								toIndex = k;
+								break;
+							}
+						}
+						for (int k = fromIndex; k <= toIndex; ++k) {
+							Console.Write ("Nodes[" + k + "] =" + Nodes [k]);
+							Nodes [k] = Nodes [k] + direction;
+							Console.WriteLine ("=> Nodes[" + k + "] =" + Nodes [k]);
+						}
+						successful = true;
 					}
-					Nodes.Print ();
+					Console.WriteLine ("InsertAt => " + Nodes);
 					Compact ();
+					Console.WriteLine ("compact => " + Nodes);
 				} else {
 					Nodes.Add (new Node (0, 0, 0));
 					Nodes.Add (new Node (0, 0, 0) + direction);
@@ -239,21 +270,19 @@ namespace TestGame1
 			while (!done) {
 				done = true;
 				for (int i = 0; i < Nodes.Count; ++i) {
+					Vector3 edgeVector = Nodes [i + 1] - Nodes [i];
+					if (edgeVector.Length () > 1) {
+						Nodes.InsertAt (i + 1, PathTo (Nodes [i], Nodes [i + 1]));
+						done = false;
+						successful = true;
+					}
 					if (Nodes [i].Vector () == Nodes [i + 2].Vector () && Nodes.Count >= 4) {
-						////for (int j = 0; j < SelectedEdges.Count; ++j) {
-						////	if (IndexOf(SelectedEdges [j]) > i)
-						////		SelectedEdges [j] -= 2;
-						////}
 						Nodes.RemoveAt (new int[]{i + 2, i + 1});
 						done = false;
 						successful = true;
 						break;
 					}
 					if (Nodes [i].Vector () == Nodes [i + 1].Vector () && Nodes.Count >= 3) {
-						////for (int j = 0; j < SelectedLines.Count; ++j) {
-						////	if (SelectedLines [j] > i)
-						////		SelectedLines [j] -= 1;
-						////}
 						Nodes.RemoveAt (new int[]{i + 1});
 						done = false;
 						successful = true;
@@ -262,6 +291,28 @@ namespace TestGame1
 				}
 			}
 			return successful;
+		}
+
+		public Node[] PathTo (Node from, Node to)
+		{
+			List<Node> path = new List<Node> ();
+			Vector3 edge = Vector3.Zero;
+			Node current = from;
+			do {
+				edge = to - current;
+				Console.WriteLine ("from=" + from + ", to=" + to + ", edge=" + edge);
+				if (edge.X != 0) {
+					current = current + Vector3.Normalize (new Vector3 (edge.X, 0, 0));
+					path.Add (current);
+				} else if (edge.Y != 0) {
+					current = current + Vector3.Normalize (new Vector3 (0, edge.Y, 0));
+					path.Add (current);
+				} else if (edge.Z != 0) {
+					current = current + Vector3.Normalize (new Vector3 (0, 0, edge.Z));
+					path.Add (current);
+				}
+			} while (edge != Vector3.Zero);
+			return path.ToArray ();
 		}
 	}
 }
