@@ -21,17 +21,11 @@ namespace TestGame1
 		{
 		}
 
-		public virtual void LoadContent ()
-		{
-		}
+		public abstract void LoadContent ();
 
-		public virtual void Begin (GameTime gameTime)
-		{
-		}
+		public abstract void Begin (GameTime gameTime);
 
-		public virtual void End (GameTime gameTime)
-		{
-		}
+		public abstract void End (GameTime gameTime);
 	}
 
 	public class NoPostProcessing : PostProcessing
@@ -40,6 +34,66 @@ namespace TestGame1
 			: base(state)
 		{
 		}
+
+		public override void LoadContent ()
+		{
+		}
+
+		public override void Begin (GameTime gameTime)
+		{
+		}
+
+		public override void End (GameTime gameTime)
+		{
+		}
+	}
+
+	public abstract class RenderTargetPostProcessing : PostProcessing
+	{
+		private Dictionary<Point, RenderTarget2D> renderTargets;
+		private RenderTarget2D renderTarget;
+
+		public RenderTargetPostProcessing (GameState state)
+			: base(state)
+		{
+		}
+
+		public override void LoadContent ()
+		{
+			renderTargets = new Dictionary<Point, RenderTarget2D> ();
+		}
+
+		public override void Begin (GameTime gameTime)
+		{
+			PresentationParameters pp = device.PresentationParameters;
+			Point resolution = new Point (pp.BackBufferWidth, pp.BackBufferHeight);
+			if (!renderTargets.ContainsKey (resolution)) {
+				renderTargets [resolution] = new RenderTarget2D (device, resolution.X, resolution.Y,
+                    false, SurfaceFormat.Color, DepthFormat.Depth24, 1, RenderTargetUsage.DiscardContents);
+			}
+			renderTarget = renderTargets [resolution];
+			device.SetRenderTarget (renderTarget);
+		}
+
+		public override void End (GameTime gameTime)
+		{
+			try {
+				device.SetRenderTarget (null);
+				device.Clear (Color.Black);
+				//device.Textures[1] = renderTarget;
+				SpriteBatch spriteBatch = new SpriteBatch (device);
+				spriteBatch.Begin (SpriteSortMode.Immediate, null);
+
+				Draw (gameTime);
+
+				spriteBatch.Draw (renderTarget, Vector2.Zero, Color.White); 
+				spriteBatch.End ();
+			} catch (NullReferenceException ex) {
+				Console.WriteLine (ex.ToString ());
+			}
+		}
+
+		public abstract void Draw (GameTime gameTime);
 	}
 }
 
