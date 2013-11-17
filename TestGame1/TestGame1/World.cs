@@ -18,9 +18,10 @@ namespace TestGame1
 	{
 		// game objects
 		private List<GameObject> objects;
-		private GameObject _selectedObject;
 
-		public GameObject SelectedObject { get { return _selectedObject; } }
+		public GameObject SelectedObject { get; private set; }
+
+		private TexturedRectangle floor;
 
 		// world data
 		private Vector3 position;
@@ -45,20 +46,20 @@ namespace TestGame1
 			// objects.Add (rect);
 
 			// the floor
-			objects.Add (new TexturedRectangle (state, "floor", position + new Vector3 (size.X, 0, size.Z) / 2,
-				Vector3.Left, size.X, Vector3.Forward, size.Z)
-			);
+			floor = new TexturedRectangle (state, "floor", position + new Vector3 (size.X, 0, size.Z) / 2,
+				Vector3.Left, size.X, Vector3.Forward, size.Z);
+			objects.Add (floor);
 		}
 
 		public void SelectObject (GameObject obj, GameTime gameTime)
 		{
-			if (_selectedObject != obj) {
-				if (_selectedObject != null) {
-					_selectedObject.OnUnselected (gameTime);
+			if (SelectedObject != obj) {
+				if (SelectedObject != null) {
+					SelectedObject.OnUnselected (gameTime);
 				}
-				_selectedObject = obj; 
-				if (_selectedObject != null) {
-					_selectedObject.OnSelected (gameTime);
+				SelectedObject = obj; 
+				if (SelectedObject != null) {
+					SelectedObject.OnSelected (gameTime);
 				}
 			}
 		}
@@ -113,6 +114,9 @@ namespace TestGame1
 				obj.IsMovable = true;
 				objects.Add (obj);
 			}
+
+			// debug mode?
+			floor.IsVisible = Game.Debug;
 		}
 
 		public void UpdateMouseRay (GameTime gameTime)
@@ -126,13 +130,15 @@ namespace TestGame1
 
 				GameObjectDistance nearest = null;
 				foreach (GameObject obj in objects) {
-					GameObjectDistance intersection = obj.Intersects (ray);
-					if (intersection != null) {
-						//Console.WriteLine ("time=" + (int)gameTime.TotalGameTime.TotalMilliseconds +
-						//	", obj = " + obj + ", distance = " + MathHelper.Clamp ((float)distance, 0, 100000)
-						//);
-						if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
-							nearest = intersection;
+					if (obj.IsVisible) {
+						GameObjectDistance intersection = obj.Intersects (ray);
+						if (intersection != null) {
+							//Console.WriteLine ("time=" + (int)gameTime.TotalGameTime.TotalMilliseconds +
+							//	", obj = " + obj + ", distance = " + MathHelper.Clamp ((float)distance, 0, 100000)
+							//);
+							if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
+								nearest = intersection;
+							}
 						}
 					}
 				}
@@ -163,294 +169,6 @@ namespace TestGame1
 			}
 			base.Update (gameTime);
 		}
-	}
-	
-	public class CachedGameModel : GameModel
-	{
-		public CachedGameModel (GameState state, string modelname, Vector3 position, float scale)
-			: base(state, modelname, position, scale)
-		{
-		}
-
-		public CachedGameModel (GameState state, Model model, Vector3 position, float scale)
-			: base(state, model, position, scale)
-		{
-		}
-
-		private float _scale;
-		private Angles3 _rotation;
-		private Vector3 _position;
-		private Matrix _worldMatrix;
-
-		private void UpdateWorldMatrix ()
-		{
-			if (Scale != _scale || Rotation != _rotation || Position != _position) {
-				_worldMatrix = Matrix.CreateScale (Scale)
-					* Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
-					* Matrix.CreateTranslation (Position);
-				_scale = Scale;
-				_rotation = Rotation;
-				_position = Position;
-			}
-		}
-
-		protected override Matrix WorldMatrix {
-			get {
-				UpdateWorldMatrix ();
-				return _worldMatrix;
-			}
-		}
-	}
-	
-	public class GameModel : GameObject
-	{
-		#region Properties
-
-		protected virtual Model Model { get; set; }
-
-		protected virtual float Scale { get; set; }
-
-		protected virtual Angles3 Rotation { get; set; }
-
-		protected override Vector3 Position { get; set; }
-
-		protected ModelMesh[] ModelMeshes;
-
-		protected virtual Matrix WorldMatrix {
-			get {
-				return Matrix.CreateScale (Scale)
-					* Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
-					* Matrix.CreateTranslation (Position);
-			}
-		}
-
-		#endregion Properties
-
-		#region Constructors
-
-		public GameModel (GameState state, string modelname, Vector3 position, float scale)
-			: base(state)
-		{
-			// load test model
-			Model = LoadModel (content, modelname);
-			Scale = scale;
-			Rotation = Angles3.Zero;
-			Position = position;
-			ModelMeshes = Model.Meshes.ToArray ();
-		}
-
-		public GameModel (GameState state, Model model, Vector3 position, float scale)
-			: base(state)
-		{
-			// load test model
-			Model = model;
-			Scale = scale;
-			Rotation = Angles3.Zero;
-			Position = position;
-			ModelMeshes = Model.Meshes.ToArray ();
-		}
-		
-		#endregion Constructors
-
-		public virtual void UpdateEffect (BasicEffect effect, GameTime gameTime)
-		{
-		}
-
-
-		#region Draw
-
-		public override void DrawObject (GameTime gameTime)
-		{
-			// test:
-			foreach (ModelMesh mesh in ModelMeshes) {
-				foreach (BasicEffect effect in mesh.Effects) {
-					if (Keys.L.IsHeldDown ()) {
-						effect.LightingEnabled = false;
-					} else {
-						effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
-					}
-					UpdateEffect (effect, gameTime);
-					effect.World = Matrix.CreateScale (Scale)
-						* Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
-						* Matrix.CreateTranslation (Position);
-					effect.View = camera.ViewMatrix;
-					effect.Projection = camera.ProjectionMatrix;
-				}
-
-				mesh.Draw ();
-			}
-		}
-
-		#endregion Draw
-
-		#region Intersection
-
-		public override GameObjectDistance Intersects (Ray ray)
-		{
-			foreach (BoundingSphere _sphere in Model.Bounds()) {
-				BoundingSphere sphere = _sphere.Scale (Scale).Translate (Position);
-				float? distance = ray.Intersects (sphere);
-				if (distance != null) {
-					GameObjectDistance intersection = new GameObjectDistance () {
-						Object=this, Distance=distance.Value
-					};
-					return intersection;
-				}
-			}
-			return null;
-		}
-
-		public override Vector3 Center ()
-		{
-			Vector3 center = Vector3.Zero;
-			int count = Model.Meshes.Count;
-			foreach (ModelMesh mesh in Model.Meshes) {
-				center += mesh.BoundingSphere.Center / count;
-			}
-			return center / Scale + Position;
-		}
-		
-		#endregion Intersection
-	}
-
-	public abstract class GameObject : GameClass
-	{
-		protected BasicEffect basicEffect;
-
-		protected abstract Vector3 Position { get; set; }
-
-		public bool IsMovable { get; set; }
-
-		public GameObject (GameState state)
-			: base(state)
-		{
-			basicEffect = new BasicEffect (device);
-		}
-
-		#region Move
-
-		protected Plane CurrentGroundPlane ()
-		{
-			Plane groundPlane = new Plane (Position, Position + Vector3.Up,
-							Position + Vector3.Normalize (Vector3.Cross (Vector3.Up, Position - camera.Position)));
-			Console.WriteLine ("groundPlane=" + groundPlane);
-			return groundPlane;
-		}
-
-		protected Ray CurrentMouseRay ()
-		{
-			Ray ray = camera.GetMouseRay (Input.MouseState.ToVector2 ());
-			return ray;
-		}
-
-		protected Vector3? CurrentMousePosition (Ray ray, Plane groundPlane)
-		{
-			float? planeDistance = ray.Intersects (groundPlane);
-			float previousLength = (Position - camera.Position).Length ();
-			if (planeDistance.HasValue) {
-				Vector3 planePosition = ray.Position + ray.Direction * planeDistance.Value;
-				float currentLength = (planePosition - camera.Position).Length ();
-				return camera.Position + (planePosition - camera.Position) * previousLength / currentLength;
-			} else {
-				return null;
-			}
-		}
-
-		public virtual void Update (GameTime gameTime)
-		{
-			// check whether is object is movable and whether it is selected
-			if (IsMovable && world.SelectedObject == this) {
-				// is SelectedObjectMove the current input action?
-				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
-					Plane groundPlane = CurrentGroundPlane ();
-					Ray ray = CurrentMouseRay ();
-					Vector3? newPosition = CurrentMousePosition (ray, groundPlane);
-					if (newPosition.HasValue) {
-						Position = newPosition.Value;
-					}
-				}
-			}
-		}
-
-		#endregion Move
-
-		#region Draw
-
-		public void Draw (GameTime gameTime)
-		{
-			basicEffect.World = camera.WorldMatrix;
-			basicEffect.View = camera.ViewMatrix;
-			basicEffect.Projection = camera.ProjectionMatrix;
-			DrawObject (gameTime);
-		}
-
-		public abstract void DrawObject (GameTime gameTime);
-
-		#endregion Draw
-
-		#region Textures and Models
-
-		public static Texture2D LoadTexture (ContentManager content, string name)
-		{
-			try {
-				return content.Load<Texture2D> (name);
-			} catch (ContentLoadException ex) {
-				Console.WriteLine (ex.ToString ());
-				return null;
-			}
-		}
-
-		private static Dictionary<string, Model> modelCache = new Dictionary<string, Model> ();
-
-		public static Model LoadModel (ContentManager content, string name)
-		{
-			if (modelCache.ContainsKey (name)) {
-				return modelCache [name];
-			} else {
-				try {
-					Model model = content.Load<Model> (name);
-					modelCache [name] = model;
-					return model;
-				} catch (ContentLoadException ex) {
-					Console.WriteLine (ex.ToString ());
-					return null;
-				}
-			}
-		}
-
-		public static Texture2D DummyTexture (GraphicsDevice device, Color color)
-		{
-			Texture2D dummyTexture = new Texture2D (device, 1, 1);
-			dummyTexture.SetData (new Color[] { color });
-			return dummyTexture;
-		}
-
-		#endregion Textures and Models
-
-		#region Intersection
-
-		public abstract GameObjectDistance Intersects (Ray ray);
-
-		public abstract Vector3 Center ();
-
-		#endregion Intersection
-
-		#region Selection
-
-		public bool IsSelected ()
-		{
-			return world.SelectedObject == this;
-		}
-
-		public virtual void OnSelected (GameTime gameTime)
-		{
-		}
-
-		public virtual void OnUnselected (GameTime gameTime)
-		{
-		}
-
-		#endregion Selection
 	}
 }
 

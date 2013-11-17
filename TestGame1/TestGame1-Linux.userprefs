@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TestGame1/PostProcessing.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TestGame1/World.cs">
     <Files>
       <File FileName="TestGame1/Input.cs" Line="138" Column="3" />
       <File FileName="TestGame1/Shader.cs" Line="34" Column="18" />
@@ -15,9 +15,10 @@
       <File FileName="TestGame1/MenuScreen.cs" Line="89" Column="22" />
       <File FileName="TestGame1/Vectors.cs" Line="207" Column="40" />
       <File FileName="TestGame1/World.cs" Line="421" Column="64" />
-      <File FileName="TestGame1/PostProcessing.cs" Line="106" Column="69" />
+      <File FileName="TestGame1/PostProcessing.cs" Line="16" Column="2" />
       <File FileName="TestGame1/GameState.cs" Line="27" Column="4" />
       <File FileName="TestGame1/Game.cs" Line="90" Column="17" />
+      <File FileName="TestGame1/BlurEffect.cs" Line="52" Column="61" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

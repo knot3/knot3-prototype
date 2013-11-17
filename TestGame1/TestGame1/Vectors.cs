@@ -213,6 +213,14 @@ namespace TestGame1
 			Point max = viewport.ToVector2 ().ToPoint ();
 			return new Rectangle (rect.X * max.X / 1000, rect.Y * max.Y / 1000, rect.Width * max.X / 1000, rect.Height * max.Y / 1000);
 		}
+
+		public static void Swap<T> (ref T lhs, ref T rhs)
+		{
+			T temp;
+			temp = lhs;
+			lhs = rhs;
+			rhs = temp;
+		}
 	}
 
 	public struct Angles3 : IEquatable<Angles3>

@@ -114,6 +114,8 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameClass.cs" />
     <Compile Include="GameState.cs" />
+    <Compile Include="GameObject.cs" />
+    <Compile Include="GameModel.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="CreativeMode.cs" />
     <Compile Include="CreativeModeInput.cs" />

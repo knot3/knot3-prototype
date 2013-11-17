@@ -83,8 +83,7 @@ namespace TestGame1
 		
 		private static Random r = new Random ();
 		public static List<Color> Colors = new List<Color> (){
-			Color.Chartreuse, Color.Coral, Color.DeepPink, Color.ForestGreen,
-			Color.Gold, Color.MidnightBlue, Color.MediumSpringGreen, Color.Teal
+			Color.Red, Color.Green, Color.Blue, Color.Yellow, Color.Orange
 		};
 		public static Color DefaultColor = RandomColor ();
 

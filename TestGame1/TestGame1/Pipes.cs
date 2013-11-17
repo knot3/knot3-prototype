@@ -248,14 +248,23 @@ namespace TestGame1
 				// if the left mouse button is pressed, select the edge
 				if (Input.MouseState.IsLeftClick (gameTime)) {
 					try {
+						// CTRL
 						if (Keys.LeftControl.IsHeldDown ()) {
 							List<Edge> selection = Edges.SelectedEdges;
 							selection.Add (Edge);
 							Edges.SelectedEdges = selection;
+							// Shift
 						} else if (Keys.LeftShift.IsHeldDown ()) {
 							List<Edge> selection = Edges.SelectedEdges;
-							selection.Add (Edge);
+							if (selection.Count == 0) {
+								selection.Add (Edge);
+							} else {
+								Edge last = selection [selection.Count - 1];
+								selection.AddRange(Edges.Interval(last, Edge));
+								selection.Add (Edge);
+							}
 							Edges.SelectedEdges = selection;
+							// mouse click only
 						} else {
 							Edges.SelectedEdges = new List<Edge> (){Edge};
 						}

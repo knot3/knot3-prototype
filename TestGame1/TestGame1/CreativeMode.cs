@@ -23,9 +23,6 @@ namespace TestGame1
 		private NodeList nodes;
 		private EdgeList edges;
 
-		// colors, sizes, ...
-		private Color backColor = Color.CornflowerBlue;
-
 		// custom classes
 		private MousePointer pointer;
 		private Overlay overlay;
@@ -159,6 +156,10 @@ namespace TestGame1
 			if (Keys.O.IsDown ())
 				PostProcessing = PostProcessingEffects [(PostProcessingEffects.IndexOf (PostProcessing) + 1) % PostProcessingEffects.Count];
 
+			// toggle debug mode
+			if (Keys.RightControl.IsDown())
+				Game.Debug = !Game.Debug;
+
 			return this;
 		}
 
@@ -166,7 +167,7 @@ namespace TestGame1
 		{
 			PostProcessing.Begin (gameTime);
 
-			graphics.GraphicsDevice.Clear (backColor);
+			graphics.GraphicsDevice.Clear (Game.Debug ? Color.CornflowerBlue : Color.Black);
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
 
 			game.GraphicsDevice.BlendState = BlendState.Opaque;

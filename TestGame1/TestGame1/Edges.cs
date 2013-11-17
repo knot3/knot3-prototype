@@ -115,7 +115,7 @@ namespace TestGame1
 				throw new ArgumentOutOfRangeException ("edge does not exist!");
 			}
 		}*/
-
+		
 		public int IndexOf (Edge edge)
 		{
 			for (int i = 0; i < Nodes.Count; ++i) {
@@ -124,6 +124,30 @@ namespace TestGame1
 				}
 			}
 			throw new ArgumentOutOfRangeException ("edge does not exist!");
+		}
+		
+		public List<Edge> Interval (Edge a, Edge b)
+		{
+			int indexA = IndexOf (a);
+			int indexB = IndexOf (b);
+			int indexFirst = (int)MathHelper.Min (indexA, indexB);
+			int indexLast = (int)MathHelper.Max (indexA, indexB);
+			if (indexLast < indexFirst)
+				indexLast += Nodes.Count;
+			if (Nodes.Count - (indexLast - indexFirst) < (indexLast - indexFirst)) {
+				Console.WriteLine ("Nodes.Count - diff < diff");
+				VectorExtensions.Swap (ref indexLast, ref indexFirst);
+				if (indexLast < indexFirst)
+					indexLast += Nodes.Count;
+			}
+			List<Edge> interval = new List<Edge> ();
+			Console.Write ("Interval(" + indexFirst + "," + indexLast + ")=");
+			for (int i = indexFirst+1; i < indexLast; ++i) {
+				interval.Add (this [i]);
+				Console.Write (i);
+			}
+			Console.WriteLine ();
+			return interval;
 		}
 
 		public int Count {
@@ -168,7 +192,7 @@ namespace TestGame1
 		{
 			bool successful = false;
 			if (direction != Vector3.Zero) {
-				Console.WriteLine ("InsertAt: selected=" + IndexOf(i) + ", direction=" + direction);
+				Console.WriteLine ("InsertAt: selected=" + IndexOf (i) + ", direction=" + direction);
 				if (Nodes.Count >= 2) {
 					Node a = i.FromNode;
 					Node b = i.ToNode;
@@ -215,7 +239,7 @@ namespace TestGame1
 			while (!done) {
 				done = true;
 				for (int i = 0; i < Nodes.Count; ++i) {
-					if (Nodes [i].Vector() == Nodes [i + 2].Vector() && Nodes.Count >= 4) {
+					if (Nodes [i].Vector () == Nodes [i + 2].Vector () && Nodes.Count >= 4) {
 						////for (int j = 0; j < SelectedEdges.Count; ++j) {
 						////	if (IndexOf(SelectedEdges [j]) > i)
 						////		SelectedEdges [j] -= 2;
@@ -225,7 +249,7 @@ namespace TestGame1
 						successful = true;
 						break;
 					}
-					if (Nodes [i].Vector() == Nodes [i + 1].Vector() && Nodes.Count >= 3) {
+					if (Nodes [i].Vector () == Nodes [i + 1].Vector () && Nodes.Count >= 3) {
 						////for (int j = 0; j < SelectedLines.Count; ++j) {
 						////	if (SelectedLines [j] > i)
 						////		SelectedLines [j] -= 1;

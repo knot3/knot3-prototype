@@ -66,21 +66,23 @@ namespace TestGame1
 
 		private void DrawCoordinates (GameTime gameTime)
 		{
-			int length = 2000;
-			var vertices = new VertexPositionColor[6];
-			vertices [0].Position = new Vector3 (-length, 0, 0);
-			vertices [0].Color = Color.Green;
-			vertices [1].Position = new Vector3 (+length, 0, 0);
-			vertices [1].Color = Color.Green;
-			vertices [2].Position = new Vector3 (0, -length, 0);
-			vertices [2].Color = Color.Red;
-			vertices [3].Position = new Vector3 (0, +length, 0);
-			vertices [3].Color = Color.Red;
-			vertices [4].Position = new Vector3 (0, 0, -length);
-			vertices [4].Color = Color.Yellow;
-			vertices [5].Position = new Vector3 (0, 0, +length);
-			vertices [5].Color = Color.Yellow;
-			graphics.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3);
+			if (Game.Debug) {
+				int length = 2000;
+				var vertices = new VertexPositionColor[6];
+				vertices [0].Position = new Vector3 (-length, 0, 0);
+				vertices [0].Color = Color.Green;
+				vertices [1].Position = new Vector3 (+length, 0, 0);
+				vertices [1].Color = Color.Green;
+				vertices [2].Position = new Vector3 (0, -length, 0);
+				vertices [2].Color = Color.Red;
+				vertices [3].Position = new Vector3 (0, +length, 0);
+				vertices [3].Color = Color.Red;
+				vertices [4].Position = new Vector3 (0, 0, -length);
+				vertices [4].Color = Color.Yellow;
+				vertices [5].Position = new Vector3 (0, 0, +length);
+				vertices [5].Color = Color.Yellow;
+				graphics.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3);
+			}
 		}
 
 		private void DrawOverlay (GameTime gameTime)
@@ -90,9 +92,9 @@ namespace TestGame1
 			int height = 20;
 			int width1 = 20, width2 = 150, width3 = 210, width4 = 270;
 			DrawString ("Rotation: ", width1, height, Color.White);
-			DrawString (camera.RotationAngle.ToDegrees().X, width2, height, Color.Green);
-			DrawString (camera.RotationAngle.ToDegrees().Y, width3, height, Color.Red);
-			DrawString (camera.RotationAngle.ToDegrees().Z, width4, height, Color.Yellow);
+			DrawString (camera.RotationAngle.ToDegrees ().X, width2, height, Color.Green);
+			DrawString (camera.RotationAngle.ToDegrees ().Y, width3, height, Color.Red);
+			DrawString (camera.RotationAngle.ToDegrees ().Z, width4, height, Color.Yellow);
 			height += 20;
 			DrawString ("Camera Position: ", width1, height, Color.White);
 			DrawVectorCoordinates (camera.Position, width2, width3, width4, height);
@@ -110,7 +112,7 @@ namespace TestGame1
 			}
 			height += 20;
 			DrawString ("Distance: ", width1, height, Color.White);
-			DrawString (world.SelectedObjectDistance(), width2, height, Color.White);
+			DrawString (world.SelectedObjectDistance (), width2, height, Color.White);
 			height += 20;
 			DrawString ("FoV: ", width1, height, Color.White);
 			DrawString (camera.FoV, width2, height, Color.White);
