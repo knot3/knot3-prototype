@@ -8,29 +8,37 @@ namespace TestGame1
 {
 	public class Edge
 	{
-		public Node FromNode { get; private set; }
+		#region Properties
 
-		public Node ToNode { get; private set; }
+		public Vector3 Direction { get; private set; }
 
-		public Edge (Node from, Node to)
+		public Color Color { get; set; }
+
+		public int ID { get; private set; }
+
+		private static List<int> UsedIDs = new List<int> (); 
+
+		#endregion
+
+		#region Constructors
+
+		public Edge (int x, int y, int z)
 		{
-			FromNode = from;
-			ToNode = to;
+			Direction = new Vector3 (x, y, z);
+			Color = DefaultColor;
+			ID = RandomID ();
 		}
 
-		public Color Color {
-			get { return FromNode.Color; }
-			set { FromNode.Color = value; }
-		}
-
-		public string ID {
-			get { return FromNode.ID + "-" + ToNode.ID; }
-		}
-
-		public Vector3 Direction ()
+		public Edge (Vector3 v)
 		{
-			return Vector3.Normalize (FromNode.Vector () - ToNode.Vector ());
+			Direction = v.PrimaryDirection ();
+			Color = DefaultColor;
+			ID = RandomID ();
 		}
+
+		#endregion
+
+		#region Operators
 
 		public static bool operator == (Edge a, Edge b)
 		{
@@ -45,7 +53,7 @@ namespace TestGame1
 			}
 
 			// Return true if the fields match:
-			return a.FromNode == b.FromNode && a.ToNode == b.ToNode;
+			return a.ID == b.ID;
 		}
 
 		public static bool operator != (Edge a, Edge b)
@@ -56,75 +64,157 @@ namespace TestGame1
 		public override bool Equals (object obj)
 		{
 			Edge other = obj as Edge;
-			return FromNode == other.FromNode && ToNode == other.ToNode;
+			return this.ID == other.ID;
 		}
 
 		public override int GetHashCode ()
 		{
-			return FromNode.GetHashCode () * 10 + ToNode.GetHashCode ();
+			return ID;
 		}
+
+		public override string ToString ()
+		{
+			return Direction.Print ();
+		}
+
+		#endregion
+
+		#region Helper Methods
+
+		private static Random r = new Random ();
+
+		private int RandomID ()
+		{
+			int id;
+			do {
+				id = r.Next () % 10000;
+			} while (UsedIDs.Contains(id));
+			UsedIDs.Add (id);
+			return id;
+		}
+
+		public static Color RandomColor ()
+		{
+			return Colors [r.Next () % Colors.Count];
+		}
+
+		public static Color RandomColor (GameTime gameTime)
+		{
+			return Colors [(int)gameTime.TotalGameTime.TotalSeconds % Colors.Count];
+		}
+
+		public static Edge RandomEdge ()
+		{
+			int i = r.Next () % 6;
+			return i == 0 ? Left : i == 1 ? Right : i == 2 ? Up : i == 3 ? Down : i == 4 ? Forward : Backward;
+		}
+
+		#endregion
+		
+		#region Static Properties
+		
+		public static List<Color> Colors = new List<Color> (){
+			Color.Red, Color.Green, Color.Blue, Color.Yellow, Color.Orange
+		};
+		public static Color DefaultColor = RandomColor ();
+
+		public static Edge Zero { get { return new Edge (0, 0, 0); } }
+
+		public static Edge UnitX { get { return new Edge (1, 0, 0); } }
+
+		public static Edge UnitY { get { return new Edge (0, 1, 0); } }
+
+		public static Edge UnitZ { get { return new Edge (0, 0, 1); } }
+
+		public static Edge Up { get { return new Edge (0, 1, 0); } }
+
+		public static Edge Down { get { return new Edge (0, -1, 0); } }
+
+		public static Edge Right { get { return new Edge (1, 0, 0); } }
+
+		public static Edge Left { get { return new Edge (-1, 0, 0); } }
+
+		public static Edge Forward { get { return new Edge (0, 0, -1); } }
+
+		public static Edge Backward { get { return new Edge (0, 0, 1); } }
+
+		#endregion
 	}
 
 	public class EdgeList
 	{
-		private NodeList Nodes;
+		#region Properties
+
+		private WrapList<Edge> Edges;
+
+		public WrapList<Edge> SelectedEdges { get; private set; }
 
 		public Action LinesChanged { get; set; }
 
-		public EdgeList (NodeList nodes)
+		#endregion
+
+		#region Constructors
+
+		public EdgeList ()
 		{
-			Nodes = nodes;
-			SelectedEdges = new List<Edge> ();
+			Edges = new WrapList<Edge> ();
+			SelectedEdges = new WrapList<Edge> ();
 		}
+
+		#endregion
+
+		#region Operators
 
 		public Edge this [int i] {
 			get {
-				return At (i);
+				return Edges [i];
 			}
 		}
 
-		public Edge At (int i)
-		{
-			return new Edge (Nodes [i], Nodes [i + 1]);
-		}
+		#endregion
 
-		/*public Edge this [string id] {
-			get {
-				for (int i = 0; i < Nodes.Count; ++i) {
-					Edge edge = new Edge (Nodes [i], Nodes [i + 1]);
-					if (edge.ID == id) {
-						return edge;
-					}
-				}
-				throw new ArgumentOutOfRangeException ("edge does not exist!");
-			}
-		}
+		#region Public Methods
 
-		/// <summary>
-		/// Return an identifier for the specified edge
-		/// </summary>
-		/// <param name='line'>
-		/// Line.
-		/// </param>
-		public string this [Edge edge] {
-			get {
-				for (int i = 0; i < Nodes.Count; ++i) {
-					if (Nodes [i] == edge.FromNode && Nodes [i + 1] == edge.ToNode) {
-						return edge.ID;
-					}
-				}
-				throw new ArgumentOutOfRangeException ("edge does not exist!");
-			}
-		}*/
-		
 		public int IndexOf (Edge edge)
 		{
-			for (int i = 0; i < Nodes.Count; ++i) {
-				if (Nodes [i] == edge.FromNode && Nodes [i + 1] == edge.ToNode) {
-					return i;
-				}
+			int i = Edges [edge];
+			if (i != -1)
+				return i;
+			else
+				throw new ArgumentOutOfRangeException ("edge does not exist!");
+		}
+
+		public Node FromNode (int index)
+		{
+			Node node = new Node (0, 0, 0);
+			for (int i = 0; i < index; ++i) {
+				node += Edges [i].Direction;
 			}
-			throw new ArgumentOutOfRangeException ("edge does not exist!");
+			return node;
+		}
+
+		public Node FromNode (Edge edge)
+		{
+			return FromNode (IndexOf (edge));
+		}
+
+		public Node ToNode (int index)
+		{
+			Node node = new Node (0, 0, 0);
+			for (int i = 0; i < index + 1; ++i) {
+				node += Edges [i].Direction;
+			}
+			return node;
+		}
+
+		public Node ToNode (Edge edge)
+		{
+			return ToNode (IndexOf (edge));
+		}
+
+		public void Add (Edge edge)
+		{
+			Edges.Add (edge);
 		}
 		
 		public List<Edge> Interval (Edge a, Edge b)
@@ -134,12 +224,12 @@ namespace TestGame1
 			int indexFirst = (int)MathHelper.Min (indexA, indexB);
 			int indexLast = (int)MathHelper.Max (indexA, indexB);
 			if (indexLast < indexFirst)
-				indexLast += Nodes.Count;
-			if (Nodes.Count - (indexLast - indexFirst) < (indexLast - indexFirst)) {
+				indexLast += Edges.Count;
+			if (Edges.Count - (indexLast - indexFirst) < (indexLast - indexFirst)) {
 				Console.WriteLine ("Nodes.Count - diff < diff");
 				VectorExtensions.Swap (ref indexLast, ref indexFirst);
 				if (indexLast < indexFirst)
-					indexLast += Nodes.Count;
+					indexLast += Edges.Count;
 			}
 			List<Edge> interval = new List<Edge> ();
 			Console.Write ("Interval(" + indexFirst + "," + indexLast + ")=");
@@ -151,16 +241,7 @@ namespace TestGame1
 			return interval;
 		}
 
-		public int Count {
-			get {
-				if (Nodes.Count >= 2)
-					return Nodes.Count;
-				else
-					return 0;
-			}
-		}
-
-		public List<Edge> SelectedEdges { get; private set; }
+		public int Count { get { return Edges.Count; } }
 
 		public void SelectEdge (Edge selection, bool append = false)
 		{
@@ -188,79 +269,32 @@ namespace TestGame1
 				Console.Write (edge.ID + " ");
 			}
 			Console.WriteLine ();
-			Console.WriteLine ("nodes: " + Nodes);
+			Console.WriteLine ("nodes: " + Edges);
 		}
 
-		public bool InsertAt (List<Edge> selected, Vector3 direction)
+		public bool Move (WrapList<Edge> selected, Vector3 direction)
 		{
 			if (selected.Count == 1) {
-				return InsertAt (selected [0], direction);
+				return Move (selected [0], direction);
 			}
 			return false;
 		}
 
-		public bool InsertAt (Edge selection, Vector3 direction)
+		public bool Move (Edge selection, Vector3 direction)
 		{
-			bool successful = false;
-			if (direction != Vector3.Zero) {
-				Console.WriteLine ("InsertAt: selected=" + IndexOf (selection) + ", direction=" + direction);
-				if (Nodes.Count >= 2) {
-					Node a = selection.FromNode;
-					Node b = selection.ToNode;
-					Vector3 directionAB = selection.Direction ();
-					if (directionAB != direction && directionAB != -direction) {
-						Nodes.InsertAt (IndexOf (selection) + 1, new Node[] {
-							a + direction,
-							b + direction
-						}
-						);
-						////SelectedEdges = new List<Edge> (){this[IndexOf (i)  + 1]};
-						successful = true;
-
-					} else {
-						Console.WriteLine ("before: " + Nodes);
-						int fromIndex = IndexOf (selection) + 1;
-						int toIndex = -1;
-						for (int k = fromIndex; k < Nodes.Count+fromIndex-1; ++k) {
-							Vector3 directionK = this [k].Direction ();
-							if (directionK == -directionAB) {
-								Console.WriteLine ("Nodes[" + k + "] =" + Nodes [k] + " same direction");
-								toIndex = k;
-								break;
-							}
-						}
-						for (int k = fromIndex; k <= toIndex; ++k) {
-							Console.Write ("Nodes[" + k + "] =" + Nodes [k]);
-							Nodes [k] = Nodes [k] + direction;
-							Console.WriteLine ("=> Nodes[" + k + "] =" + Nodes [k]);
-						}
-						successful = true;
-					}
-					Console.WriteLine ("InsertAt => " + Nodes);
-					Compact ();
-					Console.WriteLine ("compact => " + Nodes);
-				} else {
-					Nodes.Add (new Node (0, 0, 0));
-					Nodes.Add (new Node (0, 0, 0) + direction);
-					successful = true;
-				}
-				if (successful) {
-					LinesChanged ();
-				}
+			Console.WriteLine ("Move: selection=" + IndexOf (selection) + ", direction=" + direction);
+			Console.WriteLine ("Before Move => " + Edges);
+			Edges.Replace (selection, new Edge[] {
+				new Edge (direction),
+				selection,
+				new Edge (-direction)
 			}
-			return successful;
-		}
-
-		public void RemoveAt (int i)
-		{
-			// TODO
-			/*
-			 * Node a = Nodes [i - 1];
-			 * Node b = Nodes [i];
-			 * Node c = Nodes [i + 1];
-			 * Compact ();
-			 * Nodes.Print ();
-			 */
+			);
+			Console.WriteLine ("After Move => " + Edges);
+			Compact ();
+			Console.WriteLine ("Compact => " + Edges);
+			LinesChanged ();
+			return true;
 		}
 
 		public bool Compact ()
@@ -269,51 +303,52 @@ namespace TestGame1
 			bool done = false;
 			while (!done) {
 				done = true;
-				for (int i = 0; i < Nodes.Count; ++i) {
-					Vector3 edgeVector = Nodes [i + 1] - Nodes [i];
-					if (edgeVector.Length () > 1) {
-						Nodes.InsertAt (i + 1, PathTo (Nodes [i], Nodes [i + 1]));
-						done = false;
-						successful = true;
-					}
-					if (Nodes [i].Vector () == Nodes [i + 2].Vector () && Nodes.Count >= 4) {
-						Nodes.RemoveAt (new int[]{i + 2, i + 1});
+				for (int i = 0; i < Edges.Count; ++i) {
+					Edge current = Edges [i];
+					Edge next = Edges [i + 1];
+					if (current.Direction == -next.Direction && Edges.Count >= 4) {
+						Edges.Remove (new Edge[]{current,next});
 						done = false;
 						successful = true;
 						break;
 					}
-					if (Nodes [i].Vector () == Nodes [i + 1].Vector () && Nodes.Count >= 3) {
-						Nodes.RemoveAt (new int[]{i + 1});
+				}
+				if (Edges.Count >= 2) {
+					Vector3 distance = ToNode (Edges [-1]) - FromNode (Edges [0]);
+					if (distance.Length () > 0) {
+						Edges.AddRange (PathTo (Edges [-1], Edges [0]));
 						done = false;
 						successful = true;
-						break;
 					}
 				}
 			}
 			return successful;
 		}
 
-		public Node[] PathTo (Node from, Node to)
+		public Edge[] PathTo (Edge fromEdge, Edge toEdge)
 		{
-			List<Node> path = new List<Node> ();
-			Vector3 edge = Vector3.Zero;
-			Node current = from;
+			List<Edge> path = new List<Edge> ();
+			Vector3 distance = FromNode (toEdge) - ToNode (fromEdge);
 			do {
-				edge = to - current;
-				Console.WriteLine ("from=" + from + ", to=" + to + ", edge=" + edge);
-				if (edge.X != 0) {
-					current = current + Vector3.Normalize (new Vector3 (edge.X, 0, 0));
-					path.Add (current);
-				} else if (edge.Y != 0) {
-					current = current + Vector3.Normalize (new Vector3 (0, edge.Y, 0));
-					path.Add (current);
-				} else if (edge.Z != 0) {
-					current = current + Vector3.Normalize (new Vector3 (0, 0, edge.Z));
-					path.Add (current);
+				Console.WriteLine ("distance=" + distance);
+				if (distance.X != 0) {
+					Vector3 edge = Vector3.Normalize (new Vector3 (distance.X, 0, 0));
+					path.Add (new Edge (edge));
+					distance -= edge;
+				} else if (distance.Y != 0) {
+					Vector3 edge = Vector3.Normalize (new Vector3 (0, distance.Y, 0));
+					path.Add (new Edge (edge));
+					distance -= edge;
+				} else if (distance.Z != 0) {
+					Vector3 edge = Vector3.Normalize (new Vector3 (0, 0, distance.Z));
+					path.Add (new Edge (edge));
+					distance -= edge;
 				}
-			} while (edge != Vector3.Zero);
+			} while (distance != Vector3.Zero);
 			return path.ToArray ();
 		}
+
+		#endregion
 	}
 }
 

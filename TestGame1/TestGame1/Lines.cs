@@ -42,8 +42,8 @@ namespace TestGame1
 
 			Vector3 last = new Vector3 (0, 0, 0);
 			for (int n = 0; n < lines.Count; n++) {
-				Vector3 p1 = lines [n].FromNode.Vector () + offset;
-				Vector3 p2 = lines [n].ToNode.Vector () + offset;
+				Vector3 p1 = lines.FromNode(n).Vector () + offset;
+				Vector3 p2 = lines.ToNode(n).Vector () + offset;
 
 				var diff = p1 - p2;
 				diff.Normalize ();

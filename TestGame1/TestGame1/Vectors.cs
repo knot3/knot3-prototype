@@ -231,6 +231,11 @@ namespace TestGame1
 			lhs = rhs;
 			rhs = temp;
 		}
+
+		public static string Print (this Vector3 v)
+		{
+			return "(" + v.X + "," + v.Y + "," + v.Z + ")";
+		}
 	}
 
 	public struct Angles3 : IEquatable<Angles3>

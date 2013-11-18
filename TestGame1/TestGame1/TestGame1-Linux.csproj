@@ -76,6 +76,7 @@
     <Compile Include="CreativeModeInput.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameModel.cs" />
+    <Compile Include="WrapList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

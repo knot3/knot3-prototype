@@ -20,7 +20,6 @@ namespace TestGame1
 		public List<PostProcessing> PostProcessingEffects;
 
 		// nodes
-		private NodeList nodes;
 		private EdgeList edges;
 
 		// custom classes
@@ -81,8 +80,7 @@ namespace TestGame1
 			
 			// load nodes
 			Node.Scale = 100;
-			nodes = new NodeList ();
-			edges = new EdgeList (nodes);
+			edges = new EdgeList ();
 			edges.LinesChanged += () => {
 				drawPipes.Update (edges);
 			};
@@ -94,15 +92,20 @@ namespace TestGame1
 			overlay.LoadContent ();
 
 			// add some default nodes
-			nodes.Add (new Node (0, 0, 0));
-			nodes.Add (new Node (0, 1, 0));
-			nodes.Add (new Node (1, 1, 0));
-			nodes.Add (new Node (1, 0, 0));
+			/*edges.Add (Edge.Up);
+			edges.Add (Edge.Right);
+			edges.Add (Edge.Down);
+			edges.Add (Edge.Backward);
 
-			nodes.Add (new Node (1, 0, 1));
-			nodes.Add (new Node (1, 1, 1));
-			nodes.Add (new Node (0, 1, 1));
-			nodes.Add (new Node (0, 0, 1));
+			edges.Add (Edge.Up);
+			edges.Add (Edge.Left);
+			edges.Add (Edge.Down);
+			edges.Add (Edge.Forward);*/
+
+			for (int i = 0; i < 20; ++i) {
+				edges.Add (Edge.RandomEdge ());
+			}
+			edges.Compact ();
 
 			drawPipes.Update (edges);
 		}
@@ -140,24 +143,24 @@ namespace TestGame1
 
 			// move lines
 			if (Keys.NumPad8.IsDown ())
-				edges.InsertAt (edges.SelectedEdges, Vector3.Up);
+				edges.Move (edges.SelectedEdges, Vector3.Up);
 			if (Keys.NumPad2.IsDown ())
-				edges.InsertAt (edges.SelectedEdges, Vector3.Down);
+				edges.Move (edges.SelectedEdges, Vector3.Down);
 			if (Keys.NumPad4.IsDown ())
-				edges.InsertAt (edges.SelectedEdges, Vector3.Left);
+				edges.Move (edges.SelectedEdges, Vector3.Left);
 			if (Keys.NumPad6.IsDown ())
-				edges.InsertAt (edges.SelectedEdges, Vector3.Right);
+				edges.Move (edges.SelectedEdges, Vector3.Right);
 			if (Keys.NumPad7.IsDown ())
-				edges.InsertAt (edges.SelectedEdges, Vector3.Forward);
+				edges.Move (edges.SelectedEdges, Vector3.Forward);
 			if (Keys.NumPad9.IsDown ())
-				edges.InsertAt (edges.SelectedEdges, Vector3.Backward);
+				edges.Move (edges.SelectedEdges, Vector3.Backward);
 
 			// post processing effects
 			if (Keys.O.IsDown ())
 				PostProcessing = PostProcessingEffects [(PostProcessingEffects.IndexOf (PostProcessing) + 1) % PostProcessingEffects.Count];
 
 			// toggle debug mode
-			if (Keys.RightControl.IsDown())
+			if (Keys.RightControl.IsDown ())
 				Game.Debug = !Game.Debug;
 
 			return this;
@@ -167,7 +170,7 @@ namespace TestGame1
 		{
 			PostProcessing.Begin (gameTime);
 
-			graphics.GraphicsDevice.Clear (Game.Debug ? Color.CornflowerBlue : Color.Black);
+			graphics.GraphicsDevice.Clear (Game.Debug ? Color.CornflowerBlue : Color.CornflowerBlue);
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
 
 			game.GraphicsDevice.BlendState = BlendState.Opaque;

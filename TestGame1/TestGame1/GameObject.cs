@@ -77,7 +77,7 @@ namespace TestGame1
 			}
 		}
 
-		#endregion Move
+		#endregion
 
 		#region Draw
 
@@ -93,7 +93,7 @@ namespace TestGame1
 
 		public abstract void DrawObject (GameTime gameTime);
 
-		#endregion Draw
+		#endregion
 
 		#region Textures and Models
 
@@ -132,7 +132,7 @@ namespace TestGame1
 			return dummyTexture;
 		}
 
-		#endregion Textures and Models
+		#endregion
 
 		#region Intersection
 
@@ -140,7 +140,7 @@ namespace TestGame1
 
 		public abstract Vector3 Center ();
 
-		#endregion Intersection
+		#endregion
 
 		#region Selection
 
@@ -157,7 +157,7 @@ namespace TestGame1
 		{
 		}
 
-		#endregion Selection
+		#endregion
 	}
 }
 

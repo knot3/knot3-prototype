@@ -80,14 +80,13 @@ namespace TestGame1
 			pipes.Clear ();
 			for (int n = 0; n < edges.Count; n++) {
 				PipeModel pipe = pipeCache [edges, edges [n], Position];
-				pipe.OnDataChange = () => UpdatePipes (edges);
+				// pipe.OnDataChange = () => UpdatePipes (edges);
 				pipes.Add (pipe);
 			}
 
 			knots.Clear ();
 			for (int n = 0; n < edges.Count; n++) {
 				KnotModel knot = knotCache [edges, edges [n], edges [n + 1], Position];
-				// knot.OnDataChange = () => UpdatePipes(lines);
 				knots.Add (knot);
 			}
 		}
@@ -254,7 +253,7 @@ namespace TestGame1
 						}
 						// Shift
 						else if (Keys.LeftShift.IsHeldDown ()) {
-							List<Edge> selection = Edges.SelectedEdges;
+							WrapList<Edge> selection = Edges.SelectedEdges;
 							if (selection.Count != 0) {
 								Edge last = selection [selection.Count - 1];
 								Edges.SelectEdges (Edges.Interval (last, Edge).ToArray (), true);
@@ -290,7 +289,7 @@ namespace TestGame1
 				
 				// change color?
 				if (Keys.C.IsDown ()) {
-					Edge.Color = Node.RandomColor (gameTime);
+					Edge.Color = Edge.RandomColor (gameTime);
 				}
 
 				if (Input.MouseState.IsLeftDoubleClick (gameTime)) {
@@ -312,8 +311,9 @@ namespace TestGame1
 				if (mouseMove.PrimaryVector ().Length ().Abs () > 50) {
 					try {
 						Edges.SelectEdge (Edge, true);
-						Edges.InsertAt (Edges.SelectedEdges, direction3D);
+						Edges.Move (Edges.SelectedEdges, direction3D);
 						Edges.SelectEdge ();
+						previousMousePosition = currentMousePosition;
 					} catch (ArgumentOutOfRangeException exp) {
 						Console.WriteLine (exp.ToString ());
 					}
@@ -339,7 +339,7 @@ namespace TestGame1
 	public class PipeModelCache : GameClass
 	{
 		// cache
-		private Dictionary<Edge, PipeModel> pipeCache = new Dictionary<Edge, PipeModel> ();
+		private Dictionary<string, PipeModel> pipeCache = new Dictionary<string, PipeModel> ();
 
 		public PipeModelCache (GameState state)
 			: base(state)
@@ -348,14 +348,17 @@ namespace TestGame1
 
 		public PipeModel this [EdgeList edges, Edge edge, Vector3 offset] {
 			get {
-				if (pipeCache.ContainsKey (edge)) {
-					return pipeCache [edge];
+				Node node1 = edges.FromNode (edge);
+				Node node2 = edges.ToNode (edge);
+				string key = edge.ID + "#" + node1 + "-" + node2;
+				if (pipeCache.ContainsKey (key)) {
+					return pipeCache [key];
 				} else {
-					Vector3 p1 = edge.FromNode.Vector () + offset;
-					Vector3 p2 = edge.ToNode.Vector () + offset;
+					Vector3 p1 = node1.Vector () + offset;
+					Vector3 p2 = node2.Vector () + offset;
 
 					PipeModel pipe = new PipeModel (state, edges, edge, p1, p2, 10f);
-					pipeCache [edge] = pipe;
+					pipeCache [key] = pipe;
 					return pipe;
 				}
 			}
@@ -365,7 +368,7 @@ namespace TestGame1
 	public class KnotModelCache : GameClass
 	{
 		// cache
-		private Dictionary<Edge, KnotModel> knotCache = new Dictionary<Edge, KnotModel> ();
+		private Dictionary<Node, KnotModel> knotCache = new Dictionary<Node, KnotModel> ();
 
 		public KnotModelCache (GameState state)
 			: base(state)
@@ -374,11 +377,12 @@ namespace TestGame1
 
 		public KnotModel this [EdgeList edges, Edge edgeA, Edge edgeB, Vector3 offset] {
 			get {
-				if (knotCache.ContainsKey (edgeA)) {
-					return knotCache [edgeA];
+				Node node = edges.ToNode(edgeA);
+				if (knotCache.ContainsKey (node)) {
+					return knotCache [node];
 				} else {
-					KnotModel knot = new KnotModel (state, edges, edgeA, edgeB, edgeA.ToNode.Vector (), 5f);
-					knotCache [edgeA] = knot;
+					KnotModel knot = new KnotModel (state, edges, edgeA, edgeB, edges.ToNode (edgeA).Vector (), 5f);
+					knotCache [node] = knot;
 					return knot;
 				}
 			}

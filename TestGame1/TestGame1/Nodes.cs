@@ -8,36 +8,30 @@ namespace TestGame1
 {
 	public class Node
 	{
+		#region Properties
+
 		public int X { get; private set; }
 
 		public int Y { get; private set; }
 
 		public int Z { get; private set; }
 
-		public Color Color;
+		public static int Scale { get; set; }
 
-		public int ID { get; private set; }
+		#endregion
 
-		private static List<int> UsedIDs = new List<int> ();
+		#region Constructors
 
 		public Node (int x, int y, int z)
 		{
 			X = x;
 			Y = y;
 			Z = z;
-			Color = DefaultColor;
-			do {
-				ID = r.Next () % 10000;
-			} while (UsedIDs.Contains(ID));
-			UsedIDs.Add (ID);
 		}
 
-		public static int Scale { get; set; }
+		#endregion
 
-		public static Node operator + (Node a, Node b)
-		{
-			return new Node (a.X + b.X, a.Y + b.Y, a.Z + b.Z);
-		}
+		#region Operators
 
 		public static Node operator + (Node a, Vector3 b)
 		{
@@ -47,11 +41,6 @@ namespace TestGame1
 		public static Vector3 operator - (Node a, Node b)
 		{
 			return new Vector3 (a.X - b.X, a.Y - b.Y, a.Z - b.Z);
-		}
-
-		public Vector3 Vector ()
-		{
-			return new Vector3 (X * Scale, Y * Scale, Z * Scale);
 		}
 
 		public static bool operator == (Node a, Node b)
@@ -67,7 +56,7 @@ namespace TestGame1
 			}
 
 			// Return true if the fields match:
-			return a.ID == b.ID; //a.X == b.X && a.Y == b.Y && a.Z == b.Z;
+			return a.X == b.X && a.Y == b.Y && a.Z == b.Z;
 		}
 
 		public static bool operator != (Node a, Node b)
@@ -78,118 +67,29 @@ namespace TestGame1
 		public override bool Equals (object obj)
 		{
 			Node other = obj as Node;
-			return ID == other.ID; //X == other.X && Y == other.Y && Z == other.Z;
+			return this.X == other.X && this.Y == other.Y && this.Z == other.Z;
 		}
 
 		public override int GetHashCode ()
 		{
 			return X * 10000 + Y * 100 + Z;
 		}
-		
-		private static Random r = new Random ();
-		public static List<Color> Colors = new List<Color> (){
-			Color.Red, Color.Green, Color.Blue, Color.Yellow, Color.Orange
-		};
-		public static Color DefaultColor = RandomColor ();
-
-		public static Color RandomColor ()
-		{
-			return Colors [r.Next () % Colors.Count];
-			// new Color ((float)r.NextDouble (), (float)r.NextDouble (), (float)r.NextDouble ());
-		}
-
-		public static Color RandomColor (GameTime gameTime)
-		{
-			return Colors [(int)gameTime.TotalGameTime.TotalSeconds % Colors.Count];
-		}
 
 		public override string ToString ()
 		{
 			return "(" + X + "," + Y + "," + Z + ")";
 		}
-	}
 
-	public class NodeList
-	{
-		private List<Node> list = new List<Node> ();
+		#endregion
 
-		public Node this [int i] {
-			get {
-				while (i < 0) {
-					i += list.Count;
-				}
-				return list [i % list.Count];
-			}
-			set {
-				while (i < 0) {
-					i += list.Count;
-				}
-				list [i % list.Count] = value;
-			}
-		}
+		#region Public Methods
 
-		public int IndexOf (Node node)
+		public Vector3 Vector ()
 		{
-			int index = list.IndexOf (node);
-			if (index >= 0) {
-				return index;
-			} else {
-				throw new ArgumentOutOfRangeException ("node " + node + " does not exist!");
-			}
+			return new Vector3 (X * Scale, Y * Scale, Z * Scale);
 		}
 
-		public int Count {
-			get {
-				return list.Count;
-			}
-		}
-
-		public void Add (Node node)
-		{
-			list.Add (node);
-		}
-
-		public void InsertAt (int i, Node a)
-		{
-			list.Insert (i % list.Count, a);
-		}
-
-		public void InsertAt (int i, Node[] a)
-		{
-			if (i < list.Count) {
-				list.InsertRange (i, a);
-			} else {
-				list.AddRange (a);
-			}
-		}
-
-		public void RemoveAt (int i)
-		{
-			list.RemoveAt (i % list.Count);
-		}
-
-		public void RemoveAt (int[] i)
-		{
-			for (int n = 0; n < i.Length; ++n) {
-				i [n] = i [n] % list.Count;
-			}
-			for (int n = 0; n < i.Length; ++n) {
-				if (list.Count > 0) {
-					list.RemoveAt (i [n] % list.Count);
-				}
-			}
-		}
-
-		public override string ToString ()
-		{
-			string str = "";
-			foreach (Node node in list) {
-				if (str.Length > 0)
-					str += ", ";
-				str += node;
-			}
-			return str;
-		}
+		#endregion
 	}
 }
 

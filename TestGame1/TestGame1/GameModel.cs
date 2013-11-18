@@ -36,7 +36,7 @@ namespace TestGame1
 			}
 		}
 
-		#endregion Attributes and Properties
+		#endregion
 
 		#region Constructors
 
@@ -62,7 +62,7 @@ namespace TestGame1
 			ModelMeshes = Model.Meshes.ToArray ();
 		}
 		
-		#endregion Constructors
+		#endregion
 
 		public virtual void UpdateEffect (BasicEffect effect, GameTime gameTime)
 		{
@@ -122,7 +122,7 @@ namespace TestGame1
 			return center / Scale + Position;
 		}
 		
-		#endregion Intersection
+		#endregion
 	}
 
 	public class CachedGameModel : GameModel
@@ -139,7 +139,7 @@ namespace TestGame1
 		{
 		}
 
-		#endregion Constructors
+		#endregion
 
 		#region Attributes
 
@@ -148,7 +148,7 @@ namespace TestGame1
 		private Vector3 _position;
 		private Matrix _worldMatrix;
 
-		#endregion Attibutes
+		#endregion
 
 		#region Properties
 
@@ -171,7 +171,7 @@ namespace TestGame1
 			}
 		}
 
-		#endregion Properties
+		#endregion
 	}
 }
 

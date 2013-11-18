@@ -138,6 +138,7 @@
     <Compile Include="Textures.cs" />
     <Compile Include="Vectors.cs" />
     <Compile Include="World.cs" />
+    <Compile Include="WrapList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
