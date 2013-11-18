@@ -272,29 +272,28 @@ namespace TestGame1
 			Console.WriteLine ("nodes: " + Edges);
 		}
 
-		public bool Move (WrapList<Edge> selected, Vector3 direction)
+		public bool Move (IEnumerable<Edge> selectedEdges, Vector3 direction)
 		{
-			if (selected.Count == 1) {
-				return Move (selected [0], direction);
-			}
-			return false;
-		}
-
-		public bool Move (Edge selection, Vector3 direction)
-		{
-			Console.WriteLine ("Move: selection=" + IndexOf (selection) + ", direction=" + direction);
+			Console.WriteLine ("Move: selection=" + selectedEdges + ", direction=" + direction);
 			Console.WriteLine ("Before Move => " + Edges);
-			Edges.Replace (selection, new Edge[] {
-				new Edge (direction),
-				selection,
-				new Edge (-direction)
+			foreach (Edge selectedEdge in SelectedEdges) {
+				Edges.Replace (selectedEdge, new Edge[] {
+					new Edge (direction),
+					selectedEdge,
+					new Edge (-direction)
+				}
+				);
 			}
-			);
 			Console.WriteLine ("After Move => " + Edges);
 			Compact ();
 			Console.WriteLine ("Compact => " + Edges);
 			LinesChanged ();
 			return true;
+		}
+
+		public bool Move (Edge selection, Vector3 direction)
+		{
+			return Move (new Edge[]{ selection }, direction);
 		}
 
 		public bool Compact ()

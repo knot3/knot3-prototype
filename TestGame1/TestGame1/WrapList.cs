@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace TestGame1
 {
-	public class WrapList<T> : IEnumerable
+	public class WrapList<T> : IEnumerable<T>
 	{
 		private List<T> list = new List<T> ();
 		private Dictionary<T, int> indexOf = new Dictionary<T, int> ();
@@ -43,6 +43,7 @@ namespace TestGame1
 
 		public void Add (T elem)
 		{
+			list.Remove (elem);
 			list.Add (elem);
 			indexOf [elem] = list.Count - 1;
 		}
@@ -90,9 +91,14 @@ namespace TestGame1
 			return indexOf.ContainsKey (elem);
 		}
 
+		public IEnumerator<T> GetEnumerator ()
+		{
+			return list.GetEnumerator ();
+		}
+
 		IEnumerator IEnumerable.GetEnumerator ()
 		{
-			return (IEnumerator)list.GetEnumerator ();
+			return GetEnumerator ();
 		}
 
 		public override string ToString ()
