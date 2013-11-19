@@ -39,13 +39,14 @@ namespace TestGame1
 			info.OnClick = () => dropdownVisible = true;
 		}
 
-		public void AddEntries (DropDownMenuItem[] entries)
+		public void AddEntries (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 		{
 			foreach (DropDownMenuItem entry in entries) {
 				Action onSelected = entry.OnSelected;
 				onSelected += () => dropdownVisible = false;
 				dropdown.AddButton (new MenuItemInfo (entry.Text, onSelected));
 			}
+			selected.Info.Text = defaultEntry.Text;
 		}
 
 		public void AddEntries (DistinctOptionInfo option)

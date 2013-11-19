@@ -18,6 +18,7 @@ namespace TestGame1
 	{
 		// fonts and colors
 		public SpriteFont Font { get; protected set; }
+
 		protected MenuItemColor ForegroundColor;
 		protected MenuItemColor BackgroundColor;
 		protected HAlign AlignX;
@@ -38,10 +39,10 @@ namespace TestGame1
 			return item;
 		}
 
-		public virtual void AddDropDown (MenuItemInfo info, DropDownMenuItem[] items)
+		public virtual void AddDropDown (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
 		{
 			DropDownMenu item = new DropDownMenu (state, Items.Count, info, ForegroundColor, BackgroundColor, AlignX);
-			item.AddEntries (items);
+			item.AddEntries (items, defaultItem);
 			Items.Add (item);
 		}
 

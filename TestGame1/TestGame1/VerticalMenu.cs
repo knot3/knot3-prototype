@@ -53,11 +53,11 @@ namespace TestGame1
 			return base.AddButton (info);
 		}
 
-		public override void AddDropDown (MenuItemInfo info, DropDownMenuItem[] items)
+		public override void AddDropDown (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
 		{
 			info.PositionFunc = ItemPosition;
 			info.SizeFunc = (int n) => ItemSize;
-			base.AddDropDown (info, items);
+			base.AddDropDown (info, items, defaultItem);
 		}
 
 		public override void AddDropDown (MenuItemInfo info, DistinctOptionInfo option)
