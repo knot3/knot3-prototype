@@ -110,12 +110,14 @@
   <ItemGroup>
     <Compile Include="BlurEffect.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="DropDownMenu.cs" />
     <Compile Include="Edges.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameClass.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameModel.cs" />
+    <Compile Include="IniFile.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="CreativeMode.cs" />
     <Compile Include="CreativeModeInput.cs" />
@@ -126,6 +128,8 @@
     <Compile Include="Mono.cs" />
     <Compile Include="Mouse.cs" />
     <Compile Include="Nodes.cs" />
+    <Compile Include="Options.cs" />
+    <Compile Include="OptionScreen.cs" />
     <Compile Include="Overlay.cs" />
     <Compile Include="Pipes.cs" />
     <Compile Include="PostProcessing.cs" />
@@ -137,6 +141,8 @@
     <Compile Include="StartScreenInput.cs" />
     <Compile Include="Textures.cs" />
     <Compile Include="Vectors.cs" />
+    <Compile Include="VerticalMenu.cs" />
+    <Compile Include="VideoOptionScreen.cs" />
     <Compile Include="World.cs" />
     <Compile Include="WrapList.cs" />
   </ItemGroup>
