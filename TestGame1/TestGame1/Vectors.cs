@@ -212,10 +212,25 @@ namespace TestGame1
 			return builder.ToString ();
 		}
 
+		public static Vector2 ScaleFactor (this Viewport viewport)
+		{
+			Vector2 max = viewport.ToVector2 ();
+			return max / 1000f;
+		}
+
+		public static Vector2 RelativeTo (this Vector2 v, Viewport viewport)
+		{
+			Vector2 max = viewport.ToVector2 ();
+			return v / max;
+		}
+
 		public static Vector2 Scale (this Vector2 v, Viewport viewport)
 		{
 			Vector2 max = viewport.ToVector2 ();
-			return new Vector2 ((v * max).X, (v * max).Y);
+			if (v.X > 1 || v.Y > 1)
+				return v / 1000f * max;
+			else
+				return v * max;
 		}
 
 		public static Rectangle Scale (this Rectangle rect, Viewport viewport)

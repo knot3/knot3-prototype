@@ -77,6 +77,12 @@
     <Compile Include="GameObject.cs" />
     <Compile Include="GameModel.cs" />
     <Compile Include="WrapList.cs" />
+    <Compile Include="OptionScreen.cs" />
+    <Compile Include="VideoOptionScreen.cs" />
+    <Compile Include="Options.cs" />
+    <Compile Include="IniFile.cs" />
+    <Compile Include="DropDownMenu.cs" />
+    <Compile Include="VerticalMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

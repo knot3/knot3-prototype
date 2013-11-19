@@ -125,13 +125,6 @@ namespace TestGame1
 			}
 		}
 
-		public static Texture2D DummyTexture (GraphicsDevice device, Color color)
-		{
-			Texture2D dummyTexture = new Texture2D (device, 1, 1);
-			dummyTexture.SetData (new Color[] { color });
-			return dummyTexture;
-		}
-
 		#endregion
 
 		#region Intersection

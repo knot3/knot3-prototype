@@ -36,8 +36,7 @@ namespace TestGame1
 		{
 			LinePoints = new List<Vector2> ();
 			LineWidth = 12;
-			texture = new Texture2D (device, 1, 1, false, SurfaceFormat.Color);
-			texture.SetData<Color> (new Color[] { Color.White });
+			texture = Textures.Create (device, Color.White);
 		}
 
 		public override void Initialize ()
@@ -149,6 +148,28 @@ namespace TestGame1
 
 		public override void Unload ()
 		{
+		}
+
+		protected Color BackgroundColor (MenuItemState itemState)
+		{
+			switch (itemState) {
+			case MenuItemState.Selected:
+				return Color.Black*0f;
+			case MenuItemState.Normal:
+			default:
+				return Color.Black*0f;
+			}
+		}
+
+		protected Color ForegroundColor (MenuItemState itemState)
+		{
+			switch (itemState) {
+			case MenuItemState.Selected:
+				return Color.White;
+			case MenuItemState.Normal:
+			default:
+				return Color.White * 0.7f;
+			}
 		}
 	}
 }

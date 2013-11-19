@@ -40,15 +40,15 @@ namespace TestGame1
 			spriteBatch = new SpriteBatch (device);
 
 			// menu
-			menu.Initialize ();
-			menu.Add ("Creative", Keys.Space, () => NextGameState = GameStates.CreativeMode,
-			          0.700f, 0.250f, 0.960f, 0.380f, HorizontalAlignment.Center);
-			menu.Add ("Challenge", Keys.RightWindows, () => NextGameState = GameStates.CreativeMode,
-			          0.000f, 0.050f, 0.380f, 0.190f, HorizontalAlignment.Center);
-			menu.Add ("Options", Keys.O, () => game.Exit (),
-			          0.260f, 0.840f, 0.480f, 0.950f, HorizontalAlignment.Center);
-			menu.Add ("Exit", Keys.Escape, () => game.Exit (),
-			          0.800f, 0.535f, 0.980f, 0.790f, HorizontalAlignment.Center);
+			menu.Initialize (ForegroundColor, BackgroundColor, HAlign.Center);
+			menu.AddButton (new MenuItemInfo (text: "Creative", left: 0.700f, top: 0.250f, right: 0.960f, bottom: 0.380f,
+			                        onClick: () => NextGameState = GameStates.CreativeMode).AddKey (Keys.Space));
+			menu.AddButton (new MenuItemInfo (text: "Challenge", left: 0.000f, top: 0.050f, right: 0.380f, bottom: 0.190f,
+			                        onClick: () => NextGameState = GameStates.CreativeMode).AddKey (Keys.RightWindows));
+			menu.AddButton (new MenuItemInfo (text: "Options", left: 0.260f, top: 0.840f, right: 0.480f, bottom: 0.950f,
+			                        onClick: () => NextGameState = GameStates.OptionScreen).AddKey (Keys.O));
+			menu.AddButton (new MenuItemInfo (text: "Exit", left: 0.800f, top: 0.535f, right: 0.980f, bottom: 0.790f,
+			                        onClick: () => game.Exit ()).AddKey (Keys.Escape));
 
 			// lines
 			AddLinePoints (0, 50, new float[]{
@@ -71,13 +71,15 @@ namespace TestGame1
 		
 		public override void DrawMenu (GameTime gameTime)
 		{
-			// logo
 			spriteBatch.Begin ();
-			spriteBatch.Draw(logo, new Rectangle(50, 380, 500, 300).Scale(viewport), Color.White);
-			spriteBatch.End ();
+
+			// logo
+			spriteBatch.Draw (logo, new Rectangle (50, 380, 500, 300).Scale (viewport), Color.White);
 
 			// menu
-			menu.Draw (gameTime);
+			menu.Draw (0f, spriteBatch, gameTime);
+			
+			spriteBatch.End ();
 		}
 	}
 }

@@ -23,7 +23,7 @@ namespace TestGame1
 		{
 			this.game = game;
 			this.PostProcessing = new NoPostProcessing (this);
-			this.PostProcessing.LoadContent();
+			this.PostProcessing.LoadContent ();
 		}
 
 		public Input input { get; protected set; }
@@ -53,13 +53,19 @@ namespace TestGame1
 	{
 		public static CreativeMode CreativeMode;
 		public static StartScreen StartScreen;
+		public static OptionScreen OptionScreen;
+		public static VideoOptionScreen VideoOptionScreen;
 
 		public static void Initialize (Game game)
 		{
 			CreativeMode = new CreativeMode (game);
 			StartScreen = new StartScreen (game);
+			OptionScreen = new OptionScreen (game);
+			VideoOptionScreen = new VideoOptionScreen (game);
 			CreativeMode.Initialize ();
 			StartScreen.Initialize ();
+			OptionScreen.Initialize ();
+			VideoOptionScreen.Initialize ();
 		}
 	}
 }
