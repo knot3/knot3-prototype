@@ -36,7 +36,7 @@ namespace TestGame1
 			spriteBatch = new SpriteBatch (device);
 
 			// menu
-			menu.Initialize (ForegroundColor, BackgroundColor);
+			menu.Initialize (ForegroundColor, BackgroundColor, HAlign.Left);
 			menu.AddDropDown (new MenuItemInfo (text: "Debug Mode"), new BooleanOptionInfo ("game", "debug", false));
 			string currentResolution = viewport.Width + "x" + viewport.Height;
 			string[] resolutions = new string[] {
@@ -52,6 +52,9 @@ namespace TestGame1
 			Array.Sort (resolutions);
 			menu.AddDropDown (new MenuItemInfo (text: "Resolution"),
                               new DistinctOptionInfo ("video", "resolution", currentResolution, resolutions));
+			menu.AddDropDown (new MenuItemInfo (text: "Model Quality"),
+                              new DistinctOptionInfo ("video", "model-quality", "medium",
+			                        new string[]{"low","medium","high"}));
 
 		}
 		

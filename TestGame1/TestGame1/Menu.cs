@@ -16,14 +16,14 @@ namespace TestGame1
 {
 	public class Menu : GameClass
 	{
-		// fonts
+		// fonts and colors
 		public SpriteFont Font { get; protected set; }
-
-		// menu-related attributes
-		protected List<MenuItem> Items;
 		protected MenuItemColor ForegroundColor;
 		protected MenuItemColor BackgroundColor;
 		protected HAlign AlignX;
+
+		// menu-related attributes
+		protected List<MenuItem> Items;
 
 		public Menu (GameState state)
 			: base(state)
@@ -92,7 +92,7 @@ namespace TestGame1
 			return false;
 		}
 
-		public void Draw (float layerDepth, SpriteBatch spriteBatch, GameTime gameTime)
+		public virtual void Draw (float layerDepth, SpriteBatch spriteBatch, GameTime gameTime)
 		{
 			foreach (MenuItem item in Items) {
 				item.Draw (layerDepth, spriteBatch, Font, gameTime);

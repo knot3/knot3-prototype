@@ -36,7 +36,7 @@ namespace TestGame1
 			spriteBatch = new SpriteBatch (device);
 
 			// menu
-			menu.Initialize (ForegroundColor, BackgroundColor);
+			menu.Initialize (ForegroundColor, BackgroundColor, HAlign.Left);
 			MenuItemInfo info;
 			info = new MenuItemInfo (text: "Video", onClick: () => NextGameState = GameStates.VideoOptionScreen);
 			menu.AddButton (info.AddKey (Keys.V));

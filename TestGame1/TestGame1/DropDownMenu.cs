@@ -27,7 +27,8 @@ namespace TestGame1
 		{
 			// drop-down menu
 			dropdown = new VerticalMenu (state);
-			dropdown.Initialize (DropDownForegroundColor, DropDownBackgroundColor);
+			dropdown.Initialize (DropDownForegroundColor, DropDownBackgroundColor,
+			                     HAlign.Left, new Border(new Color (0xb4, 0xff, 0x00), 5, 5, 0, 0));
 
 			// selected value
 			MenuItemInfo valueInfo = new MenuItemInfo (text: "---", position: ValuePosition,
@@ -49,8 +50,10 @@ namespace TestGame1
 
 		public void AddEntries (DistinctOptionInfo option)
 		{
-			foreach (string value in option.ValidValues) {
+			foreach (string _value in option.ValidValues) {
+				string value = _value; // create a copy for the action
 				Action onSelected = () => {
+					Console.WriteLine("OnClick: "+value);
 					option.Value = value;
 					selected.Info.Text = value;
 					dropdownVisible = false;
@@ -87,7 +90,7 @@ namespace TestGame1
 				// draw dropdown menu
 				Vector2 position = ValuePosition ();
 				Vector2 size = ValueSize ();
-				dropdown.Align (viewport, 1f, (int)position.X, (int)position.Y, (int)size.X, (int)size.Y);
+				dropdown.Align (viewport, 1f, (int)position.X, (int)position.Y, (int)size.X, (int)size.Y, 0f);
 				dropdown.Draw (layerDepth + 0.1f, spriteBatch, gameTime);
 				
 			} else {
@@ -110,7 +113,7 @@ namespace TestGame1
 
 		private Color DropDownBackgroundColor (MenuItemState itemState)
 		{
-			return new Color(0.2f,0.2f,0.2f);
+			return Color.Black; //new Color(0.2f,0.2f,0.2f);
 		}
 
 		private Color DropDownForegroundColor (MenuItemState itemState)
