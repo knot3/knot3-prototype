@@ -53,16 +53,7 @@ namespace TestGame1
 		{
 			// fullscreen
 			if (Keys.G.IsDown () || Keys.F11.IsDown ()) {
-				Console.WriteLine ("Fullscreen Toggle");
-				if (graphics.IsFullScreen == false) {
-					graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
-					graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
-				} else {
-					graphics.PreferredBackBufferWidth = Game.DefaultSize.Width;
-					graphics.PreferredBackBufferHeight = Game.DefaultSize.Height;
-				}
-				graphics.ToggleFullScreen ();
-				graphics.ApplyChanges ();
+				state.game.IsFullscreen = !state.game.IsFullscreen;
 				FullscreenToggled = true;
 			}
 		}

@@ -15,7 +15,7 @@ namespace TestGame1
 {
 	public abstract class GameState
 	{
-		protected Game game;
+		public Game game;
 
 		public PostProcessing PostProcessing { get; set; }
 

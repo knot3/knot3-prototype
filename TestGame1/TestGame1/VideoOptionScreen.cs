@@ -50,6 +50,7 @@ namespace TestGame1
 				"1600x900",
 			};
 			Array.Sort (resolutions);
+			menu.AddDropDown (new MenuItemInfo (text: "Fullscreen"), new BooleanOptionInfo ("video", "fullscreen", false));
 			menu.AddDropDown (new MenuItemInfo (text: "Resolution"),
                               new DistinctOptionInfo ("video", "resolution", currentResolution, resolutions));
 			menu.AddDropDown (new MenuItemInfo (text: "Model Quality"),

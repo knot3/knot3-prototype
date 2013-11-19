@@ -93,8 +93,8 @@ namespace TestGame1
 		{
 			// change game state?
 			if (State != NextState) {
-				NextState.PostProcessing = new FadeEffect(NextState, State);
-				NextState.PostProcessing.LoadContent();
+				NextState.PostProcessing = new FadeEffect (NextState, State);
+				NextState.PostProcessing.LoadContent ();
 				State = NextState;
 			}
 
@@ -137,6 +137,26 @@ namespace TestGame1
 			set {
 				graphics.SynchronizeWithVerticalRetrace = value;
 				this.IsFixedTimeStep = value;
+			}
+		}
+
+		public bool IsFullscreen {
+			get {
+				return graphics.IsFullScreen;
+			}
+			set {
+				if (value != graphics.IsFullScreen) {
+					Console.WriteLine ("Fullscreen Toggle");
+					if (value) {
+						graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
+						graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
+					} else {
+						graphics.PreferredBackBufferWidth = Game.DefaultSize.Width;
+						graphics.PreferredBackBufferHeight = Game.DefaultSize.Height;
+					}
+					graphics.ToggleFullScreen ();
+					graphics.ApplyChanges ();
+				}
 			}
 		}
 		
