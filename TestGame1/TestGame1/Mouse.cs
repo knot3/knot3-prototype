@@ -61,7 +61,9 @@ namespace TestGame1
             
 				Texture2D cursorTex = content.Load<Texture2D> ("cursor");
 				if (input.GrabMouseMovement || input.CurrentInputAction == InputAction.TargetMove
-					|| input.CurrentInputAction == InputAction.ArcballMove) {
+					|| (input.CurrentInputAction == InputAction.ArcballMove
+                    && (Input.MouseState.LeftButton == ButtonState.Pressed || Input.MouseState.RightButton == ButtonState.Pressed)))
+                {
 					spriteBatch.Draw (cursorTex, graphics.GraphicsDevice.Viewport.Center (), Color.White);
 				} else {
 					spriteBatch.Draw (cursorTex, new Vector2 (Input.MouseState.X, Input.MouseState.Y), Color.White);

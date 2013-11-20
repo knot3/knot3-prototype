@@ -49,13 +49,13 @@ namespace TestGame1
 					keyboardMove += new Vector3 (-1, 0, 0);
 				if (Keys.D.IsHeldDown ())
 					keyboardMove += new Vector3 (1, 0, 0);
-				if (Keys.W.IsHeldDown ())
-					keyboardMove += new Vector3 (0, -1, 0);
-				if (Keys.S.IsHeldDown ())
-					keyboardMove += new Vector3 (0, 1, 0);
 				if (Keys.R.IsHeldDown ())
-					keyboardMove += new Vector3 (0, 0, -1);
+					keyboardMove += new Vector3 (0, -1, 0);
 				if (Keys.F.IsHeldDown ())
+					keyboardMove += new Vector3 (0, 1, 0);
+				if (Keys.W.IsHeldDown ())
+					keyboardMove += new Vector3 (0, 0, -1);
+				if (Keys.S.IsHeldDown ())
 					keyboardMove += new Vector3 (0, 0, 1);
 			} else if (WASDMode == WASDMode.RotationMode) {
 				float wasdAngle = 0.01f;
@@ -230,7 +230,7 @@ namespace TestGame1
 		private void ResetMousePosition ()
 		{
 			if (MouseState != PreviousMouseState) {
-				if (GrabMouseMovement || CurrentInputAction == InputAction.ArcballMove) {
+				if (GrabMouseMovement || (CurrentInputAction == InputAction.ArcballMove)) {
 					Mouse.SetPosition (device.Viewport.Width / 2, device.Viewport.Height / 2);
 				}
 			}
