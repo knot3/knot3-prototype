@@ -275,7 +275,7 @@ namespace TestGame1
 		public bool Move (IEnumerable<Edge> selectedEdges, Vector3 direction)
 		{
 			Console.WriteLine ("Move: selection=" + selectedEdges + ", direction=" + direction);
-			Console.WriteLine ("Before Move => " + Edges);
+			//Console.WriteLine ("Before Move => " + Edges);
 			foreach (Edge selectedEdge in SelectedEdges) {
 				Edges.Replace (selectedEdge, new Edge[] {
 					new Edge (direction),
@@ -284,9 +284,9 @@ namespace TestGame1
 				}
 				);
 			}
-			Console.WriteLine ("After Move => " + Edges);
+            //Console.WriteLine ("After Move => " + Edges);
 			Compact ();
-			Console.WriteLine ("Compact => " + Edges);
+            //Console.WriteLine ("Compact => " + Edges);
 			LinesChanged ();
 			return true;
 		}

@@ -78,7 +78,9 @@ namespace TestGame1
 		}
 
 		public override void RenderModel (Model model, Matrix view, Matrix proj, Matrix world)
-		{
+        {
+            lightDirection = new Vector4(-Vector3.Cross(Vector3.Normalize(camera.TargetVector), camera.UpVector), 1);
+            celShader.Parameters["LightDirection"].SetValue(lightDirection);
 			celShader.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
 			celShader.Parameters ["View"].SetValue (camera.ViewMatrix);
 
