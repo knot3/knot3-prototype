@@ -93,6 +93,19 @@ namespace TestGame1
 			return false;
 		}
 
+       
+
+       
+        public void CollapseMenus(MenuItem menu)
+        {
+            foreach (MenuItem item in Items)
+            {
+                if (item != menu)
+                {
+                    item.Collapse();
+                }
+            }
+        }
 		public virtual void Draw (float layerDepth, SpriteBatch spriteBatch, GameTime gameTime)
 		{
 			foreach (MenuItem item in Items) {

@@ -36,7 +36,13 @@ namespace TestGame1
 			selected = new MenuButton (state, 0, valueInfo, fgColor, bgColor, HAlign.Left);
 
 			// action to open the drop-down menu
-			info.OnClick = () => dropdownVisible = true;
+            info.OnClick = () =>
+            {
+                if (dropdownVisible == true) { dropdownVisible = false; }
+                else { dropdownVisible = true; }
+                GameStates.VideoOptionScreen.Collapse(this);
+            }
+            ;
 		}
 
 		public void AddEntries (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
@@ -82,6 +88,12 @@ namespace TestGame1
 
 			return activated;
 		}
+
+        public override void Collapse()
+        {
+            dropdownVisible = false;
+
+        }
 
 		public override void Draw (float layerDepth, SpriteBatch spriteBatch, SpriteFont font, GameTime gameTime)
 		{

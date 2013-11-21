@@ -58,7 +58,11 @@ namespace TestGame1
 			                        new string[]{"low","medium","high"}));
 			menu.AddDropDown (new MenuItemInfo (text: "Cel Shading"), new BooleanOptionInfo ("video", "cel-shading", true));
 		}
-		
+
+        public void Collapse(MenuItem item) {
+            menu.CollapseMenus(item);
+        }
+
 		public override void UpdateMenu (GameTime gameTime)
 		{
 			base.UpdateMenu (gameTime);

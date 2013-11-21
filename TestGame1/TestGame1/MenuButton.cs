@@ -185,6 +185,11 @@ namespace TestGame1
 		{
 			Info.OnClick ();
 		}
+
+        public virtual void Collapse()
+        {
+
+        }
 	}
 
 	public class MenuButton : MenuItem
