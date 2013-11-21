@@ -37,7 +37,7 @@ namespace TestGame1
 			celShader = state.LoadEffect ("CelShader");
 			celShader.Parameters ["LightDirection"].SetValue (lightDirection);
 			celMap = content.Load<Texture2D> ("CelMap");
-			celShader.Parameters ["ColorMap"].SetValue (colorMap);
+			celShader.Parameters ["Color"].SetValue (Color.Green.ToVector4());
 			celShader.Parameters ["CelMap"].SetValue (celMap);
 
 			/* Load and initialize the outline shader effect
@@ -51,7 +51,7 @@ namespace TestGame1
 
 		public void SetColor (Color color)
 		{
-			celShader.Parameters ["ColorMap"].SetValue (Textures.Create (device, color));
+			celShader.Parameters ["Color"].SetValue (color.ToVector4());
 		}
 
 		public Matrix[] LoadBones (Model model)

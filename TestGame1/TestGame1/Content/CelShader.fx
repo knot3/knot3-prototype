@@ -21,22 +21,8 @@ float4x4 InverseWorld;
 
 // lights and texture maps
 float4 LightDirection;
-texture ColorMap;
+float4 Color;
 texture CelMap;
-
-/* Model texture sampler
- * This gives us the original pixel color
- * for the model.
- */
-sampler ColorMapSampler = sampler_state
-{
-	Texture = <ColorMap>;
-	MinFilter = Linear;
-	MagFilter = Linear;
-	MipFilter = Linear;
-	AddressU = Clamp;
-	AddressV = Clamp;
-};
 
 /* Cel Shader effect map
  * Mapping to the cel shader texture is what
@@ -55,7 +41,6 @@ sampler2D CelMapSampler = sampler_state
 struct VertexShaderInput
 {
     float4 Position : POSITION0;
-	float2 Tex : TEXCOORD0;
 	float3 N : NORMAL0;
 };
 
@@ -65,7 +50,7 @@ struct VertexShaderInput
 struct VertexShaderOutput
 {
     float4 Position : POSITION0;
-	float2 Tex : TEXCOORD0;
+	float4 Color : COLOR0;
 	float3 L : TEXCOORD1;
 	float4 N : TEXCOORD2;
 };
@@ -86,7 +71,7 @@ VertexShaderOutput VertexShaderFunction(VertexShaderInput input)
     float4 viewPosition = mul(worldPosition, View);
     output.Position = mul(viewPosition, Projection);
 
-	output.Tex = input.Tex;
+	output.Color = Color;
 	output.L = normalize(LightDirection);
 	output.N = normalize(mul(InverseWorld, input.N));
 
@@ -109,7 +94,7 @@ VertexShaderOutput VertexShaderFunction(VertexShaderInput input)
 float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
 {
     // Get our target pixel color
-	float4 Color = tex2D(ColorMapSampler, input.Tex);
+	float4 Color = input.Color; // tex2D(ColorMapSampler, input.Tex);
 	// Set our source color tinting (this should be an effect parameter)
 	float Ai = 0.8f;
 	float4 Ac = float4(0.075, 0.075, 0.2, 1.0);

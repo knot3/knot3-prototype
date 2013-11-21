@@ -72,13 +72,13 @@ namespace TestGame1
 			RenderTarget = renderTargets [resolution];
 			device.SetRenderTarget (RenderTarget);
 
-			//device.DepthStencilState = DepthStencilState.Default;
+			device.DepthStencilState = DepthStencilState.Default;
 
 			/* Setting the other states isn't really necessary but good form
              */
-			//device.BlendState = BlendState.Opaque;
-			//device.RasterizerState = RasterizerState.CullCounterClockwise;
-			//device.SamplerStates [0] = SamplerState.LinearWrap;
+			device.BlendState = BlendState.Opaque;
+			device.RasterizerState = RasterizerState.CullCounterClockwise;
+			device.SamplerStates [0] = SamplerState.LinearWrap;
 		}
 
 		public override void End (GameTime gameTime)
