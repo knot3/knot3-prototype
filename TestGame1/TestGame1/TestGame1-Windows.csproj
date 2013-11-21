@@ -110,6 +110,7 @@
   <ItemGroup>
     <Compile Include="BlurEffect.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="CelShading.cs" />
     <Compile Include="DropDownMenu.cs" />
     <Compile Include="Edges.cs" />
     <Compile Include="Game.cs" />
