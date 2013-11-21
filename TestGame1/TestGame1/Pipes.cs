@@ -14,38 +14,7 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace TestGame1
 {
-	public class DrawPipes : GameClass
-	{
-		// pipes
-		private Pipes pipes;
-
-		public DrawPipes (GameState state)
-			: base(state)
-		{
-			pipes = new Pipes (state);
-			world.Add (pipes);
-		}
-
-		/// <summary>
-		/// Draw the pipes.
-		/// </summary>
-		/// <param name='gameTime'>
-		/// Game time.
-		/// </param>
-		public void Update (EdgeList lines)
-		{
-			if (lines.Count > 0) {
-				pipes.UpdatePipes (lines);
-			}
-		}
-		
-		public void Draw (GameTime gameTime)
-		{
-			pipes.Draw (gameTime);
-		}
-	}
-
-	public class Pipes : GameObject
+	public class PipeRenderer : GameObject
 	{
 		// pipes and knots
 		private List<PipeModel> pipes;
@@ -55,7 +24,7 @@ namespace TestGame1
 
 		protected override Vector3 Position { get; set; }
 
-		public Pipes (GameState state)
+		public PipeRenderer (GameState state)
 			: base(state)
 		{
 			pipes = new List<PipeModel> ();
@@ -75,7 +44,7 @@ namespace TestGame1
 			}
 		}
 
-		public void UpdatePipes (EdgeList edges)
+		public void OnEdgesChanged (EdgeList edges)
 		{
 			pipes.Clear ();
 			for (int n = 0; n < edges.Count; n++) {

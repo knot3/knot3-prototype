@@ -14,9 +14,9 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace TestGame1
 {
-	public class DrawLines : GameClass
+	public class LineRenderer : GameClass
 	{
-		public DrawLines (GameState state)
+		public LineRenderer (GameState state)
 			: base(state)
 		{
 		}

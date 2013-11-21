@@ -149,7 +149,7 @@ namespace TestGame1
 
 		public WrapList<Edge> SelectedEdges { get; private set; }
 
-		public Action LinesChanged { get; set; }
+		public Action<EdgeList> EdgesChanged = (list) => {};
 
 		private Dictionary<int,Node> NodeCache;
 
@@ -291,7 +291,7 @@ namespace TestGame1
 			//Console.WriteLine ("After Move => " + Edges);
 			Compact ();
 			//Console.WriteLine ("Compact => " + Edges);
-			LinesChanged ();
+			EdgesChanged (this);
 			return true;
 		}
 

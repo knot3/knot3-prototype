@@ -155,13 +155,6 @@ namespace TestGame1
 				// mouse movements
 				Vector2 mouseMove = new Vector2 (MouseState.X - PreviousMouseState.X, MouseState.Y - PreviousMouseState.Y);
 
-				if (false && Game.Debug && mouseMove.Length() > 0) {
-					Console.WriteLine ("mouseMove: " + mouseMove + ", MouseState=(" +
-						MouseState.X + "," + MouseState.Y +
-						"), PreviousMouseState=(" + PreviousMouseState.X + "," + PreviousMouseState.Y + ")"
-					);
-				}
-
 				InputAction action;
 				// grab mouse movement
 				if (GrabMouseMovement) {

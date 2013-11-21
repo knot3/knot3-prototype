@@ -25,8 +25,8 @@ namespace TestGame1
 		// custom classes
 		private MousePointer pointer;
 		private Overlay overlay;
-		private DrawLines drawLines;
-		private DrawPipes drawPipes;
+		private LineRenderer lineRenderer;
+		private PipeRenderer pipeRenderer;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TestGame1.ConstructionMode"/> class.
@@ -73,18 +73,16 @@ namespace TestGame1
 			// world
 			world = new World (this);
 
-			// line drawing
-			drawLines = new DrawLines (this);
+			// line renderer
+			lineRenderer = new LineRenderer (this);
 
-			// pipe drawing
-			drawPipes = new DrawPipes (this);
+			// pipe renderer
+			pipeRenderer = new PipeRenderer (this);
 			
 			// load nodes
 			Node.Scale = 100;
 			edges = new EdgeList ();
-			edges.LinesChanged += () => {
-				drawPipes.Update (edges);
-			};
+			edges.EdgesChanged += pipeRenderer.OnEdgesChanged;
 
 			// load camera
 			camera.LoadContent ();
@@ -111,7 +109,7 @@ namespace TestGame1
 				edges[i].Color = Edge.RandomColor();
 			}
 
-			drawPipes.Update (edges);
+			pipeRenderer.OnEdgesChanged (edges);
 		}
 
 		public override GameState Update (GameTime gameTime)
@@ -190,10 +188,9 @@ namespace TestGame1
 			game.GraphicsDevice.BlendState = BlendState.Opaque;
 			game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
-			drawPipes.Draw (gameTime);
 			world.Draw (gameTime);
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
-			drawLines.Draw (edges, gameTime);
+			lineRenderer.Draw (edges, gameTime);
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
 			overlay.Draw (gameTime);
 			pointer.Draw (gameTime);

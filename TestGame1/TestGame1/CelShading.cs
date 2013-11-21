@@ -16,7 +16,6 @@ namespace TestGame1
 	{
 		public Effect celShader;       // Toon shader effect
 		Texture2D celMap;       // Texture map for cell shading
-		Texture2D colorMap;
 		Vector4 lightDirection; // Light source for toon shader
 
 		Effect outlineShader;   // Outline shader effect
@@ -33,7 +32,6 @@ namespace TestGame1
 
 			/* Load and initialize the cel-shader effect
              */
-			colorMap = content.Load<Texture2D> ("ColorMap");
 			celShader = state.LoadEffect ("CelShader");
 			celShader.Parameters ["LightDirection"].SetValue (lightDirection);
 			celMap = content.Load<Texture2D> ("CelMap");
