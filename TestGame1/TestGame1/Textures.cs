@@ -113,5 +113,12 @@ namespace TestGame1
 
 		#endregion
 	}
+
+	public static class Colors {
+		public static Color Mix (this Color a, Color b)
+		{
+			return new Color((a.ToVector3 () + b.ToVector3 ()) / 2);
+		}
+	}
 }
 

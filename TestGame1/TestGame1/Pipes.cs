@@ -109,14 +109,14 @@ namespace TestGame1
 
 		public override void DrawObject (GameTime gameTime)
 		{
-			Vector3 mix = (EdgeA.Color.ToVector3 () + EdgeB.Color.ToVector3 ()) / 2;
+			Color mix = EdgeA.Color.Mix (EdgeB.Color);
 			if (state.PostProcessing is CelShadingEffect) {
-				(state.PostProcessing as CelShadingEffect).SetColor (new Color (mix));
+				(state.PostProcessing as CelShadingEffect).SetColor (mix);
 			} else {
 				foreach (ModelMesh mesh in Model.Meshes) {
 					foreach (Effect effect in mesh.Effects) {
 						if (effect is BasicEffect) {
-							(effect as BasicEffect).DiffuseColor = mix;
+							(effect as BasicEffect).DiffuseColor = mix.ToVector3 ();
 						} else {
 							Console.WriteLine ("KnotModel: effect is not BasicEffect! (" + effect.CurrentTechnique.Name + ")");
 						}
@@ -188,9 +188,6 @@ namespace TestGame1
 
 			} else if (world.SelectedObject == this) {
 				effect.FogEnabled = true;
-				float fogIntensity = (gameTime.TotalGameTime.Milliseconds % 1000 - 500) / 5;
-				if (fogIntensity < 0)
-					fogIntensity = 0 - fogIntensity;
 				effect.FogColor = Color.White.ToVector3 ();
 				effect.FogStart = distance - 100;
 				effect.FogEnd = distance + 200;
@@ -202,9 +199,18 @@ namespace TestGame1
 
 		public override void DrawObject (GameTime gameTime)
 		{
+			// if we are using a cel shading effect
 			if (state.PostProcessing is CelShadingEffect) {
-				(state.PostProcessing as CelShadingEffect).SetColor (Edge.Color);
-			} else {
+				if (world.SelectedObject == this)
+					(state.PostProcessing as CelShadingEffect).SetColor (Color.White.Mix(Edge.Color));
+				else if (Edges.SelectedEdges.Contains (Edge))
+					(state.PostProcessing as CelShadingEffect).SetColor (Color.Black.Mix(Edge.Color));
+				else
+					(state.PostProcessing as CelShadingEffect).SetColor (Edge.Color);
+
+			}
+			// or a basic effect
+			else {
 				foreach (ModelMesh mesh in Model.Meshes) {
 					foreach (Effect effect in mesh.Effects) {
 						if (effect is BasicEffect) {

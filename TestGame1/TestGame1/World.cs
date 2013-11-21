@@ -122,7 +122,7 @@ namespace TestGame1
 		public void UpdateMouseRay (GameTime gameTime)
 		{
 			double millis = gameTime.TotalGameTime.TotalMilliseconds;
-			if (millis > lastRayCheck + 100 && (input.CurrentInputAction == InputAction.TargetMove
+			if (millis > lastRayCheck + 10 && (input.CurrentInputAction == InputAction.TargetMove
 				|| input.CurrentInputAction == InputAction.FreeMouse)) {
 				lastRayCheck = millis;
 
