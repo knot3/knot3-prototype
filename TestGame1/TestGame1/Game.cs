@@ -55,7 +55,7 @@ namespace TestGame1
 		protected override void Initialize ()
 		{
 			// vsync
-			VSync = true;
+            VSync = false;
 
 			// anti aliasing
 			graphics.GraphicsDevice.PresentationParameters.MultiSampleCount = 4;
@@ -136,7 +136,8 @@ namespace TestGame1
 			}
 			set {
 				graphics.SynchronizeWithVerticalRetrace = value;
-				this.IsFixedTimeStep = value;
+                this.IsFixedTimeStep = value;
+                graphics.ApplyChanges();
 			}
 		}
 

@@ -49,14 +49,15 @@ namespace TestGame1
 				"1440x900",
 				"1600x900",
 			};
-			Array.Sort (resolutions);
+            Array.Sort(resolutions);
+            menu.AddDropDown (new MenuItemInfo (text: "VSync"), new BooleanOptionInfo("video", "vsync", true));
 			menu.AddDropDown (new MenuItemInfo (text: "Fullscreen"), new BooleanOptionInfo ("video", "fullscreen", false));
 			menu.AddDropDown (new MenuItemInfo (text: "Resolution"),
                               new DistinctOptionInfo ("video", "resolution", currentResolution, resolutions));
 			menu.AddDropDown (new MenuItemInfo (text: "Model Quality"),
                               new DistinctOptionInfo ("video", "model-quality", "medium",
-			                        new string[]{"low","medium","high"}));
-			menu.AddDropDown (new MenuItemInfo (text: "Cel Shading"), new BooleanOptionInfo ("video", "cel-shading", true));
+                                    new string[] { "low", "medium", "high" }));
+            menu.AddDropDown (new MenuItemInfo (text: "Cel Shading"), new BooleanOptionInfo("video", "cel-shading", true));
 		}
 
         public void Collapse(MenuItem item) {
