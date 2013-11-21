@@ -302,6 +302,7 @@ namespace TestGame1
 
 		public bool Compact ()
 		{
+			NodeCache.Clear ();
 			bool successful = false;
 			bool done = false;
 			while (!done) {

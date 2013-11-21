@@ -105,9 +105,11 @@ namespace TestGame1
 
 			for (int i = 0; i < 30; ++i) {
 				edges.Add (Edge.RandomEdge ());
-				edges[i].Color = Edge.RandomColor();
 			}
 			edges.Compact ();
+			for (int i = 0; i < edges.Count; ++i) {
+				edges[i].Color = Edge.RandomColor();
+			}
 
 			drawPipes.Update (edges);
 		}
