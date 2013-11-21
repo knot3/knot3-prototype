@@ -26,6 +26,10 @@ namespace TestGame1
 		public abstract void Begin (GameTime gameTime);
 
 		public abstract void End (GameTime gameTime);
+
+		public abstract void RemapModel (Model model);
+
+		public abstract void RenderModel (Model model, Matrix view, Matrix proj, Matrix world);
 	}
 
 	public class NoPostProcessing : RenderTargetPostProcessing
@@ -67,6 +71,14 @@ namespace TestGame1
 			}
 			RenderTarget = renderTargets [resolution];
 			device.SetRenderTarget (RenderTarget);
+
+			//device.DepthStencilState = DepthStencilState.Default;
+
+			/* Setting the other states isn't really necessary but good form
+             */
+			//device.BlendState = BlendState.Opaque;
+			//device.RasterizerState = RasterizerState.CullCounterClockwise;
+			//device.SamplerStates [0] = SamplerState.LinearWrap;
 		}
 
 		public override void End (GameTime gameTime)
@@ -87,6 +99,29 @@ namespace TestGame1
 		}
 
 		public abstract void Draw (SpriteBatch spriteBatch, GameTime gameTime);
+
+		public override void RemapModel (Model model)
+		{
+		}
+
+		public override void RenderModel (Model model, Matrix view, Matrix proj, Matrix world)
+		{
+			foreach (ModelMesh mesh in model.Meshes) {
+				foreach (ModelMeshPart part in mesh.MeshParts) {
+					if (part.Effect is BasicEffect) {
+						BasicEffect effect = part.Effect as BasicEffect;
+						if (Keys.L.IsHeldDown ()) {
+							effect.LightingEnabled = false;
+						} else {
+							effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
+						}
+						effect.World = world;
+						effect.View = camera.ViewMatrix;
+						effect.Projection = camera.ProjectionMatrix;
+					}
+				}
+			}
+		}
 	}
 
 	public class FadeEffect : RenderTargetPostProcessing
@@ -105,7 +140,7 @@ namespace TestGame1
 
 		public override void Draw (SpriteBatch spriteBatch, GameTime gameTime)
 		{
-			spriteBatch.Draw (RenderTarget, Vector2.Zero, Color.White * (1-alpha));
+			spriteBatch.Draw (RenderTarget, Vector2.Zero, Color.White * (1 - alpha));
 
 			if (lastFrame != null) {
 				alpha -= 0.05f;
@@ -117,6 +152,8 @@ namespace TestGame1
 				alpha = 0.0f;
 			}
 		}
+
+		public bool IsFinished { get { return alpha <= 0; } }
 	}
 }
 

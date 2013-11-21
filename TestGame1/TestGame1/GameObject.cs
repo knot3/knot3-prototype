@@ -95,38 +95,6 @@ namespace TestGame1
 
 		#endregion
 
-		#region Textures and Models
-
-		public static Texture2D LoadTexture (ContentManager content, string name)
-		{
-			try {
-				return content.Load<Texture2D> (name);
-			} catch (ContentLoadException ex) {
-				Console.WriteLine (ex.ToString ());
-				return null;
-			}
-		}
-
-		private static Dictionary<string, Model> modelCache = new Dictionary<string, Model> ();
-
-		public static Model LoadModel (ContentManager content, string name)
-		{
-			if (modelCache.ContainsKey (name)) {
-				return modelCache [name];
-			} else {
-				try {
-					Model model = content.Load<Model> (name);
-					modelCache [name] = model;
-					return model;
-				} catch (ContentLoadException ex) {
-					Console.WriteLine (ex.ToString ());
-					return null;
-				}
-			}
-		}
-
-		#endregion
-
 		#region Intersection
 
 		public abstract GameObjectDistance Intersects (Ray ray);

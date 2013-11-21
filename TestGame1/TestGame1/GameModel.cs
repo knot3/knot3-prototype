@@ -18,15 +18,15 @@ namespace TestGame1
 	{
 		#region Attributes and Properties
 
-		protected virtual Model Model { get; set; }
+		protected virtual string Modelname { get; private set; }
+
+		protected virtual Model Model { get { return Models.LoadModel (content, state, Modelname); } }
 
 		protected virtual float Scale { get; set; }
 
 		protected virtual Angles3 Rotation { get; set; }
 
 		protected override Vector3 Position { get; set; }
-
-		protected ModelMesh[] ModelMeshes;
 
 		protected virtual Matrix WorldMatrix {
 			get {
@@ -44,22 +44,10 @@ namespace TestGame1
 			: base(state)
 		{
 			// load test model
-			Model = LoadModel (content, modelname);
+			Modelname = modelname;
 			Scale = scale;
 			Rotation = Angles3.Zero;
 			Position = position;
-			ModelMeshes = Model.Meshes.ToArray ();
-		}
-
-		public GameModel (GameState state, Model model, Vector3 position, float scale)
-			: base(state)
-		{
-			// load test model
-			Model = model;
-			Scale = scale;
-			Rotation = Angles3.Zero;
-			Position = position;
-			ModelMeshes = Model.Meshes.ToArray ();
 		}
 		
 		#endregion
@@ -73,22 +61,17 @@ namespace TestGame1
 
 		public override void DrawObject (GameTime gameTime)
 		{
-			// test:
-			foreach (ModelMesh mesh in ModelMeshes) {
-				foreach (BasicEffect effect in mesh.Effects) {
-					if (Keys.L.IsHeldDown ()) {
-						effect.LightingEnabled = false;
-					} else {
-						effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
-					}
-					UpdateEffect (effect, gameTime);
-					effect.World = Matrix.CreateScale (Scale)
-						* Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
-						* Matrix.CreateTranslation (Position);
-					effect.View = camera.ViewMatrix;
-					effect.Projection = camera.ProjectionMatrix;
-				}
+			Matrix world = Matrix.CreateScale (Scale)
+				* Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
+				* Matrix.CreateTranslation (Position);
 
+			state.PostProcessing.RenderModel (Model, camera.ViewMatrix, camera.ProjectionMatrix, world);
+
+			foreach (ModelMesh mesh in Model.Meshes) {
+				foreach (Effect effect in mesh.Effects) {
+					if (effect is BasicEffect)
+						UpdateEffect (effect as BasicEffect, gameTime);
+				}
 				mesh.Draw ();
 			}
 		}
@@ -131,11 +114,6 @@ namespace TestGame1
 
 		public CachedGameModel (GameState state, string modelname, Vector3 position, float scale)
 			: base(state, modelname, position, scale)
-		{
-		}
-
-		public CachedGameModel (GameState state, Model model, Vector3 position, float scale)
-			: base(state, model, position, scale)
 		{
 		}
 

@@ -27,6 +27,15 @@ namespace TestGame1
 			ini.UpdateFile ();
 		}
 
+		public bool this [string section, string option, bool defaultValue = false] {
+			get {
+				return this [section, option, defaultValue ? True : False] == True ? true : false;
+			}
+			set {
+				this [section, option, defaultValue ? True : False] = value ? True : False;
+			}
+		}
+
 		public string this [string section, string option, string defaultValue = null] {
 			get {
 				string value = ini.ReadString (section, option);
@@ -42,6 +51,9 @@ namespace TestGame1
 				Save ();
 			}
 		}
+
+		public static string True = "on";
+		public static string False = "off";
 	}
 
 	public static class Options
@@ -67,12 +79,12 @@ namespace TestGame1
 
 		public virtual string Value {
 			get {
-				Console.WriteLine("OptionInfo: "+Section+"."+Name+" => "+ConfigFile [Section, Name, DefaultValue]);
+				Console.WriteLine ("OptionInfo: " + Section + "." + Name + " => " + ConfigFile [Section, Name, DefaultValue]);
 				return ConfigFile [Section, Name, DefaultValue];
 			}
 			set {
-				Console.WriteLine("OptionInfo: "+Section+"."+Name+" <= "+value);
-				ConfigFile [Section, Name] = value;
+				Console.WriteLine ("OptionInfo: " + Section + "." + Name + " <= " + value);
+				ConfigFile [Section, Name, DefaultValue] = value;
 			}
 		}
 
@@ -114,20 +126,17 @@ namespace TestGame1
 
 	public class BooleanOptionInfo : DistinctOptionInfo
 	{
-		private static string True = "on";
-		private static string False = "off";
-		
 		public BooleanOptionInfo (string section, string name, bool defaultValue, ConfigFile configFile = null)
-			: base(section,name,defaultValue?True:False,new string[]{True,False},configFile)
+			: base(section,name,defaultValue?ConfigFile.True:ConfigFile.False,new string[]{ConfigFile.True,ConfigFile.False},configFile)
 		{
 		}
 
 		public bool BoolValue {
 			get {
-				return base.Value == True ? true : false;
+				return base.Value == ConfigFile.True ? true : false;
 			}
 			set {
-				base.Value = value ? True : False;
+				base.Value = value ? ConfigFile.True : ConfigFile.False;
 			}
 		}
 	}

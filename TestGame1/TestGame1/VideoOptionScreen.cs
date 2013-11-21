@@ -56,7 +56,7 @@ namespace TestGame1
 			menu.AddDropDown (new MenuItemInfo (text: "Model Quality"),
                               new DistinctOptionInfo ("video", "model-quality", "medium",
 			                        new string[]{"low","medium","high"}));
-
+			menu.AddDropDown (new MenuItemInfo (text: "Cel Shading"), new BooleanOptionInfo ("video", "cel-shading", true));
 		}
 		
 		public override void UpdateMenu (GameTime gameTime)

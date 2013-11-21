@@ -17,8 +17,6 @@ namespace TestGame1
 	{
 		public Game game;
 
-		public PostProcessing PostProcessing { get; set; }
-
 		public GameState (Game game)
 		{
 			this.game = game;
@@ -39,7 +37,19 @@ namespace TestGame1
 		public Viewport viewport { get { return device.Viewport; } }
 
 		public ContentManager content { get { return game.Content; } }
-		
+
+		private PostProcessing postProcessing;
+
+		public PostProcessing PostProcessing {
+			get { return postProcessing; }
+			set {
+				postProcessing = value;
+				PostProcessingEffectChanged(value);
+			}
+		}
+
+		public Action<PostProcessing> PostProcessingEffectChanged = (pp) => {};
+
 		public abstract void Initialize ();
 
 		public abstract GameState Update (GameTime gameTime);

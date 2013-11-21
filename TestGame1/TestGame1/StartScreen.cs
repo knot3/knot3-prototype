@@ -34,7 +34,7 @@ namespace TestGame1
 			base.Initialize ();
 
 			// logo
-			logo = GameObject.LoadTexture (content, "logo");
+			logo = Textures.LoadTexture (content, "logo");
 
 			// create a new SpriteBatch, which can be used to draw textures
 			spriteBatch = new SpriteBatch (device);

@@ -51,7 +51,7 @@ namespace TestGame1
 			Height = height;
 			Position = origin;
 
-			texture = LoadTexture (content, texturename);
+			texture = Textures.LoadTexture (content, texturename);
 			if (texture != null) {
 				FillVertices ();
 			}

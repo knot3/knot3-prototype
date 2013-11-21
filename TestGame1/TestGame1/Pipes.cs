@@ -135,16 +135,26 @@ namespace TestGame1
 			Edges = edges;
 			EdgeA = edgeA;
 			EdgeB = edgeB;
+			IsVisible = edgeA.Direction != edgeB.Direction;
 		}
 
 		public override void DrawObject (GameTime gameTime)
 		{
 			Vector3 mix = (EdgeA.Color.ToVector3 () + EdgeB.Color.ToVector3 ()) / 2;
-			foreach (ModelMesh mesh in ModelMeshes) {
-				foreach (BasicEffect effect in mesh.Effects) {
-					effect.DiffuseColor = mix;
+			if (state.PostProcessing is CelShadingEffect) {
+				(state.PostProcessing as CelShadingEffect).SetColor (new Color (mix));
+			} else {
+				foreach (ModelMesh mesh in Model.Meshes) {
+					foreach (Effect effect in mesh.Effects) {
+						if (effect is BasicEffect) {
+							(effect as BasicEffect).DiffuseColor = mix;
+						} else {
+							Console.WriteLine ("KnotModel: effect is not BasicEffect! (" + effect.CurrentTechnique.Name + ")");
+						}
+					}
 				}
 			}
+
 			base.DrawObject (gameTime);
 		}
 	}
@@ -223,13 +233,16 @@ namespace TestGame1
 
 		public override void DrawObject (GameTime gameTime)
 		{
-			foreach (ModelMesh mesh in ModelMeshes) {
-				foreach (BasicEffect effect in mesh.Effects) {
-					if (Edges.SelectedEdges.Contains (Edge)) {
-						effect.DiffuseColor = Color.White.ToVector3 ();
-						effect.DiffuseColor = Edge.Color.ToVector3 ();
-					} else {
-						effect.DiffuseColor = Edge.Color.ToVector3 ();
+			if (state.PostProcessing is CelShadingEffect) {
+				(state.PostProcessing as CelShadingEffect).SetColor (Edge.Color);
+			} else {
+				foreach (ModelMesh mesh in Model.Meshes) {
+					foreach (Effect effect in mesh.Effects) {
+						if (effect is BasicEffect) {
+							(effect as BasicEffect).DiffuseColor = Edge.Color.ToVector3 ();
+						} else {
+							Console.WriteLine ("PipeModel: effect is not BasicEffect! (" + effect.CurrentTechnique.Name + ")");
+						}
 					}
 				}
 			}
@@ -377,7 +390,7 @@ namespace TestGame1
 
 		public KnotModel this [EdgeList edges, Edge edgeA, Edge edgeB, Vector3 offset] {
 			get {
-				Node node = edges.ToNode(edgeA);
+				Node node = edges.ToNode (edgeA);
 				if (knotCache.ContainsKey (node)) {
 					return knotCache [node];
 				} else {

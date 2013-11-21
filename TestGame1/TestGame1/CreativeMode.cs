@@ -52,6 +52,7 @@ namespace TestGame1
 			PostProcessingEffects = new List<PostProcessing> ();
 			PostProcessingEffects.Add (new NoPostProcessing (this));
 			PostProcessingEffects.Add (new BlurEffect (this));
+			PostProcessingEffects.Add (new CelShadingEffect (this));
 			foreach (PostProcessing	pp in PostProcessingEffects) {
 				pp.LoadContent ();
 			}
@@ -102,8 +103,9 @@ namespace TestGame1
 			edges.Add (Edge.Down);
 			edges.Add (Edge.Forward);*/
 
-			for (int i = 0; i < 20; ++i) {
+			for (int i = 0; i < 30; ++i) {
 				edges.Add (Edge.RandomEdge ());
+				edges[i].Color = Edge.RandomColor();
 			}
 			edges.Compact ();
 
@@ -158,6 +160,16 @@ namespace TestGame1
 			// post processing effects
 			if (Keys.O.IsDown ())
 				PostProcessing = PostProcessingEffects [(PostProcessingEffects.IndexOf (PostProcessing) + 1) % PostProcessingEffects.Count];
+
+			// fade effect finished?
+			if (PostProcessing is FadeEffect) {
+				if ((PostProcessing as FadeEffect).IsFinished) {
+					if (Options.Default["video", "cel-shading", true]) {
+						PostProcessing = new CelShadingEffect (this);
+						PostProcessing.LoadContent ();
+					}
+				}
+			}
 
 			// toggle debug mode
 			if (Keys.RightControl.IsDown ())
