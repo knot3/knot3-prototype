@@ -21,10 +21,13 @@ namespace TestGame1
 				"medium",
 				"high"
 			};
+
 		public static string Quality {
-			get { return Options.Default["video", "model-quality", "medium"]; }
+			get { return Options.Default ["video", "model-quality", "medium"]; }
 		}
+
 		private static Dictionary<string, ContentManager> contentManagers = new Dictionary<string, ContentManager> ();
+		private static HashSet<string> invalidModels = new HashSet<string> ();
 
 		public static Model LoadModel (GameState state, string name)
 		{
@@ -42,13 +45,18 @@ namespace TestGame1
 
 		private static Model LoadModel (ContentManager content, PostProcessing pp, string name)
 		{
-			try {
-				Model model = content.Load<Model> (name);
-				pp.RemapModel (model);
-				return model;
-			} catch (ContentLoadException ex) {
-				Console.WriteLine (ex.ToString ());
+			if (invalidModels.Contains (name)) {
 				return null;
+			} else {
+				try {
+					Model model = content.Load<Model> (name);
+					pp.RemapModel (model);
+					return model;
+				} catch (ContentLoadException ex) {
+					Console.WriteLine (ex.ToString ());
+					invalidModels.Add (name);
+					return null;
+				}
 			}
 		}
 	}
