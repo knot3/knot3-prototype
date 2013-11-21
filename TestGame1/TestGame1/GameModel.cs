@@ -20,7 +20,7 @@ namespace TestGame1
 
 		protected virtual string Modelname { get; private set; }
 
-		protected virtual Model Model { get { return Models.LoadModel (content, state, Modelname); } }
+		protected virtual Model Model { get { return Models.LoadModel (state, Modelname); } }
 
 		protected virtual float Scale { get; set; }
 

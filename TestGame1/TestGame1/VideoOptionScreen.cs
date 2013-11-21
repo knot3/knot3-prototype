@@ -55,8 +55,7 @@ namespace TestGame1
 			menu.AddDropDown (new MenuItemInfo (text: "Resolution"),
                               new DistinctOptionInfo ("video", "resolution", currentResolution, resolutions));
 			menu.AddDropDown (new MenuItemInfo (text: "Model Quality"),
-                              new DistinctOptionInfo ("video", "model-quality", "medium",
-                                    new string[] { "low", "medium", "high" }));
+			                  new DistinctOptionInfo ("video", "model-quality", Models.Quality, Models.ValidQualities));
             menu.AddDropDown (new MenuItemInfo (text: "Cel Shading"), new BooleanOptionInfo("video", "cel-shading", true));
 		}
 

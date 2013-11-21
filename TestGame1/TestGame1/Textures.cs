@@ -16,40 +16,40 @@ namespace TestGame1
 {
 	public static class Models
 	{
-		private static Dictionary<string, ContentManager> contentManagers = new Dictionary<string, ContentManager>();
+		public static string[] ValidQualities = new string[] {
+				"low",
+				"medium",
+				"high"
+			};
+		public static string Quality {
+			get { return Options.Default["video", "model-quality", "medium"]; }
+		}
+		private static Dictionary<string, ContentManager> contentManagers = new Dictionary<string, ContentManager> ();
 
-		public static Model LoadModel (ContentManager _content, GameState state, string name)
+		public static Model LoadModel (GameState state, string name)
 		{
 			ContentManager content;
-			if (contentManagers.ContainsKey(state.PostProcessing.ToString()))
-				content = contentManagers[state.PostProcessing.ToString()];
+			if (contentManagers.ContainsKey (state.PostProcessing.ToString ()))
+				content = contentManagers [state.PostProcessing.ToString ()];
 			else
-				contentManagers[state.PostProcessing.ToString()] = content = new ContentManager(_content.ServiceProvider, _content.RootDirectory);
-			
-			Model model2 = content.Load<Model> (name);
-			state.PostProcessing.RemapModel (model2);
-			return model2;
+				contentManagers [state.PostProcessing.ToString ()] = content = new ContentManager (state.content.ServiceProvider, state.content.RootDirectory);
 
-			/*
-			string key = name + "-" + "-" + state.PostProcessing.ToString ();
-			if (modelCache.ContainsKey (key)) {
-				return modelCache [key];
-			} else {
-				try {
-					Model model = content.Load<Model> (name);
-					LoadDefaultEffects (name, model);
-					state.PostProcessing.RemapModel (model);
-					state.PostProcessingEffectChanged += (pp) => {
-						//LoadDefaultEffects (name, model);
-						//pp.RemapModel (model);
-					};
-					modelCache [key] = model;
-					return model;
-				} catch (ContentLoadException ex) {
-					Console.WriteLine (ex.ToString ());
-					return null;
-				}
-			}*/
+			Model model = LoadModel (content, state.PostProcessing, name + "-" + Quality);
+			if (model == null)
+				model = LoadModel (content, state.PostProcessing, name);
+			return model;
+		}
+
+		private static Model LoadModel (ContentManager content, PostProcessing pp, string name)
+		{
+			try {
+				Model model = content.Load<Model> (name);
+				pp.RemapModel (model);
+				return model;
+			} catch (ContentLoadException ex) {
+				Console.WriteLine (ex.ToString ());
+				return null;
+			}
 		}
 	}
 
