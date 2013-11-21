@@ -151,6 +151,8 @@ namespace TestGame1
 
 		public Action LinesChanged { get; set; }
 
+		private Dictionary<int,Node> NodeCache;
+
 		#endregion
 
 		#region Constructors
@@ -159,6 +161,7 @@ namespace TestGame1
 		{
 			Edges = new WrapList<Edge> ();
 			SelectedEdges = new WrapList<Edge> ();
+			NodeCache = new Dictionary<int, Node> ();
 		}
 
 		#endregion
@@ -186,11 +189,16 @@ namespace TestGame1
 
 		public Node FromNode (int index)
 		{
-			Node node = new Node (0, 0, 0);
-			for (int i = 0; i < index; ++i) {
-				node += Edges [i].Direction;
+			if (NodeCache.ContainsKey (index)) {
+				return NodeCache [index];
+			} else {
+				Node node = new Node (0, 0, 0);
+				for (int i = 0; i < index; ++i) {
+					node += Edges [i].Direction;
+				}
+				NodeCache [index] = node;
+				return node;
 			}
-			return node;
 		}
 
 		public Node FromNode (Edge edge)
@@ -200,11 +208,7 @@ namespace TestGame1
 
 		public Node ToNode (int index)
 		{
-			Node node = new Node (0, 0, 0);
-			for (int i = 0; i < index + 1; ++i) {
-				node += Edges [i].Direction;
-			}
-			return node;
+			return FromNode (index + 1);
 		}
 
 		public Node ToNode (Edge edge)
@@ -284,9 +288,9 @@ namespace TestGame1
 				}
 				);
 			}
-            //Console.WriteLine ("After Move => " + Edges);
+			//Console.WriteLine ("After Move => " + Edges);
 			Compact ();
-            //Console.WriteLine ("Compact => " + Edges);
+			//Console.WriteLine ("Compact => " + Edges);
 			LinesChanged ();
 			return true;
 		}
@@ -321,6 +325,7 @@ namespace TestGame1
 					}
 				}
 			}
+			NodeCache.Clear ();
 			return successful;
 		}
 
