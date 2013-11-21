@@ -78,6 +78,7 @@ namespace TestGame1
 
 			// pipe renderer
 			pipeRenderer = new PipeRenderer (this);
+			world.Add(pipeRenderer);
 			
 			// load nodes
 			Node.Scale = 100;
