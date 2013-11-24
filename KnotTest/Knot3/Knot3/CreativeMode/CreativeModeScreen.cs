@@ -82,6 +82,7 @@ namespace Knot3.CreativeMode
 
 			// line renderer
 			lineRenderer = new LineRenderer (this);
+			world.Add (lineRenderer);
 
 			// pipe renderer
 			pipeRenderer = new PipeRenderer (this);
@@ -96,9 +97,6 @@ namespace Knot3.CreativeMode
 
 			// load overlay
 			overlay.LoadContent ();
-
-			
-			knotModified = true;
 		}
 
 		public Knot Knot {
@@ -106,6 +104,7 @@ namespace Knot3.CreativeMode
 			set {
 				knot = value;
 				knot.EdgesChanged += pipeRenderer.OnEdgesChanged;
+				knot.EdgesChanged += lineRenderer.OnEdgesChanged;
 				knot.EdgesChanged += (e) => knotModified = true;
 				knot.EdgesChanged (knot.Edges);
 				knotModified = false;
@@ -196,9 +195,8 @@ namespace Knot3.CreativeMode
 			// begin the knot render effect
 			knotRenderEffect.Begin (gameTime);
 
-			// draw all world objects
+			// draw all game objects
 			world.Draw (gameTime);
-			lineRenderer.Draw (knot.Edges, gameTime);
 
 			// end of the knot render effect
 			knotRenderEffect.End (gameTime);

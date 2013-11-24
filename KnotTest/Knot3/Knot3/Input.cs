@@ -91,8 +91,7 @@ namespace Knot3
 	public enum WASDMode
 	{
 		ArcballMode,
-		FirstPersonMode,
-		RotationMode
+		FirstPersonMode
 	}
 
 	public static class InputExtensions

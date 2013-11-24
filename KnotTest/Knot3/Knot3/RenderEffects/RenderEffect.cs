@@ -116,7 +116,7 @@ namespace Knot3.RenderEffects
 						}
 
 						// matrices
-						effect.World = model.WorldMatrix;
+						effect.World = model.WorldMatrix * camera.WorldMatrix;
 						effect.View = camera.ViewMatrix;
 						effect.Projection = camera.ProjectionMatrix;
 

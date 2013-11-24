@@ -18,7 +18,6 @@ namespace Knot3
 {
 	public class Camera : GameClass
 	{
-
 		public Matrix WorldMatrix { get; private set; }
 
 		public Matrix ViewMatrix { get; private set; }
@@ -59,7 +58,7 @@ namespace Knot3
 			UpVector = Vector3.Up;
 			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
  
-			FoV = MathHelper.PiOver4;
+			FoV = MathHelper.ToDegrees(MathHelper.PiOver4);
 			aspectRatio = device.Viewport.AspectRatio;
 			nearPlane = 0.5f;
 			farPlane = 10000.0f;
@@ -79,6 +78,7 @@ namespace Knot3
 		private void UpdateRotation (GameTime gameTime)
 		{
 			// auto rotation
+			AutoRotation= new Angles3(0,0.05f,0);
 			RotationAngle += AutoRotation;
 		}
 

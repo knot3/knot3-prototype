@@ -75,8 +75,8 @@ namespace Knot3.RenderEffects
 		{
 			lightDirection = new Vector4 (-Vector3.Cross (Vector3.Normalize (camera.TargetVector), camera.UpVector), 1);
 			celShader.Parameters ["LightDirection"].SetValue (lightDirection);
-			celShader.Parameters ["World"].SetValue (model.WorldMatrix);
-			celShader.Parameters ["InverseWorld"].SetValue (Matrix.Invert (model.WorldMatrix));
+			celShader.Parameters ["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
+			celShader.Parameters ["InverseWorld"].SetValue (Matrix.Invert (model.WorldMatrix * camera.WorldMatrix));
 			celShader.Parameters ["View"].SetValue (camera.ViewMatrix);
 			celShader.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
 			celShader.CurrentTechnique = celShader.Techniques ["ToonShader"];

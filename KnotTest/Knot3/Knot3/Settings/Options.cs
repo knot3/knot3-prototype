@@ -18,8 +18,8 @@ namespace Knot3.Settings
 			Filename = filename;
 			
 			// create a new ini parser
-            using (StreamWriter w = File.AppendText(Filename))
-            { }
+			using (StreamWriter w = File.AppendText(Filename)) {
+			}
 			ini = new IniFile (Filename);
 		}
 
@@ -99,7 +99,7 @@ namespace Knot3.Settings
 		
 		public DistinctOptionInfo (string section, string name, string defaultValue, string[] validValues,
 		                           Action<string> onChange = null, ConfigFile configFile = null)
-			: base(section,name,defaultValue,onChange,configFile)
+			: base(section, name, defaultValue, onChange, configFile)
 		{
 			ValidValues = new HashSet<string> (validValues);
 			ValidValues.Add (defaultValue);

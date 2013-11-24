@@ -60,20 +60,6 @@ namespace Knot3.CreativeMode
 					keyboardMove += new Vector3 (0, 0, -1);
 				if (Keys.S.IsHeldDown ())
 					keyboardMove += new Vector3 (0, 0, 1);
-			} else if (WASDMode == WASDMode.RotationMode) {
-				float wasdAngle = 0.01f;
-				if (Keys.W.IsHeldDown ())
-					camera.RotationAngle.Z += wasdAngle;
-				if (Keys.S.IsHeldDown ())
-					camera.RotationAngle.Z -= wasdAngle;
-				if (Keys.A.IsHeldDown ())
-					camera.RotationAngle.Y -= wasdAngle;
-				if (Keys.D.IsHeldDown ())
-					camera.RotationAngle.Y += wasdAngle;
-				if (Keys.Q.IsHeldDown ())
-					camera.RotationAngle.X += wasdAngle;
-				if (Keys.E.IsHeldDown ())
-					camera.RotationAngle.X -= wasdAngle;
 			}
 
 			// Arrow Keys
@@ -137,9 +123,6 @@ namespace Knot3.CreativeMode
 					WASDMode = WASDMode.FirstPersonMode;
 					break;
 				case WASDMode.FirstPersonMode:
-					WASDMode = WASDMode.RotationMode;
-					break;
-				case WASDMode.RotationMode:
 					WASDMode = WASDMode.ArcballMode;
 					break;
 				}

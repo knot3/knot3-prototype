@@ -15,37 +15,46 @@ using Knot3.KnotData;
 
 namespace Knot3.GameObjects
 {
-	public class LineRenderer : GameClass
+	public class LineRenderer : GameObject
 	{
 		private BasicEffect basicEffect;
+		private EdgeList edges;
+
+		protected override Vector3 Position { get; set; }
 
 		public LineRenderer (GameState state)
 			: base(state)
 		{
 			basicEffect = new BasicEffect (device);
+			Position = Vector3.Zero;
 		}
 
-		public void Draw (EdgeList edges, GameTime gameTime)
+		public void OnEdgesChanged (EdgeList edges)
+		{
+			this.edges = edges;
+		}
+
+		public override void DrawObject (GameTime gameTime)
 		{
 			basicEffect.World = camera.WorldMatrix;
 			basicEffect.View = camera.ViewMatrix;
 			basicEffect.Projection = camera.ProjectionMatrix;
 
 			if (edges.Count > 0) {
-				DrawRoundedLines (edges);
+				DrawRoundedLines ();
 			}
 		}
 
-		private void DrawRoundedLines (EdgeList lines)
+		private void DrawRoundedLines ()
 		{
 			Vector3 offset = Vector3.Zero; //new Vector3 (10, 10, 10);
 
-			var vertices = new VertexPositionColor[lines.Count * 4];
+			var vertices = new VertexPositionColor[edges.Count * 4];
 
 			Vector3 last = new Vector3 (0, 0, 0);
-			for (int n = 0; n < lines.Count; n++) {
-				Vector3 p1 = lines.FromNode (n).Vector () + offset;
-				Vector3 p2 = lines.ToNode (n).Vector () + offset;
+			for (int n = 0; n < edges.Count; n++) {
+				Vector3 p1 = edges.FromNode (n).Vector () + offset;
+				Vector3 p2 = edges.ToNode (n).Vector () + offset;
 
 				var diff = p1 - p2;
 				diff.Normalize ();
@@ -60,14 +69,24 @@ namespace Knot3.GameObjects
 				//Console.WriteLine (vertices [4 * n + 2]);
 				last = p2;
 			}
-			for (int n = 0; n < lines.Count; n++) {
+			for (int n = 0; n < edges.Count; n++) {
 				vertices [4 * n + 0].Color = Color.Black;
 				vertices [4 * n + 1].Color = Color.Black;
 				vertices [4 * n + 2].Color = Color.Black;
 				vertices [4 * n + 3].Color = Color.Black;
 			}
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
-			device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, lines.Count * 2); 
+			device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, edges.Count * 2); 
+		}
+
+		public override GameObjectDistance Intersects (Ray ray)
+		{
+			return null;
+		}
+
+		public override Vector3 Center ()
+		{
+			return Position;
 		}
 	}
 }

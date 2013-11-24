@@ -124,7 +124,6 @@ namespace Knot3
 			string wasdMode =
 					  input.WASDMode == WASDMode.ArcballMode ? "Arcball"
 					: input.WASDMode == WASDMode.FirstPersonMode ? "FPS"
-					: input.WASDMode == WASDMode.RotationMode ? "Rotation"
 					: "unknown";
 			DrawString (wasdMode, width2, height, Color.White);
 

@@ -157,7 +157,7 @@ namespace Knot3.GameObjects
 		public float Distance;
 	}
 	
-	public class TestModel : GameModel
+	public class TestModel : CachedGameModel
 	{
 		public TestModel (GameState state, string modelname, Vector3 position, float scale)
 			: base(state, modelname, position, scale)

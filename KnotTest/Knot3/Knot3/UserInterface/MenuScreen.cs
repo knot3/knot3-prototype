@@ -42,7 +42,7 @@ namespace Knot3.UserInterface
 			spriteBatch = new SpriteBatch (graphics.GraphicsDevice);
 
 			// input
-			input = new StartScreenInput (this);
+			input = new MenuScreenInput (this);
 			input.SaveStates (null);
 
 			// pointer

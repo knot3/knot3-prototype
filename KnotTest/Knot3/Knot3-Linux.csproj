@@ -54,7 +54,6 @@
     <Compile Include="Knot3\GameState.cs" />
     <Compile Include="Knot3\Program.cs" />
     <Compile Include="Knot3\StartScreen.cs" />
-    <Compile Include="Knot3\StartScreenInput.cs" />
     <Compile Include="Knot3\KnotData\Edges.cs" />
     <Compile Include="Knot3\KnotData\Knot.cs" />
     <Compile Include="Knot3\KnotData\KnotFormat.cs" />
@@ -98,6 +97,7 @@
     <Compile Include="Knot3\RenderEffects\RenderTargets.cs" />
     <Compile Include="Knot3\RenderEffects\NoEffect.cs" />
     <Compile Include="Knot3\Utilities\Models.cs" />
+    <Compile Include="Knot3\UserInterface\MenuScreenInput.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
