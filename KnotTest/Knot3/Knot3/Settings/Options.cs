@@ -18,8 +18,8 @@ namespace Knot3.Settings
 			Filename = filename;
 			
 			// create a new ini parser
-			using (StreamWriter w = File.AppendText(Filename))
-				;
+            using (StreamWriter w = File.AppendText(Filename))
+            { }
 			ini = new IniFile (Filename);
 		}
 
