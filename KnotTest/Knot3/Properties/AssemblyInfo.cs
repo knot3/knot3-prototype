@@ -5,11 +5,11 @@ using System.Runtime.CompilerServices;
 // Change them to the values specific to your project.
 
 [assembly: AssemblyTitle("Knot3")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("a game")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("tobias")]
+[assembly: AssemblyCompany("Karlsruhe Institute of Technology")]
+[assembly: AssemblyProduct("PSE Knot3")]
+[assembly: AssemblyCopyright("Copyright Tobias Schulz, Maximilian Reuter 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

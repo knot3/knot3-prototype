@@ -155,6 +155,9 @@
     <Compile Include="Knot3\Settings\OptionScreen.cs" />
     <Compile Include="Knot3\Settings\VideoOptionScreen.cs" />
     <Compile Include="Knot3\GameObjects\TexturedRectangle.cs" />
+    <Compile Include="Knot3\RenderEffects\RenderTargets.cs" />
+    <Compile Include="Knot3\RenderEffects\NoEffect.cs" />
+    <Compile Include="Knot3\Utilities\Models.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
