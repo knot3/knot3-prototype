@@ -17,7 +17,7 @@ namespace Knot3.RenderEffects
 {
 	public class CelShadingEffect : RenderEffect
 	{
-		public Effect celShader;       // Toon shader effect
+		Effect celShader;       // Toon shader effect
 		Texture2D celMap;       // Texture map for cell shading
 		Vector4 lightDirection; // Light source for toon shader
 
@@ -53,13 +53,6 @@ namespace Knot3.RenderEffects
 		public void SetColor (Color color)
 		{
 			celShader.Parameters ["Color"].SetValue (color.ToVector4 ());
-		}
-
-		public Matrix[] LoadBones (Model model)
-		{
-			Matrix[] bones = new Matrix[model.Bones.Count];
-			model.CopyAbsoluteBoneTransformsTo (bones);
-			return bones;
 		}
 
 		public override void Draw (SpriteBatch spriteBatch, GameTime gameTime)

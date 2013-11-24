@@ -84,7 +84,6 @@ namespace Knot3.UserInterface
 		protected HAlign AlignX;
 		protected MenuItemColor ForegroundColor;
 		protected MenuItemColor BackgroundColor;
-		private Texture2D texture;
 
 		protected Vector2 Position { get { return Info.PositionFunc (ItemNum).Scale (viewport); } }
 
@@ -102,7 +101,6 @@ namespace Knot3.UserInterface
 			AlignX = alignX;
 			ForegroundColor = fgColor;
 			BackgroundColor = bgColor;
-			texture = Textures.Create(device, Color.White);
 		}
 
 		public virtual bool Update (GameTime gameTime)

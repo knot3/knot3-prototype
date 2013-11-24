@@ -55,7 +55,7 @@ namespace Knot3.Utilities
 					Model model = content.Load<Model> (name);
 					pp.RemapModel (model);
 					return model;
-				} catch (ContentLoadException ex) {
+				} catch (ContentLoadException) {
 					Console.WriteLine ("Warning: Model " + name + " does not exist!");
 					invalidModels.Add (name);
 					return null;

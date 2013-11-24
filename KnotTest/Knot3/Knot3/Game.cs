@@ -45,6 +45,7 @@ namespace Knot3
 			graphics.PreferredBackBufferHeight = DefaultSize.Height;
 
 			graphics.IsFullScreen = false;
+			isFullscreen = false;
 			graphics.ApplyChanges ();
 
 			Content.RootDirectory = "Content";
@@ -75,7 +76,7 @@ namespace Knot3
 		{
 			GameStates.Initialize (this);
 			State = GameStates.StartScreen;
-			State.Activate(null);
+			State.Activate (null);
 		}
 
 		/// <summary>
@@ -145,12 +146,14 @@ namespace Knot3
 			}
 		}
 
+		private bool isFullscreen;
+
 		public bool IsFullscreen {
 			get {
-				return graphics.IsFullScreen;
+				return isFullscreen;
 			}
 			set {
-				if (value != graphics.IsFullScreen) {
+				if (value != isFullscreen) {
 					Console.WriteLine ("Fullscreen Toggle");
 					if (value) {
 						graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
@@ -161,6 +164,7 @@ namespace Knot3
 					}
 					graphics.ToggleFullScreen ();
 					graphics.ApplyChanges ();
+					isFullscreen = value;
 				}
 			}
 		}

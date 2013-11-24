@@ -22,8 +22,8 @@ namespace Knot3.CreativeMode
 	public class CreativeModeScreen : GameState
 	{
 		// graphics-related classes
-		public List<RenderEffect> RenderEffects;
-		public RenderEffect KnotRenderEffect;
+		private List<RenderEffect> knotRenderEffects;
+		private RenderEffect knotRenderEffect;
 
 		// the knot to draw
 		private Knot knot;
@@ -53,15 +53,15 @@ namespace Knot3.CreativeMode
 		public override void Initialize ()
 		{
 			// knot render effects
-			RenderEffects = new List<RenderEffect> ();
-			RenderEffects.Add (new NoEffect (this));
-			RenderEffects.Add (new BlurEffect (this));
-			RenderEffects.Add (new CelShadingEffect (this));
+			knotRenderEffects = new List<RenderEffect> ();
+			knotRenderEffects.Add (new NoEffect (this));
+			knotRenderEffects.Add (new BlurEffect (this));
+			knotRenderEffects.Add (new CelShadingEffect (this));
 
 			if (Options.Default ["video", "cel-shading", true]) {
-				KnotRenderEffect = new CelShadingEffect (this);
+				knotRenderEffect = new CelShadingEffect (this);
 			} else {
-				KnotRenderEffect = new NoEffect (this);
+				knotRenderEffect = new NoEffect (this);
 			}
 
 			// camera
@@ -177,32 +177,42 @@ namespace Knot3.CreativeMode
 
 			// post processing effects
 			if (Keys.O.IsDown ()) {
-				KnotRenderEffect = RenderEffects [(RenderEffects.IndexOf (KnotRenderEffect) + 1) % RenderEffects.Count];
+				knotRenderEffect = knotRenderEffects [
+				    (knotRenderEffects.IndexOf (knotRenderEffect) + 1) % knotRenderEffects.Count
+				];
 			}
 
 			if (PostProcessing is FadeEffect && (PostProcessing as FadeEffect).IsFinished) {
-				PostProcessing = new NoEffect(this);
+				PostProcessing = new NoEffect (this);
 			}
 		}
 
 		public override void Draw (GameTime gameTime)
 		{
-			Color background = KnotRenderEffect is CelShadingEffect ? Color.CornflowerBlue : Color.Black;
+			// begin the post processing effect scope
+			Color background = knotRenderEffect is CelShadingEffect ? Color.CornflowerBlue : Color.Black;
 			PostProcessing.Begin (background, gameTime);
 
-			KnotRenderEffect.Begin (gameTime);
+			// begin the knot render effect
+			knotRenderEffect.Begin (gameTime);
 
+			// draw all world objects
 			world.Draw (gameTime);
 			lineRenderer.Draw (knot.Edges, gameTime);
 
-			KnotRenderEffect.End (gameTime);
+			// end of the knot render effect
+			knotRenderEffect.End (gameTime);
 
+			// draw the overlay
 			overlay.Draw (gameTime);
 			if (dialog != null) {
+				// draw the current dialog
 				dialog.Draw (gameTime);
 			}
+			// draw the mouse pointer
 			pointer.Draw (gameTime);
 
+			// end of the post processing effect
 			PostProcessing.End (gameTime);
 		}
 

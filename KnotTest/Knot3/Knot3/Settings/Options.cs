@@ -66,6 +66,8 @@ namespace Knot3.Settings
 
 		public string DefaultValue { get; private set; }
 
+		public Action<string> OnChange { get; protected set; }
+
 		public virtual string Value {
 			get {
 				Console.WriteLine ("OptionInfo: " + Section + "." + Name + " => " + ConfigFile [Section, Name, DefaultValue]);
@@ -74,17 +76,20 @@ namespace Knot3.Settings
 			set {
 				Console.WriteLine ("OptionInfo: " + Section + "." + Name + " <= " + value);
 				ConfigFile [Section, Name, DefaultValue] = value;
+				OnChange (value);
 			}
 		}
 
 		private ConfigFile ConfigFile;
 
-		public OptionInfo (string section, string name, string defaultValue, ConfigFile configFile = null)
+		public OptionInfo (string section, string name, string defaultValue, Action<string> onChange = null,
+		                   ConfigFile configFile = null)
 		{
 			Section = section;
 			Name = name;
 			DefaultValue = defaultValue;
 			ConfigFile = configFile != null ? configFile : Options.Default;
+			OnChange = onChange != null ? onChange : (str) => {};
 		}
 	}
 
@@ -93,8 +98,8 @@ namespace Knot3.Settings
 		public HashSet<string> ValidValues { get; private set; }
 		
 		public DistinctOptionInfo (string section, string name, string defaultValue, string[] validValues,
-		    		ConfigFile configFile = null)
-			: base(section,name,defaultValue,configFile)
+		                           Action<string> onChange = null, ConfigFile configFile = null)
+			: base(section,name,defaultValue,onChange,configFile)
 		{
 			ValidValues = new HashSet<string> (validValues);
 			ValidValues.Add (defaultValue);
@@ -115,9 +120,14 @@ namespace Knot3.Settings
 
 	public class BooleanOptionInfo : DistinctOptionInfo
 	{
-		public BooleanOptionInfo (string section, string name, bool defaultValue, ConfigFile configFile = null)
-			: base(section,name,defaultValue?ConfigFile.True:ConfigFile.False,new string[]{ConfigFile.True,ConfigFile.False},configFile)
+		public BooleanOptionInfo (string section, string name, bool defaultValue, Action<bool> onChange = null,
+		                          ConfigFile configFile = null)
+			: base(section, name, defaultValue?ConfigFile.True:ConfigFile.False,
+			       new string[]{ConfigFile.True,ConfigFile.False}, (str)=>{}, configFile)
 		{
+			if (onChange != null) {
+				OnChange = (str) => onChange (str == ConfigFile.True);
+			}
 		}
 
 		public bool BoolValue {

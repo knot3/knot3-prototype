@@ -96,16 +96,14 @@ namespace Knot3.GameObjects
 		}
 	}
 	
-	public class KnotModel : GameModel
+	public class KnotModel : CachedGameModel
 	{
-		private EdgeList Edges;
 		private Edge EdgeA;
 		private Edge EdgeB;
 
 		public KnotModel (GameState state, EdgeList edges, Edge edgeA, Edge edgeB, Vector3 position, float scale)
 			: base(state, "knot1", position, scale)
 		{
-			Edges = edges;
 			EdgeA = edgeA;
 			EdgeB = edgeB;
 			IsVisible = edgeA.Direction != edgeB.Direction;
@@ -119,7 +117,7 @@ namespace Knot3.GameObjects
 		}
 	}
 	
-	public class PipeModel : GameModel
+	public class PipeModel : CachedGameModel
 	{
 		private EdgeList Edges;
 		private Edge Edge;

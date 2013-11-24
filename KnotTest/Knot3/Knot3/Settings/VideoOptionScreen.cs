@@ -42,41 +42,37 @@ namespace Knot3.Settings
 			menu.Initialize (ForegroundColor, BackgroundColor, HAlign.Left);
 			menu.AddDropDown (new MenuItemInfo (text: "Debug Mode"), new BooleanOptionInfo ("game", "debug", false));
 			menu.AddDropDown (new MenuItemInfo (text: "Coordinate system"),
-			                  new BooleanOptionInfo("video", "debug-coordinates", false));
-            menu.AddDropDown (new MenuItemInfo (text: "Camera Overlay"),
-			                  new BooleanOptionInfo("video", "camera-overlay", true));
-            menu.AddDropDown (new MenuItemInfo (text: "FPS Overlay"),
-			                  new BooleanOptionInfo("video", "fps-overlay", true));
+			                  new BooleanOptionInfo ("video", "debug-coordinates", false));
+			menu.AddDropDown (new MenuItemInfo (text: "Camera Overlay"),
+			                  new BooleanOptionInfo ("video", "camera-overlay", true));
+			menu.AddDropDown (new MenuItemInfo (text: "FPS Overlay"),
+			                  new BooleanOptionInfo ("video", "fps-overlay", true));
+
 			string currentResolution = viewport.Width + "x" + viewport.Height;
-			string[] resolutions = new string[] {
-				"1280x720",
-				"1920x1080",
-				"1366x768",
-				"1024x768",
-				"1280x800",
-				"1680x1050",
-				"1440x900",
-				"1600x900",
+			string[] resolutions = { "1280x720", "1920x1080", "1366x768", "1024x768", "1280x800", "1680x1050", "1440x900", "1600x900",
 			};
-            Array.Sort(resolutions);
-            menu.AddDropDown (new MenuItemInfo (text: "VSync"),
-			                  new BooleanOptionInfo("video", "vsync", true));
-			Action setFullscreen = () => {
-				game.IsFullscreen = Options.Default["video", "fullscreen", false];
-			};
-			menu.AddDropDown (new MenuItemInfo (text: "Fullscreen", onClick: setFullscreen),
-			                  new BooleanOptionInfo ("video", "fullscreen", false));
+			Array.Sort (resolutions);
 			menu.AddDropDown (new MenuItemInfo (text: "Resolution"),
                               new DistinctOptionInfo ("video", "resolution", currentResolution, resolutions));
+
+			Action<bool> setFullscreen = (val) => game.IsFullscreen = val;
+			menu.AddDropDown (new MenuItemInfo (text: "Fullscreen"),
+			                  new BooleanOptionInfo ("video", "fullscreen", false, setFullscreen));
+
+			Action<bool> setVSync = (val) => game.VSync = val;
+			menu.AddDropDown (new MenuItemInfo (text: "VSync"),
+			                  new BooleanOptionInfo ("video", "vsync", true, setVSync));
+
 			menu.AddDropDown (new MenuItemInfo (text: "Model Quality"),
 			                  new DistinctOptionInfo ("video", "model-quality", Models.Quality, Models.ValidQualities));
-            menu.AddDropDown (new MenuItemInfo (text: "Cel Shading"),
-			                  new BooleanOptionInfo("video", "cel-shading", true));
+			menu.AddDropDown (new MenuItemInfo (text: "Cel Shading"),
+			                  new BooleanOptionInfo ("video", "cel-shading", true));
 		}
 
-        public void Collapse(MenuItem item) {
-            menu.CollapseMenus(item);
-        }
+		public void Collapse (MenuItem item)
+		{
+			menu.CollapseMenus (item);
+		}
 
 		public override void UpdateMenu (GameTime gameTime)
 		{
@@ -90,13 +86,13 @@ namespace Knot3.Settings
 		{
 			base.DrawMenu (gameTime);
 
-			spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
+			spriteBatch.Begin (SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
 
 			// menu
 			menu.Align (viewport, 1f, 350, 180, 550, 40);
 			menu.Draw (0f, spriteBatch, gameTime);
 
-			spriteBatch.End();
+			spriteBatch.End ();
 		}
 	}
 }
