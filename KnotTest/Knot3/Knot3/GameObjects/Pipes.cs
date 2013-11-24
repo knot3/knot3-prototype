@@ -114,8 +114,8 @@ namespace Knot3.GameObjects
 		public override void DrawObject (GameTime gameTime)
 		{
 			Color mix = EdgeA.Color.Mix (EdgeB.Color);
-			if (state.PostProcessing is CelShadingEffect) {
-				(state.PostProcessing as CelShadingEffect).SetColor (mix);
+			if (state.RenderEffects.Current is CelShadingEffect) {
+				(state.RenderEffects.Current as CelShadingEffect).SetColor (mix);
 			} else {
 				foreach (ModelMesh mesh in Model.Meshes) {
 					foreach (Effect effect in mesh.Effects) {
@@ -204,15 +204,16 @@ namespace Knot3.GameObjects
 		public override void DrawObject (GameTime gameTime)
 		{
 			// if we are using a cel shading effect
-			if (state.PostProcessing is CelShadingEffect) {
+			if (state.RenderEffects.Current is CelShadingEffect) {
+				CelShadingEffect celShader = state.RenderEffects.Current as CelShadingEffect;
 				if (world.SelectedObject == this)
-					(state.PostProcessing as CelShadingEffect).SetColor (Color.White.Mix(Edge.Color));
+					celShader.SetColor (Color.White.Mix(Edge.Color));
 				else if (Edges.SelectedEdges.Contains (Edge))
-					(state.PostProcessing as CelShadingEffect).SetColor (Color.Black.Mix(Edge.Color));
+					celShader.SetColor (Color.Black.Mix(Edge.Color));
 				else
-					(state.PostProcessing as CelShadingEffect).SetColor (Edge.Color);
-
+					celShader.SetColor (Edge.Color);
 			}
+
 			// or a basic effect
 			else {
 				foreach (ModelMesh mesh in Model.Meshes) {

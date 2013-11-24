@@ -28,7 +28,8 @@ namespace Knot3
 		{
 			this.game = game;
 			this.NextState = this;
-			this.PostProcessing = new NoRenderEffect (this);
+			this.RenderEffects = new RenderEffectStack (this);
+			this.PostProcessing = new NoEffect (this);
 		}
 
 		public Input input { get; protected set; }
@@ -45,6 +46,8 @@ namespace Knot3
 
 		public ContentManager content { get { return game.Content; } }
 
+		public RenderEffectStack RenderEffects { get; private set; }
+
 		public RenderEffect PostProcessing;
 
 		public abstract void Initialize ();
@@ -55,9 +58,9 @@ namespace Knot3
 
 		public abstract void Unload ();
 
-		public abstract void Activate(GameTime gameTime);
+		public abstract void Activate (GameTime gameTime);
 
-		public abstract void Deactivate(GameTime gameTime);
+		public abstract void Deactivate (GameTime gameTime);
 	}
 	
 	static class GameStates

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGame1-Linux", "TestGame1\TestGame1-Linux.csproj", "{A7093300-1D0E-462B-83E2-A5DC7C3D145B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-Linux", "Knot3\Knot3-Linux.csproj", "{A7093300-1D0E-462B-83E2-A5DC7C3D145B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +15,6 @@ Global
 		{A7093300-1D0E-462B-83E2-A5DC7C3D145B}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = TestGame1\TestGame1-Linux.csproj
+		StartupItem = Knot3\Knot3-Linux.csproj
 	EndGlobalSection
 EndGlobal

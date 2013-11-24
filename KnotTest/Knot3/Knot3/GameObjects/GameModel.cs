@@ -67,7 +67,7 @@ namespace Knot3.GameObjects
 				* Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
 				* Matrix.CreateTranslation (Position);
 
-			state.PostProcessing.RenderModel (Model, camera.ViewMatrix, camera.ProjectionMatrix, world);
+			state.RenderEffects.Current.RenderModel (Model, camera.ViewMatrix, camera.ProjectionMatrix, world);
 
 			foreach (ModelMesh mesh in Model.Meshes) {
 				foreach (Effect effect in mesh.Effects) {

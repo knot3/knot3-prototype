@@ -72,7 +72,7 @@ namespace Knot3.RenderEffects
 		{
 			foreach (ModelMesh mesh in model.Meshes) {
 				foreach (ModelMeshPart part in mesh.MeshParts) {
-					part.Effect = (state.PostProcessing as CelShadingEffect).celShader;
+					part.Effect = celShader;
 				}
 			}
 		}

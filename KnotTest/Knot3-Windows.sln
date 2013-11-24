@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGame1-Windows", "TestGame1\TestGame1-Windows.csproj", "{8E6072CE-A35B-455D-93E1-0AA0EBCCBCCF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-Windows", "Knot3\Knot3-Windows.csproj", "{8E6072CE-A35B-455D-93E1-0AA0EBCCBCCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGame1Content-Windows", "TestGame1\Content\TestGame1Content-Windows.contentproj", "{CD33049E-0B5F-42BA-B816-658DEDF50DEA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3Content-Windows", "Knot3\Content\Knot3Content-Windows.contentproj", "{CD33049E-0B5F-42BA-B816-658DEDF50DEA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8D82DA8C-E960-4F33-8EEF-553A2E16AEE8}"
 	ProjectSection(SolutionItems) = preProject

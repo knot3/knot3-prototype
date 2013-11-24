@@ -54,14 +54,14 @@ namespace Knot3.CreativeMode
 		{
 			// knot render effects
 			RenderEffects = new List<RenderEffect> ();
-			RenderEffects.Add (new NoRenderEffect (this));
+			RenderEffects.Add (new NoEffect (this));
 			RenderEffects.Add (new BlurEffect (this));
 			RenderEffects.Add (new CelShadingEffect (this));
 
 			if (Options.Default ["video", "cel-shading", true]) {
 				KnotRenderEffect = new CelShadingEffect (this);
 			} else {
-				KnotRenderEffect = new NoRenderEffect (this);
+				KnotRenderEffect = new NoEffect (this);
 			}
 
 			// camera
@@ -181,7 +181,7 @@ namespace Knot3.CreativeMode
 			}
 
 			if (PostProcessing is FadeEffect && (PostProcessing as FadeEffect).IsFinished) {
-				PostProcessing = new NoRenderEffect(this);
+				PostProcessing = new NoEffect(this);
 			}
 		}
 

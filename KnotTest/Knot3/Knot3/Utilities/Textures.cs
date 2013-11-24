@@ -17,53 +17,6 @@ using Knot3.RenderEffects;
 
 namespace Knot3.Utilities
 {
-	public static class Models
-	{
-		public static string[] ValidQualities = new string[] {
-				"low",
-				"medium",
-				"high"
-			};
-
-		public static string Quality {
-			get { return Options.Default ["video", "model-quality", "medium"]; }
-		}
-
-		private static Dictionary<string, ContentManager> contentManagers = new Dictionary<string, ContentManager> ();
-		private static HashSet<string> invalidModels = new HashSet<string> ();
-
-		public static Model LoadModel (GameState state, string name)
-		{
-			ContentManager content;
-			if (contentManagers.ContainsKey (state.PostProcessing.ToString ()))
-				content = contentManagers [state.PostProcessing.ToString ()];
-			else
-				contentManagers [state.PostProcessing.ToString ()] = content = new ContentManager (state.content.ServiceProvider, state.content.RootDirectory);
-
-			Model model = LoadModel (content, state.PostProcessing, name + "-" + Quality);
-			if (model == null)
-				model = LoadModel (content, state.PostProcessing, name);
-			return model;
-		}
-
-		private static Model LoadModel (ContentManager content, RenderEffect pp, string name)
-		{
-			if (invalidModels.Contains (name)) {
-				return null;
-			} else {
-				try {
-					Model model = content.Load<Model> (name);
-					pp.RemapModel (model);
-					return model;
-				} catch (ContentLoadException ex) {
-					Console.WriteLine ("Warning: Model " + name + " does not exist!");
-					invalidModels.Add (name);
-					return null;
-				}
-			}
-		}
-	}
-
 	public static class Textures
 	{
 		#region Real Textures
