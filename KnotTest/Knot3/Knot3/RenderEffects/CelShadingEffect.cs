@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 using Knot3.Utilities;
+using Knot3.GameObjects;
 
 namespace Knot3.RenderEffects
 {
@@ -37,7 +38,7 @@ namespace Knot3.RenderEffects
 			celShader = state.LoadEffect ("CelShader");
 			celShader.Parameters ["LightDirection"].SetValue (lightDirection);
 			celMap = content.Load<Texture2D> ("CelMap");
-			celShader.Parameters ["Color"].SetValue (Color.Green.ToVector4());
+			celShader.Parameters ["Color"].SetValue (Color.Green.ToVector4 ());
 			celShader.Parameters ["CelMap"].SetValue (celMap);
 
 			/* Load and initialize the outline shader effect
@@ -51,7 +52,7 @@ namespace Knot3.RenderEffects
 
 		public void SetColor (Color color)
 		{
-			celShader.Parameters ["Color"].SetValue (color.ToVector4());
+			celShader.Parameters ["Color"].SetValue (color.ToVector4 ());
 		}
 
 		public Matrix[] LoadBones (Model model)
@@ -77,16 +78,25 @@ namespace Knot3.RenderEffects
 			}
 		}
 
-		public override void RenderModel (Model model, Matrix view, Matrix proj, Matrix world)
-        {
-            lightDirection = new Vector4(-Vector3.Cross(Vector3.Normalize(camera.TargetVector), camera.UpVector), 1);
-            celShader.Parameters["LightDirection"].SetValue(lightDirection);
-			celShader.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
+		public override void DrawModel (GameModel model, GameTime gameTime)
+		{
+			lightDirection = new Vector4 (-Vector3.Cross (Vector3.Normalize (camera.TargetVector), camera.UpVector), 1);
+			celShader.Parameters ["LightDirection"].SetValue (lightDirection);
+			celShader.Parameters ["World"].SetValue (model.WorldMatrix);
+			celShader.Parameters ["InverseWorld"].SetValue (Matrix.Invert (model.WorldMatrix));
 			celShader.Parameters ["View"].SetValue (camera.ViewMatrix);
-
-			celShader.Parameters ["World"].SetValue (world);
-			celShader.Parameters ["InverseWorld"].SetValue (Matrix.Invert (world));
+			celShader.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
 			celShader.CurrentTechnique = celShader.Techniques ["ToonShader"];
+
+			if (model.HighlightIntensity != 0f) {
+				SetColor (model.BaseColor.Mix (model.HighlightColor, model.HighlightIntensity));
+			} else {
+				SetColor (model.BaseColor);
+			}
+
+			foreach (ModelMesh mesh in model.Model.Meshes) {
+				mesh.Draw ();
+			}
 		}
 	}
 }

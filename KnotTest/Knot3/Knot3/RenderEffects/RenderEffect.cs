@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
+using Knot3.GameObjects;
+using Knot3.Utilities;
 
 namespace Knot3.RenderEffects
 {
@@ -99,22 +101,38 @@ namespace Knot3.RenderEffects
 		{
 		}
 
-		public virtual void RenderModel (Model model, Matrix view, Matrix proj, Matrix world)
+		public virtual void DrawModel (GameModel model, GameTime gameTime)
 		{
-			foreach (ModelMesh mesh in model.Meshes) {
+			foreach (ModelMesh mesh in model.Model.Meshes) {
 				foreach (ModelMeshPart part in mesh.MeshParts) {
 					if (part.Effect is BasicEffect) {
 						BasicEffect effect = part.Effect as BasicEffect;
+
+						// lighting
 						if (Keys.L.IsHeldDown ()) {
 							effect.LightingEnabled = false;
 						} else {
 							effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
 						}
-						effect.World = world;
+
+						// matrices
+						effect.World = model.WorldMatrix;
 						effect.View = camera.ViewMatrix;
 						effect.Projection = camera.ProjectionMatrix;
+
+						// colors
+						if (model.HighlightIntensity != 0f) {
+							effect.DiffuseColor = model.BaseColor.Mix (model.HighlightColor, model.HighlightIntensity).ToVector3 ();
+						} else {
+							effect.DiffuseColor = model.BaseColor.ToVector3 ();
+						}
+						effect.FogEnabled = false;
 					}
 				}
+			}
+
+			foreach (ModelMesh mesh in model.Model.Meshes) {
+				mesh.Draw ();
 			}
 		}
 	}

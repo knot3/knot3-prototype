@@ -113,20 +113,7 @@ namespace Knot3.GameObjects
 
 		public override void DrawObject (GameTime gameTime)
 		{
-			Color mix = EdgeA.Color.Mix (EdgeB.Color);
-			if (state.RenderEffects.Current is CelShadingEffect) {
-				(state.RenderEffects.Current as CelShadingEffect).SetColor (mix);
-			} else {
-				foreach (ModelMesh mesh in Model.Meshes) {
-					foreach (Effect effect in mesh.Effects) {
-						if (effect is BasicEffect) {
-							(effect as BasicEffect).DiffuseColor = mix.ToVector3 ();
-						} else {
-							Console.WriteLine ("KnotModel: effect is not BasicEffect! (" + effect.CurrentTechnique.Name + ")");
-						}
-					}
-				}
-			}
+			BaseColor = EdgeA.Color.Mix (EdgeB.Color);
 
 			base.DrawObject (gameTime);
 		}
@@ -136,8 +123,6 @@ namespace Knot3.GameObjects
 	{
 		private EdgeList Edges;
 		private Edge Edge;
-		private Vector3 PosFrom;
-		private Vector3 PosTo;
 		private Vector3 Direction;
 		private BoundingSphere[] Bounds;
 		public Action OnDataChange = () => {};
@@ -147,8 +132,6 @@ namespace Knot3.GameObjects
 		{
 			Edges = edges;
 			Edge = edge;
-			PosFrom = posFrom;
-			PosTo = posTo;
 
 			Direction = posTo - posFrom;
 			Direction.Normalize ();
@@ -178,53 +161,22 @@ namespace Knot3.GameObjects
 		{
 		}
 
-		public override void UpdateEffect (BasicEffect effect, GameTime gameTime)
-		{
-			float distance = (Center () - camera.Position).Length ();
-			if (Edges.SelectedEdges.Contains (Edge)) {
-				effect.FogEnabled = true;
-				float fogIntensity = ((int)gameTime.TotalGameTime.TotalMilliseconds % 2000 - 1000) / 10;
-				if (fogIntensity < 0)
-					fogIntensity = 0 - fogIntensity;
-				effect.FogColor = Color.Black.ToVector3 ();
-				effect.FogStart = distance - 150 - fogIntensity;
-				effect.FogEnd = distance + 150 - fogIntensity;
-
-			} else if (world.SelectedObject == this) {
-				effect.FogEnabled = true;
-				effect.FogColor = Color.White.ToVector3 ();
-				effect.FogStart = distance - 100;
-				effect.FogEnd = distance + 200;
-
-			} else {
-				effect.FogEnabled = false;
-			}
-		}
-
 		public override void DrawObject (GameTime gameTime)
 		{
-			// if we are using a cel shading effect
-			if (state.RenderEffects.Current is CelShadingEffect) {
-				CelShadingEffect celShader = state.RenderEffects.Current as CelShadingEffect;
-				if (world.SelectedObject == this)
-					celShader.SetColor (Color.White.Mix(Edge.Color));
-				else if (Edges.SelectedEdges.Contains (Edge))
-					celShader.SetColor (Color.Black.Mix(Edge.Color));
-				else
-					celShader.SetColor (Edge.Color);
-			}
-
-			// or a basic effect
-			else {
-				foreach (ModelMesh mesh in Model.Meshes) {
-					foreach (Effect effect in mesh.Effects) {
-						if (effect is BasicEffect) {
-							(effect as BasicEffect).DiffuseColor = Edge.Color.ToVector3 ();
-						} else {
-							Console.WriteLine ("PipeModel: effect is not BasicEffect! (" + effect.CurrentTechnique.Name + ")");
-						}
-					}
+			BaseColor = Edge.Color;
+			if (Edges.SelectedEdges.Contains (Edge)) {
+				float intensity = (float)((int)gameTime.TotalGameTime.TotalMilliseconds % 2000) / 2000f;
+				intensity = intensity * 2 - 1;
+				if (intensity < 0) {
+					intensity = 0 - intensity;
 				}
+				HighlightIntensity = intensity;
+				HighlightColor = Color.Black;
+			} else if (world.SelectedObject == this) {
+				HighlightIntensity = 0.5f;
+				HighlightColor = Color.White;
+			} else {
+				HighlightIntensity = 0f;
 			}
 
 			base.DrawObject (gameTime);

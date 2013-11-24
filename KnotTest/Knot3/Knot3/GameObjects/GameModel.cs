@@ -22,7 +22,7 @@ namespace Knot3.GameObjects
 
 		protected virtual string Modelname { get; private set; }
 
-		protected virtual Model Model { get { return Models.LoadModel (state, Modelname); } }
+		public virtual Model Model { get { return Models.LoadModel (state, Modelname); } }
 
 		protected virtual float Scale { get; set; }
 
@@ -30,13 +30,9 @@ namespace Knot3.GameObjects
 
 		protected override Vector3 Position { get; set; }
 
-		protected virtual Matrix WorldMatrix {
-			get {
-				return Matrix.CreateScale (Scale)
-					* Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
-					* Matrix.CreateTranslation (Position);
-			}
-		}
+		public Color BaseColor;
+		public Color HighlightColor;
+		public float HighlightIntensity;
 
 		#endregion
 
@@ -50,32 +46,28 @@ namespace Knot3.GameObjects
 			Scale = scale;
 			Rotation = Angles3.Zero;
 			Position = position;
+
+			// colors
+			BaseColor = Color.Transparent;
+			HighlightColor = Color.Transparent;
+			HighlightIntensity = 0f;
 		}
 		
 		#endregion
 
-		public virtual void UpdateEffect (BasicEffect effect, GameTime gameTime)
-		{
-		}
-
-
 		#region Draw
+
+		public virtual Matrix WorldMatrix {
+			get {
+				return Matrix.CreateScale (Scale)
+					* Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
+					* Matrix.CreateTranslation (Position);
+			}
+		}
 
 		public override void DrawObject (GameTime gameTime)
 		{
-			Matrix world = Matrix.CreateScale (Scale)
-				* Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
-				* Matrix.CreateTranslation (Position);
-
-			state.RenderEffects.Current.RenderModel (Model, camera.ViewMatrix, camera.ProjectionMatrix, world);
-
-			foreach (ModelMesh mesh in Model.Meshes) {
-				foreach (Effect effect in mesh.Effects) {
-					if (effect is BasicEffect)
-						UpdateEffect (effect as BasicEffect, gameTime);
-				}
-				mesh.Draw ();
-			}
+			state.RenderEffects.Current.DrawModel (this, gameTime);
 		}
 
 		#endregion Draw
@@ -132,7 +124,7 @@ namespace Knot3.GameObjects
 
 		#region Properties
 
-		protected override Matrix WorldMatrix {
+		public override Matrix WorldMatrix {
 			get {
 				UpdateWorldMatrix ();
 				return _worldMatrix;

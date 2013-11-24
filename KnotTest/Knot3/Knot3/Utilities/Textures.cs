@@ -72,9 +72,10 @@ namespace Knot3.Utilities
 
 	public static class Colors
 	{
-		public static Color Mix (this Color a, Color b)
+		public static Color Mix (this Color a, Color b, float percent = 0.5f)
 		{
-			return new Color ((a.ToVector3 () + b.ToVector3 ()) / 2);
+			percent = MathHelper.Clamp (percent, 0f, 1f);
+			return new Color (a.ToVector3 () * (1f - percent) + b.ToVector3 () * percent);
 		}
 	}
 }
