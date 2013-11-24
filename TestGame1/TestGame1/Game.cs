@@ -24,13 +24,11 @@ namespace TestGame1
 		// custom classes
 		public GameState State { get; private set; }
 
-		private GameState NextState { get; set; }
-
 		// colors, sizes, ...
 		public static Size DefaultSize = new Size (1280, 720);
 
 		// debug
-		public static bool Debug = false;
+		public static bool Debug { get { return Options.Default ["game", "debug", false]; } }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TestGame1.Game"/> class.
@@ -55,7 +53,7 @@ namespace TestGame1
 		protected override void Initialize ()
 		{
 			// vsync
-            VSync = false;
+			VSync = false;
 
 			// anti aliasing
 			graphics.GraphicsDevice.PresentationParameters.MultiSampleCount = 4;
@@ -72,7 +70,8 @@ namespace TestGame1
 		protected override void LoadContent ()
 		{
 			GameStates.Initialize (this);
-			NextState = GameStates.StartScreen;
+			State = GameStates.StartScreen;
+			State.Activate(null);
 		}
 
 		/// <summary>
@@ -92,17 +91,18 @@ namespace TestGame1
 		protected override void Update (GameTime gameTime)
 		{
 			// change game state?
-			if (State != NextState) {
-				NextState.PostProcessing = new FadeEffect (NextState, State);
-				NextState.PostProcessing.LoadContent ();
-				State = NextState;
+			if (State != State.NextState) {
+				State.NextState.PostProcessing = new FadeEffect (State.NextState, State);
+				State.Deactivate (gameTime);
+				State = State.NextState.NextState = State.NextState;
+				State.Activate (gameTime);
 			}
 
 			// global keyboard ans mouse input 
 			UpdateInput (gameTime);
 
 			// set the next game state
-			NextState = State.Update (gameTime);
+			State.Update (gameTime);
 
 			// base method
 			base.Update (gameTime);
@@ -136,8 +136,8 @@ namespace TestGame1
 			}
 			set {
 				graphics.SynchronizeWithVerticalRetrace = value;
-                this.IsFixedTimeStep = value;
-                graphics.ApplyChanges();
+				this.IsFixedTimeStep = value;
+				graphics.ApplyChanges ();
 			}
 		}
 

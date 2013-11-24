@@ -16,19 +16,20 @@ namespace TestGame1
 {
 	public class LineRenderer : GameClass
 	{
+		private BasicEffect basicEffect;
+
 		public LineRenderer (GameState state)
 			: base(state)
 		{
+			basicEffect = new BasicEffect (device);
 		}
 
-		/// <summary>
-		/// Draw the lines.
-		/// </summary>
-		/// <param name='gameTime'>
-		/// Game time.
-		/// </param>
 		public void Draw (EdgeList edges, GameTime gameTime)
 		{
+			basicEffect.World = camera.WorldMatrix;
+			basicEffect.View = camera.ViewMatrix;
+			basicEffect.Projection = camera.ProjectionMatrix;
+
 			if (edges.Count > 0) {
 				DrawRoundedLines (edges);
 			}
@@ -42,8 +43,8 @@ namespace TestGame1
 
 			Vector3 last = new Vector3 (0, 0, 0);
 			for (int n = 0; n < lines.Count; n++) {
-				Vector3 p1 = lines.FromNode(n).Vector () + offset;
-				Vector3 p2 = lines.ToNode(n).Vector () + offset;
+				Vector3 p1 = lines.FromNode (n).Vector () + offset;
+				Vector3 p2 = lines.ToNode (n).Vector () + offset;
 
 				var diff = p1 - p2;
 				diff.Normalize ();
@@ -64,7 +65,8 @@ namespace TestGame1
 				vertices [4 * n + 2].Color = Color.Black;
 				vertices [4 * n + 3].Color = Color.Black;
 			}
-			graphics.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, lines.Count * 2); 
+			basicEffect.CurrentTechnique.Passes [0].Apply ();
+			device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, lines.Count * 2); 
 		}
 	}
 }

@@ -11,16 +11,17 @@ namespace TestGame1
 {
 	public class TexturedRectangle : GameObject
 	{
-		public Vector3 Origin;
-		public Vector3 UpperLeft;
-		public Vector3 LowerLeft;
-		public Vector3 UpperRight;
-		public Vector3 LowerRight;
-		public Vector3 Normal;
-		public Vector3 Up;
-		public Vector3 Left;
-		public VertexPositionNormalTexture[] Vertices;
-		public short[] Indexes;
+		private Vector3 Origin;
+		private Vector3 UpperLeft;
+		private Vector3 LowerLeft;
+		private Vector3 UpperRight;
+		private Vector3 LowerRight;
+		private Vector3 Normal;
+		private Vector3 Up;
+		private Vector3 Left;
+		private VertexPositionNormalTexture[] Vertices;
+		private short[] Indexes;
+		private BasicEffect basicEffect;
 		private Texture2D texture;
 		private float Width;
 		private float Height;
@@ -51,6 +52,7 @@ namespace TestGame1
 			Height = height;
 			Position = origin;
 
+			basicEffect = new BasicEffect (device);
 			texture = Textures.LoadTexture (content, texturename);
 			if (texture != null) {
 				FillVertices ();
@@ -103,13 +105,17 @@ namespace TestGame1
 
 		public override void DrawObject (GameTime gameTime)
 		{
+			basicEffect.World = camera.WorldMatrix;
+			basicEffect.View = camera.ViewMatrix;
+			basicEffect.Projection = camera.ProjectionMatrix;
+
 			basicEffect.AmbientLightColor = new Vector3 (0.8f, 0.8f, 0.8f);
 			//effect.LightingEnabled = true;
 			basicEffect.TextureEnabled = true;
 			basicEffect.VertexColorEnabled = false;
 			basicEffect.Texture = texture;
 
-			if (Keys.L.IsHeldDown()) {
+			if (Keys.L.IsHeldDown ()) {
 				basicEffect.EnableDefaultLighting ();  // Beleuchtung aktivieren
 			}
 

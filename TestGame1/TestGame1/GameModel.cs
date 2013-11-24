@@ -72,11 +72,7 @@ namespace TestGame1
 					if (effect is BasicEffect)
 						UpdateEffect (effect as BasicEffect, gameTime);
 				}
-                //try
-                //{
-                    mesh.Draw();
-                //}
-                //catch (InvalidOperationException ex) { Console.WriteLine(ex.ToString()); }
+				mesh.Draw ();
 			}
 		}
 

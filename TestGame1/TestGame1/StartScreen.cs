@@ -42,24 +42,21 @@ namespace TestGame1
 			// menu
 			menu.Initialize (ForegroundColor, BackgroundColor, HAlign.Center);
 			menu.AddButton (new MenuItemInfo (text: "Creative", left: 0.700f, top: 0.250f, right: 0.960f, bottom: 0.380f,
-			                        onClick: () => NextGameState = GameStates.CreativeMode).AddKey (Keys.Space));
+			                        onClick: () => NextState = GameStates.LoadSavegameScreen).AddKey (Keys.Space));
 			menu.AddButton (new MenuItemInfo (text: "Challenge", left: 0.000f, top: 0.050f, right: 0.380f, bottom: 0.190f,
-			                        onClick: () => NextGameState = GameStates.CreativeMode).AddKey (Keys.RightWindows));
+			                        onClick: () => NextState = GameStates.CreativeMode).AddKey (Keys.RightWindows));
 			menu.AddButton (new MenuItemInfo (text: "Options", left: 0.260f, top: 0.840f, right: 0.480f, bottom: 0.950f,
-			                        onClick: () => NextGameState = GameStates.OptionScreen).AddKey (Keys.O));
+			                        onClick: () => NextState = GameStates.OptionScreen).AddKey (Keys.O));
 			menu.AddButton (new MenuItemInfo (text: "Exit", left: 0.800f, top: 0.535f, right: 0.980f, bottom: 0.790f,
 			                        onClick: () => game.Exit ()).AddKey (Keys.Escape));
 
 			// lines
-			AddLinePoints (0, 50, new float[]{
+			HfGDesign.AddLinePoints (ref LinePoints, 0, 50, 
 				380, 250, 960, 380, 700, 160, 1000
-			}
 			);
-			AddLinePoints (0, 190, new float[]{
+			HfGDesign.AddLinePoints (ref LinePoints, 0, 190,
 				620, 855, 800, 535, 980, 790,
-				480, 950, 260, 840,
-				520, 1000
-			}
+				480, 950, 260, 840, 520, 1000
 			);
 		}
 		

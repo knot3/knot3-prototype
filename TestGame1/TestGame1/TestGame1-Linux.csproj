@@ -65,7 +65,6 @@
     <Compile Include="Mouse.cs" />
     <Compile Include="Shader.cs" />
     <Compile Include="Mono.cs" />
-    <Compile Include="PostProcessing.cs" />
     <Compile Include="BlurEffect.cs" />
     <Compile Include="Edges.cs" />
     <Compile Include="Nodes.cs" />
@@ -84,6 +83,15 @@
     <Compile Include="DropDownMenu.cs" />
     <Compile Include="VerticalMenu.cs" />
     <Compile Include="CelShading.cs" />
+    <Compile Include="LoadSavegameScreen.cs" />
+    <Compile Include="KnotFormat.cs" />
+    <Compile Include="Files.cs" />
+    <Compile Include="Knot.cs" />
+    <Compile Include="Dialog.cs" />
+    <Compile Include="ConfirmDialog.cs" />
+    <Compile Include="HfGDesign.cs" />
+    <Compile Include="RenderEffect.cs" />
+    <Compile Include="FadeEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

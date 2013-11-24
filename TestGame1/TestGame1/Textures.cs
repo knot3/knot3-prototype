@@ -43,7 +43,7 @@ namespace TestGame1
 			return model;
 		}
 
-		private static Model LoadModel (ContentManager content, PostProcessing pp, string name)
+		private static Model LoadModel (ContentManager content, RenderEffect pp, string name)
 		{
 			if (invalidModels.Contains (name)) {
 				return null;
@@ -53,7 +53,7 @@ namespace TestGame1
 					pp.RemapModel (model);
 					return model;
 				} catch (ContentLoadException ex) {
-					Console.WriteLine (ex.ToString ());
+					Console.WriteLine ("Warning: Model " + name + " does not exist!");
 					invalidModels.Add (name);
 					return null;
 				}
@@ -114,10 +114,11 @@ namespace TestGame1
 		#endregion
 	}
 
-	public static class Colors {
+	public static class Colors
+	{
 		public static Color Mix (this Color a, Color b)
 		{
-			return new Color((a.ToVector3 () + b.ToVector3 ()) / 2);
+			return new Color ((a.ToVector3 () + b.ToVector3 ()) / 2);
 		}
 	}
 }

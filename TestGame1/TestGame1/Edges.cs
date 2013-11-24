@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -150,7 +151,6 @@ namespace TestGame1
 		public WrapList<Edge> SelectedEdges { get; private set; }
 
 		public Action<EdgeList> EdgesChanged = (list) => {};
-
 		private Dictionary<int,Node> NodeCache;
 
 		#endregion
@@ -219,6 +219,11 @@ namespace TestGame1
 		public void Add (Edge edge)
 		{
 			Edges.Add (edge);
+		}
+
+		public void AddRange (IEnumerable<Edge> edge)
+		{
+			Edges.AddRange (edge);
 		}
 		
 		public List<Edge> Interval (Edge a, Edge b)
@@ -351,6 +356,21 @@ namespace TestGame1
 				}
 			} while (distance != Vector3.Zero);
 			return path.ToArray ();
+		}
+
+		public static IEnumerable<Edge> FromNodes (IEnumerable<Node> _nodes, IEnumerable<Color> _colors = null)
+		{
+			Node[] nodes = _nodes.ToArray ();
+			Color[] colors = _colors != null ? _colors.ToArray () : null;
+			for (int i = 0; i+1 < nodes.Count(); ++i) {
+				Vector3 direction = nodes [i + 1] - nodes [i];
+				if (direction.Length () == 1) {
+					Edge edge = new Edge (direction.PrimaryDirection ());
+					if (i < colors.Count ())
+						edge.Color = colors [i];
+					yield return edge;
+				}
+			}
 		}
 
 		#endregion

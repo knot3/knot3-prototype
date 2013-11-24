@@ -20,8 +20,8 @@ namespace TestGame1
 		public string Text;
 		
 		// state, position and sizes
-		public LazyVector2 PositionFunc = (n) => Vector2.Zero;
-		public LazyVector2 SizeFunc = (n) => Vector2.Zero;
+		public LazyItemPosition PositionFunc = (n) => Vector2.Zero;
+		public LazyItemSize SizeFunc = (n) => Vector2.Zero;
 
 		// keys to listen on
 		public List<Keys> Keys = new List<Keys> ();
@@ -29,7 +29,7 @@ namespace TestGame1
 		// click action
 		public Action OnClick = () => {};
 
-		public MenuItemInfo (string text, LazyVector2 position, LazyVector2 size, Action onClick)
+		public MenuItemInfo (string text, LazyItemPosition position, LazyItemSize size, Action onClick)
 		{
 			Text = text;
 			PositionFunc = position;
@@ -147,7 +147,7 @@ namespace TestGame1
 
 		public Vector2 TextPosition (SpriteFont font)
 		{
-			return TextPosition (font, new Vector2 (1, 1));
+			return TextPosition (font, Vector2.One);
 		}
 
 		public Vector2 TextPosition (SpriteFont font, Vector2 scale)
@@ -188,7 +188,6 @@ namespace TestGame1
 
         public virtual void Collapse()
         {
-
         }
 	}
 
@@ -215,10 +214,10 @@ namespace TestGame1
 	}
 
 	// delegates
-	public delegate Vector2 LazyVector2 (int n);
-
+	public delegate Vector2 LazyItemSize (int n);
+	public delegate Vector2 LazyItemPosition (int n);
+	public delegate Vector2 LazySize ();
+	public delegate Vector2 LazyPosition ();
 	public delegate Color MenuItemColor (MenuItemState itemState);
-
-	public delegate void DrawAction (GameTime gameTime);
 }
 

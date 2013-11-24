@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TestGame1
 {
-	public class Node
+	public struct Node
 	{
 		#region Properties
 
@@ -22,7 +22,7 @@ namespace TestGame1
 
 		#region Constructors
 
-		public Node (int x, int y, int z)
+		public Node (int x, int y, int z) : this()
 		{
 			X = x;
 			Y = y;
@@ -66,7 +66,7 @@ namespace TestGame1
 		
 		public override bool Equals (object obj)
 		{
-			Node other = obj as Node;
+			Node other = (Node)obj;	
 			return this.X == other.X && this.Y == other.Y && this.Z == other.Z;
 		}
 

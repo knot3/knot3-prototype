@@ -17,11 +17,13 @@ namespace TestGame1
 	{
 		public Game game;
 
+		public GameState NextState { get; set; }
+
 		public GameState (Game game)
 		{
 			this.game = game;
-			this.PostProcessing = new NoPostProcessing (this);
-			this.PostProcessing.LoadContent ();
+			this.NextState = this;
+			this.PostProcessing = new NoRenderEffect (this);
 		}
 
 		public Input input { get; protected set; }
@@ -38,25 +40,19 @@ namespace TestGame1
 
 		public ContentManager content { get { return game.Content; } }
 
-		private PostProcessing postProcessing;
-
-		public PostProcessing PostProcessing {
-			get { return postProcessing; }
-			set {
-				postProcessing = value;
-				PostProcessingEffectChanged(value);
-			}
-		}
-
-		public Action<PostProcessing> PostProcessingEffectChanged = (pp) => {};
+		public RenderEffect PostProcessing;
 
 		public abstract void Initialize ();
 
-		public abstract GameState Update (GameTime gameTime);
+		public abstract void Update (GameTime gameTime);
 
 		public abstract void Draw (GameTime gameTime);
 
 		public abstract void Unload ();
+
+		public abstract void Activate(GameTime gameTime);
+
+		public abstract void Deactivate(GameTime gameTime);
 	}
 	
 	static class GameStates
@@ -65,6 +61,7 @@ namespace TestGame1
 		public static StartScreen StartScreen;
 		public static OptionScreen OptionScreen;
 		public static VideoOptionScreen VideoOptionScreen;
+		public static LoadSavegameScreen LoadSavegameScreen;
 
 		public static void Initialize (Game game)
 		{
@@ -72,10 +69,12 @@ namespace TestGame1
 			StartScreen = new StartScreen (game);
 			OptionScreen = new OptionScreen (game);
 			VideoOptionScreen = new VideoOptionScreen (game);
+			LoadSavegameScreen = new LoadSavegameScreen (game);
 			CreativeMode.Initialize ();
 			StartScreen.Initialize ();
 			OptionScreen.Initialize ();
 			VideoOptionScreen.Initialize ();
+			LoadSavegameScreen.Initialize ();
 		}
 	}
 }

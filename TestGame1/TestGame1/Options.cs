@@ -21,12 +21,6 @@ namespace TestGame1
 			ini = new IniFile (Filename);
 		}
 
-		public void Save ()
-		{
-			// save a new ini file
-			ini.UpdateFile ();
-		}
-
 		public bool this [string section, string option, bool defaultValue = false] {
 			get {
 				return this [section, option, defaultValue ? True : False] == True ? true : false;
@@ -38,17 +32,10 @@ namespace TestGame1
 
 		public string this [string section, string option, string defaultValue = null] {
 			get {
-				string value = ini.ReadString (section, option);
-				if (value.Length == 0) {
-					ini.WriteString (section, option, defaultValue);
-					value = defaultValue;
-					Save ();
-				}
-				return value;
+				return ini [section, option, defaultValue];
 			}
 			set {
-				ini.WriteString (section, option, value);
-				Save ();
+				ini [section, option] = value;
 			}
 		}
 
@@ -63,7 +50,7 @@ namespace TestGame1
 		public static ConfigFile Default {
 			get {
 				if (_default == null)
-					_default = new ConfigFile (Mono.SettingsDirectory ("knot3.ini"));
+					_default = new ConfigFile (Files.SettingsDirectory + Files.Separator + "knot3.ini");
 				return _default;
 			}
 		}

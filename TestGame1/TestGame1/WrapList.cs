@@ -10,6 +10,17 @@ namespace TestGame1
 		private List<T> list = new List<T> ();
 		private Dictionary<T, int> indexOf = new Dictionary<T, int> ();
 
+		public WrapList ()
+		{
+		}
+
+		public WrapList (IEnumerable<T> elems)
+		{
+			foreach (T elem in elems) {
+				Add (elem);
+			}
+		}
+
 		private int WrapIndex (int i)
 		{
 			return (i + list.Count) % list.Count;
@@ -79,7 +90,7 @@ namespace TestGame1
 			}
 		}
 
-		public void AddRange (T[] elems)
+		public void AddRange (IEnumerable<T> elems)
 		{
 			foreach (T elem in elems) {
 				Add (elem);

@@ -38,6 +38,12 @@ namespace TestGame1
 			// menu
 			menu.Initialize (ForegroundColor, BackgroundColor, HAlign.Left);
 			menu.AddDropDown (new MenuItemInfo (text: "Debug Mode"), new BooleanOptionInfo ("game", "debug", false));
+			menu.AddDropDown (new MenuItemInfo (text: "Coordinate system"),
+			                  new BooleanOptionInfo("video", "debug-coordinates", false));
+            menu.AddDropDown (new MenuItemInfo (text: "Camera Overlay"),
+			                  new BooleanOptionInfo("video", "camera-overlay", true));
+            menu.AddDropDown (new MenuItemInfo (text: "FPS Overlay"),
+			                  new BooleanOptionInfo("video", "fps-overlay", true));
 			string currentResolution = viewport.Width + "x" + viewport.Height;
 			string[] resolutions = new string[] {
 				"1280x720",
@@ -50,13 +56,19 @@ namespace TestGame1
 				"1600x900",
 			};
             Array.Sort(resolutions);
-            menu.AddDropDown (new MenuItemInfo (text: "VSync"), new BooleanOptionInfo("video", "vsync", true));
-			menu.AddDropDown (new MenuItemInfo (text: "Fullscreen"), new BooleanOptionInfo ("video", "fullscreen", false));
+            menu.AddDropDown (new MenuItemInfo (text: "VSync"),
+			                  new BooleanOptionInfo("video", "vsync", true));
+			Action setFullscreen = () => {
+				game.IsFullscreen = Options.Default["video", "fullscreen", false];
+			};
+			menu.AddDropDown (new MenuItemInfo (text: "Fullscreen", onClick: setFullscreen),
+			                  new BooleanOptionInfo ("video", "fullscreen", false));
 			menu.AddDropDown (new MenuItemInfo (text: "Resolution"),
                               new DistinctOptionInfo ("video", "resolution", currentResolution, resolutions));
 			menu.AddDropDown (new MenuItemInfo (text: "Model Quality"),
 			                  new DistinctOptionInfo ("video", "model-quality", Models.Quality, Models.ValidQualities));
-            menu.AddDropDown (new MenuItemInfo (text: "Cel Shading"), new BooleanOptionInfo("video", "cel-shading", true));
+            menu.AddDropDown (new MenuItemInfo (text: "Cel Shading"),
+			                  new BooleanOptionInfo("video", "cel-shading", true));
 		}
 
         public void Collapse(MenuItem item) {

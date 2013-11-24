@@ -38,21 +38,20 @@ namespace TestGame1
 			// menu
 			menu.Initialize (ForegroundColor, BackgroundColor, HAlign.Left);
 			MenuItemInfo info;
-			info = new MenuItemInfo (text: "Video", onClick: () => NextGameState = GameStates.VideoOptionScreen);
+			info = new MenuItemInfo (text: "Video", onClick: () => NextState = GameStates.VideoOptionScreen);
 			menu.AddButton (info.AddKey (Keys.V));
-			info = new MenuItemInfo (text: "Audio", onClick: () => NextGameState = GameStates.OptionScreen);
+			info = new MenuItemInfo (text: "Audio", onClick: () => NextState = GameStates.OptionScreen);
 			menu.AddButton (info.AddKey (Keys.A));
-			info = new MenuItemInfo (text: "Controls", onClick: () => NextGameState = GameStates.OptionScreen);
+			info = new MenuItemInfo (text: "Controls", onClick: () => NextState = GameStates.OptionScreen);
 			menu.AddButton (info.AddKey (Keys.C));
-			info = new MenuItemInfo (text: "Knots", onClick: () => NextGameState = GameStates.OptionScreen);
+			info = new MenuItemInfo (text: "Knots", onClick: () => NextState = GameStates.OptionScreen);
 			menu.AddButton (info.AddKey (Keys.K));
-			info = new MenuItemInfo (text: "Back", onClick: () => NextGameState = GameStates.StartScreen);
+			info = new MenuItemInfo (text: "Back", onClick: () => NextState = GameStates.StartScreen);
 			menu.AddButton (info.AddKey (Keys.Escape));
 
 			// lines
-			AddLinePoints (0, 50, new float[]{
+			HfGDesign.AddLinePoints (ref LinePoints, 0, 50,
 				30, 970, 970, 50, 1000
-			}
 			);
 		}
 		

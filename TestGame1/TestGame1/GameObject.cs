@@ -16,8 +16,6 @@ namespace TestGame1
 {
 	public abstract class GameObject : GameClass
 	{
-		protected BasicEffect basicEffect;
-
 		protected abstract Vector3 Position { get; set; }
 
 		public bool IsMovable { get; set; }
@@ -27,7 +25,6 @@ namespace TestGame1
 		public GameObject (GameState state)
 			: base(state)
 		{
-			basicEffect = new BasicEffect (device);
 			IsMovable = false;
 			IsVisible = true;
 		}
@@ -84,9 +81,6 @@ namespace TestGame1
 		public void Draw (GameTime gameTime)
 		{
 			if (IsVisible) {
-				basicEffect.World = camera.WorldMatrix;
-				basicEffect.View = camera.ViewMatrix;
-				basicEffect.Projection = camera.ProjectionMatrix;
 				DrawObject (gameTime);
 			}
 		}

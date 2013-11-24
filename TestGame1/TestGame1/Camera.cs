@@ -71,24 +71,21 @@ namespace TestGame1
 		public void Update (GameTime gameTime)
 		{
 			UpdateRotation (gameTime);
+			UpdateMatrices (gameTime);
 		}
 
-		public void UpdateRotation (GameTime gameTime)
+		private void UpdateRotation (GameTime gameTime)
 		{
 			// auto rotation
 			RotationAngle += AutoRotation;
 		}
 
-		public void Draw (BasicEffect basicEffect, GameTime gameTime)
+		private void UpdateMatrices (GameTime gameTime)
 		{ 
 			// setting up rotation
 			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
 			WorldMatrix = Matrix.CreateFromYawPitchRoll (RotationAngle.Y, RotationAngle.X, RotationAngle.Z);
 			ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FoV), aspectRatio, nearPlane, farPlane);
-			
-			basicEffect.World = WorldMatrix;
-			basicEffect.View = ViewMatrix;
-			basicEffect.Projection = ProjectionMatrix;
 		}
 
 		public float TargetDistance {

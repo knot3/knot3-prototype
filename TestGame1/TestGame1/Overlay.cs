@@ -54,9 +54,12 @@ namespace TestGame1
 		/// </param>
 		public void Draw (GameTime gameTime)
 		{
-			DrawCoordinates (gameTime);
-			DrawOverlay (gameTime);
-			DrawFPS (gameTime);
+			if (Options.Default ["video", "debug-coordinates", false])
+				DrawCoordinates (gameTime);
+			if (Options.Default ["video", "camera-overlay", true])
+				DrawOverlay (gameTime);
+			if (Options.Default ["video", "fps-overlay", true])
+				DrawFPS (gameTime);
 		}
 		
 		public void Update (GameTime gameTime)
@@ -66,23 +69,21 @@ namespace TestGame1
 
 		private void DrawCoordinates (GameTime gameTime)
 		{
-			if (Game.Debug) {
-				int length = 2000;
-				var vertices = new VertexPositionColor[6];
-				vertices [0].Position = new Vector3 (-length, 0, 0);
-				vertices [0].Color = Color.Green;
-				vertices [1].Position = new Vector3 (+length, 0, 0);
-				vertices [1].Color = Color.Green;
-				vertices [2].Position = new Vector3 (0, -length, 0);
-				vertices [2].Color = Color.Red;
-				vertices [3].Position = new Vector3 (0, +length, 0);
-				vertices [3].Color = Color.Red;
-				vertices [4].Position = new Vector3 (0, 0, -length);
-				vertices [4].Color = Color.Yellow;
-				vertices [5].Position = new Vector3 (0, 0, +length);
-				vertices [5].Color = Color.Yellow;
-				graphics.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3);
-			}
+			int length = 2000;
+			var vertices = new VertexPositionColor[6];
+			vertices [0].Position = new Vector3 (-length, 0, 0);
+			vertices [0].Color = Color.Green;
+			vertices [1].Position = new Vector3 (+length, 0, 0);
+			vertices [1].Color = Color.Green;
+			vertices [2].Position = new Vector3 (0, -length, 0);
+			vertices [2].Color = Color.Red;
+			vertices [3].Position = new Vector3 (0, +length, 0);
+			vertices [3].Color = Color.Red;
+			vertices [4].Position = new Vector3 (0, 0, -length);
+			vertices [4].Color = Color.Yellow;
+			vertices [5].Position = new Vector3 (0, 0, +length);
+			vertices [5].Color = Color.Yellow;
+			graphics.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3);
 		}
 
 		private void DrawOverlay (GameTime gameTime)

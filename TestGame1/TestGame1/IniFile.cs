@@ -7,44 +7,30 @@ namespace TestGame1
 {
 	public class IniFile : IDisposable
 	{
-		private readonly List<string> lines_ = new List<string> ();
+		private string Filename;
+		public Dictionary<string, Dictionary<string, string>> Data;
 
-		protected string this [int index] {
-			get { return lines_ [index]; }
-			set { lines_ [index] = value; }
-		}
-
-		protected int Count {
-			get { return lines_.Count; }
-		}
-
-		private readonly string fileName_;
-		public virtual string FileName {
-			get { return fileName_; }
-		}
-
-		protected void Add (string line)
+		public IniFile (string filename)
 		{
-			lines_.Add (line);
-		}
-
-		protected void Insert (int index, string line)
-		{
-			lines_.Insert (index, line);
-		}
-
-		protected void RemoveLine (int index)
-		{
-			lines_.RemoveAt (index);
-		}
-
-		public IniFile (string fileName)
-		{
-			fileName_ = fileName;
-			if (File.Exists (fileName)) {
-				using (StreamReader reader = new StreamReader(fileName)) {
-					while (reader.Peek() != -1)
-						Add (reader.ReadLine ().Trim ());
+			Data = new Dictionary<string, Dictionary<string, string>> ();
+			Filename = filename;
+			if (File.Exists (filename)) {
+				using (StreamReader reader = new StreamReader(filename)) {
+					string section = null;
+					while (reader.Peek() != -1) {
+						string line = StripComments (reader.ReadLine ().Trim ());
+						if (line.StartsWith ("[") && line.EndsWith ("]")) {
+							section = line.Substring (1, line.Length - 2);
+							if (!Data.ContainsKey (section)) {
+								Data [section] = new Dictionary<string,string> ();
+							}
+						} else if (line.Contains ("=")) {
+							string[] parts = line.Split ('=');
+							if (section != null) {
+								Data [section] [parts [0].Trim ()] = parts [1].Trim ();
+							}
+						}
+					}
 				}
 			}
 		}
@@ -57,19 +43,24 @@ namespace TestGame1
 
 		protected virtual void Dispose (bool disposing)
 		{
-			if (disposing)
-				UpdateFile ();
-		}
-
-		public virtual void UpdateFile ()
-		{
-			using (StreamWriter writer = new StreamWriter(FileName)) {
-				for (int i = 0; i < Count; i++)
-					writer.WriteLine (this [i]);
+			if (disposing) {
+				Save ();
 			}
 		}
 
-		protected static string StripComments (string line)
+		public void Save ()
+		{
+			using (StreamWriter writer = new StreamWriter(Filename)) {
+				foreach (string section in Data.Keys) {
+					writer.WriteLine ("[" + section + "]");
+					foreach (string key  in Data[section].Keys) {
+						writer.WriteLine (key + "=" + Data [section] [key]);
+					}
+				}
+			}
+		}
+
+		private static string StripComments (string line)
 		{
 			if (line != null) {
 				if (line.IndexOf (';') != -1)
@@ -79,106 +70,24 @@ namespace TestGame1
 			return string.Empty;
 		}
 
-		private int SkipToSection (string name)
-		{
-			if (name != null) {
-				string needle = "[" + name + "]";
-				for (int i = 0; i < Count; i++) {
-					if (StripComments (this [i]) == needle)
-						return i;
+		public string this [string section, string key, string defaultValue = null] {
+			get {
+				if (!Data.ContainsKey (section)) {
+					Data [section] = new Dictionary<string,string> ();
 				}
-			}
-			return -1;
-		}
-
-		public virtual bool SectionExists (string name)
-		{
-			return SkipToSection (name) != -1;
-		}
-
-		public virtual void DeleteKey (string section, string name)
-		{
-			int i = SkipToSection (section);
-			if (i != -1) {
-				for (; i < Count; i++) {
-					string line = this [i];
-					if (line.StartsWith (name + '=', StringComparison.Ordinal)
-						|| line.StartsWith (name + " =",
-                                           StringComparison.Ordinal)) {
-						RemoveLine (i);
-						return;
-					}
+				if (!Data [section].ContainsKey (key)) {
+					Data [section] [key] = defaultValue;
+					Save ();
 				}
+				string value = Data [section] [key];
+				return value;
 			}
-		}
-
-		public virtual void EraseSection (string section)
-		{
-			int i = SkipToSection (section);
-			if (i != -1) {
-				RemoveLine (i);
-
-				for (; i < Count; i++) {
-					string line = StripComments (this [i]);
-					if (line.Length != 0 && line [0] == '['
-						&& line [line.Length - 1] == ']')
-						return;
-
-					RemoveLine (i);
+			set {
+				if (!Data.ContainsKey (section)) {
+					Data [section] = new Dictionary<string,string> ();
 				}
-			}
-		}
-
-		public virtual string ReadString (string section, string key)
-		{
-			return ReadString (section, key, String.Empty);
-		}
-
-		private int FindKey (string key, int i)
-		{
-			if (key != null) {
-				for (; i < Count; i++) {
-					string line = StripComments (this [i]);
-					if (line.StartsWith (key + '=', StringComparison.Ordinal)
-						|| line.StartsWith (key + " =", StringComparison.Ordinal))
-						return i;
-				}
-			}
-			return -1;
-		}
-
-		public virtual string ReadString (string section, string key,
-                                         string defaultvalue)
-		{
-			int i = SkipToSection (section);
-			if (i != -1) {
-				i = FindKey (key, i);
-				if (i != -1) {
-					string line = StripComments (this [i]);
-					char[] trimmer = new char[] { ' ', '"', '\r' };
-					return line.Substring (line.IndexOf ('=') + 1).Trim (trimmer);
-				}
-			}
-			return defaultvalue;
-		}
-
-		public virtual void WriteString (string section, string key,
-                                        string value)
-		{
-			if (section == null || key == null || value == null)
-				return;
-			string newLine = key + '=' + value;
-			int i = SkipToSection (section);
-			if (i == -1) {
-				Add ("[" + section + "]");
-				Add (newLine);
-			} else {
-				i++;
-				int j = FindKey (key, i);
-				if (j != -1)
-					this [i] = newLine;
-				else
-					Insert (i + 1, newLine);
+				Data [section] [key] = value;
+				Save ();
 			}
 		}
 	}

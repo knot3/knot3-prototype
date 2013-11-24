@@ -239,6 +239,16 @@ namespace TestGame1
 			return new Rectangle (rect.X * max.X / 1000, rect.Y * max.Y / 1000, rect.Width * max.X / 1000, rect.Height * max.Y / 1000);
 		}
 
+		public static Rectangle Grow (this Rectangle rect, int diff)
+		{
+			return new Rectangle (rect.X - diff, rect.Y - diff, rect.Width + diff * 2, rect.Height + diff * 2);
+		}
+
+		public static Rectangle Shrink (this Rectangle rect, int diff)
+		{
+			return Grow (rect, -diff);
+		}
+
 		public static void Swap<T> (ref T lhs, ref T rhs)
 		{
 			T temp;

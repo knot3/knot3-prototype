@@ -67,6 +67,13 @@ namespace TestGame1
 				Items [i % Items.Count] = value;
 			}
 		}
+
+		public int Count { get { return Items.Count (); } }
+
+		public void Clear ()
+		{
+			Items.Clear ();
+		}
 		
 		public virtual void Initialize (MenuItemColor fgColor, MenuItemColor bgColor, HAlign alignX)
 		{
@@ -92,20 +99,16 @@ namespace TestGame1
 			}
 			return false;
 		}
-
        
+		public void CollapseMenus (MenuItem menu)
+		{
+			foreach (MenuItem item in Items) {
+				if (item != menu) {
+					item.Collapse ();
+				}
+			}
+		}
 
-       
-        public void CollapseMenus(MenuItem menu)
-        {
-            foreach (MenuItem item in Items)
-            {
-                if (item != menu)
-                {
-                    item.Collapse();
-                }
-            }
-        }
 		public virtual void Draw (float layerDepth, SpriteBatch spriteBatch, GameTime gameTime)
 		{
 			foreach (MenuItem item in Items) {

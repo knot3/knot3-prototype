@@ -1,24 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TestGame1/World.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TestGame1/Textures.cs">
     <Files>
-      <File FileName="TestGame1/Input.cs" Line="138" Column="3" />
-      <File FileName="TestGame1/Shader.cs" Line="34" Column="18" />
-      <File FileName="TestGame1/Nodes.cs" Line="94" Column="48" />
-      <File FileName="TestGame1/Pipes.cs" Line="283" Column="28" />
-      <File FileName="TestGame1/CreativeModeInput.cs" Line="205" Column="2" />
-      <File FileName="TestGame1/Edges.cs" Line="175" Column="43" />
-      <File FileName="TestGame1/Camera.cs" Line="95" Column="9" />
-      <File FileName="TestGame1/StartScreen.cs" Line="46" Column="91" />
-      <File FileName="TestGame1/Menu.cs" Line="45" Column="101" />
-      <File FileName="TestGame1/MenuButton.cs" Line="92" Column="1" />
-      <File FileName="TestGame1/MenuScreen.cs" Line="89" Column="22" />
-      <File FileName="TestGame1/Vectors.cs" Line="207" Column="40" />
-      <File FileName="TestGame1/World.cs" Line="421" Column="64" />
-      <File FileName="TestGame1/PostProcessing.cs" Line="16" Column="2" />
-      <File FileName="TestGame1/GameState.cs" Line="27" Column="4" />
-      <File FileName="TestGame1/Game.cs" Line="90" Column="17" />
-      <File FileName="TestGame1/BlurEffect.cs" Line="52" Column="61" />
+      <File FileName="TestGame1/CreativeMode.cs" Line="222" Column="40" />
+      <File FileName="TestGame1/Dialog.cs" Line="92" Column="1" />
+      <File FileName="TestGame1/ConfirmDialog.cs" Line="36" Column="13" />
+      <File FileName="TestGame1/VideoOptionScreen.cs" Line="13" Column="10" />
+      <File FileName="TestGame1/StartScreen.cs" Line="49" Column="47" />
+      <File FileName="TestGame1/Game.cs" Line="31" Column="87" />
+      <File FileName="TestGame1/MenuScreen.cs" Line="56" Column="18" />
+      <File FileName="TestGame1/Textures.cs" Line="50" Column="12" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

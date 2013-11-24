@@ -16,17 +16,19 @@ namespace TestGame1
 	public class CreativeMode : GameState
 	{
 		// graphics-related classes
-		public BasicEffect basicEffect;
-		public List<PostProcessing> PostProcessingEffects;
+		public List<RenderEffect> RenderEffects;
+		public RenderEffect KnotRenderEffect;
 
-		// nodes
-		private EdgeList edges;
+		// the knot to draw
+		private Knot knot;
+		private bool knotModified;
 
 		// custom classes
 		private MousePointer pointer;
 		private Overlay overlay;
 		private LineRenderer lineRenderer;
 		private PipeRenderer pipeRenderer;
+		private Dialog dialog;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TestGame1.ConstructionMode"/> class.
@@ -44,17 +46,16 @@ namespace TestGame1
 		/// </summary>
 		public override void Initialize ()
 		{
-			// basic effect
-			basicEffect = new BasicEffect (game.GraphicsDevice);
-			basicEffect.VertexColorEnabled = true;
+			// knot render effects
+			RenderEffects = new List<RenderEffect> ();
+			RenderEffects.Add (new NoRenderEffect (this));
+			RenderEffects.Add (new BlurEffect (this));
+			RenderEffects.Add (new CelShadingEffect (this));
 
-			// post processing effects
-			PostProcessingEffects = new List<PostProcessing> ();
-			PostProcessingEffects.Add (new NoPostProcessing (this));
-			PostProcessingEffects.Add (new BlurEffect (this));
-			PostProcessingEffects.Add (new CelShadingEffect (this));
-			foreach (PostProcessing	pp in PostProcessingEffects) {
-				pp.LoadContent ();
+			if (Options.Default ["video", "cel-shading", true]) {
+				KnotRenderEffect = new CelShadingEffect (this);
+			} else {
+				KnotRenderEffect = new NoRenderEffect (this);
 			}
 
 			// camera
@@ -78,12 +79,11 @@ namespace TestGame1
 
 			// pipe renderer
 			pipeRenderer = new PipeRenderer (this);
-			world.Add(pipeRenderer);
+			world.Add (pipeRenderer);
 			
 			// load nodes
 			Node.Scale = 100;
-			edges = new EdgeList ();
-			edges.EdgesChanged += pipeRenderer.OnEdgesChanged;
+			Knot = Knot.DefaultKnot ((knt) => {});
 
 			// load camera
 			camera.LoadContent ();
@@ -91,52 +91,63 @@ namespace TestGame1
 			// load overlay
 			overlay.LoadContent ();
 
-			// add some default nodes
-			/*edges.Add (Edge.Up);
-			edges.Add (Edge.Right);
-			edges.Add (Edge.Down);
-			edges.Add (Edge.Backward);
-
-			edges.Add (Edge.Up);
-			edges.Add (Edge.Left);
-			edges.Add (Edge.Down);
-			edges.Add (Edge.Forward);*/
-
-			for (int i = 0; i < 30; ++i) {
-				edges.Add (Edge.RandomEdge ());
-			}
-			edges.Compact ();
-			for (int i = 0; i < edges.Count; ++i) {
-				edges[i].Color = Edge.RandomColor();
-			}
-
-			pipeRenderer.OnEdgesChanged (edges);
+			
+			knotModified = true;
 		}
 
-		public override GameState Update (GameTime gameTime)
+		public Knot Knot {
+			get { return knot; }
+			set {
+				knot = value;
+				knot.EdgesChanged += pipeRenderer.OnEdgesChanged;
+				knot.EdgesChanged += (e) => knotModified = true;
+				knot.EdgesChanged (knot.Edges);
+				knotModified = false;
+			}
+		}
+
+		public void LoadFile (string file)
 		{
-			GameState state = UpdateInput (gameTime);
+			Console.WriteLine ("load file: " + file);
+		}
+
+		public override void Update (GameTime gameTime)
+		{
+			UpdateInput (gameTime);
 
 			// camera
 			camera.Update (gameTime);
-			// input
-			input.Update (gameTime);
-			// world
-			world.Update (gameTime);
+			if (dialog != null) {
+				// dialog
+				dialog.Update (gameTime);
+			} else {
+				// input
+				input.Update (gameTime);
+				// world
+				world.Update (gameTime);
+			}
 			input.SaveStates (gameTime);
 			// overlay
 			overlay.Update (gameTime);
 			// pointer
 			pointer.Update (gameTime);
-
-			return state;
 		}
 
-		private GameState UpdateInput (GameTime gameTime)
+		private void UpdateInput (GameTime gameTime)
 		{
 			// when is escape is pressed, go to start screen
 			if (Keys.Escape.IsDown ()) {
-				return GameStates.StartScreen;
+				if (knotModified) {
+					if (dialog != null && dialog is KnotSaveConfirmDialog) {
+						dialog.Done ();
+					} else {
+						dialog = new KnotSaveConfirmDialog (this, knot);
+						dialog.Done += () => dialog = null;
+					}
+				} else {
+					NextState = GameStates.StartScreen;
+				}
+				return;
 			}
 
 			// change background color
@@ -146,63 +157,83 @@ namespace TestGame1
 
 			// move lines
 			if (Keys.NumPad8.IsDown ())
-				edges.Move (edges.SelectedEdges, Vector3.Up);
+				knot.Edges.Move (knot.Edges.SelectedEdges, Vector3.Up);
 			if (Keys.NumPad2.IsDown ())
-				edges.Move (edges.SelectedEdges, Vector3.Down);
+				knot.Edges.Move (knot.Edges.SelectedEdges, Vector3.Down);
 			if (Keys.NumPad4.IsDown ())
-				edges.Move (edges.SelectedEdges, Vector3.Left);
+				knot.Edges.Move (knot.Edges.SelectedEdges, Vector3.Left);
 			if (Keys.NumPad6.IsDown ())
-				edges.Move (edges.SelectedEdges, Vector3.Right);
+				knot.Edges.Move (knot.Edges.SelectedEdges, Vector3.Right);
 			if (Keys.NumPad7.IsDown ())
-				edges.Move (edges.SelectedEdges, Vector3.Forward);
+				knot.Edges.Move (knot.Edges.SelectedEdges, Vector3.Forward);
 			if (Keys.NumPad9.IsDown ())
-				edges.Move (edges.SelectedEdges, Vector3.Backward);
+				knot.Edges.Move (knot.Edges.SelectedEdges, Vector3.Backward);
 
 			// post processing effects
-			if (Keys.O.IsDown ())
-				PostProcessing = PostProcessingEffects [(PostProcessingEffects.IndexOf (PostProcessing) + 1) % PostProcessingEffects.Count];
-
-			// fade effect finished?
-			if (PostProcessing is FadeEffect) {
-				if ((PostProcessing as FadeEffect).IsFinished) {
-					if (Options.Default["video", "cel-shading", true]) {
-						PostProcessing = new CelShadingEffect (this);
-						PostProcessing.LoadContent ();
-					}
-				}
+			if (Keys.O.IsDown ()) {
+				KnotRenderEffect = RenderEffects [(RenderEffects.IndexOf (KnotRenderEffect) + 1) % RenderEffects.Count];
 			}
 
-			// toggle debug mode
-			if (Keys.RightControl.IsDown ())
-				Game.Debug = !Game.Debug;
-
-			return this;
+			if (PostProcessing is FadeEffect && (PostProcessing as FadeEffect).IsFinished) {
+				PostProcessing = new NoRenderEffect(this);
+			}
 		}
 
 		public override void Draw (GameTime gameTime)
 		{
-			PostProcessing.Begin (gameTime);
+			Color background = KnotRenderEffect is CelShadingEffect ? Color.CornflowerBlue : Color.Black;
+			PostProcessing.Begin (background, gameTime);
 
-			graphics.GraphicsDevice.Clear (Game.Debug ? Color.CornflowerBlue : Color.CornflowerBlue);
-			basicEffect.CurrentTechnique.Passes [0].Apply ();
-
-			game.GraphicsDevice.BlendState = BlendState.Opaque;
-			game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+			KnotRenderEffect.Begin (gameTime);
 
 			world.Draw (gameTime);
-			basicEffect.CurrentTechnique.Passes [0].Apply ();
-			lineRenderer.Draw (edges, gameTime);
-			basicEffect.CurrentTechnique.Passes [0].Apply ();
+			lineRenderer.Draw (knot.Edges, gameTime);
+
+			KnotRenderEffect.End (gameTime);
+
 			overlay.Draw (gameTime);
+			if (dialog != null) {
+				dialog.Draw (gameTime);
+			}
 			pointer.Draw (gameTime);
-			basicEffect.CurrentTechnique.Passes [0].Apply ();
-			camera.Draw (basicEffect, gameTime);
 
 			PostProcessing.End (gameTime);
 		}
 
+		public override void Activate (GameTime gameTime)
+		{
+		}
+
+		public override void Deactivate (GameTime gameTime)
+		{
+		}
+
 		public override void Unload ()
 		{
+		}
+	}
+
+	public class KnotSaveConfirmDialog : ConfirmDialog
+	{
+
+		public KnotSaveConfirmDialog (GameState state, Knot knot)
+			: base(state)
+		{
+			Size = () => new Vector2 (0.500f, 0.250f);
+			Text = new string[] {
+				"Do you want to save the changes?",
+				knot.Info.Name
+			};
+			
+			OnYesClick += () => {
+				Console.WriteLine ("OnYesClick");
+				knot.Save (knot);
+				state.NextState = GameStates.StartScreen;
+			};
+			OnNoClick += () => {
+				Console.WriteLine ("OnNoClick");
+				state.NextState = GameStates.StartScreen;
+			};
 		}
 	}
 }

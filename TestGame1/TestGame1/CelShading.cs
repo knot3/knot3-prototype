@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace TestGame1
 {
-	public class CelShadingEffect : RenderTargetPostProcessing
+	public class CelShadingEffect : RenderEffect
 	{
 		public Effect celShader;       // Toon shader effect
 		Texture2D celMap;       // Texture map for cell shading

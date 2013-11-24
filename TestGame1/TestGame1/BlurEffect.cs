@@ -14,24 +14,19 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace TestGame1
 {
-	public class BlurEffect : RenderTargetPostProcessing
+	public class BlurEffect : RenderEffect
 	{
 		private static Effect testEffect;
 
 		public BlurEffect (GameState state)
 			: base(state)
 		{
-		}
-
-		public override void LoadContent ()
-		{
 			testEffect = state.LoadEffect ("blur");
-			base.LoadContent ();
 		}
 
-		public override void Begin (GameTime gameTime)
+		public override void Begin (Color background, GameTime gameTime)
 		{
-			base.Begin (gameTime);
+			base.Begin (background, gameTime);
 		}
 
 		public override void End (GameTime gameTime)
