@@ -78,7 +78,6 @@ namespace Knot3
 		private void UpdateRotation (GameTime gameTime)
 		{
 			// auto rotation
-			AutoRotation= new Angles3(0,0.05f,0);
 			RotationAngle += AutoRotation;
 		}
 
