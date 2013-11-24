@@ -53,11 +53,13 @@ namespace Knot3.RenderEffects
 	public abstract class RenderEffect : GameClass
 	{
 		private RenderTargetCache renderTarget;
+		private SpriteBatch spriteBatch;
 
 		public RenderEffect (GameState state)
 			: base(state)
 		{
 			renderTarget = new RenderTargetCache (state);
+			spriteBatch = new SpriteBatch (device);
 		}
 
 		public RenderTarget2D RenderTarget { get { return renderTarget.CurrentRenderTarget; } }
@@ -85,8 +87,6 @@ namespace Knot3.RenderEffects
 		public virtual void End (GameTime gameTime)
 		{
 			device.PopRenderTarget ();
-			//device.Textures[1] = renderTarget;
-			SpriteBatch spriteBatch = new SpriteBatch (device);
 			spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 
 			Draw (spriteBatch, gameTime);
