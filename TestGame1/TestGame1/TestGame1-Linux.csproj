@@ -94,9 +94,6 @@
     <Compile Include="FadeEffect.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Content\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
