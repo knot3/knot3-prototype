@@ -57,7 +57,7 @@ namespace Knot3
 		protected override void Initialize ()
 		{
 			// vsync
-			VSync = false;
+			VSync = true;
 
 			// anti aliasing
 			graphics.GraphicsDevice.PresentationParameters.MultiSampleCount = 4;
