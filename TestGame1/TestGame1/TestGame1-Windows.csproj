@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestGame1</RootNamespace>
-    <AssemblyName>TestGame1</AssemblyName>
+    <RootNamespace>Knot3</RootNamespace>
+    <AssemblyName>Knot3</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
@@ -108,52 +108,53 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Camera.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="Vectors.cs" />
-    <Compile Include="Input.cs" />
-    <Compile Include="Overlay.cs" />
-    <Compile Include="World.cs" />
-    <Compile Include="Rectangle.cs" />
-    <Compile Include="Pipes.cs" />
-    <Compile Include="Lines.cs" />
-    <Compile Include="GameState.cs" />
-    <Compile Include="GameClass.cs" />
-    <Compile Include="StartScreen.cs" />
-    <Compile Include="Textures.cs" />
-    <Compile Include="StartScreenInput.cs" />
-    <Compile Include="Mouse.cs" />
-    <Compile Include="Shader.cs" />
-    <Compile Include="Mono.cs" />
-    <Compile Include="BlurEffect.cs" />
-    <Compile Include="Edges.cs" />
-    <Compile Include="Nodes.cs" />
-    <Compile Include="Menu.cs" />
-    <Compile Include="MenuButton.cs" />
-    <Compile Include="MenuScreen.cs" />
-    <Compile Include="CreativeMode.cs" />
-    <Compile Include="CreativeModeInput.cs" />
-    <Compile Include="GameObject.cs" />
-    <Compile Include="GameModel.cs" />
-    <Compile Include="WrapList.cs" />
-    <Compile Include="OptionScreen.cs" />
-    <Compile Include="VideoOptionScreen.cs" />
-    <Compile Include="Options.cs" />
-    <Compile Include="IniFile.cs" />
-    <Compile Include="DropDownMenu.cs" />
-    <Compile Include="VerticalMenu.cs" />
-    <Compile Include="CelShading.cs" />
-    <Compile Include="LoadSavegameScreen.cs" />
-    <Compile Include="KnotFormat.cs" />
-    <Compile Include="Files.cs" />
-    <Compile Include="Knot.cs" />
-    <Compile Include="Dialog.cs" />
-    <Compile Include="ConfirmDialog.cs" />
-    <Compile Include="HfGDesign.cs" />
-    <Compile Include="RenderEffect.cs" />
-    <Compile Include="FadeEffect.cs" />
+    <Compile Include="Knot3\Game.cs" />
+    <Compile Include="Knot3\GameClass.cs" />
+    <Compile Include="Knot3\GameState.cs" />
+    <Compile Include="Knot3\Program.cs" />
+    <Compile Include="Knot3\StartScreen.cs" />
+    <Compile Include="Knot3\StartScreenInput.cs" />
+    <Compile Include="Knot3\KnotData\Edges.cs" />
+    <Compile Include="Knot3\KnotData\Knot.cs" />
+    <Compile Include="Knot3\KnotData\KnotFormat.cs" />
+    <Compile Include="Knot3\RenderEffects\BlurEffect.cs" />
+    <Compile Include="Knot3\RenderEffects\FadeEffect.cs" />
+    <Compile Include="Knot3\RenderEffects\RenderEffect.cs" />
+    <Compile Include="Knot3\RenderEffects\CelShadingEffect.cs" />
+    <Compile Include="Knot3\KnotData\Nodes.cs" />
+    <Compile Include="Knot3\Utilities\Mono.cs" />
+    <Compile Include="Knot3\Utilities\Textures.cs" />
+    <Compile Include="Knot3\Utilities\Vectors.cs" />
+    <Compile Include="Knot3\Utilities\Files.cs" />
+    <Compile Include="Knot3\Utilities\WrapList.cs" />
+    <Compile Include="Knot3\CreativeMode\CreativeModeInput.cs" />
+    <Compile Include="Knot3\CreativeMode\LoadSavegameScreen.cs" />
+    <Compile Include="Knot3\GameObjects\GameModel.cs" />
+    <Compile Include="Knot3\GameObjects\GameObject.cs" />
+    <Compile Include="Knot3\GameObjects\Pipes.cs" />
+    <Compile Include="Knot3\GameObjects\Lines.cs" />
+    <Compile Include="Knot3\GameObjects\World.cs" />
+    <Compile Include="Knot3\UserInterface\ConfirmDialog.cs" />
+    <Compile Include="Knot3\UserInterface\Dialog.cs" />
+    <Compile Include="Knot3\UserInterface\DropDownMenu.cs" />
+    <Compile Include="Knot3\UserInterface\Menu.cs" />
+    <Compile Include="Knot3\UserInterface\MenuButton.cs" />
+    <Compile Include="Knot3\UserInterface\HfGDesign.cs" />
+    <Compile Include="Knot3\UserInterface\VerticalMenu.cs" />
+    <Compile Include="Knot3\UserInterface\MenuScreen.cs" />
+    <Compile Include="Knot3\Camera.cs" />
+    <Compile Include="Knot3\Input.cs" />
+    <Compile Include="Knot3\Mouse.cs" />
+    <Compile Include="Knot3\Overlay.cs" />
+    <Compile Include="Knot3\Utilities\Shaders.cs" />
+    <Compile Include="Knot3\Utilities\Angles3.cs" />
+    <Compile Include="Knot3\CreativeMode\CreativeModeScreen.cs" />
+    <Compile Include="Knot3\Settings\IniFile.cs" />
+    <Compile Include="Knot3\Settings\Options.cs" />
+    <Compile Include="Knot3\Settings\OptionScreen.cs" />
+    <Compile Include="Knot3\Settings\VideoOptionScreen.cs" />
+    <Compile Include="Knot3\GameObjects\TexturedRectangle.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
