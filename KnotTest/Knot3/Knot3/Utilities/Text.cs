@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Knot3.Utilities
 {
-	public class Text
+	public static class Text
 	{
 		private static Keys lastKey = Keys.None;
 		private static double lastMillis = 0;

@@ -33,8 +33,8 @@ namespace Knot3.CreativeMode
 		// custom classes
 		private MousePointer pointer;
 		private Overlay overlay;
-		private LineRenderer lineRenderer;
-		private PipeRenderer pipeRenderer;
+		private KnotRenderer lineRenderer;
+		private KnotRenderer pipeRenderer;
 		private Dialog dialog;
 
 		/// <summary>

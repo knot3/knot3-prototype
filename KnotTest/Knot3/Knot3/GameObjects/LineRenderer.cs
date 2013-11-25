@@ -15,7 +15,10 @@ using Knot3.KnotData;
 
 namespace Knot3.GameObjects
 {
-	public class LineRenderer : GameObject
+	/// <summary>
+	/// Renders a Knot using primitive lines.
+	/// </summary>
+	public class LineRenderer : KnotRenderer
 	{
 		private BasicEffect basicEffect;
 		private EdgeList edges;
@@ -29,7 +32,7 @@ namespace Knot3.GameObjects
 			Position = Vector3.Zero;
 		}
 
-		public void OnEdgesChanged (EdgeList edges)
+		public override void OnEdgesChanged (EdgeList edges)
 		{
 			this.edges = edges;
 		}

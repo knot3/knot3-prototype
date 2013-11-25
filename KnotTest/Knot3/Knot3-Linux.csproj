@@ -71,8 +71,6 @@
     <Compile Include="Knot3\CreativeMode\LoadSavegameScreen.cs" />
     <Compile Include="Knot3\GameObjects\GameModel.cs" />
     <Compile Include="Knot3\GameObjects\GameObject.cs" />
-    <Compile Include="Knot3\GameObjects\Pipes.cs" />
-    <Compile Include="Knot3\GameObjects\Lines.cs" />
     <Compile Include="Knot3\GameObjects\World.cs" />
     <Compile Include="Knot3\UserInterface\ConfirmDialog.cs" />
     <Compile Include="Knot3\UserInterface\Dialog.cs" />
@@ -103,6 +101,12 @@
     <Compile Include="Knot3\UserInterface\Widget.cs" />
     <Compile Include="Knot3\KnotData\IKnotFormat.cs" />
     <Compile Include="Knot3\Utilities\Text.cs" />
+    <Compile Include="Knot3\GameObjects\PipeModel.cs" />
+    <Compile Include="Knot3\GameObjects\ModelCache.cs" />
+    <Compile Include="Knot3\GameObjects\NodeModel.cs" />
+    <Compile Include="Knot3\GameObjects\LineRenderer.cs" />
+    <Compile Include="Knot3\GameObjects\PipeRenderer.cs" />
+    <Compile Include="Knot3\GameObjects\KnotRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
