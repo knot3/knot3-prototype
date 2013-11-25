@@ -20,7 +20,8 @@ namespace Knot3
 		protected static bool FullscreenToggled;
 		public static KeyboardState PreviousKeyboardState;
 		public static MouseState PreviousMouseState;
-		public static int LastLeftButtonPress;
+		public static long LastLeftButtonPress;
+		public static long LastRightButtonPress;
 
 		public bool GrabMouseMovement { get; set; }
 
@@ -70,6 +71,8 @@ namespace Knot3
 			if (gameTime != null) {
 				if (MouseState.LeftButton == ButtonState.Pressed) {
 					LastLeftButtonPress = gameTime.TotalGameTime.Milliseconds;
+				} else if (MouseState.RightButton == ButtonState.Pressed) {
+					LastRightButtonPress = gameTime.TotalGameTime.Milliseconds;
 				}
 			}
 		}
@@ -126,10 +129,10 @@ namespace Knot3
 			}
 		}
 
-		public static bool IsLeftDoubleClick (this MouseState state, GameTime gameTime)
+		public static bool IsDoubleClick (this MouseState state, GameTime gameTime)
 		{
 			if (state.IsLeftClick (gameTime)) {
-				int timeDiff = gameTime.TotalGameTime.Milliseconds - Input.LastLeftButtonPress;
+				long timeDiff = gameTime.TotalGameTime.Milliseconds - Input.LastLeftButtonPress;
 				if (timeDiff < 1000 && timeDiff > 10) {
 					Console.WriteLine ("IsLeftDoubleClick=true");
 					return true;

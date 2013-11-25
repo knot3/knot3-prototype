@@ -235,7 +235,7 @@ namespace Knot3.GameObjects
 					Edge.Color = Edge.RandomColor (gameTime);
 				}
 
-				if (Input.MouseState.IsLeftDoubleClick (gameTime)) {
+				if (Input.MouseState.IsDoubleClick (gameTime)) {
 				}
 			}
 		}
