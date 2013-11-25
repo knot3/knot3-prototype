@@ -47,9 +47,9 @@ namespace Knot3.UserInterface
 			};
 
 			// buttons
-			buttons.AddButton (new MenuItemInfo ("Yes", ButtonPosition, ButtonSize, onYesClick));
-			buttons.AddButton (new MenuItemInfo ("No", ButtonPosition, ButtonSize, onNoClick));
-			buttons.AddButton (new MenuItemInfo ("Cancel", ButtonPosition, ButtonSize, onCancelClick));
+			buttons.AddButton (new MenuItemInfo ("Yes", RelativeButtonPosition, RelativeButtonSize, onYesClick));
+			buttons.AddButton (new MenuItemInfo ("No", RelativeButtonPosition, RelativeButtonSize, onNoClick));
+			buttons.AddButton (new MenuItemInfo ("Cancel", RelativeButtonPosition, RelativeButtonSize, onCancelClick));
 		}
 
 		protected override bool UpdateDialog (GameTime gameTime)
@@ -64,10 +64,9 @@ namespace Knot3.UserInterface
 				string line = Text [i];
 				float scale = 0.15f * viewport.ScaleFactor ().Length ();
 				Vector2 size = buttons.Font.MeasureString (line).RelativeTo (viewport) * scale;
-				Vector2 pos = Position () + new Vector2 ((Size ().X - size.X) / 2,
-				                                       Padding ().Y + size.Y * i);
-				spriteBatch.DrawString (buttons.Font, line, pos.Scale (viewport), Color.White,
-						0, Vector2.Zero, scale, SpriteEffects.None, 0);
+				Vector2 pos = new Vector2 ((RelativeSize ().X - size.X) / 2, RelativePadding ().Y + size.Y * i);
+				spriteBatch.DrawString (buttons.Font, line, ScaledPosition + pos.Scale (viewport),
+				                        Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
 			}
 		}
 	}

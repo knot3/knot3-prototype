@@ -19,6 +19,11 @@ namespace Knot3.Utilities
 
 		public static char Separator { get { return Path.DirectorySeparatorChar; } }
 
+		public static bool IsPath (string filepath)
+		{
+			return filepath.Contains (Path.DirectorySeparatorChar) || filepath.Contains (Path.AltDirectorySeparatorChar);
+		}
+
 		public static string SettingsDirectory {
 			get {
 				string directory;
@@ -60,6 +65,16 @@ namespace Knot3.Utilities
 					return cwd;
 				}
 			}
+		}
+
+		public static string ValidFilename (string humanReadableName)
+		{
+			char[] arr = humanReadableName.ToCharArray ();
+			arr = Array.FindAll<char> (arr, (c => (char.IsLetterOrDigit (c) 
+				|| char.IsWhiteSpace (c) 
+				|| c == '-'))
+			);
+			return new string (arr);
 		}
 
 		public static void SearchFiles (IEnumerable<string> directories, IEnumerable<string> extensions, Action<string> add)

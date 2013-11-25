@@ -24,7 +24,7 @@ namespace Knot3.UserInterface
 		private bool dropdownVisible;
 
 		public DropDownMenu (GameState state, int itemNum, MenuItemInfo info,
-		                 MenuItemColor fgColor, MenuItemColor bgColor, HAlign alignX)
+		                 LazyItemColor fgColor, LazyItemColor bgColor, HAlign alignX)
 			: base(state, itemNum, info, fgColor, bgColor, alignX)
 		{
 			// drop-down menu
@@ -116,24 +116,24 @@ namespace Knot3.UserInterface
 
 		private Vector2 ValuePosition (int dummy = 0)
 		{
-			Vector2 size = Info.SizeFunc (ItemNum);
-			return Info.PositionFunc (ItemNum) + new Vector2 (size.X / 2, 0);
+			Vector2 size = Info.Size (ItemNum);
+			return Info.Position (ItemNum) + new Vector2 (size.X / 2, 0);
 		}
 
 		private Vector2 ValueSize (int dummy = 0)
 		{
-			Vector2 size = Info.SizeFunc (ItemNum);
+			Vector2 size = Info.Size (ItemNum);
 			return new Vector2 (size.X / 2, size.Y);
 		}
 
-		private Color DropDownBackgroundColor (MenuItemState itemState)
+		private Color DropDownBackgroundColor (ItemState itemState)
 		{
 			return Color.Black; //new Color(0.2f,0.2f,0.2f);
 		}
 
-		private Color DropDownForegroundColor (MenuItemState itemState)
+		private Color DropDownForegroundColor (ItemState itemState)
 		{
-			if (itemState == MenuItemState.Selected)
+			if (itemState == ItemState.Selected)
 				return Color.White;
 			else
 				return Color.Gray;

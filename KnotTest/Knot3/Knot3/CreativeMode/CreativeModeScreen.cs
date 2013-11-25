@@ -16,6 +16,7 @@ using Knot3.KnotData;
 using Knot3.RenderEffects;
 using Knot3.GameObjects;
 using Knot3.Settings;
+using Knot3.Utilities;
 
 namespace Knot3.CreativeMode
 {
@@ -90,7 +91,7 @@ namespace Knot3.CreativeMode
 			
 			// load nodes
 			Node.Scale = 100;
-			Knot = Knot.DefaultKnot ((knt) => {});
+			Knot = Knot.DefaultKnot (new KnotFormat ());
 
 			// load camera
 			camera.LoadContent ();
@@ -118,14 +119,13 @@ namespace Knot3.CreativeMode
 
 		public override void Update (GameTime gameTime)
 		{
-			UpdateInput (gameTime);
-
-			// camera
-			camera.Update (gameTime);
 			if (dialog != null) {
 				// dialog
 				dialog.Update (gameTime);
 			} else {
+				UpdateInput (gameTime);
+				// camera
+				camera.Update (gameTime);
 				// input
 				input.Update (gameTime);
 				// world
@@ -227,21 +227,21 @@ namespace Knot3.CreativeMode
 		}
 	}
 
-	public class KnotSaveConfirmDialog : ConfirmDialog
+	public class KnotSaveConfirmDialog : TextInputDialog
 	{
-
 		public KnotSaveConfirmDialog (GameState state, Knot knot)
 			: base(state)
 		{
-			Size = () => new Vector2 (0.500f, 0.250f);
+			RelativeSize = () => new Vector2 (0.500f, 0.250f);
 			Text = new string[] {
-				"Do you want to save the changes?",
-				knot.Info.Name
+				"Do you want to save the changes?"
 			};
+			TextInput.InputText = knot.Info.Name;
 			
 			OnYesClick += () => {
 				Console.WriteLine ("OnYesClick");
-				knot.Save (knot);
+				knot.Rename (TextInput.InputText);
+				knot.Save ();
 				state.NextState = GameStates.StartScreen;
 			};
 			OnNoClick += () => {

@@ -21,18 +21,19 @@ namespace Knot3.CreativeMode
 {
 	public class LoadSavegameScreen : MenuScreen
 	{
+		// knot format
+		IKnotFormat format;
+
 		// menu
 		private VerticalMenu menu;
 
 		// textures
 		private SpriteBatch spriteBatch;
 
-		// savegame files
-		string[] FileExtensions = new string[] {".knot", ".knt"};
-
 		public LoadSavegameScreen (Game game)
 			: base(game)
 		{
+			format = new KnotFormat();
 			menu = new VerticalMenu (this);
 		}
 
@@ -63,24 +64,23 @@ namespace Knot3.CreativeMode
 
 			menu.Clear ();
 			AddDefaultKnots ();
-			Files.SearchFiles (searchDirectories, FileExtensions, AddFileToList);
+			Files.SearchFiles (searchDirectories, format.FileExtensions, AddFileToList);
 		}
 
-		private void AddFileToList (string file)
+		private void AddFileToList (string filename)
 		{
-			KnotFormat format = new KnotFormat (file);
-			KnotInfo knotInfo = format.Info;
+			KnotInfo knotInfo = format.LoadInfo(filename);
 			Action LoadFile = () => {
 				// delegate to load the file
 				if (knotInfo.IsValid) {
 					Console.WriteLine ("File is valid: " + knotInfo);
-					GameStates.CreativeMode.Knot = format.Knot;
+					GameStates.CreativeMode.Knot = format.LoadKnot(filename);
 					NextState = GameStates.CreativeMode;
 				} else {
 					Console.WriteLine ("File is invalid: " + knotInfo);
 				}
 			};
-			string name = knotInfo.IsValid ? knotInfo.Name : file;
+			string name = knotInfo.IsValid ? knotInfo.Name : filename;
 
 			MenuItemInfo info = new MenuItemInfo (text: name, onClick: LoadFile);
 			menu.AddButton (info);
@@ -89,15 +89,13 @@ namespace Knot3.CreativeMode
 		private void AddDefaultKnots ()
 		{
 			Action RandomKnot = () => {
-				Knot knot = Knot.RandomKnot (20, (k) => {});
-				knot.Save = (k) => new KnotFormat (knot.Info.Filename).Knot = k;
+				Knot knot = Knot.RandomKnot (20, format);
 				Console.WriteLine ("Random Knot: " + knot.Info);
 				GameStates.CreativeMode.Knot = knot;
 				NextState = GameStates.CreativeMode;
 			};
 			Action DefaultKnot = () => {
-				Knot knot = Knot.DefaultKnot ((k) => {});
-				knot.Save = (k) => new KnotFormat (knot.Info.Filename).Knot = k;
+				Knot knot = Knot.DefaultKnot (format);
 				Console.WriteLine ("Default Knot: " + knot.Info);
 				GameStates.CreativeMode.Knot = knot;
 				NextState = GameStates.CreativeMode;

@@ -23,7 +23,7 @@ namespace Knot3.KnotData
 		public KnotInfo Info { get; private set; }
 
 		public EdgeList Edges;
-		public Action<Knot> Save;
+		private IKnotFormat Format;
 
 		public Action<EdgeList> EdgesChanged {
 			set { Edges.EdgesChanged = value; }
@@ -34,17 +34,37 @@ namespace Knot3.KnotData
 
 		#region Constructors
 
-		public Knot (KnotInfo info, Action<Knot> save, EdgeList edges = null)
+		public Knot (KnotInfo info, IKnotFormat format, EdgeList edges = null)
 		{
 			info.EdgeCount = () => this.Edges.Count;
 			Info = info;
 			Edges = edges != null ? edges : new EdgeList ();
-			Save = save;
+			Format = format;
 		}
 
 		#endregion
 
-		public static Knot RandomKnot (int count, Action<Knot> save)
+		#region Public Methods
+
+		public void Rename (string name)
+		{
+			if (name.Length > 0 && name != Info.Name) {
+				KnotInfo info = Info;
+				info.Name = name;
+				info.Filename = Format.FindFilename(name);
+				Info = info;
+			}
+		}
+
+		public void Save() {
+			Format.SaveKnot(this);
+		}
+
+		#endregion
+
+		#region Default Knots
+
+		public static Knot RandomKnot (int count, IKnotFormat format)
 		{
 			EdgeList edges = new EdgeList ();
 			for (int i = 0; i < 30; ++i) {
@@ -55,10 +75,10 @@ namespace Knot3.KnotData
 				edges [i].Color = Edge.RandomColor ();
 			}
 
-			return UntitledKnot (edges, save);
+			return UntitledKnot (edges, format);
 		}
 
-		public static Knot DefaultKnot (Action<Knot> save)
+		public static Knot DefaultKnot (IKnotFormat format)
 		{
 			// add some default nodes
 			EdgeList edges = new EdgeList ();
@@ -79,19 +99,22 @@ namespace Knot3.KnotData
 				edges [i].Color = Edge.RandomColor ();
 			}
 
-			return UntitledKnot (edges, save);
+			return UntitledKnot (edges, format);
 		}
 
-		private static Knot UntitledKnot (EdgeList edges, Action<Knot> save)
+		private static Knot UntitledKnot (EdgeList edges, IKnotFormat format)
 		{
 			int num = new Random ().Next () % 1000;
+			string name = "Untitled #" + num;
 			Knot knot = new Knot (new KnotInfo {
-				Filename = Files.SavegameDirectory+Files.Separator+"untitled-"+num+".knot",
-				Name = "Untitled #" + num,
+				Filename = format.FindFilename(name),
+				Name = name,
 				IsValid = true
-			}, save, edges);
+			}, format, edges);
 			return knot;
 		}
+
+		#endregion
 	}
 }
 

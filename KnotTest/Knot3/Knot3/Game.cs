@@ -116,7 +116,7 @@ namespace Knot3
 		private void UpdateInput (GameTime gameTime)
 		{
 			// allows the game to exit
-			if (Keys.Back.IsDown ()) {
+			if (Keys.F8.IsDown ()) {
 				this.Exit ();
 				return;
 			}

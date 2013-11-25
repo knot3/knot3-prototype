@@ -22,8 +22,8 @@ namespace Knot3.UserInterface
 		public string Text;
 		
 		// state, position and sizes
-		public LazyItemPosition PositionFunc = (n) => Vector2.Zero;
-		public LazyItemSize SizeFunc = (n) => Vector2.Zero;
+		public LazyItemPosition Position = (i) => Vector2.Zero;
+		public LazyItemSize Size = (i) => Vector2.Zero;
 
 		// keys to listen on
 		public List<Keys> Keys = new List<Keys> ();
@@ -34,24 +34,24 @@ namespace Knot3.UserInterface
 		public MenuItemInfo (string text, LazyItemPosition position, LazyItemSize size, Action onClick)
 		{
 			Text = text;
-			PositionFunc = position;
-			SizeFunc = size;
+			Position = position;
+			Size = size;
 			OnClick = onClick;
 		}
 
 		public MenuItemInfo (string text, Vector2 topLeft, Vector2 bottomRight, Action onClick)
 		{
 			Text = text;
-			PositionFunc = (i) => topLeft;
-			SizeFunc = (i) => (bottomRight - topLeft);
+			Position = (i) => topLeft;
+			Size = (i) => (bottomRight - topLeft);
 			OnClick = onClick;
 		}
 
 		public MenuItemInfo (string text, float left, float top, float right, float bottom, Action onClick)
 		{
 			Text = text;
-			PositionFunc = (i) => new Vector2 (left, top);
-			SizeFunc = (i) => new Vector2 (right-left, bottom-top);
+			Position = (i) => new Vector2 (left, top);
+			Size = (i) => new Vector2 (right - left, bottom - top);
 			OnClick = onClick;
 		}
 
@@ -73,34 +73,24 @@ namespace Knot3.UserInterface
 		}
 	}
 
-	public abstract class MenuItem : GameClass
+	public abstract class MenuItem : ItemWidget
 	{
 		// item data
 		public MenuItemInfo Info;
-		protected int ItemNum;
 
 		// state, position and sizes
-		public MenuItemState ItemState;
-		protected HAlign AlignX;
-		protected MenuItemColor ForegroundColor;
-		protected MenuItemColor BackgroundColor;
+		public override LazyPosition RelativePosition { get { return () => Info.Position (ItemNum); } }
 
-		protected Vector2 Position { get { return Info.PositionFunc (ItemNum).Scale (viewport); } }
-
-		protected Vector2 Size { get { return Info.SizeFunc (ItemNum).Scale (viewport); } }
+		public override LazySize RelativeSize { get { return () => Info.Size (ItemNum); } }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TestGame1.MenuItem"/> class.
 		/// </summary>
 		public MenuItem (GameState state, int itemNum, MenuItemInfo info,
-		                 MenuItemColor fgColor, MenuItemColor bgColor, HAlign alignX)
-			: base(state)
+		                 LazyItemColor fgColor, LazyItemColor bgColor, HAlign alignX)
+			: base(state, itemNum, fgColor, bgColor, alignX, VAlign.Center)
 		{
-			ItemNum = itemNum;
 			Info = info;
-			AlignX = alignX;
-			ForegroundColor = fgColor;
-			BackgroundColor = bgColor;
 		}
 
 		public virtual bool Update (GameTime gameTime)
@@ -115,7 +105,7 @@ namespace Knot3.UserInterface
 
 			// mouse input
 			bool selected = bounds ().Contains (Input.MouseState.ToPoint ());
-			ItemState = selected ? MenuItemState.Selected : MenuItemState.Normal;
+			ItemState = selected ? ItemState.Selected : ItemState.Unselected;
 			if (selected) {
 				if (Input.MouseState.IsLeftClick (gameTime)) {
 					Activate ();
@@ -130,14 +120,14 @@ namespace Knot3.UserInterface
 		{
 			Texture2D paneTexture = Textures.Create (device, Color.White);
 			//spriteBatch.Draw (paneTexture, bounds (), Color.Black);
-			spriteBatch.Draw (paneTexture, bounds (), null, BackgroundColor (ItemState), 0f,
+			spriteBatch.Draw (paneTexture, bounds (), null, BackgroundColor, 0f,
 			                  Vector2.Zero, SpriteEffects.None, layerDepth);
 
 			try {
-				Vector2 scale = Size / MinimumSize (font) * 0.9f;
+				Vector2 scale = ScaledSize / MinimumSize (font) * 0.9f;
 				scale.Y = scale.X = MathHelper.Min (scale.X, scale.Y);
-				spriteBatch.DrawString (font, Info.Text, TextPosition (font, scale), ForegroundColor (ItemState),
-						0, Vector2.Zero, scale, SpriteEffects.None, layerDepth+0.001f);
+				spriteBatch.DrawString (font, Info.Text, TextPosition (font, scale), ForegroundColor,
+						0, Vector2.Zero, scale, SpriteEffects.None, layerDepth + 0.001f);
 			} catch (ArgumentException exp) {
 				Console.WriteLine (exp.ToString ());
 			} catch (InvalidOperationException exp) {
@@ -152,18 +142,18 @@ namespace Knot3.UserInterface
 
 		public Vector2 TextPosition (SpriteFont font, Vector2 scale)
 		{
-			Vector2 textPosition = Position;
+			Vector2 textPosition = ScaledPosition;
 			switch (AlignX) {
 			case HAlign.Left:
-				textPosition.Y += (Size.Y - MinimumSize (font).Y * scale.Y) / 2;
+				textPosition.Y += (ScaledSize.Y - MinimumSize (font).Y * scale.Y) / 2;
 				//textPosition.X += font.LineSpacing * scale.Y * 0.5f;
 				break;
 			case HAlign.Center:
-				textPosition += (Size - MinimumSize (font) * scale) / 2;
+				textPosition += (ScaledSize - MinimumSize (font) * scale) / 2;
 				break;
 			case HAlign.Right:
-				textPosition.Y += (Size.Y - MinimumSize (font).Y * scale.Y) / 2;
-				textPosition.X += Size.X - MinimumSize (font).X * scale.X;
+				textPosition.Y += (ScaledSize.Y - MinimumSize (font).Y * scale.Y) / 2;
+				textPosition.X += ScaledSize.X - MinimumSize (font).X * scale.X;
 				break;
 			}
 			return textPosition;
@@ -176,8 +166,8 @@ namespace Knot3.UserInterface
 
 		public Rectangle bounds ()
 		{
-			Point topLeft = Position.ToPoint ();
-			Point size = Size.ToPoint ();
+			Point topLeft = ScaledPosition.ToPoint ();
+			Point size = ScaledSize.ToPoint ();
 			return new Rectangle (topLeft.X, topLeft.Y, size.X, size.Y);
 		}
 
@@ -186,38 +176,18 @@ namespace Knot3.UserInterface
 			Info.OnClick ();
 		}
 
-        public virtual void Collapse()
-        {
-        }
+		public virtual void Collapse ()
+		{
+		}
 	}
 
 	public class MenuButton : MenuItem
 	{
 		public MenuButton (GameState state, int itemNum, MenuItemInfo info,
-		                 MenuItemColor fgColor, MenuItemColor bgColor, HAlign alignX)
+		                 LazyItemColor fgColor, LazyItemColor bgColor, HAlign alignX)
 			: base(state, itemNum, info, fgColor, bgColor, alignX)
 		{
 		}
 	}
-
-	public enum MenuItemState
-	{
-		Selected,
-		Normal
-	}
-
-	public enum HAlign
-	{
-		Left,
-		Center,
-		Right
-	}
-
-	// delegates
-	public delegate Vector2 LazyItemSize (int n);
-	public delegate Vector2 LazyItemPosition (int n);
-	public delegate Vector2 LazySize ();
-	public delegate Vector2 LazyPosition ();
-	public delegate Color MenuItemColor (MenuItemState itemState);
 }
 

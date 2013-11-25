@@ -16,41 +16,45 @@ using Knot3.Settings;
 
 namespace Knot3.UserInterface
 {
-	public class Menu : GameClass
+	public class Menu : Widget
 	{
 		// fonts and colors
 		public SpriteFont Font { get; protected set; }
 
-		protected MenuItemColor ForegroundColor;
-		protected MenuItemColor BackgroundColor;
-		protected HAlign AlignX;
+		protected LazyItemColor ItemForegroundColor;
+		protected LazyItemColor ItemBackgroundColor;
+		protected HAlign ItemAlignX;
 
 		// menu-related attributes
 		protected List<MenuItem> Items;
 
-		public Menu (GameState state)
-			: base(state)
+		public Menu (GameState state, LazyColor foregroundColor = null, LazyColor backgroundColor = null,
+		             HAlign alignX = HAlign.Left, VAlign alignY = VAlign.Center)
+			: base(state, foregroundColor, backgroundColor, alignX, alignY)
 		{
 			Items = new List<MenuItem> ();
 		}
 
 		public virtual MenuButton AddButton (MenuItemInfo info)
 		{
-			MenuButton item = new MenuButton (state, Items.Count, info, ForegroundColor, BackgroundColor, AlignX);
+			MenuButton item = new MenuButton (state, Items.Count, info, ItemForegroundColor,
+			                                  ItemBackgroundColor, ItemAlignX);
 			Items.Add (item);
 			return item;
 		}
 
 		public virtual void AddDropDown (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
 		{
-			DropDownMenu item = new DropDownMenu (state, Items.Count, info, ForegroundColor, BackgroundColor, AlignX);
+			DropDownMenu item = new DropDownMenu (state, Items.Count, info, ItemForegroundColor,
+			                                      ItemBackgroundColor, ItemAlignX);
 			item.AddEntries (items, defaultItem);
 			Items.Add (item);
 		}
 
 		public virtual void AddDropDown (MenuItemInfo info, DistinctOptionInfo option)
 		{
-			DropDownMenu item = new DropDownMenu (state, Items.Count, info, ForegroundColor, BackgroundColor, AlignX);
+			DropDownMenu item = new DropDownMenu (state, Items.Count, info, ItemForegroundColor,
+			                                      ItemBackgroundColor, ItemAlignX);
 			item.AddEntries (option);
 			Items.Add (item);
 		}
@@ -77,11 +81,11 @@ namespace Knot3.UserInterface
 			Items.Clear ();
 		}
 		
-		public virtual void Initialize (MenuItemColor fgColor, MenuItemColor bgColor, HAlign alignX)
+		public virtual void Initialize (LazyItemColor itemFgColor, LazyItemColor itemBgColor, HAlign itemAlignX)
 		{
-			ForegroundColor = fgColor;
-			BackgroundColor = bgColor;
-			AlignX = alignX;
+			ItemForegroundColor = itemFgColor;
+			ItemBackgroundColor = itemBgColor;
+			ItemAlignX = itemAlignX;
 
 			// load fonts
 			try {

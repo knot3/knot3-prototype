@@ -16,70 +16,112 @@ using Knot3.Utilities;
 
 namespace Knot3.KnotData
 {
-	public class KnotFormat
+	public class KnotFormat : IKnotFormat
 	{
-		public string Filename;
+		// savegame files
+		public string[] FileExtensions { get { return new string[] {".knot", ".knt"}; } }
 
-		public KnotFormat (string filename)
+		public KnotFormat ()
 		{
-			Filename = filename;
 		}
 
-		public KnotInfo Info {
+		/// <summary>
+		/// Loads knot info.
+		/// </summary>
+		/// <returns>
+		/// The knot info.
+		/// </returns>
+		/// <param name='filename'>
+		/// Filename.
+		/// </param>
+		public KnotInfo LoadInfo (string filename)
+		{
+			string name = null;
+			int edgeCount = 0;
+			foreach (string line in Files.ReadFrom (filename)) {
+				// first line is the name
+				if (name == null)
+					name = line.Trim ();
+				// every non-empty line afterwards is a node coordinate
+				else if (name.Trim ().Length > 0)
+					++edgeCount;
+			}
+			// create a new info object
+			return new KnotInfo {
+				Filename = filename,
+				Name = name,
+				EdgeCount = () => edgeCount,
+				IsValid = name != null && name.Length > 0 && edgeCount >= 2
+			};
+		}
+
+		/// <summary>
+		/// Loads a knot from a file.
+		/// </summary>
+		/// <returns>
+		/// The knot.
+		/// </returns>
+		/// <param name='filename'>
+		/// Filename.
+		/// </param>
+		public Knot LoadKnot (string filename)
+		{
 			// load knot info
-			get {
-				string name = null;
-				int edgeCount = 0;
-				foreach (string line in Files.ReadFrom (Filename)) {
-					// first line is the name
-					if (name == null)
-						name = line.Trim ();
-					// every non-empty line afterwards is a node coordinate
-					else if (name.Trim ().Length > 0)
-						++edgeCount;
-				}
-				// create a new info object
-				return new KnotInfo {
-					Filename = Filename,
-					Name = name,
-					EdgeCount = () => edgeCount,
-					IsValid = name != null && name.Length > 0 && edgeCount >= 2
-				};
+			KnotInfo info = LoadInfo (filename);
+			if (info.IsValid) {
+				// create a knot object
+				Knot knot = new Knot (info, this);
+				// read lines
+				WrapList<string> lines = new WrapList<string> (Files.ReadFrom (filename));
+				// remove the line containing the name of the knot
+				lines.Remove (new []{ lines [0] });
+				// edges and colors
+				ParseLines (lines, knot.Edges);
+
+				return knot;
+
+			} else {
+				// file has too few lines
+				return null;
 			}
 		}
 
-		public Knot Knot {
-			// load knot from file
-			get {
-				// load knot info
-				KnotInfo info = Info;
-				if (info.IsValid) {
-					// create a knot object
-					Knot knot = new Knot (info, (k) => new KnotFormat (Filename).Knot = k);
-					// read lines
-					WrapList<string> lines = new WrapList<string> (Files.ReadFrom (Filename));
-					// remove the line containing the name of the knot
-					lines.Remove (new []{ lines [0] });
-					// edges and colors
-					ParseLines (lines, knot.Edges);
-
-					return knot;
-
-				} else {
-					// file has too few lines
-					return null;
+		/// <summary>
+		/// Saves the knot to a file.
+		/// </summary>
+		/// <returns>
+		/// The knot.
+		/// </returns>
+		/// <param name='filename'>
+		/// The filename.
+		/// </param>
+		public void SaveKnot (Knot knot)
+		{
+			try {
+				string content = string.Join (System.Environment.NewLine,
+				                              ToLines (knot)) + System.Environment.NewLine;
+				string filepath = knot.Info.Filename;
+				if (!Files.IsPath (filepath)) {
+					filepath = Files.SavegameDirectory + Files.Separator + filepath;
 				}
+				File.WriteAllText (filepath, content);
+			} catch (Exception ex) {
+				Console.WriteLine (ex);
 			}
-
-			// save knot to 
-			set {
-				try {
-					string content = string.Join (System.Environment.NewLine, ToLines (value)) + System.Environment.NewLine;
-					File.WriteAllText (value.Info.Filename, content);
-				} catch (Exception ex) {
-					Console.WriteLine (ex);
-				}
-			}
+		}
+		
+		/// <summary>
+		/// Finds the filename for a specified knot name.
+		/// </summary>
+		/// <returns>
+		/// The filename.
+		/// </returns>
+		/// <param name='knotName'>
+		/// Knot name.
+		/// </param>
+		public string FindFilename (string knotName)
+		{
+			return Files.ValidFilename (knotName) + FileExtensions [0];
 		}
 
 		private static void ParseLines (WrapList<string> lines, EdgeList edges)

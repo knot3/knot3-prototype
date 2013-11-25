@@ -96,26 +96,17 @@ namespace Knot3.UserInterface
 		{
 		}
 
-		protected Color BackgroundColor (MenuItemState itemState)
+		protected Color BackgroundColor (ItemState itemState)
 		{
-			switch (itemState) {
-			case MenuItemState.Selected:
-				return Color.Black * 0f;
-			case MenuItemState.Normal:
-			default:
-				return Color.Black * 0f;
-			}
+			return Color.Black * 0f;
 		}
 
-		protected Color ForegroundColor (MenuItemState itemState)
+		protected Color ForegroundColor (ItemState itemState)
 		{
-			switch (itemState) {
-			case MenuItemState.Selected:
+			if (itemState == ItemState.Selected)
 				return Color.White;
-			case MenuItemState.Normal:
-			default:
+			else
 				return Color.White * 0.7f;
-			}
 		}
 	}
 }

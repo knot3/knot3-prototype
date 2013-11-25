@@ -16,15 +16,9 @@ using Knot3.Utilities;
 
 namespace Knot3.UserInterface
 {
-	public abstract class Dialog : GameClass
+	public abstract class Dialog : Widget
 	{
-		// size and position
-		public LazyPosition Position { get; protected set; }
-
-		public LazySize Size { get; protected set; }
-
-		public LazySize Padding { get; protected set; }
-
+		// visibility
 		public bool IsVisible;
 
 		// menu
@@ -35,14 +29,15 @@ namespace Knot3.UserInterface
 		protected SpriteBatch spriteBatch;
 
 		public Dialog (GameState state)
-			: base(state)
+			: base(state, ()=>Color.White, ()=>Color.Black, HAlign.Left, VAlign.Top)
 		{
-			Position = () => (Vector2.One - Size ()) / 2;
-			Size = () => Vector2.Zero;
-			Padding = () => new Vector2 (0.016f, 0.016f);
+			RelativePosition = () => (Vector2.One - RelativeSize ()) / 2;
+			RelativeSize = () => Vector2.Zero;
+			RelativePadding = () => new Vector2 (0.016f, 0.016f);
 			IsVisible = true;
 			Done = () => {
-				IsVisible = false; };
+				IsVisible = false;
+			};
 
 			// create a new SpriteBatch, which can be used to draw textures
 			spriteBatch = new SpriteBatch (device);
@@ -52,18 +47,18 @@ namespace Knot3.UserInterface
 			buttons.Initialize (ButtonForegroundColor, ButtonBackgroundColor, HAlign.Center);
 		}
 
-		protected Vector2 ButtonPosition (int n)
+		protected Vector2 RelativeButtonPosition (int n)
 		{
-			Vector2 buttonSize = ButtonSize (n);
+			Vector2 buttonSize = RelativeButtonSize (n);
 			return new Vector2 (
-				Position ().X + Padding ().X * (1 + n) + buttonSize.X * n,
-				Position ().Y + Size ().Y - buttonSize.Y - Padding ().Y
+				RelativePosition ().X + RelativePadding ().X * (1 + n) + buttonSize.X * n,
+				RelativePosition ().Y + RelativeSize ().Y - buttonSize.Y - RelativePadding ().Y
 			);
 		}
 
-		protected Vector2 ButtonSize (int n)
+		protected Vector2 RelativeButtonSize (int n)
 		{
-			float x = (Size ().X - Padding ().X * (1 + buttons.Count)) / buttons.Count;
+			float x = (RelativeSize ().X - RelativePadding ().X * (1 + buttons.Count)) / buttons.Count;
 			return new Vector2 (x, 0.06f);
 		}
 
@@ -90,13 +85,11 @@ namespace Knot3.UserInterface
 				spriteBatch.Begin ();
 
 				// background
-				Vector2 pos = Position ();
-				Vector2 size = Size ();
-				Rectangle rect = HfGDesign.CreateRectangle (0, pos.Scale (viewport), size.Scale (viewport));
+				Rectangle rect = HfGDesign.CreateRectangle (0, ScaledPosition, ScaledSize);
 				spriteBatch.Draw (Textures.Create (device, HfGDesign.LineColor),
 				                 rect.Grow (3),
 				                 Color.White);
-				spriteBatch.Draw (Textures.Create (device, Color.Black),
+				spriteBatch.Draw (Textures.Create (device, BackgroundColor),
 				                 rect,
 				                 Color.Black * 0.95f);
 
@@ -111,17 +104,17 @@ namespace Knot3.UserInterface
 
 		protected abstract void DrawDialog (GameTime gameTime);
 
-		private Color ButtonBackgroundColor (MenuItemState itemState)
+		private Color ButtonBackgroundColor (ItemState itemState)
 		{
-			if (itemState == MenuItemState.Selected)
+			if (itemState == ItemState.Selected)
 				return HfGDesign.LineColor * 0.6f;
 			else
 				return HfGDesign.LineColor * 0.8f;
 		}
 
-		private Color ButtonForegroundColor (MenuItemState itemState)
+		private Color ButtonForegroundColor (ItemState itemState)
 		{
-			if (itemState == MenuItemState.Selected)
+			if (itemState == ItemState.Selected)
 				return Color.Black;
 			else
 				return Color.Black;
