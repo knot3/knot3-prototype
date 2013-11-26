@@ -22,7 +22,7 @@ namespace Knot3.RenderEffects
 		Vector4 lightDirection; // Light source for toon shader
 
 		Effect outlineShader;   // Outline shader effect
-		float outlineThickness = 0.8f;  // current outline thickness
+		float outlineThickness = 1.0f;  // current outline thickness
 		float outlineThreshold = 0.2f;  // current edge detection threshold
 
 
@@ -81,10 +81,12 @@ namespace Knot3.RenderEffects
 			celShader.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
 			celShader.CurrentTechnique = celShader.Techniques ["ToonShader"];
 
-			if (model.HighlightIntensity != 0f) {
-				SetColor (model.BaseColor.Mix (model.HighlightColor, model.HighlightIntensity));
-			} else {
-				SetColor (model.BaseColor);
+			if (model.BaseColor != Color.Transparent) {
+				if (model.HighlightIntensity != 0f) {
+					SetColor (model.BaseColor.Mix (model.HighlightColor, model.HighlightIntensity));
+				} else {
+					SetColor (model.BaseColor);
+				}
 			}
 
 			foreach (ModelMesh mesh in model.Model.Meshes) {

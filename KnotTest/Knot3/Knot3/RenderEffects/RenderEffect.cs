@@ -121,10 +121,12 @@ namespace Knot3.RenderEffects
 						effect.Projection = camera.ProjectionMatrix;
 
 						// colors
-						if (model.HighlightIntensity != 0f) {
-							effect.DiffuseColor = model.BaseColor.Mix (model.HighlightColor, model.HighlightIntensity).ToVector3 ();
-						} else {
-							effect.DiffuseColor = model.BaseColor.ToVector3 ();
+						if (model.BaseColor != Color.Transparent) {
+							if (model.HighlightIntensity != 0f) {
+								effect.DiffuseColor = model.BaseColor.Mix (model.HighlightColor, model.HighlightIntensity).ToVector3 ();
+							} else {
+								effect.DiffuseColor = model.BaseColor.ToVector3 ();
+							}
 						}
 						effect.FogEnabled = false;
 					}

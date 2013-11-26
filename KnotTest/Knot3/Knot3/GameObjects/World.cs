@@ -19,9 +19,9 @@ namespace Knot3.GameObjects
 	public class World : GameClass
 	{
 		// game objects
-		private List<GameObject> objects;
+		private List<IGameObject> objects;
 
-		public GameObject SelectedObject { get; private set; }
+		public IGameObject SelectedObject { get; private set; }
 
 		private TexturedRectangle floor;
 
@@ -39,7 +39,7 @@ namespace Knot3.GameObjects
 			size = new Vector3 (2000, 1000, 2000);
 			position = new Vector3 (-1000, -100, -1000);
 
-			objects = new List<GameObject> ();
+			objects = new List<IGameObject> ();
 
 			// some game objects
 
@@ -48,12 +48,15 @@ namespace Knot3.GameObjects
 			// objects.Add (rect);
 
 			// the floor
-			floor = new TexturedRectangle (state, "floor", position + new Vector3 (size.X, 0, size.Z) / 2,
-				Vector3.Left, size.X, Vector3.Forward, size.Z);
+			var floorInfo = new TexturedRectangleInfo(
+				texturename: "floor", origin: position + new Vector3 (size.X, 0, size.Z) / 2,
+				left: Vector3.Left, width: size.X, up: Vector3.Forward, height: size.Z
+			);
+			floor = new TexturedRectangle (state, floorInfo);
 			objects.Add (floor);
 		}
 
-		public void SelectObject (GameObject obj, GameTime gameTime)
+		public void SelectObject (IGameObject obj, GameTime gameTime)
 		{
 			if (SelectedObject != obj) {
 				if (SelectedObject != null) {
@@ -81,14 +84,14 @@ namespace Knot3.GameObjects
 			return v.Clamp (position, position + size);
 		}
 		
-		public void Add (GameObject obj)
+		public void Add (IGameObject obj)
 		{
 			objects.Add (obj);
 		}
 		
 		public void Draw (GameTime gameTime)
 		{
-			foreach (GameObject obj in objects) {
+			foreach (IGameObject obj in objects) {
 				obj.Draw (gameTime);
 			}
 		}
@@ -96,7 +99,7 @@ namespace Knot3.GameObjects
 		public void Update (GameTime gameTime)
 		{
 			// run the update method on all game objects
-			foreach (GameObject obj in objects) {
+			foreach (IGameObject obj in objects) {
 				obj.Update (gameTime);
 			}
 
@@ -106,19 +109,25 @@ namespace Knot3.GameObjects
 			// spawn a game object
 			if (Keys.Z.IsDown ()) {
 				//objects.Add (new GameModel (state, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
-				var obj = new TestModel (state, "Test3D", new Vector3 (200, 200, 200), 0.1f);
-				obj.IsMovable = true;
+				var info = new GameModelInfo ("Test3D");
+				info.Position = new Vector3 (200, 200, 200);
+				info.Scale = 0.1f;
+				info.IsMovable = true;
+				var obj = new TestModel (state, info);
 				objects.Add (obj);
 			}
 			if (Keys.P.IsDown ()) {
 				//objects.Add (new GameModel (state, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
-				var obj = new TestModel (state, "pipe1", new Vector3 (-200, 200, -200), 100f);
-				obj.IsMovable = true;
+				var info = new GameModelInfo ("pipe1");
+				info.Position = new Vector3 (-200, 200, -200);
+				info.Scale = 30f;
+				info.IsMovable = true;
+				var obj = new TestModel (state, info);
 				objects.Add (obj);
 			}
 
 			// debug mode?
-			floor.IsVisible = Game.Debug;
+			floor.Info.IsVisible = Game.Debug;
 		}
 
 		public void UpdateMouseRay (GameTime gameTime)
@@ -131,8 +140,8 @@ namespace Knot3.GameObjects
 				Ray ray = camera.GetMouseRay (Input.MouseState.ToVector2 ());
 
 				GameObjectDistance nearest = null;
-				foreach (GameObject obj in objects) {
-					if (obj.IsVisible) {
+				foreach (IGameObject obj in objects) {
+					if (obj.Info.IsVisible) {
 						GameObjectDistance intersection = obj.Intersects (ray);
 						if (intersection != null) {
 							//Console.WriteLine ("time=" + (int)gameTime.TotalGameTime.TotalMilliseconds +
@@ -150,24 +159,18 @@ namespace Knot3.GameObjects
 			}
 		}
 	}
-
-	public sealed class GameObjectDistance
-	{
-		public GameObject Object;
-		public float Distance;
-	}
 	
-	public class TestModel : CachedGameModel
+	public class TestModel : GameModel
 	{
-		public TestModel (GameState state, string modelname, Vector3 position, float scale)
-			: base(state, modelname, position, scale)
+		public TestModel (GameState state, GameModelInfo info)
+			: base(state, info)
 		{
 		}
 
 		public override void Update (GameTime gameTime)
 		{
 			if (Keys.U.IsHeldDown ()) {
-				Position = Position.RotateY (MathHelper.PiOver4 / 100f);
+				Info.Position = Info.Position.RotateY (MathHelper.PiOver4 / 100f);
 			}
 			base.Update (gameTime);
 		}

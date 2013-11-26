@@ -16,19 +16,42 @@ using Knot3.Utilities;
 
 namespace Knot3.GameObjects
 {
+	public class GameModelInfo : GameObjectInfo
+	{
+		public string Modelname;
+		public Angles3 Rotation;
+		public float Scale;
+
+		public GameModelInfo (string modelname)
+		{
+			Modelname = modelname;
+			Rotation = Angles3.Zero;
+			Scale = 1f;
+		}
+
+		public override bool Equals (GameObjectInfo other)
+		{
+			if (other == null) 
+				return false;
+
+			if (other is GameModelInfo) {
+				if (this.Modelname == (other as GameModelInfo).Modelname && base.Equals (other))
+					return true;
+				else
+					return false;
+			} else {
+				return base.Equals (other);
+			}
+		}
+	}
+
 	public class GameModel : GameObject
 	{
 		#region Attributes and Properties
 
-		protected virtual string Modelname { get; private set; }
+		public new GameModelInfo Info { get; private set; }
 
-		public virtual Model Model { get { return Models.LoadModel (state, Modelname); } }
-
-		protected virtual float Scale { get; set; }
-
-		protected virtual Angles3 Rotation { get; set; }
-
-		protected override Vector3 Position { get; set; }
+		public virtual Model Model { get { return Models.LoadModel (state, Info.Modelname); } }
 
 		public Color BaseColor;
 		public Color HighlightColor;
@@ -38,14 +61,10 @@ namespace Knot3.GameObjects
 
 		#region Constructors
 
-		public GameModel (GameState state, string modelname, Vector3 position, float scale)
-			: base(state)
+		public GameModel (GameState state, GameModelInfo info)
+			: base(state, info)
 		{
-			// load test model
-			Modelname = modelname;
-			Scale = scale;
-			Rotation = Angles3.Zero;
-			Position = position;
+			Info = info;
 
 			// colors
 			BaseColor = Color.Transparent;
@@ -57,17 +76,11 @@ namespace Knot3.GameObjects
 
 		#region Draw
 
-		public virtual Matrix WorldMatrix {
-			get {
-				return Matrix.CreateScale (Scale)
-					* Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
-					* Matrix.CreateTranslation (Position);
-			}
-		}
-
-		public override void DrawObject (GameTime gameTime)
+		public override void Draw (GameTime gameTime)
 		{
-			state.RenderEffects.Current.DrawModel (this, gameTime);
+			if (Info.IsVisible) {
+				state.RenderEffects.Current.DrawModel (this, gameTime);
+			}
 		}
 
 		#endregion Draw
@@ -77,7 +90,7 @@ namespace Knot3.GameObjects
 		public override GameObjectDistance Intersects (Ray ray)
 		{
 			foreach (BoundingSphere _sphere in Model.Bounds()) {
-				BoundingSphere sphere = _sphere.Scale (Scale).Translate (Position);
+				BoundingSphere sphere = _sphere.Scale (Info.Scale).Translate (Info.Position);
 				float? distance = ray.Intersects (sphere);
 				if (distance != null) {
 					GameObjectDistance intersection = new GameObjectDistance () {
@@ -96,35 +109,19 @@ namespace Knot3.GameObjects
 			foreach (ModelMesh mesh in Model.Meshes) {
 				center += mesh.BoundingSphere.Center / count;
 			}
-			return center / Scale + Position;
+			return center / Info.Scale + Info.Position;
 		}
 		
 		#endregion
-	}
 
-	public class CachedGameModel : GameModel
-	{
-		#region Constructors
-
-		public CachedGameModel (GameState state, string modelname, Vector3 position, float scale)
-			: base(state, modelname, position, scale)
-		{
-		}
-
-		#endregion
-
-		#region Attributes
+		#region Matrix Cache
 
 		private float _scale;
 		private Angles3 _rotation;
 		private Vector3 _position;
 		private Matrix _worldMatrix;
 
-		#endregion
-
-		#region Properties
-
-		public override Matrix WorldMatrix {
+		public Matrix WorldMatrix {
 			get {
 				UpdateWorldMatrix ();
 				return _worldMatrix;
@@ -133,13 +130,13 @@ namespace Knot3.GameObjects
 
 		private void UpdateWorldMatrix ()
 		{
-			if (Scale != _scale || Rotation != _rotation || Position != _position) {
-				_worldMatrix = Matrix.CreateScale (Scale)
-					* Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
-					* Matrix.CreateTranslation (Position);
-				_scale = Scale;
-				_rotation = Rotation;
-				_position = Position;
+			if (Info.Scale != _scale || Info.Rotation != _rotation || Info.Position != _position) {
+				_worldMatrix = Matrix.CreateScale (Info.Scale)
+					* Matrix.CreateFromYawPitchRoll (Info.Rotation.Y, Info.Rotation.X, Info.Rotation.Z)
+					* Matrix.CreateTranslation (Info.Position);
+				_scale = Info.Scale;
+				_rotation = Info.Rotation;
+				_position = Info.Position;
 			}
 		}
 

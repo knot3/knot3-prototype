@@ -18,26 +18,35 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Renders a Knot using primitive lines.
 	/// </summary>
-	public class LineRenderer : KnotRenderer
+	public class LineRenderer : GameClass, IKnotRenderer
 	{
+		public GameObjectInfo Info { get; private set; }
+
+		// graphic stuff
 		private BasicEffect basicEffect;
+
+		// edges
 		private EdgeList edges;
 
-		protected override Vector3 Position { get; set; }
-
-		public LineRenderer (GameState state)
+		public LineRenderer (GameState state, GameObjectInfo info)
 			: base(state)
 		{
+			Info = info;
 			basicEffect = new BasicEffect (device);
-			Position = Vector3.Zero;
 		}
 
-		public override void OnEdgesChanged (EdgeList edges)
+		public void Update (GameTime gameTime)
+		{
+		}
+
+		public void OnEdgesChanged (EdgeList edges)
 		{
 			this.edges = edges;
 		}
 
-		public override void DrawObject (GameTime gameTime)
+		#region Draw
+
+		public void Draw (GameTime gameTime)
 		{
 			basicEffect.World = camera.WorldMatrix;
 			basicEffect.View = camera.ViewMatrix;
@@ -82,15 +91,33 @@ namespace Knot3.GameObjects
 			device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, edges.Count * 2); 
 		}
 
-		public override GameObjectDistance Intersects (Ray ray)
+		#endregion
+
+		#region Intersection
+
+		public GameObjectDistance Intersects (Ray ray)
 		{
 			return null;
 		}
 
-		public override Vector3 Center ()
+		public Vector3 Center ()
 		{
-			return Position;
+			return Info.Position;
 		}
+
+		#endregion
+
+		#region Selection
+
+		public virtual void OnSelected (GameTime gameTime)
+		{
+		}
+
+		public virtual void OnUnselected (GameTime gameTime)
+		{
+		}
+
+		#endregion
 	}
 }
 

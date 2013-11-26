@@ -16,27 +16,79 @@ using Knot3.Utilities;
 
 namespace Knot3.GameObjects
 {
-	public abstract class GameObject : GameClass
+	public class GameObjectInfo : IEquatable<GameObjectInfo>
 	{
-		protected abstract Vector3 Position { get; set; }
+		public Vector3 Position;
+		public bool IsVisible;
+		public bool IsMovable;
 
-		public bool IsMovable { get; set; }
+		public GameObjectInfo ()
+		{
+			Position = Vector3.Zero;
+			IsVisible = true;
+			IsMovable = false;
+		}
 
-		public bool IsVisible { get; set; }
+		public virtual bool Equals (GameObjectInfo other)
+		{
+			if (other == null) 
+				return false;
 
-		public GameObject (GameState state)
+			if (this.Position == other.Position)
+				return true;
+			else
+				return false;
+		}
+
+		public override bool Equals (Object obj)
+		{
+			if (obj == null) 
+				return false;
+
+			GameObjectInfo personObj = obj as GameObjectInfo;
+			if (personObj == null)
+				return false;
+			else   
+				return Equals (personObj);   
+		}
+
+		public override int GetHashCode ()
+		{
+			return this.Position.GetHashCode ();
+		}
+
+		public static bool operator == (GameObjectInfo o1, GameObjectInfo o2)
+		{
+			if ((object)o1 == null || ((object)o2) == null)
+				return Object.Equals (o1, o2);
+
+			return o2.Equals (o2);
+		}
+
+		public static bool operator != (GameObjectInfo o1, GameObjectInfo o2)
+		{
+			return ! (o1 == o2);
+		}
+	}
+
+	public abstract class GameObject : GameClass, IGameObject
+	{
+		public GameObjectInfo Info { get; private set; }
+
+		public GameObject (GameState state, GameObjectInfo info)
 			: base(state)
 		{
-			IsMovable = false;
-			IsVisible = true;
+			Info = info;
 		}
 
 		#region Move
 
 		protected Plane CurrentGroundPlane ()
 		{
-			Plane groundPlane = new Plane (Position, Position + Vector3.Up,
-							Position + Vector3.Normalize (Vector3.Cross (Vector3.Up, Position - camera.Position)));
+			Plane groundPlane = new Plane (
+				Info.Position, Info.Position + Vector3.Up,
+				Info.Position + Vector3.Normalize (Vector3.Cross (Vector3.Up, Info.Position - camera.Position))
+			);
 			Console.WriteLine ("groundPlane=" + groundPlane);
 			return groundPlane;
 		}
@@ -50,7 +102,7 @@ namespace Knot3.GameObjects
 		protected Vector3? CurrentMousePosition (Ray ray, Plane groundPlane)
 		{
 			float? planeDistance = ray.Intersects (groundPlane);
-			float previousLength = (Position - camera.Position).Length ();
+			float previousLength = (Info.Position - camera.Position).Length ();
 			if (planeDistance.HasValue) {
 				Vector3 planePosition = ray.Position + ray.Direction * planeDistance.Value;
 				float currentLength = (planePosition - camera.Position).Length ();
@@ -63,14 +115,14 @@ namespace Knot3.GameObjects
 		public virtual void Update (GameTime gameTime)
 		{
 			// check whether is object is movable and whether it is selected
-			if (IsVisible && IsMovable && world.SelectedObject == this) {
+			if (Info.IsVisible && Info.IsMovable && world.SelectedObject == this) {
 				// is SelectedObjectMove the current input action?
 				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					Plane groundPlane = CurrentGroundPlane ();
 					Ray ray = CurrentMouseRay ();
 					Vector3? newPosition = CurrentMousePosition (ray, groundPlane);
 					if (newPosition.HasValue) {
-						Position = newPosition.Value;
+						Info.Position = newPosition.Value;
 					}
 				}
 			}
@@ -80,14 +132,7 @@ namespace Knot3.GameObjects
 
 		#region Draw
 
-		public void Draw (GameTime gameTime)
-		{
-			if (IsVisible) {
-				DrawObject (gameTime);
-			}
-		}
-
-		public abstract void DrawObject (GameTime gameTime);
+		public abstract void Draw (GameTime gameTime);
 
 		#endregion
 
@@ -100,11 +145,6 @@ namespace Knot3.GameObjects
 		#endregion
 
 		#region Selection
-
-		public bool IsSelected ()
-		{
-			return world.SelectedObject == this;
-		}
 
 		public virtual void OnSelected (GameTime gameTime)
 		{

@@ -32,6 +32,7 @@ namespace Knot3.CreativeMode
 		{
 			Vector3 keyboardMove = Vector3.Zero;
 			Vector2 arcballMove = Vector2.Zero;
+			Vector2 selfRotate = Vector2.Zero;
 
 			// W,A,S,D,Q,E
 			if (WASDMode == WASDMode.ArcballMode) {
@@ -47,19 +48,27 @@ namespace Knot3.CreativeMode
 					keyboardMove += new Vector3 (0, 0, -1);
 				if (Keys.F.IsHeldDown ())
 					keyboardMove += new Vector3 (0, 0, 1);
+				if (Keys.Q.IsHeldDown ())
+					selfRotate += new Vector2 (-1, 0);
+				if (Keys.E.IsHeldDown ())
+					selfRotate += new Vector2 (1, 0);
 			} else if (WASDMode == WASDMode.FirstPersonMode) {
 				if (Keys.A.IsHeldDown ())
 					keyboardMove += new Vector3 (-1, 0, 0);
 				if (Keys.D.IsHeldDown ())
 					keyboardMove += new Vector3 (1, 0, 0);
-				if (Keys.R.IsHeldDown ())
-					keyboardMove += new Vector3 (0, -1, 0);
-				if (Keys.F.IsHeldDown ())
-					keyboardMove += new Vector3 (0, 1, 0);
 				if (Keys.W.IsHeldDown ())
-					keyboardMove += new Vector3 (0, 0, -1);
+					keyboardMove += new Vector3 (0, -1, 0);
 				if (Keys.S.IsHeldDown ())
+					keyboardMove += new Vector3 (0, 1, 0);
+				if (Keys.R.IsHeldDown ())
+					keyboardMove += new Vector3 (0, 0, -1);
+				if (Keys.F.IsHeldDown ())
 					keyboardMove += new Vector3 (0, 0, 1);
+				if (Keys.Q.IsHeldDown ())
+					selfRotate += new Vector2 (-1, 0);
+				if (Keys.E.IsHeldDown ())
+					selfRotate += new Vector2 (1, 0);
 			}
 
 			// Arrow Keys
@@ -81,13 +90,21 @@ namespace Knot3.CreativeMode
 				CurrentInputAction = InputAction.FPSMove;
 			}
 
-			// apply arcball movements
+			// apply arcball movements to the target
 			if (arcballMove.Length () > 0) {
 				arcballMove *= 3;
 				camera.Target = new Vector3 (camera.ArcballTarget.X, camera.Target.Y, camera.ArcballTarget.Z);
 				camera.TargetDistance = camera.TargetDistance.Clamp (500, 10000);
 				camera.Position = camera.ArcballTarget + (camera.Position - camera.ArcballTarget).ArcBallMove (
 						arcballMove, camera.UpVector, camera.TargetVector
+				);
+				CurrentInputAction = InputAction.ArcballMove;
+			}
+
+			// apply arcball movements to the camera
+			if (selfRotate.Length () > 0) {
+				camera.Target = camera.Position + (camera.Target - camera.Position).ArcBallMove (
+						selfRotate, camera.UpVector, camera.TargetVector
 				);
 				CurrentInputAction = InputAction.ArcballMove;
 			}
@@ -107,13 +124,13 @@ namespace Knot3.CreativeMode
 				// set position to default
 				camera.Position = camera.DefaultPosition;
 				// don't select a game object
-				world.SelectObject(null, gameTime);
+				world.SelectObject (null, gameTime);
 			}
 
 			// grab mouse movent
 			if (Keys.LeftAlt.IsDown ()) {
 				GrabMouseMovement = !GrabMouseMovement;
-				world.SelectObject(null, gameTime);
+				world.SelectObject (null, gameTime);
 			}
 
 			// switch WASD mode
@@ -158,7 +175,7 @@ namespace Knot3.CreativeMode
 				else {
 					// left mouse button pressed
 					if (MouseState.LeftButton == ButtonState.Pressed) {
-						if (world.SelectedObject != null && (world.SelectedObject.IsMovable
+						if (world.SelectedObject != null && (world.SelectedObject.Info.IsMovable
 							|| world.SelectedObject is PipeModel))
 							action = InputAction.SelectedObjectMove;
 						else
@@ -203,7 +220,7 @@ namespace Knot3.CreativeMode
 		public override void SaveStates (GameTime gameTime)
 		{
 			ResetMousePosition ();
-			base.SaveStates(gameTime);
+			base.SaveStates (gameTime);
 		}
 
 		private void ResetMousePosition ()

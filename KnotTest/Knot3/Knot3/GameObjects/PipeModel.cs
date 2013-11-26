@@ -18,40 +18,61 @@ using Knot3.RenderEffects;
 
 namespace Knot3.GameObjects
 {
-	public class PipeModel : CachedGameModel
+	public class PipeModelInfo : GameModelInfo
 	{
-		private EdgeList Edges;
-		private Edge Edge;
-		private Vector3 Direction;
-		private BoundingSphere[] Bounds;
-		public Action OnDataChange = () => {};
+		public EdgeList Edges;
+		public Edge Edge;
+		public Vector3 Direction;
+		public Vector3 PositionFrom;
+		public Vector3 PositionTo;
 
-		public PipeModel (GameState state, EdgeList edges, Edge edge, Vector3 posFrom, Vector3 posTo, float scale)
-			: base(state, "pipe1", posFrom + (posTo-posFrom)/2, scale)
+		public PipeModelInfo (EdgeList edges, Edge edge, Vector3 offset)
+			: base("pipe1")
 		{
 			Edges = edges;
 			Edge = edge;
-
-			Direction = posTo - posFrom;
+			Node node1 = edges.FromNode (edge);
+			Node node2 = edges.ToNode (edge);
+			PositionFrom = node1.Vector () + offset;
+			PositionTo = node2.Vector () + offset;
+			Position = PositionFrom + (PositionTo - PositionFrom) / 2;
+			Direction = PositionTo - PositionFrom;
 			Direction.Normalize ();
+			Scale = 10f;
+		}
+	}
 
-			if (Direction.Y == 1) {
-				Rotation += Angles3.FromDegrees (90, 0, 0);
-			} else if (Direction.Y == -1) {
-				Rotation += Angles3.FromDegrees (270, 0, 0);
+	public class PipeModel : GameModel
+	{
+		#region Attributes and Properties
+
+		public new PipeModelInfo Info { get; private set; }
+
+		private BoundingSphere[] Bounds;
+		public Action OnDataChange = () => {};
+
+		#endregion
+
+		public PipeModel (GameState state, PipeModelInfo info)
+			: base(state, info)
+		{
+			Info = info;
+
+			if (Info.Direction.Y == 1) {
+				Info.Rotation += Angles3.FromDegrees (90, 0, 0);
+			} else if (Info.Direction.Y == -1) {
+				Info.Rotation += Angles3.FromDegrees (270, 0, 0);
 			}
-			if (Direction.X == 1) {
-				Rotation += Angles3.FromDegrees (0, 90, 0);
-			} else if (Direction.X == -1) {
-				Rotation += Angles3.FromDegrees (0, 270, 0);
+			if (Info.Direction.X == 1) {
+				Info.Rotation += Angles3.FromDegrees (0, 90, 0);
+			} else if (Info.Direction.X == -1) {
+				Info.Rotation += Angles3.FromDegrees (0, 270, 0);
 			}
 
-			Rotation = Rotation;
-
-			float length = (posTo - posFrom).Length ();
-			Bounds = new BoundingSphere[(int)(length / (Scale / 4))];
-			for (int offset = 0; offset < (int)(length / (Scale / 4)); ++offset) {
-				Bounds [offset] = new BoundingSphere (posFrom + Direction * offset * (Scale / 4), Scale);
+			float length = (info.PositionTo - info.PositionFrom).Length ();
+			Bounds = new BoundingSphere[(int)(length / (Info.Scale / 4))];
+			for (int offset = 0; offset < (int)(length / (Info.Scale / 4)); ++offset) {
+				Bounds [offset] = new BoundingSphere (info.PositionFrom + Info.Direction * offset * (Info.Scale / 4), Info.Scale);
 				//Console.WriteLine ("sphere[" + offset + "]=" + Bounds [offset]);
 			}
 		}
@@ -60,10 +81,10 @@ namespace Knot3.GameObjects
 		{
 		}
 
-		public override void DrawObject (GameTime gameTime)
+		public override void Draw (GameTime gameTime)
 		{
-			BaseColor = Edge.Color;
-			if (Edges.SelectedEdges.Contains (Edge)) {
+			BaseColor = Info.Edge.Color;
+			if (Info.Edges.SelectedEdges.Contains (Info.Edge)) {
 				float intensity = (float)((int)gameTime.TotalGameTime.TotalMilliseconds % 2000) / 2000f;
 				intensity = intensity * 2 - 1;
 				if (intensity < 0) {
@@ -78,7 +99,7 @@ namespace Knot3.GameObjects
 				HighlightIntensity = 0f;
 			}
 
-			base.DrawObject (gameTime);
+			base.Draw (gameTime);
 		}
 
 		private Vector3 previousMousePosition = Vector3.Zero;
@@ -86,36 +107,33 @@ namespace Knot3.GameObjects
 		public override void Update (GameTime gameTime)
 		{
 			// check whether this object is hovered
-			if (IsSelected () == true) {
+			if (world.SelectedObject == this) {
 
 				// if the left mouse button is pressed, select the edge
 				if (Input.MouseState.IsLeftClick (gameTime)) {
 					try {
 						// CTRL
 						if (Keys.LeftControl.IsHeldDown ()) {
-							Edges.SelectEdge (Edge, true);
+							Info.Edges.SelectEdge (Info.Edge, true);
 						}
 						// Shift
 						else if (Keys.LeftShift.IsHeldDown ()) {
-							WrapList<Edge> selection = Edges.SelectedEdges;
+							WrapList<Edge> selection = Info.Edges.SelectedEdges;
 							if (selection.Count != 0) {
 								Edge last = selection [selection.Count - 1];
-								Edges.SelectEdges (Edges.Interval (last, Edge).ToArray (), true);
+								Info.Edges.SelectEdges (Info.Edges.Interval (last, Info.Edge).ToArray (), true);
 							}
-							Edges.SelectEdge (Edge, true);
+							Info.Edges.SelectEdge (Info.Edge, true);
 						}
 						// mouse click only
 						else {
-							Edges.SelectEdge (Edge, false);
+							Info.Edges.SelectEdge (Info.Edge, false);
 						}
 					} catch (ArgumentOutOfRangeException exp) {
 						Console.WriteLine (exp.ToString ());
 					}
 				}
-			}
 
-			// check whether this edge is one of the selected edges
-			if (IsSelected () == true) {
 				// is SelectedObjectMove the current input action?
 				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					if (previousMousePosition == Vector3.Zero) {
@@ -129,11 +147,11 @@ namespace Knot3.GameObjects
 			}
 
 			// check whether this edge is one of the selected edges
-			if (Edges.SelectedEdges.Contains (Edge)) {
+			if (Info.Edges.SelectedEdges.Contains (Info.Edge)) {
 				
 				// change color?
 				if (Keys.C.IsDown ()) {
-					Edge.Color = Edge.RandomColor (gameTime);
+					Info.Edge.Color = Edge.RandomColor (gameTime);
 				}
 
 				if (Input.MouseState.IsDoubleClick (gameTime)) {
@@ -154,9 +172,9 @@ namespace Knot3.GameObjects
 				Vector3 direction3D = mouseMove.PrimaryDirection ();
 				if (mouseMove.PrimaryVector ().Length ().Abs () > 50) {
 					try {
-						Edges.SelectEdge (Edge, true);
-						Edges.Move (Edges.SelectedEdges, direction3D);
-						Edges.SelectEdge ();
+						Info.Edges.SelectEdge (Info.Edge, true);
+						Info.Edges.Move (Info.Edges.SelectedEdges, direction3D);
+						Info.Edges.SelectEdge ();
 						previousMousePosition = currentMousePosition;
 					} catch (ArgumentOutOfRangeException exp) {
 						Console.WriteLine (exp.ToString ());

@@ -21,27 +21,27 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Renders a knot using 3D models (pipes and nodes).
 	/// </summary>
-	public class PipeRenderer : KnotRenderer
+	public class PipeRenderer : GameClass, IKnotRenderer
 	{
+		public GameObjectInfo Info { get; private set; }
+
 		// pipes and knots
 		private List<PipeModel> pipes;
 		private List<NodeModel> knots;
-		private PipeModelCache pipeCache;
-		private NodeModelCache knotCache;
+		private PipeModelFactory pipeFactory;
+		private NodeModelFactory knotFactory;
 
-		protected override Vector3 Position { get; set; }
-
-		public PipeRenderer (GameState state)
+		public PipeRenderer (GameState state, GameObjectInfo info)
 			: base(state)
 		{
+			Info = info;
 			pipes = new List<PipeModel> ();
 			knots = new List<NodeModel> ();
-			pipeCache = new PipeModelCache (state);
-			knotCache = new NodeModelCache (state);
-			Position = Vector3.Zero; //new Vector3 (10, 10, 10);
+			pipeFactory = new PipeModelFactory ();
+			knotFactory = new NodeModelFactory ();
 		}
 
-		public override void Update (GameTime gameTime)
+		public void Update (GameTime gameTime)
 		{
 			for (int i = 0; i < pipes.Count; ++i) {
 				pipes [i].Update (gameTime);
@@ -51,23 +51,27 @@ namespace Knot3.GameObjects
 			}
 		}
 
-		public override void OnEdgesChanged (EdgeList edges)
+		public void OnEdgesChanged (EdgeList edges)
 		{
 			pipes.Clear ();
 			for (int n = 0; n < edges.Count; n++) {
-				PipeModel pipe = pipeCache [edges, edges [n], Position];
+				PipeModelInfo info = new PipeModelInfo(edges, edges [n], Info.Position);
+				PipeModel pipe = pipeFactory [state, info] as PipeModel;
 				// pipe.OnDataChange = () => UpdatePipes (edges);
 				pipes.Add (pipe);
 			}
 
 			knots.Clear ();
 			for (int n = 0; n < edges.Count; n++) {
-				NodeModel knot = knotCache [edges, edges [n], edges [n + 1], Position];
+				NodeModelInfo info = new NodeModelInfo(edges, edges [n], edges [n + 1], Info.Position);
+				NodeModel knot = knotFactory [state, info] as NodeModel;
 				knots.Add (knot);
 			}
 		}
+
+		#region Draw
 		
-		public override void DrawObject (GameTime gameTime)
+		public void Draw (GameTime gameTime)
 		{
 			foreach (PipeModel pipe in pipes) {
 				pipe.Draw (gameTime);
@@ -77,7 +81,11 @@ namespace Knot3.GameObjects
 			}
 		}
 
-		public override GameObjectDistance Intersects (Ray ray)
+		#endregion
+
+		#region Intersection
+
+		public GameObjectDistance Intersects (Ray ray)
 		{
 			GameObjectDistance nearest = null;
 			if (!input.GrabMouseMovement) {
@@ -93,10 +101,24 @@ namespace Knot3.GameObjects
 			return nearest;
 		}
 
-		public override Vector3 Center ()
+		public Vector3 Center ()
 		{
-			return Position;
+			return Info.Position;
 		}
+
+		#endregion
+
+		#region Selection
+
+		public virtual void OnSelected (GameTime gameTime)
+		{
+		}
+
+		public virtual void OnUnselected (GameTime gameTime)
+		{
+		}
+
+		#endregion
 	}
 }
 

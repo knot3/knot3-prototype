@@ -166,7 +166,8 @@
     <Compile Include="Knot3\GameObjects\NodeModel.cs" />
     <Compile Include="Knot3\GameObjects\LineRenderer.cs" />
     <Compile Include="Knot3\GameObjects\PipeRenderer.cs" />
-    <Compile Include="Knot3\GameObjects\KnotRenderer.cs" />
+    <Compile Include="Knot3\GameObjects\IGameObject.cs" />
+    <Compile Include="Knot3\GameObjects\IKnotRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

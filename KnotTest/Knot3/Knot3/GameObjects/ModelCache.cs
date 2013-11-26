@@ -18,64 +18,37 @@ using Knot3.RenderEffects;
 
 namespace Knot3.GameObjects
 {
-	public abstract class ModelCache : GameClass
-	{
-		public ModelCache (GameState state)
-			: base(state)
-		{
-		}
-	}
-
-	public class PipeModelCache : ModelCache
+	public abstract class ModelFactory
 	{
 		// cache
-		private Dictionary<string, PipeModel> pipeCache = new Dictionary<string, PipeModel> ();
+		private Dictionary<GameModelInfo, GameModel> cache = new Dictionary<GameModelInfo, GameModel> ();
 
-		public PipeModelCache (GameState state)
-			: base(state)
-		{
-		}
-
-		public PipeModel this [EdgeList edges, Edge edge, Vector3 offset] {
+		public GameModel this [GameState state, GameModelInfo info] {
 			get {
-				Node node1 = edges.FromNode (edge);
-				Node node2 = edges.ToNode (edge);
-				string key = edge.ID + "#" + node1 + "-" + node2;
-				if (pipeCache.ContainsKey (key)) {
-					return pipeCache [key];
+				if (cache.ContainsKey (info)) {
+					return cache [info];
 				} else {
-					Vector3 p1 = node1.Vector () + offset;
-					Vector3 p2 = node2.Vector () + offset;
-
-					PipeModel pipe = new PipeModel (state, edges, edge, p1, p2, 10f);
-					pipeCache [key] = pipe;
-					return pipe;
+					return cache [info] = CreateModel(state, info);
 				}
 			}
 		}
+
+		protected abstract GameModel CreateModel(GameState state, GameModelInfo info);
 	}
 
-	public class NodeModelCache : ModelCache
+	public class PipeModelFactory : ModelFactory
 	{
-		// cache
-		private Dictionary<Node, NodeModel> knotCache = new Dictionary<Node, NodeModel> ();
-
-		public NodeModelCache (GameState state)
-			: base(state)
+		protected override GameModel CreateModel (GameState state, GameModelInfo info)
 		{
+			return new PipeModel (state, info as PipeModelInfo);
 		}
+	}
 
-		public NodeModel this [EdgeList edges, Edge edgeA, Edge edgeB, Vector3 offset] {
-			get {
-				Node node = edges.ToNode (edgeA);
-				if (knotCache.ContainsKey (node)) {
-					return knotCache [node];
-				} else {
-					NodeModel knot = new NodeModel (state, edges, edgeA, edgeB, edges.ToNode (edgeA).Vector (), 5f);
-					knotCache [node] = knot;
-					return knot;
-				}
-			}
+	public class NodeModelFactory : ModelFactory
+	{
+		protected override GameModel CreateModel (GameState state, GameModelInfo info)
+		{
+			return new NodeModel (state, info as NodeModelInfo);
 		}
 	}
 }

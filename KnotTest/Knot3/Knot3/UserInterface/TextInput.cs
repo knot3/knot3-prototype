@@ -18,7 +18,7 @@ using Knot3.GameObjects;
 using Knot3.Settings;
 using Knot3.Utilities;
 
-namespace Knot3
+namespace Knot3.UserInterface
 {
 	public class TextInput : Widget
 	{

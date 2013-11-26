@@ -18,24 +18,43 @@ using Knot3.RenderEffects;
 
 namespace Knot3.GameObjects
 {
-	public class NodeModel : CachedGameModel
+	public class NodeModelInfo : GameModelInfo
 	{
-		private Edge EdgeA;
-		private Edge EdgeB;
+		public EdgeList Edges;
+		public Edge EdgeA;
+		public Edge EdgeB;
 
-		public NodeModel (GameState state, EdgeList edges, Edge edgeA, Edge edgeB, Vector3 position, float scale)
-			: base(state, "knot1", position, scale)
+		public NodeModelInfo (EdgeList edges, Edge edgeA, Edge edgeB, Vector3 offset)
+			: base("knot1")
 		{
+			Edges = edges;
 			EdgeA = edgeA;
 			EdgeB = edgeB;
 			IsVisible = edgeA.Direction != edgeB.Direction;
+			Position = edges.ToNode (edgeA).Vector ();
+			Scale = 5f;
+		}
+	}
+
+	public class NodeModel : GameModel
+	{
+		#region Attributes and Properties
+
+		public new NodeModelInfo Info { get; private set; }
+
+		#endregion
+
+		public NodeModel (GameState state, NodeModelInfo info)
+			: base(state, info)
+		{
+			Info = info;
 		}
 
-		public override void DrawObject (GameTime gameTime)
+		public override void Draw (GameTime gameTime)
 		{
-			BaseColor = EdgeA.Color.Mix (EdgeB.Color);
+			BaseColor = Info.EdgeA.Color.Mix (Info.EdgeB.Color);
 
-			base.DrawObject (gameTime);
+			base.Draw (gameTime);
 		}
 	}
 }

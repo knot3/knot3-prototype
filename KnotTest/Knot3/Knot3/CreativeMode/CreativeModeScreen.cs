@@ -33,8 +33,8 @@ namespace Knot3.CreativeMode
 		// custom classes
 		private MousePointer pointer;
 		private Overlay overlay;
-		private KnotRenderer lineRenderer;
-		private KnotRenderer pipeRenderer;
+		private LineRenderer lineRenderer;
+		private PipeRenderer pipeRenderer;
 		private Dialog dialog;
 
 		/// <summary>
@@ -81,13 +81,15 @@ namespace Knot3.CreativeMode
 			// world
 			world = new World (this);
 
-			// line renderer
-			lineRenderer = new LineRenderer (this);
-			world.Add (lineRenderer);
-
 			// pipe renderer
-			pipeRenderer = new PipeRenderer (this);
+			var knotRenderInfo = new GameObjectInfo();
+			knotRenderInfo.Position = Vector3.Zero;
+			pipeRenderer = new PipeRenderer (this, knotRenderInfo);
 			world.Add (pipeRenderer);
+
+			// line renderer
+			lineRenderer = new LineRenderer (this, knotRenderInfo);
+			world.Add (lineRenderer);
 			
 			// load nodes
 			Node.Scale = 100;

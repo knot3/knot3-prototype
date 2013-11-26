@@ -11,51 +11,65 @@ using Knot3.Utilities;
 
 namespace Knot3.GameObjects
 {
-	public class TexturedRectangle : GameObject
+	public class TexturedRectangleInfo : GameObjectInfo
 	{
-		private Vector3 Origin;
-		private Vector3 UpperLeft;
-		private Vector3 LowerLeft;
-		private Vector3 UpperRight;
-		private Vector3 LowerRight;
-		private Vector3 Normal;
-		private Vector3 Up;
-		private Vector3 Left;
-		private VertexPositionNormalTexture[] Vertices;
-		private short[] Indexes;
-		private BasicEffect basicEffect;
-		private Texture2D texture;
-		private float Width;
-		private float Height;
+		public string Texturename;
+		public Vector3 Up;
+		public Vector3 Left;
+		public float Width;
+		public float Height;
 
-		protected override Vector3 Position {
-			get {
-				return Origin;
-			}
-			set {
-				Origin = value;
-				// Calculate the quad corners
-				Normal = Vector3.Cross (Left, Up);
-				Vector3 uppercenter = (Up * Height / 2) + value;
-				UpperLeft = uppercenter + (Left * Width / 2);
-				UpperRight = uppercenter - (Left * Width / 2);
-				LowerLeft = UpperLeft - (Up * Height);
-				LowerRight = UpperRight - (Up * Height);
-				FillVertices ();
-			}
-		}
-
-		public TexturedRectangle (GameState state, string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
-			: base(state)
+		public TexturedRectangleInfo (string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
 		{
+			Texturename = texturename;
 			Left = left;
 			Width = width;
 			Up = up;
 			Height = height;
 			Position = origin;
+		}
+
+		public override bool Equals (GameObjectInfo other)
+		{
+			if (other == null) 
+				return false;
+
+			if (other is GameModelInfo) {
+				if (this.Texturename == (other as GameModelInfo).Modelname && base.Equals (other))
+					return true;
+				else
+					return false;
+			} else {
+				return base.Equals (other);
+			}
+		}
+	}
+
+	public class TexturedRectangle : GameObject
+	{
+		#region Attributes and Properties
+
+		public new TexturedRectangleInfo Info { get; private set; }
+
+		private Vector3 UpperLeft;
+		private Vector3 LowerLeft;
+		private Vector3 UpperRight;
+		private Vector3 LowerRight;
+		private Vector3 Normal;
+		private VertexPositionNormalTexture[] Vertices;
+		private short[] Indexes;
+		private BasicEffect basicEffect;
+		private Texture2D texture;
+
+		#endregion
+
+		public TexturedRectangle (GameState state, TexturedRectangleInfo info)
+			: base(state, info)
+		{
+			Info = info;
 
 			basicEffect = new BasicEffect (device);
-			texture = Textures.LoadTexture (content, texturename);
+			texture = Textures.LoadTexture (content, info.Texturename);
 			if (texture != null) {
 				FillVertices ();
 			}
@@ -105,7 +119,7 @@ namespace Knot3.GameObjects
 			Indexes [11] = 2;
 		}
 
-		public override void DrawObject (GameTime gameTime)
+		public override void Draw (GameTime gameTime)
 		{
 			basicEffect.World = camera.WorldMatrix;
 			basicEffect.View = camera.ViewMatrix;
@@ -130,9 +144,22 @@ namespace Knot3.GameObjects
 			}
 		}
 
+		protected void SetPosition (Vector3 position)
+		{
+			Info.Position = position;
+			// Calculate the quad corners
+			Normal = Vector3.Cross (Info.Left, Info.Up);
+			Vector3 uppercenter = (Info.Up * Info.Height / 2) + position;
+			UpperLeft = uppercenter + (Info.Left * Info.Width / 2);
+			UpperRight = uppercenter - (Info.Left * Info.Width / 2);
+			LowerLeft = UpperLeft - (Info.Up * Info.Height);
+			LowerRight = UpperRight - (Info.Up * Info.Height);
+			FillVertices ();
+		}
+
 		private Vector3 Length ()
 		{
-			return Left * Width + Up * Height;
+			return Info.Left * Info.Width + Info.Up * Info.Height;
 		}
 		
 		public BoundingBox[] Bounds ()
