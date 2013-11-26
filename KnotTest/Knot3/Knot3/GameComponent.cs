@@ -104,6 +104,8 @@ namespace Knot3
 		{
 			yield break;
 		}
+
+		public int Index { get { return DrawOrder; } }
 	}
 
 	public enum DisplayLayer

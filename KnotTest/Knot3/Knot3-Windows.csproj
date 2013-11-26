@@ -169,6 +169,11 @@
     <Compile Include="Knot3\GameObjects\IKnotRenderer.cs" />
     <Compile Include="Knot3\GameObjects\ModelFactory.cs" />
     <Compile Include="Knot3\GameComponent.cs" />
+    <Compile Include="Knot3\UserInterface\MenuItem.cs" />
+    <Compile Include="Knot3\UserInterface\IKeyEvent.cs" />
+    <Compile Include="Knot3\UserInterface\ClickHandler.cs" />
+    <Compile Include="Knot3\UserInterface\KeyHandler.cs" />
+    <Compile Include="Knot3\UserInterface\IMouseEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

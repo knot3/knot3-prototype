@@ -15,6 +15,7 @@ using Knot3.GameObjects;
 using Knot3.RenderEffects;
 using Knot3.Settings;
 using Knot3.CreativeMode;
+using Knot3.UserInterface;
 
 namespace Knot3
 {
@@ -188,6 +189,7 @@ namespace Knot3
 		public virtual void Activate (GameTime gameTime)
 		{
 			Console.WriteLine ("Activate");
+			AddGameComponents (gameTime, new KeyHandler (this), new ClickHandler (this));
 			AddGameComponents (gameTime, GameComponents.ToArray ());
 		}
 
