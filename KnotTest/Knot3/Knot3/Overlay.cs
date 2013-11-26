@@ -16,7 +16,7 @@ using Knot3.Settings;
 
 namespace Knot3
 {
-	public class Overlay : GameClass
+	public class Overlay : GameComponent
 	{
 		// graphics-related classes
 		private SpriteBatch spriteBatch;
@@ -28,7 +28,7 @@ namespace Knot3
 		/// Initializes a new Overlay-
 		/// </summary>
 		public Overlay (GameState state)
-			: base(state)
+			: base(state, DisplayLayer.Overlay)
 		{
 			// create a new SpriteBatch, which can be used to draw textures
 			spriteBatch = new SpriteBatch (graphics.GraphicsDevice);
@@ -37,7 +37,7 @@ namespace Knot3
 		/// <summary>
 		/// Loads the content.
 		/// </summary>
-		public void LoadContent ()
+		protected override void LoadContent ()
 		{
 			// load fonts
 			try {
@@ -54,7 +54,7 @@ namespace Knot3
 		/// <param name='gameTime'>
 		/// Game time.
 		/// </param>
-		public void Draw (GameTime gameTime)
+		public override void Draw (GameTime gameTime)
 		{
 			if (Options.Default ["video", "debug-coordinates", false])
 				DrawCoordinates (gameTime);
@@ -64,7 +64,7 @@ namespace Knot3
 				DrawFPS (gameTime);
 		}
 		
-		public void Update (GameTime gameTime)
+		public override void Update (GameTime gameTime)
 		{
 			UpdateFPS (gameTime);
 		}

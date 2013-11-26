@@ -16,20 +16,15 @@ using Knot3.GameObjects;
 namespace Knot3
 {
 	/// <summary>
-	/// The abstract class GameClass holds a reference to the associated GameState and provides
-	/// convenience methods for subclasses.
+	/// A Game component.
 	/// </summary>
-	public abstract class GameClass
+	public abstract class GameComponent : DrawableGameComponent
 	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Knot3.GameClass"/> class.
-		/// </summary>
-		/// <param name='state'>
-		/// The game state.
-		/// </param>
-		public GameClass (GameState state)
+		public GameComponent (GameState state, DisplayLayer drawOrder)
+			: base(state.game)
 		{
 			this.state = state;
+			this.DrawOrder = (int)drawOrder;
 		}
 
 		/// <summary>
@@ -104,6 +99,28 @@ namespace Knot3
 			get { return state.world; }
 			set {}
 		}
+		
+		public virtual void Activate (GameTime gameTime)
+		{
+		}
+		
+		public virtual void Deactivate (GameTime gameTime)
+		{
+		}
+	}
+
+	public enum DisplayLayer
+	{
+		None,
+		Background,
+		World,
+		Dialog,
+		Menu,
+		MenuItem,
+		SubMenu,
+		SubMenuItem,
+		Overlay,
+		Cursor
 	}
 }
 

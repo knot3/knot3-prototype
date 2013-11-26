@@ -86,9 +86,9 @@ namespace Knot3.UserInterface
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TestGame1.MenuItem"/> class.
 		/// </summary>
-		public MenuItem (GameState state, int itemNum, MenuItemInfo info,
+		public MenuItem (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info,
 		                 LazyItemColor fgColor, LazyItemColor bgColor, HAlign alignX)
-			: base(state, itemNum, fgColor, bgColor, alignX, VAlign.Center)
+			: base(state, drawOrder, itemNum, fgColor, bgColor, alignX, VAlign.Center)
 		{
 			Info = info;
 		}
@@ -183,9 +183,9 @@ namespace Knot3.UserInterface
 
 	public class MenuButton : MenuItem
 	{
-		public MenuButton (GameState state, int itemNum, MenuItemInfo info,
+		public MenuButton (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info,
 		                 LazyItemColor fgColor, LazyItemColor bgColor, HAlign alignX)
-			: base(state, itemNum, info, fgColor, bgColor, alignX)
+			: base(state, drawOrder, itemNum, info, fgColor, bgColor, alignX)
 		{
 		}
 	}

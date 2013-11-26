@@ -147,12 +147,43 @@ namespace Knot3
 		public abstract void Unload ();
 
 		/// <summary>
+		/// Adds game components.
+		/// </summary>
+		/// <param name='components'>
+		/// Game Components.
+		/// </param>
+		public void AddGameComponents (GameTime gameTime, params GameComponent[] components)
+		{
+			foreach (GameComponent component in components) {
+				game.Components.Add (component);
+				component.Activate (gameTime);
+			}
+		}
+
+		/// <summary>
+		/// Removes game components.
+		/// </summary>
+		/// <param name='components'>
+		/// Game Components.
+		/// </param>
+		public void RemoveGameComponents (params GameComponent[] components, GameTime gameTime)
+		{
+			foreach (GameComponent component in components) {
+				component.Deactivate (gameTime);
+				game.Components.Remove (component);
+			}
+		}
+
+		/// <summary>
 		/// This is run when this game state becomes the active game state.
 		/// </summary>
 		/// <param name='gameTime'>
 		/// The Game time.
 		/// </param>
-		public abstract void Activate (GameTime gameTime);
+		public virtual void Activate (GameTime gameTime)
+		{
+
+		}
 
 		/// <summary>
 		/// This is run when this game state is about to becomes inactive.
@@ -160,7 +191,10 @@ namespace Knot3
 		/// <param name='gameTime'>
 		/// The Game time.
 		/// </param>
-		public abstract void Deactivate (GameTime gameTime);
+		public virtual void Deactivate (GameTime gameTime)
+		{
+			game.Components.Clear ();
+		}
 	}
 	
 	static class GameStates

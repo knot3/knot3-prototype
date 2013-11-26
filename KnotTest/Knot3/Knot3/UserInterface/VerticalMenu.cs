@@ -23,8 +23,11 @@ namespace Knot3.UserInterface
 		private Vector2 RelativeItemSize;
 		protected Border Border;
 
-		public VerticalMenu (GameState state)
-			: base(state)
+		// textures
+		protected SpriteBatch spriteBatch;
+
+		public VerticalMenu (GameState state, DisplayLayer drawOrder)
+			: base(state, drawOrder)
 		{
 			RelativeSize = () => new Vector2 (
 				RelativeItemSize.X,
@@ -32,12 +35,8 @@ namespace Knot3.UserInterface
 			);
 			RelativeItemSize = new Vector2 (300, 0);
 			Border = Border.Zero;
-		}
-		
-		public override void Initialize (LazyItemColor fgColor, LazyItemColor bgColor,
-				HAlign alignX)
-		{
-			base.Initialize (fgColor, bgColor, alignX);
+
+			spriteBatch = new SpriteBatch(device);
 		}
 
 		public void Initialize (LazyItemColor fgColor, LazyItemColor bgColor,
@@ -73,10 +72,11 @@ namespace Knot3.UserInterface
 		public void Align (Viewport viewport, float scale, Vector2? position = null, Vector2? itemSize = null,
 		                   float padding = 0.15f)
 		{
-			RelativePadding = () => Vector2.One * Font.LineSpacing * scale * padding;
+			SpriteFont font = HfGDesign.MenuFont(state);
+			RelativePadding = () => Vector2.One * font.LineSpacing * scale * padding;
 			RelativeItemSize = Vector2.Zero;
 			foreach (MenuItem item in Items) {
-				Vector2 minSize = item.MinimumSize (Font) * scale;
+				Vector2 minSize = item.MinimumSize (font) * scale;
 				if (minSize.X > RelativeItemSize.X || RelativeItemSize == Vector2.Zero) {
 					RelativeItemSize = minSize;
 				}
@@ -113,9 +113,9 @@ namespace Knot3.UserInterface
 			return RelativePosition () + new Vector2 (0, (RelativeItemSize.Y + RelativePadding ().Y) * n);
 		}
 
-		public override void Draw (float layerDepth, SpriteBatch spriteBatch, GameTime gameTime)
+		public override void Draw (GameTime gameTime)
 		{
-			base.Draw (layerDepth, spriteBatch, gameTime);
+			base.Draw (gameTime);
 
 			Point min = ScaledPosition.ToPoint ();
 			Point size = ScaledSize.ToPoint ();
@@ -130,10 +130,13 @@ namespace Knot3.UserInterface
 				                   size.X + (int)Border.Size.X * 2, (int)Border.Size.Y)
 				};
 			Texture2D borderTexture = Textures.Create (device, Color.White);
+			
+			spriteBatch.Begin();
 			foreach (Rectangle rect in borders) {
 				spriteBatch.Draw (borderTexture, rect, null, Border.Color, 0f,
-			                  Vector2.Zero, SpriteEffects.None, layerDepth);
+			                  Vector2.Zero, SpriteEffects.None, 1f);
 			}
+			spriteBatch.End();
 		}
 	}
 	

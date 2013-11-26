@@ -43,7 +43,6 @@ namespace Knot3.UserInterface
 
 			// input
 			input = new MenuScreenInput (this);
-			input.SaveStates (null);
 
 			// pointer
 			pointer = new MousePointer (this);
@@ -56,7 +55,6 @@ namespace Knot3.UserInterface
 
 			// input
 			input.Update (gameTime);
-			input.SaveStates (gameTime);
 
 			// pointer
 			pointer.Update (gameTime);
@@ -85,14 +83,6 @@ namespace Knot3.UserInterface
 		public abstract void DrawMenu (GameTime gameTime);
 
 		public override void Unload ()
-		{
-		}
-
-		public override void Activate (GameTime gameTime)
-		{
-		}
-
-		public override void Deactivate (GameTime gameTime)
 		{
 		}
 

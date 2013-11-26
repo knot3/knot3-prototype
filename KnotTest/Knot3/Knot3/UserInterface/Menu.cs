@@ -19,8 +19,6 @@ namespace Knot3.UserInterface
 	public class Menu : Widget
 	{
 		// fonts and colors
-		public SpriteFont Font { get; protected set; }
-
 		protected LazyItemColor ItemForegroundColor;
 		protected LazyItemColor ItemBackgroundColor;
 		protected HAlign ItemAlignX;
@@ -28,33 +26,36 @@ namespace Knot3.UserInterface
 		// menu-related attributes
 		protected List<MenuItem> Items;
 
-		public Menu (GameState state, LazyColor foregroundColor = null, LazyColor backgroundColor = null,
-		             HAlign alignX = HAlign.Left, VAlign alignY = VAlign.Center)
-			: base(state, foregroundColor, backgroundColor, alignX, alignY)
+		public Menu (GameState state, DisplayLayer drawOrder, LazyColor foregroundColor = null,
+		             LazyColor backgroundColor = null, HAlign alignX = HAlign.Left, VAlign alignY = VAlign.Center)
+			: base(state, drawOrder, foregroundColor, backgroundColor, alignX, alignY)
 		{
 			Items = new List<MenuItem> ();
 		}
 
 		public virtual MenuButton AddButton (MenuItemInfo info)
 		{
-			MenuButton item = new MenuButton (state, Items.Count, info, ItemForegroundColor,
-			                                  ItemBackgroundColor, ItemAlignX);
+			MenuButton item = new MenuButton (
+				state, DisplayLayer.MenuItem, Items.Count, info, ItemForegroundColor, ItemBackgroundColor, ItemAlignX
+			);
 			Items.Add (item);
 			return item;
 		}
 
 		public virtual void AddDropDown (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
 		{
-			DropDownMenu item = new DropDownMenu (state, Items.Count, info, ItemForegroundColor,
-			                                      ItemBackgroundColor, ItemAlignX);
+			DropDownMenu item = new DropDownMenu (
+				state, DisplayLayer.MenuItem, Items.Count, info, ItemForegroundColor, ItemBackgroundColor, ItemAlignX
+			);
 			item.AddEntries (items, defaultItem);
 			Items.Add (item);
 		}
 
 		public virtual void AddDropDown (MenuItemInfo info, DistinctOptionInfo option)
 		{
-			DropDownMenu item = new DropDownMenu (state, Items.Count, info, ItemForegroundColor,
-			                                      ItemBackgroundColor, ItemAlignX);
+			DropDownMenu item = new DropDownMenu (
+				state, DisplayLayer.MenuItem, Items.Count, info, ItemForegroundColor, ItemBackgroundColor, ItemAlignX
+			);
 			item.AddEntries (option);
 			Items.Add (item);
 		}
@@ -86,24 +87,18 @@ namespace Knot3.UserInterface
 			ItemForegroundColor = itemFgColor;
 			ItemBackgroundColor = itemBgColor;
 			ItemAlignX = itemAlignX;
-
-			// load fonts
-			try {
-				Font = content.Load<SpriteFont> ("MenuFont");
-			} catch (ContentLoadException ex) {
-				Font = null;
-				Console.WriteLine (ex.Message);
-			}
+		}
+		
+		public override void Activate (GameTime gameTime)
+		{
+			base.Activate (gameTime);
+			state.AddGameComponents (Items.ToArray ());
 		}
 
-		public bool Update (GameTime gameTime)
+		public override void Deactivate (GameTime gameTime)
 		{
-			foreach (MenuItem item in Items) {
-				if (item.Update (gameTime)) {
-					return true;
-				}
-			}
-			return false;
+			base.Deactivate (gameTime);
+			state.RemoveGameComponents (Items.ToArray ());
 		}
        
 		public void CollapseMenus (MenuItem menu)
@@ -112,13 +107,6 @@ namespace Knot3.UserInterface
 				if (item != menu) {
 					item.Collapse ();
 				}
-			}
-		}
-
-		public virtual void Draw (float layerDepth, SpriteBatch spriteBatch, GameTime gameTime)
-		{
-			foreach (MenuItem item in Items) {
-				item.Draw (layerDepth, spriteBatch, Font, gameTime);
 			}
 		}
 	}

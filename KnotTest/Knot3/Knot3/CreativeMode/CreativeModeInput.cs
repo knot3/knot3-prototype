@@ -148,8 +148,15 @@ namespace Knot3.CreativeMode
 			base.UpdateKeys (gameTime);
 		}
 
+		public override void Update (GameTime gameTime)
+		{
+			base.Update (gameTime);
+			ResetMousePosition ();
+		}
+
 		protected override void UpdateMouse (GameTime gameTime)
 		{
+
 			// fullscreen recently toggled?
 			if (FullscreenToggled) {
 				FullscreenToggled = false;
@@ -157,6 +164,7 @@ namespace Knot3.CreativeMode
 			} else if (MouseState != PreviousMouseState) {
 				// mouse movements
 				Vector2 mouseMove = new Vector2 (MouseState.X - PreviousMouseState.X, MouseState.Y - PreviousMouseState.Y);
+				Console.WriteLine ("mouseMove=" + mouseMove);
 
 				InputAction action;
 				// grab mouse movement
@@ -217,17 +225,12 @@ namespace Knot3.CreativeMode
 			base.UpdateMouse (gameTime);
 		}
 
-		public override void SaveStates (GameTime gameTime)
-		{
-			ResetMousePosition ();
-			base.SaveStates (gameTime);
-		}
-
 		private void ResetMousePosition ()
 		{
 			if (MouseState != PreviousMouseState) {
 				if (GrabMouseMovement || (CurrentInputAction == InputAction.ArcballMove)) {
 					Mouse.SetPosition (device.Viewport.Width / 2, device.Viewport.Height / 2);
+					Input.MouseState = Mouse.GetState ();
 				}
 			}
 		}

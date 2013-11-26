@@ -13,11 +13,17 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Utilities;
+using Knot3.RenderEffects;
+using Knot3.Settings;
 
 namespace Knot3.GameObjects
 {
-	public class World : GameClass
+	public class World : GameComponent
 	{
+		// graphics-related classes
+		private List<RenderEffect> knotRenderEffects;
+		private RenderEffect knotRenderEffect;
+
 		// game objects
 		private List<IGameObject> objects;
 
@@ -34,7 +40,7 @@ namespace Knot3.GameObjects
 		/// Initializes a new Overlay
 		/// </summary>
 		public World (GameState state)
-			: base(state)
+			: base(state, DisplayLayer.World)
 		{
 			size = new Vector3 (2000, 1000, 2000);
 			position = new Vector3 (-1000, -100, -1000);
@@ -48,7 +54,7 @@ namespace Knot3.GameObjects
 			// objects.Add (rect);
 
 			// the floor
-			var floorInfo = new TexturedRectangleInfo(
+			var floorInfo = new TexturedRectangleInfo (
 				texturename: "floor", origin: position + new Vector3 (size.X, 0, size.Z) / 2,
 				left: Vector3.Left, width: size.X, up: Vector3.Forward, height: size.Z
 			);
@@ -78,25 +84,42 @@ namespace Knot3.GameObjects
 				return 0;
 			}
 		}
-
-		public Vector3 Clamp (Vector3 v)
-		{
-			return v.Clamp (position, position + size);
-		}
 		
 		public void Add (IGameObject obj)
 		{
 			objects.Add (obj);
 		}
-		
-		public void Draw (GameTime gameTime)
+
+		public override void Initialize ()
 		{
+			// knot render effects
+			knotRenderEffects = new List<RenderEffect> ();
+			knotRenderEffects.Add (new NoEffect (state));
+			knotRenderEffects.Add (new BlurEffect (state));
+			knotRenderEffects.Add (new CelShadingEffect (state));
+
+			if (Options.Default ["video", "cel-shading", true]) {
+				knotRenderEffect = new CelShadingEffect (state);
+			} else {
+				knotRenderEffect = new NoEffect (state);
+			}
+		}
+		
+		public override void Draw (GameTime gameTime)
+		{
+			Color background = knotRenderEffect is CelShadingEffect ? Color.CornflowerBlue : Color.Black;
+			// begin the knot render effect
+			knotRenderEffect.Begin (background, gameTime);
+
 			foreach (IGameObject obj in objects) {
 				obj.Draw (gameTime);
 			}
+
+			// end of the knot render effect
+			knotRenderEffect.End (gameTime);
 		}
 
-		public void Update (GameTime gameTime)
+		public override void Update (GameTime gameTime)
 		{
 			// run the update method on all game objects
 			foreach (IGameObject obj in objects) {
@@ -105,6 +128,13 @@ namespace Knot3.GameObjects
 
 			// mouse ray selection
 			UpdateMouseRay (gameTime);
+
+			// post processing effects
+			if (Keys.O.IsDown ()) {
+				knotRenderEffect = knotRenderEffects [
+				    (knotRenderEffects.IndexOf (knotRenderEffect) + 1) % knotRenderEffects.Count
+				];
+			}
 
 			// spawn a game object
 			if (Keys.Z.IsDown ()) {
@@ -127,7 +157,7 @@ namespace Knot3.GameObjects
 			}
 
 			// debug mode?
-			floor.Info.IsVisible = Game.Debug;
+			floor.Info.IsVisible = Knot3.Game.Debug;
 		}
 
 		public void UpdateMouseRay (GameTime gameTime)

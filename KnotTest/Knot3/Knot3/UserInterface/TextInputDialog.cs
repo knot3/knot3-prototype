@@ -21,24 +21,21 @@ namespace Knot3.UserInterface
 		// text input
 		protected TextInput TextInput;
 
-		public TextInputDialog (GameState state)
-			: base(state)
+		public TextInputDialog (GameState state, DisplayLayer drawOrder)
+			: base(state, drawOrder)
 		{
-			TextInput = new TextInput (state, TextInputPosition, TextInputSize, () => new Vector2 (0.005f, 0.005f),
-			                          () => Color.Black, () => Color.White);
+			TextInput = new TextInput (
+				state, DisplayLayer.SubMenu, TextInputPosition, TextInputSize, () => new Vector2 (0.005f, 0.005f),
+				() => Color.Black, () => Color.White
+			);
 		}
 
-		protected override bool UpdateDialog (GameTime gameTime)
-		{
-			bool catched = base.UpdateDialog (gameTime);
-			catched = TextInput.Update (gameTime) || catched;
-			return catched;
+		public override void Activate (GameTime gameTime) {
+			state.AddGameComponents(TextInput);
 		}
 
-		protected override void DrawDialog (GameTime gameTime)
-		{
-			base.DrawDialog (gameTime);
-			TextInput.Draw (spriteBatch, gameTime);
+		public override void Deactivate (GameTime gameTime) {
+			state.RemoveGameComponents(TextInput);
 		}
 
 		protected Vector2 TextInputPosition ()

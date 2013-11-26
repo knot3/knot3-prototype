@@ -22,10 +22,6 @@ namespace Knot3.CreativeMode
 {
 	public class CreativeModeScreen : GameState
 	{
-		// graphics-related classes
-		private List<RenderEffect> knotRenderEffects;
-		private RenderEffect knotRenderEffect;
-
 		// the knot to draw
 		private Knot knot;
 		private bool knotModified;
@@ -53,33 +49,25 @@ namespace Knot3.CreativeMode
 		/// </summary>
 		public override void Initialize ()
 		{
-			// knot render effects
-			knotRenderEffects = new List<RenderEffect> ();
-			knotRenderEffects.Add (new NoEffect (this));
-			knotRenderEffects.Add (new BlurEffect (this));
-			knotRenderEffects.Add (new CelShadingEffect (this));
-
-			if (Options.Default ["video", "cel-shading", true]) {
-				knotRenderEffect = new CelShadingEffect (this);
-			} else {
-				knotRenderEffect = new NoEffect (this);
-			}
-
 			// camera
 			camera = new Camera (this);
+			AddGameComponents (camera);
 
 			// input
 			input = new KnotModeInput (this);
-			input.SaveStates (null);
+			AddGameComponents (input);
 
 			// overlay
 			overlay = new Overlay (this);
+			AddGameComponents (overlay);
 
 			// pointer
 			pointer = new MousePointer (this);
+			AddGameComponents (pointer);
 
 			// world
 			world = new World (this);
+			AddGameComponents (world);
 
 			// pipe renderer
 			var knotRenderInfo = new GameObjectInfo();
@@ -94,12 +82,6 @@ namespace Knot3.CreativeMode
 			// load nodes
 			Node.Scale = 100;
 			Knot = Knot.DefaultKnot (new KnotFormat ());
-
-			// load camera
-			camera.LoadContent ();
-
-			// load overlay
-			overlay.LoadContent ();
 		}
 
 		public Knot Knot {
@@ -126,18 +108,7 @@ namespace Knot3.CreativeMode
 				dialog.Update (gameTime);
 			} else {
 				UpdateInput (gameTime);
-				// camera
-				camera.Update (gameTime);
-				// input
-				input.Update (gameTime);
-				// world
-				world.Update (gameTime);
 			}
-			input.SaveStates (gameTime);
-			// overlay
-			overlay.Update (gameTime);
-			// pointer
-			pointer.Update (gameTime);
 		}
 
 		private void UpdateInput (GameTime gameTime)
@@ -148,7 +119,7 @@ namespace Knot3.CreativeMode
 					if (dialog != null && dialog is KnotSaveConfirmDialog) {
 						dialog.Done ();
 					} else {
-						dialog = new KnotSaveConfirmDialog (this, knot);
+						dialog = new KnotSaveConfirmDialog (this, DisplayLayer.Dialog, knot);
 						dialog.Done += () => dialog = null;
 					}
 				} else {
@@ -176,13 +147,6 @@ namespace Knot3.CreativeMode
 			if (Keys.NumPad9.IsDown ())
 				knot.Edges.Move (knot.Edges.SelectedEdges, Vector3.Backward);
 
-			// post processing effects
-			if (Keys.O.IsDown ()) {
-				knotRenderEffect = knotRenderEffects [
-				    (knotRenderEffects.IndexOf (knotRenderEffect) + 1) % knotRenderEffects.Count
-				];
-			}
-
 			if (PostProcessing is FadeEffect && (PostProcessing as FadeEffect).IsFinished) {
 				PostProcessing = new NoEffect (this);
 			}
@@ -191,37 +155,16 @@ namespace Knot3.CreativeMode
 		public override void Draw (GameTime gameTime)
 		{
 			// begin the post processing effect scope
-			Color background = knotRenderEffect is CelShadingEffect ? Color.CornflowerBlue : Color.Black;
+			Color background = Color.Black;
 			PostProcessing.Begin (background, gameTime);
 
-			// begin the knot render effect
-			knotRenderEffect.Begin (gameTime);
-
-			// draw all game objects
-			world.Draw (gameTime);
-
-			// end of the knot render effect
-			knotRenderEffect.End (gameTime);
-
-			// draw the overlay
-			overlay.Draw (gameTime);
 			if (dialog != null) {
 				// draw the current dialog
 				dialog.Draw (gameTime);
 			}
-			// draw the mouse pointer
-			pointer.Draw (gameTime);
 
 			// end of the post processing effect
 			PostProcessing.End (gameTime);
-		}
-
-		public override void Activate (GameTime gameTime)
-		{
-		}
-
-		public override void Deactivate (GameTime gameTime)
-		{
 		}
 
 		public override void Unload ()
@@ -231,8 +174,8 @@ namespace Knot3.CreativeMode
 
 	public class KnotSaveConfirmDialog : TextInputDialog
 	{
-		public KnotSaveConfirmDialog (GameState state, Knot knot)
-			: base(state)
+		public KnotSaveConfirmDialog (GameState state, DisplayLayer drawOrder, Knot knot)
+			: base(state, drawOrder)
 		{
 			RelativeSize = () => new Vector2 (0.500f, 0.250f);
 			Text = new string[] {

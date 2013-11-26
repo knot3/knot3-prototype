@@ -197,5 +197,13 @@ namespace Knot3.GameObjects
 			return null;
 		}
 	}
+
+	public class PipeModelFactory : ModelFactory
+	{
+		protected override GameModel CreateModel (GameState state, GameModelInfo info)
+		{
+			return new PipeModel (state, info as PipeModelInfo);
+		}
+	}
 }
 

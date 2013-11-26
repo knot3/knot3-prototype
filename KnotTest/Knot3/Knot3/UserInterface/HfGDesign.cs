@@ -21,6 +21,23 @@ namespace Knot3.UserInterface
 		public static Color LineColor = new Color (0xb4, 0xff, 0x00);
 		public static Color OutlineColor = new Color (0x3b, 0x54, 0x00);
 		private static Texture2D texture;
+		private static SpriteFont menuFont;
+
+		public static SpriteFont MenuFont (GameState state)
+		{
+			if (menuFont != null) {
+				return menuFont;
+			} else {
+				// load fonts
+				try {
+					menuFont = state.content.Load<SpriteFont> ("MenuFont");
+				} catch (ContentLoadException ex) {
+					menuFont = null;
+					Console.WriteLine (ex.Message);
+				}
+				return menuFont;
+			}
+		}
 
 		public static void DrawLines (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameState state, GameTime gameTime)
 		{

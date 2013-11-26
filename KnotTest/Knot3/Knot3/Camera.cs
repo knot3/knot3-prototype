@@ -16,7 +16,7 @@ using Knot3.Utilities;
 
 namespace Knot3
 {
-	public class Camera : GameClass
+	public class Camera : GameComponent
 	{
 		public Matrix WorldMatrix { get; private set; }
 
@@ -46,7 +46,7 @@ namespace Knot3
 		private float farPlane;
 
 		public Camera (GameState state)
-			: base(state)
+			: base(state, DisplayLayer.None)
 		{
 		}
  
@@ -64,12 +64,12 @@ namespace Knot3
 			farPlane = 10000.0f;
 		}
 
-		public void LoadContent ()
+		protected override void LoadContent ()
 		{
 			SetUpCamera ();
 		}
 
-		public void Update (GameTime gameTime)
+		public override void Update (GameTime gameTime)
 		{
 			UpdateRotation (gameTime);
 			UpdateMatrices (gameTime);

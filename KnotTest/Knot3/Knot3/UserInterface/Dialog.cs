@@ -28,8 +28,8 @@ namespace Knot3.UserInterface
 		// textures
 		protected SpriteBatch spriteBatch;
 
-		public Dialog (GameState state)
-			: base(state, ()=>Color.White, ()=>Color.Black, HAlign.Left, VAlign.Top)
+		public Dialog (GameState state, DisplayLayer drawOrder)
+			: base(state, drawOrder, ()=>Color.White, ()=>Color.Black, HAlign.Left, VAlign.Top)
 		{
 			RelativePosition = () => (Vector2.One - RelativeSize ()) / 2;
 			RelativeSize = () => Vector2.Zero;
@@ -43,7 +43,7 @@ namespace Knot3.UserInterface
 			spriteBatch = new SpriteBatch (device);
 
 			// menu
-			buttons = new Menu (state);
+			buttons = new Menu (state, DisplayLayer.Menu);
 			buttons.Initialize (ButtonForegroundColor, ButtonBackgroundColor, HAlign.Center);
 		}
 
@@ -62,24 +62,19 @@ namespace Knot3.UserInterface
 			return new Vector2 (x, 0.06f);
 		}
 
-		public virtual bool Update (GameTime gameTime)
+		public override void Activate (GameTime gameTime)
 		{
-			if (IsVisible) {
-				// menu
-				if (buttons.Update (gameTime)) {
-					return true;
-				}
-				// subclasses...
-				if (UpdateDialog (gameTime)) {
-					return true;
-				}
-			}
-			return false;
+			base.Activate (gameTime);
+			state.AddGameComponents (buttons);
+		}
+		
+		public override void Deactivate (GameTime gameTime)
+		{
+			base.Deactivate (gameTime);
+			state.RemoveGameComponents (buttons);
 		}
 
-		protected abstract bool UpdateDialog (GameTime gameTime);
-
-		public void Draw (GameTime gameTime)
+		public override void Draw (GameTime gameTime)
 		{
 			if (IsVisible) {
 				spriteBatch.Begin ();
@@ -92,9 +87,6 @@ namespace Knot3.UserInterface
 				spriteBatch.Draw (Textures.Create (device, BackgroundColor),
 				                 rect,
 				                 Color.Black * 0.95f);
-
-				// menu
-				buttons.Draw (0.9f, spriteBatch, gameTime);
 
 				DrawDialog (gameTime);
 			

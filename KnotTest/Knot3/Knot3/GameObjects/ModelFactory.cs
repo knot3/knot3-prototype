@@ -35,21 +35,5 @@ namespace Knot3.GameObjects
 
 		protected abstract GameModel CreateModel(GameState state, GameModelInfo info);
 	}
-
-	public class PipeModelFactory : ModelFactory
-	{
-		protected override GameModel CreateModel (GameState state, GameModelInfo info)
-		{
-			return new PipeModel (state, info as PipeModelInfo);
-		}
-	}
-
-	public class NodeModelFactory : ModelFactory
-	{
-		protected override GameModel CreateModel (GameState state, GameModelInfo info)
-		{
-			return new NodeModel (state, info as NodeModelInfo);
-		}
-	}
 }
 

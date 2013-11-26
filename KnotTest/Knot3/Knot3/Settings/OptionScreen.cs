@@ -28,7 +28,8 @@ namespace Knot3.Settings
 		public OptionScreen (Game game)
 			: base(game)
 		{
-			menu = new VerticalMenu (this);
+			menu = new VerticalMenu (this, DisplayLayer.Menu);
+			AddGameComponents(menu);
 		}
 		
 		public override void Initialize ()
@@ -60,8 +61,6 @@ namespace Knot3.Settings
 		
 		public override void UpdateMenu (GameTime gameTime)
 		{
-			// menu
-			menu.Update (gameTime);
 		}
 		
 		public override void DrawMenu (GameTime gameTime)
@@ -69,12 +68,11 @@ namespace Knot3.Settings
 			spriteBatch.Begin ();
 
 			// text
-			spriteBatch.DrawString (menu.Font, "Options", new Vector2 (0.050f, 0.050f).Scale (viewport), Color.White,
+			spriteBatch.DrawString (HfGDesign.MenuFont(this), "Options", new Vector2 (0.050f, 0.050f).Scale (viewport), Color.White,
 					0, Vector2.Zero, 0.25f * viewport.ScaleFactor ().Length (), SpriteEffects.None, 0);
 
 			// menu
 			menu.Align (viewport, 1f, 100, 180, 0, 60);
-			menu.Draw (0f, spriteBatch, gameTime);
 
 			spriteBatch.End ();
 		}

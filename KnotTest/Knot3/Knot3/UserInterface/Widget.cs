@@ -20,7 +20,7 @@ using Knot3.Utilities;
 
 namespace Knot3.UserInterface
 {
-	public class Widget : GameClass
+	public class Widget : GameComponent
 	{
 		// size and position
 		public virtual LazyPosition RelativePosition { get; protected set; }
@@ -44,9 +44,9 @@ namespace Knot3.UserInterface
 
 		protected virtual Color BackgroundColor { get { return backgroundColorFunc (); } }
 
-		public Widget (GameState state, LazyColor foregroundColor, LazyColor backgroundColor,
+		public Widget (GameState state, DisplayLayer drawOrder, LazyColor foregroundColor, LazyColor backgroundColor,
 		               HAlign alignX, VAlign alignY)
-			: base(state)
+			: base(state, drawOrder)
 		{
 			RelativePosition = () => Vector2.Zero;
 			RelativeSize = () => Vector2.Zero;
@@ -69,9 +69,9 @@ namespace Knot3.UserInterface
 
 		protected override Color BackgroundColor { get { return backgroundItemColorFunc (ItemState); } }
 
-		public ItemWidget (GameState state, int itemNum, LazyItemColor foregroundColor, LazyItemColor backgroundColor,
+		public ItemWidget (GameState state, DisplayLayer drawOrder, int itemNum, LazyItemColor foregroundColor, LazyItemColor backgroundColor,
 		                   HAlign alignX, VAlign alignY)
-			: base(state, null, null, alignX, alignY)
+			: base(state, drawOrder, null, null, alignX, alignY)
 		{
 			ItemNum = itemNum;
 			foregroundItemColorFunc = foregroundColor != null ? foregroundColor : (s) => Color.Transparent;

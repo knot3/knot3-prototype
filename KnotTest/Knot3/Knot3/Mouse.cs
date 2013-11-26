@@ -16,7 +16,7 @@ using Knot3.Utilities;
 
 namespace Knot3
 {
-	public class MousePointer : GameClass
+	public class MousePointer : GameComponent
 	{
 		// graphics-related classes
 		private SpriteBatch spriteBatch;
@@ -28,17 +28,10 @@ namespace Knot3
 		/// State.
 		/// </param>
 		public MousePointer (GameState state)
-			: base(state)
+			: base(state, DisplayLayer.Cursor)
 		{
 			// create a new SpriteBatch, which can be used to draw textures
 			spriteBatch = new SpriteBatch (graphics.GraphicsDevice);
-		}
-
-		/// <summary>
-		/// Loads the content.
-		/// </summary>
-		public void LoadContent ()
-		{
 		}
 
 		/// <summary>
@@ -47,13 +40,9 @@ namespace Knot3
 		/// <param name='gameTime'>
 		/// Game time.
 		/// </param>
-		public void Draw (GameTime gameTime)
+		public override void Draw (GameTime gameTime)
 		{
 			DrawCursor (gameTime);
-		}
-		
-		public void Update (GameTime gameTime)
-		{
 		}
 
 		private void DrawCursor (GameTime gameTime)

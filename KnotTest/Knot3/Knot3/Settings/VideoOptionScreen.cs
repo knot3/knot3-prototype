@@ -28,7 +28,7 @@ namespace Knot3.Settings
 		public VideoOptionScreen (Game game)
 			: base(game)
 		{
-			menu = new VerticalMenu (this);
+			menu = new VerticalMenu (this, DisplayLayer.Menu);
 		}
 		
 		public override void Initialize ()
@@ -76,10 +76,6 @@ namespace Knot3.Settings
 
 		public override void UpdateMenu (GameTime gameTime)
 		{
-			base.UpdateMenu (gameTime);
-
-			// menu
-			menu.Update (gameTime);
 		}
 		
 		public override void DrawMenu (GameTime gameTime)
@@ -90,7 +86,6 @@ namespace Knot3.Settings
 
 			// menu
 			menu.Align (viewport, 1f, 350, 180, 550, 40);
-			menu.Draw (0f, spriteBatch, gameTime);
 
 			spriteBatch.End ();
 		}

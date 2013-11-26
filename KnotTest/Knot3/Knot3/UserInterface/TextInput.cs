@@ -28,9 +28,9 @@ namespace Knot3.UserInterface
 		// textures
 		private SpriteFont font;
 
-		public TextInput (GameState state, LazyPosition position, LazySize size, LazySize padding,
+		public TextInput (GameState state, DisplayLayer drawOrder, LazyPosition position, LazySize size, LazySize padding,
 		                  LazyColor fgColor, LazyColor bgColor)
-			: base(state, fgColor, bgColor, HAlign.Left, VAlign.Center)
+			: base(state, drawOrder, fgColor, bgColor, HAlign.Left, VAlign.Center)
 		{
 			RelativePosition = position;
 			RelativeSize = size;

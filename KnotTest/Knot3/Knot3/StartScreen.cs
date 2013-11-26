@@ -29,7 +29,7 @@ namespace Knot3
 		public StartScreen (Game game)
 			: base(game)
 		{
-			menu = new Menu (this);
+			menu = new Menu (this, DisplayLayer.Menu);
 		}
 		
 		public override void Initialize ()
@@ -72,14 +72,14 @@ namespace Knot3
 		public override void DrawMenu (GameTime gameTime)
 		{
 			spriteBatch.Begin ();
-
 			// logo
 			spriteBatch.Draw (logo, new Rectangle (50, 380, 500, 300).Scale (viewport), Color.White);
-
-			// menu
-			menu.Draw (0f, spriteBatch, gameTime);
-			
 			spriteBatch.End ();
+		}
+
+		public override void Activate (GameTime gameTime)
+		{
+			AddGameComponents(menu);
 		}
 	}
 }

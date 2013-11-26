@@ -33,8 +33,8 @@ namespace Knot3.CreativeMode
 		public LoadSavegameScreen (Game game)
 			: base(game)
 		{
-			format = new KnotFormat();
-			menu = new VerticalMenu (this);
+			format = new KnotFormat ();
+			menu = new VerticalMenu (this, DisplayLayer.Menu);
 		}
 
 		public override void Initialize ()
@@ -46,6 +46,7 @@ namespace Knot3.CreativeMode
 
 			// menu
 			menu.Initialize (ForegroundColor, BackgroundColor, HAlign.Left);
+			AddGameComponents (menu);
 
 			// lines
 			HfGDesign.AddLinePoints (ref LinePoints, 0, 50, new float[]{
@@ -69,12 +70,12 @@ namespace Knot3.CreativeMode
 
 		private void AddFileToList (string filename)
 		{
-			KnotInfo knotInfo = format.LoadInfo(filename);
+			KnotInfo knotInfo = format.LoadInfo (filename);
 			Action LoadFile = () => {
 				// delegate to load the file
 				if (knotInfo.IsValid) {
 					Console.WriteLine ("File is valid: " + knotInfo);
-					GameStates.CreativeMode.Knot = format.LoadKnot(filename);
+					GameStates.CreativeMode.Knot = format.LoadKnot (filename);
 					NextState = GameStates.CreativeMode;
 				} else {
 					Console.WriteLine ("File is invalid: " + knotInfo);
@@ -122,12 +123,13 @@ namespace Knot3.CreativeMode
 			spriteBatch.Begin ();
 
 			// text
-			spriteBatch.DrawString (menu.Font, "Load Savegames", new Vector2 (0.050f, 0.050f).Scale (viewport), Color.White,
-					0, Vector2.Zero, 0.25f * viewport.ScaleFactor ().Length (), SpriteEffects.None, 0);
+			spriteBatch.DrawString (
+				HfGDesign.MenuFont (this), "Load Savegames", new Vector2 (0.050f, 0.050f).Scale (viewport), Color.White,
+				0, Vector2.Zero, 0.25f * viewport.ScaleFactor ().Length (), SpriteEffects.None, 0
+			);
 
 			// menu
 			menu.Align (viewport, 1f, 100, 180, 0, 40);
-			menu.Draw (0f, spriteBatch, gameTime);
 
 			spriteBatch.End ();
 		}

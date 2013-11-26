@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace Knot3
 {
-	public abstract class Input : GameClass
+	public abstract class Input : GameComponent
 	{
 		// state atributes
 		protected static bool FullscreenToggled;
@@ -37,15 +37,32 @@ namespace Knot3
 		/// Game State.
 		/// </param>
 		public Input (GameState state)
-			: base(state)
+			: base(state, DisplayLayer.None)
 		{
 			FullscreenToggled = false;
 			WASDMode = WASDMode.ArcballMode;
 			CurrentInputAction = InputAction.FreeMouse;
+
+			PreviousKeyboardState = KeyboardState = Keyboard.GetState ();
+			PreviousMouseState = MouseState = Mouse.GetState ();
 		}
 
-		public void Update (GameTime gameTime)
+		public override void Update (GameTime gameTime)
 		{
+			// update saved state.
+			PreviousKeyboardState = KeyboardState;
+			PreviousMouseState = MouseState;
+			KeyboardState = Keyboard.GetState ();
+			MouseState = Mouse.GetState ();
+
+			if (gameTime != null) {
+				if (MouseState.LeftButton == ButtonState.Pressed) {
+					LastLeftButtonPress = gameTime.TotalGameTime.Milliseconds;
+				} else if (MouseState.RightButton == ButtonState.Pressed) {
+					LastRightButtonPress = gameTime.TotalGameTime.Milliseconds;
+				}
+			}
+
 			UpdateKeys (gameTime);
 			UpdateMouse (gameTime);
 		}
@@ -63,23 +80,9 @@ namespace Knot3
 		{
 		}
 
-		public virtual void SaveStates (GameTime gameTime)
-		{
-			// update saved state.
-			PreviousKeyboardState = KeyboardState;
-			PreviousMouseState = MouseState;
-			if (gameTime != null) {
-				if (MouseState.LeftButton == ButtonState.Pressed) {
-					LastLeftButtonPress = gameTime.TotalGameTime.Milliseconds;
-				} else if (MouseState.RightButton == ButtonState.Pressed) {
-					LastRightButtonPress = gameTime.TotalGameTime.Milliseconds;
-				}
-			}
-		}
+		public static MouseState MouseState { get; protected set; }
 
-		public static MouseState MouseState { get { return Mouse.GetState (); } }
-
-		public static KeyboardState KeyboardState { get { return Keyboard.GetState (); } }
+		public static KeyboardState KeyboardState { get; private set; }
 	}
 
 	public enum InputAction
@@ -101,9 +104,8 @@ namespace Knot3
 	{
 		public static bool IsDown (this Keys key)
 		{
-			KeyboardState keyboardState = Keyboard.GetState ();
 			// Is the key down?
-			if (keyboardState.IsKeyDown (key)) {
+			if (Input.KeyboardState.IsKeyDown (key)) {
 				// If not down last update, key has just been pressed.
 				if (!Input.PreviousKeyboardState.IsKeyDown (key)) {
 					return true;
@@ -114,9 +116,8 @@ namespace Knot3
 
 		public static bool IsHeldDown (this Keys key)
 		{
-			KeyboardState keyboardState = Keyboard.GetState ();
 			// Is the key down?
-			return keyboardState.IsKeyDown (key);
+			return Input.KeyboardState.IsKeyDown (key);
 		}
 
 		public static bool IsLeftClick (this MouseState state, GameTime gameTime)

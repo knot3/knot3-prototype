@@ -26,8 +26,8 @@ namespace Knot3.UserInterface
 		protected Action OnNoClick = () => {};
 		protected Action OnCancelClick = () => {};
 
-		public ConfirmDialog (GameState state)
-			: base(state)
+		public ConfirmDialog (GameState state, DisplayLayer drawOrder)
+			: base(state, drawOrder)
 		{
 			// text
 			Text = new string[]{};
@@ -52,20 +52,16 @@ namespace Knot3.UserInterface
 			buttons.AddButton (new MenuItemInfo ("Cancel", RelativeButtonPosition, RelativeButtonSize, onCancelClick));
 		}
 
-		protected override bool UpdateDialog (GameTime gameTime)
-		{
-			return false;
-		}
-
 		protected override void DrawDialog (GameTime gameTime)
 		{
+			SpriteFont font = HfGDesign.MenuFont(state);
 			// text
 			for (int i = 0; i < Text.Length; ++i) {
 				string line = Text [i];
 				float scale = 0.15f * viewport.ScaleFactor ().Length ();
-				Vector2 size = buttons.Font.MeasureString (line).RelativeTo (viewport) * scale;
+				Vector2 size = font.MeasureString (line).RelativeTo (viewport) * scale;
 				Vector2 pos = new Vector2 ((RelativeSize ().X - size.X) / 2, RelativePadding ().Y + size.Y * i);
-				spriteBatch.DrawString (buttons.Font, line, ScaledPosition + pos.Scale (viewport),
+				spriteBatch.DrawString (font, line, ScaledPosition + pos.Scale (viewport),
 				                        Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
 			}
 		}
