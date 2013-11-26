@@ -160,9 +160,9 @@ namespace Knot3.UserInterface
 			return new Rectangle (topLeft.X, topLeft.Y, size.X, size.Y);
 		}
 
-		public List<Keys> Keys { get { return Info.Keys; } }
+		public List<Keys> ValidKeys { get { return Info.Keys; } }
 
-		public void Activate ()
+		public void Activate (GameTime gameTime)
 		{
 			Info.OnClick ();
 		}
@@ -171,6 +171,10 @@ namespace Knot3.UserInterface
 		{
 			ItemState = hovered ? ItemState.Selected : ItemState.Unselected;
 		}
+
+		public bool IsKeyEventEnabled { get { return IsVisible; } }
+
+		public bool IsMouseEventEnabled { get { return IsVisible; } }
 
 		public virtual void Collapse ()
 		{

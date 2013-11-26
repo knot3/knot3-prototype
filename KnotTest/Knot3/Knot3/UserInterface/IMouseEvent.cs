@@ -6,7 +6,7 @@ namespace Knot3.UserInterface
 {
 	public interface IMouseEvent
 	{
-		void Activate ();
+		void Activate (GameTime gameTime);
 
 		void SetHovered (bool hovered);
 
@@ -14,7 +14,7 @@ namespace Knot3.UserInterface
 
 		int Index { get; }
 
-		bool IsVisible { get; }
+		bool IsMouseEventEnabled { get; }
 	}
 }
 

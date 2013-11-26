@@ -23,7 +23,7 @@ namespace Knot3.UserInterface
 					// mouse input
 					bool hovered = component.bounds ().Contains (Input.MouseState.ToPoint ());
 					component.SetHovered (hovered);
-					if (hovered && component.Index > hoveredLayer && component.IsVisible) {
+					if (hovered && component.Index > hoveredLayer && component.IsMouseEventEnabled) {
 						hoveredComponent = component;
 						hoveredLayer = component.Index;
 					}
@@ -31,7 +31,7 @@ namespace Knot3.UserInterface
 			}
 			if (hoveredComponent != null) {
 				if (Input.MouseState.IsLeftClick (gameTime)) {
-					hoveredComponent.Activate ();
+					hoveredComponent.Activate (gameTime);
 				}
 			}
 		}

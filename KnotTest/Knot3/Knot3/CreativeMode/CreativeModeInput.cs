@@ -26,6 +26,15 @@ namespace Knot3.CreativeMode
 		{
 			GrabMouseMovement = false;
 			ResetMousePosition ();
+
+			ValidKeys.AddRange (
+				new []{
+					Keys.A, Keys.D, Keys.W, Keys.S, Keys.R, Keys.F, Keys.Q, Keys.E, Keys.A, Keys.D, Keys.W,
+					Keys.S, Keys.R, Keys.F, Keys.Q, Keys.E,
+					Keys.Left, Keys.Right, Keys.Up, Keys.Down, Keys.OemPlus, Keys.OemMinus, Keys.Enter,
+					Keys.LeftAlt, Keys.Tab
+				}
+			);
 		}
 
 		protected override void UpdateKeys (GameTime gameTime)

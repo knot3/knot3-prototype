@@ -20,7 +20,7 @@ using Knot3.Utilities;
 
 namespace Knot3.UserInterface
 {
-	public class TextInput : Widget
+	public class TextInput : Widget, IKeyEvent
 	{
 		// text input
 		public string InputText = "";
@@ -47,7 +47,7 @@ namespace Knot3.UserInterface
 
 		public override void Update (GameTime gameTime)
 		{
-			Text.TryTextInput (ref InputText, gameTime);
+
 		}
 
 		public override void Draw (GameTime gameTime)
@@ -69,6 +69,14 @@ namespace Knot3.UserInterface
 			                        SpriteEffects.None, 1f);
 			spriteBatch.End ();
 		}
+
+		public void Activate (GameTime gameTime) {
+			Text.TryTextInput (ref InputText, gameTime);
+		}
+
+		public List<Keys> ValidKeys { get { return Text.ValidKeys; } }
+
+		public bool IsKeyEventEnabled { get { return IsVisible; } }
 	}
 }
 

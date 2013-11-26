@@ -2,18 +2,19 @@ using System;
 using System.Collections.Generic;
 
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
 
 namespace Knot3.UserInterface
 {
 	public interface IKeyEvent
 	{
-		void Activate ();
+		void Activate (GameTime gameTime);
 
-		List<Keys> Keys { get; }
+		List<Keys> ValidKeys { get; }
 
 		int Index { get; }
 
-		bool IsVisible { get; }
+		bool IsKeyEventEnabled { get; }
 	}
 }
 

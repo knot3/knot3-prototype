@@ -12,9 +12,11 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+using Knot3.UserInterface;
+
 namespace Knot3
 {
-	public abstract class Input : GameComponent
+	public abstract class Input : GameComponent, IKeyEvent
 	{
 		// state atributes
 		protected static bool FullscreenToggled;
@@ -45,6 +47,9 @@ namespace Knot3
 
 			PreviousKeyboardState = KeyboardState = Keyboard.GetState ();
 			PreviousMouseState = MouseState = Mouse.GetState ();
+
+			ValidKeys = new List<Keys> ();
+			ValidKeys.AddRange (new []{ Keys.G, Keys.F11 });
 		}
 
 		public override void Update (GameTime gameTime)
@@ -63,7 +68,6 @@ namespace Knot3
 				}
 			}
 
-			UpdateKeys (gameTime);
 			UpdateMouse (gameTime);
 		}
 
@@ -79,6 +83,15 @@ namespace Knot3
 		protected virtual void UpdateMouse (GameTime gameTime)
 		{
 		}
+
+		public void Activate (GameTime gameTime)
+		{
+			UpdateKeys (gameTime);
+		}
+
+		public List<Keys> ValidKeys { get; set; }
+
+		public bool IsKeyEventEnabled { get { return true; } }
 
 		public static MouseState MouseState { get; protected set; }
 

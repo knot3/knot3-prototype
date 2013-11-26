@@ -23,20 +23,20 @@ namespace Knot3.UserInterface
 					IKeyEvent component = _component as IKeyEvent;
 					// keyboard input
 					bool keyPressed = false;
-					foreach (Keys key in component.Keys) {
-						if (key.IsDown ()) {
+					foreach (Keys key in component.ValidKeys) {
+						if (key.IsHeldDown ()) {
 							keyPressed = true;
 							break;
 						}
 					}
-					if (keyPressed && component.Index > activatedLayer && component.IsVisible) {
+					if (keyPressed && component.Index >= activatedLayer && component.IsKeyEventEnabled) {
 						activatedComponent = component;
 						activatedLayer = component.Index;
 					}
 				}
 			}
 			if (activatedComponent != null) {
-				activatedComponent.Activate ();
+				activatedComponent.Activate (gameTime);
 			}
 		}
 	}
