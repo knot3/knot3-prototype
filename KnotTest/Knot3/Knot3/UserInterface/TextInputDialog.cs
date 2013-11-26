@@ -30,12 +30,12 @@ namespace Knot3.UserInterface
 			);
 		}
 
-		public override void Activate (GameTime gameTime) {
-			state.AddGameComponents(TextInput);
-		}
-
-		public override void Deactivate (GameTime gameTime) {
-			state.RemoveGameComponents(TextInput);
+		public override IEnumerable<GameComponent> SubComponents (GameTime gameTime)
+		{
+			foreach (GameComponent component in base.SubComponents(gameTime)) {
+				yield return component;
+			}
+			yield return TextInput;
 		}
 
 		protected Vector2 TextInputPosition ()

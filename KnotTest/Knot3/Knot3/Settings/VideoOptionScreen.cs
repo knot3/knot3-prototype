@@ -29,6 +29,7 @@ namespace Knot3.Settings
 			: base(game)
 		{
 			menu = new VerticalMenu (this, DisplayLayer.Menu);
+			GameComponents.Add(menu);
 		}
 		
 		public override void Initialize ()

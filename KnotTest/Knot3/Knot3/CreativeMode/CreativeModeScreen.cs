@@ -51,23 +51,23 @@ namespace Knot3.CreativeMode
 		{
 			// camera
 			camera = new Camera (this);
-			AddGameComponents (camera);
+			GameComponents.Add (camera);
 
 			// input
 			input = new KnotModeInput (this);
-			AddGameComponents (input);
+			GameComponents.Add (input);
 
 			// overlay
 			overlay = new Overlay (this);
-			AddGameComponents (overlay);
+			GameComponents.Add (overlay);
 
 			// pointer
 			pointer = new MousePointer (this);
-			AddGameComponents (pointer);
+			GameComponents.Add (pointer);
 
 			// world
 			world = new World (this);
-			AddGameComponents (world);
+			GameComponents.Add (world);
 
 			// pipe renderer
 			var knotRenderInfo = new GameObjectInfo();
@@ -120,7 +120,11 @@ namespace Knot3.CreativeMode
 						dialog.Done ();
 					} else {
 						dialog = new KnotSaveConfirmDialog (this, DisplayLayer.Dialog, knot);
-						dialog.Done += () => dialog = null;
+						AddGameComponents(gameTime, dialog);
+						dialog.Done += () => {
+							RemoveGameComponents(gameTime, dialog);
+							dialog = null;
+						};
 					}
 				} else {
 					NextState = GameStates.StartScreen;
@@ -157,11 +161,6 @@ namespace Knot3.CreativeMode
 			// begin the post processing effect scope
 			Color background = Color.Black;
 			PostProcessing.Begin (background, gameTime);
-
-			if (dialog != null) {
-				// draw the current dialog
-				dialog.Draw (gameTime);
-			}
 
 			// end of the post processing effect
 			PostProcessing.End (gameTime);

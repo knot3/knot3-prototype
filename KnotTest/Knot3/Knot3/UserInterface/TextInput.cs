@@ -28,6 +28,9 @@ namespace Knot3.UserInterface
 		// textures
 		private SpriteFont font;
 
+		// textures
+		protected SpriteBatch spriteBatch;
+
 		public TextInput (GameState state, DisplayLayer drawOrder, LazyPosition position, LazySize size, LazySize padding,
 		                  LazyColor fgColor, LazyColor bgColor)
 			: base(state, drawOrder, fgColor, bgColor, HAlign.Left, VAlign.Center)
@@ -37,26 +40,19 @@ namespace Knot3.UserInterface
 			RelativePadding = padding;
 
 			// load fonts
-			try {
-				font = content.Load<SpriteFont> ("MenuFont");
-			} catch (ContentLoadException ex) {
-				font = null;
-				Console.WriteLine (ex.Message);
-			}
+			font = HfGDesign.MenuFont (state);
+
+			spriteBatch = new SpriteBatch (device);
 		}
 
-		public bool Update (GameTime gameTime)
+		public override void Update (GameTime gameTime)
 		{
-			return UpdateText (gameTime);
+			Text.TryTextInput (ref InputText, gameTime);
 		}
 
-		private bool UpdateText (GameTime gameTime)
+		public override void Draw (GameTime gameTime)
 		{
-			return Text.TryTextInput(ref InputText, gameTime);
-		}
-
-		public void Draw (SpriteBatch spriteBatch, GameTime gameTime)
-		{
+			spriteBatch.Begin ();
 			// background
 			Rectangle rect = HfGDesign.CreateRectangle (0, ScaledPosition, ScaledSize);
 			spriteBatch.Draw (Textures.Create (device, HfGDesign.LineColor),
@@ -71,6 +67,7 @@ namespace Knot3.UserInterface
 			spriteBatch.DrawString (font, InputText, (RelativePosition () + RelativePadding ()).Scale (viewport),
 			                        ForegroundColor, 0, Vector2.Zero, MathHelper.Min (scale.X, scale.Y),
 			                        SpriteEffects.None, 1f);
+			spriteBatch.End ();
 		}
 	}
 }

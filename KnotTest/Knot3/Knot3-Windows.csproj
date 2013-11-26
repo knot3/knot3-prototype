@@ -162,12 +162,13 @@
     <Compile Include="Knot3\KnotData\IKnotFormat.cs" />
     <Compile Include="Knot3\Utilities\Text.cs" />
     <Compile Include="Knot3\GameObjects\PipeModel.cs" />
-    <Compile Include="Knot3\GameObjects\ModelCache.cs" />
     <Compile Include="Knot3\GameObjects\NodeModel.cs" />
     <Compile Include="Knot3\GameObjects\LineRenderer.cs" />
     <Compile Include="Knot3\GameObjects\PipeRenderer.cs" />
     <Compile Include="Knot3\GameObjects\IGameObject.cs" />
     <Compile Include="Knot3\GameObjects\IKnotRenderer.cs" />
+    <Compile Include="Knot3\GameObjects\ModelFactory.cs" />
+    <Compile Include="Knot3\GameComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

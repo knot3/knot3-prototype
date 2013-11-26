@@ -78,6 +78,9 @@ namespace Knot3.UserInterface
 		// item data
 		public MenuItemInfo Info;
 
+		// textures
+		protected SpriteBatch spriteBatch;
+
 		// state, position and sizes
 		public override LazyPosition RelativePosition { get { return () => Info.Position (ItemNum); } }
 
@@ -91,47 +94,54 @@ namespace Knot3.UserInterface
 			: base(state, drawOrder, itemNum, fgColor, bgColor, alignX, VAlign.Center)
 		{
 			Info = info;
+
+			spriteBatch = new SpriteBatch (device);
 		}
 
-		public virtual bool Update (GameTime gameTime)
+		public override void Update (GameTime gameTime)
 		{
-			// keyboard input
-			foreach (Keys key in Info.Keys) {
-				if (key.IsDown ()) {
-					Activate ();
-					return true;
+			if (IsVisible) {
+				// keyboard input
+				foreach (Keys key in Info.Keys) {
+					if (key.IsDown ()) {
+						Activate ();
+					}
 				}
-			}
 
-			// mouse input
-			bool selected = bounds ().Contains (Input.MouseState.ToPoint ());
-			ItemState = selected ? ItemState.Selected : ItemState.Unselected;
-			if (selected) {
-				if (Input.MouseState.IsLeftClick (gameTime)) {
-					Activate ();
-					return true;
+				// mouse input
+				bool selected = bounds ().Contains (Input.MouseState.ToPoint ());
+				ItemState = selected ? ItemState.Selected : ItemState.Unselected;
+				if (selected) {
+					if (Input.MouseState.IsLeftClick (gameTime)) {
+						Activate ();
+					}
 				}
 			}
-			
-			return false;
 		}
 
-		public virtual void Draw (float layerDepth, SpriteBatch spriteBatch, SpriteFont font, GameTime gameTime)
+		public override void Draw (GameTime gameTime)
 		{
-			Texture2D paneTexture = Textures.Create (device, Color.White);
-			//spriteBatch.Draw (paneTexture, bounds (), Color.Black);
-			spriteBatch.Draw (paneTexture, bounds (), null, BackgroundColor, 0f,
-			                  Vector2.Zero, SpriteEffects.None, layerDepth);
+			base.Draw (gameTime);
 
-			try {
-				Vector2 scale = ScaledSize / MinimumSize (font) * 0.9f;
-				scale.Y = scale.X = MathHelper.Min (scale.X, scale.Y);
-				spriteBatch.DrawString (font, Info.Text, TextPosition (font, scale), ForegroundColor,
-						0, Vector2.Zero, scale, SpriteEffects.None, layerDepth + 0.001f);
-			} catch (ArgumentException exp) {
-				Console.WriteLine (exp.ToString ());
-			} catch (InvalidOperationException exp) {
-				Console.WriteLine (exp.ToString ());
+			if (IsVisible) {
+				spriteBatch.Begin ();
+				Texture2D paneTexture = Textures.Create (device, Color.White);
+				//spriteBatch.Draw (paneTexture, bounds (), Color.Black);
+				spriteBatch.Draw (paneTexture, bounds (), null, BackgroundColor, 0f,
+			                  Vector2.Zero, SpriteEffects.None, 0.5f);
+
+				SpriteFont font = HfGDesign.MenuFont (state);
+				try {
+					Vector2 scale = ScaledSize / MinimumSize (font) * 0.9f;
+					scale.Y = scale.X = MathHelper.Min (scale.X, scale.Y);
+					spriteBatch.DrawString (font, Info.Text, TextPosition (font, scale), ForegroundColor,
+						0, Vector2.Zero, scale, SpriteEffects.None, 0.6f);
+				} catch (ArgumentException exp) {
+					Console.WriteLine (exp.ToString ());
+				} catch (InvalidOperationException exp) {
+					Console.WriteLine (exp.ToString ());
+				}
+				spriteBatch.End ();
 			}
 		}
 

@@ -100,12 +100,9 @@ namespace Knot3
 			set {}
 		}
 		
-		public virtual void Activate (GameTime gameTime)
+		public virtual IEnumerable<GameComponent> SubComponents (GameTime gameTime)
 		{
-		}
-		
-		public virtual void Deactivate (GameTime gameTime)
-		{
+			yield break;
 		}
 	}
 

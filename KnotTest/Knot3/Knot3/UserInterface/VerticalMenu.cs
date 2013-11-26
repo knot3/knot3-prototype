@@ -36,7 +36,7 @@ namespace Knot3.UserInterface
 			RelativeItemSize = new Vector2 (300, 0);
 			Border = Border.Zero;
 
-			spriteBatch = new SpriteBatch(device);
+			spriteBatch = new SpriteBatch (device);
 		}
 
 		public void Initialize (LazyItemColor fgColor, LazyItemColor bgColor,
@@ -72,7 +72,7 @@ namespace Knot3.UserInterface
 		public void Align (Viewport viewport, float scale, Vector2? position = null, Vector2? itemSize = null,
 		                   float padding = 0.15f)
 		{
-			SpriteFont font = HfGDesign.MenuFont(state);
+			SpriteFont font = HfGDesign.MenuFont (state);
 			RelativePadding = () => Vector2.One * font.LineSpacing * scale * padding;
 			RelativeItemSize = Vector2.Zero;
 			foreach (MenuItem item in Items) {
@@ -117,9 +117,10 @@ namespace Knot3.UserInterface
 		{
 			base.Draw (gameTime);
 
-			Point min = ScaledPosition.ToPoint ();
-			Point size = ScaledSize.ToPoint ();
-			Rectangle[] borders = new Rectangle[]{
+			if (IsVisible) {
+				Point min = ScaledPosition.ToPoint ();
+				Point size = ScaledSize.ToPoint ();
+				Rectangle[] borders = new Rectangle[]{
 					new Rectangle (min.X - (int)Border.Size.X, min.Y - (int)Border.Size.Y,
 					               (int)Border.Size.X, size.Y + (int)Border.Size.Y * 2),
 					new Rectangle (min.X - (int)Border.Size.X, min.Y - (int)Border.Size.Y,
@@ -129,14 +130,15 @@ namespace Knot3.UserInterface
 					new Rectangle (min.X - (int)Border.Size.X, min.Y + size.Y,
 				                   size.X + (int)Border.Size.X * 2, (int)Border.Size.Y)
 				};
-			Texture2D borderTexture = Textures.Create (device, Color.White);
+				Texture2D borderTexture = Textures.Create (device, Color.White);
 			
-			spriteBatch.Begin();
-			foreach (Rectangle rect in borders) {
-				spriteBatch.Draw (borderTexture, rect, null, Border.Color, 0f,
+				spriteBatch.Begin ();
+				foreach (Rectangle rect in borders) {
+					spriteBatch.Draw (borderTexture, rect, null, Border.Color, 0f,
 			                  Vector2.Zero, SpriteEffects.None, 1f);
+				}
+				spriteBatch.End ();
 			}
-			spriteBatch.End();
 		}
 	}
 	

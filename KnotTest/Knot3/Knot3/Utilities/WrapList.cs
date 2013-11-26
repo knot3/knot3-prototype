@@ -81,12 +81,14 @@ namespace Knot3.Utilities
 
 		public void Replace (T find, T[] elem)
 		{
-			int i = indexOf [find];
-			indexOf.Remove (find);
-			list.Remove (find);
-			list.InsertRange (i, elem);
-			for (; i < list.Count; ++i) {
-				indexOf [list [i]] = i;
+			if (Contains (find)) {
+				int i = indexOf [find];
+				indexOf.Remove (find);
+				list.Remove (find);
+				list.InsertRange (i, elem);
+				for (; i < list.Count; ++i) {
+					indexOf [list [i]] = i;
+				}
 			}
 		}
 

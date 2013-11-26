@@ -46,7 +46,7 @@ namespace Knot3.CreativeMode
 
 			// menu
 			menu.Initialize (ForegroundColor, BackgroundColor, HAlign.Left);
-			AddGameComponents (menu);
+			GameComponents.Add (menu);
 
 			// lines
 			HfGDesign.AddLinePoints (ref LinePoints, 0, 50, new float[]{
@@ -137,6 +137,7 @@ namespace Knot3.CreativeMode
 		public override void Activate (GameTime gameTime)
 		{
 			UpdateFiles ();
+			base.Activate (gameTime);
 		}
 	}
 }

@@ -18,9 +18,6 @@ namespace Knot3.UserInterface
 {
 	public abstract class Dialog : Widget
 	{
-		// visibility
-		public bool IsVisible;
-
 		// menu
 		public Menu buttons;
 		public Action Done;
@@ -62,16 +59,12 @@ namespace Knot3.UserInterface
 			return new Vector2 (x, 0.06f);
 		}
 
-		public override void Activate (GameTime gameTime)
+		public override IEnumerable<GameComponent> SubComponents (GameTime gameTime)
 		{
-			base.Activate (gameTime);
-			state.AddGameComponents (buttons);
-		}
-		
-		public override void Deactivate (GameTime gameTime)
-		{
-			base.Deactivate (gameTime);
-			state.RemoveGameComponents (buttons);
+			foreach (GameComponent component in base.SubComponents(gameTime)) {
+				yield return component;
+			}
+			yield return buttons;
 		}
 
 		public override void Draw (GameTime gameTime)

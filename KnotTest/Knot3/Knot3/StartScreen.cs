@@ -52,6 +52,7 @@ namespace Knot3
 			                        onClick: () => NextState = GameStates.OptionScreen).AddKey (Keys.O));
 			menu.AddButton (new MenuItemInfo (text: "Exit", left: 0.800f, top: 0.535f, right: 0.980f, bottom: 0.790f,
 			                        onClick: () => game.Exit ()).AddKey (Keys.Escape));
+			GameComponents.Add(menu);
 
 			// lines
 			HfGDesign.AddLinePoints (ref LinePoints, 0, 50, 
@@ -75,11 +76,6 @@ namespace Knot3
 			// logo
 			spriteBatch.Draw (logo, new Rectangle (50, 380, 500, 300).Scale (viewport), Color.White);
 			spriteBatch.End ();
-		}
-
-		public override void Activate (GameTime gameTime)
-		{
-			AddGameComponents(menu);
 		}
 	}
 }

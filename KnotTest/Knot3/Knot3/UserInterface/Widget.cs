@@ -35,14 +35,20 @@ namespace Knot3.UserInterface
 
 		protected Vector2 ScaledPadding { get { return RelativePadding ().Scale (viewport); } }
 
+		// alignment
 		protected HAlign AlignX;
 		protected VAlign AlignY;
+
+		// colors
 		private LazyColor foregroundColorFunc;
 		private LazyColor backgroundColorFunc;
 
 		protected virtual Color ForegroundColor { get { return foregroundColorFunc (); } }
 
 		protected virtual Color BackgroundColor { get { return backgroundColorFunc (); } }
+
+		// visibility
+		public virtual bool IsVisible { get; set; }
 
 		public Widget (GameState state, DisplayLayer drawOrder, LazyColor foregroundColor, LazyColor backgroundColor,
 		               HAlign alignX, VAlign alignY)
@@ -55,6 +61,7 @@ namespace Knot3.UserInterface
 			AlignY = alignY;
 			foregroundColorFunc = foregroundColor != null ? foregroundColor : () => Color.Transparent;
 			backgroundColorFunc = backgroundColor != null ? backgroundColor : () => Color.Transparent;
+			IsVisible = true;
 		}
 	}
 

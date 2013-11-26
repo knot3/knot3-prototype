@@ -21,7 +21,6 @@ namespace Knot3.UserInterface
 		// drop-down menu
 		private VerticalMenu dropdown;
 		private MenuButton selected;
-		private bool dropdownVisible;
 
 		public DropDownMenu (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info,
 		                 LazyItemColor fgColor, LazyItemColor bgColor, HAlign alignX)
@@ -31,21 +30,22 @@ namespace Knot3.UserInterface
 			dropdown = new VerticalMenu (state, DisplayLayer.SubMenu);
 			dropdown.Initialize (DropDownForegroundColor, DropDownBackgroundColor,
 			                     HAlign.Left, new Border (new Color (0xb4, 0xff, 0x00), 5, 5, 0, 0));
+			dropdown.IsVisible = false;
 
 			// selected value
 			MenuItemInfo valueInfo = new MenuItemInfo (text: "---", position: ValuePosition,
 						size: ValueSize, onClick: () => info.OnClick ());
-			selected = new MenuButton (state, DisplayLayer.SubMenuItem, 0, valueInfo, fgColor, bgColor, HAlign.Left);
+			selected = new MenuButton (state, DisplayLayer.MenuItem, 0, valueInfo, fgColor, bgColor, HAlign.Left);
 
 			// action to open the drop-down menu
 			info.OnClick = () =>
 			{
-				if (dropdownVisible == true) {
-					dropdownVisible = false;
-				} else {
-					dropdownVisible = true;
-				}
 				GameStates.VideoOptionScreen.Collapse (this);
+				if (dropdown.IsVisible == true) {
+					dropdown.IsVisible = false;
+				} else {
+					dropdown.IsVisible = true;
+				}
 			};
 		}
 
@@ -53,7 +53,7 @@ namespace Knot3.UserInterface
 		{
 			foreach (DropDownMenuItem entry in entries) {
 				Action onSelected = entry.OnSelected;
-				onSelected += () => dropdownVisible = false;
+				onSelected += () => dropdown.IsVisible = false;
 				dropdown.AddButton (new MenuItemInfo (entry.Text, onSelected));
 			}
 			selected.Info.Text = defaultEntry.Text;
@@ -67,50 +67,36 @@ namespace Knot3.UserInterface
 					Console.WriteLine ("OnClick: " + value);
 					option.Value = value;
 					selected.Info.Text = value;
-					dropdownVisible = false;
+					dropdown.IsVisible = false;
 				};
 				dropdown.AddButton (new MenuItemInfo (value, onSelected));
 			}
 			selected.Info.Text = option.Value;
 		}
 		
-		public override void Activate (GameTime gameTime)
+		public override IEnumerable<GameComponent> SubComponents (GameTime gameTime)
 		{
-			base.Activate (gameTime);
-			if (dropdownVisible)
-				state.AddGameComponents (dropdown);
-			else 
-				state.AddGameComponents (selected);
-		}
-
-		public override void Deactivate (GameTime gameTime)
-		{
-			base.Deactivate (gameTime);
-			if (dropdownVisible)
-				state.RemoveGameComponents (dropdown);
-			else 
-				state.RemoveGameComponents (selected);
+			foreach (GameComponent component in base.SubComponents(gameTime)) {
+				yield return component;
+			}
+			yield return selected;
+			yield return dropdown;
 		}
 
 		public override void Collapse ()
 		{
-			dropdownVisible = false;
-
+			dropdown.IsVisible = false;
 		}
 
-		public override void Draw (float layerDepth, SpriteBatch spriteBatch, SpriteFont font, GameTime gameTime)
+		public override void Draw (GameTime gameTime)
 		{
-			base.Draw (layerDepth, spriteBatch, font, gameTime);
+			base.Draw (gameTime);
 
-			if (dropdownVisible) {
+			if (IsVisible && dropdown.IsVisible) {
 				// draw dropdown menu
 				Vector2 position = ValuePosition ();
 				Vector2 size = ValueSize ();
 				dropdown.Align (viewport, 1f, (int)position.X, (int)position.Y, (int)size.X, (int)size.Y, 0f);
-				
-			} else {
-				// draw selected value
-				selected.Draw (layerDepth + 0.001f, spriteBatch, font, gameTime);
 			}
 		}
 

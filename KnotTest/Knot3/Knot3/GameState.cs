@@ -49,6 +49,7 @@ namespace Knot3
 			this.NextState = this;
 			this.RenderEffects = new RenderEffectStack (this);
 			this.PostProcessing = new NoEffect (this);
+			this.GameComponents = new List<GameComponent> ();
 		}
 
 		/// <summary>
@@ -146,6 +147,8 @@ namespace Knot3
 		/// </summary>
 		public abstract void Unload ();
 
+		protected List<GameComponent> GameComponents;
+
 		/// <summary>
 		/// Adds game components.
 		/// </summary>
@@ -155,8 +158,9 @@ namespace Knot3
 		public void AddGameComponents (GameTime gameTime, params GameComponent[] components)
 		{
 			foreach (GameComponent component in components) {
+				Console.WriteLine ("AddGameComponents: " + component);
 				game.Components.Add (component);
-				component.Activate (gameTime);
+				AddGameComponents (gameTime, component.SubComponents (gameTime).ToArray ());
 			}
 		}
 
@@ -166,10 +170,11 @@ namespace Knot3
 		/// <param name='components'>
 		/// Game Components.
 		/// </param>
-		public void RemoveGameComponents (params GameComponent[] components, GameTime gameTime)
+		public void RemoveGameComponents (GameTime gameTime, params GameComponent[] components)
 		{
 			foreach (GameComponent component in components) {
-				component.Deactivate (gameTime);
+				Console.WriteLine ("RemoveGameComponents: " + component);
+				RemoveGameComponents (gameTime, component.SubComponents (gameTime).ToArray ());
 				game.Components.Remove (component);
 			}
 		}
@@ -182,7 +187,8 @@ namespace Knot3
 		/// </param>
 		public virtual void Activate (GameTime gameTime)
 		{
-
+			Console.WriteLine ("Activate");
+			AddGameComponents (gameTime, GameComponents.ToArray ());
 		}
 
 		/// <summary>
@@ -193,6 +199,7 @@ namespace Knot3
 		/// </param>
 		public virtual void Deactivate (GameTime gameTime)
 		{
+			Console.WriteLine ("Deactivate");
 			game.Components.Clear ();
 		}
 	}

@@ -36,7 +36,7 @@ namespace Knot3.UserInterface
 		public virtual MenuButton AddButton (MenuItemInfo info)
 		{
 			MenuButton item = new MenuButton (
-				state, DisplayLayer.MenuItem, Items.Count, info, ItemForegroundColor, ItemBackgroundColor, ItemAlignX
+				state, ItemDisplayLayer, Items.Count, info, ItemForegroundColor, ItemBackgroundColor, ItemAlignX
 			);
 			Items.Add (item);
 			return item;
@@ -45,7 +45,7 @@ namespace Knot3.UserInterface
 		public virtual void AddDropDown (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
 		{
 			DropDownMenu item = new DropDownMenu (
-				state, DisplayLayer.MenuItem, Items.Count, info, ItemForegroundColor, ItemBackgroundColor, ItemAlignX
+				state, ItemDisplayLayer, Items.Count, info, ItemForegroundColor, ItemBackgroundColor, ItemAlignX
 			);
 			item.AddEntries (items, defaultItem);
 			Items.Add (item);
@@ -54,10 +54,19 @@ namespace Knot3.UserInterface
 		public virtual void AddDropDown (MenuItemInfo info, DistinctOptionInfo option)
 		{
 			DropDownMenu item = new DropDownMenu (
-				state, DisplayLayer.MenuItem, Items.Count, info, ItemForegroundColor, ItemBackgroundColor, ItemAlignX
+				state, ItemDisplayLayer, Items.Count, info, ItemForegroundColor, ItemBackgroundColor, ItemAlignX
 			);
 			item.AddEntries (option);
 			Items.Add (item);
+		}
+
+		private DisplayLayer ItemDisplayLayer {
+			get {
+				if (DrawOrder == (int)DisplayLayer.SubMenu)
+					return DisplayLayer.SubMenuItem;
+				else
+					return DisplayLayer.MenuItem;
+			}
 		}
 
 		public MenuItem this [int i] {
@@ -88,17 +97,15 @@ namespace Knot3.UserInterface
 			ItemBackgroundColor = itemBgColor;
 			ItemAlignX = itemAlignX;
 		}
-		
-		public override void Activate (GameTime gameTime)
-		{
-			base.Activate (gameTime);
-			state.AddGameComponents (Items.ToArray ());
-		}
 
-		public override void Deactivate (GameTime gameTime)
+		public override IEnumerable<GameComponent> SubComponents (GameTime gameTime)
 		{
-			base.Deactivate (gameTime);
-			state.RemoveGameComponents (Items.ToArray ());
+			foreach (GameComponent component in base.SubComponents(gameTime)) {
+				yield return component;
+			}
+			foreach (GameComponent item in Items) {
+				yield return item;
+			}
 		}
        
 		public void CollapseMenus (MenuItem menu)
@@ -106,6 +113,22 @@ namespace Knot3.UserInterface
 			foreach (MenuItem item in Items) {
 				if (item != menu) {
 					item.Collapse ();
+				}
+			}
+		}
+
+		private bool isVisible;
+
+		public override bool IsVisible {
+			get {
+				return isVisible;
+			}
+			set {
+				isVisible = value;
+				if (Items != null) {
+					foreach (MenuItem item in Items) {
+						item.IsVisible = value;
+					}
 				}
 			}
 		}
