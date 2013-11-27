@@ -70,6 +70,7 @@ namespace Knot3.GameObjects
 			: base(state)
 		{
 			Info = info;
+			SetPosition (Info.Position);
 
 			basicEffect = new BasicEffect (device);
 			texture = Textures.LoadTexture (content, info.Texturename);
@@ -92,26 +93,28 @@ namespace Knot3.GameObjects
 
 		public void Draw (GameTime gameTime)
 		{
-			basicEffect.World = camera.WorldMatrix;
-			basicEffect.View = camera.ViewMatrix;
-			basicEffect.Projection = camera.ProjectionMatrix;
+			if (Info.IsVisible) {
+				basicEffect.World = camera.WorldMatrix;
+				basicEffect.View = camera.ViewMatrix;
+				basicEffect.Projection = camera.ProjectionMatrix;
 
-			basicEffect.AmbientLightColor = new Vector3 (0.8f, 0.8f, 0.8f);
-			//effect.LightingEnabled = true;
-			basicEffect.TextureEnabled = true;
-			basicEffect.VertexColorEnabled = false;
-			basicEffect.Texture = texture;
+				basicEffect.AmbientLightColor = new Vector3 (0.8f, 0.8f, 0.8f);
+				//effect.LightingEnabled = true;
+				basicEffect.TextureEnabled = true;
+				basicEffect.VertexColorEnabled = false;
+				basicEffect.Texture = texture;
 
-			if (Keys.L.IsHeldDown ()) {
-				basicEffect.EnableDefaultLighting ();  // Beleuchtung aktivieren
-			}
+				if (Keys.L.IsHeldDown ()) {
+					basicEffect.EnableDefaultLighting ();  // Beleuchtung aktivieren
+				}
 
-			foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes) {
-				pass.Apply ();
+				foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes) {
+					pass.Apply ();
 
-				device.DrawUserIndexedPrimitives<VertexPositionNormalTexture> (
+					device.DrawUserIndexedPrimitives<VertexPositionNormalTexture> (
                     PrimitiveType.TriangleList, Vertices, 0, Vertices.Length, Indexes, 0, Indexes.Length / 3
-				);
+					);
+				}
 			}
 		}
 

@@ -44,6 +44,8 @@ namespace Knot3.Settings
 			menu.AddDropDown (new MenuItemInfo (text: "Debug Mode"), new BooleanOptionInfo ("game", "debug", false));
 			menu.AddDropDown (new MenuItemInfo (text: "Coordinate system"),
 			                  new BooleanOptionInfo ("video", "debug-coordinates", false));
+			menu.AddDropDown (new MenuItemInfo (text: "Floor"),
+			                  new BooleanOptionInfo ("video", "debug-floor", false));
 			menu.AddDropDown (new MenuItemInfo (text: "Camera Overlay"),
 			                  new BooleanOptionInfo ("video", "camera-overlay", true));
 			menu.AddDropDown (new MenuItemInfo (text: "FPS Overlay"),

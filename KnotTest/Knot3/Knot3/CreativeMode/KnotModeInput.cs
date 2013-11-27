@@ -193,8 +193,7 @@ namespace Knot3.CreativeMode
 				else {
 					// left mouse button pressed
 					if (MouseState.LeftButton == ButtonState.Pressed) {
-						if (world.SelectedObject != null && (world.SelectedObject.Info.IsMovable
-							|| world.SelectedObject is PipeModel))
+						if (world.SelectedObject != null && world.SelectedObject.Info.IsMovable)
 							action = InputAction.SelectedObjectMove;
 						else
 							action = InputAction.TargetMove;

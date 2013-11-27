@@ -64,7 +64,6 @@
     <Compile Include="Knot3\Utilities\Vectors.cs" />
     <Compile Include="Knot3\Utilities\Files.cs" />
     <Compile Include="Knot3\Utilities\WrapList.cs" />
-    <Compile Include="Knot3\CreativeMode\CreativeModeInput.cs" />
     <Compile Include="Knot3\CreativeMode\LoadSavegameScreen.cs" />
     <Compile Include="Knot3\GameObjects\GameModel.cs" />
     <Compile Include="Knot3\GameObjects\World.cs" />
@@ -118,6 +117,8 @@
     <Compile Include="Knot3\Core\IMouseEventListener.cs" />
     <Compile Include="Knot3\Core\IKeyEventListener.cs" />
     <Compile Include="Knot3\GameObjects\IEdgeChangeListener.cs" />
+    <Compile Include="Knot3\CreativeMode\KnotModeInput.cs" />
+    <Compile Include="Knot3\GameObjects\MousePicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />

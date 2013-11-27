@@ -41,6 +41,8 @@ namespace Knot3.GameObjects
 			Direction = PositionTo - PositionFrom;
 			Direction.Normalize ();
 			Scale = 10f;
+			// a pipe is movable
+			IsMovable = true;
 		}
 	}
 

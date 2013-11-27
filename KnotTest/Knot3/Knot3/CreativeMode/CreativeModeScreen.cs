@@ -31,6 +31,7 @@ namespace Knot3.CreativeMode
 		// custom classes
 		private MousePointer pointer;
 		private Overlay overlay;
+		private MousePicker picker;
 		private LineRenderer lineRenderer;
 		private PipeRenderer pipeRenderer;
 		private Dialog dialog;
@@ -53,21 +54,19 @@ namespace Knot3.CreativeMode
 		{
 			// camera
 			camera = new Camera (this);
-
 			// input
 			input = new KnotModeInput (this);
-
 			// overlay
 			overlay = new Overlay (this);
-
 			// pointer
 			pointer = new MousePointer (this);
-
 			// world
 			world = new World (this);
+			// picker
+			picker = new MousePicker (this);
 
 			// pipe renderer
-			var knotRenderInfo = new GameObjectInfo();
+			var knotRenderInfo = new GameObjectInfo ();
 			knotRenderInfo.Position = Vector3.Zero;
 			pipeRenderer = new PipeRenderer (this, knotRenderInfo);
 			world.Add (pipeRenderer as IGameObject);
@@ -117,9 +116,9 @@ namespace Knot3.CreativeMode
 						dialog.Done ();
 					} else {
 						dialog = new KnotSaveConfirmDialog (this, DisplayLayer.Dialog, knot);
-						AddGameComponents(gameTime, dialog);
+						AddGameComponents (gameTime, dialog);
 						dialog.Done += () => {
-							RemoveGameComponents(gameTime, dialog);
+							RemoveGameComponents (gameTime, dialog);
 							dialog = null;
 						};
 					}
@@ -166,7 +165,7 @@ namespace Knot3.CreativeMode
 		public override void Activate (GameTime gameTime)
 		{
 			base.Activate (gameTime);
-			AddGameComponents (gameTime, camera, input, overlay, pointer, world);
+			AddGameComponents (gameTime, camera, input, overlay, pointer, world, picker);
 		}
 
 		public override void Unload ()

@@ -26,16 +26,11 @@ namespace Knot3.GameObjects
 		private RenderEffect knotRenderEffect;
 
 		// game objects
-		private List<IGameObject> objects;
+		public List<IGameObject> Objects { get; private set; }
 
 		public IGameObject SelectedObject { get; private set; }
 
 		private TexturedRectangle floor;
-
-		// world data
-		private Vector3 position;
-		private Vector3 size;
-		private double lastRayCheck = 0;
 
 		/// <summary>
 		/// Initializes a new Overlay
@@ -43,24 +38,17 @@ namespace Knot3.GameObjects
 		public World (GameState state)
 			: base(state, DisplayLayer.World)
 		{
-			size = new Vector3 (2000, 1000, 2000);
-			position = new Vector3 (-1000, -100, -1000);
-
-			objects = new List<IGameObject> ();
-
-			// some game objects
-
-			// TexturedRectangle rect = new TexturedRectangle (game, "image1", new Vector3 (400, 400, -400), Vector3.Right + Vector3.Backward, 400, Vector3.Up, 50);
-			// rect.IsMovable = true;
-			// objects.Add (rect);
+			Objects = new List<IGameObject> ();
 
 			// the floor
+			Vector3 size = new Vector3 (2000, 0, 2000);
+			Vector3 position = new Vector3 (-1000, -100, -1000);
 			var floorInfo = new TexturedRectangleInfo (
 				texturename: "floor", origin: position + new Vector3 (size.X, 0, size.Z) / 2,
 				left: Vector3.Left, width: size.X, up: Vector3.Forward, height: size.Z
 			);
 			floor = new TexturedRectangle (state, floorInfo);
-			objects.Add (floor);
+			Objects.Add (floor);
 		}
 
 		public void SelectObject (IGameObject obj, GameTime gameTime)
@@ -88,7 +76,7 @@ namespace Knot3.GameObjects
 		
 		public void Add (IGameObject obj)
 		{
-			objects.Add (obj);
+			Objects.Add (obj);
 		}
 
 		public override void Initialize ()
@@ -112,7 +100,7 @@ namespace Knot3.GameObjects
 			// begin the knot render effect
 			knotRenderEffect.Begin (background, gameTime);
 
-			foreach (IGameObject obj in objects) {
+			foreach (IGameObject obj in Objects) {
 				obj.Draw (gameTime);
 			}
 
@@ -123,12 +111,9 @@ namespace Knot3.GameObjects
 		public override void Update (GameTime gameTime)
 		{
 			// run the update method on all game objects
-			foreach (IGameObject obj in objects) {
+			foreach (IGameObject obj in Objects) {
 				obj.Update (gameTime);
 			}
-
-			// mouse ray selection
-			UpdateMouseRay (gameTime);
 
 			// post processing effects
 			if (Keys.O.IsDown ()) {
@@ -144,8 +129,8 @@ namespace Knot3.GameObjects
 				info.Position = new Vector3 (200, 200, 200);
 				info.Scale = 0.1f;
 				info.IsMovable = true;
-				var obj = new MovableGameObject(state, new TestModel (state, info));
-				objects.Add (obj);
+				var obj = new MovableGameObject (state, new TestModel (state, info));
+				Objects.Add (obj);
 			}
 			if (Keys.P.IsDown ()) {
 				//objects.Add (new GameModel (state, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
@@ -153,41 +138,12 @@ namespace Knot3.GameObjects
 				info.Position = new Vector3 (-200, 200, -200);
 				info.Scale = 30f;
 				info.IsMovable = true;
-				var obj = new MovableGameObject(state, new TestModel (state, info));
-				objects.Add (obj);
+				var obj = new MovableGameObject (state, new TestModel (state, info));
+				Objects.Add (obj);
 			}
 
-			// debug mode?
-			floor.Info.IsVisible = Core.Game.Debug;
-		}
-
-		public void UpdateMouseRay (GameTime gameTime)
-		{
-			double millis = gameTime.TotalGameTime.TotalMilliseconds;
-			if (millis > lastRayCheck + 10 && (input.CurrentInputAction == InputAction.TargetMove
-				|| input.CurrentInputAction == InputAction.FreeMouse)) {
-				lastRayCheck = millis;
-
-				Ray ray = camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
-
-				GameObjectDistance nearest = null;
-				foreach (IGameObject obj in objects) {
-					if (obj.Info.IsVisible) {
-						GameObjectDistance intersection = obj.Intersects (ray);
-						if (intersection != null) {
-							//Console.WriteLine ("time=" + (int)gameTime.TotalGameTime.TotalMilliseconds +
-							//	", obj = " + obj + ", distance = " + MathHelper.Clamp ((float)distance, 0, 100000)
-							//);
-							if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
-								nearest = intersection;
-							}
-						}
-					}
-				}
-				if (nearest != null) {
-					SelectObject (nearest.Object, gameTime);
-				}
-			}
+			// is the floor visible?
+			floor.Info.IsVisible = Options.Default ["video", "debug-floor", false];
 		}
 	}
 	
