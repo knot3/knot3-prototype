@@ -9,7 +9,7 @@ using Knot3.GameObjects;
 namespace Knot3.Core
 {
 	/// <summary>
-	/// Eine von IGameClass abgeleitete Klasse hält eine Referenz auf einen bestimmten GameState und stellt
+	/// Eine von IGameStateClass abgeleitete Klasse hält eine Referenz auf einen bestimmten GameState und stellt
 	/// Properties und Methoden für den direkten Zugriff auf häufig benötigte XNA-Klassen bereit.
 	/// </summary>
 	public interface IGameStateClass

@@ -22,7 +22,7 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Renders a knot using 3D models (pipes and nodes).
 	/// </summary>
-	public class PipeRenderer : GameStateClass, IEdgeChangeReceiver, IGameObject
+	public class PipeRenderer : GameStateClass, IEdgeChangeListener, IGameObject
 	{
 		public dynamic Info { get; private set; }
 

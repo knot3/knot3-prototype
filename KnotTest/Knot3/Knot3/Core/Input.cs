@@ -21,7 +21,7 @@ namespace Knot3.Core
 	/// Sie ist ein GameStateComponent, existiert daher einmal pro GameState, und fängt
 	/// in der Rolle als IKeyEvent Tastatureingaben ab.
 	/// </summary>
-	public abstract class Input : GameStateComponent, IKeyEventReceiver
+	public abstract class Input : GameStateComponent, IKeyEventListener
 	{
 		// state atributes
 		protected static bool FullscreenToggled;

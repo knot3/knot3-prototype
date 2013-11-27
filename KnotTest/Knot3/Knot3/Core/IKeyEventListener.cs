@@ -10,7 +10,7 @@ namespace Knot3.Core
 	/// Dieses Interface wird von Klassen implementiert, die Tastatureingaben abfangen. Es stellt eine Liste
 	/// der abzufangenden Tasten sowie eine Priorität zur Verfügung.
 	/// </summary>
-	public interface IKeyEventReceiver
+	public interface IKeyEventListener
 	{
 		void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime);
 

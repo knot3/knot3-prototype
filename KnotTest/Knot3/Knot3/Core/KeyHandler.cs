@@ -17,7 +17,7 @@ namespace Knot3.Core
 
 		private class KeyEventComponent
 		{
-			public IKeyEventReceiver receiver;
+			public IKeyEventListener receiver;
 			public int layer = 0;
 			public KeyEvent keyEvent;
 			public List<Keys> keys;
@@ -27,10 +27,10 @@ namespace Knot3.Core
 		{
 			KeyEventComponent best = null;
 			foreach (IGameStateComponent component in state.game.Components) {
-				if (component is IKeyEventReceiver) {
+				if (component is IKeyEventListener) {
 
 					// keyboard input
-					IKeyEventReceiver receiver = component as IKeyEventReceiver;
+					IKeyEventListener receiver = component as IKeyEventListener;
 					KeyEvent keyEvent = KeyEvent.None;
 					List<Keys> keysInvolved = new List<Keys> ();
 

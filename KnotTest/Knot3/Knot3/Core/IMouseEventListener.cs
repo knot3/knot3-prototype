@@ -9,7 +9,7 @@ namespace Knot3.Core
 	/// den Bereich des Bildschirms, auf dem sich das Objekt befindet, sowie über den Z-Index des 
 	/// anklickbaren Objekts.
 	/// </summary>
-	public interface IMouseEventReceiver
+	public interface IMouseEventListener
 	{
 		void Activate (GameTime gameTime);
 

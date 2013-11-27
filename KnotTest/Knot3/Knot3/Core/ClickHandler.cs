@@ -15,11 +15,11 @@ namespace Knot3.Core
 
 		public override void Update (GameTime gameTime)
 		{
-			IMouseEventReceiver hoveredComponent = null;
+			IMouseEventListener hoveredComponent = null;
 			int hoveredLayer = 0;
 			foreach (IGameStateComponent _component in state.game.Components) {
-				if (_component is IMouseEventReceiver) {
-					IMouseEventReceiver component = _component as IMouseEventReceiver;
+				if (_component is IMouseEventListener) {
+					IMouseEventListener component = _component as IMouseEventListener;
 					// mouse input
 					bool hovered = component.bounds ().Contains (Input.MouseState.ToPoint ());
 					component.SetHovered (hovered);

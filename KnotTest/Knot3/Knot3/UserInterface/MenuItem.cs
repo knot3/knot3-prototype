@@ -74,7 +74,7 @@ namespace Knot3.UserInterface
 		}
 	}
 
-	public abstract class MenuItem : ItemWidget, IMouseEventReceiver, IKeyEventReceiver
+	public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
 	{
 		// item data
 		public MenuItemInfo Info;

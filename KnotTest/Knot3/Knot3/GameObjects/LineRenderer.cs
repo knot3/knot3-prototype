@@ -20,7 +20,7 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Renders a Knot using primitive lines.
 	/// </summary>
-	public class LineRenderer : GameStateClass, IEdgeChangeReceiver, IGameObject
+	public class LineRenderer : GameStateClass, IEdgeChangeListener, IGameObject
 	{
 		public dynamic Info { get; private set; }
 

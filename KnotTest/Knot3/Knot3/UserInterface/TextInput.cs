@@ -22,7 +22,7 @@ using Knot3.Core;
 
 namespace Knot3.UserInterface
 {
-	public class TextInput : Widget, IKeyEventReceiver
+	public class TextInput : Widget, IKeyEventListener
 	{
 		// text input
 		public string InputText = "";

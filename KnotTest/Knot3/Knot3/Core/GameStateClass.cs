@@ -16,7 +16,7 @@ using Knot3.GameObjects;
 namespace Knot3.Core
 {
 	/// <summary>
-	/// Standard-Implementierung von IGameClass. Hält eine Referenz auf einen bestimmten GameState und stellt
+	/// Standard-Implementierung von IGameStateClass. Hält eine Referenz auf einen bestimmten GameState und stellt
 	/// Properties und Methoden für den direkten Zugriff auf häufig benötigte XNA-Klassen bereit.
 	/// </summary>
 	public abstract class GameStateClass : IGameStateClass
