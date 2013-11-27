@@ -41,15 +41,16 @@ namespace Knot3.RenderEffects
 		#endregion
 	}
 
-	public class RenderTargetCache : GameStateClass
+	public class RenderTargetCache
 	{
 		#region RenderTarget Cache
 
+		private GraphicsDevice device;
 		private Dictionary<Point, RenderTarget2D> renderTargets;
 
-		public RenderTargetCache (GameState state)
-			: base(state)
+		public RenderTargetCache (GraphicsDevice device)
 		{
+			this.device = device;
 			renderTargets = new Dictionary<Point, RenderTarget2D> ();
 		}
 

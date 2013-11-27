@@ -54,12 +54,6 @@ namespace Knot3.UserInterface
 		{
 			// subclass...
 			UpdateMenu (gameTime);
-
-			// input
-			input.Update (gameTime);
-
-			// pointer
-			pointer.Update (gameTime);
 		}
 
 		public abstract void UpdateMenu (GameTime gameTime);
@@ -76,13 +70,16 @@ namespace Knot3.UserInterface
 			HfGDesign.DrawLines (ref LinePoints, LineWidth, spriteBatch, this, gameTime);
 			spriteBatch.End ();
 
-			// pointer
-			pointer.Draw (gameTime);
-
 			PostProcessing.End (gameTime);
 		}
 
 		public abstract void DrawMenu (GameTime gameTime);
+
+		public override void Activate (GameTime gameTime)
+		{
+			base.Activate (gameTime);
+			AddGameComponents (gameTime, input, pointer);
+		}
 
 		public override void Unload ()
 		{

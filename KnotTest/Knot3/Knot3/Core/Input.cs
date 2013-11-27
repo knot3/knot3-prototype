@@ -105,6 +105,7 @@ namespace Knot3.Core
 
 	public enum InputAction
 	{
+		None = 0,
 		ArcballMove,
 		TargetMove,
 		FreeMouse,

@@ -48,7 +48,7 @@ namespace Knot3.Core
 		{
 			this.game = game;
 			this.NextState = this;
-			this.RenderEffects = new RenderEffectStack (this);
+			this.RenderEffects = new RenderEffectStack (defaultEffect: new NoEffect (this));
 			this.PostProcessing = new NoEffect (this);
 		}
 

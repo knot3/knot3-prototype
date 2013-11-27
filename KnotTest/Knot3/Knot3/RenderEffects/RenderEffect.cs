@@ -18,11 +18,13 @@ using Knot3.Utilities;
 
 namespace Knot3.RenderEffects
 {
-	public class RenderEffectStack : GameStateClass
+	public class RenderEffectStack
 	{
-		public RenderEffectStack (GameState state)
-			: base(state)
+		private RenderEffect defaultEffect;
+
+		public RenderEffectStack (RenderEffect defaultEffect)
 		{
+			this.defaultEffect = defaultEffect;
 		}
 
 		#region RenderEffect Stack
@@ -45,7 +47,7 @@ namespace Knot3.RenderEffects
 				if (activeEffects.Count > 0)
 					return activeEffects.Peek ();
 				else
-					return state.PostProcessing;
+					return defaultEffect;
 			}
 		}
 
@@ -60,7 +62,7 @@ namespace Knot3.RenderEffects
 		public RenderEffect (GameState state)
 			: base(state)
 		{
-			renderTarget = new RenderTargetCache (state);
+			renderTarget = new RenderTargetCache (device);
 			spriteBatch = new SpriteBatch (device);
 		}
 
