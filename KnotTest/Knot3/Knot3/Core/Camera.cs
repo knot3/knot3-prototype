@@ -12,11 +12,12 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+using Knot3.Core;
 using Knot3.Utilities;
 
-namespace Knot3
+namespace Knot3.Core
 {
-	public class Camera : GameComponent
+	public class Camera : GameStateComponent
 	{
 		public Matrix WorldMatrix { get; private set; }
 
@@ -48,10 +49,6 @@ namespace Knot3
 		public Camera (GameState state)
 			: base(state, DisplayLayer.None)
 		{
-		}
- 
-		private void SetUpCamera ()
-		{
 			DefaultPosition = new Vector3 (400, 400, 700);
 			Position = DefaultPosition;
 			Target = new Vector3 (0, 0, 0);
@@ -62,11 +59,6 @@ namespace Knot3
 			aspectRatio = device.Viewport.AspectRatio;
 			nearPlane = 0.5f;
 			farPlane = 10000.0f;
-		}
-
-		protected override void LoadContent ()
-		{
-			SetUpCamera ();
 		}
 
 		public override void Update (GameTime gameTime)

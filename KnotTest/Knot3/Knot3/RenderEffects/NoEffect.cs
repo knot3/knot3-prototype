@@ -12,6 +12,8 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+using Knot3.Core;
+
 namespace Knot3.RenderEffects
 {
 	public class NoEffect : RenderEffect

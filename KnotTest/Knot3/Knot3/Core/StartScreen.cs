@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Storage;
 using Knot3.UserInterface;
 using Knot3.Utilities;
 
-namespace Knot3
+namespace Knot3.Core
 {
 	public class StartScreen : MenuScreen
 	{
@@ -45,14 +45,17 @@ namespace Knot3
 			// menu
 			menu.Initialize (ForegroundColor, BackgroundColor, HAlign.Center);
 			menu.AddButton (new MenuItemInfo (text: "Creative", left: 0.700f, top: 0.250f, right: 0.960f, bottom: 0.380f,
-			                        onClick: () => NextState = GameStates.LoadSavegameScreen).AddKey (Keys.Space));
+			                        onClick: () => NextState = GameStates.LoadSavegameScreen).AddKey (Keys.Space)
+			);
 			menu.AddButton (new MenuItemInfo (text: "Challenge", left: 0.000f, top: 0.050f, right: 0.380f, bottom: 0.190f,
-			                        onClick: () => NextState = GameStates.CreativeMode).AddKey (Keys.RightWindows));
+			                        onClick: () => NextState = GameStates.CreativeMode).AddKey (Keys.RightWindows)
+			);
 			menu.AddButton (new MenuItemInfo (text: "Options", left: 0.260f, top: 0.840f, right: 0.480f, bottom: 0.950f,
-			                        onClick: () => NextState = GameStates.OptionScreen).AddKey (Keys.O));
+			                        onClick: () => NextState = GameStates.OptionScreen).AddKey (Keys.O)
+			);
 			menu.AddButton (new MenuItemInfo (text: "Exit", left: 0.800f, top: 0.535f, right: 0.980f, bottom: 0.790f,
-			                        onClick: () => game.Exit ()).AddKey (Keys.Escape));
-			GameComponents.Add(menu);
+			                        onClick: () => game.Exit ()).AddKey (Keys.Escape)
+			);
 
 			// lines
 			HfGDesign.AddLinePoints (ref LinePoints, 0, 50, 
@@ -76,6 +79,12 @@ namespace Knot3
 			// logo
 			spriteBatch.Draw (logo, new Rectangle (50, 380, 500, 300).Scale (viewport), Color.White);
 			spriteBatch.End ();
+		}
+
+		public override void Activate (GameTime gameTime)
+		{
+			base.Activate (gameTime);
+			AddGameComponents (gameTime, menu);
 		}
 	}
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Diagnostics;
 
 using Microsoft.Xna.Framework;
+using Xna = Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
@@ -13,23 +14,21 @@ using Microsoft.Xna.Framework.Media;
 
 using Knot3.GameObjects;
 
-namespace Knot3
+namespace Knot3.Core
 {
 	/// <summary>
-	/// The abstract class GameClass holds a reference to the associated GameState and provides
-	/// convenience methods for subclasses.
+	/// Eine Implementierung von IGameStateComponent. Erbt von GameComponent aus XNA
+	/// und hat nur eine Update()-Methode.
 	/// </summary>
-	public abstract class GameClass
+	public class GameStateComponent : Xna.GameComponent, IGameStateComponent
 	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Knot3.GameClass"/> class.
-		/// </summary>
-		/// <param name='state'>
-		/// The game state.
-		/// </param>
-		public GameClass (GameState state)
+		protected DisplayLayer InputOrder;
+
+		public GameStateComponent (GameState state, DisplayLayer inputOrder)
+			: base(state.game)
 		{
 			this.state = state;
+			this.InputOrder = inputOrder;
 		}
 
 		/// <summary>
@@ -38,7 +37,7 @@ namespace Knot3
 		/// <value>
 		/// The Game state.
 		/// </value>
-		protected GameState state { get; private set; }
+		public GameState state { get; private set; }
 
 		/// <summary>
 		/// Gets the graphics device manager.
@@ -46,7 +45,7 @@ namespace Knot3
 		/// <value>
 		/// The graphics device manager.
 		/// </value>
-		protected GraphicsDeviceManager graphics { get { return state.graphics; } }
+		public GraphicsDeviceManager graphics { get { return state.graphics; } }
 
 		/// <summary>
 		/// Gets the graphics device.
@@ -54,7 +53,7 @@ namespace Knot3
 		/// <value>
 		/// The graphics device.
 		/// </value>
-		protected GraphicsDevice device { get { return state.device; } }
+		public GraphicsDevice device { get { return state.device; } }
 
 		/// <summary>
 		/// Gets the viewport.
@@ -62,7 +61,7 @@ namespace Knot3
 		/// <value>
 		/// The viewport.
 		/// </value>
-		protected Viewport viewport { get { return state.device.Viewport; } }
+		public Viewport viewport { get { return state.device.Viewport; } }
 
 		/// <summary>
 		/// Gets the content manager.
@@ -70,7 +69,7 @@ namespace Knot3
 		/// <value>
 		/// The content manager.
 		/// </value>
-		protected ContentManager content { get { return state.content; } }
+		public ContentManager content { get { return state.content; } }
 
 		/// <summary>
 		/// Gets or sets the camera. Returns null of the game state is not in 3D mode!
@@ -78,10 +77,7 @@ namespace Knot3
 		/// <value>
 		/// The camera.
 		/// </value>
-		protected Camera camera {
-			get { return state.camera; }
-			set {}
-		}
+		public Camera camera { get { return state.camera; } }
 
 		/// <summary>
 		/// Gets or sets the input handler.
@@ -89,10 +85,7 @@ namespace Knot3
 		/// <value>
 		/// The input handler.
 		/// </value>
-		protected Input input {
-			get { return state.input; }
-			set {}
-		}
+		public Input input { get { return state.input; } }
 
 		/// <summary>
 		/// Gets or sets the game world.
@@ -100,10 +93,14 @@ namespace Knot3
 		/// <value>
 		/// The game world.
 		/// </value>
-		protected World world {
-			get { return state.world; }
-			set {}
+		public World world { get { return state.world; } }
+		
+		public virtual IEnumerable<IGameStateComponent> SubComponents (GameTime gameTime)
+		{
+			yield break;
 		}
+
+		public int Index { get { return (int)InputOrder; } }
 	}
 }
 

@@ -18,9 +18,11 @@ using Knot3.GameObjects;
 using Knot3.Settings;
 using Knot3.Utilities;
 
+using Knot3.Core;
+
 namespace Knot3.UserInterface
 {
-	public class TextInput : Widget, IKeyEvent
+	public class TextInput : Widget, IKeyEventReceiver
 	{
 		// text input
 		public string InputText = "";
@@ -70,7 +72,8 @@ namespace Knot3.UserInterface
 			spriteBatch.End ();
 		}
 
-		public void Activate (GameTime gameTime) {
+		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+		{
 			Text.TryTextInput (ref InputText, gameTime);
 		}
 

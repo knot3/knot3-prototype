@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+using Knot3.Core;
 using Knot3.UserInterface;
 using Knot3.Utilities;
 
@@ -25,11 +26,10 @@ namespace Knot3.Settings
 		// textures
 		private SpriteBatch spriteBatch;
 
-		public VideoOptionScreen (Game game)
+		public VideoOptionScreen (Core.Game game)
 			: base(game)
 		{
 			menu = new VerticalMenu (this, DisplayLayer.Menu);
-			GameComponents.Add(menu);
 		}
 		
 		public override void Initialize ()
@@ -89,6 +89,12 @@ namespace Knot3.Settings
 			menu.Align (viewport, 1f, 350, 180, 550, 40);
 
 			spriteBatch.End ();
+		}
+
+		public override void Activate (GameTime gameTime)
+		{
+			base.Activate (gameTime);
+			AddGameComponents (gameTime, menu);
 		}
 	}
 }

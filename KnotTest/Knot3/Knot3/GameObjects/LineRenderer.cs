@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
+
+using Knot3.Core;
 using Knot3.KnotData;
 
 namespace Knot3.GameObjects
@@ -18,9 +20,9 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Renders a Knot using primitive lines.
 	/// </summary>
-	public class LineRenderer : GameClass, IKnotRenderer
+	public class LineRenderer : GameStateClass, IEdgeChangeReceiver, IGameObject
 	{
-		public GameObjectInfo Info { get; private set; }
+		public dynamic Info { get; private set; }
 
 		// graphic stuff
 		private BasicEffect basicEffect;

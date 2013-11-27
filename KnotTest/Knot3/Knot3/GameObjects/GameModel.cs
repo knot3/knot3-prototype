@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+using Knot3.Core;
 using Knot3.Utilities;
 
 namespace Knot3.GameObjects
@@ -45,11 +46,11 @@ namespace Knot3.GameObjects
 		}
 	}
 
-	public class GameModel : GameObject
+	public class GameModel : GameStateClass, IGameObject
 	{
 		#region Attributes and Properties
 
-		public new GameModelInfo Info { get; private set; }
+		public dynamic Info { get; private set; }
 
 		public virtual Model Model { get { return Models.LoadModel (state, Info.Modelname); } }
 
@@ -62,7 +63,7 @@ namespace Knot3.GameObjects
 		#region Constructors
 
 		public GameModel (GameState state, GameModelInfo info)
-			: base(state, info)
+			: base(state)
 		{
 			Info = info;
 
@@ -74,9 +75,17 @@ namespace Knot3.GameObjects
 		
 		#endregion
 
+		#region Update
+		
+		public virtual void Update (GameTime gameTime)
+		{
+		}
+
+		#endregion
+
 		#region Draw
 
-		public override void Draw (GameTime gameTime)
+		public virtual void Draw (GameTime gameTime)
 		{
 			if (Info.IsVisible) {
 				state.RenderEffects.Current.DrawModel (this, gameTime);
@@ -87,10 +96,10 @@ namespace Knot3.GameObjects
 
 		#region Intersection
 
-		public override GameObjectDistance Intersects (Ray ray)
+		public virtual GameObjectDistance Intersects (Ray ray)
 		{
 			foreach (BoundingSphere _sphere in Model.Bounds()) {
-				BoundingSphere sphere = _sphere.Scale (Info.Scale).Translate (Info.Position);
+				BoundingSphere sphere = _sphere.Scale ((float)Info.Scale).Translate ((Vector3)Info.Position);
 				float? distance = ray.Intersects (sphere);
 				if (distance != null) {
 					GameObjectDistance intersection = new GameObjectDistance () {
@@ -102,7 +111,7 @@ namespace Knot3.GameObjects
 			return null;
 		}
 
-		public override Vector3 Center ()
+		public Vector3 Center ()
 		{
 			Vector3 center = Vector3.Zero;
 			int count = Model.Meshes.Count;
@@ -112,6 +121,18 @@ namespace Knot3.GameObjects
 			return center / Info.Scale + Info.Position;
 		}
 		
+		#endregion
+
+		#region Selection
+
+		public virtual void OnSelected (GameTime gameTime)
+		{
+		}
+
+		public virtual void OnUnselected (GameTime gameTime)
+		{
+		}
+
 		#endregion
 
 		#region Matrix Cache

@@ -15,10 +15,10 @@ using Knot3.Utilities;
 using Knot3.Settings;
 using Knot3.RenderEffects;
 
-namespace Knot3
+namespace Knot3.Core
 {
 	/// <summary>
-	/// This is the main type for your game
+	/// Die Haupt-Klasse des Spiels. Verwaltet den jeweils aktuellen GameState.
 	/// </summary>
 	public class Game : Microsoft.Xna.Framework.Game
 	{

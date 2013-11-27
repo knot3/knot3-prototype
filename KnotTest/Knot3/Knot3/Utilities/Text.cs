@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+using Knot3.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -15,12 +16,12 @@ namespace Knot3.Utilities
 		{
 			bool catched = false;
 			if (lastKey != Keys.None) {
-				if (Input.KeyboardState.IsKeyUp (lastKey))
+				if (Core.Input.KeyboardState.IsKeyUp (lastKey))
 					lastKey = Keys.None;
 				else if ((gameTime.TotalGameTime.TotalMilliseconds - lastMillis) > 200)
 					lastKey = Keys.None;
 			}
-			Keys[] keys = Input.KeyboardState.GetPressedKeys ();
+			Keys[] keys = Core.Input.KeyboardState.GetPressedKeys ();
 			if (lastKey == Keys.None) {
 				for (int i = 0; i < keys.Length; ++i) {
 					if (keys [i] != Keys.LeftShift && keys [i] != Keys.RightShift) {

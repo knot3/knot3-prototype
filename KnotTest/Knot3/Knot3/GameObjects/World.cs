@@ -12,13 +12,14 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+using Knot3.Core;
 using Knot3.Utilities;
 using Knot3.RenderEffects;
 using Knot3.Settings;
 
 namespace Knot3.GameObjects
 {
-	public class World : GameComponent
+	public class World : DrawableGameStateComponent
 	{
 		// graphics-related classes
 		private List<RenderEffect> knotRenderEffects;
@@ -143,7 +144,7 @@ namespace Knot3.GameObjects
 				info.Position = new Vector3 (200, 200, 200);
 				info.Scale = 0.1f;
 				info.IsMovable = true;
-				var obj = new TestModel (state, info);
+				var obj = new MovableGameObject(state, new TestModel (state, info));
 				objects.Add (obj);
 			}
 			if (Keys.P.IsDown ()) {
@@ -152,12 +153,12 @@ namespace Knot3.GameObjects
 				info.Position = new Vector3 (-200, 200, -200);
 				info.Scale = 30f;
 				info.IsMovable = true;
-				var obj = new TestModel (state, info);
+				var obj = new MovableGameObject(state, new TestModel (state, info));
 				objects.Add (obj);
 			}
 
 			// debug mode?
-			floor.Info.IsVisible = Knot3.Game.Debug;
+			floor.Info.IsVisible = Core.Game.Debug;
 		}
 
 		public void UpdateMouseRay (GameTime gameTime)
@@ -167,7 +168,7 @@ namespace Knot3.GameObjects
 				|| input.CurrentInputAction == InputAction.FreeMouse)) {
 				lastRayCheck = millis;
 
-				Ray ray = camera.GetMouseRay (Input.MouseState.ToVector2 ());
+				Ray ray = camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
 
 				GameObjectDistance nearest = null;
 				foreach (IGameObject obj in objects) {

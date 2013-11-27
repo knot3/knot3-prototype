@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework;
 
 using Knot3.Utilities;
 
-namespace Knot3.UserInterface
+namespace Knot3.Core
 {
-	public class ClickHandler : GameComponent
+	public class ClickHandler : GameStateComponent
 	{
 		public ClickHandler (GameState state)
 			: base(state, DisplayLayer.None)
@@ -15,11 +15,11 @@ namespace Knot3.UserInterface
 
 		public override void Update (GameTime gameTime)
 		{
-			IMouseEvent hoveredComponent = null;
+			IMouseEventReceiver hoveredComponent = null;
 			int hoveredLayer = 0;
-			foreach (GameComponent _component in state.game.Components) {
-				if (_component is IMouseEvent) {
-					IMouseEvent component = _component as IMouseEvent;
+			foreach (IGameStateComponent _component in state.game.Components) {
+				if (_component is IMouseEventReceiver) {
+					IMouseEventReceiver component = _component as IMouseEventReceiver;
 					// mouse input
 					bool hovered = component.bounds ().Contains (Input.MouseState.ToPoint ());
 					component.SetHovered (hovered);

@@ -11,12 +11,14 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
+
+using Knot3.Core;
 using Knot3.GameObjects;
 using Knot3.Utilities;
 
 namespace Knot3.RenderEffects
 {
-	public class RenderEffectStack : GameClass
+	public class RenderEffectStack : GameStateClass
 	{
 		public RenderEffectStack (GameState state)
 			: base(state)
@@ -50,7 +52,7 @@ namespace Knot3.RenderEffects
 		#endregion
 	}
 
-	public abstract class RenderEffect : GameClass
+	public abstract class RenderEffect : GameStateClass
 	{
 		private RenderTargetCache renderTarget;
 		private SpriteBatch spriteBatch;

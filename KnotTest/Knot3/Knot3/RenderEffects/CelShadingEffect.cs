@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+using Knot3.Core;
 using Knot3.Utilities;
 using Knot3.GameObjects;
 

@@ -12,6 +12,8 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+using Knot3.Core;
+
 namespace Knot3.UserInterface
 {
 	public abstract class MenuScreen : GameState
@@ -29,7 +31,7 @@ namespace Knot3.UserInterface
 		protected List<Vector2> LinePoints;
 		protected int LineWidth;
 
-		public MenuScreen (Game game)
+		public MenuScreen (Core.Game game)
 			: base(game)
 		{
 			LinePoints = new List<Vector2> ();

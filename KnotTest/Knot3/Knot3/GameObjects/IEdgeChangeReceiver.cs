@@ -4,7 +4,7 @@ using Knot3.KnotData;
 
 namespace Knot3.GameObjects
 {
-	public interface IKnotRenderer : IGameObject
+	public interface IEdgeChangeReceiver
 	{
 		void OnEdgesChanged (EdgeList edges);
 	}

@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+using Knot3.Core;
 using Knot3.Utilities;
 
 namespace Knot3.UserInterface
@@ -30,9 +31,9 @@ namespace Knot3.UserInterface
 			);
 		}
 
-		public override IEnumerable<GameComponent> SubComponents (GameTime gameTime)
+		public override IEnumerable<IGameStateComponent> SubComponents (GameTime gameTime)
 		{
-			foreach (GameComponent component in base.SubComponents(gameTime)) {
+			foreach (DrawableGameStateComponent component in base.SubComponents(gameTime)) {
 				yield return component;
 			}
 			yield return TextInput;

@@ -16,6 +16,8 @@ using Knot3.Utilities;
 using Knot3.KnotData;
 using Knot3.RenderEffects;
 
+using Knot3.Core;
+
 namespace Knot3.GameObjects
 {
 	public class PipeModelInfo : GameModelInfo
@@ -77,10 +79,6 @@ namespace Knot3.GameObjects
 			}
 		}
 
-		public override void OnSelected (GameTime gameTime)
-		{
-		}
-
 		public override void Draw (GameTime gameTime)
 		{
 			BaseColor = Info.Edge.Color;
@@ -110,7 +108,7 @@ namespace Knot3.GameObjects
 			if (world.SelectedObject == this) {
 
 				// if the left mouse button is pressed, select the edge
-				if (Input.MouseState.IsLeftClick (gameTime)) {
+				if (Core.Input.MouseState.IsLeftClick (gameTime)) {
 					try {
 						// CTRL
 						if (Keys.LeftControl.IsHeldDown ()) {
@@ -137,7 +135,7 @@ namespace Knot3.GameObjects
 				// is SelectedObjectMove the current input action?
 				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					if (previousMousePosition == Vector3.Zero) {
-						previousMousePosition = device.Viewport.Unproject (new Vector3 (Input.MouseState.ToVector2 (), 1f),
+						previousMousePosition = device.Viewport.Unproject (new Vector3 (Core.Input.MouseState.ToVector2 (), 1f),
 								camera.ProjectionMatrix, camera.ViewMatrix, Matrix.Identity);
 					}
 					Move ();
@@ -154,21 +152,23 @@ namespace Knot3.GameObjects
 					Info.Edge.Color = Edge.RandomColor (gameTime);
 				}
 
-				if (Input.MouseState.IsDoubleClick (gameTime)) {
+				if (Core.Input.MouseState.IsDoubleClick (gameTime)) {
 				}
 			}
+
+			base.Update (gameTime);
 		}
 
 		private void Move ()
 		{
 			Vector3 currentMousePosition = device.Viewport.Unproject (
-					new Vector3 (Input.MouseState.ToVector2 (), 1f),
+					new Vector3 (Core.Input.MouseState.ToVector2 (), 1f),
 					camera.ProjectionMatrix, camera.ViewMatrix, Matrix.Identity
 			);
 			Vector3 mouseMove = currentMousePosition - previousMousePosition;
 
 			if (mouseMove != Vector3.Zero) {
-				Console.WriteLine ("mouseMove=" + mouseMove);
+				//Console.WriteLine ("mouseMove=" + mouseMove);
 				Vector3 direction3D = mouseMove.PrimaryDirection ();
 				if (mouseMove.PrimaryVector ().Length ().Abs () > 50) {
 					try {

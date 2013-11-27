@@ -14,9 +14,14 @@ using Microsoft.Xna.Framework.Storage;
 
 using Knot3.UserInterface;
 
-namespace Knot3
+namespace Knot3.Core
 {
-	public abstract class Input : GameComponent, IKeyEvent
+	/// <summary>
+	/// Die abstrakte Klasse Input stellt eine Basisklasse für Input-Handler bereit.
+	/// Sie ist ein GameStateComponent, existiert daher einmal pro GameState, und fängt
+	/// in der Rolle als IKeyEvent Tastatureingaben ab.
+	/// </summary>
+	public abstract class Input : GameStateComponent, IKeyEventReceiver
 	{
 		// state atributes
 		protected static bool FullscreenToggled;
@@ -84,7 +89,7 @@ namespace Knot3
 		{
 		}
 
-		public void Activate (GameTime gameTime)
+		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 		{
 			UpdateKeys (gameTime);
 		}

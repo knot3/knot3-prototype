@@ -18,6 +18,8 @@ using Knot3.GameObjects;
 using Knot3.Settings;
 using Knot3.Utilities;
 
+using Knot3.Core;
+
 namespace Knot3.CreativeMode
 {
 	public class CreativeModeScreen : GameState
@@ -39,7 +41,7 @@ namespace Knot3.CreativeMode
 		/// <param name='game'>
 		/// Game.
 		/// </param>
-		public CreativeModeScreen (Game game)
+		public CreativeModeScreen (Core.Game game)
 			: base(game)
 		{
 		}
@@ -51,33 +53,28 @@ namespace Knot3.CreativeMode
 		{
 			// camera
 			camera = new Camera (this);
-			GameComponents.Add (camera);
 
 			// input
 			input = new KnotModeInput (this);
-			GameComponents.Add (input);
 
 			// overlay
 			overlay = new Overlay (this);
-			GameComponents.Add (overlay);
 
 			// pointer
 			pointer = new MousePointer (this);
-			GameComponents.Add (pointer);
 
 			// world
 			world = new World (this);
-			GameComponents.Add (world);
 
 			// pipe renderer
 			var knotRenderInfo = new GameObjectInfo();
 			knotRenderInfo.Position = Vector3.Zero;
 			pipeRenderer = new PipeRenderer (this, knotRenderInfo);
-			world.Add (pipeRenderer);
+			world.Add (pipeRenderer as IGameObject);
 
 			// line renderer
 			lineRenderer = new LineRenderer (this, knotRenderInfo);
-			world.Add (lineRenderer);
+			world.Add (lineRenderer as IGameObject);
 			
 			// load nodes
 			Node.Scale = 100;
@@ -164,6 +161,12 @@ namespace Knot3.CreativeMode
 
 			// end of the post processing effect
 			PostProcessing.End (gameTime);
+		}
+
+		public override void Activate (GameTime gameTime)
+		{
+			base.Activate (gameTime);
+			AddGameComponents (gameTime, camera, input, overlay, pointer, world);
 		}
 
 		public override void Unload ()

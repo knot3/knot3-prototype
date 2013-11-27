@@ -17,11 +17,11 @@ using Knot3.Settings;
 using Knot3.CreativeMode;
 using Knot3.UserInterface;
 
-namespace Knot3
+namespace Knot3.Core
 {
 	/// <summary>
-	/// Do I really need to explain this?
-	/// For example the start screen, the creative and challenge mode, and the options menu are game states.
+	/// Die abstrakte Klasse GameState steht für einen bestimmten Zustand des Spiels und verwaltet
+	/// eine Liste von IGameStateComponent-Objekten, die einzelne Komponenten zeichenen und auf Eingaben reagieren.
 	/// </summary>
 	public abstract class GameState
 	{
@@ -50,7 +50,6 @@ namespace Knot3
 			this.NextState = this;
 			this.RenderEffects = new RenderEffectStack (this);
 			this.PostProcessing = new NoEffect (this);
-			this.GameComponents = new List<GameComponent> ();
 		}
 
 		/// <summary>
@@ -148,17 +147,15 @@ namespace Knot3
 		/// </summary>
 		public abstract void Unload ();
 
-		protected List<GameComponent> GameComponents;
-
 		/// <summary>
 		/// Adds game components.
 		/// </summary>
 		/// <param name='components'>
 		/// Game Components.
 		/// </param>
-		public void AddGameComponents (GameTime gameTime, params GameComponent[] components)
+		public void AddGameComponents (GameTime gameTime, params IGameStateComponent[] components)
 		{
-			foreach (GameComponent component in components) {
+			foreach (IGameStateComponent component in components) {
 				Console.WriteLine ("AddGameComponents: " + component);
 				game.Components.Add (component);
 				AddGameComponents (gameTime, component.SubComponents (gameTime).ToArray ());
@@ -171,9 +168,9 @@ namespace Knot3
 		/// <param name='components'>
 		/// Game Components.
 		/// </param>
-		public void RemoveGameComponents (GameTime gameTime, params GameComponent[] components)
+		public void RemoveGameComponents (GameTime gameTime, params IGameStateComponent[] components)
 		{
-			foreach (GameComponent component in components) {
+			foreach (IGameStateComponent component in components) {
 				Console.WriteLine ("RemoveGameComponents: " + component);
 				RemoveGameComponents (gameTime, component.SubComponents (gameTime).ToArray ());
 				game.Components.Remove (component);
@@ -188,9 +185,8 @@ namespace Knot3
 		/// </param>
 		public virtual void Activate (GameTime gameTime)
 		{
-			Console.WriteLine ("Activate");
+			Console.WriteLine ("Activate: " + this);
 			AddGameComponents (gameTime, new KeyHandler (this), new ClickHandler (this));
-			AddGameComponents (gameTime, GameComponents.ToArray ());
 		}
 
 		/// <summary>
@@ -201,12 +197,15 @@ namespace Knot3
 		/// </param>
 		public virtual void Deactivate (GameTime gameTime)
 		{
-			Console.WriteLine ("Deactivate");
+			Console.WriteLine ("Deactivate: " + this);
 			game.Components.Clear ();
 		}
 	}
-	
-	static class GameStates
+
+	/// <summary>
+	/// Verwaltet Referenzen auf alle dauerhaft im Speicher liegenden GameState-Objekte des Spiels.
+	/// </summary>
+	public static class GameStates
 	{
 		public static CreativeModeScreen CreativeMode;
 		public static StartScreen StartScreen;

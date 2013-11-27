@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+using Knot3.Core;
 using Knot3.UserInterface;
 using Knot3.Utilities;
 using Knot3.KnotData;
@@ -30,7 +31,7 @@ namespace Knot3.CreativeMode
 		// textures
 		private SpriteBatch spriteBatch;
 
-		public LoadSavegameScreen (Game game)
+		public LoadSavegameScreen (Core.Game game)
 			: base(game)
 		{
 			format = new KnotFormat ();
@@ -46,7 +47,6 @@ namespace Knot3.CreativeMode
 
 			// menu
 			menu.Initialize (ForegroundColor, BackgroundColor, HAlign.Left);
-			GameComponents.Add (menu);
 
 			// lines
 			HfGDesign.AddLinePoints (ref LinePoints, 0, 50, new float[]{
@@ -138,6 +138,7 @@ namespace Knot3.CreativeMode
 		{
 			UpdateFiles ();
 			base.Activate (gameTime);
+			AddGameComponents (gameTime, menu);
 		}
 	}
 }

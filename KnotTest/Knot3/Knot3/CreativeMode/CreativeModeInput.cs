@@ -12,12 +12,13 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+using Knot3.Core;
 using Knot3.Utilities;
 using Knot3.GameObjects;
 
 namespace Knot3.CreativeMode
 {
-	public class KnotModeInput : Input
+	public class KnotModeInput : Core.Input
 	{
 		private int wasdSpeed = 10;
 
@@ -173,7 +174,7 @@ namespace Knot3.CreativeMode
 			} else if (MouseState != PreviousMouseState) {
 				// mouse movements
 				Vector2 mouseMove = new Vector2 (MouseState.X - PreviousMouseState.X, MouseState.Y - PreviousMouseState.Y);
-				Console.WriteLine ("mouseMove=" + mouseMove);
+				//Console.WriteLine ("mouseMove=" + mouseMove);
 
 				InputAction action;
 				// grab mouse movement
@@ -239,7 +240,7 @@ namespace Knot3.CreativeMode
 			if (MouseState != PreviousMouseState) {
 				if (GrabMouseMovement || (CurrentInputAction == InputAction.ArcballMove)) {
 					Mouse.SetPosition (device.Viewport.Width / 2, device.Viewport.Height / 2);
-					Input.MouseState = Mouse.GetState ();
+					Core.Input.MouseState = Mouse.GetState ();
 				}
 			}
 		}

@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+using Knot3.Core;
 using Knot3.UserInterface;
 using Knot3.KnotData;
 using Knot3.RenderEffects;
@@ -20,7 +21,7 @@ using Knot3.Utilities;
 
 namespace Knot3.UserInterface
 {
-	public class Widget : GameComponent
+	public class Widget : DrawableGameStateComponent
 	{
 		// size and position
 		public virtual LazyPosition RelativePosition { get; protected set; }

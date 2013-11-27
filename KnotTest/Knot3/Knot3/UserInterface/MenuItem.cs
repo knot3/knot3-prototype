@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+using Knot3.Core;
 using Knot3.Utilities;
 
 namespace Knot3.UserInterface
@@ -73,7 +74,7 @@ namespace Knot3.UserInterface
 		}
 	}
 
-	public abstract class MenuItem : ItemWidget, IMouseEvent, IKeyEvent
+	public abstract class MenuItem : ItemWidget, IMouseEventReceiver, IKeyEventReceiver
 	{
 		// item data
 		public MenuItemInfo Info;
@@ -165,6 +166,13 @@ namespace Knot3.UserInterface
 		public void Activate (GameTime gameTime)
 		{
 			Info.OnClick ();
+		}
+
+		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+		{
+			if (keyEvent == KeyEvent.KeyDown) {
+				Activate (gameTime);
+			}
 		}
 
 		public void SetHovered (bool hovered)

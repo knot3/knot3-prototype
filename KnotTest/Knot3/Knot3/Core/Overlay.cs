@@ -14,9 +14,12 @@ using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Settings;
 
-namespace Knot3
+namespace Knot3.Core
 {
-	public class Overlay : GameComponent
+	/// <summary>
+	/// Ein DrawableGameStateComponent, der ein Debugging-Overlay zeichnet.
+	/// </summary>
+	public class Overlay : DrawableGameStateComponent
 	{
 		// graphics-related classes
 		private SpriteBatch spriteBatch;

@@ -14,9 +14,12 @@ using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Utilities;
 
-namespace Knot3
+namespace Knot3.Core
 {
-	public class MousePointer : GameComponent
+	/// <summary>
+	/// Ein DrawableGameStateComponent, der einen Mauszeiger zeichnet.
+	/// </summary>
+	public class MousePointer : DrawableGameStateComponent
 	{
 		// graphics-related classes
 		private SpriteBatch spriteBatch;

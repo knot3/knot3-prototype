@@ -1,9 +1,8 @@
-#region Using Statements
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-#endregion
+using Knot3.Core;
 
 namespace Knot3
 {

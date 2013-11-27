@@ -1,6 +1,8 @@
 using System;
 
-namespace Knot3
+using Knot3.Core;
+
+namespace Knot3.UserInterface
 {
 	public class MenuScreenInput : Input
 	{

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 
+using Knot3.Core;
 using Knot3.Utilities;
 
 namespace Knot3.GameObjects
@@ -45,11 +46,11 @@ namespace Knot3.GameObjects
 		}
 	}
 
-	public class TexturedRectangle : GameObject
+	public class TexturedRectangle : GameStateClass, IGameObject
 	{
 		#region Attributes and Properties
 
-		public new TexturedRectangleInfo Info { get; private set; }
+		public dynamic Info { get; private set; }
 
 		private Vector3 UpperLeft;
 		private Vector3 LowerLeft;
@@ -63,8 +64,10 @@ namespace Knot3.GameObjects
 
 		#endregion
 
+		#region Constructors
+
 		public TexturedRectangle (GameState state, TexturedRectangleInfo info)
-			: base(state, info)
+			: base(state)
 		{
 			Info = info;
 
@@ -74,7 +77,46 @@ namespace Knot3.GameObjects
 				FillVertices ();
 			}
 		}
-        
+
+		#endregion
+
+		#region Update
+		
+		public void Update (GameTime gameTime)
+		{
+		}
+
+		#endregion
+
+		#region Draw
+
+		public void Draw (GameTime gameTime)
+		{
+			basicEffect.World = camera.WorldMatrix;
+			basicEffect.View = camera.ViewMatrix;
+			basicEffect.Projection = camera.ProjectionMatrix;
+
+			basicEffect.AmbientLightColor = new Vector3 (0.8f, 0.8f, 0.8f);
+			//effect.LightingEnabled = true;
+			basicEffect.TextureEnabled = true;
+			basicEffect.VertexColorEnabled = false;
+			basicEffect.Texture = texture;
+
+			if (Keys.L.IsHeldDown ()) {
+				basicEffect.EnableDefaultLighting ();  // Beleuchtung aktivieren
+			}
+
+			foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes) {
+				pass.Apply ();
+
+				device.DrawUserIndexedPrimitives<VertexPositionNormalTexture> (
+                    PrimitiveType.TriangleList, Vertices, 0, Vertices.Length, Indexes, 0, Indexes.Length / 3
+				);
+			}
+		}
+
+		#endregion
+
 		private void FillVertices ()
 		{
 			// Fill in texture coordinates to display full texture
@@ -119,31 +161,6 @@ namespace Knot3.GameObjects
 			Indexes [11] = 2;
 		}
 
-		public override void Draw (GameTime gameTime)
-		{
-			basicEffect.World = camera.WorldMatrix;
-			basicEffect.View = camera.ViewMatrix;
-			basicEffect.Projection = camera.ProjectionMatrix;
-
-			basicEffect.AmbientLightColor = new Vector3 (0.8f, 0.8f, 0.8f);
-			//effect.LightingEnabled = true;
-			basicEffect.TextureEnabled = true;
-			basicEffect.VertexColorEnabled = false;
-			basicEffect.Texture = texture;
-
-			if (Keys.L.IsHeldDown ()) {
-				basicEffect.EnableDefaultLighting ();  // Beleuchtung aktivieren
-			}
-
-			foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes) {
-				pass.Apply ();
-
-				device.DrawUserIndexedPrimitives<VertexPositionNormalTexture> (
-                    PrimitiveType.TriangleList, Vertices, 0, Vertices.Length, Indexes, 0, Indexes.Length / 3
-				);
-			}
-		}
-
 		protected void SetPosition (Vector3 position)
 		{
 			Info.Position = position;
@@ -172,7 +189,7 @@ namespace Knot3.GameObjects
 			};
 		}
 
-		public override GameObjectDistance Intersects (Ray ray)
+		public GameObjectDistance Intersects (Ray ray)
 		{
 			foreach (BoundingBox bounds in Bounds()) {
 				Nullable<float> distance = ray.Intersects (bounds);
@@ -186,10 +203,22 @@ namespace Knot3.GameObjects
 			return null;
 		}
 
-		public override Vector3 Center ()
+		public Vector3 Center ()
 		{
 			return LowerLeft + (UpperRight - LowerLeft) / 2;
 		}
+
+		#region Selection
+
+		public virtual void OnSelected (GameTime gameTime)
+		{
+		}
+
+		public virtual void OnUnselected (GameTime gameTime)
+		{
+		}
+
+		#endregion
 	}
 }
 
