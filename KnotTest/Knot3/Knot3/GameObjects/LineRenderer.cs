@@ -18,7 +18,7 @@ using Knot3.KnotData;
 namespace Knot3.GameObjects
 {
 	/// <summary>
-	/// Renders a Knot using primitive lines.
+	/// Zeichnet die Kanten eines gegebenen KnotData.Knot-Objekts als einfache Linien über die World-Klasse.
 	/// </summary>
 	public class LineRenderer : GameStateClass, IEdgeChangeListener, IGameObject
 	{

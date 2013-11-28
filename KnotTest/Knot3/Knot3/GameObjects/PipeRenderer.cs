@@ -20,7 +20,8 @@ using Knot3.RenderEffects;
 namespace Knot3.GameObjects
 {
 	/// <summary>
-	/// Renders a knot using 3D models (pipes and nodes).
+	/// Verwaltet eine Liste von Spielobjekten der Klassen PipeModel (Röhren) und NodeModel (Knotenpunkt)
+	/// für ein gegebenes KnotData.Knot-Objekt und zeichnet diese über die World-Klasse.
 	/// </summary>
 	public class PipeRenderer : GameStateClass, IEdgeChangeListener, IGameObject
 	{

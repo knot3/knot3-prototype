@@ -6,6 +6,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Knot3.KnotData
 {
+	/// <summary>
+	/// Ein Knotenpunkt auf dem 3D-Raster.
+	/// </summary>
 	public struct Node
 	{
 		#region Properties

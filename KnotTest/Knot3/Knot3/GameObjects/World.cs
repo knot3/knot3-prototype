@@ -19,6 +19,10 @@ using Knot3.Settings;
 
 namespace Knot3.GameObjects
 {
+	/// <summary>
+	/// Eine Liste von Spielobjekten (Interface IGameObject), die in einer 3D-Welt gezeichnet werden. Ruft die Update()-
+	/// und Draw()-Methoden der Spielobjekte auf.
+	/// </summary>
 	public class World : DrawableGameStateComponent
 	{
 		// graphics-related classes

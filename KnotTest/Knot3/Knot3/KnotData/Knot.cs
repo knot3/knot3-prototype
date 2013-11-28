@@ -16,6 +16,9 @@ namespace Knot3.KnotData
 		}
 	}
 
+	/// <summary>
+	/// Ein Knoten, der aus einer Liste von Kanten (EdgeList) besteht und ein Knotenformat referenziert (IKnotFormat).
+	/// </summary>
 	public class Knot
 	{
 		#region Properties

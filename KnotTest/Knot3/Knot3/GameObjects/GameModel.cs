@@ -46,6 +46,9 @@ namespace Knot3.GameObjects
 		}
 	}
 
+	/// <summary>
+	/// Ein GameModel ist ein IGameObject, das ein 3D-Modell zeichnet.
+	/// </summary>
 	public class GameModel : GameStateClass, IGameObject
 	{
 		#region Attributes and Properties

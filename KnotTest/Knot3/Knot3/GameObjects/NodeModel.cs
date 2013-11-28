@@ -51,7 +51,10 @@ namespace Knot3.GameObjects
 			}
 		}
 	}
-
+	
+	/// <summary>
+	/// Ein NodeModel, das ein kugelförmiges Verbindungsstück zwischen zwei Röhren zeichnet.
+	/// </summary>
 	public class NodeModel : GameModel
 	{
 		#region Attributes and Properties

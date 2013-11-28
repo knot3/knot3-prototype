@@ -9,6 +9,10 @@ using Knot3.Utilities;
 
 namespace Knot3.KnotData
 {
+	/// <summary>
+	/// Eine Liste von Kanten (Instanzen der Klasse Edge), die zusätzlich Methoden zum Verschieben der Kanten enthält
+	/// und für jede Kante die Start- und End-Knotenpunkte zurückgeben kann.
+	/// </summary>
 	public class EdgeList
 	{
 		#region Properties

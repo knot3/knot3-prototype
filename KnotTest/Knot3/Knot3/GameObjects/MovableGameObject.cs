@@ -17,6 +17,9 @@ using Knot3.Utilities;
 
 namespace Knot3.GameObjects
 {
+	/// <summary>
+	/// Ein Decorator für ein IGameObject, das ein freies Bewegen dieses Objekts im dreidimensionalen Raum ermöglicht.
+	/// </summary>
 	public class MovableGameObject : GameStateClass, IGameObject
 	{
 		private IGameObject Obj;

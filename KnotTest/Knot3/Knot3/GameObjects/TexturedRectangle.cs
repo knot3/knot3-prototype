@@ -45,7 +45,10 @@ namespace Knot3.GameObjects
 			}
 		}
 	}
-
+	
+	/// <summary>
+	/// Eine frei in der Spielwelt liegende Textur, die auf ein Rechteck gezeichnet wird.
+	/// </summary>
 	public class TexturedRectangle : GameStateClass, IGameObject
 	{
 		#region Attributes and Properties

@@ -16,6 +16,10 @@ using Knot3.GameObjects;
 
 namespace Knot3.RenderEffects
 {
+	/// <summary>
+	/// Ein Cel-Shading-Effekt aus Basis der abstrakten RenderEffect -Klasse, der sowohl Modelle mit einem
+	/// Toon-Shader zeichnet als auch einen Outline-Shader als Post-Processing-Effekt anwendet.
+	/// </summary>
 	public class CelShadingEffect : RenderEffect
 	{
 		Effect celShader;       // Toon shader effect

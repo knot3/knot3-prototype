@@ -56,7 +56,6 @@
     <Compile Include="Knot3\RenderEffects\FadeEffect.cs" />
     <Compile Include="Knot3\RenderEffects\RenderEffect.cs" />
     <Compile Include="Knot3\RenderEffects\CelShadingEffect.cs" />
-    <Compile Include="Knot3\KnotData\Nodes.cs" />
     <Compile Include="Knot3\Utilities\Mono.cs" />
     <Compile Include="Knot3\Utilities\Textures.cs" />
     <Compile Include="Knot3\Utilities\Vectors.cs" />
@@ -121,6 +120,7 @@
     <Compile Include="Knot3\KnotData\Edge.cs" />
     <Compile Include="Knot3\KnotData\KnotListFormat.cs" />
     <Compile Include="Knot3\KnotData\EdgeListFormat.cs" />
+    <Compile Include="Knot3\KnotData\Node.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />

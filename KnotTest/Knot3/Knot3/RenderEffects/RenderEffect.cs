@@ -54,6 +54,10 @@ namespace Knot3.RenderEffects
 		#endregion
 	}
 
+	/// <summary>
+	/// Rendereffekte erben von der abstrakte Klasse RenderEffect und halten ein RenderTarget2D-Objekt,
+	/// in das gezeichnet wird, während der RenderEffect aktiv ist.
+	/// </summary>
 	public abstract class RenderEffect : GameStateClass
 	{
 		private RenderTargetCache renderTarget;

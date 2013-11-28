@@ -60,7 +60,10 @@ namespace Knot3.GameObjects
 			}
 		}
 	}
-
+	
+	/// <summary>
+	/// Ein GameModel, das eine 3D-Röhre zeichnet.
+	/// </summary>
 	public class PipeModel : GameModel
 	{
 		#region Attributes and Properties

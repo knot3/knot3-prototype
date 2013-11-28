@@ -19,6 +19,10 @@ using Knot3.Settings;
 
 namespace Knot3.GameObjects
 {
+	/// <summary>
+	/// Ein GameStateComponent, der das IGameObject aus der World selektiert, das 
+	/// sich unter der aktuellen Mausposition befindet.
+	/// </summary>
 	public class MousePicker : GameStateComponent
 	{
 		// ray check

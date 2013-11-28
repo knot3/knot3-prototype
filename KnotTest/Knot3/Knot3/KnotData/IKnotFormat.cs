@@ -2,6 +2,9 @@ using System;
 
 namespace Knot3.KnotData
 {
+	/// <summary>
+	/// Dieses Interface muss von einem Knoten-Dateiformat implementiert werden.
+	/// </summary>
 	public interface IKnotFormat
 	{
 		string[] FileExtensions { get; }

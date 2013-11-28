@@ -17,6 +17,9 @@ using Knot3.Utilities;
 
 namespace Knot3.KnotData
 {
+	/// <summary>
+	/// Implementiert ein Austauschformat x,y,z;r,g,b auf Basis der Kanten-Richtungen.
+	/// </summary>
 	public class EdgeListFormat : IKnotFormat
 	{
 		// savegame files

@@ -9,6 +9,9 @@ using Knot3.Utilities;
 
 namespace Knot3.KnotData
 {
+	/// <summary>
+	/// Eine Kante, die aus einer Richung und einer Farbe besteht.
+	/// </summary>
 	public class Edge
 	{
 		#region Properties
