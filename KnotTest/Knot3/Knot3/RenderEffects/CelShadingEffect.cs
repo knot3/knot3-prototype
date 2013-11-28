@@ -74,7 +74,7 @@ namespace Knot3.RenderEffects
 
 		public override void DrawModel (GameModel model, GameTime gameTime)
 		{
-			lightDirection = new Vector4 (-Vector3.Cross (Vector3.Normalize (camera.TargetVector), camera.UpVector), 1);
+			lightDirection = new Vector4 (-Vector3.Cross (Vector3.Normalize (camera.TargetDirection), camera.UpVector), 1);
 			celShader.Parameters ["LightDirection"].SetValue (lightDirection);
 			celShader.Parameters ["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
 			celShader.Parameters ["InverseWorld"].SetValue (Matrix.Invert (model.WorldMatrix * camera.WorldMatrix));

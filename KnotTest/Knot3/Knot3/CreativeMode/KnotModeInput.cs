@@ -95,8 +95,8 @@ namespace Knot3.CreativeMode
 			if (keyboardMove.Length () > 0) {
 				keyboardMove *= wasdSpeed;
 				// linear move, target and position
-				camera.Target = camera.Target.MoveLinear (keyboardMove, camera.UpVector, camera.TargetVector);
-				camera.Position = camera.Position.MoveLinear (keyboardMove, camera.UpVector, camera.TargetVector);
+				camera.Target = camera.Target.MoveLinear (keyboardMove, camera.UpVector, camera.TargetDirection);
+				camera.Position = camera.Position.MoveLinear (keyboardMove, camera.UpVector, camera.TargetDirection);
 				CurrentInputAction = InputAction.FPSMove;
 			}
 
@@ -106,7 +106,7 @@ namespace Knot3.CreativeMode
 				camera.Target = new Vector3 (camera.ArcballTarget.X, camera.Target.Y, camera.ArcballTarget.Z);
 				camera.TargetDistance = camera.TargetDistance.Clamp (500, 10000);
 				camera.Position = camera.ArcballTarget + (camera.Position - camera.ArcballTarget).ArcBallMove (
-						arcballMove, camera.UpVector, camera.TargetVector
+						arcballMove, camera.UpVector, camera.TargetDirection
 				);
 				CurrentInputAction = InputAction.ArcballMove;
 			}
@@ -114,7 +114,7 @@ namespace Knot3.CreativeMode
 			// apply arcball movements to the camera
 			if (selfRotate.Length () > 0) {
 				camera.Target = camera.Position + (camera.Target - camera.Position).ArcBallMove (
-						selfRotate, camera.UpVector, camera.TargetVector
+						selfRotate, camera.UpVector, camera.TargetDirection
 				);
 				CurrentInputAction = InputAction.ArcballMove;
 			}
@@ -213,12 +213,12 @@ namespace Knot3.CreativeMode
 					camera.Target = new Vector3 (camera.ArcballTarget.X, camera.Target.Y, camera.ArcballTarget.Z);
 					camera.TargetDistance = camera.TargetDistance.Clamp (500, 10000);
 					camera.Position = camera.ArcballTarget + (camera.Position - camera.ArcballTarget).ArcBallMove (
-						mouseMove, camera.UpVector, camera.TargetVector
+						mouseMove, camera.UpVector, camera.TargetDirection
 					);
 					break;
 				// move the target vector
 				case InputAction.TargetMove:
-					camera.Target = camera.Target.MoveLinear (mouseMove, camera.UpVector, camera.TargetVector);
+					camera.Target = camera.Target.MoveLinear (mouseMove, camera.UpVector, camera.TargetDirection);
 					break;
 				}
 				CurrentInputAction = action;

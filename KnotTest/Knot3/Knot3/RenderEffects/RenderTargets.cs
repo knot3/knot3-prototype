@@ -41,7 +41,7 @@ namespace Knot3.RenderEffects
 		#endregion
 	}
 
-	public class RenderTargetCache
+	public sealed class RenderTargetCache
 	{
 		#region RenderTarget Cache
 

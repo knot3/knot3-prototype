@@ -16,7 +16,7 @@ using Knot3.Core;
 
 namespace Knot3.RenderEffects
 {
-	public class NoEffect : RenderEffect
+	public sealed class NoEffect : RenderEffect
 	{
 		public NoEffect (GameState state)
 			: base(state)

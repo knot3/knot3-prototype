@@ -4,145 +4,11 @@ using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Knot3.Utilities;
 
 namespace Knot3.KnotData
 {
-	public class Edge
-	{
-		#region Properties
-
-		public Vector3 Direction { get; private set; }
-
-		public Color Color { get; set; }
-
-		public int ID { get; private set; }
-
-		private static List<int> UsedIDs = new List<int> (); 
-
-		#endregion
-
-		#region Constructors
-
-		public Edge (int x, int y, int z)
-		{
-			Direction = new Vector3 (x, y, z);
-			Color = DefaultColor;
-			ID = RandomID ();
-		}
-
-		public Edge (Vector3 v)
-		{
-			Direction = v.PrimaryDirection ();
-			Color = DefaultColor;
-			ID = RandomID ();
-		}
-
-		#endregion
-
-		#region Operators
-
-		public static bool operator == (Edge a, Edge b)
-		{
-			// If both are null, or both are same instance, return true.
-			if (System.Object.ReferenceEquals (a, b)) {
-				return true;
-			}
-
-			// If one is null, but not both, return false.
-			if (((object)a == null) || ((object)b == null)) {
-				return false;
-			}
-
-			// Return true if the fields match:
-			return a.ID == b.ID;
-		}
-
-		public static bool operator != (Edge a, Edge b)
-		{
-			return !(a == b);
-		}
-		
-		public override bool Equals (object obj)
-		{
-			Edge other = obj as Edge;
-			return this.ID == other.ID;
-		}
-
-		public override int GetHashCode ()
-		{
-			return ID;
-		}
-
-		public override string ToString ()
-		{
-			return Direction.Print ();
-		}
-
-		#endregion
-
-		#region Helper Methods
-
-		private static Random r = new Random ();
-
-		private int RandomID ()
-		{
-			int id;
-			do {
-				id = r.Next () % 10000;
-			} while (UsedIDs.Contains(id));
-			UsedIDs.Add (id);
-			return id;
-		}
-
-		public static Color RandomColor ()
-		{
-			return Colors [r.Next () % Colors.Count];
-		}
-
-		public static Color RandomColor (GameTime gameTime)
-		{
-			return Colors [(int)gameTime.TotalGameTime.TotalSeconds % Colors.Count];
-		}
-
-		public static Edge RandomEdge ()
-		{
-			int i = r.Next () % 6;
-			return i == 0 ? Left : i == 1 ? Right : i == 2 ? Up : i == 3 ? Down : i == 4 ? Forward : Backward;
-		}
-
-		#endregion
-		
-		#region Static Properties
-		
-		public static List<Color> Colors = new List<Color> (){
-			Color.Red, Color.Green, Color.Blue, Color.Yellow, Color.Orange
-		};
-		public static Color DefaultColor = RandomColor ();
-
-		public static Edge Zero { get { return new Edge (0, 0, 0); } }
-
-		public static Edge UnitX { get { return new Edge (1, 0, 0); } }
-
-		public static Edge UnitY { get { return new Edge (0, 1, 0); } }
-
-		public static Edge UnitZ { get { return new Edge (0, 0, 1); } }
-
-		public static Edge Up { get { return new Edge (0, 1, 0); } }
-
-		public static Edge Down { get { return new Edge (0, -1, 0); } }
-
-		public static Edge Right { get { return new Edge (1, 0, 0); } }
-
-		public static Edge Left { get { return new Edge (-1, 0, 0); } }
-
-		public static Edge Forward { get { return new Edge (0, 0, -1); } }
-
-		public static Edge Backward { get { return new Edge (0, 0, 1); } }
-
-		#endregion
-	}
-
 	public class EdgeList
 	{
 		#region Properties
@@ -285,7 +151,7 @@ namespace Knot3.KnotData
 		public bool Move (IEnumerable<Edge> selectedEdges, Vector3 direction)
 		{
 			Console.WriteLine ("Move: selection=" + selectedEdges + ", direction=" + direction);
-			//Console.WriteLine ("Before Move => " + Edges);
+			Console.WriteLine ("Before Move => " + Edges);
 			foreach (Edge selectedEdge in SelectedEdges) {
 				Edges.Replace (selectedEdge, new Edge[] {
 					new Edge (direction),
@@ -294,9 +160,9 @@ namespace Knot3.KnotData
 				}
 				);
 			}
-			//Console.WriteLine ("After Move => " + Edges);
+			Console.WriteLine ("After Move => " + Edges);
 			Compact ();
-			//Console.WriteLine ("Compact => " + Edges);
+			Console.WriteLine ("Compact => " + Edges);
 			EdgesChanged (this);
 			return true;
 		}

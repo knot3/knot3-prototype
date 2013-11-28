@@ -51,9 +51,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Knot3\Program.cs" />
-    <Compile Include="Knot3\KnotData\Edges.cs" />
     <Compile Include="Knot3\KnotData\Knot.cs" />
-    <Compile Include="Knot3\KnotData\KnotFormat.cs" />
     <Compile Include="Knot3\RenderEffects\BlurEffect.cs" />
     <Compile Include="Knot3\RenderEffects\FadeEffect.cs" />
     <Compile Include="Knot3\RenderEffects\RenderEffect.cs" />
@@ -119,6 +117,10 @@
     <Compile Include="Knot3\GameObjects\IEdgeChangeListener.cs" />
     <Compile Include="Knot3\CreativeMode\KnotModeInput.cs" />
     <Compile Include="Knot3\GameObjects\MousePicker.cs" />
+    <Compile Include="Knot3\KnotData\EdgeList.cs" />
+    <Compile Include="Knot3\KnotData\Edge.cs" />
+    <Compile Include="Knot3\KnotData\KnotListFormat.cs" />
+    <Compile Include="Knot3\KnotData\EdgeListFormat.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />

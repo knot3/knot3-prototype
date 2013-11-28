@@ -35,6 +35,21 @@ namespace Knot3.GameObjects
 			Position = edges.ToNode (edgeA).Vector ();
 			Scale = 5f;
 		}
+
+		public override bool Equals (GameObjectInfo other)
+		{
+			if (other == null) 
+				return false;
+
+			if (other is NodeModelInfo) {
+				if (this.EdgeA == (other as NodeModelInfo).EdgeA && this.EdgeB == (other as NodeModelInfo).EdgeB && base.Equals (other))
+					return true;
+				else
+					return false;
+			} else {
+				return base.Equals (other);
+			}
+		}
 	}
 
 	public class NodeModel : GameModel

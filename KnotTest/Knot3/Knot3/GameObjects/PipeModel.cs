@@ -44,6 +44,21 @@ namespace Knot3.GameObjects
 			// a pipe is movable
 			IsMovable = true;
 		}
+
+		public override bool Equals (GameObjectInfo other)
+		{
+			if (other == null) 
+				return false;
+
+			if (other is PipeModelInfo) {
+				if (this.Edge == (other as PipeModelInfo).Edge && base.Equals (other))
+					return true;
+				else
+					return false;
+			} else {
+				return base.Equals (other);
+			}
+		}
 	}
 
 	public class PipeModel : GameModel

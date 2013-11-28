@@ -77,7 +77,7 @@ namespace Knot3.CreativeMode
 			
 			// load nodes
 			Node.Scale = 100;
-			Knot = Knot.DefaultKnot (new KnotFormat ());
+			Knot = Knot.DefaultKnot (new EdgeListFormat ());
 		}
 
 		public Knot Knot {

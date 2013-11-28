@@ -21,6 +21,14 @@ namespace Knot3.Utilities
 			}
 		}
 
+		private void RebuildIndex ()
+		{
+			indexOf.Clear ();
+			for (int i = 0; i < list.Count; ++i) {
+				indexOf [list [i]] = i;
+			}
+		}
+
 		private int WrapIndex (int i)
 		{
 			return (i + list.Count) % list.Count;
@@ -56,7 +64,7 @@ namespace Knot3.Utilities
 		{
 			list.Remove (elem);
 			list.Add (elem);
-			indexOf [elem] = list.Count - 1;
+			RebuildIndex ();
 		}
 
 		public void Remove (T[] elems)
@@ -65,18 +73,14 @@ namespace Knot3.Utilities
 				indexOf.Remove (elem);
 				list.Remove (elem);
 			}
-			for (int i = 0; i < list.Count; ++i) {
-				indexOf [list [i]] = i;
-			}
+			RebuildIndex ();
 		}
 
 		public void InsertAt (int i, T elem)
 		{
 			i = WrapIndex (i);
 			list.Insert (i, elem);
-			for (; i < list.Count; ++i) {
-				indexOf [list [i]] = i;
-			}
+			RebuildIndex ();
 		}
 
 		public void Replace (T find, T[] elem)
@@ -86,9 +90,7 @@ namespace Knot3.Utilities
 				indexOf.Remove (find);
 				list.Remove (find);
 				list.InsertRange (i, elem);
-				for (; i < list.Count; ++i) {
-					indexOf [list [i]] = i;
-				}
+				RebuildIndex ();
 			}
 		}
 

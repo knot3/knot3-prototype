@@ -12,16 +12,17 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
+
 using Knot3.Utilities;
 
 namespace Knot3.KnotData
 {
-	public class KnotFormat : IKnotFormat
+	public class KnotListFormat : IKnotFormat
 	{
 		// savegame files
-		public string[] FileExtensions { get { return new string[] {".knot", ".knt"}; } }
+		public string[] FileExtensions { get { return new string[] {".knot2", ".knt2"}; } }
 
-		public KnotFormat ()
+		public KnotListFormat ()
 		{
 		}
 
@@ -143,7 +144,7 @@ namespace Knot3.KnotData
 
 		private static void ParseLine (string line, out Node? node, out Color? color)
 		{
-			string[] parts = line.Split ('#');
+			string[] parts = line.Split (new char[] {'#',';'}, StringSplitOptions.RemoveEmptyEntries);
 			node = ParseNode (ParseIntegers (parts [0]));
 			if (node.HasValue && parts.Length == 2)
 				color = ParseColor (ParseIntegers (parts [1]));
@@ -171,7 +172,7 @@ namespace Knot3.KnotData
 
 		private static IEnumerable<int> ParseIntegers (string str)
 		{
-			string[] parts = str.Split (':');
+			string[] parts = str.Split (new char[] {':',','}, StringSplitOptions.RemoveEmptyEntries);
 			foreach (string s in parts) {
 				int i;
 				if (Int32.TryParse (s, out i)) {

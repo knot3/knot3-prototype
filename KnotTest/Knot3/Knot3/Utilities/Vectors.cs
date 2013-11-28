@@ -106,12 +106,14 @@ namespace Knot3.Utilities
 
 		public static Vector2 PrimaryDirection (this Vector2 v)
 		{
-			return Vector2.Normalize (v.PrimaryVector ());
+			Vector2 vector = v.PrimaryVector ();
+			return new Vector2 (Math.Sign (vector.X), Math.Sign (vector.Y));
 		}
 
 		public static Vector3 PrimaryDirection (this Vector3 v)
 		{
-			return Vector3.Normalize (v.PrimaryVector ());
+			Vector3 vector = v.PrimaryVector ();
+			return new Vector3 (Math.Sign (vector.X), Math.Sign (vector.Y), Math.Sign (vector.Z));
 		}
 
 		public static Vector3 PrimaryDirectionExcept (this Vector3 v, Vector3 wrongDirection)

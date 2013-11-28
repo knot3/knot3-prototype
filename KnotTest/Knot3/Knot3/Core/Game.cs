@@ -162,6 +162,7 @@ namespace Knot3.Core
 						graphics.PreferredBackBufferWidth = Game.DefaultSize.Width;
 						graphics.PreferredBackBufferHeight = Game.DefaultSize.Height;
 					}
+					graphics.ApplyChanges ();
 					graphics.ToggleFullScreen ();
 					graphics.ApplyChanges ();
 					isFullscreen = value;

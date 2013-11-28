@@ -34,7 +34,7 @@ namespace Knot3.CreativeMode
 		public LoadSavegameScreen (Core.Game game)
 			: base(game)
 		{
-			format = new KnotFormat ();
+			format = new EdgeListFormat ();
 			menu = new VerticalMenu (this, DisplayLayer.Menu);
 		}
 

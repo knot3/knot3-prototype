@@ -17,24 +17,70 @@ using Knot3.Utilities;
 
 namespace Knot3.Core
 {
+	/// <summary>
+	/// Ein GameStateComponent, der bei jedem Update die View-, World- und Projectionmatrizen auf Basis der 
+	/// aktuellen Kameraposition neu berechnet.
+	/// </summary>
 	public class Camera : GameStateComponent
 	{
+		/// <summary>
+		/// Gets the world matrix.
+		/// </summary>
+		/// <value>
+		/// The world matrix.
+		/// </value>
 		public Matrix WorldMatrix { get; private set; }
 
+		/// <summary>
+		/// Gets the view matrix.
+		/// </summary>
+		/// <value>
+		/// The view matrix.
+		/// </value>
 		public Matrix ViewMatrix { get; private set; }
 
+		/// <summary>
+		/// Gets the projection matrix.
+		/// </summary>
+		/// <value>
+		/// The projection matrix.
+		/// </value>
 		public Matrix ProjectionMatrix { get; private set; }
 
+		/// <summary>
+		/// Gets the default position.
+		/// </summary>
+		/// <value>
+		/// The default position.
+		/// </value>
 		public Vector3 DefaultPosition { get; private set; }
 
+		/// <summary>
+		/// Gets or sets the current camera position.
+		/// </summary>
+		/// <value>
+		/// The current camera position.
+		/// </value>
 		public Vector3 Position { get; set; }
 
+		/// <summary>
+		/// Gets or sets the current camera target.
+		/// </summary>
+		/// <value>
+		/// The current camera target.
+		/// </value>
 		public Vector3 Target { get; set; }
 
 		public Vector3 UpVector { get; private set; }
 
 		private float foV;
 
+		/// <summary>
+		/// Gets or sets the field of view.
+		/// </summary>
+		/// <value>
+		/// The field of view.
+		/// </value>
 		public float FoV {
 			get { return foV; }
 			set { foV = MathHelper.Clamp (value, 40, 100); }
@@ -46,6 +92,12 @@ namespace Knot3.Core
 		private float nearPlane;
 		private float farPlane;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Knot3.Core.Camera"/> class.
+		/// </summary>
+		/// <param name='state'>
+		/// Game State.
+		/// </param>
 		public Camera (GameState state)
 			: base(state, DisplayLayer.None)
 		{
@@ -81,6 +133,12 @@ namespace Knot3.Core
 			ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FoV), aspectRatio, nearPlane, farPlane);
 		}
 
+		/// <summary>
+		/// Gets or sets the distance between camera position and camera target.
+		/// </summary>
+		/// <value>
+		/// The target distance.
+		/// </value>
 		public float TargetDistance {
 			get {
 				Vector3 toTarget = Target - Position;
@@ -96,7 +154,13 @@ namespace Knot3.Core
 			}
 		}
 
-		public Vector3 TargetVector {
+		/// <summary>
+		/// Gets the normalized direction from the camera position to the camera target.
+		/// </summary>
+		/// <value>
+		/// The target direction.
+		/// </value>
+		public Vector3 TargetDirection {
 			get {
 				Vector3 toTarget = Target - Position;
 				toTarget.Normalize ();
@@ -104,6 +168,15 @@ namespace Knot3.Core
 			}
 		}
 
+		/// <summary>
+		/// Gets the mouse ray from the specified 2D mouse position.
+		/// </summary>
+		/// <returns>
+		/// The mouse ray.
+		/// </returns>
+		/// <param name='mouse'>
+		/// 2D Mouse position.
+		/// </param>
 		public Ray GetMouseRay (Vector2 mouse)
 		{
 			Viewport viewport = device.Viewport;
@@ -120,6 +193,12 @@ namespace Knot3.Core
 			return new Ray (nearPoint, direction);
 		}
 
+		/// <summary>
+		/// Gets the current arcball target's position.
+		/// </summary>
+		/// <value>
+		/// The current arcball target's position.
+		/// </value>
 		public Vector3 ArcballTarget {
 			get {
 				if (world.SelectedObject != null)

@@ -23,7 +23,7 @@ namespace Knot3.GameObjects
 	{
 		// cache
 		private Dictionary<GameModelInfo, GameModel> cache = new Dictionary<GameModelInfo, GameModel> ();
-
+		
 		public GameModel this [GameState state, GameModelInfo info] {
 			get {
 				if (cache.ContainsKey (info)) {
