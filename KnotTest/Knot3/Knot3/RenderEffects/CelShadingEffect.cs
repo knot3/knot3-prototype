@@ -42,7 +42,7 @@ namespace Knot3.RenderEffects
              */
 			celShader = state.LoadEffect ("CelShader");
 			celShader.Parameters ["LightDirection"].SetValue (lightDirection);
-			celMap = content.Load<Texture2D> ("CelMap");
+			celMap = state.content.Load<Texture2D> ("CelMap");
 			celShader.Parameters ["Color"].SetValue (Color.Green.ToVector4 ());
 			celShader.Parameters ["CelMap"].SetValue (celMap);
 
@@ -52,7 +52,7 @@ namespace Knot3.RenderEffects
 			outlineShader.Parameters ["Thickness"].SetValue (outlineThickness);
 			outlineShader.Parameters ["Threshold"].SetValue (outlineThreshold);
 			outlineShader.Parameters ["ScreenSize"].SetValue (
-                new Vector2 (viewport.Bounds.Width, viewport.Bounds.Height));
+                new Vector2 (state.viewport.Bounds.Width, state.viewport.Bounds.Height));
 		}
 
 		public Color Color {
@@ -82,12 +82,12 @@ namespace Knot3.RenderEffects
 
 		public override void DrawModel (GameModel model, GameTime gameTime)
 		{
-			lightDirection = new Vector4 (-Vector3.Cross (Vector3.Normalize (camera.TargetDirection), camera.UpVector), 1);
+			lightDirection = new Vector4 (-Vector3.Cross (Vector3.Normalize (state.camera.TargetDirection), state.camera.UpVector), 1);
 			celShader.Parameters ["LightDirection"].SetValue (lightDirection);
-			celShader.Parameters ["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
-			celShader.Parameters ["InverseWorld"].SetValue (Matrix.Invert (model.WorldMatrix * camera.WorldMatrix));
-			celShader.Parameters ["View"].SetValue (camera.ViewMatrix);
-			celShader.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
+			celShader.Parameters ["World"].SetValue (model.WorldMatrix * state.camera.WorldMatrix);
+			celShader.Parameters ["InverseWorld"].SetValue (Matrix.Invert (model.WorldMatrix * state.camera.WorldMatrix));
+			celShader.Parameters ["View"].SetValue (state.camera.ViewMatrix);
+			celShader.Parameters ["Projection"].SetValue (state.camera.ProjectionMatrix);
 			celShader.CurrentTechnique = celShader.Techniques ["ToonShader"];
 
 			if (model.BaseColor != Color.Transparent) {

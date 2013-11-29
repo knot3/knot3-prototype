@@ -220,7 +220,7 @@ namespace Knot3.KnotData
 			return c.R.ToString ("X2") + c.G.ToString ("X2") + c.B.ToString ("X2") + c.A.ToString ("X2");
 		}
 
-		public static Color DecodeColor (string hexString)
+		private static Color DecodeColor (string hexString)
 		{
 			if (hexString.StartsWith ("#"))
 				hexString = hexString.Substring (1);

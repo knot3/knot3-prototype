@@ -20,13 +20,14 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Ein Decorator für ein IGameObject, das ein freies Bewegen dieses Objekts im dreidimensionalen Raum ermöglicht.
 	/// </summary>
-	public class MovableGameObject : GameStateClass, IGameObject
+	public class MovableGameObject : IGameObject
 	{
+		private GameState state;
 		private IGameObject Obj;
 
 		public MovableGameObject (GameState state, IGameObject obj)
-			: base(state)
 		{
+			this.state = state;
 			Obj = obj;
 			Obj.Info.IsMovable = true;
 		}
@@ -43,7 +44,7 @@ namespace Knot3.GameObjects
 		{
 			Plane groundPlane = new Plane (
 				Info.Position, Info.Position + Vector3.Up,
-				Info.Position + Vector3.Normalize (Vector3.Cross (Vector3.Up, Info.Position - camera.Position))
+				Info.Position + Vector3.Normalize (Vector3.Cross (Vector3.Up, Info.Position - state.camera.Position))
 			);
 			//Console.WriteLine ("groundPlane=" + groundPlane);
 			return groundPlane;
@@ -51,18 +52,18 @@ namespace Knot3.GameObjects
 
 		protected Ray CurrentMouseRay ()
 		{
-			Ray ray = camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
+			Ray ray = state.camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
 			return ray;
 		}
 
 		protected Vector3? CurrentMousePosition (Ray ray, Plane groundPlane)
 		{
 			float? planeDistance = ray.Intersects (groundPlane);
-			float previousLength = (Info.Position - camera.Position).Length ();
+			float previousLength = (Info.Position - state.camera.Position).Length ();
 			if (planeDistance.HasValue) {
 				Vector3 planePosition = ray.Position + ray.Direction * planeDistance.Value;
-				float currentLength = (planePosition - camera.Position).Length ();
-				return camera.Position + (planePosition - camera.Position) * previousLength / currentLength;
+				float currentLength = (planePosition - state.camera.Position).Length ();
+				return state.camera.Position + (planePosition - state.camera.Position) * previousLength / currentLength;
 			} else {
 				return null;
 			}
@@ -71,10 +72,10 @@ namespace Knot3.GameObjects
 		public virtual void Update (GameTime gameTime)
 		{
 			// check whether is object is movable and whether it is selected
-			bool isSelected = world.SelectedObject == this || world.SelectedObject == Obj;
+			bool isSelected = state.world.SelectedObject == this || state.world.SelectedObject == Obj;
 			if (Info.IsVisible && Info.IsMovable && isSelected) {
 				// is SelectedObjectMove the current input action?
-				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
+				if (state.input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					Plane groundPlane = CurrentGroundPlane ();
 					Ray ray = CurrentMouseRay ();
 					Vector3? newPosition = CurrentMousePosition (ray, groundPlane);
@@ -108,20 +109,6 @@ namespace Knot3.GameObjects
 		public Vector3 Center ()
 		{
 			return Obj.Center ();
-		}
-
-		#endregion
-
-		#region Selection
-
-		public void OnSelected (GameTime gameTime)
-		{
-			Obj.OnSelected (gameTime);
-		}
-
-		public virtual void OnUnselected (GameTime gameTime)
-		{
-			Obj.OnUnselected (gameTime);
 		}
 
 		#endregion

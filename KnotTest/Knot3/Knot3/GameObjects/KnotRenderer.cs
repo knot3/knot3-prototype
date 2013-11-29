@@ -19,13 +19,15 @@ using Knot3.RenderEffects;
 
 namespace Knot3.GameObjects
 {
-	public abstract class KnotRenderer: GameStateClass, IEdgeChangeListener, IGameObject
+	public abstract class KnotRenderer: IEdgeChangeListener, IGameObject
 	{
+		protected GameState state;
+
 		public abstract dynamic Info { get; protected set; }
 
 		public KnotRenderer (GameState state)
-			: base(state)
 		{
+			this.state = state;
 		}
 
 		public abstract void OnEdgesChanged (EdgeList edges);
@@ -37,18 +39,6 @@ namespace Knot3.GameObjects
 		public abstract GameObjectDistance Intersects (Ray ray);
 
 		public abstract Vector3 Center ();
-
-		#region Selection
-
-		public virtual void OnSelected (GameTime gameTime)
-		{
-		}
-
-		public virtual void OnUnselected (GameTime gameTime)
-		{
-		}
-
-		#endregion
 	}
 }
 

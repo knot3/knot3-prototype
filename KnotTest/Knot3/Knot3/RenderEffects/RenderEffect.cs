@@ -58,17 +58,18 @@ namespace Knot3.RenderEffects
 	/// Rendereffekte erben von der abstrakte Klasse RenderEffect und halten ein RenderTarget2D-Objekt,
 	/// in das gezeichnet wird, während der RenderEffect aktiv ist.
 	/// </summary>
-	public abstract class RenderEffect : GameStateClass
+	public abstract class RenderEffect
 	{
+		protected GameState state;
 		private RenderTargetCache renderTarget;
 		private Color background;
 		private SpriteBatch spriteBatch;
 
 		public RenderEffect (GameState state)
-			: base(state)
 		{
-			renderTarget = new RenderTargetCache (device);
-			spriteBatch = new SpriteBatch (device);
+			this.state = state;
+			renderTarget = new RenderTargetCache (state.device);
+			spriteBatch = new SpriteBatch (state.device);
 			background = Color.Transparent;
 		}
 
@@ -83,21 +84,21 @@ namespace Knot3.RenderEffects
 		{
 			state.RenderEffects.Push (this);
 			RenderTarget2D current = RenderTarget;
-			device.PushRenderTarget (current);
-			device.Clear (background);
+			state.device.PushRenderTarget (current);
+			state.device.Clear (background);
 			this.background = background;
 
 			// set the stencil state
-			device.DepthStencilState = DepthStencilState.Default;
+			state.device.DepthStencilState = DepthStencilState.Default;
 			// Setting the other states isn't really necessary but good form
-			device.BlendState = BlendState.Opaque;
-			device.RasterizerState = RasterizerState.CullCounterClockwise;
-			device.SamplerStates [0] = SamplerState.LinearWrap;
+			state.device.BlendState = BlendState.Opaque;
+			state.device.RasterizerState = RasterizerState.CullCounterClockwise;
+			state.device.SamplerStates [0] = SamplerState.LinearWrap;
 		}
 
 		public virtual void End (GameTime gameTime)
 		{
-			device.PopRenderTarget ();
+			state.device.PopRenderTarget ();
 			spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 
 			Draw (spriteBatch, gameTime);
@@ -127,9 +128,9 @@ namespace Knot3.RenderEffects
 						}
 
 						// matrices
-						effect.World = model.WorldMatrix * camera.WorldMatrix;
-						effect.View = camera.ViewMatrix;
-						effect.Projection = camera.ProjectionMatrix;
+						effect.World = model.WorldMatrix * state.camera.WorldMatrix;
+						effect.View = state.camera.ViewMatrix;
+						effect.Projection = state.camera.ProjectionMatrix;
 
 						// colors
 						if (model.BaseColor != Color.Transparent) {

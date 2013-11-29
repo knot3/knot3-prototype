@@ -34,7 +34,7 @@ namespace Knot3.GameObjects
 			: base(state)
 		{
 			Info = info;
-			basicEffect = new BasicEffect (device);
+			basicEffect = new BasicEffect (state.device);
 		}
 
 		public override void Update (GameTime gameTime)
@@ -50,9 +50,9 @@ namespace Knot3.GameObjects
 
 		public override void Draw (GameTime gameTime)
 		{
-			basicEffect.World = camera.WorldMatrix;
-			basicEffect.View = camera.ViewMatrix;
-			basicEffect.Projection = camera.ProjectionMatrix;
+			basicEffect.World = state.camera.WorldMatrix;
+			basicEffect.View = state.camera.ViewMatrix;
+			basicEffect.Projection = state.camera.ProjectionMatrix;
 
 			if (edges.Count > 0) {
 				DrawRoundedLines ();
@@ -90,7 +90,7 @@ namespace Knot3.GameObjects
 				vertices [4 * n + 3].Color = Color.Black;
 			}
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
-			device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, edges.Count * 2); 
+			state.device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, edges.Count * 2); 
 		}
 
 		#endregion

@@ -49,9 +49,11 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Eine frei in der Spielwelt liegende Textur, die auf ein Rechteck gezeichnet wird.
 	/// </summary>
-	public class TexturedRectangle : GameStateClass, IGameObject
+	public class TexturedRectangle : IGameObject
 	{
 		#region Attributes and Properties
+
+		protected GameState state;
 
 		public dynamic Info { get; private set; }
 
@@ -70,13 +72,13 @@ namespace Knot3.GameObjects
 		#region Constructors
 
 		public TexturedRectangle (GameState state, TexturedRectangleInfo info)
-			: base(state)
 		{
+			this.state = state;
 			Info = info;
 			SetPosition (Info.Position);
 
-			basicEffect = new BasicEffect (device);
-			texture = Textures.LoadTexture (content, info.Texturename);
+			basicEffect = new BasicEffect (state.device);
+			texture = Textures.LoadTexture (state.content, info.Texturename);
 			if (texture != null) {
 				FillVertices ();
 			}
@@ -97,9 +99,9 @@ namespace Knot3.GameObjects
 		public void Draw (GameTime gameTime)
 		{
 			if (Info.IsVisible) {
-				basicEffect.World = camera.WorldMatrix;
-				basicEffect.View = camera.ViewMatrix;
-				basicEffect.Projection = camera.ProjectionMatrix;
+				basicEffect.World = state.camera.WorldMatrix;
+				basicEffect.View = state.camera.ViewMatrix;
+				basicEffect.Projection = state.camera.ProjectionMatrix;
 
 				basicEffect.AmbientLightColor = new Vector3 (0.8f, 0.8f, 0.8f);
 				//effect.LightingEnabled = true;
@@ -114,7 +116,7 @@ namespace Knot3.GameObjects
 				foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes) {
 					pass.Apply ();
 
-					device.DrawUserIndexedPrimitives<VertexPositionNormalTexture> (
+					state.device.DrawUserIndexedPrimitives<VertexPositionNormalTexture> (
                     PrimitiveType.TriangleList, Vertices, 0, Vertices.Length, Indexes, 0, Indexes.Length / 3
 					);
 				}
@@ -213,18 +215,6 @@ namespace Knot3.GameObjects
 		{
 			return LowerLeft + (UpperRight - LowerLeft) / 2;
 		}
-
-		#region Selection
-
-		public virtual void OnSelected (GameTime gameTime)
-		{
-		}
-
-		public virtual void OnUnselected (GameTime gameTime)
-		{
-		}
-
-		#endregion
 	}
 }
 

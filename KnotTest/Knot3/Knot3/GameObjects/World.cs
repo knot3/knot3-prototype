@@ -59,13 +59,7 @@ namespace Knot3.GameObjects
 		public void SelectObject (IGameObject obj, GameTime gameTime)
 		{
 			if (SelectedObject != obj) {
-				if (SelectedObject != null) {
-					SelectedObject.OnUnselected (gameTime);
-				}
-				SelectedObject = obj; 
-				if (SelectedObject != null) {
-					SelectedObject.OnSelected (gameTime);
-				}
+				SelectedObject = obj;
 			}
 		}
 

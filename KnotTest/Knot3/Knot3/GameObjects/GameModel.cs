@@ -49,9 +49,11 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Ein GameModel ist ein IGameObject, das ein 3D-Modell zeichnet.
 	/// </summary>
-	public class GameModel : GameStateClass, IGameObject
+	public class GameModel : IGameObject
 	{
 		#region Attributes and Properties
+
+		protected GameState state;
 
 		public dynamic Info { get; private set; }
 
@@ -67,8 +69,8 @@ namespace Knot3.GameObjects
 		#region Constructors
 
 		public GameModel (GameState state, GameModelInfo info)
-			: base(state)
 		{
+			this.state = state;
 			Info = info;
 
 			// colors
@@ -126,18 +128,6 @@ namespace Knot3.GameObjects
 			return center / Info.Scale + Info.Position;
 		}
 		
-		#endregion
-
-		#region Selection
-
-		public virtual void OnSelected (GameTime gameTime)
-		{
-		}
-
-		public virtual void OnUnselected (GameTime gameTime)
-		{
-		}
-
 		#endregion
 
 		#region Matrix Cache

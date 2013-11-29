@@ -169,8 +169,6 @@
     <Compile Include="Knot3\Core\StartScreen.cs" />
     <Compile Include="Knot3\Core\Input.cs" />
     <Compile Include="Knot3\GameObjects\MovableGameObject.cs" />
-    <Compile Include="Knot3\Core\GameStateClass.cs" />
-    <Compile Include="Knot3\Core\IGameStateClass.cs" />
     <Compile Include="Knot3\Core\IMouseEventListener.cs" />
     <Compile Include="Knot3\Core\IKeyEventListener.cs" />
     <Compile Include="Knot3\GameObjects\IEdgeChangeListener.cs" />

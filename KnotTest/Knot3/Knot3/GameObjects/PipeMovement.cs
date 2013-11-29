@@ -20,8 +20,10 @@ using System.Collections;
 
 namespace Knot3.GameObjects
 {
-	public class PipeMovement : GameStateClass, IGameObject, IEnumerable<IGameObject>
+	public class PipeMovement : IGameObject, IEnumerable<IGameObject>
 	{
+		private GameState state;
+
 		public dynamic Info { get; private set; }
 
 		public Knot Knot { get; set; }
@@ -30,8 +32,8 @@ namespace Knot3.GameObjects
 		private List<ShadowGameObject> shadowObjects;
 
 		public PipeMovement (GameState state, GameObjectInfo info)
-			: base(state)
 		{
+			this.state = state;
 			Info = info;
 			shadowObjects = new List<ShadowGameObject> ();
 		}
@@ -39,24 +41,24 @@ namespace Knot3.GameObjects
 		public void Update (GameTime gameTime)
 		{
 			// check whether the hovered object is a pipe
-			if (world.SelectedObject is PipeModel) {
-				PipeModel pipe = world.SelectedObject as PipeModel;
-				Vector3 screenLocation = viewport.Project (
-					pipe.Center (), camera.ProjectionMatrix, camera.ViewMatrix, camera.WorldMatrix
+			if (state.world.SelectedObject is PipeModel) {
+				PipeModel pipe = state.world.SelectedObject as PipeModel;
+				Vector3 screenLocation = state.viewport.Project (
+					pipe.Center (), state.camera.ProjectionMatrix, state.camera.ViewMatrix, state.camera.WorldMatrix
 				);
-				Vector3 currentMousePosition = viewport.Unproject (
+				Vector3 currentMousePosition = state.viewport.Unproject (
 					new Vector3 (Core.Input.MouseState.ToVector2 (), screenLocation.Z),
-					camera.ProjectionMatrix, camera.ViewMatrix, Matrix.Identity
+					state.camera.ProjectionMatrix, state.camera.ViewMatrix, Matrix.Identity
 				);
 
 				// is SelectedObjectMove the current input action?
-				if (input.CurrentInputAction == InputAction.SelectedObjectShadowMove) {
+				if (state.input.CurrentInputAction == InputAction.SelectedObjectShadowMove) {
 					if (previousMousePosition == Vector3.Zero) {
 						previousMousePosition = currentMousePosition;
 						CreateShadowPipes ();
 					}
 					MoveShadowPipes (currentMousePosition);
-				} else if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
+				} else if (state.input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					MovePipes (currentMousePosition);
 				} else {
 					previousMousePosition = Vector3.Zero;
@@ -68,7 +70,7 @@ namespace Knot3.GameObjects
 		private void CreateShadowPipes ()
 		{
 			shadowObjects.Clear ();
-			foreach (IGameObject container in world.Objects) {
+			foreach (IGameObject container in state.world.Objects) {
 				if (container is IEnumerable<IGameObject>) {
 					foreach (IGameObject obj in (container as IEnumerable<IGameObject>)) {
 						// Console.WriteLine ("CreateShadowPipes: " + obj);
@@ -157,29 +159,18 @@ namespace Knot3.GameObjects
 		}
 
 		#endregion
-
-		#region Shadow Objects Selection
-
-		public void OnSelected (GameTime gameTime)
-		{
-		}
-
-		public virtual void OnUnselected (GameTime gameTime)
-		{
-		}
-
-		#endregion
 	}
 	
-	public class ShadowGameObject : GameStateClass, IGameObject
+	public class ShadowGameObject : IGameObject
 	{
+		protected GameState state;
 		private IGameObject Obj;
 
 		public dynamic Info { get; private set; }
 
 		public ShadowGameObject (GameState state, IGameObject obj)
-			: base(state)
 		{
+			this.state = state;
 			Info = new GameObjectInfo ();
 			Obj = obj;
 			Info.IsVisible = true;
@@ -234,18 +225,6 @@ namespace Knot3.GameObjects
 		public Vector3 Center ()
 		{
 			return Obj.Center ();
-		}
-
-		#endregion
-
-		#region Selection
-
-		public void OnSelected (GameTime gameTime)
-		{
-		}
-
-		public virtual void OnUnselected (GameTime gameTime)
-		{
 		}
 
 		#endregion

@@ -53,7 +53,7 @@ namespace Knot3.Core
 		}
 
 		/// <summary>
-		/// Gets or sets the input handler for this game state.
+		/// Gets the input handler for this game state.
 		/// </summary>
 		/// <value>
 		/// The input handler.
@@ -61,7 +61,7 @@ namespace Knot3.Core
 		public Input input { get; protected set; }
 
 		/// <summary>
-		/// Gets or sets the camera for this game state.
+		/// Gets the camera for this game state.
 		/// </summary>
 		/// <value>
 		/// The camera.
@@ -69,7 +69,7 @@ namespace Knot3.Core
 		public Camera camera { get; protected set; }
 
 		/// <summary>
-		/// Gets or sets the game world for this game state.
+		/// Gets the game world for this game state.
 		/// </summary>
 		/// <value>
 		/// The game world.

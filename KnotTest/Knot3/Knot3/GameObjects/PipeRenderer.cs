@@ -107,7 +107,7 @@ namespace Knot3.GameObjects
 		public override GameObjectDistance Intersects (Ray ray)
 		{
 			GameObjectDistance nearest = null;
-			if (!input.GrabMouseMovement) {
+			if (!state.input.GrabMouseMovement) {
 				foreach (PipeModel pipe in pipes) {
 					GameObjectDistance intersection = pipe.Intersects (ray);
 					if (intersection != null) {

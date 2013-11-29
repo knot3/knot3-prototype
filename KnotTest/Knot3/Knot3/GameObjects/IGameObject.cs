@@ -24,10 +24,6 @@ namespace Knot3.GameObjects
 	{
 		dynamic Info { get; }
 
-		void OnSelected (GameTime gameTime);
-
-		void OnUnselected (GameTime gameTime);
-
 		void Draw (GameTime gameTime);
 
 		void Update (GameTime gameTime);
