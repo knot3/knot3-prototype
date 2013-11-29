@@ -16,10 +16,11 @@ using Knot3.Utilities;
 using Knot3.KnotData;
 using Knot3.RenderEffects;
 using Knot3.Core;
+using System.Collections;
 
 namespace Knot3.GameObjects
 {
-	public class PipeMovement : GameStateComponent, IGameObject, IGameObjectContainer
+	public class PipeMovement : GameStateClass, IGameObject, IEnumerable<IGameObject>
 	{
 		public dynamic Info { get; private set; }
 
@@ -29,13 +30,13 @@ namespace Knot3.GameObjects
 		private List<ShadowGameObject> shadowObjects;
 
 		public PipeMovement (GameState state, GameObjectInfo info)
-			: base(state, DisplayLayer.None)
+			: base(state)
 		{
 			Info = info;
 			shadowObjects = new List<ShadowGameObject> ();
 		}
 
-		public override void Update (GameTime gameTime)
+		public void Update (GameTime gameTime)
 		{
 			// check whether the hovered object is a pipe
 			if (world.SelectedObject is PipeModel) {
@@ -68,8 +69,8 @@ namespace Knot3.GameObjects
 		{
 			shadowObjects.Clear ();
 			foreach (IGameObject container in world.Objects) {
-				if (container is IGameObjectContainer) {
-					foreach (IGameObject obj in (container as IGameObjectContainer).SubGameObjects()) {
+				if (container is IEnumerable<IGameObject>) {
+					foreach (IGameObject obj in (container as IEnumerable<IGameObject>)) {
 						// Console.WriteLine ("CreateShadowPipes: " + obj);
 						if (obj is PipeModel && Knot.Edges.SelectedEdges.Contains (obj.Info.Edge)) {
 							shadowObjects.Add (new ShadowGameModel (state, obj as GameModel));
@@ -129,12 +130,18 @@ namespace Knot3.GameObjects
 				shadowObj.Draw (gameTime);
 			}
 		}
-		
-		public IEnumerable<IGameObject> SubGameObjects ()
+
+		public IEnumerator<IGameObject> GetEnumerator ()
 		{
 			foreach (IGameObject shadowObj in shadowObjects) {
 				yield return shadowObj;
 			}
+		}
+
+		// Explicit interface implementation for nongeneric interface
+		IEnumerator IEnumerable.GetEnumerator ()
+		{
+			return GetEnumerator (); // Just return the generic version
 		}
 
 		#region Shadow Objects Intersection

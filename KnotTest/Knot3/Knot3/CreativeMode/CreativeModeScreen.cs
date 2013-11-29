@@ -171,7 +171,7 @@ namespace Knot3.CreativeMode
 		public override void Activate (GameTime gameTime)
 		{
 			base.Activate (gameTime);
-			AddGameComponents (gameTime, camera, input, overlay, pointer, world, picker, movement);
+			AddGameComponents (gameTime, camera, input, overlay, pointer, world, picker);
 		}
 
 		public override void Unload ()

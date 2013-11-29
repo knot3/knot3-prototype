@@ -16,6 +16,7 @@ using Knot3.Core;
 using Knot3.Utilities;
 using Knot3.RenderEffects;
 using Knot3.Settings;
+using System.Collections;
 
 namespace Knot3.GameObjects
 {
@@ -23,7 +24,7 @@ namespace Knot3.GameObjects
 	/// Eine Liste von Spielobjekten (Interface IGameObject), die in einer 3D-Welt gezeichnet werden. Ruft die Update()-
 	/// und Draw()-Methoden der Spielobjekte auf.
 	/// </summary>
-	public class World : DrawableGameStateComponent, IGameObjectContainer
+	public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
 	{
 		// graphics-related classes
 		private List<RenderEffect> knotRenderEffects;
@@ -150,11 +151,17 @@ namespace Knot3.GameObjects
 			floor.Info.IsVisible = Options.Default ["video", "debug-floor", false];
 		}
 		
-		public IEnumerable<IGameObject> SubGameObjects ()
+		public IEnumerator<IGameObject> GetEnumerator ()
 		{
 			foreach (IGameObject obj in Objects) {
 				yield return obj;
 			}
+		}
+
+		// Explicit interface implementation for nongeneric interface
+		IEnumerator IEnumerable.GetEnumerator ()
+		{
+			return GetEnumerator (); // Just return the generic version
 		}
 	}
 	

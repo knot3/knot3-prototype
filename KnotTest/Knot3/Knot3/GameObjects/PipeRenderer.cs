@@ -16,6 +16,7 @@ using Knot3.Core;
 using Knot3.Utilities;
 using Knot3.KnotData;
 using Knot3.RenderEffects;
+using System.Collections;
 
 namespace Knot3.GameObjects
 {
@@ -23,9 +24,9 @@ namespace Knot3.GameObjects
 	/// Verwaltet eine Liste von Spielobjekten der Klassen PipeModel (Röhren) und NodeModel (Knotenpunkt)
 	/// für ein gegebenes KnotData.Knot-Objekt und zeichnet diese über die World-Klasse.
 	/// </summary>
-	public class PipeRenderer : GameStateClass, IEdgeChangeListener, IGameObject, IGameObjectContainer
+	public class PipeRenderer : KnotRenderer, IEnumerable<GameModel>
 	{
-		public dynamic Info { get; private set; }
+		public override dynamic Info { get; protected set; }
 
 		// pipes and knots
 		private List<PipeModel> pipes;
@@ -43,7 +44,7 @@ namespace Knot3.GameObjects
 			knotFactory = new NodeModelFactory ();
 		}
 
-		public void Update (GameTime gameTime)
+		public override void Update (GameTime gameTime)
 		{
 			for (int i = 0; i < pipes.Count; ++i) {
 				pipes [i].Update (gameTime);
@@ -53,7 +54,7 @@ namespace Knot3.GameObjects
 			}
 		}
 
-		public void OnEdgesChanged (EdgeList edges)
+		public override void OnEdgesChanged (EdgeList edges)
 		{
 			pipes.Clear ();
 			for (int n = 0; n < edges.Count; n++) {
@@ -71,7 +72,7 @@ namespace Knot3.GameObjects
 			}
 		}
 		
-		public IEnumerable<IGameObject> SubGameObjects ()
+		public IEnumerator<GameModel> GetEnumerator ()
 		{
 			foreach (PipeModel pipe in pipes) {
 				yield return pipe;
@@ -81,9 +82,15 @@ namespace Knot3.GameObjects
 			}
 		}
 
+		// Explicit interface implementation for nongeneric interface
+		IEnumerator IEnumerable.GetEnumerator ()
+		{
+			return GetEnumerator (); // Just return the generic version
+		}
+
 		#region Draw
 		
-		public void Draw (GameTime gameTime)
+		public override void Draw (GameTime gameTime)
 		{
 			foreach (PipeModel pipe in pipes) {
 				pipe.Draw (gameTime);
@@ -97,7 +104,7 @@ namespace Knot3.GameObjects
 
 		#region Intersection
 
-		public GameObjectDistance Intersects (Ray ray)
+		public override GameObjectDistance Intersects (Ray ray)
 		{
 			GameObjectDistance nearest = null;
 			if (!input.GrabMouseMovement) {
@@ -113,21 +120,9 @@ namespace Knot3.GameObjects
 			return nearest;
 		}
 
-		public Vector3 Center ()
+		public override Vector3 Center ()
 		{
 			return Info.Position;
-		}
-
-		#endregion
-
-		#region Selection
-
-		public virtual void OnSelected (GameTime gameTime)
-		{
-		}
-
-		public virtual void OnUnselected (GameTime gameTime)
-		{
 		}
 
 		#endregion

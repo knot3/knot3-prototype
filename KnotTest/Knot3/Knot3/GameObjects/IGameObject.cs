@@ -20,7 +20,7 @@ namespace Knot3.GameObjects
 	/// Ein IGameObject ist ein Objekt, zum Beispiel ein 3D-Modell (Klasse GameModel),
 	/// das in der 3D-Welt (Klasse World) gezeichnet wird.
 	/// </summary>
-	public interface IGameObject : IGameStateClass
+	public interface IGameObject
 	{
 		dynamic Info { get; }
 

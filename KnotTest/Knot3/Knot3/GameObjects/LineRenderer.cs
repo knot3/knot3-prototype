@@ -20,9 +20,9 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Zeichnet die Kanten eines gegebenen KnotData.Knot-Objekts als einfache Linien über die World-Klasse.
 	/// </summary>
-	public class LineRenderer : GameStateClass, IEdgeChangeListener, IGameObject
+	public class LineRenderer : KnotRenderer
 	{
-		public dynamic Info { get; private set; }
+		public override dynamic Info { get; protected set; }
 
 		// graphic stuff
 		private BasicEffect basicEffect;
@@ -37,18 +37,18 @@ namespace Knot3.GameObjects
 			basicEffect = new BasicEffect (device);
 		}
 
-		public void Update (GameTime gameTime)
+		public override void Update (GameTime gameTime)
 		{
 		}
 
-		public void OnEdgesChanged (EdgeList edges)
+		public override void OnEdgesChanged (EdgeList edges)
 		{
 			this.edges = edges;
 		}
 
 		#region Draw
 
-		public void Draw (GameTime gameTime)
+		public override void Draw (GameTime gameTime)
 		{
 			basicEffect.World = camera.WorldMatrix;
 			basicEffect.View = camera.ViewMatrix;
@@ -97,26 +97,14 @@ namespace Knot3.GameObjects
 
 		#region Intersection
 
-		public GameObjectDistance Intersects (Ray ray)
+		public override GameObjectDistance Intersects (Ray ray)
 		{
 			return null;
 		}
 
-		public Vector3 Center ()
+		public override Vector3 Center ()
 		{
 			return Info.Position;
-		}
-
-		#endregion
-
-		#region Selection
-
-		public virtual void OnSelected (GameTime gameTime)
-		{
-		}
-
-		public virtual void OnUnselected (GameTime gameTime)
-		{
 		}
 
 		#endregion
