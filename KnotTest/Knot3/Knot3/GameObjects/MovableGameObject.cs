@@ -45,7 +45,7 @@ namespace Knot3.GameObjects
 				Info.Position, Info.Position + Vector3.Up,
 				Info.Position + Vector3.Normalize (Vector3.Cross (Vector3.Up, Info.Position - camera.Position))
 			);
-			Console.WriteLine ("groundPlane=" + groundPlane);
+			//Console.WriteLine ("groundPlane=" + groundPlane);
 			return groundPlane;
 		}
 

@@ -131,45 +131,28 @@ namespace Knot3.KnotData
 		private static void ParseLines (List<string> lines, EdgeList edges)
 		{
 			for (int i = 0; i < lines.Count(); ++i) {
-				Vector3? vector;
-				Color? color;
-				ParseLine (lines [i], out vector, out color);
-				if (vector.HasValue) {
-					Edge edge = new Edge (vector.Value);
-					if (color.HasValue)
-						edge.Color = color.Value;
-					Console.WriteLine(i+"="+vector.Value.X + "," + vector.Value.Y + "," + vector.Value.Z + ";" + color.Value.R + "," + color.Value.G + "," + color.Value.B);
+				Edge edge;
+				Color color;
+				if (ParseLine (lines [i], out edge, out color)) {
+					Console.WriteLine (lines [i] + ": edge=" + edge + ", color=" + color);
+					edge.Color = color;
 					edges.Add (edge);
 				}
 			}
 		}
 
-		private static void ParseLine (string line, out Vector3? vector, out Color? color)
+		private static bool ParseLine (string line, out Edge edge, out Color color)
 		{
-			string[] parts = line.Split (new char[] {'#',';'}, StringSplitOptions.RemoveEmptyEntries);
-			vector = ParseVector3 (ParseIntegers (parts [0]));
-			if (vector.HasValue && parts.Length == 2)
-				color = ParseColor (ParseIntegers (parts [1]));
-			else
+			try {
+				edge = DecodeEdge (line [0]);
+				color = DecodeColor (line.Substring (1, 8));
+				return true;
+			} catch (FormatException ex) {
+				Console.WriteLine (ex.ToString ());
+				edge = null;
 				color = Edge.RandomColor ();
-		}
-
-		private static Vector3? ParseVector3 (IEnumerable<int> values)
-		{
-			int[] array = values.ToArray ();
-			if (array.Count () == 3)
-				return new Vector3 (array [0], array [1], array [2]);
-			else
-				return null;
-		}
-
-		private static Color? ParseColor (IEnumerable<int> values)
-		{
-			int[] array = values.ToArray ();
-			if (array.Count () == 3)
-				return new Color (array [0], array [1], array [2]);
-			else
-				return null;
+				return false;
+			}
 		}
 
 		private static IEnumerable<int> ParseIntegers (string str)
@@ -188,10 +171,74 @@ namespace Knot3.KnotData
 			yield return knot.Info.Name;
 			knot.Edges.Compact ();
 			for (int i = 0; i < knot.Edges.Count; ++i) {
-				Vector3 direction = knot.Edges [i].Direction;
+				Edge edge = knot.Edges [i];
 				Color color = knot.Edges [i].Color;
-				yield return direction.X + "," + direction.Y + "," + direction.Z + ";" + color.R + "," + color.G + "," + color.B;
+				yield return EncodeEdge (edge) + EncodeColor (color);
 			}
+		}
+
+		private static Edge DecodeEdge (char c)
+		{
+			switch (c) {
+			case 'X':
+				return Edge.Right;
+			case 'x':
+				return Edge.Left;
+			case 'Y':
+				return Edge.Up;
+			case 'y':
+				return Edge.Down;
+			case 'Z':
+				return Edge.Backward;
+			case 'z':
+				return Edge.Forward;
+			default:
+				throw new FormatException ("Failed to decode Edge!");
+			}
+		}
+
+		private static char EncodeEdge (Edge edge)
+		{
+			if (edge.Direction == Vector3.Right)
+				return 'X';
+			else if (edge.Direction == Vector3.Left)
+				return  'x';
+			else if (edge.Direction == Vector3.Up)
+				return  'Y';
+			else if (edge.Direction == Vector3.Down)
+				return  'y';
+			else if (edge.Direction == Vector3.Backward)
+				return  'Z';
+			else if (edge.Direction == Vector3.Forward)
+				return  'z';
+			else
+				throw new FormatException ("Failed to encode Edge!");
+		}
+
+		private static String EncodeColor (Color c)
+		{
+			return c.R.ToString ("X2") + c.G.ToString ("X2") + c.B.ToString ("X2") + c.A.ToString ("X2");
+		}
+
+		public static Color DecodeColor (string hexString)
+		{
+			if (hexString.StartsWith ("#"))
+				hexString = hexString.Substring (1);
+			uint hex = uint.Parse (hexString, System.Globalization.NumberStyles.HexNumber);
+			Color color = Color.White;
+			if (hexString.Length == 8) {
+				color.R = (byte)(hex >> 24);
+				color.G = (byte)(hex >> 16);
+				color.B = (byte)(hex >> 8);
+				color.A = (byte)(hex);
+			} else if (hexString.Length == 6) {
+				color.R = (byte)(hex >> 16);
+				color.G = (byte)(hex >> 8);
+				color.B = (byte)(hex);
+			} else {
+				throw new FormatException ("Invald hex representation of an ARGB or RGB color value.");
+			}
+			return color;
 		}
 	}
 }
