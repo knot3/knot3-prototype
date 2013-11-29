@@ -51,18 +51,18 @@ namespace Knot3.GameObjects
 
 		protected Ray CurrentMouseRay ()
 		{
-			Ray ray = Obj.camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
+			Ray ray = camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
 			return ray;
 		}
 
 		protected Vector3? CurrentMousePosition (Ray ray, Plane groundPlane)
 		{
 			float? planeDistance = ray.Intersects (groundPlane);
-			float previousLength = (Info.Position - Obj.camera.Position).Length ();
+			float previousLength = (Info.Position - camera.Position).Length ();
 			if (planeDistance.HasValue) {
 				Vector3 planePosition = ray.Position + ray.Direction * planeDistance.Value;
-				float currentLength = (planePosition - Obj.camera.Position).Length ();
-				return Obj.camera.Position + (planePosition - Obj.camera.Position) * previousLength / currentLength;
+				float currentLength = (planePosition - camera.Position).Length ();
+				return camera.Position + (planePosition - camera.Position) * previousLength / currentLength;
 			} else {
 				return null;
 			}
@@ -71,10 +71,10 @@ namespace Knot3.GameObjects
 		public virtual void Update (GameTime gameTime)
 		{
 			// check whether is object is movable and whether it is selected
-			bool isSelected = Obj.world.SelectedObject == this || Obj.world.SelectedObject == Obj;
+			bool isSelected = world.SelectedObject == this || world.SelectedObject == Obj;
 			if (Info.IsVisible && Info.IsMovable && isSelected) {
 				// is SelectedObjectMove the current input action?
-				if (Obj.input.CurrentInputAction == InputAction.SelectedObjectMove) {
+				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					Plane groundPlane = CurrentGroundPlane ();
 					Ray ray = CurrentMouseRay ();
 					Vector3? newPosition = CurrentMousePosition (ray, groundPlane);
