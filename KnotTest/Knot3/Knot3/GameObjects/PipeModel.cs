@@ -15,7 +15,6 @@ using Microsoft.Xna.Framework.Storage;
 using Knot3.Utilities;
 using Knot3.KnotData;
 using Knot3.RenderEffects;
-
 using Knot3.Core;
 
 namespace Knot3.GameObjects
@@ -108,8 +107,8 @@ namespace Knot3.GameObjects
 				if (intensity < 0) {
 					intensity = 0 - intensity;
 				}
-				HighlightIntensity = intensity;
-				HighlightColor = Color.Black;
+				HighlightIntensity = intensity * 0.9f;
+				HighlightColor = Color.White;
 			} else if (world.SelectedObject == this) {
 				HighlightIntensity = 0.5f;
 				HighlightColor = Color.White;
@@ -119,8 +118,6 @@ namespace Knot3.GameObjects
 
 			base.Draw (gameTime);
 		}
-
-		private Vector3 previousMousePosition = Vector3.Zero;
 
 		public override void Update (GameTime gameTime)
 		{
@@ -151,17 +148,6 @@ namespace Knot3.GameObjects
 						Console.WriteLine (exp.ToString ());
 					}
 				}
-
-				// is SelectedObjectMove the current input action?
-				if (input.CurrentInputAction == InputAction.SelectedObjectMove) {
-					if (previousMousePosition == Vector3.Zero) {
-						previousMousePosition = device.Viewport.Unproject (new Vector3 (Core.Input.MouseState.ToVector2 (), 1f),
-								camera.ProjectionMatrix, camera.ViewMatrix, Matrix.Identity);
-					}
-					Move ();
-				} else {
-					previousMousePosition = Vector3.Zero;
-				}
 			}
 
 			// check whether this edge is one of the selected edges
@@ -177,30 +163,6 @@ namespace Knot3.GameObjects
 			}
 
 			base.Update (gameTime);
-		}
-
-		private void Move ()
-		{
-			Vector3 currentMousePosition = device.Viewport.Unproject (
-					new Vector3 (Core.Input.MouseState.ToVector2 (), 1f),
-					camera.ProjectionMatrix, camera.ViewMatrix, Matrix.Identity
-			);
-			Vector3 mouseMove = currentMousePosition - previousMousePosition;
-
-			if (mouseMove != Vector3.Zero) {
-				//Console.WriteLine ("mouseMove=" + mouseMove);
-				Vector3 direction3D = mouseMove.PrimaryDirection ();
-				if (mouseMove.PrimaryVector ().Length ().Abs () > 50) {
-					try {
-						Info.Edges.SelectEdge (Info.Edge, true);
-						Info.Edges.Move (Info.Edges.SelectedEdges, direction3D);
-						Info.Edges.SelectEdge ();
-						previousMousePosition = currentMousePosition;
-					} catch (ArgumentOutOfRangeException exp) {
-						Console.WriteLine (exp.ToString ());
-					}
-				}
-			}
 		}
 
 		public override GameObjectDistance Intersects (Ray ray)

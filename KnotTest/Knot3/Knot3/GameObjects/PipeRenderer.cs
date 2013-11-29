@@ -23,7 +23,7 @@ namespace Knot3.GameObjects
 	/// Verwaltet eine Liste von Spielobjekten der Klassen PipeModel (Röhren) und NodeModel (Knotenpunkt)
 	/// für ein gegebenes KnotData.Knot-Objekt und zeichnet diese über die World-Klasse.
 	/// </summary>
-	public class PipeRenderer : GameStateClass, IEdgeChangeListener, IGameObject
+	public class PipeRenderer : GameStateClass, IEdgeChangeListener, IGameObject, IGameObjectContainer
 	{
 		public dynamic Info { get; private set; }
 
@@ -57,7 +57,7 @@ namespace Knot3.GameObjects
 		{
 			pipes.Clear ();
 			for (int n = 0; n < edges.Count; n++) {
-				PipeModelInfo info = new PipeModelInfo(edges, edges [n], Info.Position);
+				PipeModelInfo info = new PipeModelInfo (edges, edges [n], Info.Position);
 				PipeModel pipe = pipeFactory [state, info] as PipeModel;
 				// pipe.OnDataChange = () => UpdatePipes (edges);
 				pipes.Add (pipe);
@@ -65,9 +65,19 @@ namespace Knot3.GameObjects
 
 			knots.Clear ();
 			for (int n = 0; n < edges.Count; n++) {
-				NodeModelInfo info = new NodeModelInfo(edges, edges [n], edges [n + 1], Info.Position);
+				NodeModelInfo info = new NodeModelInfo (edges, edges [n], edges [n + 1], Info.Position);
 				NodeModel knot = knotFactory [state, info] as NodeModel;
 				knots.Add (knot);
+			}
+		}
+		
+		public IEnumerable<IGameObject> SubGameObjects ()
+		{
+			foreach (PipeModel pipe in pipes) {
+				yield return pipe;
+			}
+			foreach (NodeModel knot in knots) {
+				yield return knot;
 			}
 		}
 

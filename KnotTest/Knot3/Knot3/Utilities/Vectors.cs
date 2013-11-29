@@ -277,5 +277,16 @@ namespace Knot3.Utilities
 			Height = height;
 		}
 	}
+
+	static class SwapExtension
+	{
+		public static T Swap<T> (this T x, ref T y)
+		{
+			T t = y;
+			y = x;
+			return t;
+		}
+	}
+
 }
 

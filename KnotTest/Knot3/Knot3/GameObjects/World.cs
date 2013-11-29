@@ -23,7 +23,7 @@ namespace Knot3.GameObjects
 	/// Eine Liste von Spielobjekten (Interface IGameObject), die in einer 3D-Welt gezeichnet werden. Ruft die Update()-
 	/// und Draw()-Methoden der Spielobjekte auf.
 	/// </summary>
-	public class World : DrawableGameStateComponent
+	public class World : DrawableGameStateComponent, IGameObjectContainer
 	{
 		// graphics-related classes
 		private List<RenderEffect> knotRenderEffects;
@@ -148,6 +148,13 @@ namespace Knot3.GameObjects
 
 			// is the floor visible?
 			floor.Info.IsVisible = Options.Default ["video", "debug-floor", false];
+		}
+		
+		public IEnumerable<IGameObject> SubGameObjects ()
+		{
+			foreach (IGameObject obj in Objects) {
+				yield return obj;
+			}
 		}
 	}
 	

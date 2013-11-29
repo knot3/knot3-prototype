@@ -61,6 +61,7 @@ namespace Knot3.RenderEffects
 	public abstract class RenderEffect : GameStateClass
 	{
 		private RenderTargetCache renderTarget;
+		private Color background;
 		private SpriteBatch spriteBatch;
 
 		public RenderEffect (GameState state)
@@ -68,6 +69,7 @@ namespace Knot3.RenderEffects
 		{
 			renderTarget = new RenderTargetCache (device);
 			spriteBatch = new SpriteBatch (device);
+			background = Color.Transparent;
 		}
 
 		public RenderTarget2D RenderTarget { get { return renderTarget.CurrentRenderTarget; } }
@@ -83,6 +85,7 @@ namespace Knot3.RenderEffects
 			RenderTarget2D current = RenderTarget;
 			device.PushRenderTarget (current);
 			device.Clear (background);
+			this.background = background;
 
 			// set the stencil state
 			device.DepthStencilState = DepthStencilState.Default;
@@ -135,6 +138,11 @@ namespace Knot3.RenderEffects
 							} else {
 								effect.DiffuseColor = model.BaseColor.ToVector3 ();
 							}
+						}
+						if (background == Color.Transparent) {
+							effect.Alpha = model.Alpha;
+						} else {
+							effect.DiffuseColor = new Color (effect.DiffuseColor).Mix (background, 1f - model.Alpha).ToVector3 ();
 						}
 						effect.FogEnabled = false;
 					}

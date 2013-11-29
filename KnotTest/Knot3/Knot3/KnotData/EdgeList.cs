@@ -152,17 +152,16 @@ namespace Knot3.KnotData
 			Console.WriteLine ("nodes: " + Edges);
 		}
 
-		public bool Move (IEnumerable<Edge> selectedEdges, Vector3 direction)
+		public bool Move (IEnumerable<Edge> selectedEdges, Vector3 direction, int times = 1)
 		{
 			Console.WriteLine ("Move: selection=" + selectedEdges + ", direction=" + direction);
 			Console.WriteLine ("Before Move => " + Edges);
 			foreach (Edge selectedEdge in SelectedEdges) {
-				Edges.Replace (selectedEdge, new Edge[] {
-					new Edge (direction),
-					selectedEdge,
-					new Edge (-direction)
-				}
-				);
+				List<Edge> replacement = new List<Edge> ();
+				times.Times (() => replacement.Add (new Edge (direction)));
+				replacement.Add (selectedEdge);
+				times.Times (() => replacement.Add (new Edge (-direction)));
+				Edges.Replace (selectedEdge, replacement.ToArray ());
 			}
 			Console.WriteLine ("After Move => " + Edges);
 			Compact ();

@@ -121,6 +121,8 @@
     <Compile Include="Knot3\KnotData\KnotListFormat.cs" />
     <Compile Include="Knot3\KnotData\EdgeListFormat.cs" />
     <Compile Include="Knot3\KnotData\Node.cs" />
+    <Compile Include="Knot3\GameObjects\PipeMovement.cs" />
+    <Compile Include="Knot3\GameObjects\IGameObjectContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />

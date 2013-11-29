@@ -110,7 +110,8 @@ namespace Knot3.Core
 		TargetMove,
 		FreeMouse,
 		FPSMove,
-		SelectedObjectMove
+		SelectedObjectMove,
+		SelectedObjectShadowMove
 	}
 
 	public enum WASDMode

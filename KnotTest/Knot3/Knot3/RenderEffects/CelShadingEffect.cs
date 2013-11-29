@@ -55,9 +55,13 @@ namespace Knot3.RenderEffects
                 new Vector2 (viewport.Bounds.Width, viewport.Bounds.Height));
 		}
 
-		public void SetColor (Color color)
-		{
-			celShader.Parameters ["Color"].SetValue (color.ToVector4 ());
+		public Color Color {
+			get {
+				return new Color (celShader.Parameters ["Color"].GetValueVector4 ());
+			}
+			set {
+				celShader.Parameters ["Color"].SetValue (value.ToVector4 ());
+			}
 		}
 
 		public override void Draw (SpriteBatch spriteBatch, GameTime gameTime)
@@ -88,9 +92,9 @@ namespace Knot3.RenderEffects
 
 			if (model.BaseColor != Color.Transparent) {
 				if (model.HighlightIntensity != 0f) {
-					SetColor (model.BaseColor.Mix (model.HighlightColor, model.HighlightIntensity));
+					Color = model.BaseColor.Mix (model.HighlightColor, model.HighlightIntensity);
 				} else {
-					SetColor (model.BaseColor);
+					Color = model.BaseColor;
 				}
 			}
 

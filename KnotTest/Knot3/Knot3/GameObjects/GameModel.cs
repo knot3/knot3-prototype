@@ -60,6 +60,7 @@ namespace Knot3.GameObjects
 		public Color BaseColor;
 		public Color HighlightColor;
 		public float HighlightIntensity;
+		public float Alpha;
 
 		#endregion
 
@@ -74,6 +75,7 @@ namespace Knot3.GameObjects
 			BaseColor = Color.Transparent;
 			HighlightColor = Color.Transparent;
 			HighlightIntensity = 0f;
+			Alpha = 1f;
 		}
 		
 		#endregion

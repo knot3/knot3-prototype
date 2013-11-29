@@ -41,12 +41,14 @@ namespace Knot3.GameObjects
 	{
 		public Vector3 Position;
 		public bool IsVisible;
+		public bool IsSelectable;
 		public bool IsMovable;
 
 		public GameObjectInfo ()
 		{
 			Position = Vector3.Zero;
 			IsVisible = true;
+			IsSelectable = true;
 			IsMovable = false;
 		}
 
