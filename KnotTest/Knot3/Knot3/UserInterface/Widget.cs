@@ -21,6 +21,10 @@ using Knot3.Utilities;
 
 namespace Knot3.UserInterface
 {
+	/// <summary>
+	/// Alle GUI-Elemente erben von der Klasse Widget, die immer vorhandene Attribute und häufig verwendete
+	/// Methoden zur Verfügung stellt.
+	/// </summary>
 	public class Widget : DrawableGameStateComponent
 	{
 		// size and position
@@ -66,7 +70,11 @@ namespace Knot3.UserInterface
 		}
 	}
 
-	public class ItemWidget : Widget
+	/// <summary>
+	/// Alle Widgets, die sich immer in einem Container-Widget befinden, eine bestimmte Nummer haben und
+	/// deren Eigenschaften von ihrer Nummer und ihrem Container abhängigen, erben von dieser Klasse.
+	/// </summary>
+	public abstract class ItemWidget : Widget
 	{
 		protected int ItemNum;
 		public ItemState ItemState;
@@ -87,19 +95,34 @@ namespace Knot3.UserInterface
 		}
 	}
 
+	/// <summary>
+	/// Status einem ItemWidget's.
+	/// </summary>
 	public enum ItemState
 	{
-		Selected,
-		Unselected
+		/// <summary>
+		/// Das Widget ist nicht selektiert.
+		/// </summary>
+		Unselected = 0,
+		/// <summary>
+		/// Das Widget ist selektiert.
+		/// </summary>
+		Selected
 	}
 
+	/// <summary>
+	/// Horizontale Ausrichtung eines Widgets.
+	/// </summary>
 	public enum HAlign
 	{
-		Left,
+		Left = 0,
 		Center,
 		Right
 	}
 
+	/// <summary>
+	/// Vertikale Ausrichtung eines Widgets.
+	/// </summary>
 	public enum VAlign
 	{
 		Top,
@@ -107,17 +130,36 @@ namespace Knot3.UserInterface
 		Bottom
 	}
 
-	// delegates
-	public delegate Vector2 LazyItemSize (int n);
-
-	public delegate Vector2 LazyItemPosition (int n);
-
+	/// <summary>
+	/// Ein Delegate, das ein Vector2-Objekt zurückgibt, das als Größe interpretiert wird.
+	/// </summary>
 	public delegate Vector2 LazySize ();
 
+	/// <summary>
+	/// Ein Delegate, das ein Vector2-Objekt zurückgibt, das als Position interpretiert wird.
+	/// </summary>
 	public delegate Vector2 LazyPosition ();
 
+	/// <summary>
+	/// Ein Delegate, das ein Color-Objekt zurückgibt.
+	/// </summary>
 	public delegate Color LazyColor ();
 
+	/// <summary>
+	/// Ein Delegate, das eine Item-Nummer (int) als Argument erwartet und ein Vector2-Objekt zurückgibt,
+	/// das als Größe interpretiert wird.
+	/// </summary>
+	public delegate Vector2 LazyItemSize (int n);
+
+	/// <summary>
+	/// Ein Delegate, das eine Item-Nummer (int) als Argument erwartet und ein Vector2-Objekt zurückgibt,
+	/// das als Position interpretiert wird.
+	/// </summary>
+	public delegate Vector2 LazyItemPosition (int n);
+
+	/// <summary>
+	/// Ein Delegate, das einen ItemState als Argument erwartet und ein Color-Objekt zurückgibt.
+	/// </summary>
 	public delegate Color LazyItemColor (ItemState itemState);
 }
 

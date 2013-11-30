@@ -28,8 +28,17 @@ namespace Knot3.GameObjects
 
 		void Update (GameTime gameTime);
 
+		/// <summary>
+		/// Schneiden sich der (meist aus einer Mausposition berechnete) Ray und das Spielobjekt?
+		/// </summary>
+		/// <param name='ray'>
+		/// The specified Ray.
+		/// </param>
 		GameObjectDistance Intersects (Ray ray);
 
+		/// <summary>
+		/// Die Mitte des Spielobjekts.
+		/// </summary>
 		Vector3 Center ();
 	}
 

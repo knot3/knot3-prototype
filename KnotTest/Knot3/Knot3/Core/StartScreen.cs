@@ -17,6 +17,9 @@ using Knot3.Utilities;
 
 namespace Knot3.Core
 {
+	/// <summary>
+	/// Der Screen, der beim Starten des Spiels geladen wird.
+	/// </summary>
 	public class StartScreen : MenuScreen
 	{
 		// menu

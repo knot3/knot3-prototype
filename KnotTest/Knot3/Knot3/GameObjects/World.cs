@@ -30,9 +30,20 @@ namespace Knot3.GameObjects
 		private List<RenderEffect> knotRenderEffects;
 		private RenderEffect knotRenderEffect;
 
-		// game objects
+		/// <summary>
+		/// Die Liste von Spielobjekten.
+		/// </summary>
+		/// <value>
+		/// The objects.
+		/// </value>
 		public List<IGameObject> Objects { get; private set; }
 
+		/// <summary>
+		/// Das selektierte Spielobjekt, wobei selektiert nur bedeutet, dass die Maus darüber liegt.
+		/// </summary>
+		/// <value>
+		/// The selected object.
+		/// </value>
 		public IGameObject SelectedObject { get; private set; }
 
 		private TexturedRectangle floor;
@@ -72,7 +83,7 @@ namespace Knot3.GameObjects
 				return 0;
 			}
 		}
-		
+
 		public void Add (IGameObject obj)
 		{
 			Objects.Add (obj);

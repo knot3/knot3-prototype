@@ -16,10 +16,28 @@ namespace Knot3.KnotData
 	{
 		#region Properties
 
+		/// <summary>
+		/// Der Richtungsvektor der Kante. Ist immer (1,0,0), (-1,0,0), (0,1,0), (0,-1,0), (0,0,1) oder (0,0,-1).
+		/// </summary>
+		/// <value>
+		/// The direction.
+		/// </value>
 		public Vector3 Direction { get; private set; }
 
+		/// <summary>
+		/// Die Farbe der Kante.
+		/// </summary>
+		/// <value>
+		/// The color.
+		/// </value>
 		public Color Color { get; set; }
 
+		/// <summary>
+		/// Die eindeutige Nummer der Kante.
+		/// </summary>
+		/// <value>
+		/// The ID.
+		/// </value>
 		public int ID { get; private set; }
 
 		private static int LastID = 0; 
@@ -30,7 +48,7 @@ namespace Knot3.KnotData
 
 		public Edge (int x, int y, int z)
 		{
-			Direction = new Vector3 (x, y, z);
+			Direction = new Vector3 (x, y, z).PrimaryDirection ();
 			Color = DefaultColor;
 			ID = LastID++;
 		}

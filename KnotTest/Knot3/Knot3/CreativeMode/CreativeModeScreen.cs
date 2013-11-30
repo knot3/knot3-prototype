@@ -22,6 +22,9 @@ using Knot3.Core;
 
 namespace Knot3.CreativeMode
 {
+	/// <summary>
+	/// Der Creative-Modus, in dem ein Knoten erstellt und bearbeitet werden kann.
+	/// </summary>
 	public class CreativeModeScreen : GameState
 	{
 		// the knot to draw

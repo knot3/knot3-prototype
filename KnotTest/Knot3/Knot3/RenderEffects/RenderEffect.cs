@@ -65,11 +65,20 @@ namespace Knot3.RenderEffects
 	/// </summary>
 	public abstract class RenderEffect : IRenderEffect
 	{
+		/// <summary>
+		/// Der zugewiesene GameState. Dieser Effekt kann nur innerhalb dieses GameState's verwendet werden.
+		/// </summary>
 		protected GameState state;
 		private RenderTargetCache renderTarget;
 		private Color background;
 		private SpriteBatch spriteBatch;
 
+		/// <summary>
+		/// Erstellt einen neuen RenderEffect.
+		/// </summary>
+		/// <param name='state'>
+		/// Game State.
+		/// </param>
 		public RenderEffect (GameState state)
 		{
 			this.state = state;
@@ -78,8 +87,21 @@ namespace Knot3.RenderEffects
 			background = Color.Transparent;
 		}
 
+		/// <summary>
+		/// Die Textur, in die dieses RenderTarget rendert.
+		/// </summary>
+		/// <value>
+		/// The render target.
+		/// </value>
 		public RenderTarget2D RenderTarget { get { return renderTarget.CurrentRenderTarget; } }
 
+		/// <summary>
+		/// Startet den Rendereffekt. Das bisher von XNA benutzte RenderTarget wird auf einem Stack gespeichert
+		/// (RenderTargets), und unser RenderTarget wird als aktuelles RenderTarget gesetzt.
+		/// </summary>
+		/// <param name='gameTime'>
+		/// Game time.
+		/// </param>
 		public void Begin (GameTime gameTime)
 		{
 			Begin (Color.Transparent, gameTime);
@@ -101,6 +123,14 @@ namespace Knot3.RenderEffects
 			state.device.SamplerStates [0] = SamplerState.LinearWrap;
 		}
 
+		/// <summary>
+		/// Beendet den Rendereffekt. Dabei wird das von XNA benutzte RenderTarget wieder auf das in der Begin()-Methode
+		/// auf einem Stack gesicherte übergeordnete RenderTarget festgelegt. Dann wird unser RendetTarget auf
+		/// das übergeordneten Rendertarget gezeichnet.
+		/// </summary>
+		/// <param name='gameTime'>
+		/// Game time.
+		/// </param>
 		public virtual void End (GameTime gameTime)
 		{
 			state.device.PopRenderTarget ();
@@ -114,10 +144,26 @@ namespace Knot3.RenderEffects
 
 		public abstract void Draw (SpriteBatch spriteBatch, GameTime gameTime);
 
+		/// <summary>
+		/// Die XNA-3D-Modelle haben standardmäßig einen BasicEffect-Shader als zu verwendenden Shader zugewiesen.
+		/// Hier wird dieser Shader durch den Shader des Rendereffekts überschrieben.
+		/// </summary>
+		/// <param name='model'>
+		/// Model.
+		/// </param>
 		public virtual void RemapModel (Model model)
 		{
 		}
 
+		/// <summary>
+		/// Zeichnet ein 3D-Modell mit diesem Rendereffekt.
+		/// </summary>
+		/// <param name='model'>
+		/// Model.
+		/// </param>
+		/// <param name='gameTime'>
+		/// Game time.
+		/// </param>
 		public virtual void DrawModel (GameModel model, GameTime gameTime)
 		{
 			foreach (ModelMesh mesh in model.Model.Meshes) {

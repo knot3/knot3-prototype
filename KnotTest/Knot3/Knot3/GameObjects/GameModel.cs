@@ -53,10 +53,19 @@ namespace Knot3.GameObjects
 	{
 		#region Attributes and Properties
 
+		/// <summary>
+		/// Der zugewiesene GameState. Dieses Objekt kann nur innerhalb dieses GameState's verwendet werden.
+		/// </summary>
 		protected GameState state;
 
 		public dynamic Info { get; private set; }
 
+		/// <summary>
+		/// Das XNA-3D-Modell.
+		/// </summary>
+		/// <value>
+		/// The model.
+		/// </value>
 		public virtual Model Model { get { return Models.LoadModel (state, Info.Modelname); } }
 
 		public Color BaseColor;

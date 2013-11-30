@@ -24,22 +24,41 @@ namespace Knot3.Core
 	/// </summary>
 	public abstract class Input : GameStateComponent, IKeyEventListener
 	{
+		#region Attributes
+
 		// state atributes
 		protected static bool FullscreenToggled;
+		/// <summary>
+		/// Der Status der Tastatur zur Zeit des vorherigen Frames.
+		/// </summary>
 		public static KeyboardState PreviousKeyboardState;
+		/// <summary>
+		/// Der Status der Maus zur Zeit des vorherigen Frames.
+		/// </summary>
 		public static MouseState PreviousMouseState;
 		private static double LeftButtonClickTimer;
 		private static double RightButtonClickTimer;
 		private static MouseState PreviousClickMouseState;
+		/// <summary>
+		/// Der aktuelle ClickState des linken Mouse Buttons.
+		/// </summary>
 		public static ClickState LeftButton;
+		/// <summary>
+		/// Der aktuelle ClickState des rechten Mouse Buttons.
+		/// </summary>
 		public static ClickState RightButton;
+
+		#endregion
+
+		#region Properties
 
 		public bool GrabMouseMovement { get; set; }
 
-		// input modes
 		public InputAction CurrentInputAction { get; protected set; }
 
 		public WASDMode WASDMode { get; protected set; }
+
+		#endregion
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TestGame1.Input"/> class.
@@ -126,37 +145,97 @@ namespace Knot3.Core
 
 		public bool IsKeyEventEnabled { get { return true; } }
 
+		/// <summary>
+		/// Der aktuelle Status der Maus.
+		/// </summary>
 		public static MouseState MouseState { get; protected set; }
 
+		/// <summary>
+		/// Der aktuelle Status der Tastatur.
+		/// </summary>
 		public static KeyboardState KeyboardState { get; private set; }
 	}
 
+	/// <summary>
+	/// Die aktuelle Eingabeaktion.
+	/// </summary>
 	public enum InputAction
 	{
+		/// <summary>
+		/// Keine Eingabeaktion.
+		/// </summary>
 		None = 0,
+		/// <summary>
+		/// Bewegung der Kamera "wie auf einer Kugel-Oberfläche", das heißt in einem festen Radius, um ein Objekt.
+		/// </summary>
 		ArcballMove,
+		/// <summary>
+		/// Bewegung des Kamera-Targets.
+		/// </summary>
 		TargetMove,
+		/// <summary>
+		/// Freie Bewegung der Maus ohne einen Effekt auf die Spielwelt.
+		/// </summary>
 		FreeMouse,
+		/// <summary>
+		/// Bewegung der Kamera wie in einem First Person Shooter.
+		/// </summary>
 		FPSMove,
+		/// <summary>
+		/// Bewegung des ausgewählten Spielobjekts (siehe GameObjects.World).
+		/// </summary>
 		SelectedObjectMove,
+		/// <summary>
+		/// Schattenhafte Darstellung der Bewegung des ausgewählten Spielobjekts vor dem Einrasten in ein 3D-Raster.
+		/// </summary>
 		SelectedObjectShadowMove
 	}
 
+	/// <summary>
+	/// Die aktuelle Belegung für die Tasten W,A,S,D und angrenzende Tasten.
+	/// </summary>
 	public enum WASDMode
 	{
+		/// <summary>
+		/// W,A,S,D bewegen die Kamera "wie auf einer Kugel-Oberfläche", das heißt in einem festen Radius, um ein Objekt.
+		/// </summary>
 		ArcballMode,
+		/// <summary>
+		/// W,A,S,D bewegen die Kamera wie in einem First Person Shooter.
+		/// </summary>
 		FirstPersonMode
 	}
 
+	/// <summary>
+	/// Das Enum ClickState steht entweder für einen Doppelklick, einen einfachen Klick oder gar kein Klick.
+	/// </summary>
 	public enum ClickState
 	{
+		/// <summary>
+		/// Kein Klick.
+		/// </summary>
 		None = 0,
+		/// <summary>
+		/// Ein einfacher Klick.
+		/// </summary>
 		SingleClick,
+		/// <summary>
+		/// Ein Doppelklick.
+		/// </summary>
 		DoubleClick
 	}
 
 	public static class InputExtensions
 	{
+		/// <summary>
+		/// Wurde die aktuelle Taste gedrückt und war sie im letzten Frame nicht gedrückt?
+		/// </summary>
+		/// <returns>
+		/// <c>true</c> if the specified key is down; otherwise, <c>false</c>.
+		/// </returns>
+		/// <param name='key'>
+		/// If set to <c>true</c> key.
+		/// </param>
 		public static bool IsDown (this Keys key)
 		{
 			// Is the key down?
@@ -169,6 +248,15 @@ namespace Knot3.Core
 			return false;
 		}
 
+		/// <summary>
+		/// Wird die aktuelle Taste gedrückt gehalten?
+		/// </summary>
+		/// <returns>
+		/// <c>true</c> if the specified key is held down; otherwise, <c>false</c>.
+		/// </returns>
+		/// <param name='key'>
+		/// If set to <c>true</c> key.
+		/// </param>
 		public static bool IsHeldDown (this Keys key)
 		{
 			// Is the key down?
