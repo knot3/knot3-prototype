@@ -156,7 +156,7 @@ namespace Knot3.Core
 		public void AddGameComponents (GameTime gameTime, params IGameStateComponent[] components)
 		{
 			foreach (IGameStateComponent component in components) {
-				Console.WriteLine ("AddGameComponents: " + component);
+				//Console.WriteLine ("AddGameComponents: " + component);
 				game.Components.Add (component);
 				AddGameComponents (gameTime, component.SubComponents (gameTime).ToArray ());
 			}

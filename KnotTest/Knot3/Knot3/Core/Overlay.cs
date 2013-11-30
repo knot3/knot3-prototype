@@ -88,7 +88,14 @@ namespace Knot3.Core
 			vertices [4].Color = Color.Yellow;
 			vertices [5].Position = new Vector3 (0, 0, +length);
 			vertices [5].Color = Color.Yellow;
-			graphics.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3);
+			//graphics.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3);
+            BasicEffect effect = new BasicEffect(graphics.GraphicsDevice);
+            effect.VertexColorEnabled = true;
+            effect.World = state.camera.WorldMatrix;
+            effect.View = state.camera.ViewMatrix;
+            effect.Projection = state.camera.ProjectionMatrix;
+            effect.CurrentTechnique.Passes[0].Apply();
+            graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.LineList, vertices, 0, 3, VertexPositionColor.VertexDeclaration);
 		}
 
 		private void DrawOverlay (GameTime gameTime)
