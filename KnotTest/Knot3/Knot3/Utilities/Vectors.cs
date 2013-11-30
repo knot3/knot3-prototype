@@ -194,6 +194,11 @@ namespace Knot3.Utilities
 			return new Vector2 (viewport.Width, viewport.Height) / 2;
 		}
 
+		public static Vector2 ToVector2 (this Point v)
+		{
+			return new Vector2 (v.X, v.Y);
+		}
+
 		public static Point ToPoint (this Vector2 v)
 		{
 			return new Point ((int)v.X, (int)v.Y);

@@ -11,7 +11,9 @@ namespace Knot3.Core
 	/// </summary>
 	public interface IMouseEventListener
 	{
-		void Activate (GameTime gameTime);
+		void OnLeftClick (Vector2 position, ClickState click, GameTime gameTime);
+
+		void OnRightClick (Vector2 position, ClickState click, GameTime gameTime);
 
 		void SetHovered (bool hovered);
 

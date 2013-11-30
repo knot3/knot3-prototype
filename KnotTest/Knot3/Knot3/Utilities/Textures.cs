@@ -77,6 +77,16 @@ namespace Knot3.Utilities
 			percent = MathHelper.Clamp (percent, 0f, 1f);
 			return new Color (a.ToVector3 () * (1f - percent) + b.ToVector3 () * percent);
 		}
+
+		public static int Luminance (this Color color)
+		{
+			return (color.R * 3 + color.B + color.G * 4) >> 3;
+		}
+
+		public static int SortColorsByLuminance (Color left, Color right)
+		{
+			return left.Luminance ().CompareTo (right.Luminance ());
+		}
 	}
 }
 

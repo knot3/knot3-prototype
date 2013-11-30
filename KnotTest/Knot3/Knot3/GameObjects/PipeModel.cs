@@ -16,6 +16,7 @@ using Knot3.Utilities;
 using Knot3.KnotData;
 using Knot3.RenderEffects;
 using Knot3.Core;
+using Knot3.UserInterface;
 
 namespace Knot3.GameObjects
 {
@@ -125,7 +126,7 @@ namespace Knot3.GameObjects
 			if (state.world.SelectedObject == this) {
 
 				// if the left mouse button is pressed, select the edge
-				if (Core.Input.MouseState.IsLeftClick (gameTime)) {
+				if (Core.Input.LeftButton == ClickState.SingleClick) {
 					try {
 						// CTRL
 						if (Keys.LeftControl.IsHeldDown ()) {
@@ -156,9 +157,12 @@ namespace Knot3.GameObjects
 				// change color?
 				if (Keys.C.IsDown ()) {
 					Info.Edge.Color = Edge.RandomColor (gameTime);
+					ColorPicker picker = new ColorPicker (state, DisplayLayer.Dialog);
+					picker.OnSelectColor = (c) => Info.Edge.Color = c;
+					state.AddGameComponents (gameTime, picker);
 				}
 
-				if (Core.Input.MouseState.IsDoubleClick (gameTime)) {
+				if (Core.Input.LeftButton == ClickState.DoubleClick) {
 				}
 			}
 

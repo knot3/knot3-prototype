@@ -27,8 +27,10 @@ namespace Knot3.Core
 		protected static bool FullscreenToggled;
 		public static KeyboardState PreviousKeyboardState;
 		public static MouseState PreviousMouseState;
-		public static long LastLeftButtonPress;
-		public static long LastRightButtonPress;
+		private static double LeftButtonClickTimer;
+		private static double RightButtonClickTimer;
+		public static ClickState LeftButton;
+		public static ClickState RightButton;
 
 		public bool GrabMouseMovement { get; set; }
 
@@ -66,10 +68,21 @@ namespace Knot3.Core
 			MouseState = Mouse.GetState ();
 
 			if (gameTime != null) {
-				if (MouseState.LeftButton == ButtonState.Pressed) {
-					LastLeftButtonPress = gameTime.TotalGameTime.Milliseconds;
-				} else if (MouseState.RightButton == ButtonState.Pressed) {
-					LastRightButtonPress = gameTime.TotalGameTime.Milliseconds;
+				LeftButtonClickTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
+				if (Mouse.GetState ().LeftButton == ButtonState.Pressed) {
+					LeftButton = LeftButtonClickTimer < 500 ? ClickState.DoubleClick : ClickState.SingleClick;
+					LeftButtonClickTimer = 0;
+					Console.WriteLine ("LeftButton=" + LeftButton.ToString ());
+				} else {
+					LeftButton = ClickState.None;
+				}
+				RightButtonClickTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
+				if (Mouse.GetState ().LeftButton == ButtonState.Pressed) {
+					RightButton = RightButtonClickTimer < 500 ? ClickState.DoubleClick : ClickState.SingleClick;
+					RightButtonClickTimer = 0;
+					Console.WriteLine ("RightButton=" + RightButton.ToString ());
+				} else {
+					RightButton = ClickState.None;
 				}
 			}
 
@@ -120,6 +133,13 @@ namespace Knot3.Core
 		FirstPersonMode
 	}
 
+	public enum ClickState
+	{
+		None = 0,
+		SingleClick,
+		DoubleClick
+	}
+
 	public static class InputExtensions
 	{
 		public static bool IsDown (this Keys key)
@@ -138,31 +158,6 @@ namespace Knot3.Core
 		{
 			// Is the key down?
 			return Input.KeyboardState.IsKeyDown (key);
-		}
-
-		public static bool IsLeftClick (this MouseState state, GameTime gameTime)
-		{
-			if (state.LeftButton == ButtonState.Pressed && Input.PreviousMouseState.LeftButton != ButtonState.Pressed) {
-				Console.WriteLine ("IsLeftClick=true");
-				return true;
-			} else {
-				return false;
-			}
-		}
-
-		public static bool IsDoubleClick (this MouseState state, GameTime gameTime)
-		{
-			if (state.IsLeftClick (gameTime)) {
-				long timeDiff = gameTime.TotalGameTime.Milliseconds - Input.LastLeftButtonPress;
-				if (timeDiff < 1000 && timeDiff > 10) {
-					Console.WriteLine ("IsLeftDoubleClick=true");
-					return true;
-				} else {
-					return false;
-				}
-			} else {
-				return false;
-			}
 		}
 	}
 }

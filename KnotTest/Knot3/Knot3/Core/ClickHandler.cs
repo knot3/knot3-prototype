@@ -13,25 +13,38 @@ namespace Knot3.Core
 		{
 		}
 
+		private class ClickEventComponent
+		{
+			public IMouseEventListener receiver;
+			public int layer = 0;
+			public Vector2 relativePosition;
+		}
+
 		public override void Update (GameTime gameTime)
 		{
-			IMouseEventListener hoveredComponent = null;
-			int hoveredLayer = 0;
+			ClickEventComponent best = null;
 			foreach (IGameStateComponent _component in state.game.Components) {
 				if (_component is IMouseEventListener) {
-					IMouseEventListener component = _component as IMouseEventListener;
+					IMouseEventListener receiver = _component as IMouseEventListener;
 					// mouse input
-					bool hovered = component.bounds ().Contains (Input.MouseState.ToPoint ());
-					component.SetHovered (hovered);
-					if (hovered && component.Index > hoveredLayer && component.IsMouseEventEnabled) {
-						hoveredComponent = component;
-						hoveredLayer = component.Index;
+					Rectangle bounds = receiver.bounds ();
+					bool hovered = bounds.Contains (Input.MouseState.ToPoint ());
+					receiver.SetHovered (hovered);
+					if (hovered && receiver.IsMouseEventEnabled && (best == null || receiver.Index > best.layer)) {
+						best = new ClickEventComponent {
+							receiver = receiver,
+							layer = receiver.Index,
+							relativePosition = Input.MouseState.ToVector2()-bounds.Location.ToVector2()
+						};
 					}
 				}
 			}
-			if (hoveredComponent != null) {
-				if (Input.MouseState.IsLeftClick (gameTime)) {
-					hoveredComponent.Activate (gameTime);
+			if (best != null) {
+				if (Input.LeftButton != ClickState.None) {
+					best.receiver.OnLeftClick (best.relativePosition, Input.LeftButton, gameTime);
+				}
+				if (Input.RightButton != ClickState.None) {
+					best.receiver.OnRightClick (best.relativePosition, Input.LeftButton, gameTime);
 				}
 			}
 		}

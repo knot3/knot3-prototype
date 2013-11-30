@@ -122,6 +122,7 @@
     <Compile Include="Knot3\GameObjects\PipeMovement.cs" />
     <Compile Include="Knot3\GameObjects\KnotRenderer.cs" />
     <Compile Include="Knot3\RenderEffects\IRenderEffect.cs" />
+    <Compile Include="Knot3\UserInterface\ColorPicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />

@@ -163,15 +163,21 @@ namespace Knot3.UserInterface
 
 		public List<Keys> ValidKeys { get { return Info.Keys; } }
 
-		public void Activate (GameTime gameTime)
+		public void OnLeftClick (Vector2 position, ClickState click, GameTime gameTime)
 		{
-			Info.OnClick ();
+			if (click == ClickState.SingleClick) {
+				Info.OnClick ();
+			}
+		}
+
+		public void OnRightClick (Vector2 position, ClickState click, GameTime gameTime)
+		{
 		}
 
 		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 		{
 			if (keyEvent == KeyEvent.KeyDown) {
-				Activate (gameTime);
+				Info.OnClick ();
 			}
 		}
 
