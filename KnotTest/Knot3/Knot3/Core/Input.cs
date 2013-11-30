@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
 using Knot3.UserInterface;
+using Knot3.Utilities;
 
 namespace Knot3.Core
 {
@@ -29,6 +30,7 @@ namespace Knot3.Core
 		public static MouseState PreviousMouseState;
 		private static double LeftButtonClickTimer;
 		private static double RightButtonClickTimer;
+		private static MouseState PreviousClickMouseState;
 		public static ClickState LeftButton;
 		public static ClickState RightButton;
 
@@ -68,18 +70,31 @@ namespace Knot3.Core
 			MouseState = Mouse.GetState ();
 
 			if (gameTime != null) {
+				bool mouseMoved;
+				if (MouseState != PreviousMouseState) {
+					// mouse movements
+					Vector2 mouseMove = MouseState.ToVector2 () - PreviousClickMouseState.ToVector2 ();
+					mouseMoved = mouseMove.Length () > 3;
+				} else {
+					mouseMoved = false;
+				}
+
 				LeftButtonClickTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
-				if (Mouse.GetState ().LeftButton == ButtonState.Pressed) {
-					LeftButton = LeftButtonClickTimer < 500 ? ClickState.DoubleClick : ClickState.SingleClick;
+				if (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton != ButtonState.Pressed) {
+					LeftButton = LeftButtonClickTimer < 500 && !mouseMoved
+						? ClickState.DoubleClick : ClickState.SingleClick;
 					LeftButtonClickTimer = 0;
+					PreviousClickMouseState = PreviousMouseState;
 					Console.WriteLine ("LeftButton=" + LeftButton.ToString ());
 				} else {
 					LeftButton = ClickState.None;
 				}
 				RightButtonClickTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
-				if (Mouse.GetState ().RightButton == ButtonState.Pressed) {
-					RightButton = RightButtonClickTimer < 500 ? ClickState.DoubleClick : ClickState.SingleClick;
+				if (MouseState.RightButton == ButtonState.Pressed && PreviousMouseState.RightButton != ButtonState.Pressed) {
+					RightButton = RightButtonClickTimer < 500 && !mouseMoved
+						? ClickState.DoubleClick : ClickState.SingleClick;
 					RightButtonClickTimer = 0;
+					PreviousClickMouseState = PreviousMouseState;
 					Console.WriteLine ("RightButton=" + RightButton.ToString ());
 				} else {
 					RightButton = ClickState.None;

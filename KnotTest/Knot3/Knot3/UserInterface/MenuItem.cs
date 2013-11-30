@@ -165,9 +165,7 @@ namespace Knot3.UserInterface
 
 		public void OnLeftClick (Vector2 position, ClickState click, GameTime gameTime)
 		{
-			if (click == ClickState.SingleClick) {
-				Info.OnClick ();
-			}
+			Info.OnClick ();
 		}
 
 		public void OnRightClick (Vector2 position, ClickState click, GameTime gameTime)
