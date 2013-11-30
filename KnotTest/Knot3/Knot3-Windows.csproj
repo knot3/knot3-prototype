@@ -183,6 +183,7 @@
     <Compile Include="Knot3\GameObjects\KnotRenderer.cs" />
     <Compile Include="Knot3\RenderEffects\IRenderEffect.cs" />
     <Compile Include="Knot3\UserInterface\ColorPicker.cs" />
+    <Compile Include="Knot3\GameObjects\PipeColoring.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

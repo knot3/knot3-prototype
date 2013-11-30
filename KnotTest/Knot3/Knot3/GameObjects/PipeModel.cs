@@ -151,21 +151,6 @@ namespace Knot3.GameObjects
 				}
 			}
 
-			// check whether this edge is one of the selected edges
-			if (Info.Edges.SelectedEdges.Contains (Info.Edge)) {
-				
-				// change color?
-				if (Keys.C.IsDown ()) {
-					Info.Edge.Color = Edge.RandomColor (gameTime);
-					ColorPicker picker = new ColorPicker (state, DisplayLayer.Dialog);
-					picker.OnSelectColor = (c) => Info.Edge.Color = c;
-					state.AddGameComponents (gameTime, picker);
-				}
-
-				if (Core.Input.LeftButton == ClickState.DoubleClick) {
-				}
-			}
-
 			base.Update (gameTime);
 		}
 
