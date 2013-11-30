@@ -77,7 +77,7 @@ namespace Knot3.Core
 					LeftButton = ClickState.None;
 				}
 				RightButtonClickTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
-				if (Mouse.GetState ().LeftButton == ButtonState.Pressed) {
+				if (Mouse.GetState ().RightButton == ButtonState.Pressed) {
 					RightButton = RightButtonClickTimer < 500 ? ClickState.DoubleClick : ClickState.SingleClick;
 					RightButtonClickTimer = 0;
 					Console.WriteLine ("RightButton=" + RightButton.ToString ());
