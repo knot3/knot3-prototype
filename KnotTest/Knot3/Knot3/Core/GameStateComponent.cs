@@ -72,7 +72,7 @@ namespace Knot3.Core
 		public ContentManager content { get { return state.content; } }
 
 		/// <summary>
-		/// Gets or sets the camera. Returns null of the game state is not in 3D mode!
+		/// Gets the camera. Returns null of the game state is not in 3D mode!
 		/// </summary>
 		/// <value>
 		/// The camera.
@@ -80,7 +80,7 @@ namespace Knot3.Core
 		public Camera camera { get { return state.camera; } }
 
 		/// <summary>
-		/// Gets or sets the input handler.
+		/// Gets the input handler.
 		/// </summary>
 		/// <value>
 		/// The input handler.
@@ -88,7 +88,7 @@ namespace Knot3.Core
 		public Input input { get { return state.input; } }
 
 		/// <summary>
-		/// Gets or sets the game world.
+		/// Gets the game world.
 		/// </summary>
 		/// <value>
 		/// The game world.
