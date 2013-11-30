@@ -23,6 +23,7 @@ namespace Knot3.Core
 	{
 		// graphics-related classes
 		private SpriteBatch spriteBatch;
+        BasicEffect effect;
 
 		// fonts
 		private SpriteFont font;
@@ -34,7 +35,11 @@ namespace Knot3.Core
 			: base(state, DisplayLayer.Overlay)
 		{
 			// create a new SpriteBatch, which can be used to draw textures
-			spriteBatch = new SpriteBatch (graphics.GraphicsDevice);
+            effect = new BasicEffect(graphics.GraphicsDevice);
+            spriteBatch = new SpriteBatch (graphics.GraphicsDevice);
+            effect.VertexColorEnabled = true;
+            effect.World = state.camera.WorldMatrix;
+            
 		}
 
 		/// <summary>
@@ -88,13 +93,12 @@ namespace Knot3.Core
 			vertices [4].Color = Color.Yellow;
 			vertices [5].Position = new Vector3 (0, 0, +length);
 			vertices [5].Color = Color.Yellow;
-			//graphics.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3);
-            BasicEffect effect = new BasicEffect(graphics.GraphicsDevice);
-            effect.VertexColorEnabled = true;
-            effect.World = state.camera.WorldMatrix;
+            
             effect.View = state.camera.ViewMatrix;
             effect.Projection = state.camera.ProjectionMatrix;
+          
             effect.CurrentTechnique.Passes[0].Apply();
+            
             graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.LineList, vertices, 0, 3, VertexPositionColor.VertexDeclaration);
 		}
 
