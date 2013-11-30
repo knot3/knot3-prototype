@@ -18,31 +18,35 @@ using Knot3.Utilities;
 
 namespace Knot3.RenderEffects
 {
+	/// <summary>
+	/// Implementiert einen Stack für Rendereffekte (Instanzen von IRenderEffect), damit eine verschachtelte
+	/// Anwendung von RenderEffect's erleichtert wird.
+	/// </summary>
 	public class RenderEffectStack
 	{
-		private RenderEffect defaultEffect;
+		private IRenderEffect defaultEffect;
 
-		public RenderEffectStack (RenderEffect defaultEffect)
+		public RenderEffectStack (IRenderEffect defaultEffect)
 		{
 			this.defaultEffect = defaultEffect;
 		}
 
 		#region RenderEffect Stack
 
-		private Stack<RenderEffect> activeEffects = new Stack<RenderEffect> ();
+		private Stack<IRenderEffect> activeEffects = new Stack<IRenderEffect> ();
 
-		public void Push (RenderEffect current)
+		public void Push (IRenderEffect current)
 		{
 			activeEffects.Push (current);
 		}
 
-		public RenderEffect Pop ()
+		public IRenderEffect Pop ()
 		{
-			RenderEffect removed = activeEffects.Pop ();
+			IRenderEffect removed = activeEffects.Pop ();
 			return removed;
 		}
 
-		public RenderEffect Current {
+		public IRenderEffect Current {
 			get {
 				if (activeEffects.Count > 0)
 					return activeEffects.Peek ();
@@ -56,9 +60,10 @@ namespace Knot3.RenderEffects
 
 	/// <summary>
 	/// Rendereffekte erben von der abstrakte Klasse RenderEffect und halten ein RenderTarget2D-Objekt,
-	/// in das gezeichnet wird, während der RenderEffect aktiv ist.
+	/// in das gezeichnet wird, während der RenderEffect aktiv ist. Sie implementieren außerdem das Interface
+	/// IRenderEffect.
 	/// </summary>
-	public abstract class RenderEffect
+	public abstract class RenderEffect : IRenderEffect
 	{
 		protected GameState state;
 		private RenderTargetCache renderTarget;

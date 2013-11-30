@@ -24,7 +24,7 @@ namespace Knot3.GameObjects
 	/// Verwaltet eine Liste von Spielobjekten der Klassen PipeModel (Röhren) und NodeModel (Knotenpunkt)
 	/// für ein gegebenes KnotData.Knot-Objekt und zeichnet diese über die World-Klasse.
 	/// </summary>
-	public class PipeRenderer : KnotRenderer, IEnumerable<GameModel>
+	public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
 	{
 		public override dynamic Info { get; protected set; }
 
@@ -72,7 +72,7 @@ namespace Knot3.GameObjects
 			}
 		}
 		
-		public IEnumerator<GameModel> GetEnumerator ()
+		public IEnumerator<IGameObject> GetEnumerator ()
 		{
 			foreach (PipeModel pipe in pipes) {
 				yield return pipe;

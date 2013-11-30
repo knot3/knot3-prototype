@@ -47,7 +47,7 @@ namespace Knot3.Utilities
 			return model;
 		}
 
-		private static Model LoadModel (ContentManager content, RenderEffect pp, string name)
+		private static Model LoadModel (ContentManager content, IRenderEffect pp, string name)
 		{
 			if (invalidModels.Contains (name)) {
 				return null;
