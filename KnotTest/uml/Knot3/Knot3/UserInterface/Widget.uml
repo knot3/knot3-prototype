@@ -1,0 +1,34 @@
+public class Widget : DrawableGameStateComponent
+    + RelativePosition : LazyPosition virtual
+    + RelativeSize : LazySize virtual
+    + RelativePadding : LazySize virtual
+    # ScaledPosition : Vector2
+    # ScaledSize : Vector2
+    # ScaledPadding : Vector2
+    # AlignX : HAlign
+    # AlignY : VAlign
+    - foregroundColorFunc : LazyColor
+    - backgroundColorFunc : LazyColor
+    # ForegroundColor : Color virtual
+    # BackgroundColor : Color virtual
+    + IsVisible : bool virtual
+    + Widget (GameState state, DisplayLayer drawOrder, LazyColor foregroundColor, LazyColor backgroundColor, HAlign alignX, VAlign alignY)
+public abstract class ItemWidget : Widget
+    # ItemNum : int
+    + ItemState : ItemState
+    - foregroundItemColorFunc : LazyItemColor
+    - backgroundItemColorFunc : LazyItemColor
+    # ForegroundColor : Color override
+    # BackgroundColor : Color override
+    + ItemWidget (GameState state, DisplayLayer drawOrder, int itemNum, LazyItemColor foregroundColor, LazyItemColor backgroundColor, HAlign alignX, VAlign alignY)
+public enum ItemState
+    Unselected = 0
+    Selected
+public enum HAlign
+    Left = 0
+    Center
+    Right
+public enum VAlign
+    Top
+    Center
+    Bottom

@@ -1,0 +1,12 @@
+public class CelShadingEffect : RenderEffect
+    - celShader : Effect
+    - celMap : Texture2D
+    - lightDirection : Vector4
+    - outlineShader : Effect
+    - outlineThickness : float
+    - outlineThreshold : float
+    + CelShadingEffect (GameState state)
+    + Color : Color
+    + Draw (SpriteBatch spriteBatch, GameTime gameTime) override
+    + RemapModel (Model model) override
+    + DrawModel (GameModel model, GameTime gameTime) override

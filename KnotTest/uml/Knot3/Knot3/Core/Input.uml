@@ -1,0 +1,39 @@
+public abstract class Input : GameStateComponent, IKeyEventListener
+    # FullscreenToggled : bool static
+    + PreviousKeyboardState : KeyboardState static
+    + PreviousMouseState : MouseState static
+    - LeftButtonClickTimer : double static
+    - RightButtonClickTimer : double static
+    - PreviousClickMouseState : MouseState static
+    + LeftButton : ClickState static
+    + RightButton : ClickState static
+    + GrabMouseMovement : bool
+    + CurrentInputAction : InputAction
+    + WASDMode : WASDMode
+    + Input (GameState state)
+    + Update (GameTime gameTime) override
+    # UpdateKeys (GameTime gameTime) virtual
+    # UpdateMouse (GameTime gameTime) virtual
+    + OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + ValidKeys : List<Keys>
+    + IsKeyEventEnabled : bool
+    + MouseState : MouseState static
+    + KeyboardState : KeyboardState static
+public enum InputAction
+    None = 0
+    ArcballMove
+    TargetMove
+    FreeMouse
+    FPSMove
+    SelectedObjectMove
+    SelectedObjectShadowMove
+public enum WASDMode
+    ArcballMode
+    FirstPersonMode
+public enum ClickState
+    None = 0
+    SingleClick
+    DoubleClick
+public static class InputExtensions : 
+    + IsDown (this Keys key) : bool static
+    + IsHeldDown (this Keys key) : bool static

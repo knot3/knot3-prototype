@@ -1,0 +1,2 @@
+public class MenuButton : MenuItem
+    + MenuButton (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info, LazyItemColor fgColor, LazyItemColor bgColor, HAlign alignX)

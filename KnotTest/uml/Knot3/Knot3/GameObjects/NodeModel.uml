@@ -1,0 +1,12 @@
+public class NodeModelInfo : GameModelInfo
+    + Edges : EdgeList
+    + EdgeA : Edge
+    + EdgeB : Edge
+    + NodeModelInfo (EdgeList edges, Edge edgeA, Edge edgeB, Vector3 offset)
+    + Equals (GameObjectInfo other) : bool override
+public class NodeModel : GameModel
+    + Info : NodeModelInfo new
+    + NodeModel (GameState state, NodeModelInfo info)
+    + Draw (GameTime gameTime) override
+public class NodeModelFactory : ModelFactory
+    # CreateModel (GameState state, GameModelInfo info) : GameModel override

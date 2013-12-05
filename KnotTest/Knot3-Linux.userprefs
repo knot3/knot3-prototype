@@ -1,9 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Knot3/Knot3/CreativeMode/KnotModeInput.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Knot3/Knot3/Program.cs">
     <Files>
-      <File FileName="Knot3/Knot3/GameObjects/PipeModel.cs" Line="103" Column="32" />
+      <File FileName="Knot3/Knot3/GameObjects/PipeModel.cs" Line="103" Column="4" />
       <File FileName="Knot3/Knot3/CreativeMode/KnotModeInput.cs" Line="213" Column="6" />
+      <File FileName="Knot3/Knot3/Settings/Options.cs" Line="130" Column="73" />
+      <File FileName="Knot3/Knot3/UserInterface/HfGDesign.cs" Line="25" Column="13" />
+      <File FileName="Knot3/Knot3/Program.cs" Line="23" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

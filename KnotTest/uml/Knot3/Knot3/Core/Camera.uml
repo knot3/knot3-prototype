@@ -1,0 +1,23 @@
+public class Camera : GameStateComponent
+    + WorldMatrix : Matrix
+    + ViewMatrix : Matrix
+    + ProjectionMatrix : Matrix
+    + DefaultPosition : Vector3
+    + Position : Vector3
+    + Target : Vector3
+    + UpVector : Vector3
+    - foV : float
+    + FoV : float
+    + RotationAngle : Angles3
+    - AutoRotation : Angles3
+    - aspectRatio : float
+    - nearPlane : float
+    - farPlane : float
+    + Camera (GameState state)
+    + Update (GameTime gameTime) override
+    - UpdateRotation (GameTime gameTime)
+    - UpdateMatrices (GameTime gameTime)
+    + TargetDistance : float
+    + TargetDirection : Vector3
+    + GetMouseRay (Vector2 mouse) : Ray
+    + ArcballTarget : Vector3

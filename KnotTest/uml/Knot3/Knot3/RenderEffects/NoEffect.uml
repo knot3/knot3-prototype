@@ -1,0 +1,3 @@
+public sealed class NoEffect : RenderEffect
+    + NoEffect (GameState state)
+    + Draw (SpriteBatch spriteBatch, GameTime gameTime) override

@@ -1,0 +1,12 @@
+public class LoadSavegameScreen : MenuScreen
+    - format : IKnotFormat
+    - menu : VerticalMenu
+    - spriteBatch : SpriteBatch
+    + LoadSavegameScreen (Core.Game game)
+    + Initialize () override
+    - UpdateFiles ()
+    - AddFileToList (string filename)
+    - AddDefaultKnots ()
+    + UpdateMenu (GameTime gameTime) override
+    + DrawMenu (GameTime gameTime) override
+    + Activate (GameTime gameTime) override

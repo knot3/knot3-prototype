@@ -1,0 +1,8 @@
+public class OptionScreen : MenuScreen
+    - menu : VerticalMenu
+    - spriteBatch : SpriteBatch
+    + OptionScreen (Core.Game game)
+    + Initialize () override
+    + UpdateMenu (GameTime gameTime) override
+    + DrawMenu (GameTime gameTime) override
+    + Activate (GameTime gameTime) override

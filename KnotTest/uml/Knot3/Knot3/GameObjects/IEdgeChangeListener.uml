@@ -1,0 +1,2 @@
+public interface IEdgeChangeListener : 
+    + OnEdgesChanged (EdgeList edges)

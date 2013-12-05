@@ -1,0 +1,10 @@
+public class TextInput : Widget, IKeyEventListener
+    + InputText : string
+    - font : SpriteFont
+    # spriteBatch : SpriteBatch
+    + TextInput (GameState state, DisplayLayer drawOrder, LazyPosition position, LazySize size, LazySize padding, LazyColor fgColor, LazyColor bgColor)
+    + Update (GameTime gameTime) override
+    + Draw (GameTime gameTime) override
+    + OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + ValidKeys : List<Keys>
+    + IsKeyEventEnabled : bool

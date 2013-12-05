@@ -1,0 +1,18 @@
+public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
+    - knotRenderEffects : List<RenderEffect>
+    - knotRenderEffect : RenderEffect
+    + Objects : List<IGameObject>
+    + SelectedObject : IGameObject
+    - floor : TexturedRectangle
+    + World (GameState state)
+    + SelectObject (IGameObject obj, GameTime gameTime)
+    + SelectedObjectDistance () : float
+    + Add (IGameObject obj)
+    + Initialize () override
+    + Draw (GameTime gameTime) override
+    + Update (GameTime gameTime) override
+    + GetEnumerator () : IEnumerator<IGameObject>
+    - IEnumerable.GetEnumerator () : IEnumerator
+public class TestModel : GameModel
+    + TestModel (GameState state, GameModelInfo info)
+    + Update (GameTime gameTime) override

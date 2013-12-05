@@ -1,0 +1,9 @@
+public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
+    # state : GameState
+    + Info : dynamic abstract
+    + KnotRenderer (GameState state)
+    + OnEdgesChanged (EdgeList edges) abstract
+    + Update (GameTime gameTime) abstract
+    + Draw (GameTime gameTime) abstract
+    + Intersects (Ray ray) : GameObjectDistance abstract
+    + Center () : Vector3 abstract

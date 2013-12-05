@@ -1,0 +1,20 @@
+public interface IGameObject : 
+    + Info : dynamic
+    + Draw (GameTime gameTime)
+    + Update (GameTime gameTime)
+    + Intersects (Ray ray) : GameObjectDistance
+    + Center () : Vector3
+public class GameObjectInfo : IEquatable<GameObjectInfo>
+    + Position : Vector3
+    + IsVisible : bool
+    + IsSelectable : bool
+    + IsMovable : bool
+    + GameObjectInfo ()
+    + Equals (GameObjectInfo other) : bool virtual
+    + Equals (Object obj) : bool override
+    + GetHashCode () : int override
+    + operator : bool static
+    + operator ! : bool static
+public sealed class GameObjectDistance : 
+    + Object : IGameObject
+    + Distance : float

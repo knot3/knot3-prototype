@@ -1,0 +1,24 @@
+public struct Angles3 : IEquatable<Angles3>
+    + X : float
+    + Y : float
+    + Z : float
+    + Angles3 (float x, float y, float z)
+    + Angles3 (Vector3 v)
+    - zero : Angles3 static
+    + Zero : Angles3 static
+    + ToDegrees () : Angles3
+    + ToVector () : Vector3
+    + FromDegrees (float x, float y, float z) : Angles3 static
+    + Equals (object obj) : bool override
+    + Equals (Angles3 other) : bool
+    + GetHashCode () : int override
+    + operator : bool static
+    + operator ! : bool static
+    + operator + (Angles3 value1, Angles3 value2) : Angles3 static
+    + operator - (Angles3 value) : Angles3 static
+    + operator - (Angles3 value1, Angles3 value2) : Angles3 static
+    + operator * (Angles3 value1, Angles3 value2) : Angles3 static
+    + operator * (Angles3 value, float scaleFactor) : Angles3 static
+    + operator * (float scaleFactor, Angles3 value) : Angles3 static
+    + operator / (Angles3 value1, Angles3 value2) : Angles3 static
+    + operator / (Angles3 value, float divider) : Angles3 static

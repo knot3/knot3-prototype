@@ -1,0 +1,28 @@
+public abstract class GameState : 
+    + game : Game
+    + NextState : GameState
+    + GameState (Game game)
+    + input : Input
+    + camera : Camera
+    + world : World
+    + graphics : GraphicsDeviceManager
+    + device : GraphicsDevice
+    + viewport : Viewport
+    + content : ContentManager
+    + RenderEffects : RenderEffectStack
+    + PostProcessing : RenderEffect
+    + Initialize () abstract
+    + Update (GameTime gameTime) abstract
+    + Draw (GameTime gameTime) abstract
+    + Unload () abstract
+    + AddGameComponents (GameTime gameTime, params IGameStateComponent[] components)
+    + RemoveGameComponents (GameTime gameTime, params IGameStateComponent[] components)
+    + Activate (GameTime gameTime) virtual
+    + Deactivate (GameTime gameTime) virtual
+public static class GameStates : 
+    + CreativeMode : CreativeModeScreen static
+    + StartScreen : StartScreen static
+    + OptionScreen : OptionScreen static
+    + VideoOptionScreen : VideoOptionScreen static
+    + LoadSavegameScreen : LoadSavegameScreen static
+    + Initialize (Game game) static

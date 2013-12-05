@@ -1,0 +1,9 @@
+public class VideoOptionScreen : OptionScreen
+    - menu : VerticalMenu
+    - spriteBatch : SpriteBatch
+    + VideoOptionScreen (Core.Game game)
+    + Initialize () override
+    + Collapse (MenuItem item)
+    + UpdateMenu (GameTime gameTime) override
+    + DrawMenu (GameTime gameTime) override
+    + Activate (GameTime gameTime) override

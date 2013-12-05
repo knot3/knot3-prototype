@@ -1,0 +1,12 @@
+public class MovableGameObject : IGameObject
+    - state : GameState
+    - Obj : IGameObject
+    + MovableGameObject (GameState state, IGameObject obj)
+    + Info : dynamic
+    # CurrentGroundPlane () : Plane
+    # CurrentMouseRay () : Ray
+    # CurrentMousePosition (Ray ray, Plane groundPlane) : Vector3?
+    + Update (GameTime gameTime) virtual
+    + Draw (GameTime gameTime)
+    + Intersects (Ray ray) : GameObjectDistance
+    + Center () : Vector3

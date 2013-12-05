@@ -1,0 +1,25 @@
+public class GameModelInfo : GameObjectInfo
+    + Modelname : string
+    + Rotation : Angles3
+    + Scale : float
+    + GameModelInfo (string modelname)
+    + Equals (GameObjectInfo other) : bool override
+public class GameModel : IGameObject
+    # state : GameState
+    + Info : dynamic
+    + Model : Model virtual
+    + BaseColor : Color
+    + HighlightColor : Color
+    + HighlightIntensity : float
+    + Alpha : float
+    + GameModel (GameState state, GameModelInfo info)
+    + Update (GameTime gameTime) virtual
+    + Draw (GameTime gameTime) virtual
+    + Intersects (Ray ray) : GameObjectDistance virtual
+    + Center () : Vector3
+    - _scale : float
+    - _rotation : Angles3
+    - _position : Vector3
+    - _worldMatrix : Matrix
+    + WorldMatrix : Matrix
+    - UpdateWorldMatrix ()

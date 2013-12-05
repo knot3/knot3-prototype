@@ -1890,4 +1890,5 @@ GENERATE_LEGEND        = YES
 # remove the intermediate dot files that are used to generate
 # the various graphs.
 
-DOT_CLEANUP            = YES
+### DOT_CLEANUP            = YES
+DOT_CLEANUP            = NO

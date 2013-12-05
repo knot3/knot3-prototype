@@ -1,0 +1,22 @@
+public class CreativeModeScreen : GameState
+    - knot : Knot
+    - knotModified : bool
+    - pointer : MousePointer
+    - overlay : Overlay
+    - picker : MousePicker
+    - movement : PipeMovement
+    - coloring : PipeColoring
+    - lineRenderer : LineRenderer
+    - pipeRenderer : PipeRenderer
+    - dialog : Dialog
+    + CreativeModeScreen (Core.Game game)
+    + Initialize () override
+    + Knot : Knot
+    + LoadFile (string file)
+    + Update (GameTime gameTime) override
+    - UpdateInput (GameTime gameTime)
+    + Draw (GameTime gameTime) override
+    + Activate (GameTime gameTime) override
+    + Unload () override
+public class KnotSaveConfirmDialog : TextInputDialog
+    + KnotSaveConfirmDialog (GameState state, DisplayLayer drawOrder, Knot knot)

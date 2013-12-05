@@ -1,0 +1,18 @@
+public class PipeModelInfo : GameModelInfo
+    + Edges : EdgeList
+    + Edge : Edge
+    + Direction : Vector3
+    + PositionFrom : Vector3
+    + PositionTo : Vector3
+    + PipeModelInfo (EdgeList edges, Edge edge, Vector3 offset)
+    + Equals (GameObjectInfo other) : bool override
+public class PipeModel : GameModel
+    + Info : PipeModelInfo new
+    - Bounds : BoundingSphere[]
+    + OnDataChange : Action
+    + PipeModel (GameState state, PipeModelInfo info)
+    + Draw (GameTime gameTime) override
+    + Update (GameTime gameTime) override
+    + Intersects (Ray ray) : GameObjectDistance override
+public class PipeModelFactory : ModelFactory
+    # CreateModel (GameState state, GameModelInfo info) : GameModel override

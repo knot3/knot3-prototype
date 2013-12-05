@@ -1,0 +1,35 @@
+public class PipeMovement : IGameObject, IEnumerable<IGameObject>
+    - state : GameState
+    + Info : dynamic
+    + Knot : Knot
+    - previousMousePosition : Vector3
+    - shadowObjects : List<ShadowGameObject>
+    + PipeMovement (GameState state, GameObjectInfo info)
+    + Update (GameTime gameTime)
+    - CreateShadowPipes ()
+    - ComputeDirection (Vector3 currentMousePosition, out Vector3 direction, out float count)
+    - ComputeDirection (Vector3 currentMousePosition, out Vector3 direction, out int countInt)
+    - MoveShadowPipes (Vector3 currentMousePosition)
+    - MovePipes (Vector3 currentMousePosition)
+    + Draw (GameTime gameTime)
+    + GetEnumerator () : IEnumerator<IGameObject>
+    - IEnumerable.GetEnumerator () : IEnumerator
+    + Intersects (Ray ray) : GameObjectDistance
+    + Center () : Vector3
+public class ShadowGameObject : IGameObject
+    # state : GameState
+    - Obj : IGameObject
+    + Info : dynamic
+    + ShadowGameObject (GameState state, IGameObject obj)
+    + ShadowPosition : Vector3
+    + OriginalPosition : Vector3
+    + Update (GameTime gameTime) virtual
+    + Draw (GameTime gameTime) virtual
+    + Intersects (Ray ray) : GameObjectDistance
+    + Center () : Vector3
+public class ShadowGameModel : ShadowGameObject
+    - Model : GameModel
+    + ShadowColor : Color
+    + ShadowAlpha : float
+    + ShadowGameModel (GameState state, GameModel model)
+    + Draw (GameTime gameTime) override

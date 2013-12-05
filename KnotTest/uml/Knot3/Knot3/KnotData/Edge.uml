@@ -1,0 +1,28 @@
+public class Edge : 
+    + Direction : Vector3
+    + Color : Color
+    + ID : int
+    - LastID : int static
+    + Edge (int x, int y, int z)
+    + Edge (Vector3 v)
+    + operator : bool static
+    + operator ! : bool static
+    + Equals (object obj) : bool override
+    + GetHashCode () : int override
+    + ToString () : string override
+    - r : Random static
+    + RandomColor () : Color static
+    + RandomColor (GameTime gameTime) : Color static
+    + RandomEdge () : Edge static
+    + Colors : List<Color> static
+    + DefaultColor : Color static
+    + Zero : Edge static
+    + UnitX : Edge static
+    + UnitY : Edge static
+    + UnitZ : Edge static
+    + Up : Edge static
+    + Down : Edge static
+    + Right : Edge static
+    + Left : Edge static
+    + Forward : Edge static
+    + Backward : Edge static

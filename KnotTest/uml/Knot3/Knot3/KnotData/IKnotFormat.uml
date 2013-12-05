@@ -1,0 +1,6 @@
+public interface IKnotFormat : 
+    + FileExtensions : string[]
+    + LoadInfo (string filename) : KnotInfo
+    + LoadKnot (string filename) : Knot
+    + SaveKnot (Knot knot)
+    + FindFilename (string knotName) : string

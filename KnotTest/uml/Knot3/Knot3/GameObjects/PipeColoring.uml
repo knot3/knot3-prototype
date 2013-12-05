@@ -1,0 +1,4 @@
+public class PipeColoring : GameStateComponent
+    + Knot : Knot
+    + PipeColoring (GameState state)
+    + Update (GameTime gameTime) override

@@ -1,0 +1,23 @@
+public class WrapList<T> : IEnumerable<T>
+    - list : List<T> new
+    - int> indexOf : Dictionary<T, new
+    + WrapList ()
+    + WrapList (IEnumerable<T> elems)
+    - RebuildIndex ()
+    - WrapIndex (int i) : int
+    + this [int i] : T
+    + this [T t] : int
+    + Count : int
+    + Clear ()
+    + Add (T elem)
+    + Remove (T[] elems)
+    + InsertAt (int i, T elem)
+    + Replace (T find, T[] elem)
+    + AddRange (IEnumerable<T> elems)
+    + Contains (T elem) : bool
+    + GetEnumerator () : IEnumerator<T>
+    - IEnumerable.GetEnumerator () : IEnumerator
+    + ToString () : string override
+public static class Lists : 
+    + Times (this int count, Action action) static
+    + Times (this int count, Action<int> action) static

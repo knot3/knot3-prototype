@@ -1,0 +1,9 @@
+public class IniFile : IDisposable
+    - Filename : string
+    + Dictionary<string, string>> Data : Dictionary<string,
+    + IniFile (string filename)
+    + Dispose ()
+    # Dispose (bool disposing) virtual
+    + Save ()
+    - StripComments (string line) : string static
+    + this [string section, string key, string defaultValue : string

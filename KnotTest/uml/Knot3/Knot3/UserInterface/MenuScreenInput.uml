@@ -1,0 +1,2 @@
+public class MenuScreenInput : Input
+    + MenuScreenInput (GameState state)

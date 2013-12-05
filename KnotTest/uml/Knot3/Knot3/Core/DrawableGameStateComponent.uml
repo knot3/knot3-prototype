@@ -1,0 +1,23 @@
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+    + DrawableGameStateComponent (GameState state, DisplayLayer drawOrder)
+    + state : GameState
+    + graphics : GraphicsDeviceManager
+    + device : GraphicsDevice
+    + viewport : Viewport
+    + content : ContentManager
+    + camera : Camera
+    + input : Input
+    + world : World
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + Index : int
+public enum DisplayLayer
+    None
+    Background
+    World
+    Dialog
+    Menu
+    MenuItem
+    SubMenu
+    SubMenuItem
+    Overlay
+    Cursor

@@ -1,0 +1,7 @@
+public interface IRenderEffect : 
+    + RenderTarget : RenderTarget2D
+    + Begin (GameTime gameTime)
+    + End (GameTime gameTime)
+    + Draw (SpriteBatch spriteBatch, GameTime gameTime)
+    + RemapModel (Model model)
+    + DrawModel (GameModel model, GameTime gameTime)

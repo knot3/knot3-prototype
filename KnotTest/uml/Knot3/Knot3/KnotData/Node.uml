@@ -1,0 +1,14 @@
+public struct Node : 
+    + X : int
+    + Y : int
+    + Z : int
+    + Scale : int static
+    + : this() (int x, int y, int z) : Node
+    + operator + (Node a, Vector3 b) : Node static
+    + operator - (Node a, Node b) : Vector3 static
+    + operator : bool static
+    + operator ! : bool static
+    + Equals (object obj) : bool override
+    + GetHashCode () : int override
+    + ToString () : string override
+    + Vector () : Vector3

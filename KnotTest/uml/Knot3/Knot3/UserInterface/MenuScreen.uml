@@ -1,0 +1,16 @@
+public abstract class MenuScreen : GameState
+    - spriteBatch : SpriteBatch
+    - backColor : Color
+    - pointer : MousePointer
+    # LinePoints : List<Vector2>
+    # LineWidth : int
+    + MenuScreen (Core.Game game)
+    + Initialize () override
+    + Update (GameTime gameTime) override
+    + UpdateMenu (GameTime gameTime) abstract
+    + Draw (GameTime gameTime) override
+    + DrawMenu (GameTime gameTime) abstract
+    + Activate (GameTime gameTime) override
+    + Unload () override
+    # BackgroundColor (ItemState itemState) : Color
+    # ForegroundColor (ItemState itemState) : Color
