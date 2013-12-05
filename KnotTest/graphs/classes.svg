@@ -88,20 +88,21 @@
 </g>
 <!-- Box_Overlay -->
 <g id="node21" class="node"><title>Box_Overlay</title>
-<polygon fill="#fcfcda" stroke="black" points="868,-801 868,-909 978,-909 978,-801 868,-801"/>
-<text text-anchor="middle" x="923" y="-897.8" font-family="Helvetica,sans-Serif" font-size="8.00">Overlay</text>
-<polyline fill="none" stroke="black" points="868,-889 978,-889 "/>
-<text text-anchor="start" x="876" y="-877.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
-<text text-anchor="start" x="876" y="-865.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; font : SpriteFont</text>
-<text text-anchor="start" x="876" y="-853.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _total_frames : int</text>
-<text text-anchor="start" x="876" y="-841.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _elapsed_time : float</text>
-<text text-anchor="start" x="876" y="-829.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _fps : int</text>
-<polyline fill="none" stroke="black" points="868,-821 978,-821 "/>
-<text text-anchor="middle" x="923" y="-809.8" font-family="Helvetica,sans-Serif" font-size="8.00"> </text>
+<polygon fill="#fcfcda" stroke="black" points="868,-795 868,-915 978,-915 978,-795 868,-795"/>
+<text text-anchor="middle" x="923" y="-903.8" font-family="Helvetica,sans-Serif" font-size="8.00">Overlay</text>
+<polyline fill="none" stroke="black" points="868,-895 978,-895 "/>
+<text text-anchor="start" x="876" y="-883.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
+<text text-anchor="start" x="876" y="-871.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; effect : BasicEffect</text>
+<text text-anchor="start" x="876" y="-859.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; font : SpriteFont</text>
+<text text-anchor="start" x="876" y="-847.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _total_frames : int</text>
+<text text-anchor="start" x="876" y="-835.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _elapsed_time : float</text>
+<text text-anchor="start" x="876" y="-823.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _fps : int</text>
+<polyline fill="none" stroke="black" points="868,-815 978,-815 "/>
+<text text-anchor="middle" x="923" y="-803.8" font-family="Helvetica,sans-Serif" font-size="8.00"> </text>
 </g>
 <!-- Box_DrawableGameStateComponent&#45;&gt;Box_Overlay -->
 <g id="edge26" class="edge"><title>Box_DrawableGameStateComponent&#45;&gt;Box_Overlay</title>
-<path fill="none" stroke="midnightblue" d="M1004.54,-1015.66C998.604,-1004.35 992.635,-992.913 987,-982 974.709,-958.197 961.34,-931.758 950.015,-909.193"/>
+<path fill="none" stroke="midnightblue" d="M1004.54,-1015.66C998.604,-1004.35 992.635,-992.913 987,-982 975.785,-960.281 963.673,-936.368 953.035,-915.205"/>
 <polygon fill="none" stroke="midnightblue" points="1001.54,-1017.46 1009.29,-1024.69 1007.73,-1014.21 1001.54,-1017.46"/>
 </g>
 <!-- Box_World -->

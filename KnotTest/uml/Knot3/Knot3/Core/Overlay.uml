@@ -1,5 +1,6 @@
 public class Overlay : DrawableGameStateComponent
     - spriteBatch : SpriteBatch
+    - effect : BasicEffect
     - font : SpriteFont
     + Overlay (GameState state)
     # LoadContent () override

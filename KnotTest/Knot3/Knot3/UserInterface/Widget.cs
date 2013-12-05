@@ -25,7 +25,7 @@ namespace Knot3.UserInterface
 	/// Alle GUI-Elemente erben von der Klasse Widget, die immer vorhandene Attribute und häufig verwendete
 	/// Methoden zur Verfügung stellt.
 	/// </summary>
-	public class Widget : DrawableGameStateComponent
+	public abstract class Widget : DrawableGameStateComponent
 	{
 		// size and position
 		public virtual LazyPosition RelativePosition { get; protected set; }

@@ -42,7 +42,7 @@ Box_KeyHandler [label="{KeyHandler\n|private class KeyEventComponent :\l+ receiv
 
 Box_MousePointer [label="{MousePointer\n|- spriteBatch : SpriteBatch\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_Overlay [label="{Overlay\n|- spriteBatch : SpriteBatch\l- font : SpriteFont\l- _total_frames : int\l- _elapsed_time : float\l- _fps : int\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_Overlay [label="{Overlay\n|- spriteBatch : SpriteBatch\l- effect : BasicEffect\l- font : SpriteFont\l- _total_frames : int\l- _elapsed_time : float\l- _fps : int\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_StartScreen [label="{StartScreen\n|# menu : Menu\l- logo : Texture2D\l- spriteBatch : SpriteBatch\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
