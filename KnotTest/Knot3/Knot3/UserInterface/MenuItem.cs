@@ -96,7 +96,7 @@ namespace Knot3.UserInterface
 		{
 			Info = info;
 
-			spriteBatch = new SpriteBatch (device);
+			spriteBatch = new SpriteBatch (state.device);
 		}
 
 		public override void Draw (GameTime gameTime)
@@ -105,7 +105,7 @@ namespace Knot3.UserInterface
 
 			if (IsVisible) {
 				spriteBatch.Begin ();
-				Texture2D paneTexture = Textures.Create (device, Color.White);
+				Texture2D paneTexture = Textures.Create (state.device, Color.White);
 				//spriteBatch.Draw (paneTexture, bounds (), Color.Black);
 				spriteBatch.Draw (paneTexture, bounds (), null, BackgroundColor, 0f,
 			                  Vector2.Zero, SpriteEffects.None, 0.5f);

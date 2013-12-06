@@ -49,8 +49,8 @@ namespace Knot3.GameObjects
 		public void UpdateMouseRay (GameTime gameTime)
 		{
 			double millis = gameTime.TotalGameTime.TotalMilliseconds;
-			if (millis > lastRayCheck + 10 && (input.CurrentInputAction == InputAction.TargetMove
-				|| input.CurrentInputAction == InputAction.FreeMouse)) {
+			if (millis > lastRayCheck + 10 && (state.input.CurrentInputAction == InputAction.TargetMove
+				|| state.input.CurrentInputAction == InputAction.FreeMouse)) {
 				lastRayCheck = millis;
 
 				Ray ray = World.Camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());

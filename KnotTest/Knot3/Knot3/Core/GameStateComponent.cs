@@ -39,46 +39,6 @@ namespace Knot3.Core
 		/// </value>
 		public GameState state { get; private set; }
 
-		/// <summary>
-		/// Gets the graphics device manager.
-		/// </summary>
-		/// <value>
-		/// The graphics device manager.
-		/// </value>
-		public GraphicsDeviceManager graphics { get { return state.graphics; } }
-
-		/// <summary>
-		/// Gets the graphics device.
-		/// </summary>
-		/// <value>
-		/// The graphics device.
-		/// </value>
-		public GraphicsDevice device { get { return state.device; } }
-
-		/// <summary>
-		/// Gets the viewport.
-		/// </summary>
-		/// <value>
-		/// The viewport.
-		/// </value>
-		public Viewport viewport { get { return state.device.Viewport; } }
-
-		/// <summary>
-		/// Gets the content manager.
-		/// </summary>
-		/// <value>
-		/// The content manager.
-		/// </value>
-		public ContentManager content { get { return state.content; } }
-
-		/// <summary>
-		/// Gets the input handler.
-		/// </summary>
-		/// <value>
-		/// The input handler.
-		/// </value>
-		public Input input { get { return state.input; } }
-
 		public virtual IEnumerable<IGameStateComponent> SubComponents (GameTime gameTime)
 		{
 			yield break;

@@ -37,7 +37,7 @@ namespace Knot3.UserInterface
 			RelativeItemSize = new Vector2 (300, 0);
 			Border = Border.Zero;
 
-			spriteBatch = new SpriteBatch (device);
+			spriteBatch = new SpriteBatch (state.device);
 		}
 
 		public void Initialize (LazyItemColor fgColor, LazyItemColor bgColor,
@@ -131,7 +131,7 @@ namespace Knot3.UserInterface
 					new Rectangle (min.X - (int)Border.Size.X, min.Y + size.Y,
 				                   size.X + (int)Border.Size.X * 2, (int)Border.Size.Y)
 				};
-				Texture2D borderTexture = Textures.Create (device, Color.White);
+				Texture2D borderTexture = Textures.Create (state.device, Color.White);
 			
 				spriteBatch.Begin ();
 				foreach (Rectangle rect in borders) {

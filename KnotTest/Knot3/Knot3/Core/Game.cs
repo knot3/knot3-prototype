@@ -23,7 +23,7 @@ namespace Knot3.Core
 	public class Game : Microsoft.Xna.Framework.Game
 	{
 		// graphics-related classes
-		private GraphicsDeviceManager graphics;
+		public GraphicsDeviceManager graphics { get; private set; }
 
 		// custom classes
 		public GameState State { get; private set; }
@@ -169,8 +169,6 @@ namespace Knot3.Core
 				}
 			}
 		}
-		
-		public GraphicsDeviceManager Graphics { get { return graphics; } }
 
 		public static TimeSpan Time (Action action)
 		{

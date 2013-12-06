@@ -44,7 +44,7 @@ namespace Knot3.UserInterface
 			// load fonts
 			font = HfGDesign.MenuFont (state);
 
-			spriteBatch = new SpriteBatch (device);
+			spriteBatch = new SpriteBatch (state.device);
 		}
 
 		public override void Update (GameTime gameTime)
@@ -57,16 +57,16 @@ namespace Knot3.UserInterface
 			spriteBatch.Begin ();
 			// background
 			Rectangle rect = HfGDesign.CreateRectangle (0, ScaledPosition, ScaledSize);
-			spriteBatch.Draw (Textures.Create (device, HfGDesign.LineColor),
+			spriteBatch.Draw (Textures.Create (state.device, HfGDesign.LineColor),
 				                 rect.Grow (1),
 				                 Color.White);
-			spriteBatch.Draw (Textures.Create (device, BackgroundColor),
+			spriteBatch.Draw (Textures.Create (state.device, BackgroundColor),
 				                 rect,
 				                 Color.White);
 
 			// text
 			Vector2 scale = (ScaledSize - ScaledPadding * 2) / font.MeasureString (InputText);
-			spriteBatch.DrawString (font, InputText, (RelativePosition () + RelativePadding ()).Scale (viewport),
+			spriteBatch.DrawString (font, InputText, (RelativePosition () + RelativePadding ()).Scale (state.viewport),
 			                        ForegroundColor, 0, Vector2.Zero, MathHelper.Min (scale.X, scale.Y),
 			                        SpriteEffects.None, 1f);
 			spriteBatch.End ();

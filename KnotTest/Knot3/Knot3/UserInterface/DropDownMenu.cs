@@ -97,7 +97,7 @@ namespace Knot3.UserInterface
 				// draw dropdown menu
 				Vector2 position = ValuePosition ();
 				Vector2 size = ValueSize ();
-				dropdown.Align (viewport, 1f, (int)position.X, (int)position.Y, (int)size.X, (int)size.Y, 0f);
+				dropdown.Align (state.viewport, 1f, (int)position.X, (int)position.Y, (int)size.X, (int)size.Y, 0f);
 			}
 		}
 

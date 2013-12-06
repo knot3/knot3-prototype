@@ -34,7 +34,7 @@ namespace Knot3.Core
 			: base(state, DisplayLayer.Cursor)
 		{
 			// create a new SpriteBatch, which can be used to draw textures
-			spriteBatch = new SpriteBatch (graphics.GraphicsDevice);
+			spriteBatch = new SpriteBatch (state.device);
 		}
 
 		/// <summary>
@@ -53,12 +53,12 @@ namespace Knot3.Core
 			if (!Utilities.Mono.IsRunningOnMono ()) {
 				spriteBatch.Begin ();
             
-				Texture2D cursorTex = content.Load<Texture2D> ("cursor");
-				if (input.GrabMouseMovement || input.CurrentInputAction == InputAction.TargetMove
-					|| (input.CurrentInputAction == InputAction.ArcballMove
+				Texture2D cursorTex = state.content.Load<Texture2D> ("cursor");
+				if (state.input.GrabMouseMovement || state.input.CurrentInputAction == InputAction.TargetMove
+					|| (state.input.CurrentInputAction == InputAction.ArcballMove
                     && (Input.MouseState.LeftButton == ButtonState.Pressed || Input.MouseState.RightButton == ButtonState.Pressed)))
                 {
-					spriteBatch.Draw (cursorTex, graphics.GraphicsDevice.Viewport.Center (), Color.White);
+					spriteBatch.Draw (cursorTex, state.device.Viewport.Center (), Color.White);
 				} else {
 					spriteBatch.Draw (cursorTex, new Vector2 (Input.MouseState.X, Input.MouseState.Y), Color.White);
 				}

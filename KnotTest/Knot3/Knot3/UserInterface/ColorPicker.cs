@@ -33,7 +33,7 @@ namespace Knot3.UserInterface
 			tiles = new List<Vector2> (CreateTiles (colors));
 
 			// create a new SpriteBatch, which can be used to draw textures
-			spriteBatch = new SpriteBatch (device);
+			spriteBatch = new SpriteBatch (state.device);
 
 			RelativePosition = () => (Vector2.One - RelativeSize ()) / 2;
 			RelativeSize = () => {
@@ -50,17 +50,17 @@ namespace Knot3.UserInterface
 				// background
 				Rectangle rect = HfGDesign.CreateRectangle (0, ScaledPosition, ScaledSize);
 				spriteBatch.Draw (
-						Textures.Create (device, Color.Black), rect.Grow (2), Color.White
+						Textures.Create (state.device, Color.Black), rect.Grow (2), Color.White
 				);
 
 				// color tiles
 				int i = 0;
 				foreach (Vector2 tile in tiles) {
 					rect = HfGDesign.CreateRectangle (
-						0, ScaledPosition + tile.Scale (viewport), tileSize.Scale (viewport)
+						0, ScaledPosition + tile.Scale (state.viewport), tileSize.Scale (state.viewport)
 					);
 					spriteBatch.Draw (
-						Textures.Create (device, colors [i]), rect.Shrink (1), Color.White
+						Textures.Create (state.device, colors [i]), rect.Shrink (1), Color.White
 					);
 
 					++i;
@@ -110,7 +110,7 @@ namespace Knot3.UserInterface
 
 		public void OnLeftClick (Vector2 position, ClickState click, GameTime gameTime)
 		{
-			position = position.RelativeTo (viewport);
+			position = position.RelativeTo (state.viewport);
 			Console.WriteLine ("ColorPicker.OnLeftClick: positon="+position);
 			int i = 0;
 			foreach (Vector2 tile in tiles) {

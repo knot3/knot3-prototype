@@ -253,7 +253,7 @@ namespace Knot3.CreativeMode
 		{
 			if (MouseState != PreviousMouseState) {
 				if (GrabMouseMovement || (CurrentInputAction == InputAction.ArcballMove)) {
-					Mouse.SetPosition (device.Viewport.Width / 2, device.Viewport.Height / 2);
+					Mouse.SetPosition (state.viewport.Width / 2, state.viewport.Height / 2);
 					Core.Input.MouseState = Mouse.GetState ();
 				}
 			}

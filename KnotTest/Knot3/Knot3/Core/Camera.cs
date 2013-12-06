@@ -112,7 +112,7 @@ namespace Knot3.Core
 			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
  
 			FoV = MathHelper.ToDegrees(MathHelper.PiOver4);
-			aspectRatio = device.Viewport.AspectRatio;
+			aspectRatio = state.viewport.AspectRatio;
 			nearPlane = 0.5f;
 			farPlane = 10000.0f;
 		}
@@ -183,7 +183,7 @@ namespace Knot3.Core
 		/// </param>
 		public Ray GetMouseRay (Vector2 mouse)
 		{
-			Viewport viewport = device.Viewport;
+			Viewport viewport = state.viewport;
 
 			Vector3 nearPoint = new Vector3 (mouse, 0);
 			Vector3 farPoint = new Vector3 (mouse, 1);

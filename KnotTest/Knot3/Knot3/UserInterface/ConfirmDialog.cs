@@ -59,10 +59,10 @@ namespace Knot3.UserInterface
 			// text
 			for (int i = 0; i < Text.Length; ++i) {
 				string line = Text [i];
-				float scale = 0.15f * viewport.ScaleFactor ().Length ();
-				Vector2 size = font.MeasureString (line).RelativeTo (viewport) * scale;
+				float scale = 0.15f * state.viewport.ScaleFactor ().Length ();
+				Vector2 size = font.MeasureString (line).RelativeTo (state.viewport) * scale;
 				Vector2 pos = new Vector2 ((RelativeSize ().X - size.X) / 2, RelativePadding ().Y + size.Y * i);
-				spriteBatch.DrawString (font, line, ScaledPosition + pos.Scale (viewport),
+				spriteBatch.DrawString (font, line, ScaledPosition + pos.Scale (state.viewport),
 				                        Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
 			}
 		}

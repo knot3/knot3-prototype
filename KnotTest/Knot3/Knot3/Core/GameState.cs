@@ -66,7 +66,7 @@ namespace Knot3.Core
 		/// <value>
 		/// The graphics device manager.
 		/// </value>
-		public GraphicsDeviceManager graphics { get { return game.Graphics; } }
+		public GraphicsDeviceManager graphics { get { return game.graphics; } }
 
 		/// <summary>
 		/// Gets the graphics device for this game state.

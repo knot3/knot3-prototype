@@ -41,8 +41,8 @@ namespace Knot3.Core
 			World = world;
 
 			// create a new SpriteBatch, which can be used to draw textures
-            effect = new BasicEffect(graphics.GraphicsDevice);
-            spriteBatch = new SpriteBatch (graphics.GraphicsDevice);
+            effect = new BasicEffect(state.device);
+            spriteBatch = new SpriteBatch (state.device);
             effect.VertexColorEnabled = true;
 			effect.World = Matrix.CreateFromYawPitchRoll (0,0,0);
 		}
@@ -54,7 +54,7 @@ namespace Knot3.Core
 		{
 			// load fonts
 			try {
-				font = content.Load<SpriteFont> ("Font");
+				font = state.content.Load<SpriteFont> ("Font");
 			} catch (ContentLoadException ex) {
 				font = null;
 				Console.WriteLine (ex.Message);
@@ -104,7 +104,7 @@ namespace Knot3.Core
           
             effect.CurrentTechnique.Passes[0].Apply();
             
-            graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.LineList, vertices, 0, 3, VertexPositionColor.VertexDeclaration);
+            state.device.DrawUserPrimitives(PrimitiveType.LineList, vertices, 0, 3, VertexPositionColor.VertexDeclaration);
 		}
 
 		private void DrawOverlay (GameTime gameTime)
@@ -141,8 +141,8 @@ namespace Knot3.Core
 			height += 20;
 			DrawString ("WASD: ", width1, height, Color.White);
 			string wasdMode =
-					  input.WASDMode == WASDMode.ArcballMode ? "Arcball"
-					: input.WASDMode == WASDMode.FirstPersonMode ? "FPS"
+					  state.input.WASDMode == WASDMode.ArcballMode ? "Arcball"
+					: state.input.WASDMode == WASDMode.FirstPersonMode ? "FPS"
 					: "unknown";
 			DrawString (wasdMode, width2, height, Color.White);
 
@@ -194,7 +194,7 @@ namespace Knot3.Core
 		{
 			_total_frames++;
 			spriteBatch.Begin ();
-			DrawString ("FPS: " + _fps, device.Viewport.Width - 150, 20, Color.White);
+			DrawString ("FPS: " + _fps, state.viewport.Width - 150, 20, Color.White);
 			spriteBatch.End ();
 		}
 	}

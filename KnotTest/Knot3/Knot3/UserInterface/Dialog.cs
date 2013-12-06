@@ -38,7 +38,7 @@ namespace Knot3.UserInterface
 			};
 
 			// create a new SpriteBatch, which can be used to draw textures
-			spriteBatch = new SpriteBatch (device);
+			spriteBatch = new SpriteBatch (state.device);
 
 			// menu
 			buttons = new Menu (state, DisplayLayer.Menu);
@@ -75,10 +75,10 @@ namespace Knot3.UserInterface
 
 				// background
 				Rectangle rect = HfGDesign.CreateRectangle (0, ScaledPosition, ScaledSize);
-				spriteBatch.Draw (Textures.Create (device, HfGDesign.LineColor),
+				spriteBatch.Draw (Textures.Create (state.device, HfGDesign.LineColor),
 				                 rect.Grow (3),
 				                 Color.White);
-				spriteBatch.Draw (Textures.Create (device, BackgroundColor),
+				spriteBatch.Draw (Textures.Create (state.device, BackgroundColor),
 				                 rect,
 				                 Color.Black * 0.95f);
 

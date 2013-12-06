@@ -34,11 +34,11 @@ namespace Knot3.UserInterface
 
 		public virtual LazySize RelativePadding { get; protected set; }
 
-		protected Vector2 ScaledPosition { get { return RelativePosition ().Scale (viewport); } }
+		protected Vector2 ScaledPosition { get { return RelativePosition ().Scale (state.viewport); } }
 
-		protected Vector2 ScaledSize { get { return RelativeSize ().Scale (viewport); } }
+		protected Vector2 ScaledSize { get { return RelativeSize ().Scale (state.viewport); } }
 
-		protected Vector2 ScaledPadding { get { return RelativePadding ().Scale (viewport); } }
+		protected Vector2 ScaledPadding { get { return RelativePadding ().Scale (state.viewport); } }
 
 		// alignment
 		protected HAlign AlignX;
