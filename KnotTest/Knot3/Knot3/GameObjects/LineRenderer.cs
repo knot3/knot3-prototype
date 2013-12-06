@@ -24,6 +24,8 @@ namespace Knot3.GameObjects
 	{
 		public override dynamic Info { get; protected set; }
 
+		public override World World { get; set; }
+
 		// graphic stuff
 		private BasicEffect basicEffect;
 
@@ -50,9 +52,9 @@ namespace Knot3.GameObjects
 
 		public override void Draw (GameTime gameTime)
 		{
-			basicEffect.World = state.camera.WorldMatrix;
-			basicEffect.View = state.camera.ViewMatrix;
-			basicEffect.Projection = state.camera.ProjectionMatrix;
+			basicEffect.World = World.Camera.WorldMatrix;
+			basicEffect.View = World.Camera.ViewMatrix;
+			basicEffect.Projection = World.Camera.ProjectionMatrix;
 
 			if (edges.Count > 0) {
 				DrawRoundedLines ();

@@ -1,5 +1,6 @@
 public interface IGameObject : 
     + Info : dynamic
+    + World : World
     + Draw (GameTime gameTime)
     + Update (GameTime gameTime)
     + Intersects (Ray ray) : GameObjectDistance

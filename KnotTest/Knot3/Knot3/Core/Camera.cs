@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Core;
 using Knot3.Utilities;
+using Knot3.GameObjects;
 
 namespace Knot3.Core
 {
@@ -23,6 +24,8 @@ namespace Knot3.Core
 	/// </summary>
 	public class Camera : GameStateComponent
 	{
+		World World { get; set; }
+
 		/// <summary>
 		/// Gets the world matrix.
 		/// </summary>
@@ -98,9 +101,10 @@ namespace Knot3.Core
 		/// <param name='state'>
 		/// Game State.
 		/// </param>
-		public Camera (GameState state)
+		public Camera (GameState state, World world)
 			: base(state, DisplayLayer.None)
 		{
+			World = world;
 			DefaultPosition = new Vector3 (400, 400, 700);
 			Position = DefaultPosition;
 			Target = new Vector3 (0, 0, 0);
@@ -201,8 +205,8 @@ namespace Knot3.Core
 		/// </value>
 		public Vector3 ArcballTarget {
 			get {
-				if (world.SelectedObject != null)
-					return world.SelectedObject.Center ();
+				if (World.SelectedObject != null)
+					return World.SelectedObject.Center ();
 				else
 					return Vector3.Zero;
 			}

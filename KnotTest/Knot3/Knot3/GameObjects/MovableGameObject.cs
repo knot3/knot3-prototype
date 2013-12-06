@@ -25,9 +25,14 @@ namespace Knot3.GameObjects
 		private GameState state;
 		private IGameObject Obj;
 
+		public World World {
+			get { return Obj.World; }
+			set {}
+		}
+
 		public MovableGameObject (GameState state, IGameObject obj)
 		{
-			this.state = state;
+ 			this.state = state;
 			Obj = obj;
 			Obj.Info.IsMovable = true;
 		}
@@ -44,7 +49,7 @@ namespace Knot3.GameObjects
 		{
 			Plane groundPlane = new Plane (
 				Info.Position, Info.Position + Vector3.Up,
-				Info.Position + Vector3.Normalize (Vector3.Cross (Vector3.Up, Info.Position - state.camera.Position))
+				Info.Position + Vector3.Normalize (Vector3.Cross (Vector3.Up, Info.Position - World.Camera.Position))
 			);
 			//Console.WriteLine ("groundPlane=" + groundPlane);
 			return groundPlane;
@@ -52,18 +57,18 @@ namespace Knot3.GameObjects
 
 		protected Ray CurrentMouseRay ()
 		{
-			Ray ray = state.camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
+			Ray ray = World.Camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
 			return ray;
 		}
 
 		protected Vector3? CurrentMousePosition (Ray ray, Plane groundPlane)
 		{
 			float? planeDistance = ray.Intersects (groundPlane);
-			float previousLength = (Info.Position - state.camera.Position).Length ();
+			float previousLength = (Info.Position - World.Camera.Position).Length ();
 			if (planeDistance.HasValue) {
 				Vector3 planePosition = ray.Position + ray.Direction * planeDistance.Value;
-				float currentLength = (planePosition - state.camera.Position).Length ();
-				return state.camera.Position + (planePosition - state.camera.Position) * previousLength / currentLength;
+				float currentLength = (planePosition - World.Camera.Position).Length ();
+				return World.Camera.Position + (planePosition - World.Camera.Position) * previousLength / currentLength;
 			} else {
 				return null;
 			}
@@ -72,7 +77,7 @@ namespace Knot3.GameObjects
 		public virtual void Update (GameTime gameTime)
 		{
 			// check whether is object is movable and whether it is selected
-			bool isSelected = state.world.SelectedObject == this || state.world.SelectedObject == Obj;
+			bool isSelected = World.SelectedObject == this || World.SelectedObject == Obj;
 			if (Info.IsVisible && Info.IsMovable && isSelected) {
 				// is SelectedObjectMove the current input action?
 				if (state.input.CurrentInputAction == InputAction.SelectedObjectMove) {

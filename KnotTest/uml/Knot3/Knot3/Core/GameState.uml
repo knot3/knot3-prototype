@@ -3,8 +3,6 @@ public abstract class GameState :
     + NextState : GameState
     + GameState (Game game)
     + input : Input
-    + camera : Camera
-    + world : World
     + graphics : GraphicsDeviceManager
     + device : GraphicsDevice
     + viewport : Viewport

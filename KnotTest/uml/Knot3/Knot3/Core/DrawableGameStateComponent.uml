@@ -5,9 +5,7 @@ public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IG
     + device : GraphicsDevice
     + viewport : Viewport
     + content : ContentManager
-    + camera : Camera
     + input : Input
-    + world : World
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
     + Index : int
 public enum DisplayLayer

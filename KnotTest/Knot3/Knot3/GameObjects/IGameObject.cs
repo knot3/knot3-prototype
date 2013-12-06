@@ -24,6 +24,8 @@ namespace Knot3.GameObjects
 	{
 		dynamic Info { get; }
 
+		World World { get; set; }
+
 		void Draw (GameTime gameTime);
 
 		void Update (GameTime gameTime);

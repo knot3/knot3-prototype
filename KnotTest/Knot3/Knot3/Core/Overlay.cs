@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Settings;
+using Knot3.GameObjects;
 
 namespace Knot3.Core
 {
@@ -25,21 +26,25 @@ namespace Knot3.Core
 		private SpriteBatch spriteBatch;
         BasicEffect effect;
 
+		private World World { get; set; }
+
 		// fonts
 		private SpriteFont font;
 
 		/// <summary>
 		/// Initializes a new Overlay-
 		/// </summary>
-		public Overlay (GameState state)
+		public Overlay (GameState state, World world)
 			: base(state, DisplayLayer.Overlay)
 		{
+			// game world
+			World = world;
+
 			// create a new SpriteBatch, which can be used to draw textures
             effect = new BasicEffect(graphics.GraphicsDevice);
             spriteBatch = new SpriteBatch (graphics.GraphicsDevice);
             effect.VertexColorEnabled = true;
-            effect.World = state.camera.WorldMatrix;
-            
+			effect.World = Matrix.CreateFromYawPitchRoll (0,0,0);
 		}
 
 		/// <summary>
@@ -94,8 +99,8 @@ namespace Knot3.Core
 			vertices [5].Position = new Vector3 (0, 0, +length);
 			vertices [5].Color = Color.Yellow;
             
-            effect.View = state.camera.ViewMatrix;
-            effect.Projection = state.camera.ProjectionMatrix;
+            effect.View = World.Camera.ViewMatrix;
+            effect.Projection = World.Camera.ProjectionMatrix;
           
             effect.CurrentTechnique.Passes[0].Apply();
             
@@ -109,30 +114,30 @@ namespace Knot3.Core
 			int height = 20;
 			int width1 = 20, width2 = 150, width3 = 210, width4 = 270;
 			DrawString ("Rotation: ", width1, height, Color.White);
-			DrawString (camera.RotationAngle.ToDegrees ().X, width2, height, Color.Green);
-			DrawString (camera.RotationAngle.ToDegrees ().Y, width3, height, Color.Red);
-			DrawString (camera.RotationAngle.ToDegrees ().Z, width4, height, Color.Yellow);
+			DrawString (World.Camera.RotationAngle.ToDegrees ().X, width2, height, Color.Green);
+			DrawString (World.Camera.RotationAngle.ToDegrees ().Y, width3, height, Color.Red);
+			DrawString (World.Camera.RotationAngle.ToDegrees ().Z, width4, height, Color.Yellow);
 			height += 20;
 			DrawString ("Camera Position: ", width1, height, Color.White);
-			DrawVectorCoordinates (camera.Position, width2, width3, width4, height);
+			DrawVectorCoordinates (World.Camera.Position, width2, width3, width4, height);
 			height += 20;
 			DrawString ("Camera Target: ", width1, height, Color.White);
-			DrawVectorCoordinates (camera.Target, width2, width3, width4, height);
+			DrawVectorCoordinates (World.Camera.Target, width2, width3, width4, height);
 			height += 20;
 			DrawString ("Distance: ", width1, height, Color.White);
-			DrawString (camera.TargetDistance, width2, height, Color.White);
+			DrawString (World.Camera.TargetDistance, width2, height, Color.White);
 			height += 20;
 			DrawString ("Selected Object: ", width1, height, Color.White);
-			if (world.SelectedObject != null) {
-				Vector3 selectedObjectCenter = world.SelectedObject.Center ();
+			if (World.SelectedObject != null) {
+				Vector3 selectedObjectCenter = World.SelectedObject.Center ();
 				DrawVectorCoordinates (selectedObjectCenter, width2, width3, width4, height);
 			}
 			height += 20;
 			DrawString ("Distance: ", width1, height, Color.White);
-			DrawString (world.SelectedObjectDistance (), width2, height, Color.White);
+			DrawString (World.SelectedObjectDistance (), width2, height, Color.White);
 			height += 20;
 			DrawString ("FoV: ", width1, height, Color.White);
-			DrawString (camera.FoV, width2, height, Color.White);
+			DrawString (World.Camera.FoV, width2, height, Color.White);
 			height += 20;
 			DrawString ("WASD: ", width1, height, Color.White);
 			string wasdMode =

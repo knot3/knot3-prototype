@@ -179,9 +179,9 @@ namespace Knot3.RenderEffects
 						}
 
 						// matrices
-						effect.World = model.WorldMatrix * state.camera.WorldMatrix;
-						effect.View = state.camera.ViewMatrix;
-						effect.Projection = state.camera.ProjectionMatrix;
+						effect.World = model.WorldMatrix * model.World.Camera.WorldMatrix;
+						effect.View = model.World.Camera.ViewMatrix;
+						effect.Projection = model.World.Camera.ProjectionMatrix;
 
 						// colors
 						if (model.BaseColor != Color.Transparent) {

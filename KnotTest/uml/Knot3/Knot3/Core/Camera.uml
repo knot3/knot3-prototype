@@ -1,4 +1,5 @@
 public class Camera : GameStateComponent
+    - World : World
     + WorldMatrix : Matrix
     + ViewMatrix : Matrix
     + ProjectionMatrix : Matrix
@@ -13,7 +14,7 @@ public class Camera : GameStateComponent
     - aspectRatio : float
     - nearPlane : float
     - farPlane : float
-    + Camera (GameState state)
+    + Camera (GameState state, World world)
     + Update (GameTime gameTime) override
     - UpdateRotation (GameTime gameTime)
     - UpdateMatrices (GameTime gameTime)

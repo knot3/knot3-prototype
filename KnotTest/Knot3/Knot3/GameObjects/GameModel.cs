@@ -60,6 +60,8 @@ namespace Knot3.GameObjects
 
 		public dynamic Info { get; private set; }
 
+		public World World { get; set; }
+
 		/// <summary>
 		/// Das XNA-3D-Modell.
 		/// </summary>

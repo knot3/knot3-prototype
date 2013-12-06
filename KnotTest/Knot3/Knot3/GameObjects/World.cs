@@ -46,6 +46,14 @@ namespace Knot3.GameObjects
 		/// </value>
 		public IGameObject SelectedObject { get; private set; }
 
+		/// <summary>
+		/// Gets the camera for this game world.
+		/// </summary>
+		/// <value>
+		/// The camera.
+		/// </value>
+		public Camera Camera { get; protected set; }
+
 		private TexturedRectangle floor;
 
 		/// <summary>
@@ -54,6 +62,10 @@ namespace Knot3.GameObjects
 		public World (GameState state)
 			: base(state, DisplayLayer.World)
 		{
+			// camera
+			Camera = new Camera (state, this);
+
+			// the list of game objects
 			Objects = new List<IGameObject> ();
 
 			// the floor
@@ -77,7 +89,7 @@ namespace Knot3.GameObjects
 		public float SelectedObjectDistance ()
 		{
 			if (SelectedObject != null) {
-				Vector3 toTarget = SelectedObject.Center () - camera.Position;
+				Vector3 toTarget = SelectedObject.Center () - Camera.Position;
 				return toTarget.Length ();
 			} else {
 				return 0;
@@ -87,6 +99,7 @@ namespace Knot3.GameObjects
 		public void Add (IGameObject obj)
 		{
 			Objects.Add (obj);
+			obj.World = this;
 		}
 
 		public override void Initialize ()
@@ -111,6 +124,7 @@ namespace Knot3.GameObjects
 			knotRenderEffect.Begin (background, gameTime);
 
 			foreach (IGameObject obj in Objects) {
+				obj.World = this;
 				obj.Draw (gameTime);
 			}
 
@@ -168,6 +182,15 @@ namespace Knot3.GameObjects
 		{
 			return GetEnumerator (); // Just return the generic version
 		}
+
+		public override IEnumerable<IGameStateComponent> SubComponents (GameTime gameTime)
+		{
+			foreach (DrawableGameStateComponent component in base.SubComponents(gameTime)) {
+				yield return component;
+			}
+			yield return Camera;
+		}
+
 	}
 	
 	public class TestModel : GameModel

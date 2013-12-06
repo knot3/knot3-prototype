@@ -20,14 +20,25 @@ namespace Knot3.CreativeMode
 {
 	public class KnotModeInput : Core.Input
 	{
+		// game world
+		private World World { get; set; }
+
+		private Camera camera { get { return World.Camera; } }
+
+		// ...
 		private int wasdSpeed = 10;
 
-		public KnotModeInput (GameState state)
+		public KnotModeInput (GameState state, World world)
 			: base(state)
 		{
+			// game world
+			World = world;
+
+			// default values
 			GrabMouseMovement = false;
 			ResetMousePosition ();
 
+			// keys to accept
 			ValidKeys.AddRange (
 				new []{
 					Keys.A, Keys.D, Keys.W, Keys.S, Keys.R, Keys.F, Keys.Q, Keys.E, Keys.A, Keys.D, Keys.W,
@@ -134,13 +145,13 @@ namespace Knot3.CreativeMode
 				// set position to default
 				camera.Position = camera.DefaultPosition;
 				// don't select a game object
-				world.SelectObject (null, gameTime);
+				World.SelectObject (null, gameTime);
 			}
 
 			// grab mouse movent
 			if (Keys.LeftAlt.IsDown ()) {
 				GrabMouseMovement = !GrabMouseMovement;
-				world.SelectObject (null, gameTime);
+				World.SelectObject (null, gameTime);
 			}
 
 			// switch WASD mode
@@ -193,13 +204,12 @@ namespace Knot3.CreativeMode
 				else {
 					// left mouse button pressed
 					if (MouseState.LeftButton == ButtonState.Pressed) {
-						if (world.SelectedObject != null && world.SelectedObject.Info.IsMovable)
+						if (World.SelectedObject != null && World.SelectedObject.Info.IsMovable)
 							action = InputAction.SelectedObjectShadowMove;
 						else
 							action = InputAction.TargetMove;
-					}
-					else if (MouseState.LeftButton == ButtonState.Released && PreviousMouseState.LeftButton == ButtonState.Pressed) {
-						if (world.SelectedObject != null && world.SelectedObject.Info.IsMovable)
+					} else if (MouseState.LeftButton == ButtonState.Released && PreviousMouseState.LeftButton == ButtonState.Pressed) {
+						if (World.SelectedObject != null && World.SelectedObject.Info.IsMovable)
 							action = InputAction.SelectedObjectMove;
 						else
 							action = InputAction.TargetMove;

@@ -32,6 +32,7 @@ namespace Knot3.CreativeMode
 		private bool knotModified;
 
 		// custom classes
+		private World world;
 		private MousePointer pointer;
 		private Overlay overlay;
 		private MousePicker picker;
@@ -57,18 +58,16 @@ namespace Knot3.CreativeMode
 		/// </summary>
 		public override void Initialize ()
 		{
-			// camera
-			camera = new Camera (this);
-			// input
-			input = new KnotModeInput (this);
-			// overlay
-			overlay = new Overlay (this);
-			// pointer
-			pointer = new MousePointer (this);
 			// world
 			world = new World (this);
+			// input
+			input = new KnotModeInput (this, world);
+			// overlay
+			overlay = new Overlay (this, world);
+			// pointer
+			pointer = new MousePointer (this);
 			// picker
-			picker = new MousePicker (this);
+			picker = new MousePicker (this, world);
 
 			// pipe renderer
 			var knotRenderInfo = new GameObjectInfo ();
@@ -77,7 +76,7 @@ namespace Knot3.CreativeMode
 			world.Add (pipeRenderer as IGameObject);
 			
 			// pipe movements
-			movement = new PipeMovement (this, knotRenderInfo);
+			movement = new PipeMovement (this, world, knotRenderInfo);
 			world.Add (movement as IGameObject);
 
 			// pipe colors
@@ -179,7 +178,7 @@ namespace Knot3.CreativeMode
 		public override void Activate (GameTime gameTime)
 		{
 			base.Activate (gameTime);
-			AddGameComponents (gameTime, camera, input, overlay, pointer, world, picker, coloring);
+			AddGameComponents (gameTime, input, overlay, pointer, world, picker, coloring);
 		}
 
 		public override void Unload ()

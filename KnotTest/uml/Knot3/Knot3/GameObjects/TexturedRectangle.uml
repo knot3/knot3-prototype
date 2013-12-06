@@ -9,6 +9,7 @@ public class TexturedRectangleInfo : GameObjectInfo
 public class TexturedRectangle : IGameObject
     # state : GameState
     + Info : dynamic
+    + World : World
     - UpperLeft : Vector3
     - LowerLeft : Vector3
     - UpperRight : Vector3

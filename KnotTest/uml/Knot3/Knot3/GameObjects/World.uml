@@ -3,6 +3,7 @@ public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
     - knotRenderEffect : RenderEffect
     + Objects : List<IGameObject>
     + SelectedObject : IGameObject
+    + Camera : Camera
     - floor : TexturedRectangle
     + World (GameState state)
     + SelectObject (IGameObject obj, GameTime gameTime)
@@ -13,6 +14,7 @@ public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
     + Update (GameTime gameTime) override
     + GetEnumerator () : IEnumerator<IGameObject>
     - IEnumerable.GetEnumerator () : IEnumerator
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
 public class TestModel : GameModel
     + TestModel (GameState state, GameModelInfo info)
     + Update (GameTime gameTime) override

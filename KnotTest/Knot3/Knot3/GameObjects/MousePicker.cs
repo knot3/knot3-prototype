@@ -25,15 +25,19 @@ namespace Knot3.GameObjects
 	/// </summary>
 	public class MousePicker : GameStateComponent
 	{
+		// game world
+		private World World { get; set; }
+
 		// ray check
 		private double lastRayCheck = 0;
 
 		/// <summary>
 		/// Initializes a new MousePicking component.
 		/// </summary>
-		public MousePicker (GameState state)
+		public MousePicker (GameState state, World world)
 			: base(state, DisplayLayer.None)
 		{
+			World = world;
 		}
 
 		public override void Update (GameTime gameTime)
@@ -49,10 +53,10 @@ namespace Knot3.GameObjects
 				|| input.CurrentInputAction == InputAction.FreeMouse)) {
 				lastRayCheck = millis;
 
-				Ray ray = camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
+				Ray ray = World.Camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
 
 				GameObjectDistance nearest = null;
-				foreach (IGameObject obj in world.Objects) {
+				foreach (IGameObject obj in World.Objects) {
 					if (obj.Info.IsVisible) {
 						GameObjectDistance intersection = obj.Intersects (ray);
 						if (intersection != null) {
@@ -66,7 +70,7 @@ namespace Knot3.GameObjects
 					}
 				}
 				if (nearest != null) {
-					world.SelectObject (nearest.Object, gameTime);
+					World.SelectObject (nearest.Object, gameTime);
 				}
 			}
 		}

@@ -22,18 +22,26 @@ namespace Knot3.GameObjects
 {
 	public class PipeMovement : IGameObject, IEnumerable<IGameObject>
 	{
+		// game state
 		private GameState state;
 
+		// game world
+		public World World { get; set; }
+
+		// info
 		public dynamic Info { get; private set; }
 
+		// the knot
 		public Knot Knot { get; set; }
 
+		// ...
 		private Vector3 previousMousePosition = Vector3.Zero;
 		private List<ShadowGameObject> shadowObjects;
 
-		public PipeMovement (GameState state, GameObjectInfo info)
+		public PipeMovement (GameState state, World world, GameObjectInfo info)
 		{
 			this.state = state;
+			this.World = world;
 			Info = info;
 			shadowObjects = new List<ShadowGameObject> ();
 		}
@@ -41,14 +49,14 @@ namespace Knot3.GameObjects
 		public void Update (GameTime gameTime)
 		{
 			// check whether the hovered object is a pipe
-			if (state.world.SelectedObject is PipeModel) {
-				PipeModel pipe = state.world.SelectedObject as PipeModel;
+			if (World.SelectedObject is PipeModel) {
+				PipeModel pipe = World.SelectedObject as PipeModel;
 				Vector3 screenLocation = state.viewport.Project (
-					pipe.Center (), state.camera.ProjectionMatrix, state.camera.ViewMatrix, state.camera.WorldMatrix
+					pipe.Center (), World.Camera.ProjectionMatrix, World.Camera.ViewMatrix, World.Camera.WorldMatrix
 				);
 				Vector3 currentMousePosition = state.viewport.Unproject (
 					new Vector3 (Core.Input.MouseState.ToVector2 (), screenLocation.Z),
-					state.camera.ProjectionMatrix, state.camera.ViewMatrix, Matrix.Identity
+					World.Camera.ProjectionMatrix, World.Camera.ViewMatrix, Matrix.Identity
 				);
 
 				// is SelectedObjectMove the current input action?
@@ -70,7 +78,7 @@ namespace Knot3.GameObjects
 		private void CreateShadowPipes ()
 		{
 			shadowObjects.Clear ();
-			foreach (IGameObject container in state.world.Objects) {
+			foreach (IGameObject container in World.Objects) {
 				if (container is IEnumerable<IGameObject>) {
 					foreach (IGameObject obj in (container as IEnumerable<IGameObject>)) {
 						// Console.WriteLine ("CreateShadowPipes: " + obj);
@@ -163,9 +171,16 @@ namespace Knot3.GameObjects
 	
 	public class ShadowGameObject : IGameObject
 	{
+		// game state
 		protected GameState state;
+
+		// the decorated object
 		private IGameObject Obj;
 
+		// game world
+		public World World { get { return Obj.World; } set {} }
+
+		// info
 		public dynamic Info { get; private set; }
 
 		public ShadowGameObject (GameState state, IGameObject obj)

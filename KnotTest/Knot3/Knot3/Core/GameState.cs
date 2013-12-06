@@ -61,22 +61,6 @@ namespace Knot3.Core
 		public Input input { get; protected set; }
 
 		/// <summary>
-		/// Gets the camera for this game state.
-		/// </summary>
-		/// <value>
-		/// The camera.
-		/// </value>
-		public Camera camera { get; protected set; }
-
-		/// <summary>
-		/// Gets the game world for this game state.
-		/// </summary>
-		/// <value>
-		/// The game world.
-		/// </value>
-		public World world { get; protected set; }
-
-		/// <summary>
 		/// Gets the graphics device manager for this game state.
 		/// </summary>
 		/// <value>

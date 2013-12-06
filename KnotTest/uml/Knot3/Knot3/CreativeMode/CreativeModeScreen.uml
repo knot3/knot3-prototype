@@ -1,6 +1,7 @@
 public class CreativeModeScreen : GameState
     - knot : Knot
     - knotModified : bool
+    - world : World
     - pointer : MousePointer
     - overlay : Overlay
     - picker : MousePicker

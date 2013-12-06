@@ -57,6 +57,8 @@ namespace Knot3.GameObjects
 
 		public dynamic Info { get; private set; }
 
+		public World World { get; set; }
+
 		private Vector3 UpperLeft;
 		private Vector3 LowerLeft;
 		private Vector3 UpperRight;
@@ -99,9 +101,9 @@ namespace Knot3.GameObjects
 		public void Draw (GameTime gameTime)
 		{
 			if (Info.IsVisible) {
-				basicEffect.World = state.camera.WorldMatrix;
-				basicEffect.View = state.camera.ViewMatrix;
-				basicEffect.Projection = state.camera.ProjectionMatrix;
+				basicEffect.World = World.Camera.WorldMatrix;
+				basicEffect.View = World.Camera.ViewMatrix;
+				basicEffect.Projection = World.Camera.ProjectionMatrix;
 
 				basicEffect.AmbientLightColor = new Vector3 (0.8f, 0.8f, 0.8f);
 				//effect.LightingEnabled = true;

@@ -110,7 +110,7 @@ namespace Knot3.GameObjects
 				}
 				HighlightIntensity = intensity * 0.9f;
 				HighlightColor = Color.White;
-			} else if (state.world.SelectedObject == this) {
+			} else if (World.SelectedObject == this) {
 				HighlightIntensity = 0.5f;
 				HighlightColor = Color.White;
 			} else {
@@ -123,7 +123,7 @@ namespace Knot3.GameObjects
 		public override void Update (GameTime gameTime)
 		{
 			// check whether this object is hovered
-			if (state.world.SelectedObject == this) {
+			if (World.SelectedObject == this) {
 
 				// if the left mouse button is pressed, select the edge
 				if (Core.Input.LeftButton == ClickState.SingleClick) {

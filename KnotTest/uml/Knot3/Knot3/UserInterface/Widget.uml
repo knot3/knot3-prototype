@@ -1,4 +1,4 @@
-public class Widget : DrawableGameStateComponent
+public abstract class Widget : DrawableGameStateComponent
     + RelativePosition : LazyPosition virtual
     + RelativeSize : LazySize virtual
     + RelativePadding : LazySize virtual

@@ -28,6 +28,8 @@ namespace Knot3.GameObjects
 	{
 		public override dynamic Info { get; protected set; }
 
+		public override World World { get; set; }
+
 		// pipes and knots
 		private List<PipeModel> pipes;
 		private List<NodeModel> knots;
@@ -61,6 +63,7 @@ namespace Knot3.GameObjects
 				PipeModelInfo info = new PipeModelInfo (edges, edges [n], Info.Position);
 				PipeModel pipe = pipeFactory [state, info] as PipeModel;
 				// pipe.OnDataChange = () => UpdatePipes (edges);
+				pipe.World = World;
 				pipes.Add (pipe);
 			}
 
@@ -68,6 +71,7 @@ namespace Knot3.GameObjects
 			for (int n = 0; n < edges.Count; n++) {
 				NodeModelInfo info = new NodeModelInfo (edges, edges [n], edges [n + 1], Info.Position);
 				NodeModel knot = knotFactory [state, info] as NodeModel;
+				knot.World = World;
 				knots.Add (knot);
 			}
 		}
