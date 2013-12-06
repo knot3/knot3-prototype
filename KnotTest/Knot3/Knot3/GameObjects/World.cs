@@ -119,9 +119,12 @@ namespace Knot3.GameObjects
 		
 		public override void Draw (GameTime gameTime)
 		{
+			// begin the post processing effect scope
 			Color background = knotRenderEffect is CelShadingEffect ? Color.CornflowerBlue : Color.Black;
+			state.PostProcessing.Begin (background, gameTime);
+
 			// begin the knot render effect
-			knotRenderEffect.Begin (background, gameTime);
+			knotRenderEffect.Begin (gameTime);
 
 			foreach (IGameObject obj in Objects) {
 				obj.World = this;
@@ -130,6 +133,9 @@ namespace Knot3.GameObjects
 
 			// end of the knot render effect
 			knotRenderEffect.End (gameTime);
+			
+			// end of the post processing effect
+			state.PostProcessing.End (gameTime);
 		}
 
 		public override void Update (GameTime gameTime)

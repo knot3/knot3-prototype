@@ -31,7 +31,7 @@ namespace Knot3.CreativeMode
 		private Knot knot;
 		private bool knotModified;
 
-		// custom classes
+		// the game components
 		private World world;
 		private MousePointer pointer;
 		private Overlay overlay;
@@ -80,7 +80,7 @@ namespace Knot3.CreativeMode
 			world.Add (movement as IGameObject);
 
 			// pipe colors
-			coloring = new PipeColoring(this);
+			coloring = new PipeColoring (this);
 
 			// line renderer
 			lineRenderer = new LineRenderer (this, knotRenderInfo);
@@ -114,7 +114,6 @@ namespace Knot3.CreativeMode
 		{
 			if (dialog != null) {
 				// dialog
-				dialog.Update (gameTime);
 			} else {
 				UpdateInput (gameTime);
 			}
@@ -141,12 +140,7 @@ namespace Knot3.CreativeMode
 				return;
 			}
 
-			// change background color
-			//if (Keys.Space.IsDown ()) {
-			//	backColor = new Color (backColor.R, backColor.G, (byte)~backColor.B);
-			//}
-
-			// move lines
+			// move edges
 			if (Keys.NumPad8.IsDown ())
 				knot.Edges.Move (knot.Edges.SelectedEdges, Vector3.Up);
 			if (Keys.NumPad2.IsDown ())
@@ -167,12 +161,7 @@ namespace Knot3.CreativeMode
 
 		public override void Draw (GameTime gameTime)
 		{
-			// begin the post processing effect scope
-			Color background = Color.Black;
-			PostProcessing.Begin (background, gameTime);
-
-			// end of the post processing effect
-			PostProcessing.End (gameTime);
+			// all drawing is done in game components
 		}
 
 		public override void Activate (GameTime gameTime)
