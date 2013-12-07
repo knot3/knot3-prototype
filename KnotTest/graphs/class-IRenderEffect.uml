@@ -1,0 +1,53 @@
+public interface IRenderEffect : 
+    + RenderTarget : RenderTarget2D
+    + Begin  (GameTime gameTime)
+    + End  (GameTime gameTime)
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+    + RemapModel  (Model model)
+    + DrawModel  (GameModel model, GameTime gameTime)
+
+public abstract class RenderEffect : IRenderEffect
+    # state : GameState
+    - renderTarget : RenderTargetCache
+    - background : Color
+    - spriteBatch : SpriteBatch
+    + RenderEffect  (GameState state)
+    + RenderTarget : RenderTarget2D
+    + Begin  (GameTime gameTime)
+    + Begin  (Color background, GameTime gameTime) virtual
+    + End  (GameTime gameTime) virtual
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
+    + RemapModel  (Model model) virtual
+    + DrawModel  (GameModel model, GameTime gameTime) virtual
+
+public class BlurEffect : RenderEffect
+    - testEffect : Effect static
+    + BlurEffect  (GameState state)
+    + Begin  (Color background, GameTime gameTime) override
+    + End  (GameTime gameTime) override
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+
+public class CelShadingEffect : RenderEffect
+    - celShader : Effect
+    - celMap : Texture2D
+    - lightDirection : Vector4
+    - outlineShader : Effect
+    - outlineThickness : float
+    - outlineThreshold : float
+    + CelShadingEffect  (GameState state)
+    + Color : Color
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+    + RemapModel  (Model model) override
+    + DrawModel  (GameModel model, GameTime gameTime) override
+
+public class FadeEffect : RenderEffect
+    - lastFrame : RenderTarget2D
+    - alpha : float
+    + FadeEffect  (GameState state, GameState oldState)
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+    + IsFinished : bool
+
+public sealed class NoEffect : RenderEffect
+    + NoEffect  (GameState state)
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+

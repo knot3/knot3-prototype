@@ -1,0 +1,31 @@
+public class WidgetInfo : IEquatable<WidgetInfo>
+    + RelativePosition : Func<Vector2>
+    + RelativeSize : Func<Vector2>
+    + RelativePadding : Func<Vector2>
+    + AlignX : HAlign
+    + AlignY : VAlign
+    + ForegroundColor : Func<Color>
+    + BackgroundColor : Func<Color>
+    + ScaledPosition (Viewport viewport) : Vector2
+    + ScaledSize (Viewport viewport) : Vector2
+    + ScaledPadding (Viewport viewport) : Vector2
+    + RelativeRectangle () : Rectangle
+    + ScaledRectangle (Viewport viewport) : Rectangle
+    + WidgetInfo  ()
+    + Equals (WidgetInfo other) : bool virtual
+    + Equals (Object obj) : bool override
+    + GetHashCode () : int override
+    + operator : bool static
+    + operator ! : bool static
+
+public class MenuItemInfo : WidgetInfo
+    + Text : string
+    + Keys : List<Keys> new
+    + OnClick : Action
+    +  (text, onClick) : this (string text, Vector2 topLeft, Vector2 bottomRight, Action onClick)
+    +  (text, onClick) : this (string text, float left, float top, float right, float bottom, Action onClick)
+    +  () : this (string text, Action onClick)
+    +  () : this (string text)
+    + MenuItemInfo  ()
+    + AddKey (Keys key) : MenuItemInfo
+

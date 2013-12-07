@@ -1,0 +1,10 @@
+public class KnotModeInput : Core.Input
+    - World : World
+    - camera : Camera
+    - wasdSpeed : int
+    + KnotModeInput  (GameState state, World world)
+    # UpdateKeys  (GameTime gameTime) override
+    + Update  (GameTime gameTime) override
+    # UpdateMouse  (GameTime gameTime) override
+    - ResetMousePosition  ()
+

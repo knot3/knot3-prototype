@@ -1,0 +1,4 @@
+public static class Lists : 
+    + Times  (this int count, Action action) static
+    + Times  (this int count, Action<int> action) static
+

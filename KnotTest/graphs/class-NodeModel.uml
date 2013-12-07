@@ -1,0 +1,34 @@
+public class NodeModel : GameModel
+    + Info : NodeModelInfo new
+    + NodeModel  (GameState state, NodeModelInfo info)
+    + Draw  (GameTime gameTime) override
+
+public class GameModel : IGameObject
+    # state : GameState
+    + Info : dynamic
+    + World : World
+    + Model : Model virtual
+    + BaseColor : Color
+    + HighlightColor : Color
+    + HighlightIntensity : float
+    + Alpha : float
+    + GameModel  (GameState state, GameModelInfo info)
+    + Update  (GameTime gameTime) virtual
+    + Draw  (GameTime gameTime) virtual
+    + Intersects (Ray ray) : GameObjectDistance virtual
+    + Center () : Vector3
+    - _scale : float
+    - _rotation : Angles3
+    - _position : Vector3
+    - _worldMatrix : Matrix
+    + WorldMatrix : Matrix
+    - UpdateWorldMatrix  ()
+
+public interface IGameObject : 
+    + Info : dynamic
+    + World : World
+    + Draw  (GameTime gameTime)
+    + Update  (GameTime gameTime)
+    + Intersects (Ray ray) : GameObjectDistance
+    + Center () : Vector3
+

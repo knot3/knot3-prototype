@@ -1,0 +1,4 @@
+public static class InputExtensions : 
+    + IsDown (this Keys key) : bool static
+    + IsHeldDown (this Keys key) : bool static
+

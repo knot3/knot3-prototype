@@ -1,0 +1,28 @@
+public class ShadowGameObject : IGameObject
+    # state : GameState
+    - Obj : IGameObject
+    + World : World
+    + Info : dynamic
+    + ShadowGameObject  (GameState state, IGameObject obj)
+    + ShadowPosition : Vector3
+    + OriginalPosition : Vector3
+    + Update  (GameTime gameTime) virtual
+    + Draw  (GameTime gameTime) virtual
+    + Intersects (Ray ray) : GameObjectDistance
+    + Center () : Vector3
+
+public interface IGameObject : 
+    + Info : dynamic
+    + World : World
+    + Draw  (GameTime gameTime)
+    + Update  (GameTime gameTime)
+    + Intersects (Ray ray) : GameObjectDistance
+    + Center () : Vector3
+
+public class ShadowGameModel : ShadowGameObject
+    - Model : GameModel
+    + ShadowColor : Color
+    + ShadowAlpha : float
+    + ShadowGameModel  (GameState state, GameModel model)
+    + Draw  (GameTime gameTime) override
+

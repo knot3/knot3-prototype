@@ -1,0 +1,8 @@
+public class RenderEffectStack : 
+    - defaultEffect : IRenderEffect
+    + RenderEffectStack  (IRenderEffect defaultEffect)
+    - activeEffects : Stack<IRenderEffect> new
+    + Push  (IRenderEffect current)
+    + Pop () : IRenderEffect
+    + Current : IRenderEffect
+

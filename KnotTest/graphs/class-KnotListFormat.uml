@@ -1,0 +1,17 @@
+public class KnotListFormat : IKnotFormat
+    + FileExtensions : string[]
+    + KnotListFormat  ()
+    + LoadInfo (string filename) : KnotInfo
+    + LoadKnot (string filename) : Knot
+    + SaveKnot  (Knot knot)
+    + FindFilename (string knotName) : string
+    - ParseLines  (WrapList<string> lines, EdgeList edges) static
+    - ParseLine  (string line, out Node? node, out Color? color) static
+
+public interface IKnotFormat : 
+    + FileExtensions : string[]
+    + LoadInfo (string filename) : KnotInfo
+    + LoadKnot (string filename) : Knot
+    + SaveKnot  (Knot knot)
+    + FindFilename (string knotName) : string
+

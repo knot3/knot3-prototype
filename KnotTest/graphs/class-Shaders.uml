@@ -1,0 +1,5 @@
+public static class Shaders : 
+    + LoadEffect (this GameState state, string name) : Effect static
+    - LoadEffectMono (GameState state, string name) : Effect static
+    - LoadEffectDotnet (GameState state, string name) : Effect static
+

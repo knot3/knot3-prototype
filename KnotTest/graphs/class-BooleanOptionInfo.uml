@@ -1,0 +1,19 @@
+public class BooleanOptionInfo : DistinctOptionInfo
+    + ValidValues : string[] static
+    + BooleanOptionInfo  (string section, string name, bool defaultValue, Action<bool> onChange = null, ConfigFile configFile = null)
+    + BoolValue : bool
+
+public class DistinctOptionInfo : OptionInfo
+    + ValidValues : HashSet<string>
+    + DistinctOptionInfo  (string section, string name, string defaultValue, string[] validValues, Action<string> onChange = null, ConfigFile configFile = null)
+    + Value : string override
+
+public class OptionInfo : 
+    + Section : string
+    + Name : string
+    + DefaultValue : string
+    + OnChange : Action<string>
+    + Value : string virtual
+    - ConfigFile : ConfigFile
+    + OptionInfo  (string section, string name, string defaultValue, Action<string> onChange = null, ConfigFile configFile = null)
+

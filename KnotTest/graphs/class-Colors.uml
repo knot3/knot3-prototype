@@ -1,0 +1,5 @@
+public static class Colors : 
+    + Mix (this Color a, Color b, float percent = 0.5f) : Color static
+    + Luminance (this Color color) : int static
+    + SortColorsByLuminance (Color left, Color right) : int static
+

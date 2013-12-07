@@ -1,0 +1,6 @@
+public sealed class RenderTargetCache : 
+    - device : GraphicsDevice
+    - RenderTarget2D> renderTargets : Dictionary<Point,
+    + RenderTargetCache  (GraphicsDevice device)
+    + CurrentRenderTarget : RenderTarget2D
+

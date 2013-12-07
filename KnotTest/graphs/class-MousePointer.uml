@@ -1,0 +1,16 @@
+public class MousePointer : DrawableGameStateComponent
+    - spriteBatch : SpriteBatch
+    + MousePointer  (GameState state)
+    + Draw  (GameTime gameTime) override
+    - DrawCursor  (GameTime gameTime)
+
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + state : GameState
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + Index : int
+
+public interface IGameStateComponent : Xna.IGameComponent
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + Index : int
+

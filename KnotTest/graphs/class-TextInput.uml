@@ -1,0 +1,33 @@
+public class TextInput : Widget, IKeyEventListener
+    + InputText : string
+    - font : SpriteFont
+    # spriteBatch : SpriteBatch
+    + TextInput  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Update  (GameTime gameTime) override
+    + Draw  (GameTime gameTime) override
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + ValidKeys : List<Keys>
+    + IsKeyEventEnabled : bool
+
+public interface IKeyEventListener : 
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + ValidKeys : List<Keys>
+    + Index : int
+    + IsKeyEventEnabled : bool
+
+public abstract class Widget : DrawableGameStateComponent
+    + Info : WidgetInfo
+    + IsVisible : bool virtual
+    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + bounds () : Rectangle
+
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + state : GameState
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + Index : int
+
+public interface IGameStateComponent : Xna.IGameComponent
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + Index : int
+

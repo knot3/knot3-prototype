@@ -41,7 +41,7 @@
 <text text-anchor="start" x="7.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (SpriteBatch spriteBatch, GameTime gameTime) override</text>
 </g>
 <!-- Box_RenderEffect&#45;&gt;Box_BlurEffect -->
-<g id="edge4" class="edge"><title>Box_RenderEffect&#45;&gt;Box_BlurEffect</title>
+<g id="edge16" class="edge"><title>Box_RenderEffect&#45;&gt;Box_BlurEffect</title>
 <path fill="none" stroke="midnightblue" d="M125,-124.896C125,-115.309 125,-105.917 125,-97.1873"/>
 <polygon fill="none" stroke="midnightblue" points="121.5,-124.938 125,-134.938 128.5,-124.938 121.5,-124.938"/>
 </g>
@@ -60,8 +60,38 @@
 </g>
 <!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
 <g id="edge2" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
+<path fill="none" stroke="midnightblue" d="M86.1131,-342.88C84.9996,-333.853 84.4626,-324.437 84.502,-315.036"/>
+<polygon fill="none" stroke="midnightblue" points="82.6694,-343.517 87.6152,-352.887 89.5919,-342.478 82.6694,-343.517"/>
+</g>
+<!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
+<g id="edge4" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
+<path fill="none" stroke="midnightblue" d="M99.0754,-342.88C98.3331,-333.853 97.9751,-324.437 98.0013,-315.036"/>
+<polygon fill="none" stroke="midnightblue" points="95.5983,-343.285 100.077,-352.887 102.564,-342.588 95.5983,-343.285"/>
+</g>
+<!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
+<g id="edge6" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
+<path fill="none" stroke="midnightblue" d="M112.038,-342.88C111.667,-333.853 111.488,-324.437 111.501,-315.036"/>
+<polygon fill="none" stroke="midnightblue" points="108.543,-343.074 112.538,-352.887 115.534,-342.724 108.543,-343.074"/>
+</g>
+<!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
+<g id="edge8" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
 <path fill="none" stroke="midnightblue" d="M125,-342.88C125,-333.853 125,-324.437 125,-315.036"/>
 <polygon fill="none" stroke="midnightblue" points="121.5,-342.887 125,-352.887 128.5,-342.887 121.5,-342.887"/>
+</g>
+<!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
+<g id="edge10" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
+<path fill="none" stroke="midnightblue" d="M137.962,-342.88C138.333,-333.853 138.512,-324.437 138.499,-315.036"/>
+<polygon fill="none" stroke="midnightblue" points="134.466,-342.724 137.462,-352.887 141.457,-343.074 134.466,-342.724"/>
+</g>
+<!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
+<g id="edge12" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
+<path fill="none" stroke="midnightblue" d="M150.925,-342.88C151.667,-333.853 152.025,-324.437 151.999,-315.036"/>
+<polygon fill="none" stroke="midnightblue" points="147.436,-342.588 149.923,-352.887 154.402,-343.285 147.436,-342.588"/>
+</g>
+<!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
+<g id="edge14" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
+<path fill="none" stroke="midnightblue" d="M163.887,-342.88C165,-333.853 165.537,-324.437 165.498,-315.036"/>
+<polygon fill="none" stroke="midnightblue" points="160.408,-342.478 162.385,-352.887 167.331,-343.517 160.408,-342.478"/>
 </g>
 </g>
 </svg>

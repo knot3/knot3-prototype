@@ -1,0 +1,56 @@
+public class VideoOptionScreen : OptionScreen
+    - menu : VerticalMenu
+    - spriteBatch : SpriteBatch
+    + VideoOptionScreen  (Core.Game game)
+    + Initialize  () override
+    + Collapse  (MenuItem item)
+    + UpdateMenu  (GameTime gameTime) override
+    + DrawMenu  (GameTime gameTime) override
+    + Activate  (GameTime gameTime) override
+
+public class OptionScreen : MenuScreen
+    - menu : VerticalMenu
+    - spriteBatch : SpriteBatch
+    + OptionScreen  (Core.Game game)
+    + Initialize  () override
+    + UpdateMenu  (GameTime gameTime) override
+    + DrawMenu  (GameTime gameTime) override
+    + Activate  (GameTime gameTime) override
+
+public abstract class MenuScreen : GameState
+    - spriteBatch : SpriteBatch
+    - backColor : Color
+    - pointer : MousePointer
+    # LinePoints : List<Vector2>
+    # LineWidth : int
+    + MenuScreen  (Core.Game game)
+    + Initialize  () override
+    + Update  (GameTime gameTime) override
+    + UpdateMenu  (GameTime gameTime) abstract
+    + Draw  (GameTime gameTime) override
+    + DrawMenu  (GameTime gameTime) abstract
+    + Activate  (GameTime gameTime) override
+    + Unload  () override
+    # BackgroundColor (ItemState itemState) : Color
+    # ForegroundColor (ItemState itemState) : Color
+
+public abstract class GameState : 
+    + game : Game
+    + NextState : GameState
+    + GameState  (Game game)
+    + input : Input
+    + graphics : GraphicsDeviceManager
+    + device : GraphicsDevice
+    + viewport : Viewport
+    + content : ContentManager
+    + RenderEffects : RenderEffectStack
+    + PostProcessing : RenderEffect
+    + Initialize  () abstract
+    + Update  (GameTime gameTime) abstract
+    + Draw  (GameTime gameTime) abstract
+    + Unload  () abstract
+    + AddGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    + RemoveGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    + Activate  (GameTime gameTime) virtual
+    + Deactivate  (GameTime gameTime) virtual
+

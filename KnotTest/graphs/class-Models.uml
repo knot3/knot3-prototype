@@ -1,0 +1,8 @@
+public static class Models : 
+    + ValidQualities : string[] static
+    + Quality : string static
+    - ContentManager> contentManagers : Dictionary<string, static
+    - invalidModels : HashSet<string> static
+    + LoadModel (GameState state, string name) : Model static
+    - LoadModel (ContentManager content, IRenderEffect pp, string name) : Model static
+

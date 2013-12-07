@@ -1,0 +1,7 @@
+public static class Text : 
+    - lastKey : Keys static
+    - lastMillis : double static
+    + TryTextInput (ref string str, GameTime gameTime) : bool static
+    - TryConvertKey (Keys keyPressed, out char key) : bool static
+    + ValidKeys : List<Keys> static
+

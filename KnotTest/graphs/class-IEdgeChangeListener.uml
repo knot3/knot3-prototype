@@ -1,0 +1,43 @@
+public interface IEdgeChangeListener : 
+    + OnEdgesChanged  (EdgeList edges)
+
+public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
+    # state : GameState
+    + World : World abstract
+    + Info : dynamic abstract
+    + KnotRenderer  (GameState state)
+    + OnEdgesChanged  (EdgeList edges) abstract
+    + Update  (GameTime gameTime) abstract
+    + Draw  (GameTime gameTime) abstract
+    + Intersects (Ray ray) : GameObjectDistance abstract
+    + Center () : Vector3 abstract
+
+public class LineRenderer : KnotRenderer
+    + Info : dynamic override
+    + World : World override
+    - basicEffect : BasicEffect
+    - edges : EdgeList
+    + LineRenderer  (GameState state, GameObjectInfo info)
+    + Update  (GameTime gameTime) override
+    + OnEdgesChanged  (EdgeList edges) override
+    + Draw  (GameTime gameTime) override
+    - DrawRoundedLines  ()
+    + Intersects (Ray ray) : GameObjectDistance override
+    + Center () : Vector3 override
+
+public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
+    + Info : dynamic override
+    + World : World override
+    - pipes : List<PipeModel>
+    - knots : List<NodeModel>
+    - pipeFactory : PipeModelFactory
+    - knotFactory : NodeModelFactory
+    + PipeRenderer  (GameState state, GameObjectInfo info)
+    + Update  (GameTime gameTime) override
+    + OnEdgesChanged  (EdgeList edges) override
+    + GetEnumerator () : IEnumerator<IGameObject>
+    - IEnumerable.GetEnumerator () : IEnumerator
+    + Draw  (GameTime gameTime) override
+    + Intersects (Ray ray) : GameObjectDistance override
+    + Center () : Vector3 override
+

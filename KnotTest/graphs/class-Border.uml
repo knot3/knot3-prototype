@@ -1,0 +1,8 @@
+public class Border : 
+    + Color : Color
+    + Size : Vector2
+    + Padding : Vector2
+    + Border  (Color color, Vector2 size, Vector2 padding)
+    + Border  (Color color, int sizeX, int sizeY, int paddingX, int paddingY)
+    + Zero : Border static
+

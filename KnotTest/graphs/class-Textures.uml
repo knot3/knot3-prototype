@@ -1,0 +1,7 @@
+public static class Textures : 
+    + LoadTexture (ContentManager content, string name) : Texture2D static
+    + CreateColorTexture (GraphicsDevice graphicsDevice) : Texture2D static
+    + Create (GraphicsDevice graphicsDevice, Color color) : Texture2D static
+    - Texture2D> textureCache : Dictionary<string, static
+    + Create (GraphicsDevice graphicsDevice, int width, int height, Color color) : Texture2D static
+

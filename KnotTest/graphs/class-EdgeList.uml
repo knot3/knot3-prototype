@@ -1,0 +1,26 @@
+public class EdgeList : 
+    - Edges : WrapList<Edge>
+    + SelectedEdges : WrapList<Edge>
+    + EdgesChanged : Action<EdgeList>
+    - NodeCache : Dictionary<int,Node>
+    + EdgeList  ()
+    + this [int i] : Edge
+    + IndexOf (Edge edge) : int
+    + FromNode (int index) : Node
+    + FromNode (Edge edge) : Node
+    + ToNode (int index) : Node
+    + ToNode (Edge edge) : Node
+    + Add  (Edge edge)
+    + AddRange  (IEnumerable<Edge> edge)
+    + Interval (Edge a, Edge b) : List<Edge>
+    + Count : int
+    + SelectEdge  (Edge selection, bool append = false)
+    + SelectEdges  (Edge[] selection, bool append = false)
+    + SelectEdge  ()
+    + PrintSelectedEdges  ()
+    + Move (IEnumerable<Edge> selectedEdges, Vector3 direction, int times = 1) : bool
+    + Move (Edge selection, Vector3 direction) : bool
+    + Compact () : bool
+    + PathTo (Edge fromEdge, Edge toEdge) : Edge[]
+    + FromNodes (IEnumerable<Node> _nodes, IEnumerable<Color> _colors = null) : IEnumerable<Edge> static
+

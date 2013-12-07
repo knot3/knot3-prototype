@@ -1,0 +1,26 @@
+public sealed class NoEffect : RenderEffect
+    + NoEffect  (GameState state)
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+
+public abstract class RenderEffect : IRenderEffect
+    # state : GameState
+    - renderTarget : RenderTargetCache
+    - background : Color
+    - spriteBatch : SpriteBatch
+    + RenderEffect  (GameState state)
+    + RenderTarget : RenderTarget2D
+    + Begin  (GameTime gameTime)
+    + Begin  (Color background, GameTime gameTime) virtual
+    + End  (GameTime gameTime) virtual
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
+    + RemapModel  (Model model) virtual
+    + DrawModel  (GameModel model, GameTime gameTime) virtual
+
+public interface IRenderEffect : 
+    + RenderTarget : RenderTarget2D
+    + Begin  (GameTime gameTime)
+    + End  (GameTime gameTime)
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+    + RemapModel  (Model model)
+    + DrawModel  (GameModel model, GameTime gameTime)
+

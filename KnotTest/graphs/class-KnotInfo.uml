@@ -1,0 +1,7 @@
+public struct KnotInfo : 
+    + Filename : string
+    + Name : string
+    + EdgeCount : Func<int>
+    + IsValid : bool
+    + ToString () : string override
+

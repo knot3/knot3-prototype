@@ -1,0 +1,8 @@
+public class NodeModelFactory : ModelFactory
+    # CreateModel (GameState state, GameModelInfo info) : GameModel override
+
+public abstract class ModelFactory : 
+    - GameModel> cache : Dictionary<GameModelInfo, new
+    + this [GameState state, GameModelInfo info] : GameModel
+    # CreateModel (GameState state, GameModelInfo info) : GameModel abstract
+

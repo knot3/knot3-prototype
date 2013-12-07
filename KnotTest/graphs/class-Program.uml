@@ -1,0 +1,4 @@
+private static class Program : 
+    - game : Game static
+    - void Main () : [STAThread]static
+

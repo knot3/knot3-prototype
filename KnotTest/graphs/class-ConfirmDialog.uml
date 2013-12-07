@@ -1,0 +1,47 @@
+public class ConfirmDialog : Dialog
+    # Text : string[]
+    # OnYesClick : Action
+    # OnNoClick : Action
+    # OnCancelClick : Action
+    + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    # DrawDialog  (GameTime gameTime) override
+
+public abstract class Dialog : Widget
+    + buttons : Menu
+    + Done : Action
+    # spriteBatch : SpriteBatch
+    + Dialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    # RelativeButtonPosition (int n) : Vector2
+    # RelativeButtonSize (int n) : Vector2
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + Draw  (GameTime gameTime) override
+    # DrawDialog  (GameTime gameTime) abstract
+    - ButtonBackgroundColor (ItemState itemState) : Color
+    - ButtonForegroundColor (ItemState itemState) : Color
+
+public abstract class Widget : DrawableGameStateComponent
+    + Info : WidgetInfo
+    + IsVisible : bool virtual
+    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + bounds () : Rectangle
+
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + state : GameState
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + Index : int
+
+public interface IGameStateComponent : Xna.IGameComponent
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + Index : int
+
+public class TextInputDialog : ConfirmDialog
+    # TextInput : TextInput
+    + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    # TextInputPosition () : Vector2
+    # TextInputSize () : Vector2
+
+public class KnotSaveConfirmDialog : TextInputDialog
+    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+

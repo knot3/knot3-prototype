@@ -1,0 +1,3 @@
+private static class SwapExtension : 
+    + Swap<T> (this T x, ref T y) : T static
+

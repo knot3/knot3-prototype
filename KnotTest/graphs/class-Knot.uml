@@ -1,0 +1,12 @@
+public class Knot : 
+    + Info : KnotInfo
+    + Edges : EdgeList
+    - Format : IKnotFormat
+    + EdgesChanged : Action<EdgeList>
+    + Knot  (KnotInfo info, IKnotFormat format, EdgeList edges = null)
+    + Rename  (string name)
+    + Save  ()
+    + RandomKnot (int count, IKnotFormat format) : Knot static
+    + DefaultKnot (IKnotFormat format) : Knot static
+    - UntitledKnot (EdgeList edges, IKnotFormat format) : Knot static
+

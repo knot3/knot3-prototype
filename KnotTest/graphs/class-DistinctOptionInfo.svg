@@ -34,7 +34,7 @@
 <text text-anchor="start" x="7.5" y="-119.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ DistinctOptionInfo (string section, string name, string defaultValue, string[] validValues, Action&lt;string&gt; onChange = null, ConfigFile configFile = null)</text>
 </g>
 <!-- Box_OptionInfo&#45;&gt;Box_DistinctOptionInfo -->
-<g id="edge4" class="edge"><title>Box_OptionInfo&#45;&gt;Box_DistinctOptionInfo</title>
+<g id="edge10" class="edge"><title>Box_OptionInfo&#45;&gt;Box_DistinctOptionInfo</title>
 <path fill="none" stroke="midnightblue" d="M270,-210.445C270,-201.028 270,-191.706 270,-183.224"/>
 <polygon fill="none" stroke="midnightblue" points="266.5,-210.664 270,-220.664 273.5,-210.664 266.5,-210.664"/>
 </g>
@@ -50,8 +50,23 @@
 </g>
 <!-- Box_DistinctOptionInfo&#45;&gt;Box_BooleanOptionInfo -->
 <g id="edge2" class="edge"><title>Box_DistinctOptionInfo&#45;&gt;Box_BooleanOptionInfo</title>
-<path fill="none" stroke="midnightblue" d="M270,-100.752C270,-91.5127 270,-81.9353 270,-73.099"/>
-<polygon fill="none" stroke="midnightblue" points="266.5,-100.982 270,-110.982 273.5,-100.982 266.5,-100.982"/>
+<path fill="none" stroke="midnightblue" d="M249.98,-100.752C249.491,-91.5127 249.782,-81.9353 250.853,-73.099"/>
+<polygon fill="none" stroke="midnightblue" points="246.516,-101.32 250.862,-110.982 253.49,-100.718 246.516,-101.32"/>
+</g>
+<!-- Box_DistinctOptionInfo&#45;&gt;Box_BooleanOptionInfo -->
+<g id="edge4" class="edge"><title>Box_DistinctOptionInfo&#45;&gt;Box_BooleanOptionInfo</title>
+<path fill="none" stroke="midnightblue" d="M263.327,-100.752C263.164,-91.5127 263.261,-81.9353 263.618,-73.099"/>
+<polygon fill="none" stroke="midnightblue" points="259.835,-101.087 263.621,-110.982 266.832,-100.885 259.835,-101.087"/>
+</g>
+<!-- Box_DistinctOptionInfo&#45;&gt;Box_BooleanOptionInfo -->
+<g id="edge6" class="edge"><title>Box_DistinctOptionInfo&#45;&gt;Box_BooleanOptionInfo</title>
+<path fill="none" stroke="midnightblue" d="M276.673,-100.752C276.836,-91.5127 276.739,-81.9353 276.382,-73.099"/>
+<polygon fill="none" stroke="midnightblue" points="273.168,-100.885 276.379,-110.982 280.165,-101.087 273.168,-100.885"/>
+</g>
+<!-- Box_DistinctOptionInfo&#45;&gt;Box_BooleanOptionInfo -->
+<g id="edge8" class="edge"><title>Box_DistinctOptionInfo&#45;&gt;Box_BooleanOptionInfo</title>
+<path fill="none" stroke="midnightblue" d="M290.02,-100.752C290.509,-91.5127 290.218,-81.9353 289.147,-73.099"/>
+<polygon fill="none" stroke="midnightblue" points="286.51,-100.718 289.138,-110.982 293.484,-101.32 286.51,-100.718"/>
 </g>
 </g>
 </svg>

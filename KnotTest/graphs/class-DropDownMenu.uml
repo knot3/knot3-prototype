@@ -1,0 +1,66 @@
+public class DropDownMenu : MenuItem
+    - dropdown : VerticalMenu
+    - selected : MenuButton
+    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    + AddEntries  (DistinctOptionInfo option)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + Collapse  () override
+    + Draw  (GameTime gameTime) override
+    - ValuePosition (int dummy = 0) : Vector2
+    - ValueSize (int dummy = 0) : Vector2
+    - DropDownBackgroundColor (ItemState itemState) : Color
+    - DropDownForegroundColor (ItemState itemState) : Color
+
+public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
+    + Info : MenuItemInfo new
+    # spriteBatch : SpriteBatch
+    + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + Draw  (GameTime gameTime) override
+    + TextPosition (SpriteFont font) : Vector2
+    + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    + MinimumSize (SpriteFont font) : Vector2
+    + ValidKeys : List<Keys>
+    + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + SetHovered  (bool hovered)
+    + IsKeyEventEnabled : bool
+    + IsMouseEventEnabled : bool
+    + Collapse  () virtual
+
+public interface IKeyEventListener : 
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + ValidKeys : List<Keys>
+    + Index : int
+    + IsKeyEventEnabled : bool
+
+public interface IMouseEventListener : 
+    + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + SetHovered  (bool hovered)
+    + bounds () : Rectangle
+    + Index : int
+    + IsMouseEventEnabled : bool
+
+public abstract class ItemWidget : Widget
+    # ItemNum : int
+    + ItemState : ItemState
+    + ItemWidget  (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
+
+public abstract class Widget : DrawableGameStateComponent
+    + Info : WidgetInfo
+    + IsVisible : bool virtual
+    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + bounds () : Rectangle
+
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + state : GameState
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + Index : int
+
+public interface IGameStateComponent : Xna.IGameComponent
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + Index : int
+

@@ -1,0 +1,28 @@
+public class PipeMovement : IGameObject, IEnumerable<IGameObject>
+    - state : GameState
+    + World : World
+    + Info : dynamic
+    + Knot : Knot
+    - previousMousePosition : Vector3
+    - shadowObjects : List<ShadowGameObject>
+    + PipeMovement  (GameState state, World world, GameObjectInfo info)
+    + Update  (GameTime gameTime)
+    - CreateShadowPipes  ()
+    - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out float count)
+    - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out int countInt)
+    - MoveShadowPipes  (Vector3 currentMousePosition)
+    - MovePipes  (Vector3 currentMousePosition)
+    + Draw  (GameTime gameTime)
+    + GetEnumerator () : IEnumerator<IGameObject>
+    - IEnumerable.GetEnumerator () : IEnumerator
+    + Intersects (Ray ray) : GameObjectDistance
+    + Center () : Vector3
+
+public interface IGameObject : 
+    + Info : dynamic
+    + World : World
+    + Draw  (GameTime gameTime)
+    + Update  (GameTime gameTime)
+    + Intersects (Ray ray) : GameObjectDistance
+    + Center () : Vector3
+
