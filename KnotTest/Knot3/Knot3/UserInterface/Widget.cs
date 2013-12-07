@@ -21,52 +21,119 @@ using Knot3.Utilities;
 
 namespace Knot3.UserInterface
 {
+	public class WidgetInfo : IEquatable<WidgetInfo>
+	{
+		// size and position
+		public LazyPosition RelativePosition;
+		public LazySize RelativeSize = () => Vector2.Zero;
+		public LazySize RelativePadding = () => Vector2.Zero;
+
+		// alignment
+		public HAlign AlignX = HAlign.Left;
+		public VAlign AlignY = VAlign.Center;
+
+		// colors
+		public LazyColor ForegroundColor = () => Color.Transparent;
+		public LazyColor BackgroundColor = () => Color.Transparent;
+
+		// scaled to viewport size
+
+		public Vector2 ScaledPosition (Viewport viewport)
+		{
+			return RelativePosition ().Scale (viewport);
+		}
+
+		public Vector2 ScaledSize (Viewport viewport)
+		{
+			return RelativeSize ().Scale (viewport);
+		}
+
+		public Vector2 ScaledPadding (Viewport viewport)
+		{
+			return RelativePadding ().Scale (viewport);
+		}
+
+		public Rectangle RelativeRectangle ()
+		{
+			return HfGDesign.CreateRectangle (RelativePosition (), RelativeSize ());
+		}
+
+		public Rectangle ScaledRectangle (Viewport viewport)
+		{
+			return HfGDesign.CreateRectangle (ScaledPosition (viewport), ScaledSize (viewport));
+		}
+
+		public WidgetInfo ()
+		{
+			RelativePosition = () => (Vector2.One - RelativeSize ()) / 2;
+		}
+
+		public virtual bool Equals (WidgetInfo other)
+		{
+			if (other == null) 
+				return false;
+
+			if (this.RelativePosition () == other.RelativePosition () && this.RelativeSize () == other.RelativeSize ())
+				return true;
+			else
+				return false;
+		}
+
+		public override bool Equals (Object obj)
+		{
+			if (obj == null) 
+				return false;
+
+			WidgetInfo widgetObj = obj as WidgetInfo;
+			if (widgetObj == null)
+				return false;
+			else   
+				return Equals (widgetObj);   
+		}
+
+		public override int GetHashCode ()
+		{
+			return this.RelativePosition ().GetHashCode ()
+				+ this.RelativeSize ().GetHashCode ();
+		}
+
+		public static bool operator == (WidgetInfo o1, WidgetInfo o2)
+		{
+			if ((object)o1 == null || ((object)o2) == null)
+				return Object.Equals (o1, o2);
+
+			return o2.Equals (o2);
+		}
+
+		public static bool operator != (WidgetInfo o1, WidgetInfo o2)
+		{
+			return ! (o1 == o2);
+		}
+	}
+
 	/// <summary>
 	/// Alle GUI-Elemente erben von der Klasse Widget, die immer vorhandene Attribute und häufig verwendete
 	/// Methoden zur Verfügung stellt.
 	/// </summary>
 	public abstract class Widget : DrawableGameStateComponent
 	{
-		// size and position
-		public virtual LazyPosition RelativePosition { get; protected set; }
-
-		public virtual LazySize RelativeSize { get; protected set; }
-
-		public virtual LazySize RelativePadding { get; protected set; }
-
-		protected Vector2 ScaledPosition { get { return RelativePosition ().Scale (state.viewport); } }
-
-		protected Vector2 ScaledSize { get { return RelativeSize ().Scale (state.viewport); } }
-
-		protected Vector2 ScaledPadding { get { return RelativePadding ().Scale (state.viewport); } }
-
-		// alignment
-		protected HAlign AlignX;
-		protected VAlign AlignY;
-
-		// colors
-		private LazyColor foregroundColorFunc;
-		private LazyColor backgroundColorFunc;
-
-		protected virtual Color ForegroundColor { get { return foregroundColorFunc (); } }
-
-		protected virtual Color BackgroundColor { get { return backgroundColorFunc (); } }
+		public WidgetInfo Info { get; set; }
 
 		// visibility
 		public virtual bool IsVisible { get; set; }
 
-		public Widget (GameState state, DisplayLayer drawOrder, LazyColor foregroundColor, LazyColor backgroundColor,
-		               HAlign alignX, VAlign alignY)
+		public Widget (GameState state, WidgetInfo info, DisplayLayer drawOrder)
 			: base(state, drawOrder)
 		{
-			RelativePosition = () => Vector2.Zero;
-			RelativeSize = () => Vector2.Zero;
-			RelativePadding = () => Vector2.Zero;
-			AlignX = alignX;
-			AlignY = alignY;
-			foregroundColorFunc = foregroundColor != null ? foregroundColor : () => Color.Transparent;
-			backgroundColorFunc = backgroundColor != null ? backgroundColor : () => Color.Transparent;
+			Info = info;
 			IsVisible = true;
+		}
+
+		public Rectangle bounds ()
+		{
+			Point topLeft = Info.ScaledPosition (state.viewport).ToPoint ();
+			Point size = Info.ScaledSize (state.viewport).ToPoint ();
+			return new Rectangle (topLeft.X, topLeft.Y, size.X, size.Y);
 		}
 	}
 
@@ -78,20 +145,11 @@ namespace Knot3.UserInterface
 	{
 		protected int ItemNum;
 		public ItemState ItemState;
-		private LazyItemColor foregroundItemColorFunc;
-		private LazyItemColor backgroundItemColorFunc;
 
-		protected override Color ForegroundColor { get { return foregroundItemColorFunc (ItemState); } }
-
-		protected override Color BackgroundColor { get { return backgroundItemColorFunc (ItemState); } }
-
-		public ItemWidget (GameState state, DisplayLayer drawOrder, int itemNum, LazyItemColor foregroundColor, LazyItemColor backgroundColor,
-		                   HAlign alignX, VAlign alignY)
-			: base(state, drawOrder, null, null, alignX, alignY)
+		public ItemWidget (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
+			: base(state, info, drawOrder)
 		{
 			ItemNum = itemNum;
-			foregroundItemColorFunc = foregroundColor != null ? foregroundColor : (s) => Color.Transparent;
-			backgroundItemColorFunc = backgroundColor != null ? backgroundColor : (s) => Color.Transparent;
 		}
 	}
 

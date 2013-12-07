@@ -243,7 +243,10 @@ namespace Knot3.Utilities
 		public static Rectangle Scale (this Rectangle rect, Viewport viewport)
 		{
 			Point max = viewport.ToVector2 ().ToPoint ();
-			return new Rectangle (rect.X * max.X / 1000, rect.Y * max.Y / 1000, rect.Width * max.X / 1000, rect.Height * max.Y / 1000);
+			return new Rectangle (
+				rect.X * max.X / 1000, rect.Y * max.Y / 1000,
+				rect.Width * max.X / 1000, rect.Height * max.Y / 1000
+			);
 		}
 
 		public static Rectangle Grow (this Rectangle rect, int diff)

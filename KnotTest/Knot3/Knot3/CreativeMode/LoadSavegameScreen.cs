@@ -35,7 +35,7 @@ namespace Knot3.CreativeMode
 			: base(game)
 		{
 			format = new EdgeListFormat ();
-			menu = new VerticalMenu (this, DisplayLayer.Menu);
+			menu = new VerticalMenu (this, new WidgetInfo (), DisplayLayer.Menu);
 		}
 
 		public override void Initialize ()
@@ -46,7 +46,10 @@ namespace Knot3.CreativeMode
 			spriteBatch = new SpriteBatch (device);
 
 			// menu
-			menu.Initialize (ForegroundColor, BackgroundColor, HAlign.Left);
+			menu.ItemForegroundColor = ForegroundColor;
+			menu.ItemBackgroundColor = BackgroundColor;
+			menu.ItemAlignX = HAlign.Left;
+			menu.ItemAlignY = VAlign.Center;
 
 			// lines
 			HfGDesign.AddLinePoints (ref LinePoints, 0, 50, new float[]{

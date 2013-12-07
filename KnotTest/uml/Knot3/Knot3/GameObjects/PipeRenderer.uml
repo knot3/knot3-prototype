@@ -1,6 +1,6 @@
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
     + Info : dynamic override
-    - World : World
+    + World : World override
     - pipes : List<PipeModel>
     - knots : List<NodeModel>
     - pipeFactory : PipeModelFactory

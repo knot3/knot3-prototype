@@ -8,17 +8,17 @@ Box_Camera [label="{Camera\n|- World : World\l+ WorldMatrix : Matrix\l+ ViewMatr
 
 Box_ClickHandler [label="{ClickHandler\n|private class ClickEventComponent :\l+ receiver : IMouseEventListener\l+ layer : int\l+ relativePosition : Vector2\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_DrawableGameStateComponent [label="{DrawableGameStateComponent\n|+ state : GameState\l+ graphics : GraphicsDeviceManager\l+ device : GraphicsDevice\l+ viewport : Viewport\l+ content : ContentManager\l+ input : Input\l+ Index : int\l|+ SubComponents (GameTime gameTime) : IEnumerable\<IGameStateComponent\> virtual\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_DrawableGameStateComponent [label="{DrawableGameStateComponent\n|+ state : GameState\l+ Index : int\l|+ SubComponents (GameTime gameTime) : IEnumerable\<IGameStateComponent\> virtual\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_DisplayLayer [label="{DisplayLayer\n|None\lBackground\lWorld\lDialog\lMenu\lMenuItem\lSubMenu\lSubMenuItem\lOverlay\lCursor\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_Game [label="{Game\n|- graphics : GraphicsDeviceManager\l+ State : GameState\l+ DefaultSize : Size static\l+ Debug : bool static\l+ VSync : bool\l- isFullscreen : bool\l+ IsFullscreen : bool\l+ Graphics : GraphicsDeviceManager\l|+ Time (Action action) : TimeSpan static\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_Game [label="{Game\n|+ graphics : GraphicsDeviceManager\l+ State : GameState\l+ DefaultSize : Size static\l+ Debug : bool static\l+ VSync : bool\l- isFullscreen : bool\l+ IsFullscreen : bool\l|+ Time (Action action) : TimeSpan static\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_GameState [label="{GameState\n|+ game : Game\l+ NextState : GameState\l+ input : Input\l+ graphics : GraphicsDeviceManager\l+ device : GraphicsDevice\l+ viewport : Viewport\l+ content : ContentManager\l+ RenderEffects : RenderEffectStack\l+ PostProcessing : RenderEffect\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_GameStates [label="{GameStates\n|+ CreativeMode : CreativeModeScreen static\l+ StartScreen : StartScreen static\l+ OptionScreen : OptionScreen static\l+ VideoOptionScreen : VideoOptionScreen static\l+ LoadSavegameScreen : LoadSavegameScreen static\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_GameStateComponent [label="{GameStateComponent\n|# InputOrder : DisplayLayer\l+ state : GameState\l+ graphics : GraphicsDeviceManager\l+ device : GraphicsDevice\l+ viewport : Viewport\l+ content : ContentManager\l+ input : Input\l+ Index : int\l|+ SubComponents (GameTime gameTime) : IEnumerable\<IGameStateComponent\> virtual\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_GameStateComponent [label="{GameStateComponent\n|# InputOrder : DisplayLayer\l+ state : GameState\l+ Index : int\l|+ SubComponents (GameTime gameTime) : IEnumerable\<IGameStateComponent\> virtual\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_IGameStateComponent [label="{IGameStateComponent\n|+ Index : int\l|+ SubComponents (GameTime gameTime) : IEnumerable\<IGameStateComponent\>\l}",height=0.2,width=0.4,color="black", fillcolor="#dafcda",style="filled" fontcolor="black"];
 
@@ -42,7 +42,7 @@ Box_KeyHandler [label="{KeyHandler\n|private class KeyEventComponent :\l+ receiv
 
 Box_MousePointer [label="{MousePointer\n|- spriteBatch : SpriteBatch\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_Overlay [label="{Overlay\n|- spriteBatch : SpriteBatch\l- effect : BasicEffect\l- font : SpriteFont\l- _total_frames : int\l- _elapsed_time : float\l- _fps : int\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_Overlay [label="{Overlay\n|- spriteBatch : SpriteBatch\l- effect : BasicEffect\l- World : World\l- font : SpriteFont\l- _total_frames : int\l- _elapsed_time : float\l- _fps : int\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_StartScreen [label="{StartScreen\n|# menu : Menu\l- logo : Texture2D\l- spriteBatch : SpriteBatch\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
@@ -50,7 +50,7 @@ Box_CreativeModeScreen [label="{CreativeModeScreen\n|- knot : Knot\l- knotModifi
 
 Box_KnotSaveConfirmDialog [label="{KnotSaveConfirmDialog\n||}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_KnotModeInput [label="{KnotModeInput\n|- wasdSpeed : int\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_KnotModeInput [label="{KnotModeInput\n|- World : World\l- camera : Camera\l- wasdSpeed : int\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_LoadSavegameScreen [label="{LoadSavegameScreen\n|- format : IKnotFormat\l- menu : VerticalMenu\l- spriteBatch : SpriteBatch\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
@@ -66,15 +66,15 @@ Box_GameObjectInfo [label="{GameObjectInfo\n|+ Position : Vector3\l+ IsVisible :
 
 Box_GameObjectDistance [label="{GameObjectDistance\n|+ Object : IGameObject\l+ Distance : float\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_KnotRenderer [label="{KnotRenderer\n|# state : GameState\l+ Info : dynamic abstract\l|+ Intersects (Ray ray) : GameObjectDistance abstract\l+ Center () : Vector3 abstract\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_KnotRenderer [label="{KnotRenderer\n|# state : GameState\l+ World : World abstract\l+ Info : dynamic abstract\l|+ Intersects (Ray ray) : GameObjectDistance abstract\l+ Center () : Vector3 abstract\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_LineRenderer [label="{LineRenderer\n|+ Info : dynamic override\l- World : World\l- basicEffect : BasicEffect\l- edges : EdgeList\l|+ Intersects (Ray ray) : GameObjectDistance override\l+ Center () : Vector3 override\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_LineRenderer [label="{LineRenderer\n|+ Info : dynamic override\l+ World : World override\l- basicEffect : BasicEffect\l- edges : EdgeList\l|+ Intersects (Ray ray) : GameObjectDistance override\l+ Center () : Vector3 override\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_ModelFactory [label="{ModelFactory\n|- GameModel\> cache : Dictionary\<GameModelInfo, new\l+ this \[GameState state, GameModelInfo info\] : GameModel\l|# CreateModel (GameState state, GameModelInfo info) : GameModel abstract\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_MousePicker [label="{MousePicker\n|- lastRayCheck : double\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_MousePicker [label="{MousePicker\n|- World : World\l- lastRayCheck : double\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_MovableGameObject [label="{MovableGameObject\n|- state : GameState\l- Obj : IGameObject\l+ Info : dynamic\l|# CurrentGroundPlane () : Plane\l# CurrentMouseRay () : Ray\l# CurrentMousePosition (Ray ray, Plane groundPlane) : Vector3?\l+ Intersects (Ray ray) : GameObjectDistance\l+ Center () : Vector3\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_MovableGameObject [label="{MovableGameObject\n|- state : GameState\l- Obj : IGameObject\l+ World : World\l+ Info : dynamic\l|# CurrentGroundPlane () : Plane\l# CurrentMouseRay () : Ray\l# CurrentMousePosition (Ray ray, Plane groundPlane) : Vector3?\l+ Intersects (Ray ray) : GameObjectDistance\l+ Center () : Vector3\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_NodeModelInfo [label="{NodeModelInfo\n|+ Edges : EdgeList\l+ EdgeA : Edge\l+ EdgeB : Edge\l|+ Equals (GameObjectInfo other) : bool override\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
@@ -90,13 +90,13 @@ Box_PipeModel [label="{PipeModel\n|+ Info : PipeModelInfo new\l- Bounds : Boundi
 
 Box_PipeModelFactory [label="{PipeModelFactory\n||# CreateModel (GameState state, GameModelInfo info) : GameModel override\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_PipeMovement [label="{PipeMovement\n|- state : GameState\l+ Info : dynamic\l+ Knot : Knot\l- previousMousePosition : Vector3\l- shadowObjects : List\<ShadowGameObject\>\l|+ GetEnumerator () : IEnumerator\<IGameObject\>\l- IEnumerable.GetEnumerator () : IEnumerator\l+ Intersects (Ray ray) : GameObjectDistance\l+ Center () : Vector3\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_PipeMovement [label="{PipeMovement\n|- state : GameState\l+ World : World\l+ Info : dynamic\l+ Knot : Knot\l- previousMousePosition : Vector3\l- shadowObjects : List\<ShadowGameObject\>\l|+ GetEnumerator () : IEnumerator\<IGameObject\>\l- IEnumerable.GetEnumerator () : IEnumerator\l+ Intersects (Ray ray) : GameObjectDistance\l+ Center () : Vector3\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_ShadowGameObject [label="{ShadowGameObject\n|# state : GameState\l- Obj : IGameObject\l+ Info : dynamic\l+ ShadowPosition : Vector3\l+ OriginalPosition : Vector3\l|+ Intersects (Ray ray) : GameObjectDistance\l+ Center () : Vector3\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_ShadowGameObject [label="{ShadowGameObject\n|# state : GameState\l- Obj : IGameObject\l+ World : World\l+ Info : dynamic\l+ ShadowPosition : Vector3\l+ OriginalPosition : Vector3\l|+ Intersects (Ray ray) : GameObjectDistance\l+ Center () : Vector3\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_ShadowGameModel [label="{ShadowGameModel\n|- Model : GameModel\l+ ShadowColor : Color\l+ ShadowAlpha : float\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_PipeRenderer [label="{PipeRenderer\n|+ Info : dynamic override\l- World : World\l- pipes : List\<PipeModel\>\l- knots : List\<NodeModel\>\l- pipeFactory : PipeModelFactory\l- knotFactory : NodeModelFactory\l|+ GetEnumerator () : IEnumerator\<IGameObject\>\l- IEnumerable.GetEnumerator () : IEnumerator\l+ Intersects (Ray ray) : GameObjectDistance override\l+ Center () : Vector3 override\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_PipeRenderer [label="{PipeRenderer\n|+ Info : dynamic override\l+ World : World override\l- pipes : List\<PipeModel\>\l- knots : List\<NodeModel\>\l- pipeFactory : PipeModelFactory\l- knotFactory : NodeModelFactory\l|+ GetEnumerator () : IEnumerator\<IGameObject\>\l- IEnumerable.GetEnumerator () : IEnumerator\l+ Intersects (Ray ray) : GameObjectDistance override\l+ Center () : Vector3 override\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_TexturedRectangleInfo [label="{TexturedRectangleInfo\n|+ Texturename : string\l+ Up : Vector3\l+ Left : Vector3\l+ Width : float\l+ Height : float\l|+ Equals (GameObjectInfo other) : bool override\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 

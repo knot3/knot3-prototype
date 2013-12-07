@@ -26,12 +26,9 @@ namespace Knot3.UserInterface
 		// textures
 		protected SpriteBatch spriteBatch;
 
-		public Dialog (GameState state, DisplayLayer drawOrder)
-			: base(state, drawOrder, ()=>Color.White, ()=>Color.Black, HAlign.Left, VAlign.Top)
+		public Dialog (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+			: base(state, info, drawOrder)
 		{
-			RelativePosition = () => (Vector2.One - RelativeSize ()) / 2;
-			RelativeSize = () => Vector2.Zero;
-			RelativePadding = () => new Vector2 (0.016f, 0.016f);
 			IsVisible = true;
 			Done = () => {
 				IsVisible = false;
@@ -41,22 +38,26 @@ namespace Knot3.UserInterface
 			spriteBatch = new SpriteBatch (state.device);
 
 			// menu
-			buttons = new Menu (state, DisplayLayer.Menu);
-			buttons.Initialize (ButtonForegroundColor, ButtonBackgroundColor, HAlign.Center);
+			WidgetInfo menuInfo = new WidgetInfo ();
+			buttons = new Menu (state, menuInfo, DisplayLayer.Menu);
+			buttons.ItemForegroundColor = ButtonForegroundColor;
+			buttons.ItemBackgroundColor = ButtonBackgroundColor;
+			buttons.ItemAlignX = HAlign.Center;
+			buttons.ItemAlignY = VAlign.Center;
 		}
 
 		protected Vector2 RelativeButtonPosition (int n)
 		{
 			Vector2 buttonSize = RelativeButtonSize (n);
 			return new Vector2 (
-				RelativePosition ().X + RelativePadding ().X * (1 + n) + buttonSize.X * n,
-				RelativePosition ().Y + RelativeSize ().Y - buttonSize.Y - RelativePadding ().Y
+				Info.RelativePosition ().X + Info.RelativePadding ().X * (1 + n) + buttonSize.X * n,
+				Info.RelativePosition ().Y + Info.RelativeSize ().Y - buttonSize.Y - Info.RelativePadding ().Y
 			);
 		}
 
 		protected Vector2 RelativeButtonSize (int n)
 		{
-			float x = (RelativeSize ().X - RelativePadding ().X * (1 + buttons.Count)) / buttons.Count;
+			float x = (Info.RelativeSize ().X - Info.RelativePadding ().X * (1 + buttons.Count)) / buttons.Count;
 			return new Vector2 (x, 0.06f);
 		}
 
@@ -74,13 +75,13 @@ namespace Knot3.UserInterface
 				spriteBatch.Begin ();
 
 				// background
-				Rectangle rect = HfGDesign.CreateRectangle (0, ScaledPosition, ScaledSize);
-				spriteBatch.Draw (Textures.Create (state.device, HfGDesign.LineColor),
-				                 rect.Grow (3),
-				                 Color.White);
-				spriteBatch.Draw (Textures.Create (state.device, BackgroundColor),
-				                 rect,
-				                 Color.Black * 0.95f);
+				Rectangle rect = Info.ScaledRectangle (state.viewport);
+				spriteBatch.Draw (
+					Textures.Create (state.device, HfGDesign.LineColor), rect.Grow (3), Color.White
+				);
+				spriteBatch.Draw (
+					Textures.Create (state.device, Info.BackgroundColor ()), rect, Color.Black * 0.95f
+				);
 
 				DrawDialog (gameTime);
 			

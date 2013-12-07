@@ -19,44 +19,64 @@ namespace Knot3.UserInterface
 {
 	public class Menu : Widget
 	{
+		// size and position
+		public LazyItemSize RelativeItemSize = null;
+		public LazyItemSize RelativeItemPosition = null;
+
 		// fonts and colors
-		protected LazyItemColor ItemForegroundColor;
-		protected LazyItemColor ItemBackgroundColor;
-		protected HAlign ItemAlignX;
+		public LazyItemColor ItemForegroundColor = null;
+		public LazyItemColor ItemBackgroundColor = null;
+		public HAlign? ItemAlignX = null;
+		public VAlign? ItemAlignY = null;
 
 		// menu-related attributes
 		protected List<MenuItem> Items;
 
-		public Menu (GameState state, DisplayLayer drawOrder, LazyColor foregroundColor = null,
-		             LazyColor backgroundColor = null, HAlign alignX = HAlign.Left, VAlign alignY = VAlign.Center)
-			: base(state, drawOrder, foregroundColor, backgroundColor, alignX, alignY)
+		public Menu (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+			: base(state, info, drawOrder)
 		{
 			Items = new List<MenuItem> ();
 		}
 
+		private void assignMenuItemInfo (ref MenuItemInfo info, int num, MenuItem item)
+		{
+			if (RelativeItemPosition != null)
+				info.RelativePosition = () => RelativeItemPosition (num);
+			if (RelativeItemSize != null)
+				info.RelativeSize = () => RelativeItemSize (num);
+			if (ItemForegroundColor != null)
+				info.ForegroundColor = () => ItemForegroundColor (item.ItemState);
+			if (ItemBackgroundColor != null)
+				info.BackgroundColor = () => ItemBackgroundColor (item.ItemState);
+			if (ItemAlignX.HasValue)
+				info.AlignX = ItemAlignX.Value;
+			if (ItemAlignY.HasValue)
+				info.AlignY = ItemAlignY.Value;
+		}
+
 		public virtual MenuButton AddButton (MenuItemInfo info)
 		{
-			MenuButton item = new MenuButton (
-				state, ItemDisplayLayer, Items.Count, info, ItemForegroundColor, ItemBackgroundColor, ItemAlignX
-			);
+			int num = Items.Count;
+			MenuButton item = new MenuButton (state, ItemDisplayLayer, num, info);
+			assignMenuItemInfo (ref info, num, item);
 			Items.Add (item);
 			return item;
 		}
 
 		public virtual void AddDropDown (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
 		{
-			DropDownMenu item = new DropDownMenu (
-				state, ItemDisplayLayer, Items.Count, info, ItemForegroundColor, ItemBackgroundColor, ItemAlignX
-			);
+			int num = Items.Count;
+			DropDownMenu item = new DropDownMenu (state, ItemDisplayLayer, num, info);
+			assignMenuItemInfo (ref info, num, item);
 			item.AddEntries (items, defaultItem);
 			Items.Add (item);
 		}
 
 		public virtual void AddDropDown (MenuItemInfo info, DistinctOptionInfo option)
 		{
-			DropDownMenu item = new DropDownMenu (
-				state, ItemDisplayLayer, Items.Count, info, ItemForegroundColor, ItemBackgroundColor, ItemAlignX
-			);
+			int num = Items.Count;
+			DropDownMenu item = new DropDownMenu (state, ItemDisplayLayer, num, info);
+			assignMenuItemInfo (ref info, num, item);
 			item.AddEntries (option);
 			Items.Add (item);
 		}
@@ -90,13 +110,6 @@ namespace Knot3.UserInterface
 		public void Clear ()
 		{
 			Items.Clear ();
-		}
-		
-		public virtual void Initialize (LazyItemColor itemFgColor, LazyItemColor itemBgColor, HAlign itemAlignX)
-		{
-			ItemForegroundColor = itemFgColor;
-			ItemBackgroundColor = itemBgColor;
-			ItemAlignX = itemAlignX;
 		}
 
 		public override IEnumerable<IGameStateComponent> SubComponents (GameTime gameTime)

@@ -19,9 +19,8 @@ namespace Knot3.UserInterface
 {
 	public class MenuButton : MenuItem
 	{
-		public MenuButton (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info,
-		                 LazyItemColor fgColor, LazyItemColor bgColor, HAlign alignX)
-			: base(state, drawOrder, itemNum, info, fgColor, bgColor, alignX)
+		public MenuButton (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+			: base(state, drawOrder, itemNum, info)
 		{
 		}
 	}

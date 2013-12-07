@@ -17,14 +17,10 @@ using Knot3.Utilities;
 
 namespace Knot3.UserInterface
 {
-	public class MenuItemInfo
+	public class MenuItemInfo : WidgetInfo
 	{
 		// item data
-		public string Text;
-		
-		// state, position and sizes
-		public LazyItemPosition Position = (i) => Vector2.Zero;
-		public LazyItemSize Size = (i) => Vector2.Zero;
+		public string Text = "";
 
 		// keys to listen on
 		public List<Keys> Keys = new List<Keys> ();
@@ -32,39 +28,36 @@ namespace Knot3.UserInterface
 		// click action
 		public Action OnClick = () => {};
 
-		public MenuItemInfo (string text, LazyItemPosition position, LazyItemSize size, Action onClick)
-		{
-			Text = text;
-			Position = position;
-			Size = size;
-			OnClick = onClick;
-		}
-
 		public MenuItemInfo (string text, Vector2 topLeft, Vector2 bottomRight, Action onClick)
+			: this(text, onClick)
 		{
-			Text = text;
-			Position = (i) => topLeft;
-			Size = (i) => (bottomRight - topLeft);
-			OnClick = onClick;
+			RelativePosition = () => topLeft;
+			RelativeSize = () => (bottomRight - topLeft);
 		}
 
 		public MenuItemInfo (string text, float left, float top, float right, float bottom, Action onClick)
+			: this(text, onClick)
 		{
-			Text = text;
-			Position = (i) => new Vector2 (left, top);
-			Size = (i) => new Vector2 (right - left, bottom - top);
-			OnClick = onClick;
+			RelativePosition = () => new Vector2 (left, top);
+			RelativeSize = () => new Vector2 (right - left, bottom - top);
 		}
 
 		public MenuItemInfo (string text, Action onClick)
+			: this()
 		{
 			Text = text;
 			OnClick = onClick;
 		}
 
 		public MenuItemInfo (string text)
+			: this()
 		{
 			Text = text;
+		}
+
+		public MenuItemInfo ()
+			: base()
+		{
 		}
 
 		public MenuItemInfo AddKey (Keys key)
@@ -76,26 +69,22 @@ namespace Knot3.UserInterface
 
 	public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
 	{
-		// item data
-		public MenuItemInfo Info;
+		// info
+		public new MenuItemInfo Info {
+			get { return base.Info as MenuItemInfo; }
+			set { base.Info = value; }
+		}
 
 		// textures
 		protected SpriteBatch spriteBatch;
 
-		// state, position and sizes
-		public override LazyPosition RelativePosition { get { return () => Info.Position (ItemNum); } }
-
-		public override LazySize RelativeSize { get { return () => Info.Size (ItemNum); } }
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TestGame1.MenuItem"/> class.
 		/// </summary>
-		public MenuItem (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info,
-		                 LazyItemColor fgColor, LazyItemColor bgColor, HAlign alignX)
-			: base(state, drawOrder, itemNum, fgColor, bgColor, alignX, VAlign.Center)
+		public MenuItem (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+			: base(state, info, drawOrder, itemNum)
 		{
-			Info = info;
-
+			// create a sprite batch
 			spriteBatch = new SpriteBatch (state.device);
 		}
 
@@ -107,14 +96,16 @@ namespace Knot3.UserInterface
 				spriteBatch.Begin ();
 				Texture2D paneTexture = Textures.Create (state.device, Color.White);
 				//spriteBatch.Draw (paneTexture, bounds (), Color.Black);
-				spriteBatch.Draw (paneTexture, bounds (), null, BackgroundColor, 0f,
-			                  Vector2.Zero, SpriteEffects.None, 0.5f);
+				spriteBatch.Draw (
+					paneTexture, bounds (), null, Info.BackgroundColor (), 0f, Vector2.Zero, SpriteEffects.None, 0.5f
+				);
 
 				SpriteFont font = HfGDesign.MenuFont (state);
 				try {
-					Vector2 scale = ScaledSize / MinimumSize (font) * 0.9f;
+					Vector2 scale = Info.ScaledSize (state.viewport) / MinimumSize (font) * 0.9f;
+					//Vector2 scale = Info.ScaledSize / MinimumSize (font) * 0.9f;
 					scale.Y = scale.X = MathHelper.Min (scale.X, scale.Y);
-					spriteBatch.DrawString (font, Info.Text, TextPosition (font, scale), ForegroundColor,
+					spriteBatch.DrawString (font, Info.Text, TextPosition (font, scale), Info.ForegroundColor (),
 						0, Vector2.Zero, scale, SpriteEffects.None, 0.6f);
 				} catch (ArgumentException exp) {
 					Console.WriteLine (exp.ToString ());
@@ -132,33 +123,28 @@ namespace Knot3.UserInterface
 
 		public Vector2 TextPosition (SpriteFont font, Vector2 scale)
 		{
-			Vector2 textPosition = ScaledPosition;
-			switch (AlignX) {
+			Vector2 position = Info.ScaledPosition (state.viewport);
+			Vector2 size = Info.ScaledSize (state.viewport);
+			Vector2 minimumSize = MinimumSize (font);
+			switch ((Info as WidgetInfo).AlignX) {
 			case HAlign.Left:
-				textPosition.Y += (ScaledSize.Y - MinimumSize (font).Y * scale.Y) / 2;
+				position.Y += (size.Y - minimumSize.Y * scale.Y) / 2;
 				//textPosition.X += font.LineSpacing * scale.Y * 0.5f;
 				break;
 			case HAlign.Center:
-				textPosition += (ScaledSize - MinimumSize (font) * scale) / 2;
+				position += (size - minimumSize * scale) / 2;
 				break;
 			case HAlign.Right:
-				textPosition.Y += (ScaledSize.Y - MinimumSize (font).Y * scale.Y) / 2;
-				textPosition.X += ScaledSize.X - MinimumSize (font).X * scale.X;
+				position.Y += (size.Y - minimumSize.Y * scale.Y) / 2;
+				position.X += size.X - minimumSize.X * scale.X;
 				break;
 			}
-			return textPosition;
+			return position;
 		}
 
 		public Vector2 MinimumSize (SpriteFont font)
 		{
 			return font.MeasureString (Info.Text);
-		}
-
-		public Rectangle bounds ()
-		{
-			Point topLeft = ScaledPosition.ToPoint ();
-			Point size = ScaledSize.ToPoint ();
-			return new Rectangle (topLeft.X, topLeft.Y, size.X, size.Y);
 		}
 
 		public List<Keys> ValidKeys { get { return Info.Keys; } }

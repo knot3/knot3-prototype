@@ -1,10 +1,11 @@
 public class PipeMovement : IGameObject, IEnumerable<IGameObject>
     - state : GameState
+    + World : World
     + Info : dynamic
     + Knot : Knot
     - previousMousePosition : Vector3
     - shadowObjects : List<ShadowGameObject>
-    + PipeMovement (GameState state, GameObjectInfo info)
+    + PipeMovement (GameState state, World world, GameObjectInfo info)
     + Update (GameTime gameTime)
     - CreateShadowPipes ()
     - ComputeDirection (Vector3 currentMousePosition, out Vector3 direction, out float count)
@@ -19,6 +20,7 @@ public class PipeMovement : IGameObject, IEnumerable<IGameObject>
 public class ShadowGameObject : IGameObject
     # state : GameState
     - Obj : IGameObject
+    + World : World
     + Info : dynamic
     + ShadowGameObject (GameState state, IGameObject obj)
     + ShadowPosition : Vector3

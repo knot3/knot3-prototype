@@ -127,7 +127,12 @@ namespace Knot3.CreativeMode
 					if (dialog != null && dialog is KnotSaveConfirmDialog) {
 						dialog.Done ();
 					} else {
-						dialog = new KnotSaveConfirmDialog (this, DisplayLayer.Dialog, knot);
+						dialog = new KnotSaveConfirmDialog (
+							state: this, 
+							info: new WidgetInfo (),
+							drawOrder: DisplayLayer.Dialog,
+							knot: knot
+						);
 						AddGameComponents (gameTime, dialog);
 						dialog.Done += () => {
 							RemoveGameComponents (gameTime, dialog);
@@ -177,10 +182,11 @@ namespace Knot3.CreativeMode
 
 	public class KnotSaveConfirmDialog : TextInputDialog
 	{
-		public KnotSaveConfirmDialog (GameState state, DisplayLayer drawOrder, Knot knot)
-			: base(state, drawOrder)
+		public KnotSaveConfirmDialog (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+			: base(state, info, drawOrder)
 		{
-			RelativeSize = () => new Vector2 (0.500f, 0.250f);
+			Info.RelativeSize = () => new Vector2 (0.500f, 0.250f);
+			Info.RelativePadding = () => new Vector2 (0.016f, 0.016f);
 			Text = new string[] {
 				"Do you want to save the changes?"
 			};

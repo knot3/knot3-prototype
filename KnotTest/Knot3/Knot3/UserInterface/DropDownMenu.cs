@@ -23,20 +23,29 @@ namespace Knot3.UserInterface
 		private VerticalMenu dropdown;
 		private MenuButton selected;
 
-		public DropDownMenu (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info,
-		                 LazyItemColor fgColor, LazyItemColor bgColor, HAlign alignX)
-			: base(state, drawOrder, itemNum, info, fgColor, bgColor, alignX)
+		public DropDownMenu (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+			: base(state, drawOrder, itemNum, info)
 		{
 			// drop-down menu
-			dropdown = new VerticalMenu (state, DisplayLayer.SubMenu);
-			dropdown.Initialize (DropDownForegroundColor, DropDownBackgroundColor,
-			                     HAlign.Left, new Border (new Color (0xb4, 0xff, 0x00), 5, 5, 0, 0));
+			dropdown = new VerticalMenu (state, new WidgetInfo (), DisplayLayer.SubMenu);
+			
+			dropdown.ItemForegroundColor = DropDownForegroundColor;
+			dropdown.ItemBackgroundColor = DropDownBackgroundColor;
+			dropdown.ItemAlignX = HAlign.Left;
+			dropdown.ItemAlignY = VAlign.Center;
+			dropdown.Border = new Border (new Color (0xb4, 0xff, 0x00), 5, 5, 0, 0);
 			dropdown.IsVisible = false;
 
 			// selected value
-			MenuItemInfo valueInfo = new MenuItemInfo (text: "---", position: ValuePosition,
-						size: ValueSize, onClick: () => info.OnClick ());
-			selected = new MenuButton (state, DisplayLayer.MenuItem, 0, valueInfo, fgColor, bgColor, HAlign.Left);
+			MenuItemInfo valueInfo = new MenuItemInfo () {
+				Text = "---",
+				RelativePosition = () => ValuePosition (0),
+				RelativeSize = () => ValueSize (0),
+				OnClick = () => info.OnClick (),
+			};
+			selected = new MenuButton (state, DisplayLayer.MenuItem, 0, valueInfo);
+			selected.Info.ForegroundColor = () => DropDownForegroundColor (selected.ItemState);
+			selected.Info.BackgroundColor = () => DropDownBackgroundColor (selected.ItemState);
 
 			// action to open the drop-down menu
 			info.OnClick = () =>
@@ -55,7 +64,7 @@ namespace Knot3.UserInterface
 			foreach (DropDownMenuItem entry in entries) {
 				Action onSelected = entry.OnSelected;
 				onSelected += () => dropdown.IsVisible = false;
-				dropdown.AddButton (new MenuItemInfo (entry.Text, onSelected));
+				dropdown.AddButton (new MenuItemInfo (text: entry.Text, onClick: onSelected));
 			}
 			selected.Info.Text = defaultEntry.Text;
 		}
@@ -70,7 +79,7 @@ namespace Knot3.UserInterface
 					selected.Info.Text = value;
 					dropdown.IsVisible = false;
 				};
-				dropdown.AddButton (new MenuItemInfo (value, onSelected));
+				dropdown.AddButton (new MenuItemInfo (text: value, onClick: onSelected));
 			}
 			selected.Info.Text = option.Value;
 		}
@@ -103,13 +112,13 @@ namespace Knot3.UserInterface
 
 		private Vector2 ValuePosition (int dummy = 0)
 		{
-			Vector2 size = Info.Size (ItemNum);
-			return Info.Position (ItemNum) + new Vector2 (size.X / 2, 0);
+			Vector2 size = Info.RelativeSize ();
+			return Info.RelativePosition () + new Vector2 (size.X / 2, 0);
 		}
 
 		private Vector2 ValueSize (int dummy = 0)
 		{
-			Vector2 size = Info.Size (ItemNum);
+			Vector2 size = Info.RelativeSize ();
 			return new Vector2 (size.X / 2, size.Y);
 		}
 

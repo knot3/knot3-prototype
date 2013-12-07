@@ -1,6 +1,7 @@
 public class MovableGameObject : IGameObject
     - state : GameState
     - Obj : IGameObject
+    + World : World
     + MovableGameObject (GameState state, IGameObject obj)
     + Info : dynamic
     # CurrentGroundPlane () : Plane

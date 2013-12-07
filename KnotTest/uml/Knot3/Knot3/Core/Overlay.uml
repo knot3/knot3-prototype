@@ -1,8 +1,9 @@
 public class Overlay : DrawableGameStateComponent
     - spriteBatch : SpriteBatch
     - effect : BasicEffect
+    - World : World
     - font : SpriteFont
-    + Overlay (GameState state)
+    + Overlay (GameState state, World world)
     # LoadContent () override
     + Draw (GameTime gameTime) override
     + Update (GameTime gameTime) override

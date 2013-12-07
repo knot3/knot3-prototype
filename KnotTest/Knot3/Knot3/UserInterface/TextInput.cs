@@ -33,14 +33,9 @@ namespace Knot3.UserInterface
 		// textures
 		protected SpriteBatch spriteBatch;
 
-		public TextInput (GameState state, DisplayLayer drawOrder, LazyPosition position, LazySize size, LazySize padding,
-		                  LazyColor fgColor, LazyColor bgColor)
-			: base(state, drawOrder, fgColor, bgColor, HAlign.Left, VAlign.Center)
+		public TextInput (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+			: base(state, info, drawOrder)
 		{
-			RelativePosition = position;
-			RelativeSize = size;
-			RelativePadding = padding;
-
 			// load fonts
 			font = HfGDesign.MenuFont (state);
 
@@ -56,19 +51,23 @@ namespace Knot3.UserInterface
 		{
 			spriteBatch.Begin ();
 			// background
-			Rectangle rect = HfGDesign.CreateRectangle (0, ScaledPosition, ScaledSize);
-			spriteBatch.Draw (Textures.Create (state.device, HfGDesign.LineColor),
-				                 rect.Grow (1),
-				                 Color.White);
-			spriteBatch.Draw (Textures.Create (state.device, BackgroundColor),
-				                 rect,
-				                 Color.White);
+			Rectangle rect = Info.ScaledRectangle (state.viewport);
+			spriteBatch.Draw (
+				Textures.Create (state.device, HfGDesign.LineColor), rect.Grow (1), Color.White
+			);
+			spriteBatch.Draw (
+				Textures.Create (state.device, Info.BackgroundColor ()), rect, Color.White
+			);
 
 			// text
-			Vector2 scale = (ScaledSize - ScaledPadding * 2) / font.MeasureString (InputText);
-			spriteBatch.DrawString (font, InputText, (RelativePosition () + RelativePadding ()).Scale (state.viewport),
-			                        ForegroundColor, 0, Vector2.Zero, MathHelper.Min (scale.X, scale.Y),
-			                        SpriteEffects.None, 1f);
+			Vector2 scale =
+				(Info.ScaledSize (state.viewport) - Info.ScaledPadding (state.viewport) * 2)
+				/ font.MeasureString (InputText);
+			spriteBatch.DrawString (
+				font, InputText, (Info.RelativePosition () + Info.RelativePadding ()).Scale (state.viewport),
+				Info.ForegroundColor (), 0, Vector2.Zero, MathHelper.Min (scale.X, scale.Y),
+				SpriteEffects.None, 1f
+			);
 			spriteBatch.End ();
 		}
 

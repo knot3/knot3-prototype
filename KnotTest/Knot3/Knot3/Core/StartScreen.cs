@@ -32,7 +32,7 @@ namespace Knot3.Core
 		public StartScreen (Game game)
 			: base(game)
 		{
-			menu = new Menu (this, DisplayLayer.Menu);
+			menu = new Menu (this, new WidgetInfo (), DisplayLayer.Menu);
 		}
 		
 		public override void Initialize ()
@@ -46,18 +46,26 @@ namespace Knot3.Core
 			spriteBatch = new SpriteBatch (device);
 
 			// menu
-			menu.Initialize (ForegroundColor, BackgroundColor, HAlign.Center);
-			menu.AddButton (new MenuItemInfo (text: "Creative", left: 0.700f, top: 0.250f, right: 0.960f, bottom: 0.380f,
-			                        onClick: () => NextState = GameStates.LoadSavegameScreen).AddKey (Keys.Space)
+			menu.ItemForegroundColor = ForegroundColor;
+			menu.ItemBackgroundColor = BackgroundColor;
+			menu.ItemAlignX = HAlign.Center;
+			menu.ItemAlignY = VAlign.Center;
+
+			menu.AddButton (new MenuItemInfo (
+				text: "Creative", left: 0.700f, top: 0.250f, right: 0.960f, bottom: 0.380f,
+			    onClick: () => NextState = GameStates.LoadSavegameScreen).AddKey (Keys.Space)
 			);
-			menu.AddButton (new MenuItemInfo (text: "Challenge", left: 0.000f, top: 0.050f, right: 0.380f, bottom: 0.190f,
-			                        onClick: () => NextState = GameStates.CreativeMode).AddKey (Keys.RightWindows)
+			menu.AddButton (new MenuItemInfo (
+				text: "Challenge", left: 0.000f, top: 0.050f, right: 0.380f, bottom: 0.190f,
+			    onClick: () => NextState = GameStates.CreativeMode).AddKey (Keys.RightWindows)
 			);
-			menu.AddButton (new MenuItemInfo (text: "Options", left: 0.260f, top: 0.840f, right: 0.480f, bottom: 0.950f,
-			                        onClick: () => NextState = GameStates.OptionScreen).AddKey (Keys.O)
+			menu.AddButton (new MenuItemInfo (
+				text: "Options", left: 0.260f, top: 0.840f, right: 0.480f, bottom: 0.950f,
+			    onClick: () => NextState = GameStates.OptionScreen).AddKey (Keys.O)
 			);
-			menu.AddButton (new MenuItemInfo (text: "Exit", left: 0.800f, top: 0.535f, right: 0.980f, bottom: 0.790f,
-			                        onClick: () => game.Exit ()).AddKey (Keys.Escape)
+			menu.AddButton (new MenuItemInfo (
+				text: "Exit", left: 0.800f, top: 0.535f, right: 0.980f, bottom: 0.790f,
+			    onClick: () => game.Exit ()).AddKey (Keys.Escape)
 			);
 
 			// lines

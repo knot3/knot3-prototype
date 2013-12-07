@@ -21,30 +21,37 @@ using Knot3.UserInterface;
 
 namespace Knot3.GameObjects
 {
-	public class PipeColoring : GameStateComponent
+	public class PipeColoring : GameStateComponent, IKeyEventListener
 	{
 		public Knot Knot { get; set; }
 
 		public PipeColoring (GameState state)
 			: base(state, DisplayLayer.None)
 		{
+			ValidKeys = new List<Keys> ();
+			ValidKeys.Add (Keys.C);
 		}
 
 		public override void Update (GameTime gameTime)
 		{
-			// check whether this edge is one of the selected edges
-			if (Knot.Edges.SelectedEdges.Count () > 0) {
-				// change color?
-				if (Keys.C.IsDown ()) {
-					ColorPicker picker = new ColorPicker (state, DisplayLayer.Dialog);
-					picker.OnSelectColor = (c) => state.RemoveGameComponents(gameTime, picker);
-					foreach (Edge edge in Knot.Edges.SelectedEdges) {
-						picker.OnSelectColor += (c) => edge.Color = c;
-					}
-					state.AddGameComponents (gameTime, picker);
+		}
+		
+		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+		{
+			// change color?
+			if (Knot.Edges.SelectedEdges.Count () > 0 && Keys.C.IsDown ()) {
+				ColorPicker picker = new ColorPicker (state, new WidgetInfo (), DisplayLayer.Dialog);
+				picker.OnSelectColor = (c) => state.RemoveGameComponents (gameTime, picker);
+				foreach (Edge edge in Knot.Edges.SelectedEdges) {
+					picker.OnSelectColor += (c) => edge.Color = c;
 				}
+				state.AddGameComponents (gameTime, picker);
 			}
 		}
+
+		public List<Keys> ValidKeys { get; private set; }
+
+		public bool IsKeyEventEnabled { get { return true; } }
 	}
 }
 

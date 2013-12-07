@@ -24,9 +24,13 @@ namespace Knot3.UserInterface
 		// textures
 		protected SpriteBatch spriteBatch;
 
-		public ColorPicker (GameState state, DisplayLayer drawOrder)
-			: base(state, drawOrder, ()=>Color.White, ()=>Color.Black, HAlign.Left, VAlign.Top)
+		public ColorPicker (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+			: base(state, info, drawOrder)
 		{
+			info.BackgroundColor = () => Color.Black;
+			info.ForegroundColor = () => Color.White;
+			info.AlignX = HAlign.Left;
+			info.AlignY = VAlign.Top;
 			// colors
 			colors = new List<Color> (CreateColors (64));
 			colors.Sort (Utilities.Colors.SortColorsByLuminance);
@@ -35,8 +39,8 @@ namespace Knot3.UserInterface
 			// create a new SpriteBatch, which can be used to draw textures
 			spriteBatch = new SpriteBatch (state.device);
 
-			RelativePosition = () => (Vector2.One - RelativeSize ()) / 2;
-			RelativeSize = () => {
+			info.RelativePosition = () => (Vector2.One - info.RelativeSize ()) / 2;
+			info.RelativeSize = () => {
 				float sqrt = (float)Math.Ceiling (Math.Sqrt (colors.Count));
 				return tileSize * sqrt;
 			};
@@ -48,16 +52,17 @@ namespace Knot3.UserInterface
 				spriteBatch.Begin ();
 
 				// background
-				Rectangle rect = HfGDesign.CreateRectangle (0, ScaledPosition, ScaledSize);
+				Rectangle rect = Info.ScaledRectangle (state.viewport);
 				spriteBatch.Draw (
-						Textures.Create (state.device, Color.Black), rect.Grow (2), Color.White
+					Textures.Create (state.device, Color.Black), rect.Grow (2), Color.White
 				);
 
 				// color tiles
 				int i = 0;
 				foreach (Vector2 tile in tiles) {
 					rect = HfGDesign.CreateRectangle (
-						0, ScaledPosition + tile.Scale (state.viewport), tileSize.Scale (state.viewport)
+						Info.ScaledPosition (state.viewport) + tile.Scale (state.viewport),
+						tileSize.Scale (state.viewport)
 					);
 					spriteBatch.Draw (
 						Textures.Create (state.device, colors [i]), rect.Shrink (1), Color.White
@@ -111,12 +116,13 @@ namespace Knot3.UserInterface
 		public void OnLeftClick (Vector2 position, ClickState click, GameTime gameTime)
 		{
 			position = position.RelativeTo (state.viewport);
-			Console.WriteLine ("ColorPicker.OnLeftClick: positon="+position);
+			Console.WriteLine ("ColorPicker.OnLeftClick: positon=" + position);
 			int i = 0;
 			foreach (Vector2 tile in tiles) {
 				Console.WriteLine ("ColorPicker: tile=" + tile + "  "
-				                   + (tile.X <= position.X) +" "+ (tile.X + tileSize.X > position.X) +" "+ (
-					tile.Y <= position.Y) +" "+ (tile.Y + tileSize.Y > position.Y));
+					+ (tile.X <= position.X) + " " + (tile.X + tileSize.X > position.X) + " " + (
+					tile.Y <= position.Y) + " " + (tile.Y + tileSize.Y > position.Y)
+				);
 				if (tile.X <= position.X && tile.X + tileSize.X > position.X
 					&& tile.Y <= position.Y && tile.Y + tileSize.Y > position.Y) {
 					Console.WriteLine ("ColorPicker: color=" + colors [i]);
@@ -129,13 +135,6 @@ namespace Knot3.UserInterface
 
 		public void OnRightClick (Vector2 position, ClickState click, GameTime gameTime)
 		{
-		}
-
-		public Rectangle bounds ()
-		{
-			Point topLeft = ScaledPosition.ToPoint ();
-			Point size = ScaledSize.ToPoint ();
-			return new Rectangle (topLeft.X, topLeft.Y, size.X, size.Y);
 		}
 
 		public void SetHovered (bool hovered)

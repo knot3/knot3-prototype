@@ -29,7 +29,7 @@ namespace Knot3.Settings
 		public OptionScreen (Core.Game game)
 			: base(game)
 		{
-			menu = new VerticalMenu (this, DisplayLayer.Menu);
+			menu = new VerticalMenu (this, new WidgetInfo (), DisplayLayer.Menu);
 		}
 		
 		public override void Initialize ()
@@ -40,7 +40,11 @@ namespace Knot3.Settings
 			spriteBatch = new SpriteBatch (device);
 
 			// menu
-			menu.Initialize (ForegroundColor, BackgroundColor, HAlign.Left);
+			menu.ItemForegroundColor = ForegroundColor;
+			menu.ItemBackgroundColor = BackgroundColor;
+			menu.ItemAlignX = HAlign.Left;
+			menu.ItemAlignY = VAlign.Center;
+
 			MenuItemInfo info;
 			info = new MenuItemInfo (text: "Video", onClick: () => NextState = GameStates.VideoOptionScreen);
 			menu.AddButton (info.AddKey (Keys.V));
@@ -68,7 +72,7 @@ namespace Knot3.Settings
 			spriteBatch.Begin ();
 
 			// text
-			spriteBatch.DrawString (HfGDesign.MenuFont(this), "Options", new Vector2 (0.050f, 0.050f).Scale (viewport), Color.White,
+			spriteBatch.DrawString (HfGDesign.MenuFont (this), "Options", new Vector2 (0.050f, 0.050f).Scale (viewport), Color.White,
 					0, Vector2.Zero, 0.25f * viewport.ScaleFactor ().Length (), SpriteEffects.None, 0);
 
 			// menu

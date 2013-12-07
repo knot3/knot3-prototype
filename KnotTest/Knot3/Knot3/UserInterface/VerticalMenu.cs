@@ -21,80 +21,74 @@ namespace Knot3.UserInterface
 	public class VerticalMenu : Menu
 	{
 		// fonts and colors
-		private Vector2 RelativeItemSize;
-		protected Border Border;
-
+		public Border Border { get; set; }
+		
 		// textures
 		protected SpriteBatch spriteBatch;
 
-		public VerticalMenu (GameState state, DisplayLayer drawOrder)
-			: base(state, drawOrder)
+		public VerticalMenu (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+			: base(state, info, drawOrder)
 		{
-			RelativeSize = () => new Vector2 (
-				RelativeItemSize.X,
-				RelativeItemSize.Y * Items.Count + RelativePadding ().Y * (Items.Count - 1)
+			info.RelativeSize = () => new Vector2 (
+				RelativeItemSize (-1).X,
+				RelativeItemSize (-1).Y * Items.Count + Info.RelativePadding ().Y * (Items.Count - 1)
 			);
-			RelativeItemSize = new Vector2 (300, 0);
+			RelativeItemSize = (i) => new Vector2 (300, 0);
+			RelativeItemPosition = (n) => {
+				return Info.RelativePosition () + new Vector2 (0, (RelativeItemSize (-1).Y + Info.RelativePadding ().Y) * n);
+			};
 			Border = Border.Zero;
 
 			spriteBatch = new SpriteBatch (state.device);
 		}
 
-		public void Initialize (LazyItemColor fgColor, LazyItemColor bgColor,
-				HAlign alignX, Border border)
-		{
-			Initialize (fgColor, bgColor, alignX);
-			if (border != null) {
-				Border = border;
-			}
-		}
-
 		public override MenuButton AddButton (MenuItemInfo info)
 		{
-			info.Position = RelativeItemPosition;
-			info.Size = (int n) => RelativeItemSize;
+			int num = Items.Count;
+			info.RelativePosition = () => RelativeItemPosition (num);
+			info.RelativeSize = () => RelativeItemSize (num);
 			return base.AddButton (info);
 		}
 
 		public override void AddDropDown (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
 		{
-			info.Position = RelativeItemPosition;
-			info.Size = (int n) => RelativeItemSize;
 			base.AddDropDown (info, items, defaultItem);
 		}
 
 		public override void AddDropDown (MenuItemInfo info, DistinctOptionInfo option)
 		{
-			info.Position = RelativeItemPosition;
-			info.Size = (int n) => RelativeItemSize;
+			int num = Items.Count;
+			info.RelativePosition = () => RelativeItemPosition (num);
+			info.RelativeSize = () => RelativeItemSize (num);
 			base.AddDropDown (info, option);
 		}
 
-		public void Align (Viewport viewport, float scale, Vector2? position = null, Vector2? itemSize = null,
+		public void Align (Viewport viewport, float scale, Vector2? givenPosition = null, Vector2? givenItemSize = null,
 		                   float padding = 0.15f)
 		{
 			SpriteFont font = HfGDesign.MenuFont (state);
-			RelativePadding = () => Vector2.One * font.LineSpacing * scale * padding;
-			RelativeItemSize = Vector2.Zero;
+			(Info as WidgetInfo).RelativePadding = () => Vector2.One * font.LineSpacing * scale * padding;
+			Vector2 bestItemSize = Vector2.Zero;
 			foreach (MenuItem item in Items) {
 				Vector2 minSize = item.MinimumSize (font) * scale;
-				if (minSize.X > RelativeItemSize.X || RelativeItemSize == Vector2.Zero) {
-					RelativeItemSize = minSize;
+				if (minSize.X > bestItemSize.X || bestItemSize == Vector2.Zero) {
+					bestItemSize = minSize;
 				}
 			}
 			// ItemSize += new Vector2 (0, Font.LineSpacing * scale * 0.5f / 1000f);
-			if (itemSize.HasValue) {
-				if (itemSize.Value.X > 0 && itemSize.Value.Y > 0) {
-					RelativeItemSize = itemSize.Value;
+			if (givenItemSize.HasValue) {
+				if (givenItemSize.Value.X > 0 && givenItemSize.Value.Y > 0) {
+					bestItemSize = givenItemSize.Value;
 				} else {
-					RelativeItemSize.X *= itemSize.Value.Y / RelativeItemSize.Y;
-					RelativeItemSize.Y = itemSize.Value.Y;
+					bestItemSize.X *= givenItemSize.Value.Y / bestItemSize.Y;
+					bestItemSize.Y = givenItemSize.Value.Y;
 				}
 			}
-			if (position.HasValue) {
-				RelativePosition = () => position.Value;
+			RelativeItemSize = (num) => bestItemSize;
+			if (givenPosition.HasValue) {
+				(Info as WidgetInfo).RelativePosition = () => givenPosition.Value;
 			} else {
-				RelativePosition = () => (Vector2.One * 1000f - RelativeSize ()) / 2;
+				(Info as WidgetInfo).RelativePosition = () => (Vector2.One * 1000f - Info.RelativeSize ()) / 2;
 			}
 		}
 
@@ -109,18 +103,13 @@ namespace Knot3.UserInterface
 			Align (viewport, scale, new Vector2 (posX, posY), itemSize, padding);
 		}
 
-		public Vector2 RelativeItemPosition (int n)
-		{
-			return RelativePosition () + new Vector2 (0, (RelativeItemSize.Y + RelativePadding ().Y) * n);
-		}
-
 		public override void Draw (GameTime gameTime)
 		{
 			base.Draw (gameTime);
 
 			if (IsVisible) {
-				Point min = ScaledPosition.ToPoint ();
-				Point size = ScaledSize.ToPoint ();
+				Point min = Info.ScaledPosition (state.viewport).ToPoint ();
+				Point size = Info.ScaledSize (state.viewport).ToPoint ();
 				Rectangle[] borders = new Rectangle[]{
 					new Rectangle (min.X - (int)Border.Size.X, min.Y - (int)Border.Size.Y,
 					               (int)Border.Size.X, size.Y + (int)Border.Size.Y * 2),

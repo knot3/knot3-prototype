@@ -91,6 +91,11 @@ namespace Knot3.UserInterface
 			return CreateRectangle (lineWidth, topLeft.X, topLeft.Y, size.X, size.Y);
 		}
 
+		public static Rectangle CreateRectangle (Vector2 topLeft, Vector2 size)
+		{
+			return CreateRectangle (0, topLeft.X, topLeft.Y, size.X, size.Y);
+		}
+
 		public static void AddLinePoints (ref List<Vector2> linePoints, float startX, float startY, params float[] xyxy)
 		{
 			Vector2 start = new Vector2 (startX, startY);

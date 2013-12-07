@@ -27,8 +27,8 @@ namespace Knot3.UserInterface
 		protected Action OnNoClick = () => {};
 		protected Action OnCancelClick = () => {};
 
-		public ConfirmDialog (GameState state, DisplayLayer drawOrder)
-			: base(state, drawOrder)
+		public ConfirmDialog (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+			: base(state, info, drawOrder)
 		{
 			// text
 			Text = new string[]{};
@@ -48,22 +48,41 @@ namespace Knot3.UserInterface
 			};
 
 			// buttons
-			buttons.AddButton (new MenuItemInfo ("Yes", RelativeButtonPosition, RelativeButtonSize, onYesClick));
-			buttons.AddButton (new MenuItemInfo ("No", RelativeButtonPosition, RelativeButtonSize, onNoClick));
-			buttons.AddButton (new MenuItemInfo ("Cancel", RelativeButtonPosition, RelativeButtonSize, onCancelClick));
+			buttons.RelativeItemPosition = RelativeButtonPosition;
+			buttons.RelativeItemSize = RelativeButtonSize;
+			var itemInfo = new MenuItemInfo () {
+				Text = "Yes",
+				OnClick = onYesClick
+			};
+			buttons.AddButton (itemInfo);
+			itemInfo = new MenuItemInfo () {
+				Text = "No",
+				OnClick = onNoClick
+			};
+			buttons.AddButton (itemInfo);
+			itemInfo = new MenuItemInfo () {
+				Text = "Cancel",
+				OnClick = onCancelClick
+			};
+			buttons.AddButton (itemInfo);
 		}
 
 		protected override void DrawDialog (GameTime gameTime)
 		{
-			SpriteFont font = HfGDesign.MenuFont(state);
+			SpriteFont font = HfGDesign.MenuFont (state);
 			// text
 			for (int i = 0; i < Text.Length; ++i) {
 				string line = Text [i];
 				float scale = 0.15f * state.viewport.ScaleFactor ().Length ();
 				Vector2 size = font.MeasureString (line).RelativeTo (state.viewport) * scale;
-				Vector2 pos = new Vector2 ((RelativeSize ().X - size.X) / 2, RelativePadding ().Y + size.Y * i);
-				spriteBatch.DrawString (font, line, ScaledPosition + pos.Scale (state.viewport),
-				                        Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+				Vector2 pos = new Vector2 (
+					(Info.RelativeSize ().X - size.X) / 2,
+					Info.RelativePadding ().Y + size.Y * i
+				);
+				spriteBatch.DrawString (
+					font, line, Info.ScaledPosition (state.viewport) + pos.Scale (state.viewport),
+					Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0
+				);
 			}
 		}
 	}

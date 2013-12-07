@@ -22,13 +22,17 @@ namespace Knot3.UserInterface
 		// text input
 		protected TextInput TextInput;
 
-		public TextInputDialog (GameState state, DisplayLayer drawOrder)
-			: base(state, drawOrder)
+		public TextInputDialog (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+			: base(state, info, drawOrder)
 		{
-			TextInput = new TextInput (
-				state, DisplayLayer.SubMenu, TextInputPosition, TextInputSize, () => new Vector2 (0.005f, 0.005f),
-				() => Color.Black, () => Color.White
-			);
+			var textInputInfo = new WidgetInfo () {
+				RelativePosition = TextInputPosition,
+				RelativeSize = TextInputSize,
+				RelativePadding = () => new Vector2 (0.005f, 0.005f),
+				ForegroundColor = () => Color.Black,
+				BackgroundColor = () => Color.White
+			};
+			TextInput = new TextInput (state, textInputInfo, DisplayLayer.SubMenu);
 		}
 
 		public override IEnumerable<IGameStateComponent> SubComponents (GameTime gameTime)
@@ -45,13 +49,13 @@ namespace Knot3.UserInterface
 			Vector2 textInputSize = TextInputSize ();
 			return new Vector2 (
 				buttonPosition.X,
-				buttonPosition.Y - textInputSize.Y - RelativePadding ().Y
+				buttonPosition.Y - textInputSize.Y - Info.RelativePadding ().Y
 			);
 		}
 
 		protected Vector2 TextInputSize ()
 		{
-			float x = (RelativeSize ().X - RelativePadding ().X * 2);
+			float x = (Info.RelativeSize ().X - Info.RelativePadding ().X * 2);
 			return new Vector2 (x, 0.06f);
 		}
 	}

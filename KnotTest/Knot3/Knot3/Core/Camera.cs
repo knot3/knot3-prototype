@@ -111,7 +111,7 @@ namespace Knot3.Core
 			UpVector = Vector3.Up;
 			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
  
-			FoV = MathHelper.ToDegrees(MathHelper.PiOver4);
+			FoV = MathHelper.ToDegrees (MathHelper.PiOver4);
 			aspectRatio = state.viewport.AspectRatio;
 			nearPlane = 0.5f;
 			farPlane = 10000.0f;

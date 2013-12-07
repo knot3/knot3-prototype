@@ -24,7 +24,7 @@ namespace Knot3.Core
 	{
 		// graphics-related classes
 		private SpriteBatch spriteBatch;
-        BasicEffect effect;
+		BasicEffect effect;
 
 		private World World { get; set; }
 
@@ -41,10 +41,10 @@ namespace Knot3.Core
 			World = world;
 
 			// create a new SpriteBatch, which can be used to draw textures
-            effect = new BasicEffect(state.device);
-            spriteBatch = new SpriteBatch (state.device);
-            effect.VertexColorEnabled = true;
-			effect.World = Matrix.CreateFromYawPitchRoll (0,0,0);
+			effect = new BasicEffect (state.device);
+			spriteBatch = new SpriteBatch (state.device);
+			effect.VertexColorEnabled = true;
+			effect.World = Matrix.CreateFromYawPitchRoll (0, 0, 0);
 		}
 
 		/// <summary>
@@ -99,12 +99,12 @@ namespace Knot3.Core
 			vertices [5].Position = new Vector3 (0, 0, +length);
 			vertices [5].Color = Color.Yellow;
             
-            effect.View = World.Camera.ViewMatrix;
-            effect.Projection = World.Camera.ProjectionMatrix;
+			effect.View = World.Camera.ViewMatrix;
+			effect.Projection = World.Camera.ProjectionMatrix;
           
-            effect.CurrentTechnique.Passes[0].Apply();
+			effect.CurrentTechnique.Passes [0].Apply ();
             
-            state.device.DrawUserPrimitives(PrimitiveType.LineList, vertices, 0, 3, VertexPositionColor.VertexDeclaration);
+			state.device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3, VertexPositionColor.VertexDeclaration);
 		}
 
 		private void DrawOverlay (GameTime gameTime)

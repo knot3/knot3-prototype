@@ -178,14 +178,17 @@ namespace Knot3.GameObjects
 		private IGameObject Obj;
 
 		// game world
-		public World World { get { return Obj.World; } set {} }
+		public World World {
+			get { return Obj.World; }
+			set {}
+		}
 
 		// info
 		public dynamic Info { get; private set; }
 
 		public ShadowGameObject (GameState state, IGameObject obj)
 		{
-			this.state = state;
+ this.state = state;
 			Info = new GameObjectInfo ();
 			Obj = obj;
 			Info.IsVisible = true;
