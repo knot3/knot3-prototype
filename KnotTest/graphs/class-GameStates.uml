@@ -1,8 +1,10 @@
 public static class GameStates : 
+  Attributes:
     + CreativeMode : CreativeModeScreen static
     + StartScreen : StartScreen static
     + OptionScreen : OptionScreen static
     + VideoOptionScreen : VideoOptionScreen static
     + LoadSavegameScreen : LoadSavegameScreen static
+  Methods:
     + Initialize  (Game game) static
 

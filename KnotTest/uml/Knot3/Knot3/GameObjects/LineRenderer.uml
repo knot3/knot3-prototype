@@ -1,8 +1,10 @@
 public class LineRenderer : KnotRenderer
+  Attributes:
     + Info : dynamic override
     + World : World override
     - basicEffect : BasicEffect
     - edges : EdgeList
+  Methods:
     + LineRenderer (GameState state, GameObjectInfo info)
     + Update (GameTime gameTime) override
     + OnEdgesChanged (EdgeList edges) override

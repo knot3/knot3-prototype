@@ -1,7 +1,9 @@
 public class LoadSavegameScreen : MenuScreen
+  Attributes:
     - format : IKnotFormat
     - menu : VerticalMenu
     - spriteBatch : SpriteBatch
+  Methods:
     + LoadSavegameScreen (Core.Game game)
     + Initialize () override
     - UpdateFiles ()

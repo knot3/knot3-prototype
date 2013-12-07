@@ -1,10 +1,13 @@
 public class EdgeList : 
+  Attributes:
     - Edges : WrapList<Edge>
     + SelectedEdges : WrapList<Edge>
     + EdgesChanged : Action<EdgeList>
     - NodeCache : Dictionary<int,Node>
-    + EdgeList ()
     + this [int i] : Edge
+    + Count : int
+  Methods:
+    + EdgeList ()
     + IndexOf (Edge edge) : int
     + FromNode (int index) : Node
     + FromNode (Edge edge) : Node
@@ -13,7 +16,6 @@ public class EdgeList :
     + Add (Edge edge)
     + AddRange (IEnumerable<Edge> edge)
     + Interval (Edge a, Edge b) : List<Edge>
-    + Count : int
     + SelectEdge (Edge selection, bool append = false)
     + SelectEdges (Edge[] selection, bool append = false)
     + SelectEdge ()

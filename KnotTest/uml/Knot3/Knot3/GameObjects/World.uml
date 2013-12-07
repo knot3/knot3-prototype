@@ -1,10 +1,12 @@
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
+  Attributes:
     - knotRenderEffects : List<RenderEffect>
     - knotRenderEffect : RenderEffect
     + Objects : List<IGameObject>
     + SelectedObject : IGameObject
     + Camera : Camera
     - floor : TexturedRectangle
+  Methods:
     + World (GameState state)
     + SelectObject (IGameObject obj, GameTime gameTime)
     + SelectedObjectDistance () : float
@@ -16,5 +18,7 @@ public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
     - IEnumerable.GetEnumerator () : IEnumerator
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
 public class TestModel : GameModel
+  Attributes:
+  Methods:
     + TestModel (GameState state, GameModelInfo info)
     + Update (GameTime gameTime) override

@@ -1,6 +1,8 @@
 public class VerticalMenu : Menu
+  Attributes:
     + Border : Border
     # spriteBatch : SpriteBatch
+  Methods:
     + VerticalMenu (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     + AddButton (MenuItemInfo info) : MenuButton override
     + AddDropDown (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) override
@@ -9,9 +11,11 @@ public class VerticalMenu : Menu
     + Align (Viewport viewport, float scale, int posX, int posY, int? sizeX = null, int? sizeY = null, float padding = 0.15f)
     + Draw (GameTime gameTime) override
 public class Border : 
+  Attributes:
     + Color : Color
     + Size : Vector2
     + Padding : Vector2
+    + Zero : Border static
+  Methods:
     + Border (Color color, Vector2 size, Vector2 padding)
     + Border (Color color, int sizeX, int sizeY, int paddingX, int paddingY)
-    + Zero : Border static

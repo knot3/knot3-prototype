@@ -1,7 +1,9 @@
 public class StartScreen : MenuScreen
+  Attributes:
     # menu : Menu
     - logo : Texture2D
     - spriteBatch : SpriteBatch
+  Methods:
     + StartScreen (Game game)
     + Initialize () override
     + UpdateMenu (GameTime gameTime) override

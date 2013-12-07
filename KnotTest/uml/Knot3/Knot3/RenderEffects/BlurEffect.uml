@@ -1,5 +1,7 @@
 public class BlurEffect : RenderEffect
+  Attributes:
     - testEffect : Effect static
+  Methods:
     + BlurEffect (GameState state)
     + Begin (Color background, GameTime gameTime) override
     + End (GameTime gameTime) override

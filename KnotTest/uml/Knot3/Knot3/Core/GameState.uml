@@ -1,7 +1,7 @@
 public abstract class GameState : 
+  Attributes:
     + game : Game
     + NextState : GameState
-    + GameState (Game game)
     + input : Input
     + graphics : GraphicsDeviceManager
     + device : GraphicsDevice
@@ -9,6 +9,8 @@ public abstract class GameState :
     + content : ContentManager
     + RenderEffects : RenderEffectStack
     + PostProcessing : RenderEffect
+  Methods:
+    + GameState (Game game)
     + Initialize () abstract
     + Update (GameTime gameTime) abstract
     + Draw (GameTime gameTime) abstract
@@ -18,9 +20,11 @@ public abstract class GameState :
     + Activate (GameTime gameTime) virtual
     + Deactivate (GameTime gameTime) virtual
 public static class GameStates : 
+  Attributes:
     + CreativeMode : CreativeModeScreen static
     + StartScreen : StartScreen static
     + OptionScreen : OptionScreen static
     + VideoOptionScreen : VideoOptionScreen static
     + LoadSavegameScreen : LoadSavegameScreen static
+  Methods:
     + Initialize (Game game) static

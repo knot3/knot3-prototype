@@ -1,27 +1,37 @@
 public class ConfigFile : 
+  Attributes:
     - Filename : string
     - ini : IniFile
-    + ConfigFile (string filename)
     + this [string section, string option, bool defaultValue : bool
     + this [string section, string option, string defaultValue : string
     + True : string static
     + False : string static
+  Methods:
+    + ConfigFile (string filename)
 public static class Options : 
+  Attributes:
     - _default : ConfigFile static
     + Default : ConfigFile static
+  Methods:
 public class OptionInfo : 
+  Attributes:
     + Section : string
     + Name : string
     + DefaultValue : string
     + OnChange : Action<string>
     + Value : string virtual
     - ConfigFile : ConfigFile
+  Methods:
     + OptionInfo (string section, string name, string defaultValue, Action<string> onChange = null, ConfigFile configFile = null)
 public class DistinctOptionInfo : OptionInfo
+  Attributes:
     + ValidValues : HashSet<string>
-    + DistinctOptionInfo (string section, string name, string defaultValue, string[] validValues, Action<string> onChange = null, ConfigFile configFile = null)
     + Value : string override
+  Methods:
+    + DistinctOptionInfo (string section, string name, string defaultValue, string[] validValues, Action<string> onChange = null, ConfigFile configFile = null)
 public class BooleanOptionInfo : DistinctOptionInfo
+  Attributes:
     + ValidValues : string[] static
-    + BooleanOptionInfo (string section, string name, bool defaultValue, Action<bool> onChange = null, ConfigFile configFile = null)
     + BoolValue : bool
+  Methods:
+    + BooleanOptionInfo (string section, string name, bool defaultValue, Action<bool> onChange = null, ConfigFile configFile = null)

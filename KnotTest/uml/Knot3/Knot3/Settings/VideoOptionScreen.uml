@@ -1,6 +1,8 @@
 public class VideoOptionScreen : OptionScreen
+  Attributes:
     - menu : VerticalMenu
     - spriteBatch : SpriteBatch
+  Methods:
     + VideoOptionScreen (Core.Game game)
     + Initialize () override
     + Collapse (MenuItem item)

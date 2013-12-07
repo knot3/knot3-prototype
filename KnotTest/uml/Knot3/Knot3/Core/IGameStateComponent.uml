@@ -1,3 +1,5 @@
 public interface IGameStateComponent : Xna.IGameComponent
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+  Attributes:
     + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>

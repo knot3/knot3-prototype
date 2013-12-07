@@ -1,10 +1,12 @@
 public class PipeMovement : IGameObject, IEnumerable<IGameObject>
+  Attributes:
     - state : GameState
     + World : World
     + Info : dynamic
     + Knot : Knot
     - previousMousePosition : Vector3
     - shadowObjects : List<ShadowGameObject>
+  Methods:
     + PipeMovement  (GameState state, World world, GameObjectInfo info)
     + Update  (GameTime gameTime)
     - CreateShadowPipes  ()
@@ -19,8 +21,10 @@ public class PipeMovement : IGameObject, IEnumerable<IGameObject>
     + Center () : Vector3
 
 public interface IGameObject : 
+  Attributes:
     + Info : dynamic
     + World : World
+  Methods:
     + Draw  (GameTime gameTime)
     + Update  (GameTime gameTime)
     + Intersects (Ray ray) : GameObjectDistance

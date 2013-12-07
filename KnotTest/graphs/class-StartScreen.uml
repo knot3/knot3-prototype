@@ -1,7 +1,9 @@
 public class StartScreen : MenuScreen
+  Attributes:
     # menu : Menu
     - logo : Texture2D
     - spriteBatch : SpriteBatch
+  Methods:
     + StartScreen  (Game game)
     + Initialize  () override
     + UpdateMenu  (GameTime gameTime) override
@@ -9,11 +11,13 @@ public class StartScreen : MenuScreen
     + Activate  (GameTime gameTime) override
 
 public abstract class MenuScreen : GameState
+  Attributes:
     - spriteBatch : SpriteBatch
     - backColor : Color
     - pointer : MousePointer
     # LinePoints : List<Vector2>
     # LineWidth : int
+  Methods:
     + MenuScreen  (Core.Game game)
     + Initialize  () override
     + Update  (GameTime gameTime) override
@@ -26,9 +30,9 @@ public abstract class MenuScreen : GameState
     # ForegroundColor (ItemState itemState) : Color
 
 public abstract class GameState : 
+  Attributes:
     + game : Game
     + NextState : GameState
-    + GameState  (Game game)
     + input : Input
     + graphics : GraphicsDeviceManager
     + device : GraphicsDevice
@@ -36,6 +40,8 @@ public abstract class GameState :
     + content : ContentManager
     + RenderEffects : RenderEffectStack
     + PostProcessing : RenderEffect
+  Methods:
+    + GameState  (Game game)
     + Initialize  () abstract
     + Update  (GameTime gameTime) abstract
     + Draw  (GameTime gameTime) abstract

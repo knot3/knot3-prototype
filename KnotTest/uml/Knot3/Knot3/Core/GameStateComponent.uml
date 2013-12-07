@@ -1,6 +1,8 @@
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
+  Attributes:
     # InputOrder : DisplayLayer
-    + GameStateComponent (GameState state, DisplayLayer inputOrder)
     + state : GameState
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
     + Index : int
+  Methods:
+    + GameStateComponent (GameState state, DisplayLayer inputOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual

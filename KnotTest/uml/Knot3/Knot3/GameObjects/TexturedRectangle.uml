@@ -1,12 +1,15 @@
 public class TexturedRectangleInfo : GameObjectInfo
+  Attributes:
     + Texturename : string
     + Up : Vector3
     + Left : Vector3
     + Width : float
     + Height : float
+  Methods:
     + TexturedRectangleInfo (string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
     + Equals (GameObjectInfo other) : bool override
 public class TexturedRectangle : IGameObject
+  Attributes:
     # state : GameState
     + Info : dynamic
     + World : World
@@ -19,6 +22,7 @@ public class TexturedRectangle : IGameObject
     - Indexes : short[]
     - basicEffect : BasicEffect
     - texture : Texture2D
+  Methods:
     + TexturedRectangle (GameState state, TexturedRectangleInfo info)
     + Update (GameTime gameTime)
     + Draw (GameTime gameTime)

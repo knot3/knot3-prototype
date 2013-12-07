@@ -1,10 +1,13 @@
 public class ColorPicker : Widget, IMouseEventListener
+  Attributes:
     - colors : List<Color>
     - tiles : List<Vector2>
     - Vector2 tileSize : readonly static
     + SelectedColor : Color
     + OnSelectColor : Action<Color>
     # spriteBatch : SpriteBatch
+    + IsMouseEventEnabled : bool
+  Methods:
     + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     + Draw  (GameTime gameTime) override
     - CreateColors (int num) : IEnumerable<Color> static
@@ -13,29 +16,36 @@ public class ColorPicker : Widget, IMouseEventListener
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
     + SetHovered  (bool hovered)
-    + IsMouseEventEnabled : bool
 
 public interface IMouseEventListener : 
+  Attributes:
+    + Index : int
+    + IsMouseEventEnabled : bool
+  Methods:
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
     + SetHovered  (bool hovered)
     + bounds () : Rectangle
-    + Index : int
-    + IsMouseEventEnabled : bool
 
 public abstract class Widget : DrawableGameStateComponent
+  Attributes:
     + Info : WidgetInfo
     + IsVisible : bool virtual
+  Methods:
     + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     + bounds () : Rectangle
 
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
-    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+  Attributes:
     + state : GameState
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
     + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
 public interface IGameStateComponent : Xna.IGameComponent
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+  Attributes:
     + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 

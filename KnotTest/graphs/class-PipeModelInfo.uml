@@ -1,28 +1,34 @@
 public class PipeModelInfo : GameModelInfo
+  Attributes:
     + Edges : EdgeList
     + Edge : Edge
     + Direction : Vector3
     + PositionFrom : Vector3
     + PositionTo : Vector3
+  Methods:
     + PipeModelInfo  (EdgeList edges, Edge edge, Vector3 offset)
     + Equals (GameObjectInfo other) : bool override
 
 public class GameModelInfo : GameObjectInfo
+  Attributes:
     + Modelname : string
     + Rotation : Angles3
     + Scale : float
+  Methods:
     + GameModelInfo  (string modelname)
     + Equals (GameObjectInfo other) : bool override
 
 public class GameObjectInfo : IEquatable<GameObjectInfo>
+  Attributes:
     + Position : Vector3
     + IsVisible : bool
     + IsSelectable : bool
     + IsMovable : bool
+    + operator : bool static
+    + operator ! : bool static
+  Methods:
     + GameObjectInfo  ()
     + Equals (GameObjectInfo other) : bool virtual
     + Equals (Object obj) : bool override
     + GetHashCode () : int override
-    + operator : bool static
-    + operator ! : bool static
 

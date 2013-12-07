@@ -1,7 +1,9 @@
 public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
+  Attributes:
     # state : GameState
     + World : World abstract
     + Info : dynamic abstract
+  Methods:
     + KnotRenderer (GameState state)
     + OnEdgesChanged (EdgeList edges) abstract
     + Update (GameTime gameTime) abstract

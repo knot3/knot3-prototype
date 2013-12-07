@@ -1,4 +1,5 @@
 public abstract class Input : GameStateComponent, IKeyEventListener
+  Attributes:
     # FullscreenToggled : bool static
     + PreviousKeyboardState : KeyboardState static
     + PreviousMouseState : MouseState static
@@ -10,15 +11,16 @@ public abstract class Input : GameStateComponent, IKeyEventListener
     + GrabMouseMovement : bool
     + CurrentInputAction : InputAction
     + WASDMode : WASDMode
+    + ValidKeys : List<Keys>
+    + IsKeyEventEnabled : bool
+    + MouseState : MouseState static
+    + KeyboardState : KeyboardState static
+  Methods:
     + Input (GameState state)
     + Update (GameTime gameTime) override
     # UpdateKeys (GameTime gameTime) virtual
     # UpdateMouse (GameTime gameTime) virtual
     + OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
-    + ValidKeys : List<Keys>
-    + IsKeyEventEnabled : bool
-    + MouseState : MouseState static
-    + KeyboardState : KeyboardState static
 public enum InputAction
     None = 0
     ArcballMove
@@ -35,5 +37,7 @@ public enum ClickState
     SingleClick
     DoubleClick
 public static class InputExtensions : 
+  Attributes:
+  Methods:
     + IsDown (this Keys key) : bool static
     + IsHeldDown (this Keys key) : bool static

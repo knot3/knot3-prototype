@@ -1,10 +1,14 @@
 public interface IEdgeChangeListener : 
+  Attributes:
+  Methods:
     + OnEdgesChanged  (EdgeList edges)
 
 public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
+  Attributes:
     # state : GameState
     + World : World abstract
     + Info : dynamic abstract
+  Methods:
     + KnotRenderer  (GameState state)
     + OnEdgesChanged  (EdgeList edges) abstract
     + Update  (GameTime gameTime) abstract
@@ -13,10 +17,12 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     + Center () : Vector3 abstract
 
 public class LineRenderer : KnotRenderer
+  Attributes:
     + Info : dynamic override
     + World : World override
     - basicEffect : BasicEffect
     - edges : EdgeList
+  Methods:
     + LineRenderer  (GameState state, GameObjectInfo info)
     + Update  (GameTime gameTime) override
     + OnEdgesChanged  (EdgeList edges) override
@@ -26,12 +32,14 @@ public class LineRenderer : KnotRenderer
     + Center () : Vector3 override
 
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
+  Attributes:
     + Info : dynamic override
     + World : World override
     - pipes : List<PipeModel>
     - knots : List<NodeModel>
     - pipeFactory : PipeModelFactory
     - knotFactory : NodeModelFactory
+  Methods:
     + PipeRenderer  (GameState state, GameObjectInfo info)
     + Update  (GameTime gameTime) override
     + OnEdgesChanged  (EdgeList edges) override

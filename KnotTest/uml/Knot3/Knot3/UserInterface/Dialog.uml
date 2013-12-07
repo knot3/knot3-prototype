@@ -1,7 +1,9 @@
 public abstract class Dialog : Widget
+  Attributes:
     + buttons : Menu
     + Done : Action
     # spriteBatch : SpriteBatch
+  Methods:
     + Dialog (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     # RelativeButtonPosition (int n) : Vector2
     # RelativeButtonSize (int n) : Vector2

@@ -1,2 +1,4 @@
 public class MenuScreenInput : Input
+  Attributes:
+  Methods:
     + MenuScreenInput (GameState state)

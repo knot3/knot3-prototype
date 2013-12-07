@@ -1,21 +1,25 @@
 public class TexturedRectangleInfo : GameObjectInfo
+  Attributes:
     + Texturename : string
     + Up : Vector3
     + Left : Vector3
     + Width : float
     + Height : float
+  Methods:
     + TexturedRectangleInfo  (string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
     + Equals (GameObjectInfo other) : bool override
 
 public class GameObjectInfo : IEquatable<GameObjectInfo>
+  Attributes:
     + Position : Vector3
     + IsVisible : bool
     + IsSelectable : bool
     + IsMovable : bool
+    + operator : bool static
+    + operator ! : bool static
+  Methods:
     + GameObjectInfo  ()
     + Equals (GameObjectInfo other) : bool virtual
     + Equals (Object obj) : bool override
     + GetHashCode () : int override
-    + operator : bool static
-    + operator ! : bool static
 

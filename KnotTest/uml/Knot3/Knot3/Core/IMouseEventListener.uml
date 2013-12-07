@@ -1,7 +1,9 @@
 public interface IMouseEventListener : 
+  Attributes:
+    + Index : int
+    + IsMouseEventEnabled : bool
+  Methods:
     + OnLeftClick (Vector2 position, ClickState click, GameTime gameTime)
     + OnRightClick (Vector2 position, ClickState click, GameTime gameTime)
     + SetHovered (bool hovered)
     + bounds () : Rectangle
-    + Index : int
-    + IsMouseEventEnabled : bool

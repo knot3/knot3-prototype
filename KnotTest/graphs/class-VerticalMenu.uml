@@ -1,6 +1,8 @@
 public class VerticalMenu : Menu
+  Attributes:
     + Border : Border
     # spriteBatch : SpriteBatch
+  Methods:
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     + AddButton (MenuItemInfo info) : MenuButton override
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) override
@@ -10,6 +12,7 @@ public class VerticalMenu : Menu
     + Draw  (GameTime gameTime) override
 
 public class Menu : Widget
+  Attributes:
     + Vector2> RelativeItemSize : Func<int,
     + Vector2> RelativeItemPosition : Func<int,
     + Color> ItemForegroundColor : Func<ItemState,
@@ -17,33 +20,40 @@ public class Menu : Widget
     + ItemAlignX : HAlign?
     + ItemAlignY : VAlign?
     # Items : List<MenuItem>
+    - ItemDisplayLayer : DisplayLayer
+    + this [int i] : MenuItem
+    + Count : int
+    - isVisible : bool
+    + IsVisible : bool override
+  Methods:
     + Menu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     - assignMenuItemInfo  (ref MenuItemInfo info, int num, MenuItem item)
     + AddButton (MenuItemInfo info) : MenuButton virtual
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
-    - ItemDisplayLayer : DisplayLayer
-    + this [int i] : MenuItem
-    + Count : int
     + Clear  ()
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
     + CollapseMenus  (MenuItem menu)
-    - isVisible : bool
-    + IsVisible : bool override
 
 public abstract class Widget : DrawableGameStateComponent
+  Attributes:
     + Info : WidgetInfo
     + IsVisible : bool virtual
+  Methods:
     + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     + bounds () : Rectangle
 
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
-    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+  Attributes:
     + state : GameState
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
     + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
 public interface IGameStateComponent : Xna.IGameComponent
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+  Attributes:
     + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 

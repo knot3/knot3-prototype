@@ -1,13 +1,15 @@
 public struct Node : 
+  Attributes:
     + X : int
     + Y : int
     + Z : int
     + Scale : int static
+    + operator : bool static
+    + operator ! : bool static
+  Methods:
     +  () : this (int x, int y, int z)
     + operator (Node a, Vector3 b) : Node static
     - operator (Node a, Node b) : Vector3 static
-    + operator : bool static
-    + operator ! : bool static
     + Equals (object obj) : bool override
     + GetHashCode () : int override
     + ToString () : string override

@@ -1,25 +1,33 @@
 public class PipeColoring : GameStateComponent, IKeyEventListener
+  Attributes:
     + Knot : Knot
+    + ValidKeys : List<Keys>
+    + IsKeyEventEnabled : bool
+  Methods:
     + PipeColoring  (GameState state)
     + Update  (GameTime gameTime) override
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
-    + ValidKeys : List<Keys>
-    + IsKeyEventEnabled : bool
 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
+  Attributes:
     # InputOrder : DisplayLayer
-    + GameStateComponent  (GameState state, DisplayLayer inputOrder)
     + state : GameState
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
     + Index : int
+  Methods:
+    + GameStateComponent  (GameState state, DisplayLayer inputOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
 public interface IGameStateComponent : Xna.IGameComponent
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+  Attributes:
     + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
 public interface IKeyEventListener : 
-    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+  Attributes:
     + ValidKeys : List<Keys>
     + Index : int
     + IsKeyEventEnabled : bool
+  Methods:
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 

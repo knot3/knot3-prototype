@@ -1,4 +1,5 @@
 public class CreativeModeScreen : GameState
+  Attributes:
     - knot : Knot
     - knotModified : bool
     - world : World
@@ -10,9 +11,10 @@ public class CreativeModeScreen : GameState
     - lineRenderer : LineRenderer
     - pipeRenderer : PipeRenderer
     - dialog : Dialog
+    + Knot : Knot
+  Methods:
     + CreativeModeScreen  (Core.Game game)
     + Initialize  () override
-    + Knot : Knot
     + LoadFile  (string file)
     + Update  (GameTime gameTime) override
     - UpdateInput  (GameTime gameTime)
@@ -21,9 +23,9 @@ public class CreativeModeScreen : GameState
     + Unload  () override
 
 public abstract class GameState : 
+  Attributes:
     + game : Game
     + NextState : GameState
-    + GameState  (Game game)
     + input : Input
     + graphics : GraphicsDeviceManager
     + device : GraphicsDevice
@@ -31,6 +33,8 @@ public abstract class GameState :
     + content : ContentManager
     + RenderEffects : RenderEffectStack
     + PostProcessing : RenderEffect
+  Methods:
+    + GameState  (Game game)
     + Initialize  () abstract
     + Update  (GameTime gameTime) abstract
     + Draw  (GameTime gameTime) abstract

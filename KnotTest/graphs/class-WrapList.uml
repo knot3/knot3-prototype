@@ -1,13 +1,15 @@
 public class WrapList<T> : IEnumerable<T>
+  Attributes:
     - list : List<T> new
     - int> indexOf : Dictionary<T, new
+    + this [int i] : T
+    + this [T t] : int
+    + Count : int
+  Methods:
     + WrapList  ()
     + WrapList  (IEnumerable<T> elems)
     - RebuildIndex  ()
     - WrapIndex (int i) : int
-    + this [int i] : T
-    + this [T t] : int
-    + Count : int
     + Clear  ()
     + Add  (T elem)
     + Remove  (T[] elems)

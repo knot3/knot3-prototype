@@ -1,10 +1,12 @@
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
+  Attributes:
     + Info : dynamic override
     + World : World override
     - pipes : List<PipeModel>
     - knots : List<NodeModel>
     - pipeFactory : PipeModelFactory
     - knotFactory : NodeModelFactory
+  Methods:
     + PipeRenderer (GameState state, GameObjectInfo info)
     + Update (GameTime gameTime) override
     + OnEdgesChanged (EdgeList edges) override

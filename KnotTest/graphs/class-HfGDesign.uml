@@ -1,8 +1,10 @@
 public static class HfGDesign : 
+  Attributes:
     + LineColor : Color static
     + OutlineColor : Color static
     - texture : Texture2D static
     - menuFont : SpriteFont static
+  Methods:
     + MenuFont (GameState state) : SpriteFont static
     + DrawLines  (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameState state, GameTime gameTime) static
     + CreateRectangle (int lineWidth, float x, float y, float w, float h) : Rectangle static

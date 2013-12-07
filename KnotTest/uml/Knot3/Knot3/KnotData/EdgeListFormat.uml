@@ -1,5 +1,7 @@
 public class EdgeListFormat : IKnotFormat
+  Attributes:
     + FileExtensions : string[]
+  Methods:
     + EdgeListFormat ()
     + LoadInfo (string filename) : KnotInfo
     + LoadKnot (string filename) : Knot

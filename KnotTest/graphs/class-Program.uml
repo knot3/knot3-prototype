@@ -1,4 +1,6 @@
 private static class Program : 
+  Attributes:
     - game : Game static
+  Methods:
     - void Main () : [STAThread]static
 

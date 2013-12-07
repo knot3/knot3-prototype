@@ -1,4 +1,5 @@
 public class CreativeModeScreen : GameState
+  Attributes:
     - knot : Knot
     - knotModified : bool
     - world : World
@@ -10,9 +11,10 @@ public class CreativeModeScreen : GameState
     - lineRenderer : LineRenderer
     - pipeRenderer : PipeRenderer
     - dialog : Dialog
+    + Knot : Knot
+  Methods:
     + CreativeModeScreen (Core.Game game)
     + Initialize () override
-    + Knot : Knot
     + LoadFile (string file)
     + Update (GameTime gameTime) override
     - UpdateInput (GameTime gameTime)
@@ -20,4 +22,6 @@ public class CreativeModeScreen : GameState
     + Activate (GameTime gameTime) override
     + Unload () override
 public class KnotSaveConfirmDialog : TextInputDialog
+  Attributes:
+  Methods:
     + KnotSaveConfirmDialog (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)

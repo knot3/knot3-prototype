@@ -1,4 +1,6 @@
 public static class Vectors : 
+  Attributes:
+  Methods:
     + ArcBallMove (this Vector3 vectorToMove, Vector2 mouse, Vector3 up, Vector3 forward) : Vector3 static
     + MoveLinear (this Vector3 vectorToMove, Vector3 mouse, Vector3 up, Vector3 forward) : Vector3 static
     + MoveLinear (this Vector3 vectorToMove, Vector2 mouse, Vector3 up, Vector3 forward) : Vector3 static
@@ -38,4 +40,6 @@ public static class Vectors :
     + Swap<T> (ref T lhs, ref T rhs) static
     + Print (this Vector3 v) : string static
 private static class SwapExtension : 
+  Attributes:
+  Methods:
     + Swap<T> (this T x, ref T y) : T static

@@ -1,7 +1,7 @@
 public abstract class GameState : 
+  Attributes:
     + game : Game
     + NextState : GameState
-    + GameState  (Game game)
     + input : Input
     + graphics : GraphicsDeviceManager
     + device : GraphicsDevice
@@ -9,6 +9,8 @@ public abstract class GameState :
     + content : ContentManager
     + RenderEffects : RenderEffectStack
     + PostProcessing : RenderEffect
+  Methods:
+    + GameState  (Game game)
     + Initialize  () abstract
     + Update  (GameTime gameTime) abstract
     + Draw  (GameTime gameTime) abstract
@@ -19,6 +21,7 @@ public abstract class GameState :
     + Deactivate  (GameTime gameTime) virtual
 
 public class CreativeModeScreen : GameState
+  Attributes:
     - knot : Knot
     - knotModified : bool
     - world : World
@@ -30,9 +33,10 @@ public class CreativeModeScreen : GameState
     - lineRenderer : LineRenderer
     - pipeRenderer : PipeRenderer
     - dialog : Dialog
+    + Knot : Knot
+  Methods:
     + CreativeModeScreen  (Core.Game game)
     + Initialize  () override
-    + Knot : Knot
     + LoadFile  (string file)
     + Update  (GameTime gameTime) override
     - UpdateInput  (GameTime gameTime)
@@ -41,11 +45,13 @@ public class CreativeModeScreen : GameState
     + Unload  () override
 
 public abstract class MenuScreen : GameState
+  Attributes:
     - spriteBatch : SpriteBatch
     - backColor : Color
     - pointer : MousePointer
     # LinePoints : List<Vector2>
     # LineWidth : int
+  Methods:
     + MenuScreen  (Core.Game game)
     + Initialize  () override
     + Update  (GameTime gameTime) override
@@ -58,9 +64,11 @@ public abstract class MenuScreen : GameState
     # ForegroundColor (ItemState itemState) : Color
 
 public class StartScreen : MenuScreen
+  Attributes:
     # menu : Menu
     - logo : Texture2D
     - spriteBatch : SpriteBatch
+  Methods:
     + StartScreen  (Game game)
     + Initialize  () override
     + UpdateMenu  (GameTime gameTime) override
@@ -68,9 +76,11 @@ public class StartScreen : MenuScreen
     + Activate  (GameTime gameTime) override
 
 public class LoadSavegameScreen : MenuScreen
+  Attributes:
     - format : IKnotFormat
     - menu : VerticalMenu
     - spriteBatch : SpriteBatch
+  Methods:
     + LoadSavegameScreen  (Core.Game game)
     + Initialize  () override
     - UpdateFiles  ()
@@ -81,8 +91,10 @@ public class LoadSavegameScreen : MenuScreen
     + Activate  (GameTime gameTime) override
 
 public class OptionScreen : MenuScreen
+  Attributes:
     - menu : VerticalMenu
     - spriteBatch : SpriteBatch
+  Methods:
     + OptionScreen  (Core.Game game)
     + Initialize  () override
     + UpdateMenu  (GameTime gameTime) override
@@ -90,8 +102,10 @@ public class OptionScreen : MenuScreen
     + Activate  (GameTime gameTime) override
 
 public class VideoOptionScreen : OptionScreen
+  Attributes:
     - menu : VerticalMenu
     - spriteBatch : SpriteBatch
+  Methods:
     + VideoOptionScreen  (Core.Game game)
     + Initialize  () override
     + Collapse  (MenuItem item)

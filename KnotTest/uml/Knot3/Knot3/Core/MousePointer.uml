@@ -1,5 +1,7 @@
 public class MousePointer : DrawableGameStateComponent
+  Attributes:
     - spriteBatch : SpriteBatch
+  Methods:
     + MousePointer (GameState state)
     + Draw (GameTime gameTime) override
     - DrawCursor (GameTime gameTime)

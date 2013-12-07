@@ -1,3 +1,5 @@
 private static class SwapExtension : 
+  Attributes:
+  Methods:
     + Swap<T> (this T x, ref T y) : T static
 

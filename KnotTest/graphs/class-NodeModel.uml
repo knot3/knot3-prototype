@@ -1,9 +1,12 @@
 public class NodeModel : GameModel
+  Attributes:
     + Info : NodeModelInfo new
+  Methods:
     + NodeModel  (GameState state, NodeModelInfo info)
     + Draw  (GameTime gameTime) override
 
 public class GameModel : IGameObject
+  Attributes:
     # state : GameState
     + Info : dynamic
     + World : World
@@ -12,21 +15,24 @@ public class GameModel : IGameObject
     + HighlightColor : Color
     + HighlightIntensity : float
     + Alpha : float
-    + GameModel  (GameState state, GameModelInfo info)
-    + Update  (GameTime gameTime) virtual
-    + Draw  (GameTime gameTime) virtual
-    + Intersects (Ray ray) : GameObjectDistance virtual
-    + Center () : Vector3
     - _scale : float
     - _rotation : Angles3
     - _position : Vector3
     - _worldMatrix : Matrix
     + WorldMatrix : Matrix
+  Methods:
+    + GameModel  (GameState state, GameModelInfo info)
+    + Update  (GameTime gameTime) virtual
+    + Draw  (GameTime gameTime) virtual
+    + Intersects (Ray ray) : GameObjectDistance virtual
+    + Center () : Vector3
     - UpdateWorldMatrix  ()
 
 public interface IGameObject : 
+  Attributes:
     + Info : dynamic
     + World : World
+  Methods:
     + Draw  (GameTime gameTime)
     + Update  (GameTime gameTime)
     + Intersects (Ray ray) : GameObjectDistance

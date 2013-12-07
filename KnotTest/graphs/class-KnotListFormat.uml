@@ -1,5 +1,7 @@
 public class KnotListFormat : IKnotFormat
+  Attributes:
     + FileExtensions : string[]
+  Methods:
     + KnotListFormat  ()
     + LoadInfo (string filename) : KnotInfo
     + LoadKnot (string filename) : Knot
@@ -9,7 +11,9 @@ public class KnotListFormat : IKnotFormat
     - ParseLine  (string line, out Node? node, out Color? color) static
 
 public interface IKnotFormat : 
+  Attributes:
     + FileExtensions : string[]
+  Methods:
     + LoadInfo (string filename) : KnotInfo
     + LoadKnot (string filename) : Knot
     + SaveKnot  (Knot knot)

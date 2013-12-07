@@ -1,10 +1,12 @@
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
+  Attributes:
     - knotRenderEffects : List<RenderEffect>
     - knotRenderEffect : RenderEffect
     + Objects : List<IGameObject>
     + SelectedObject : IGameObject
     + Camera : Camera
     - floor : TexturedRectangle
+  Methods:
     + World  (GameState state)
     + SelectObject  (IGameObject obj, GameTime gameTime)
     + SelectedObjectDistance () : float
@@ -17,12 +19,16 @@ public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
 
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
-    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+  Attributes:
     + state : GameState
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
     + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
 public interface IGameStateComponent : Xna.IGameComponent
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+  Attributes:
     + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 

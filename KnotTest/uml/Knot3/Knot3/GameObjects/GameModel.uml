@@ -1,10 +1,13 @@
 public class GameModelInfo : GameObjectInfo
+  Attributes:
     + Modelname : string
     + Rotation : Angles3
     + Scale : float
+  Methods:
     + GameModelInfo (string modelname)
     + Equals (GameObjectInfo other) : bool override
 public class GameModel : IGameObject
+  Attributes:
     # state : GameState
     + Info : dynamic
     + World : World
@@ -13,14 +16,15 @@ public class GameModel : IGameObject
     + HighlightColor : Color
     + HighlightIntensity : float
     + Alpha : float
-    + GameModel (GameState state, GameModelInfo info)
-    + Update (GameTime gameTime) virtual
-    + Draw (GameTime gameTime) virtual
-    + Intersects (Ray ray) : GameObjectDistance virtual
-    + Center () : Vector3
     - _scale : float
     - _rotation : Angles3
     - _position : Vector3
     - _worldMatrix : Matrix
     + WorldMatrix : Matrix
+  Methods:
+    + GameModel (GameState state, GameModelInfo info)
+    + Update (GameTime gameTime) virtual
+    + Draw (GameTime gameTime) virtual
+    + Intersects (Ray ray) : GameObjectDistance virtual
+    + Center () : Vector3
     - UpdateWorldMatrix ()

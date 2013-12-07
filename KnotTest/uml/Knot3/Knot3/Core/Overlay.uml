@@ -1,8 +1,13 @@
 public class Overlay : DrawableGameStateComponent
+  Attributes:
     - spriteBatch : SpriteBatch
     - effect : BasicEffect
     - World : World
     - font : SpriteFont
+    - _total_frames : int
+    - _elapsed_time : float
+    - _fps : int
+  Methods:
     + Overlay (GameState state, World world)
     # LoadContent () override
     + Draw (GameTime gameTime) override
@@ -12,8 +17,5 @@ public class Overlay : DrawableGameStateComponent
     - DrawVectorCoordinates (Vector3 vector, int width2, int width3, int width4, int height)
     - DrawString (string str, int width, int height, Color color)
     - DrawString (float n, int width, int height, Color color)
-    - _total_frames : int
-    - _elapsed_time : float
-    - _fps : int
     - UpdateFPS (GameTime gameTime)
     - DrawFPS (GameTime gameTime)

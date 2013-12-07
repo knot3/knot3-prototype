@@ -1,6 +1,8 @@
 public class MousePicker : GameStateComponent
+  Attributes:
     - World : World
     - lastRayCheck : double
+  Methods:
     + MousePicker (GameState state, World world)
     + Update (GameTime gameTime) override
     + UpdateMouseRay (GameTime gameTime)

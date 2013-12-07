@@ -1,5 +1,7 @@
 public class KnotListFormat : IKnotFormat
+  Attributes:
     + FileExtensions : string[]
+  Methods:
     + KnotListFormat ()
     + LoadInfo (string filename) : KnotInfo
     + LoadKnot (string filename) : Knot

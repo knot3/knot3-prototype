@@ -1,8 +1,12 @@
 public class KeyHandler : GameStateComponent
+  Attributes:
+  Methods:
     + KeyHandler (GameState state)
     private class KeyEventComponent : 
+      Attributes:
         + receiver : IKeyEventListener
         + layer : int
         + keyEvent : KeyEvent
         + keys : List<Keys>
+      Methods:
     + Update (GameTime gameTime) override

@@ -1,5 +1,7 @@
 public interface IRenderEffect : 
+  Attributes:
     + RenderTarget : RenderTarget2D
+  Methods:
     + Begin (GameTime gameTime)
     + End (GameTime gameTime)
     + Draw (SpriteBatch spriteBatch, GameTime gameTime)

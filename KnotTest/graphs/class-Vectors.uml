@@ -1,4 +1,6 @@
 public static class Vectors : 
+  Attributes:
+  Methods:
     + ArcBallMove (this Vector3 vectorToMove, Vector2 mouse, Vector3 up, Vector3 forward) : Vector3 static
     + MoveLinear (this Vector3 vectorToMove, Vector3 mouse, Vector3 up, Vector3 forward) : Vector3 static
     + MoveLinear (this Vector3 vectorToMove, Vector2 mouse, Vector3 up, Vector3 forward) : Vector3 static

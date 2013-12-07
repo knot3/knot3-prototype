@@ -1,8 +1,10 @@
 public class Knot : 
+  Attributes:
     + Info : KnotInfo
     + Edges : EdgeList
     - Format : IKnotFormat
     + EdgesChanged : Action<EdgeList>
+  Methods:
     + Knot  (KnotInfo info, IKnotFormat format, EdgeList edges = null)
     + Rename  (string name)
     + Save  ()

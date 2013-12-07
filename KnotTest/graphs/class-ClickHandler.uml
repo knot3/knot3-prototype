@@ -1,19 +1,27 @@
 public class ClickHandler : GameStateComponent
+  Attributes:
+  Methods:
     + ClickHandler  (GameState state)
     private class ClickEventComponent : 
+      Attributes:
         + receiver : IMouseEventListener
         + layer : int
         + relativePosition : Vector2
+      Methods:
     + Update  (GameTime gameTime) override
 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
+  Attributes:
     # InputOrder : DisplayLayer
-    + GameStateComponent  (GameState state, DisplayLayer inputOrder)
     + state : GameState
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
     + Index : int
+  Methods:
+    + GameStateComponent  (GameState state, DisplayLayer inputOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
 public interface IGameStateComponent : Xna.IGameComponent
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+  Attributes:
     + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 

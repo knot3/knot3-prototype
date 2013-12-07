@@ -1,15 +1,19 @@
 public class ConfirmDialog : Dialog
+  Attributes:
     # Text : string[]
     # OnYesClick : Action
     # OnNoClick : Action
     # OnCancelClick : Action
+  Methods:
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     # DrawDialog  (GameTime gameTime) override
 
 public abstract class Dialog : Widget
+  Attributes:
     + buttons : Menu
     + Done : Action
     # spriteBatch : SpriteBatch
+  Methods:
     + Dialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     # RelativeButtonPosition (int n) : Vector2
     # RelativeButtonSize (int n) : Vector2
@@ -20,28 +24,38 @@ public abstract class Dialog : Widget
     - ButtonForegroundColor (ItemState itemState) : Color
 
 public abstract class Widget : DrawableGameStateComponent
+  Attributes:
     + Info : WidgetInfo
     + IsVisible : bool virtual
+  Methods:
     + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     + bounds () : Rectangle
 
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
-    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+  Attributes:
     + state : GameState
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
     + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
 public interface IGameStateComponent : Xna.IGameComponent
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+  Attributes:
     + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
 public class TextInputDialog : ConfirmDialog
+  Attributes:
     # TextInput : TextInput
+  Methods:
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
     # TextInputPosition () : Vector2
     # TextInputSize () : Vector2
 
 public class KnotSaveConfirmDialog : TextInputDialog
+  Attributes:
+  Methods:
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
