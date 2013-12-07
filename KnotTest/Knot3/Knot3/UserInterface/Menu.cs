@@ -20,12 +20,12 @@ namespace Knot3.UserInterface
 	public class Menu : Widget
 	{
 		// size and position
-		public LazyItemSize RelativeItemSize = null;
-		public LazyItemSize RelativeItemPosition = null;
+		public Func<int, Vector2> RelativeItemSize = null;
+		public Func<int, Vector2> RelativeItemPosition = null;
 
 		// fonts and colors
-		public LazyItemColor ItemForegroundColor = null;
-		public LazyItemColor ItemBackgroundColor = null;
+		public Func<ItemState, Color> ItemForegroundColor = null;
+		public Func<ItemState, Color> ItemBackgroundColor = null;
 		public HAlign? ItemAlignX = null;
 		public VAlign? ItemAlignY = null;
 

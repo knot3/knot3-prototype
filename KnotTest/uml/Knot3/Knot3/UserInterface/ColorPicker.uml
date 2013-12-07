@@ -5,13 +5,12 @@ public class ColorPicker : Widget, IMouseEventListener
     + SelectedColor : Color
     + OnSelectColor : Action<Color>
     # spriteBatch : SpriteBatch
-    + ColorPicker (GameState state, DisplayLayer drawOrder)
+    + ColorPicker (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     + Draw (GameTime gameTime) override
     - CreateColors (int num) : IEnumerable<Color> static
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
     - SelectColor (Color color)
     + OnLeftClick (Vector2 position, ClickState click, GameTime gameTime)
     + OnRightClick (Vector2 position, ClickState click, GameTime gameTime)
-    + bounds () : Rectangle
     + SetHovered (bool hovered)
     + IsMouseEventEnabled : bool

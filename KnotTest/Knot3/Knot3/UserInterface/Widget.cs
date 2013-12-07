@@ -24,17 +24,17 @@ namespace Knot3.UserInterface
 	public class WidgetInfo : IEquatable<WidgetInfo>
 	{
 		// size and position
-		public LazyPosition RelativePosition;
-		public LazySize RelativeSize = () => Vector2.Zero;
-		public LazySize RelativePadding = () => Vector2.Zero;
+		public Func<Vector2> RelativePosition;
+		public Func<Vector2> RelativeSize = () => Vector2.Zero;
+		public Func<Vector2> RelativePadding = () => Vector2.Zero;
 
 		// alignment
 		public HAlign AlignX = HAlign.Left;
 		public VAlign AlignY = VAlign.Center;
 
 		// colors
-		public LazyColor ForegroundColor = () => Color.Transparent;
-		public LazyColor BackgroundColor = () => Color.Transparent;
+		public Func<Color> ForegroundColor = () => Color.Transparent;
+		public Func<Color> BackgroundColor = () => Color.Transparent;
 
 		// scaled to viewport size
 
@@ -187,37 +187,5 @@ namespace Knot3.UserInterface
 		Center,
 		Bottom
 	}
-
-	/// <summary>
-	/// Ein Delegate, das ein Vector2-Objekt zurückgibt, das als Größe interpretiert wird.
-	/// </summary>
-	public delegate Vector2 LazySize ();
-
-	/// <summary>
-	/// Ein Delegate, das ein Vector2-Objekt zurückgibt, das als Position interpretiert wird.
-	/// </summary>
-	public delegate Vector2 LazyPosition ();
-
-	/// <summary>
-	/// Ein Delegate, das ein Color-Objekt zurückgibt.
-	/// </summary>
-	public delegate Color LazyColor ();
-
-	/// <summary>
-	/// Ein Delegate, das eine Item-Nummer (int) als Argument erwartet und ein Vector2-Objekt zurückgibt,
-	/// das als Größe interpretiert wird.
-	/// </summary>
-	public delegate Vector2 LazyItemSize (int n);
-
-	/// <summary>
-	/// Ein Delegate, das eine Item-Nummer (int) als Argument erwartet und ein Vector2-Objekt zurückgibt,
-	/// das als Position interpretiert wird.
-	/// </summary>
-	public delegate Vector2 LazyItemPosition (int n);
-
-	/// <summary>
-	/// Ein Delegate, das einen ItemState als Argument erwartet und ein Color-Objekt zurückgibt.
-	/// </summary>
-	public delegate Color LazyItemColor (ItemState itemState);
 }
 

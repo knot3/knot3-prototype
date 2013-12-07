@@ -29,7 +29,7 @@ namespace Knot3.Core
 		public GameState State { get; private set; }
 
 		// colors, sizes, ...
-		public static Size DefaultSize = new Size (1280, 720);
+		public static Vector2 DefaultSize = new Vector2 (1280, 720);
 
 		// debug
 		public static bool Debug { get { return Options.Default ["game", "debug", false]; } }
@@ -40,9 +40,9 @@ namespace Knot3.Core
 		public Game ()
 		{
 			graphics = new GraphicsDeviceManager (this);
-			
-			graphics.PreferredBackBufferWidth = DefaultSize.Width;
-			graphics.PreferredBackBufferHeight = DefaultSize.Height;
+
+			graphics.PreferredBackBufferWidth = (int)DefaultSize.X;
+			graphics.PreferredBackBufferHeight = (int)DefaultSize.Y;
 
 			graphics.IsFullScreen = false;
 			isFullscreen = false;
@@ -159,8 +159,8 @@ namespace Knot3.Core
 						graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
 						graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
 					} else {
-						graphics.PreferredBackBufferWidth = Game.DefaultSize.Width;
-						graphics.PreferredBackBufferHeight = Game.DefaultSize.Height;
+						graphics.PreferredBackBufferWidth = (int)Game.DefaultSize.X;
+						graphics.PreferredBackBufferHeight = (int)Game.DefaultSize.Y;
 					}
 					graphics.ApplyChanges ();
 					graphics.ToggleFullScreen ();

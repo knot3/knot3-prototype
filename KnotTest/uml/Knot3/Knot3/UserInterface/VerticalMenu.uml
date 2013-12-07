@@ -1,15 +1,12 @@
 public class VerticalMenu : Menu
-    - RelativeItemSize : Vector2
-    # Border : Border
+    + Border : Border
     # spriteBatch : SpriteBatch
-    + VerticalMenu (GameState state, DisplayLayer drawOrder)
-    + Initialize (LazyItemColor fgColor, LazyItemColor bgColor, HAlign alignX, Border border)
+    + VerticalMenu (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     + AddButton (MenuItemInfo info) : MenuButton override
     + AddDropDown (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) override
     + AddDropDown (MenuItemInfo info, DistinctOptionInfo option) override
-    + Align (Viewport viewport, float scale, Vector2? position = null, Vector2? itemSize = null, float padding = 0.15f)
+    + Align (Viewport viewport, float scale, Vector2? givenPosition = null, Vector2? givenItemSize = null, float padding = 0.15f)
     + Align (Viewport viewport, float scale, int posX, int posY, int? sizeX = null, int? sizeY = null, float padding = 0.15f)
-    + RelativeItemPosition (int n) : Vector2
     + Draw (GameTime gameTime) override
 public class Border : 
     + Color : Color

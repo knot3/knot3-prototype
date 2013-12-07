@@ -273,19 +273,6 @@ namespace Knot3.Utilities
 		}
 	}
 
-	public class Size
-	{
-		public int Width { get; set; }
-
-		public int Height { get; set; }
-
-		public Size (int width, int height)
-		{
-			Width = width;
-			Height = height;
-		}
-	}
-
 	static class SwapExtension
 	{
 		public static T Swap<T> (this T x, ref T y)

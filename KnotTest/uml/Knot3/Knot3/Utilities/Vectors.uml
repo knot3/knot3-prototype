@@ -37,9 +37,5 @@ public static class Vectors :
     + Shrink (this Rectangle rect, int diff) : Rectangle static
     + Swap<T> (ref T lhs, ref T rhs) static
     + Print (this Vector3 v) : string static
-public class Size : 
-    + Width : int
-    + Height : int
-    + Size (int width, int height)
 private static class SwapExtension : 
     + Swap<T> (this T x, ref T y) : T static

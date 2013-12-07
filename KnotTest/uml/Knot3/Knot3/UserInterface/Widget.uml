@@ -1,26 +1,31 @@
+public class WidgetInfo : IEquatable<WidgetInfo>
+    + RelativePosition : Func<Vector2>
+    + RelativeSize : Func<Vector2>
+    + RelativePadding : Func<Vector2>
+    + AlignX : HAlign
+    + AlignY : VAlign
+    + ForegroundColor : Func<Color>
+    + BackgroundColor : Func<Color>
+    + ScaledPosition (Viewport viewport) : Vector2
+    + ScaledSize (Viewport viewport) : Vector2
+    + ScaledPadding (Viewport viewport) : Vector2
+    + RelativeRectangle () : Rectangle
+    + ScaledRectangle (Viewport viewport) : Rectangle
+    + WidgetInfo ()
+    + Equals (WidgetInfo other) : bool virtual
+    + Equals (Object obj) : bool override
+    + GetHashCode () : int override
+    + operator : bool static
+    + operator ! : bool static
 public abstract class Widget : DrawableGameStateComponent
-    + RelativePosition : LazyPosition virtual
-    + RelativeSize : LazySize virtual
-    + RelativePadding : LazySize virtual
-    # ScaledPosition : Vector2
-    # ScaledSize : Vector2
-    # ScaledPadding : Vector2
-    # AlignX : HAlign
-    # AlignY : VAlign
-    - foregroundColorFunc : LazyColor
-    - backgroundColorFunc : LazyColor
-    # ForegroundColor : Color virtual
-    # BackgroundColor : Color virtual
+    + Info : WidgetInfo
     + IsVisible : bool virtual
-    + Widget (GameState state, DisplayLayer drawOrder, LazyColor foregroundColor, LazyColor backgroundColor, HAlign alignX, VAlign alignY)
+    + Widget (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + bounds () : Rectangle
 public abstract class ItemWidget : Widget
     # ItemNum : int
     + ItemState : ItemState
-    - foregroundItemColorFunc : LazyItemColor
-    - backgroundItemColorFunc : LazyItemColor
-    # ForegroundColor : Color override
-    # BackgroundColor : Color override
-    + ItemWidget (GameState state, DisplayLayer drawOrder, int itemNum, LazyItemColor foregroundColor, LazyItemColor backgroundColor, HAlign alignX, VAlign alignY)
+    + ItemWidget (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 public enum ItemState
     Unselected = 0
     Selected

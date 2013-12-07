@@ -2,7 +2,7 @@ public abstract class Dialog : Widget
     + buttons : Menu
     + Done : Action
     # spriteBatch : SpriteBatch
-    + Dialog (GameState state, DisplayLayer drawOrder)
+    + Dialog (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     # RelativeButtonPosition (int n) : Vector2
     # RelativeButtonSize (int n) : Vector2
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override

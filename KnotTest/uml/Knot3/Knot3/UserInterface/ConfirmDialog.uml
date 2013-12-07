@@ -3,5 +3,5 @@ public class ConfirmDialog : Dialog
     # OnYesClick : Action
     # OnNoClick : Action
     # OnCancelClick : Action
-    + ConfirmDialog (GameState state, DisplayLayer drawOrder)
+    + ConfirmDialog (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     # DrawDialog (GameTime gameTime) override

@@ -12,7 +12,7 @@ Box_DrawableGameStateComponent [label="{DrawableGameStateComponent\n|+ state : G
 
 Box_DisplayLayer [label="{DisplayLayer\n|None\lBackground\lWorld\lDialog\lMenu\lMenuItem\lSubMenu\lSubMenuItem\lOverlay\lCursor\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_Game [label="{Game\n|+ graphics : GraphicsDeviceManager\l+ State : GameState\l+ DefaultSize : Size static\l+ Debug : bool static\l+ VSync : bool\l- isFullscreen : bool\l+ IsFullscreen : bool\l|+ Time (Action action) : TimeSpan static\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_Game [label="{Game\n|+ graphics : GraphicsDeviceManager\l+ State : GameState\l+ DefaultSize : Vector2 static\l+ Debug : bool static\l+ VSync : bool\l- isFullscreen : bool\l+ IsFullscreen : bool\l|+ Time (Action action) : TimeSpan static\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_GameState [label="{GameState\n|+ game : Game\l+ NextState : GameState\l+ input : Input\l+ graphics : GraphicsDeviceManager\l+ device : GraphicsDevice\l+ viewport : Viewport\l+ content : ContentManager\l+ RenderEffects : RenderEffectStack\l+ PostProcessing : RenderEffect\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
@@ -82,7 +82,7 @@ Box_NodeModel [label="{NodeModel\n|+ Info : NodeModelInfo new\l|}",height=0.2,wi
 
 Box_NodeModelFactory [label="{NodeModelFactory\n||# CreateModel (GameState state, GameModelInfo info) : GameModel override\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_PipeColoring [label="{PipeColoring\n|+ Knot : Knot\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_PipeColoring [label="{PipeColoring\n|+ Knot : Knot\l+ ValidKeys : List\<Keys\>\l+ IsKeyEventEnabled : bool\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_PipeModelInfo [label="{PipeModelInfo\n|+ Edges : EdgeList\l+ Edge : Edge\l+ Direction : Vector3\l+ PositionFrom : Vector3\l+ PositionTo : Vector3\l|+ Equals (GameObjectInfo other) : bool override\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
@@ -156,7 +156,7 @@ Box_BooleanOptionInfo [label="{BooleanOptionInfo\n|+ ValidValues : string\[\] st
 
 Box_VideoOptionScreen [label="{VideoOptionScreen\n|- menu : VerticalMenu\l- spriteBatch : SpriteBatch\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_ColorPicker [label="{ColorPicker\n|- colors : List\<Color\>\l- tiles : List\<Vector2\>\l- Vector2 tileSize : readonly static\l+ SelectedColor : Color\l+ OnSelectColor : Action\<Color\>\l# spriteBatch : SpriteBatch\l+ IsMouseEventEnabled : bool\l|- CreateColors (int num) : IEnumerable\<Color\> static\l- CreateTiles (IEnumerable\<Color\> _colors) : IEnumerable\<Vector2\> static\l+ bounds () : Rectangle\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_ColorPicker [label="{ColorPicker\n|- colors : List\<Color\>\l- tiles : List\<Vector2\>\l- Vector2 tileSize : readonly static\l+ SelectedColor : Color\l+ OnSelectColor : Action\<Color\>\l# spriteBatch : SpriteBatch\l+ IsMouseEventEnabled : bool\l|- CreateColors (int num) : IEnumerable\<Color\> static\l- CreateTiles (IEnumerable\<Color\> _colors) : IEnumerable\<Vector2\> static\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_ConfirmDialog [label="{ConfirmDialog\n|# Text : string\[\]\l# OnYesClick : Action\l# OnNoClick : Action\l# OnCancelClick : Action\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
@@ -166,15 +166,15 @@ Box_DropDownMenu [label="{DropDownMenu\n|- dropdown : VerticalMenu\l- selected :
 
 Box_DropDownMenuItem [label="{DropDownMenuItem\n|+ Text : string\l+ OnSelected : Action\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_HfGDesign [label="{HfGDesign\n|+ LineColor : Color static\l+ OutlineColor : Color static\l- texture : Texture2D static\l- menuFont : SpriteFont static\l|+ MenuFont (GameState state) : SpriteFont static\l+ CreateRectangle (int lineWidth, float x, float y, float w, float h) : Rectangle static\l+ CreateRectangle (int lineWidth, Vector2 topLeft, Vector2 size) : Rectangle static\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_HfGDesign [label="{HfGDesign\n|+ LineColor : Color static\l+ OutlineColor : Color static\l- texture : Texture2D static\l- menuFont : SpriteFont static\l|+ MenuFont (GameState state) : SpriteFont static\l+ CreateRectangle (int lineWidth, float x, float y, float w, float h) : Rectangle static\l+ CreateRectangle (int lineWidth, Vector2 topLeft, Vector2 size) : Rectangle static\l+ CreateRectangle (Vector2 topLeft, Vector2 size) : Rectangle static\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_Menu [label="{Menu\n|# ItemForegroundColor : LazyItemColor\l# ItemBackgroundColor : LazyItemColor\l# ItemAlignX : HAlign\l# Items : List\<MenuItem\>\l- ItemDisplayLayer : DisplayLayer\l+ this \[int i\] : MenuItem\l+ Count : int\l- isVisible : bool\l+ IsVisible : bool override\l|+ AddButton (MenuItemInfo info) : MenuButton virtual\l+ SubComponents (GameTime gameTime) : IEnumerable\<IGameStateComponent\> override\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_Menu [label="{Menu\n|+ Vector2\> RelativeItemSize : Func\<int,\l+ Vector2\> RelativeItemPosition : Func\<int,\l+ Color\> ItemForegroundColor : Func\<ItemState,\l+ Color\> ItemBackgroundColor : Func\<ItemState,\l+ ItemAlignX : HAlign?\l+ ItemAlignY : VAlign?\l# Items : List\<MenuItem\>\l- ItemDisplayLayer : DisplayLayer\l+ this \[int i\] : MenuItem\l+ Count : int\l- isVisible : bool\l+ IsVisible : bool override\l|+ AddButton (MenuItemInfo info) : MenuButton virtual\l+ SubComponents (GameTime gameTime) : IEnumerable\<IGameStateComponent\> override\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_MenuButton [label="{MenuButton\n||}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_MenuItemInfo [label="{MenuItemInfo\n|+ Text : string\l+ Position : LazyItemPosition\l+ Size : LazyItemSize\l+ Keys : List\<Keys\> new\l+ OnClick : Action\l|+ AddKey (Keys key) : MenuItemInfo\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_MenuItemInfo [label="{MenuItemInfo\n|+ Text : string\l+ Keys : List\<Keys\> new\l+ OnClick : Action\l|+  (text, onClick) : this (string text, Vector2 topLeft, Vector2 bottomRight, Action onClick)\l+  (text, onClick) : this (string text, float left, float top, float right, float bottom, Action onClick)\l+  () : this (string text, Action onClick)\l+  () : this (string text)\l+ AddKey (Keys key) : MenuItemInfo\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_MenuItem [label="{MenuItem\n|+ Info : MenuItemInfo\l# spriteBatch : SpriteBatch\l+ RelativePosition : LazyPosition override\l+ RelativeSize : LazySize override\l+ ValidKeys : List\<Keys\>\l+ IsKeyEventEnabled : bool\l+ IsMouseEventEnabled : bool\l|+ TextPosition (SpriteFont font) : Vector2\l+ TextPosition (SpriteFont font, Vector2 scale) : Vector2\l+ MinimumSize (SpriteFont font) : Vector2\l+ bounds () : Rectangle\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_MenuItem [label="{MenuItem\n|+ Info : MenuItemInfo new\l# spriteBatch : SpriteBatch\l+ ValidKeys : List\<Keys\>\l+ IsKeyEventEnabled : bool\l+ IsMouseEventEnabled : bool\l|+ TextPosition (SpriteFont font) : Vector2\l+ TextPosition (SpriteFont font, Vector2 scale) : Vector2\l+ MinimumSize (SpriteFont font) : Vector2\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_MenuScreen [label="{MenuScreen\n|- spriteBatch : SpriteBatch\l- backColor : Color\l- pointer : MousePointer\l# LinePoints : List\<Vector2\>\l# LineWidth : int\l|# BackgroundColor (ItemState itemState) : Color\l# ForegroundColor (ItemState itemState) : Color\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
@@ -184,13 +184,15 @@ Box_TextInput [label="{TextInput\n|+ InputText : string\l- font : SpriteFont\l# 
 
 Box_TextInputDialog [label="{TextInputDialog\n|# TextInput : TextInput\l|+ SubComponents (GameTime gameTime) : IEnumerable\<IGameStateComponent\> override\l# TextInputPosition () : Vector2\l# TextInputSize () : Vector2\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_VerticalMenu [label="{VerticalMenu\n|- RelativeItemSize : Vector2\l# Border : Border\l# spriteBatch : SpriteBatch\l|+ AddButton (MenuItemInfo info) : MenuButton override\l+ RelativeItemPosition (int n) : Vector2\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_VerticalMenu [label="{VerticalMenu\n|+ Border : Border\l# spriteBatch : SpriteBatch\l|+ AddButton (MenuItemInfo info) : MenuButton override\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_Border [label="{Border\n|+ Color : Color\l+ Size : Vector2\l+ Padding : Vector2\l+ Zero : Border static\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_Widget [label="{Widget\n|+ RelativePosition : LazyPosition virtual\l+ RelativeSize : LazySize virtual\l+ RelativePadding : LazySize virtual\l# ScaledPosition : Vector2\l# ScaledSize : Vector2\l# ScaledPadding : Vector2\l# AlignX : HAlign\l# AlignY : VAlign\l- foregroundColorFunc : LazyColor\l- backgroundColorFunc : LazyColor\l# ForegroundColor : Color virtual\l# BackgroundColor : Color virtual\l+ IsVisible : bool virtual\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_WidgetInfo [label="{WidgetInfo\n|+ RelativePosition : Func\<Vector2\>\l+ RelativeSize : Func\<Vector2\>\l+ RelativePadding : Func\<Vector2\>\l+ AlignX : HAlign\l+ AlignY : VAlign\l+ ForegroundColor : Func\<Color\>\l+ BackgroundColor : Func\<Color\>\l+ operator : bool static\l+ operator ! : bool static\l|+ ScaledPosition (Viewport viewport) : Vector2\l+ ScaledSize (Viewport viewport) : Vector2\l+ ScaledPadding (Viewport viewport) : Vector2\l+ RelativeRectangle () : Rectangle\l+ ScaledRectangle (Viewport viewport) : Rectangle\l+ Equals (WidgetInfo other) : bool virtual\l+ Equals (Object obj) : bool override\l+ GetHashCode () : int override\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
-Box_ItemWidget [label="{ItemWidget\n|# ItemNum : int\l+ ItemState : ItemState\l- foregroundItemColorFunc : LazyItemColor\l- backgroundItemColorFunc : LazyItemColor\l# ForegroundColor : Color override\l# BackgroundColor : Color override\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+Box_Widget [label="{Widget\n|+ Info : WidgetInfo\l+ IsVisible : bool virtual\l|+ bounds () : Rectangle\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
+
+Box_ItemWidget [label="{ItemWidget\n|# ItemNum : int\l+ ItemState : ItemState\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_ItemState [label="{ItemState\n|Unselected = 0\lSelected\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
@@ -215,8 +217,6 @@ Box_Textures [label="{Textures\n|- Texture2D\> textureCache : Dictionary\<string
 Box_Colors [label="{Colors\n||+ Mix (this Color a, Color b, float percent = 0.5f) : Color static\l+ Luminance (this Color color) : int static\l+ SortColorsByLuminance (Color left, Color right) : int static\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_Vectors [label="{Vectors\n||+ ArcBallMove (this Vector3 vectorToMove, Vector2 mouse, Vector3 up, Vector3 forward) : Vector3 static\l+ MoveLinear (this Vector3 vectorToMove, Vector3 mouse, Vector3 up, Vector3 forward) : Vector3 static\l+ MoveLinear (this Vector3 vectorToMove, Vector2 mouse, Vector3 up, Vector3 forward) : Vector3 static\l+ RotateX (this Vector3 vectorToRotate, float angleRadians) : Vector3 static\l+ RotateY (this Vector3 vectorToRotate, float angleRadians) : Vector3 static\l+ RotateZ (this Vector3 vectorToRotate, float angleRadians) : Vector3 static\l+ RotateAroundVector (this Vector3 vectorToRotate, Vector3 axis, float angleRadians) : Vector3 static\l+ Clamp (this Vector3 v, Vector3 lower, Vector3 higher) : Vector3 static\l+ Clamp (this Vector3 v, int minLength, int maxLength) : Vector3 static\l+ PrimaryVector (this Vector2 v) : Vector2 static\l+ PrimaryVector (this Vector3 v) : Vector3 static\l+ PrimaryDirection (this Vector2 v) : Vector2 static\l+ PrimaryDirection (this Vector3 v) : Vector3 static\l+ PrimaryDirectionExcept (this Vector3 v, Vector3 wrongDirection) : Vector3 static\l+ Abs (this float v) : float static\l+ Clamp (this float v, int min, int max) : float static\l+ Bounds (this Model model) : BoundingSphere\[\] static\l+ Bounds (this Vector3 a, Vector3 diff) : BoundingBox static\l+ Scale (this BoundingSphere sphere, float scale) : BoundingSphere static\l+ Translate (this BoundingSphere sphere, Vector3 position) : BoundingSphere static\l+ Scale (this BoundingBox box, float scale) : BoundingBox static\l+ Translate (this BoundingBox box, Vector3 position) : BoundingBox static\l+ ToVector2 (this MouseState state) : Vector2 static\l+ ToPoint (this MouseState state) : Point static\l+ ToVector2 (this Viewport viewport) : Vector2 static\l+ Center (this Viewport viewport) : Vector2 static\l+ ToVector2 (this Point v) : Vector2 static\l+ ToPoint (this Vector2 v) : Point static\l+ Plus (this Point a, Point b) : Point static\l+ Join (this string delimiter, List\<int\> list) : string static\l+ ScaleFactor (this Viewport viewport) : Vector2 static\l+ RelativeTo (this Vector2 v, Viewport viewport) : Vector2 static\l+ Scale (this Vector2 v, Viewport viewport) : Vector2 static\l+ Scale (this Rectangle rect, Viewport viewport) : Rectangle static\l+ Grow (this Rectangle rect, int diff) : Rectangle static\l+ Shrink (this Rectangle rect, int diff) : Rectangle static\l+ Print (this Vector3 v) : string static\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
-
-Box_Size [label="{Size\n|+ Width : int\l+ Height : int\l|}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
 Box_SwapExtension [label="{SwapExtension\n||+ Swap\<T\> (this T x, ref T y) : T static\l}",height=0.2,width=0.4,color="black", fillcolor="#fcfcda",style="filled" fontcolor="black"];
 
@@ -243,6 +243,8 @@ Box_IEnumerable [label="{IEnumerable\<IGameObject\>\n}",height=0.2,width=0.4,col
 Box_IEnumerable [label="{IEnumerable\<IGameObject\>\n}",height=0.2,width=0.4,color="black", fillcolor="#ffffff",style="filled" fontcolor="black"];
 
 Box_IDisposable [label="{IDisposable\n}",height=0.2,width=0.4,color="black", fillcolor="#ffffff",style="filled" fontcolor="black"];
+
+Box_IEquatable [label="{IEquatable\<WidgetInfo\>\n}",height=0.2,width=0.4,color="black", fillcolor="#ffffff",style="filled" fontcolor="black"];
 
 Box_IEquatable [label="{IEquatable\<Angles3\>\n}",height=0.2,width=0.4,color="black", fillcolor="#ffffff",style="filled" fontcolor="black"];
 
@@ -278,6 +280,7 @@ Box_GameModelInfo -> Box_NodeModelInfo [dir="back",color="midnightblue",fontsize
 Box_GameModel -> Box_NodeModel [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
 Box_ModelFactory -> Box_NodeModelFactory [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
 Box_GameStateComponent -> Box_PipeColoring [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
+Box_IKeyEventListener -> Box_PipeColoring [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
 Box_GameModelInfo -> Box_PipeModelInfo [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
 Box_GameModel -> Box_PipeModel [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
 Box_ModelFactory -> Box_PipeModelFactory [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
@@ -311,6 +314,7 @@ Box_Widget -> Box_Dialog [dir="back",color="midnightblue",fontsize="8",style="so
 Box_MenuItem -> Box_DropDownMenu [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
 Box_Widget -> Box_Menu [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
 Box_MenuItem -> Box_MenuButton [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
+Box_WidgetInfo -> Box_MenuItemInfo [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
 Box_ItemWidget -> Box_MenuItem [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
 Box_IMouseEventListener -> Box_MenuItem [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
 Box_IKeyEventListener -> Box_MenuItem [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
@@ -320,6 +324,7 @@ Box_Widget -> Box_TextInput [dir="back",color="midnightblue",fontsize="8",style=
 Box_IKeyEventListener -> Box_TextInput [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
 Box_ConfirmDialog -> Box_TextInputDialog [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
 Box_Menu -> Box_VerticalMenu [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
+Box_IEquatable -> Box_WidgetInfo [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
 Box_DrawableGameStateComponent -> Box_Widget [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
 Box_Widget -> Box_ItemWidget [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];
 Box_IEquatable -> Box_Angles3 [dir="back",color="midnightblue",fontsize="8",style="solid",arrowtail="onormal",fontname="Helvetica"];

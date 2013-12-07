@@ -1,4 +1,7 @@
-public class PipeColoring : GameStateComponent
+public class PipeColoring : GameStateComponent, IKeyEventListener
     + Knot : Knot
     + PipeColoring (GameState state)
     + Update (GameTime gameTime) override
+    + OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + ValidKeys : List<Keys>
+    + IsKeyEventEnabled : bool

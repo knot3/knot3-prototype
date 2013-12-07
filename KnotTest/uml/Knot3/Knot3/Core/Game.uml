@@ -1,7 +1,7 @@
 public class Game : Microsoft.Xna.Framework.Game
     + graphics : GraphicsDeviceManager
     + State : GameState
-    + DefaultSize : Size static
+    + DefaultSize : Vector2 static
     + Debug : bool static
     + Game ()
     # Initialize () override

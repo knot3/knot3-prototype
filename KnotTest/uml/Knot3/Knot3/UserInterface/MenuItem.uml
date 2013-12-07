@@ -1,26 +1,21 @@
-public class MenuItemInfo : 
+public class MenuItemInfo : WidgetInfo
     + Text : string
-    + Position : LazyItemPosition
-    + Size : LazyItemSize
     + Keys : List<Keys> new
     + OnClick : Action
-    + MenuItemInfo (string text, LazyItemPosition position, LazyItemSize size, Action onClick)
-    + MenuItemInfo (string text, Vector2 topLeft, Vector2 bottomRight, Action onClick)
-    + MenuItemInfo (string text, float left, float top, float right, float bottom, Action onClick)
-    + MenuItemInfo (string text, Action onClick)
-    + MenuItemInfo (string text)
+    + : this(text, onClick) (string text, Vector2 topLeft, Vector2 bottomRight, Action onClick) : MenuItemInfo
+    + : this(text, onClick) (string text, float left, float top, float right, float bottom, Action onClick) : MenuItemInfo
+    + : this() (string text, Action onClick) : MenuItemInfo
+    + : this() (string text) : MenuItemInfo
+    + MenuItemInfo ()
     + AddKey (Keys key) : MenuItemInfo
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
-    + Info : MenuItemInfo
+    + Info : MenuItemInfo new
     # spriteBatch : SpriteBatch
-    + RelativePosition : LazyPosition override
-    + RelativeSize : LazySize override
-    + MenuItem (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info, LazyItemColor fgColor, LazyItemColor bgColor, HAlign alignX)
+    + MenuItem (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Draw (GameTime gameTime) override
     + TextPosition (SpriteFont font) : Vector2
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
     + MinimumSize (SpriteFont font) : Vector2
-    + bounds () : Rectangle
     + ValidKeys : List<Keys>
     + OnLeftClick (Vector2 position, ClickState click, GameTime gameTime)
     + OnRightClick (Vector2 position, ClickState click, GameTime gameTime)

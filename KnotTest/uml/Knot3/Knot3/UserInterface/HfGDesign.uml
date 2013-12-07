@@ -7,4 +7,5 @@ public static class HfGDesign :
     + DrawLines (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameState state, GameTime gameTime) static
     + CreateRectangle (int lineWidth, float x, float y, float w, float h) : Rectangle static
     + CreateRectangle (int lineWidth, Vector2 topLeft, Vector2 size) : Rectangle static
+    + CreateRectangle (Vector2 topLeft, Vector2 size) : Rectangle static
     + AddLinePoints (ref List<Vector2> linePoints, float startX, float startY, params float[] xyxy) static

@@ -1,9 +1,13 @@
 public class Menu : Widget
-    # ItemForegroundColor : LazyItemColor
-    # ItemBackgroundColor : LazyItemColor
-    # ItemAlignX : HAlign
+    + Vector2> RelativeItemSize : Func<int,
+    + Vector2> RelativeItemPosition : Func<int,
+    + Color> ItemForegroundColor : Func<ItemState,
+    + Color> ItemBackgroundColor : Func<ItemState,
+    + ItemAlignX : HAlign?
+    + ItemAlignY : VAlign?
     # Items : List<MenuItem>
-    + Menu (GameState state, DisplayLayer drawOrder, LazyColor foregroundColor = null, LazyColor backgroundColor = null, HAlign alignX = HAlign.Left, VAlign alignY = VAlign.Center)
+    + Menu (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    - assignMenuItemInfo (ref MenuItemInfo info, int num, MenuItem item)
     + AddButton (MenuItemInfo info) : MenuButton virtual
     + AddDropDown (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
     + AddDropDown (MenuItemInfo info, DistinctOptionInfo option) virtual
@@ -11,7 +15,6 @@ public class Menu : Widget
     + this [int i] : MenuItem
     + Count : int
     + Clear ()
-    + Initialize (LazyItemColor itemFgColor, LazyItemColor itemBgColor, HAlign itemAlignX) virtual
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
     + CollapseMenus (MenuItem menu)
     - isVisible : bool

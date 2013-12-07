@@ -20,4 +20,4 @@ public class CreativeModeScreen : GameState
     + Activate (GameTime gameTime) override
     + Unload () override
 public class KnotSaveConfirmDialog : TextInputDialog
-    + KnotSaveConfirmDialog (GameState state, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
