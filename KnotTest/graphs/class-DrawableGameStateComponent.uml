@@ -202,15 +202,14 @@ public class KnotSaveConfirmDialog : TextInputDialog
 
 public class Menu : Widget
   Attributes:
-    + Vector2> RelativeItemSize : Func<int,
-    + Vector2> RelativeItemPosition : Func<int,
-    + Color> ItemForegroundColor : Func<ItemState,
-    + Color> ItemBackgroundColor : Func<ItemState,
+    + RelativeItemSize : Func<int,Vector2>
+    + RelativeItemPosition : Func<int,Vector2>
+    + ItemForegroundColor : Func<ItemState,Color>
+    + ItemBackgroundColor : Func<ItemState,Color>
     + ItemAlignX : HAlign?
     + ItemAlignY : VAlign?
     # Items : List<MenuItem>
     - ItemDisplayLayer : DisplayLayer
-    + this [int i] : MenuItem
     + Count : int
     - isVisible : bool
     + IsVisible : bool override
@@ -220,6 +219,7 @@ public class Menu : Widget
     + AddButton (MenuItemInfo info) : MenuButton virtual
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
+    + this (int i) : MenuItem
     + Clear  ()
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
     + CollapseMenus  (MenuItem menu)
@@ -535,10 +535,10 @@ public class Menu : Widget
     + IsVisible : bool
     - ItemDisplayLayer : DisplayLayer
     + Vector2> RelativeItemSize : Func<int,
-    + this [int i] : MenuItem
   Methods:
     - assignMenuItemInfo  (ref MenuItemInfo info, int num, MenuItem item)
     + Menu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + this (int i) : MenuItem
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + CollapseMenus  (MenuItem menu)
     + AddButton (MenuItemInfo info) : MenuButton virtual
@@ -904,15 +904,14 @@ public class KnotSaveConfirmDialog : TextInputDialog
 
 public class Menu : Widget
   Attributes:
-    + Vector2> RelativeItemSize : Func<int,
-    + Vector2> RelativeItemPosition : Func<int,
-    + Color> ItemForegroundColor : Func<ItemState,
-    + Color> ItemBackgroundColor : Func<ItemState,
+    + RelativeItemSize : Func<int,Vector2>
+    + RelativeItemPosition : Func<int,Vector2>
+    + ItemForegroundColor : Func<ItemState,Color>
+    + ItemBackgroundColor : Func<ItemState,Color>
     + ItemAlignX : HAlign?
     + ItemAlignY : VAlign?
     # Items : List<MenuItem>
     - ItemDisplayLayer : DisplayLayer
-    + this [int i] : MenuItem
     + Count : int
     - isVisible : bool
     + IsVisible : bool override
@@ -922,6 +921,7 @@ public class Menu : Widget
     + AddButton (MenuItemInfo info) : MenuButton virtual
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
+    + this (int i) : MenuItem
     + Clear  ()
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
     + CollapseMenus  (MenuItem menu)
@@ -1237,10 +1237,10 @@ public class Menu : Widget
     + IsVisible : bool
     - ItemDisplayLayer : DisplayLayer
     + Vector2> RelativeItemSize : Func<int,
-    + this [int i] : MenuItem
   Methods:
     - assignMenuItemInfo  (ref MenuItemInfo info, int num, MenuItem item)
     + Menu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + this (int i) : MenuItem
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + CollapseMenus  (MenuItem menu)
     + AddButton (MenuItemInfo info) : MenuButton virtual

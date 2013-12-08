@@ -1331,11 +1331,11 @@
 <text text-anchor="middle" x="6939" y="-2253.8" font-family="Helvetica,sans-Serif" font-size="8.00">ModelFactory</text>
 <polyline fill="none" stroke="black" points="6791,-2245 7087,-2245 "/>
 <text text-anchor="start" x="6799" y="-2233.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="6799" y="-2221.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ this [GameState state, GameModelInfo info] : GameModel</text>
-<text text-anchor="start" x="6799" y="-2209.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
-<polyline fill="none" stroke="black" points="6791,-2201 7087,-2201 "/>
-<text text-anchor="start" x="6799" y="-2189.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; GameModel&gt; cache () : Dictionary&lt;GameModelInfo,</text>
-<text text-anchor="start" x="6799" y="-2177.8" font-family="Helvetica,sans-Serif" font-size="8.00"># CreateModel (GameState state, GameModelInfo info) : GameModel abstract</text>
+<text text-anchor="start" x="6799" y="-2221.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
+<polyline fill="none" stroke="black" points="6791,-2213 7087,-2213 "/>
+<text text-anchor="start" x="6799" y="-2201.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; GameModel&gt; cache () : Dictionary&lt;GameModelInfo,</text>
+<text text-anchor="start" x="6799" y="-2189.8" font-family="Helvetica,sans-Serif" font-size="8.00"># CreateModel (GameState state, GameModelInfo info) : GameModel abstract</text>
+<text text-anchor="start" x="6799" y="-2177.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ this (GameState state, GameModelInfo info) : GameModel</text>
 </g>
 <!-- Box_NodeModelFactory -->
 <g id="node40" class="node"><title>Box_NodeModelFactory</title>
@@ -1447,10 +1447,10 @@
 <text text-anchor="start" x="7339" y="-2335.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; NodeCache : Dictionary&lt;int,Node&gt;</text>
 <text text-anchor="start" x="7339" y="-2323.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; Edges : WrapList&lt;Edge&gt;</text>
 <text text-anchor="start" x="7339" y="-2311.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Count : int</text>
-<text text-anchor="start" x="7339" y="-2299.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ this [int i] : Edge</text>
-<text text-anchor="start" x="7339" y="-2287.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
-<polyline fill="none" stroke="black" points="7331,-2279 7715,-2279 "/>
-<text text-anchor="start" x="7339" y="-2267.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ EdgesChanged (list) : Action&lt;EdgeList&gt;</text>
+<text text-anchor="start" x="7339" y="-2299.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
+<polyline fill="none" stroke="black" points="7331,-2291 7715,-2291 "/>
+<text text-anchor="start" x="7339" y="-2279.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ EdgesChanged (list) : Action&lt;EdgeList&gt;</text>
+<text text-anchor="start" x="7339" y="-2267.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ this (int i) : Edge</text>
 <text text-anchor="start" x="7339" y="-2255.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ EdgeList ()</text>
 <text text-anchor="start" x="7339" y="-2243.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ FromNode (Edge edge) : Node</text>
 <text text-anchor="start" x="7339" y="-2231.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IndexOf (Edge edge) : int</text>
@@ -2070,11 +2070,11 @@
 <text text-anchor="start" x="2713.5" y="-809.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsVisible : bool</text>
 <text text-anchor="start" x="2713.5" y="-797.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; ItemDisplayLayer : DisplayLayer</text>
 <text text-anchor="start" x="2713.5" y="-785.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Vector2&gt; RelativeItemSize : Func&lt;int,</text>
-<text text-anchor="start" x="2713.5" y="-773.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ this [int i] : MenuItem</text>
-<text text-anchor="start" x="2713.5" y="-761.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
-<polyline fill="none" stroke="black" points="2705.5,-753 3104.5,-753 "/>
-<text text-anchor="start" x="2713.5" y="-741.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; assignMenuItemInfo (ref MenuItemInfo info, int num, MenuItem item)</text>
-<text text-anchor="start" x="2713.5" y="-729.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Menu (GameState state, WidgetInfo info, DisplayLayer drawOrder)</text>
+<text text-anchor="start" x="2713.5" y="-773.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
+<polyline fill="none" stroke="black" points="2705.5,-765 3104.5,-765 "/>
+<text text-anchor="start" x="2713.5" y="-753.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; assignMenuItemInfo (ref MenuItemInfo info, int num, MenuItem item)</text>
+<text text-anchor="start" x="2713.5" y="-741.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Menu (GameState state, WidgetInfo info, DisplayLayer drawOrder)</text>
+<text text-anchor="start" x="2713.5" y="-729.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ this (int i) : MenuItem</text>
 <text text-anchor="start" x="2713.5" y="-717.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SubComponents (GameTime gameTime) : IEnumerable&lt;IGameStateComponent&gt;</text>
 <text text-anchor="start" x="2713.5" y="-705.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ CollapseMenus (MenuItem menu)</text>
 <text text-anchor="start" x="2713.5" y="-693.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ AddButton (MenuItemInfo info) : MenuButton virtual</text>
@@ -2545,23 +2545,23 @@
 <polyline fill="none" stroke="black" points="3022.5,-1285 3207.5,-1285 "/>
 <text text-anchor="start" x="3030.5" y="-1273.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
 <text text-anchor="start" x="3030.5" y="-1261.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Count : int</text>
-<text text-anchor="start" x="3030.5" y="-1249.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ this [T t] : int</text>
-<text text-anchor="start" x="3030.5" y="-1237.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ this [int i] : T</text>
-<text text-anchor="start" x="3030.5" y="-1225.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
-<polyline fill="none" stroke="black" points="3022.5,-1217 3207.5,-1217 "/>
-<text text-anchor="start" x="3030.5" y="-1205.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; int&gt; indexOf () : Dictionary&lt;T,</text>
-<text text-anchor="start" x="3030.5" y="-1193.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; list () : List&lt;T&gt;</text>
-<text text-anchor="start" x="3030.5" y="-1181.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; IEnumerable.GetEnumerator () : IEnumerator</text>
-<text text-anchor="start" x="3030.5" y="-1169.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; WrapIndex (int i) : int</text>
-<text text-anchor="start" x="3030.5" y="-1157.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; RebuildIndex ()</text>
-<text text-anchor="start" x="3030.5" y="-1145.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Contains (T elem) : bool</text>
-<text text-anchor="start" x="3030.5" y="-1133.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ToString () : string</text>
-<text text-anchor="start" x="3030.5" y="-1121.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Add (T elem)</text>
-<text text-anchor="start" x="3030.5" y="-1109.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Clear ()</text>
-<text text-anchor="start" x="3030.5" y="-1097.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ InsertAt (int i, T elem)</text>
-<text text-anchor="start" x="3030.5" y="-1085.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Remove (T[] elems)</text>
-<text text-anchor="start" x="3030.5" y="-1073.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Replace (T find, T[] elem)</text>
-<text text-anchor="start" x="3030.5" y="-1061.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ GetEnumerator () : IEnumerator&lt;T&gt;</text>
+<text text-anchor="start" x="3030.5" y="-1249.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
+<polyline fill="none" stroke="black" points="3022.5,-1241 3207.5,-1241 "/>
+<text text-anchor="start" x="3030.5" y="-1229.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; int&gt; indexOf () : Dictionary&lt;T,</text>
+<text text-anchor="start" x="3030.5" y="-1217.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; list () : List&lt;T&gt;</text>
+<text text-anchor="start" x="3030.5" y="-1205.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; IEnumerable.GetEnumerator () : IEnumerator</text>
+<text text-anchor="start" x="3030.5" y="-1193.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; WrapIndex (int i) : int</text>
+<text text-anchor="start" x="3030.5" y="-1181.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; RebuildIndex ()</text>
+<text text-anchor="start" x="3030.5" y="-1169.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Contains (T elem) : bool</text>
+<text text-anchor="start" x="3030.5" y="-1157.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ this (T t) : int</text>
+<text text-anchor="start" x="3030.5" y="-1145.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ToString () : string</text>
+<text text-anchor="start" x="3030.5" y="-1133.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Add (T elem)</text>
+<text text-anchor="start" x="3030.5" y="-1121.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Clear ()</text>
+<text text-anchor="start" x="3030.5" y="-1109.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ InsertAt (int i, T elem)</text>
+<text text-anchor="start" x="3030.5" y="-1097.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Remove (T[] elems)</text>
+<text text-anchor="start" x="3030.5" y="-1085.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Replace (T find, T[] elem)</text>
+<text text-anchor="start" x="3030.5" y="-1073.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ GetEnumerator () : IEnumerator&lt;T&gt;</text>
+<text text-anchor="start" x="3030.5" y="-1061.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ this (int i) : T</text>
 <text text-anchor="start" x="3030.5" y="-1049.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ WrapList (IEnumerable&lt;T&gt; elems)</text>
 <text text-anchor="start" x="3030.5" y="-1037.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ WrapList ()</text>
 <text text-anchor="start" x="3030.5" y="-1025.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ AddRange (IEnumerable&lt;T&gt; elems)</text>

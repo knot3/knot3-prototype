@@ -11,10 +11,10 @@ public class Menu : Widget
     + IsVisible : bool
     - ItemDisplayLayer : DisplayLayer
     + Vector2> RelativeItemSize : Func<int,
-    + this [int i] : MenuItem
   Methods:
     - assignMenuItemInfo  (ref MenuItemInfo info, int num, MenuItem item)
     + Menu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + this (int i) : MenuItem
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + CollapseMenus  (MenuItem menu)
     + AddButton (MenuItemInfo info) : MenuButton virtual

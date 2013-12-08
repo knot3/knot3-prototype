@@ -2,12 +2,12 @@ public class ConfigFile :
   Attributes:
     - Filename : string
     - ini : IniFile
-    + this [string section, string option, bool defaultValue : bool
-    + this [string section, string option, string defaultValue : string
     + True : string static
     + False : string static
   Methods:
     + ConfigFile (string filename)
+    + this (string section, string option, bool defaultValue = false) : bool
+    + this (string section, string option, string defaultValue = null) : string
 public static class Options : 
   Attributes:
     - _default : ConfigFile static

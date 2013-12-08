@@ -1,8 +1,6 @@
 public class WrapList<T> : IEnumerable<T>
   Attributes:
     + Count : int
-    + this [T t] : int
-    + this [int i] : T
   Methods:
     - int> indexOf () : Dictionary<T,
     - list () : List<T>
@@ -10,6 +8,7 @@ public class WrapList<T> : IEnumerable<T>
     - WrapIndex (int i) : int
     - RebuildIndex ()
     + Contains (T elem) : bool
+    + this (T t) : int
     + ToString () : string
     + Add  (T elem)
     + Clear ()
@@ -17,6 +16,7 @@ public class WrapList<T> : IEnumerable<T>
     + Remove  (T[] elems)
     + Replace  (T find, T[] elem)
     + GetEnumerator () : IEnumerator<T>
+    + this (int i) : T
     + WrapList  (IEnumerable<T> elems)
     + WrapList ()
     + AddRange  (IEnumerable<T> elems)

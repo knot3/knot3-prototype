@@ -1,6 +1,6 @@
 public static class Textures : 
   Attributes:
-    - Texture2D> textureCache : Dictionary<string, static
+    - textureCache : Dictionary<string,Texture2D> static
   Methods:
     + LoadTexture (ContentManager content, string name) : Texture2D static
     + CreateColorTexture (GraphicsDevice graphicsDevice) : Texture2D static

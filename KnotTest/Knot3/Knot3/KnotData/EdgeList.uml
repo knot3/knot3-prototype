@@ -4,10 +4,10 @@ public class EdgeList :
     + SelectedEdges : WrapList<Edge>
     + EdgesChanged : Action<EdgeList>
     - NodeCache : Dictionary<int,Node>
-    + this [int i] : Edge
     + Count : int
   Methods:
     + EdgeList ()
+    + this (int i) : Edge
     + IndexOf (Edge edge) : int
     + FromNode (int index) : Node
     + FromNode (Edge edge) : Node

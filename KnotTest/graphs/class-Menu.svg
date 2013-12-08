@@ -26,11 +26,11 @@
 <text text-anchor="start" x="88.5" y="-367.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsVisible : bool</text>
 <text text-anchor="start" x="88.5" y="-355.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; ItemDisplayLayer : DisplayLayer</text>
 <text text-anchor="start" x="88.5" y="-343.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Vector2&gt; RelativeItemSize : Func&lt;int,</text>
-<text text-anchor="start" x="88.5" y="-331.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ this [int i] : MenuItem</text>
-<text text-anchor="start" x="88.5" y="-319.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
-<polyline fill="none" stroke="black" points="80.5,-311 479.5,-311 "/>
-<text text-anchor="start" x="88.5" y="-299.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; assignMenuItemInfo (ref MenuItemInfo info, int num, MenuItem item)</text>
-<text text-anchor="start" x="88.5" y="-287.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Menu (GameState state, WidgetInfo info, DisplayLayer drawOrder)</text>
+<text text-anchor="start" x="88.5" y="-331.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
+<polyline fill="none" stroke="black" points="80.5,-323 479.5,-323 "/>
+<text text-anchor="start" x="88.5" y="-311.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; assignMenuItemInfo (ref MenuItemInfo info, int num, MenuItem item)</text>
+<text text-anchor="start" x="88.5" y="-299.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Menu (GameState state, WidgetInfo info, DisplayLayer drawOrder)</text>
+<text text-anchor="start" x="88.5" y="-287.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ this (int i) : MenuItem</text>
 <text text-anchor="start" x="88.5" y="-275.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SubComponents (GameTime gameTime) : IEnumerable&lt;IGameStateComponent&gt;</text>
 <text text-anchor="start" x="88.5" y="-263.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ CollapseMenus (MenuItem menu)</text>
 <text text-anchor="start" x="88.5" y="-251.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ AddButton (MenuItemInfo info) : MenuButton virtual</text>

@@ -7,7 +7,7 @@ public static class RenderTargets :
 public sealed class RenderTargetCache : 
   Attributes:
     - device : GraphicsDevice
-    - RenderTarget2D> renderTargets : Dictionary<Point,
+    - renderTargets : Dictionary<Point,RenderTarget2D>
     + CurrentRenderTarget : RenderTarget2D
   Methods:
     + RenderTargetCache (GraphicsDevice device)

@@ -2,7 +2,7 @@ public static class Models :
   Attributes:
     + ValidQualities : string[] static
     + Quality : string static
-    - ContentManager> contentManagers : Dictionary<string, static
+    - contentManagers : Dictionary<string,ContentManager> static
     - invalidModels : HashSet<string> static
   Methods:
     + LoadModel (GameState state, string name) : Model static

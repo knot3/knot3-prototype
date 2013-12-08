@@ -1,6 +1,6 @@
 public abstract class ModelFactory : 
   Attributes:
-    - GameModel> cache : Dictionary<GameModelInfo, new
-    + this [GameState state, GameModelInfo info] : GameModel
+    - cache : Dictionary<GameModelInfo,GameModel> new
   Methods:
+    + this (GameState state, GameModelInfo info) : GameModel
     # CreateModel (GameState state, GameModelInfo info) : GameModel abstract
