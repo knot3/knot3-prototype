@@ -15,23 +15,23 @@
 <text text-anchor="middle" x="441" y="-471.8" font-family="Helvetica,sans-Serif" font-size="8.00">MenuItem</text>
 <polyline fill="none" stroke="black" points="273.5,-463 608.5,-463 "/>
 <text text-anchor="start" x="281.5" y="-451.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="281.5" y="-439.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : MenuItemInfo new</text>
-<text text-anchor="start" x="281.5" y="-427.8" font-family="Helvetica,sans-Serif" font-size="8.00"># spriteBatch : SpriteBatch</text>
+<text text-anchor="start" x="281.5" y="-439.8" font-family="Helvetica,sans-Serif" font-size="8.00"># spriteBatch : SpriteBatch</text>
+<text text-anchor="start" x="281.5" y="-427.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsMouseEventEnabled : bool</text>
 <text text-anchor="start" x="281.5" y="-415.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
 <text text-anchor="start" x="281.5" y="-403.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsKeyEventEnabled : bool</text>
-<text text-anchor="start" x="281.5" y="-391.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsMouseEventEnabled : bool</text>
+<text text-anchor="start" x="281.5" y="-391.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : MenuItemInfo</text>
 <text text-anchor="start" x="281.5" y="-379.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="273.5,-371 608.5,-371 "/>
 <text text-anchor="start" x="281.5" y="-359.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ MenuItem (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)</text>
-<text text-anchor="start" x="281.5" y="-347.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime) override</text>
-<text text-anchor="start" x="281.5" y="-335.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ TextPosition (SpriteFont font) : Vector2</text>
-<text text-anchor="start" x="281.5" y="-323.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ TextPosition (SpriteFont font, Vector2 scale) : Vector2</text>
-<text text-anchor="start" x="281.5" y="-311.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ MinimumSize (SpriteFont font) : Vector2</text>
-<text text-anchor="start" x="281.5" y="-299.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OnLeftClick (Vector2 position, ClickState click, GameTime gameTime)</text>
-<text text-anchor="start" x="281.5" y="-287.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OnRightClick (Vector2 position, ClickState click, GameTime gameTime)</text>
-<text text-anchor="start" x="281.5" y="-275.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime gameTime)</text>
-<text text-anchor="start" x="281.5" y="-263.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SetHovered (bool hovered)</text>
-<text text-anchor="start" x="281.5" y="-251.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Collapse () virtual</text>
+<text text-anchor="start" x="281.5" y="-347.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Collapse () virtual</text>
+<text text-anchor="start" x="281.5" y="-335.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime gameTime)</text>
+<text text-anchor="start" x="281.5" y="-323.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OnLeftClick (Vector2 position, ClickState click, GameTime gameTime)</text>
+<text text-anchor="start" x="281.5" y="-311.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OnRightClick (Vector2 position, ClickState click, GameTime gameTime)</text>
+<text text-anchor="start" x="281.5" y="-299.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ MinimumSize (SpriteFont font) : Vector2</text>
+<text text-anchor="start" x="281.5" y="-287.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ TextPosition (SpriteFont font) : Vector2</text>
+<text text-anchor="start" x="281.5" y="-275.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ TextPosition (SpriteFont font, Vector2 scale) : Vector2</text>
+<text text-anchor="start" x="281.5" y="-263.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime)</text>
+<text text-anchor="start" x="281.5" y="-251.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SetHovered (bool hovered)</text>
 </g>
 <!-- Box_DropDownMenu -->
 <g id="node8" class="node"><title>Box_DropDownMenu</title>
@@ -39,25 +39,30 @@
 <text text-anchor="middle" x="257" y="-193.8" font-family="Helvetica,sans-Serif" font-size="8.00">DropDownMenu</text>
 <polyline fill="none" stroke="black" points="77.5,-185 436.5,-185 "/>
 <text text-anchor="start" x="85.5" y="-173.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="85.5" y="-161.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; dropdown : VerticalMenu</text>
-<text text-anchor="start" x="85.5" y="-149.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; selected : MenuButton</text>
+<text text-anchor="start" x="85.5" y="-161.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; selected : MenuButton</text>
+<text text-anchor="start" x="85.5" y="-149.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; dropdown : VerticalMenu</text>
 <text text-anchor="start" x="85.5" y="-137.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="77.5,-129 436.5,-129 "/>
-<text text-anchor="start" x="85.5" y="-117.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ DropDownMenu (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)</text>
-<text text-anchor="start" x="85.5" y="-105.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ AddEntries (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)</text>
-<text text-anchor="start" x="85.5" y="-93.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ AddEntries (DistinctOptionInfo option)</text>
-<text text-anchor="start" x="85.5" y="-81.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SubComponents (GameTime gameTime) : IEnumerable&lt;IGameStateComponent&gt; override</text>
-<text text-anchor="start" x="85.5" y="-69.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Collapse () override</text>
-<text text-anchor="start" x="85.5" y="-57.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime) override</text>
-<text text-anchor="start" x="85.5" y="-45.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; ValuePosition (int dummy = 0) : Vector2</text>
-<text text-anchor="start" x="85.5" y="-33.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; ValueSize (int dummy = 0) : Vector2</text>
-<text text-anchor="start" x="85.5" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; DropDownBackgroundColor (ItemState itemState) : Color</text>
-<text text-anchor="start" x="85.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; DropDownForegroundColor (ItemState itemState) : Color</text>
+<text text-anchor="start" x="85.5" y="-117.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; ValuePosition (int dummy) : Vector2</text>
+<text text-anchor="start" x="85.5" y="-105.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ DropDownMenu (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)</text>
+<text text-anchor="start" x="85.5" y="-93.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; DropDownBackgroundColor (ItemState itemState) : Color</text>
+<text text-anchor="start" x="85.5" y="-81.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; DropDownForegroundColor (ItemState itemState) : Color</text>
+<text text-anchor="start" x="85.5" y="-69.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; ValueSize (int dummy) : Vector2</text>
+<text text-anchor="start" x="85.5" y="-57.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SubComponents (GameTime gameTime) : IEnumerable&lt;IGameStateComponent&gt;</text>
+<text text-anchor="start" x="85.5" y="-45.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Collapse ()</text>
+<text text-anchor="start" x="85.5" y="-33.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime)</text>
+<text text-anchor="start" x="85.5" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ AddEntries (DistinctOptionInfo option)</text>
+<text text-anchor="start" x="85.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ AddEntries (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)</text>
 </g>
 <!-- Box_MenuItem&#45;&gt;Box_DropDownMenu -->
-<g id="edge18" class="edge"><title>Box_MenuItem&#45;&gt;Box_DropDownMenu</title>
-<path fill="none" stroke="midnightblue" d="M350.122,-234.586C343.116,-224.686 336.101,-214.773 329.24,-205.078"/>
-<polygon fill="none" stroke="midnightblue" points="347.368,-236.753 356.002,-242.894 353.082,-232.709 347.368,-236.753"/>
+<g id="edge68" class="edge"><title>Box_MenuItem&#45;&gt;Box_DropDownMenu</title>
+<path fill="none" stroke="midnightblue" d="M343.373,-234.586C336.361,-224.686 329.392,-214.773 322.63,-205.078"/>
+<polygon fill="none" stroke="midnightblue" points="340.627,-236.765 349.269,-242.894 346.336,-232.713 340.627,-236.765"/>
+</g>
+<!-- Box_MenuItem&#45;&gt;Box_DropDownMenu -->
+<g id="edge72" class="edge"><title>Box_MenuItem&#45;&gt;Box_DropDownMenu</title>
+<path fill="none" stroke="midnightblue" d="M356.872,-234.586C349.871,-224.686 342.809,-214.773 335.85,-205.078"/>
+<polygon fill="none" stroke="midnightblue" points="354.109,-236.741 362.734,-242.894 359.828,-232.705 354.109,-236.741"/>
 </g>
 <!-- Box_MenuButton -->
 <g id="node9" class="node"><title>Box_MenuButton</title>
@@ -70,9 +75,14 @@
 <text text-anchor="start" x="461.5" y="-75.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ MenuButton (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)</text>
 </g>
 <!-- Box_MenuItem&#45;&gt;Box_MenuButton -->
-<g id="edge20" class="edge"><title>Box_MenuItem&#45;&gt;Box_MenuButton</title>
-<path fill="none" stroke="midnightblue" d="M531.962,-234.467C556.782,-199.395 581.703,-164.181 599.497,-139.037"/>
-<polygon fill="none" stroke="midnightblue" points="528.918,-232.709 525.998,-242.894 534.632,-236.753 528.918,-232.709"/>
+<g id="edge70" class="edge"><title>Box_MenuItem&#45;&gt;Box_MenuButton</title>
+<path fill="none" stroke="midnightblue" d="M525.212,-234.467C550.014,-199.395 575.572,-164.181 594.658,-139.037"/>
+<polygon fill="none" stroke="midnightblue" points="522.172,-232.705 519.266,-242.894 527.891,-236.741 522.172,-232.705"/>
+</g>
+<!-- Box_MenuItem&#45;&gt;Box_MenuButton -->
+<g id="edge74" class="edge"><title>Box_MenuItem&#45;&gt;Box_MenuButton</title>
+<path fill="none" stroke="midnightblue" d="M538.712,-234.467C563.55,-199.395 587.834,-164.181 604.336,-139.037"/>
+<polygon fill="none" stroke="midnightblue" points="535.664,-232.713 532.731,-242.894 541.373,-236.765 535.664,-232.713"/>
 </g>
 <!-- Box_IKeyEventListener -->
 <g id="node2" class="node"><title>Box_IKeyEventListener</title>
@@ -118,8 +128,8 @@
 <text text-anchor="middle" x="760" y="-623.8" font-family="Helvetica,sans-Serif" font-size="8.00">ItemWidget</text>
 <polyline fill="none" stroke="black" points="595.5,-615 924.5,-615 "/>
 <text text-anchor="start" x="603.5" y="-603.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="603.5" y="-591.8" font-family="Helvetica,sans-Serif" font-size="8.00"># ItemNum : int</text>
-<text text-anchor="start" x="603.5" y="-579.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ItemState : ItemState</text>
+<text text-anchor="start" x="603.5" y="-591.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ItemState : ItemState</text>
+<text text-anchor="start" x="603.5" y="-579.8" font-family="Helvetica,sans-Serif" font-size="8.00"># ItemNum : int</text>
 <text text-anchor="start" x="603.5" y="-567.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="595.5,-559 924.5,-559 "/>
 <text text-anchor="start" x="603.5" y="-547.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ItemWidget (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)</text>
@@ -139,13 +149,18 @@
 <text text-anchor="start" x="635" y="-743.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsVisible : bool virtual</text>
 <text text-anchor="start" x="635" y="-731.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="627,-723 893,-723 "/>
-<text text-anchor="start" x="635" y="-711.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Widget (GameState state, WidgetInfo info, DisplayLayer drawOrder)</text>
-<text text-anchor="start" x="635" y="-699.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ bounds () : Rectangle</text>
+<text text-anchor="start" x="635" y="-711.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ bounds () : Rectangle</text>
+<text text-anchor="start" x="635" y="-699.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Widget (GameState state, WidgetInfo info, DisplayLayer drawOrder)</text>
+</g>
+<!-- Box_Widget&#45;&gt;Box_ItemWidget -->
+<g id="edge38" class="edge"><title>Box_Widget&#45;&gt;Box_ItemWidget</title>
+<path fill="none" stroke="midnightblue" d="M753.349,-680.31C753.137,-665.203 753.264,-649.374 753.731,-635.133"/>
+<polygon fill="none" stroke="midnightblue" points="749.856,-680.695 753.55,-690.625 756.855,-680.559 749.856,-680.695"/>
 </g>
 <!-- Box_Widget&#45;&gt;Box_ItemWidget -->
 <g id="edge8" class="edge"><title>Box_Widget&#45;&gt;Box_ItemWidget</title>
-<path fill="none" stroke="midnightblue" d="M760,-680.31C760,-665.203 760,-649.374 760,-635.133"/>
-<polygon fill="none" stroke="midnightblue" points="756.5,-680.625 760,-690.625 763.5,-680.625 756.5,-680.625"/>
+<path fill="none" stroke="midnightblue" d="M766.651,-680.31C766.863,-665.203 766.736,-649.374 766.269,-635.133"/>
+<polygon fill="none" stroke="midnightblue" points="763.145,-680.559 766.45,-690.625 770.144,-680.695 763.145,-680.559"/>
 </g>
 <!-- Box_DrawableGameStateComponent -->
 <g id="node6" class="node"><title>Box_DrawableGameStateComponent</title>
@@ -161,9 +176,24 @@
 <text text-anchor="start" x="597.5" y="-845.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SubComponents (GameTime gameTime) : IEnumerable&lt;IGameStateComponent&gt; virtual</text>
 </g>
 <!-- Box_DrawableGameStateComponent&#45;&gt;Box_Widget -->
+<g id="edge24" class="edge"><title>Box_DrawableGameStateComponent&#45;&gt;Box_Widget</title>
+<path fill="none" stroke="midnightblue" d="M739.873,-826.523C739.611,-817.474 739.768,-808.248 740.345,-799.41"/>
+<polygon fill="none" stroke="midnightblue" points="736.383,-826.81 740.348,-836.635 743.375,-826.482 736.383,-826.81"/>
+</g>
+<!-- Box_DrawableGameStateComponent&#45;&gt;Box_Widget -->
+<g id="edge40" class="edge"><title>Box_DrawableGameStateComponent&#45;&gt;Box_Widget</title>
+<path fill="none" stroke="midnightblue" d="M766.709,-826.523C766.796,-817.474 766.744,-808.248 766.552,-799.41"/>
+<polygon fill="none" stroke="midnightblue" points="763.208,-826.581 766.551,-836.635 770.207,-826.691 763.208,-826.581"/>
+</g>
+<!-- Box_DrawableGameStateComponent&#45;&gt;Box_Widget -->
+<g id="edge54" class="edge"><title>Box_DrawableGameStateComponent&#45;&gt;Box_Widget</title>
+<path fill="none" stroke="midnightblue" d="M780.127,-826.523C780.389,-817.474 780.232,-808.248 779.655,-799.41"/>
+<polygon fill="none" stroke="midnightblue" points="776.625,-826.482 779.652,-836.635 783.617,-826.81 776.625,-826.482"/>
+</g>
+<!-- Box_DrawableGameStateComponent&#45;&gt;Box_Widget -->
 <g id="edge10" class="edge"><title>Box_DrawableGameStateComponent&#45;&gt;Box_Widget</title>
-<path fill="none" stroke="midnightblue" d="M760,-826.523C760,-817.474 760,-808.248 760,-799.41"/>
-<polygon fill="none" stroke="midnightblue" points="756.5,-826.635 760,-836.635 763.5,-826.635 756.5,-826.635"/>
+<path fill="none" stroke="midnightblue" d="M753.291,-826.523C753.204,-817.474 753.256,-808.248 753.448,-799.41"/>
+<polygon fill="none" stroke="midnightblue" points="749.793,-826.691 753.449,-836.635 756.792,-826.581 749.793,-826.691"/>
 </g>
 <!-- Box_IGameStateComponent -->
 <g id="node7" class="node"><title>Box_IGameStateComponent</title>
@@ -177,9 +207,44 @@
 <text text-anchor="start" x="488" y="-991.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SubComponents (GameTime gameTime) : IEnumerable&lt;IGameStateComponent&gt;</text>
 </g>
 <!-- Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent -->
+<g id="edge28" class="edge"><title>Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M638.528,-974.661C645.659,-965.04 654.607,-954.929 664.591,-945.192"/>
+<polygon fill="none" stroke="midnightblue" points="635.586,-972.761 632.749,-982.969 641.333,-976.759 635.586,-972.761"/>
+</g>
+<!-- Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent -->
+<g id="edge34" class="edge"><title>Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M677.382,-975.244C685.992,-965.448 695.283,-955.125 704.426,-945.192"/>
+<polygon fill="none" stroke="midnightblue" points="674.578,-973.134 670.638,-982.969 679.851,-977.737 674.578,-973.134"/>
+</g>
+<!-- Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent -->
+<g id="edge44" class="edge"><title>Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M690.207,-975.535C699.371,-965.653 708.822,-955.224 717.705,-945.192"/>
+<polygon fill="none" stroke="midnightblue" points="687.532,-973.27 683.268,-982.969 692.65,-978.047 687.532,-973.27"/>
+</g>
+<!-- Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent -->
+<g id="edge50" class="edge"><title>Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M703.003,-975.825C712.748,-965.857 722.368,-955.322 730.983,-945.192"/>
+<polygon fill="none" stroke="midnightblue" points="700.468,-973.411 695.898,-982.969 705.431,-978.347 700.468,-973.411"/>
+</g>
+<!-- Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent -->
+<g id="edge58" class="edge"><title>Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M716.069,-975.825C726.31,-965.857 736,-955.322 744.261,-945.192"/>
+<polygon fill="none" stroke="midnightblue" points="713.38,-973.551 708.527,-982.969 718.194,-978.633 713.38,-973.551"/>
+</g>
+<!-- Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent -->
+<g id="edge64" class="edge"><title>Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M728.822,-976.115C739.683,-966.062 749.557,-955.42 757.539,-945.192"/>
+<polygon fill="none" stroke="midnightblue" points="726.279,-973.695 721.157,-982.969 730.945,-978.913 726.279,-973.695"/>
+</g>
+<!-- Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent -->
 <g id="edge14" class="edge"><title>Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent</title>
-<path fill="none" stroke="midnightblue" d="M683.666,-975.535C692.59,-965.653 702.007,-955.224 711.065,-945.192"/>
-<polygon fill="none" stroke="midnightblue" points="681.057,-973.202 676.953,-982.969 686.253,-977.893 681.057,-973.202"/>
+<path fill="none" stroke="midnightblue" d="M651.421,-974.953C659.044,-965.244 668.128,-955.027 677.87,-945.192"/>
+<polygon fill="none" stroke="midnightblue" points="648.603,-972.877 645.379,-982.969 654.193,-977.09 648.603,-972.877"/>
+</g>
+<!-- Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent -->
+<g id="edge20" class="edge"><title>Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M664.529,-974.953C672.61,-965.244 681.751,-955.027 691.148,-945.192"/>
+<polygon fill="none" stroke="midnightblue" points="661.604,-973.003 658.009,-982.969 667.034,-977.42 661.604,-973.003"/>
 </g>
 <!-- Box_XnaDrawableGameComponent -->
 <g id="node10" class="node"><title>Box_XnaDrawableGameComponent</title>
@@ -187,9 +252,44 @@
 <text text-anchor="middle" x="881" y="-1023.8" font-family="Helvetica,sans-Serif" font-size="8.00">Xna.DrawableGameComponent</text>
 </g>
 <!-- Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent -->
+<g id="edge26" class="edge"><title>Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M836.639,-1010.19C809.218,-994.47 780.776,-968.684 762.397,-945.111"/>
+<polygon fill="none" stroke="midnightblue" points="835.023,-1013.3 845.492,-1014.93 838.325,-1007.13 835.023,-1013.3"/>
+</g>
+<!-- Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent -->
+<g id="edge32" class="edge"><title>Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M860.851,-1007.88C844.835,-992.019 822.101,-967.562 802.223,-945.111"/>
+<polygon fill="none" stroke="midnightblue" points="858.513,-1010.49 868.132,-1014.93 863.382,-1005.46 858.513,-1010.49"/>
+</g>
+<!-- Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent -->
+<g id="edge42" class="edge"><title>Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M869.532,-1007.01C856.823,-991.13 835.791,-967.153 815.499,-945.111"/>
+<polygon fill="none" stroke="midnightblue" points="866.783,-1009.17 875.679,-1014.93 872.314,-1004.88 866.783,-1009.17"/>
+</g>
+<!-- Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent -->
+<g id="edge48" class="edge"><title>Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M878.282,-1005.66C868.537,-989.8 849.258,-966.541 828.774,-945.111"/>
+<polygon fill="none" stroke="midnightblue" points="875.429,-1007.75 883.226,-1014.93 881.605,-1004.46 875.429,-1007.75"/>
+</g>
+<!-- Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent -->
+<g id="edge56" class="edge"><title>Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M887.915,-1005.21C881.072,-989.357 863.086,-966.337 842.05,-945.111"/>
+<polygon fill="none" stroke="midnightblue" points="884.594,-1006.32 890.772,-1014.93 891.309,-1004.35 884.594,-1006.32"/>
+</g>
+<!-- Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent -->
+<g id="edge62" class="edge"><title>Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M897.714,-1004.75C893.65,-988.914 876.9,-966.133 855.325,-945.111"/>
+<polygon fill="none" stroke="midnightblue" points="894.232,-1005.15 898.319,-1014.93 901.22,-1004.74 894.232,-1005.15"/>
+</g>
+<!-- Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent -->
 <g id="edge12" class="edge"><title>Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent</title>
-<path fill="none" stroke="midnightblue" d="M865.148,-1007.44C850.817,-991.574 828.95,-967.357 808.861,-945.111"/>
-<polygon fill="none" stroke="midnightblue" points="862.606,-1009.85 871.905,-1014.93 867.801,-1005.16 862.606,-1009.85"/>
+<path fill="none" stroke="midnightblue" d="M844.57,-1009.57C821.152,-993.8 794.633,-968.378 775.672,-945.111"/>
+<polygon fill="none" stroke="midnightblue" points="842.716,-1012.54 853.038,-1014.93 846.456,-1006.63 842.716,-1012.54"/>
+</g>
+<!-- Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent -->
+<g id="edge18" class="edge"><title>Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M852.526,-1008.74C832.943,-992.909 808.381,-967.97 788.948,-945.111"/>
+<polygon fill="none" stroke="midnightblue" points="850.523,-1011.61 860.585,-1014.93 854.788,-1006.06 850.523,-1011.61"/>
 </g>
 <!-- Box_XnaIGameComponent -->
 <g id="node11" class="node"><title>Box_XnaIGameComponent</title>
@@ -197,9 +297,44 @@
 <text text-anchor="middle" x="639" y="-1113.8" font-family="Helvetica,sans-Serif" font-size="8.00">Xna.IGameComponent</text>
 </g>
 <!-- Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent -->
+<g id="edge22" class="edge"><title>Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M600.635,-1097.44C594.188,-1088.81 591.25,-1078.02 591.819,-1067.41"/>
+<polygon fill="none" stroke="midnightblue" points="598.107,-1099.86 607.542,-1104.68 603.172,-1095.02 598.107,-1099.86"/>
+</g>
+<!-- Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent -->
+<g id="edge30" class="edge"><title>Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M621.911,-1095.28C619.599,-1087.05 618.555,-1077.15 618.78,-1067.41"/>
+<polygon fill="none" stroke="midnightblue" points="618.666,-1096.59 625.518,-1104.68 625.201,-1094.09 618.666,-1096.59"/>
+</g>
+<!-- Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent -->
+<g id="edge36" class="edge"><title>Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M633.253,-1094.73C632.518,-1086.61 632.187,-1076.94 632.26,-1067.41"/>
+<polygon fill="none" stroke="midnightblue" points="629.783,-1095.19 634.506,-1104.68 636.728,-1094.32 629.783,-1095.19"/>
+</g>
+<!-- Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent -->
+<g id="edge46" class="edge"><title>Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M644.747,-1094.73C645.482,-1086.61 645.813,-1076.94 645.74,-1067.41"/>
+<polygon fill="none" stroke="midnightblue" points="641.272,-1094.32 643.494,-1104.68 648.217,-1095.19 641.272,-1094.32"/>
+</g>
+<!-- Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent -->
+<g id="edge52" class="edge"><title>Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M656.089,-1095.28C658.401,-1087.05 659.445,-1077.15 659.22,-1067.41"/>
+<polygon fill="none" stroke="midnightblue" points="652.799,-1094.09 652.482,-1104.68 659.334,-1096.59 652.799,-1094.09"/>
+</g>
+<!-- Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent -->
+<g id="edge60" class="edge"><title>Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M667.089,-1096.1C671.216,-1087.71 673.087,-1077.48 672.7,-1067.41"/>
+<polygon fill="none" stroke="midnightblue" points="664.023,-1094.39 661.47,-1104.68 669.878,-1098.23 664.023,-1094.39"/>
+</g>
+<!-- Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent -->
+<g id="edge66" class="edge"><title>Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M677.365,-1097.44C683.812,-1088.81 686.75,-1078.02 686.181,-1067.41"/>
+<polygon fill="none" stroke="midnightblue" points="674.828,-1095.02 670.458,-1104.68 679.893,-1099.86 674.828,-1095.02"/>
+</g>
+<!-- Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent -->
 <g id="edge16" class="edge"><title>Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent</title>
-<path fill="none" stroke="midnightblue" d="M639,-1094.45C639,-1086.39 639,-1076.83 639,-1067.41"/>
-<polygon fill="none" stroke="midnightblue" points="635.5,-1094.68 639,-1104.68 642.5,-1094.68 635.5,-1094.68"/>
+<path fill="none" stroke="midnightblue" d="M610.911,-1096.1C606.784,-1087.71 604.913,-1077.48 605.3,-1067.41"/>
+<polygon fill="none" stroke="midnightblue" points="608.122,-1098.23 616.53,-1104.68 613.977,-1094.39 608.122,-1098.23"/>
 </g>
 </g>
 </svg>

@@ -1,23 +1,23 @@
 public class WrapList<T> : IEnumerable<T>
   Attributes:
-    - list : List<T> new
-    - int> indexOf : Dictionary<T, new
-    + this [int i] : T
-    + this [T t] : int
     + Count : int
+    + this [T t] : int
+    + this [int i] : T
   Methods:
-    + WrapList  ()
-    + WrapList  (IEnumerable<T> elems)
-    - RebuildIndex  ()
-    - WrapIndex (int i) : int
-    + Clear  ()
-    + Add  (T elem)
-    + Remove  (T[] elems)
-    + InsertAt  (int i, T elem)
-    + Replace  (T find, T[] elem)
-    + AddRange  (IEnumerable<T> elems)
-    + Contains (T elem) : bool
-    + GetEnumerator () : IEnumerator<T>
+    - int> indexOf () : Dictionary<T,
+    - list () : List<T>
     - IEnumerable.GetEnumerator () : IEnumerator
-    + ToString () : string override
+    - WrapIndex (int i) : int
+    - RebuildIndex ()
+    + Contains (T elem) : bool
+    + ToString () : string
+    + Add  (T elem)
+    + Clear ()
+    + InsertAt  (int i, T elem)
+    + Remove  (T[] elems)
+    + Replace  (T find, T[] elem)
+    + GetEnumerator () : IEnumerator<T>
+    + WrapList  (IEnumerable<T> elems)
+    + WrapList ()
+    + AddRange  (IEnumerable<T> elems)
 

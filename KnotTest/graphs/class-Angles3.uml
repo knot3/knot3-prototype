@@ -1,27 +1,27 @@
 public struct Angles3 : IEquatable<Angles3>
   Attributes:
-    + X : float
     + Y : float
     + Z : float
-    - zero : Angles3 static
     + Zero : Angles3 static
-    + operator : bool static
-    + operator ! : bool static
+    + X : float
   Methods:
+    - zero (0f, 0f, 0f) : Angles3 static
     + Angles3  (float x, float y, float z)
-    + Angles3  (Vector3 v)
     + ToDegrees () : Angles3
     + ToVector () : Vector3
-    + FromDegrees (float x, float y, float z) : Angles3 static
-    + Equals (object obj) : bool override
+    + Equals (object obj) : bool
+    + Angles3  (Vector3 v)
     + Equals (Angles3 other) : bool
-    + GetHashCode () : int override
+    + GetHashCode () : int
+    + FromDegrees (float x, float y, float z) : Angles3 static
+    + operator * (Angles3 value, float scaleFactor) : Angles3 static
+    + operator * (Angles3 value1, Angles3 value2) : Angles3 static
+    + operator * (float scaleFactor, Angles3 value) : Angles3 static
     + operator (Angles3 value1, Angles3 value2) : Angles3 static
     - operator (Angles3 value) : Angles3 static
     - operator (Angles3 value1, Angles3 value2) : Angles3 static
-    + operator * (Angles3 value1, Angles3 value2) : Angles3 static
-    + operator * (Angles3 value, float scaleFactor) : Angles3 static
-    + operator * (float scaleFactor, Angles3 value) : Angles3 static
-    + operator / (Angles3 value1, Angles3 value2) : Angles3 static
     + operator / (Angles3 value, float divider) : Angles3 static
+    + operator / (Angles3 value1, Angles3 value2) : Angles3 static
+    + operator ! (Angles3 value1, Angles3 value2) : bool static
+    + operator (Angles3 value1, Angles3 value2) : bool static
 

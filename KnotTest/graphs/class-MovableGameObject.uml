@@ -1,18 +1,18 @@
 public class MovableGameObject : IGameObject
   Attributes:
-    - state : GameState
     - Obj : IGameObject
     + World : World
+    - state : GameState
     + Info : dynamic
   Methods:
-    + MovableGameObject  (GameState state, IGameObject obj)
     # CurrentGroundPlane () : Plane
+    + MovableGameObject  (GameState state, IGameObject obj)
+    + Update  (GameTime gameTime) virtual
     # CurrentMouseRay () : Ray
     # CurrentMousePosition (Ray ray, Plane groundPlane) : Vector3?
-    + Update  (GameTime gameTime) virtual
-    + Draw  (GameTime gameTime)
     + Intersects (Ray ray) : GameObjectDistance
     + Center () : Vector3
+    + Draw  (GameTime gameTime)
 
 public interface IGameObject : 
   Attributes:

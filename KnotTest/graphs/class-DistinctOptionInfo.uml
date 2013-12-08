@@ -1,9 +1,9 @@
 public class DistinctOptionInfo : OptionInfo
   Attributes:
     + ValidValues : HashSet<string>
-    + Value : string override
+    + Value : string
   Methods:
-    + DistinctOptionInfo  (string section, string name, string defaultValue, string[] validValues, Action<string> onChange = null, ConfigFile configFile = null)
+    + DistinctOptionInfo  (string section, string name, string defaultValue, string[] validValues, Action<string> onChange)
 
 public class OptionInfo : 
   Attributes:
@@ -16,10 +16,28 @@ public class OptionInfo :
   Methods:
     + OptionInfo  (string section, string name, string defaultValue, Action<string> onChange = null, ConfigFile configFile = null)
 
+public class OptionInfo : 
+  Attributes:
+    - ConfigFile : ConfigFile
+    + OnChange : Action<string>
+    + DefaultValue : string
+    + Name : string
+    + Section : string
+    + Value : string virtual
+  Methods:
+    + OptionInfo  (string section, string name, string defaultValue, Action<string> onChange)
+
 public class BooleanOptionInfo : DistinctOptionInfo
   Attributes:
     + ValidValues : string[] static
     + BoolValue : bool
   Methods:
     + BooleanOptionInfo  (string section, string name, bool defaultValue, Action<bool> onChange = null, ConfigFile configFile = null)
+
+public class BooleanOptionInfo : DistinctOptionInfo
+  Attributes:
+    + BoolValue : bool
+    + ValidValues : string[] static
+  Methods:
+    + BooleanOptionInfo  (string section, string name, bool defaultValue, Action<bool> onChange)
 

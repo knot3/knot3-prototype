@@ -1,24 +1,24 @@
 public class WidgetInfo : IEquatable<WidgetInfo>
   Attributes:
-    + RelativePosition : Func<Vector2>
-    + RelativeSize : Func<Vector2>
-    + RelativePadding : Func<Vector2>
     + AlignX : HAlign
     + AlignY : VAlign
-    + ForegroundColor : Func<Color>
-    + BackgroundColor : Func<Color>
-    + operator : bool static
-    + operator ! : bool static
+    + RelativePosition : Func<Vector2>
   Methods:
-    + ScaledPosition (Viewport viewport) : Vector2
-    + ScaledSize (Viewport viewport) : Vector2
-    + ScaledPadding (Viewport viewport) : Vector2
-    + RelativeRectangle () : Rectangle
+    + BackgroundColor () : Func<Color>
+    + ForegroundColor () : Func<Color>
+    + RelativePadding () : Func<Vector2>
+    + RelativeSize () : Func<Vector2>
     + ScaledRectangle (Viewport viewport) : Rectangle
-    + WidgetInfo  ()
+    + ScaledPosition (Viewport viewport) : Vector2
+    + operator (WidgetInfo o1, WidgetInfo o2) : bool static
+    + RelativeRectangle () : Rectangle
+    + ScaledPadding (Viewport viewport) : Vector2
+    + ScaledSize (Viewport viewport) : Vector2
+    + WidgetInfo ()
+    + Equals (Object obj) : bool
+    + GetHashCode () : int
+    + operator ! (WidgetInfo o1, WidgetInfo o2) : bool static
     + Equals (WidgetInfo other) : bool virtual
-    + Equals (Object obj) : bool override
-    + GetHashCode () : int override
 
 public class MenuItemInfo : WidgetInfo
   Attributes:
@@ -32,4 +32,17 @@ public class MenuItemInfo : WidgetInfo
     +  () : this (string text)
     + MenuItemInfo  ()
     + AddKey (Keys key) : MenuItemInfo
+
+public class MenuItemInfo : WidgetInfo
+  Attributes:
+    + Text : string
+  Methods:
+    + Keys () : List<Keys>
+    + OnClick () : Action
+    + AddKey (Keys key) : MenuItemInfo
+    + MenuItemInfo (string text) : this()
+    + MenuItemInfo (string text, Action onClick) : this()
+    + MenuItemInfo (string text, Vector2 topLeft, Vector2 bottomRight, Action onClick) : this(text, onClick)
+    + MenuItemInfo (string text, float left, float top, float right, float bottom, Action onClick) : this(text, onClick)
+    + MenuItemInfo ()
 

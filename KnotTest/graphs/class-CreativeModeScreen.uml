@@ -1,26 +1,26 @@
 public class CreativeModeScreen : GameState
   Attributes:
-    - knot : Knot
-    - knotModified : bool
-    - world : World
+    - dialog : Dialog
+    - lineRenderer : LineRenderer
+    - picker : MousePicker
     - pointer : MousePointer
     - overlay : Overlay
-    - picker : MousePicker
-    - movement : PipeMovement
     - coloring : PipeColoring
-    - lineRenderer : LineRenderer
+    - movement : PipeMovement
     - pipeRenderer : PipeRenderer
-    - dialog : Dialog
+    - world : World
+    - knotModified : bool
     + Knot : Knot
+    - knot : Knot
   Methods:
-    + CreativeModeScreen  (Core.Game game)
-    + Initialize  () override
-    + LoadFile  (string file)
-    + Update  (GameTime gameTime) override
     - UpdateInput  (GameTime gameTime)
-    + Draw  (GameTime gameTime) override
-    + Activate  (GameTime gameTime) override
-    + Unload  () override
+    + CreativeModeScreen  (Core.Game game)
+    + Activate  (GameTime gameTime)
+    + Draw  (GameTime gameTime)
+    + Initialize ()
+    + LoadFile  (string file)
+    + Unload ()
+    + Update  (GameTime gameTime)
 
 public abstract class GameState : 
   Attributes:
@@ -43,4 +43,26 @@ public abstract class GameState :
     + RemoveGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
     + Activate  (GameTime gameTime) virtual
     + Deactivate  (GameTime gameTime) virtual
+
+public abstract class GameState : 
+  Attributes:
+    + content : ContentManager
+    + NextState : GameState
+    + device : GraphicsDevice
+    + RenderEffects : RenderEffectStack
+    + viewport : Viewport
+    + game : Game
+    + graphics : GraphicsDeviceManager
+    + input : Input
+    + PostProcessing : RenderEffect
+  Methods:
+    + Draw  (GameTime gameTime) abstract
+    + Initialize () abstract
+    + Unload () abstract
+    + Activate  (GameTime gameTime) virtual
+    + GameState  (Game game)
+    + Update  (GameTime gameTime) abstract
+    + Deactivate  (GameTime gameTime) virtual
+    + AddGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    + RemoveGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
 

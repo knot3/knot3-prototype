@@ -1,7 +1,7 @@
 public static class RenderTargets : 
   Attributes:
-    - RenderTargetStack : Stack<RenderTarget2D> static
   Methods:
-    + PushRenderTarget  (this GraphicsDevice device, RenderTarget2D current) static
+    - RenderTargetStack () : Stack<RenderTarget2D> static
     + PopRenderTarget (this GraphicsDevice device) : RenderTarget2D static
+    + PushRenderTarget  (this GraphicsDevice device, RenderTarget2D current) static
 

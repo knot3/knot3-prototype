@@ -1,22 +1,36 @@
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
   Attributes:
-    - knotRenderEffects : List<RenderEffect>
     - knotRenderEffect : RenderEffect
     + Objects : List<IGameObject>
-    + SelectedObject : IGameObject
-    + Camera : Camera
+    - knotRenderEffects : List<RenderEffect>
     - floor : TexturedRectangle
+    + Camera : Camera
+    + SelectedObject : IGameObject
   Methods:
-    + World  (GameState state)
-    + SelectObject  (IGameObject obj, GameTime gameTime)
-    + SelectedObjectDistance () : float
-    + Add  (IGameObject obj)
-    + Initialize  () override
-    + Draw  (GameTime gameTime) override
-    + Update  (GameTime gameTime) override
-    + GetEnumerator () : IEnumerator<IGameObject>
     - IEnumerable.GetEnumerator () : IEnumerator
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + World  (GameState state)
+    + SelectedObjectDistance () : float
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + Draw  (GameTime gameTime)
+    + Add  (IGameObject obj)
+    + GetEnumerator () : IEnumerator<IGameObject>
+    + Initialize ()
+    + Update  (GameTime gameTime)
+    + SelectObject  (IGameObject obj, GameTime gameTime)
+
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+  Attributes:
+    + state : GameState
+    + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
   Attributes:

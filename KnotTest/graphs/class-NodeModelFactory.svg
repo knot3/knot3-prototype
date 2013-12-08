@@ -11,13 +11,13 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-212 301,-212 301,5 -4,5"/>
 <!-- Box_NodeModelFactory -->
 <g id="node1" class="node"><title>Box_NodeModelFactory</title>
-<polygon fill="#fcfcda" stroke="black" points="0,-1 0,-73 296,-73 296,-1 0,-1"/>
+<polygon fill="#fcfcda" stroke="black" points="15.5,-1 15.5,-73 280.5,-73 280.5,-1 15.5,-1"/>
 <text text-anchor="middle" x="148" y="-61.8" font-family="Helvetica,sans-Serif" font-size="8.00">NodeModelFactory</text>
-<polyline fill="none" stroke="black" points="0,-53 296,-53 "/>
-<text text-anchor="start" x="8" y="-41.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="8" y="-29.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
-<polyline fill="none" stroke="black" points="0,-21 296,-21 "/>
-<text text-anchor="start" x="8" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00"># CreateModel (GameState state, GameModelInfo info) : GameModel override</text>
+<polyline fill="none" stroke="black" points="15.5,-53 280.5,-53 "/>
+<text text-anchor="start" x="23.5" y="-41.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
+<text text-anchor="start" x="23.5" y="-29.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
+<polyline fill="none" stroke="black" points="15.5,-21 280.5,-21 "/>
+<text text-anchor="start" x="23.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00"># CreateModel (GameState state, GameModelInfo info) : GameModel</text>
 </g>
 <!-- Box_ModelFactory -->
 <g id="node2" class="node"><title>Box_ModelFactory</title>
@@ -25,10 +25,10 @@
 <text text-anchor="middle" x="148" y="-195.8" font-family="Helvetica,sans-Serif" font-size="8.00">ModelFactory</text>
 <polyline fill="none" stroke="black" points="0,-187 296,-187 "/>
 <text text-anchor="start" x="8" y="-175.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="8" y="-163.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; GameModel&gt; cache : Dictionary&lt;GameModelInfo, new</text>
-<text text-anchor="start" x="8" y="-151.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ this [GameState state, GameModelInfo info] : GameModel</text>
-<text text-anchor="start" x="8" y="-139.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
-<polyline fill="none" stroke="black" points="0,-131 296,-131 "/>
+<text text-anchor="start" x="8" y="-163.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ this [GameState state, GameModelInfo info] : GameModel</text>
+<text text-anchor="start" x="8" y="-151.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
+<polyline fill="none" stroke="black" points="0,-143 296,-143 "/>
+<text text-anchor="start" x="8" y="-131.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; GameModel&gt; cache () : Dictionary&lt;GameModelInfo,</text>
 <text text-anchor="start" x="8" y="-119.8" font-family="Helvetica,sans-Serif" font-size="8.00"># CreateModel (GameState state, GameModelInfo info) : GameModel abstract</text>
 </g>
 <!-- Box_ModelFactory&#45;&gt;Box_NodeModelFactory -->

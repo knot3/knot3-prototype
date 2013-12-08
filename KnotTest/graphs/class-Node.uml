@@ -4,14 +4,14 @@ public struct Node :
     + Y : int
     + Z : int
     + Scale : int static
-    + operator : bool static
-    + operator ! : bool static
   Methods:
-    +  () : this (int x, int y, int z)
+    + Node (int x, int y, int z) : this()
+    + Vector () : Vector3
+    + Equals (object obj) : bool
+    + GetHashCode () : int
+    + ToString () : string
     + operator (Node a, Vector3 b) : Node static
     - operator (Node a, Node b) : Vector3 static
-    + Equals (object obj) : bool override
-    + GetHashCode () : int override
-    + ToString () : string override
-    + Vector () : Vector3
+    + operator ! (Node a, Node b) : bool static
+    + operator (Node a, Node b) : bool static
 

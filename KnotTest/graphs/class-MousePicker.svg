@@ -20,7 +20,7 @@
 <text text-anchor="start" x="186.5" y="-53.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="178.5,-45 363.5,-45 "/>
 <text text-anchor="start" x="186.5" y="-33.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ MousePicker (GameState state, World world)</text>
-<text text-anchor="start" x="186.5" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime) override</text>
+<text text-anchor="start" x="186.5" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime)</text>
 <text text-anchor="start" x="186.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ UpdateMouseRay (GameTime gameTime)</text>
 </g>
 <!-- Box_GameStateComponent -->
@@ -55,8 +55,13 @@
 </g>
 <!-- Box_IGameStateComponent&#45;&gt;Box_GameStateComponent -->
 <g id="edge6" class="edge"><title>Box_IGameStateComponent&#45;&gt;Box_GameStateComponent</title>
-<path fill="none" stroke="midnightblue" d="M198.996,-309.005C206.749,-299.314 214.948,-289.065 222.928,-279.09"/>
-<polygon fill="none" stroke="midnightblue" points="196.118,-307 192.604,-316.995 201.584,-311.373 196.118,-307"/>
+<path fill="none" stroke="midnightblue" d="M192.497,-309.005C200,-299.314 208.136,-289.065 216.239,-279.09"/>
+<polygon fill="none" stroke="midnightblue" points="189.675,-306.933 186.358,-316.995 195.226,-311.198 189.675,-306.933"/>
+</g>
+<!-- Box_IGameStateComponent&#45;&gt;Box_GameStateComponent -->
+<g id="edge12" class="edge"><title>Box_IGameStateComponent&#45;&gt;Box_GameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M205.255,-309.295C213.332,-299.519 221.681,-289.165 229.618,-279.09"/>
+<polygon fill="none" stroke="midnightblue" points="202.554,-307.069 198.849,-316.995 207.935,-311.546 202.554,-307.069"/>
 </g>
 <!-- Box_XnaGameComponent -->
 <g id="node4" class="node"><title>Box_XnaGameComponent</title>
@@ -65,8 +70,13 @@
 </g>
 <!-- Box_XnaGameComponent&#45;&gt;Box_GameStateComponent -->
 <g id="edge4" class="edge"><title>Box_XnaGameComponent&#45;&gt;Box_GameStateComponent</title>
-<path fill="none" stroke="midnightblue" d="M369.529,-341.071C356.811,-325.314 337.556,-301.459 319.432,-279.004"/>
-<polygon fill="none" stroke="midnightblue" points="366.869,-343.348 375.873,-348.932 372.316,-338.952 366.869,-343.348"/>
+<path fill="none" stroke="midnightblue" d="M365.232,-341.507C350.878,-325.756 330.755,-301.667 312.743,-279.004"/>
+<polygon fill="none" stroke="midnightblue" points="362.785,-344.015 372.17,-348.932 367.9,-339.235 362.785,-344.015"/>
+</g>
+<!-- Box_XnaGameComponent&#45;&gt;Box_GameStateComponent -->
+<g id="edge10" class="edge"><title>Box_XnaGameComponent&#45;&gt;Box_GameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M373.912,-340.631C362.768,-324.873 344.352,-301.251 326.12,-279.004"/>
+<polygon fill="none" stroke="midnightblue" points="371.048,-342.645 379.576,-348.932 376.83,-338.699 371.048,-342.645"/>
 </g>
 <!-- Box_XnaIGameComponent -->
 <g id="node5" class="node"><title>Box_XnaIGameComponent</title>
@@ -75,8 +85,13 @@
 </g>
 <!-- Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent -->
 <g id="edge8" class="edge"><title>Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent</title>
-<path fill="none" stroke="midnightblue" d="M159,-428.454C159,-420.393 159,-410.828 159,-401.414"/>
-<polygon fill="none" stroke="midnightblue" points="155.5,-428.676 159,-438.676 162.5,-428.676 155.5,-428.676"/>
+<path fill="none" stroke="midnightblue" d="M153.253,-428.731C152.518,-420.612 152.187,-410.936 152.26,-401.414"/>
+<polygon fill="none" stroke="midnightblue" points="149.783,-429.192 154.506,-438.676 156.728,-428.317 149.783,-429.192"/>
+</g>
+<!-- Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent -->
+<g id="edge14" class="edge"><title>Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M164.747,-428.731C165.482,-420.612 165.813,-410.936 165.74,-401.414"/>
+<polygon fill="none" stroke="midnightblue" points="161.272,-428.317 163.494,-438.676 168.217,-429.192 161.272,-428.317"/>
 </g>
 </g>
 </svg>

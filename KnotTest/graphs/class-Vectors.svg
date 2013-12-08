@@ -17,44 +17,44 @@
 <text text-anchor="start" x="8" y="-485.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
 <text text-anchor="start" x="8" y="-473.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="0,-465 390,-465 "/>
-<text text-anchor="start" x="8" y="-453.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ArcBallMove (this Vector3 vectorToMove, Vector2 mouse, Vector3 up, Vector3 forward) : Vector3 static</text>
-<text text-anchor="start" x="8" y="-441.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ MoveLinear (this Vector3 vectorToMove, Vector3 mouse, Vector3 up, Vector3 forward) : Vector3 static</text>
-<text text-anchor="start" x="8" y="-429.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ MoveLinear (this Vector3 vectorToMove, Vector2 mouse, Vector3 up, Vector3 forward) : Vector3 static</text>
-<text text-anchor="start" x="8" y="-417.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RotateX (this Vector3 vectorToRotate, float angleRadians) : Vector3 static</text>
-<text text-anchor="start" x="8" y="-405.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RotateY (this Vector3 vectorToRotate, float angleRadians) : Vector3 static</text>
-<text text-anchor="start" x="8" y="-393.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RotateZ (this Vector3 vectorToRotate, float angleRadians) : Vector3 static</text>
-<text text-anchor="start" x="8" y="-381.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RotateAroundVector (this Vector3 vectorToRotate, Vector3 axis, float angleRadians) : Vector3 static</text>
-<text text-anchor="start" x="8" y="-369.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Clamp (this Vector3 v, Vector3 lower, Vector3 higher) : Vector3 static</text>
-<text text-anchor="start" x="8" y="-357.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Clamp (this Vector3 v, int minLength, int maxLength) : Vector3 static</text>
-<text text-anchor="start" x="8" y="-345.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ PrimaryVector (this Vector2 v) : Vector2 static</text>
-<text text-anchor="start" x="8" y="-333.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ PrimaryVector (this Vector3 v) : Vector3 static</text>
-<text text-anchor="start" x="8" y="-321.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ PrimaryDirection (this Vector2 v) : Vector2 static</text>
-<text text-anchor="start" x="8" y="-309.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ PrimaryDirection (this Vector3 v) : Vector3 static</text>
-<text text-anchor="start" x="8" y="-297.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ PrimaryDirectionExcept (this Vector3 v, Vector3 wrongDirection) : Vector3 static</text>
-<text text-anchor="start" x="8" y="-285.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Abs (this float v) : float static</text>
-<text text-anchor="start" x="8" y="-273.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Clamp (this float v, int min, int max) : float static</text>
-<text text-anchor="start" x="8" y="-261.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Bounds (this Model model) : BoundingSphere[] static</text>
-<text text-anchor="start" x="8" y="-249.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Bounds (this Vector3 a, Vector3 diff) : BoundingBox static</text>
-<text text-anchor="start" x="8" y="-237.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Scale (this BoundingSphere sphere, float scale) : BoundingSphere static</text>
-<text text-anchor="start" x="8" y="-225.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Translate (this BoundingSphere sphere, Vector3 position) : BoundingSphere static</text>
-<text text-anchor="start" x="8" y="-213.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Scale (this BoundingBox box, float scale) : BoundingBox static</text>
-<text text-anchor="start" x="8" y="-201.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Translate (this BoundingBox box, Vector3 position) : BoundingBox static</text>
-<text text-anchor="start" x="8" y="-189.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ToVector2 (this MouseState state) : Vector2 static</text>
-<text text-anchor="start" x="8" y="-177.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ToPoint (this MouseState state) : Point static</text>
-<text text-anchor="start" x="8" y="-165.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ToVector2 (this Viewport viewport) : Vector2 static</text>
-<text text-anchor="start" x="8" y="-153.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Center (this Viewport viewport) : Vector2 static</text>
-<text text-anchor="start" x="8" y="-141.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ToVector2 (this Point v) : Vector2 static</text>
-<text text-anchor="start" x="8" y="-129.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ToPoint (this Vector2 v) : Point static</text>
-<text text-anchor="start" x="8" y="-117.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Plus (this Point a, Point b) : Point static</text>
-<text text-anchor="start" x="8" y="-105.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Join (this string delimiter, List&lt;int&gt; list) : string static</text>
-<text text-anchor="start" x="8" y="-93.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ScaleFactor (this Viewport viewport) : Vector2 static</text>
-<text text-anchor="start" x="8" y="-81.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RelativeTo (this Vector2 v, Viewport viewport) : Vector2 static</text>
-<text text-anchor="start" x="8" y="-69.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Scale (this Vector2 v, Viewport viewport) : Vector2 static</text>
-<text text-anchor="start" x="8" y="-57.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Scale (this Rectangle rect, Viewport viewport) : Rectangle static</text>
-<text text-anchor="start" x="8" y="-45.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Grow (this Rectangle rect, int diff) : Rectangle static</text>
-<text text-anchor="start" x="8" y="-33.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Shrink (this Rectangle rect, int diff) : Rectangle static</text>
-<text text-anchor="start" x="8" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Swap&lt;T&gt; (ref T lhs, ref T rhs) static</text>
-<text text-anchor="start" x="8" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Print (this Vector3 v) : string static</text>
+<text text-anchor="start" x="8" y="-453.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Grow (this Rectangle rect, int diff) : Rectangle static</text>
+<text text-anchor="start" x="8" y="-441.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ PrimaryVector (this Vector2 v) : Vector2 static</text>
+<text text-anchor="start" x="8" y="-429.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ScaleFactor (this Viewport viewport) : Vector2 static</text>
+<text text-anchor="start" x="8" y="-417.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Clamp (this Vector3 v, int minLength, int maxLength) : Vector3 static</text>
+<text text-anchor="start" x="8" y="-405.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Abs (this float v) : float static</text>
+<text text-anchor="start" x="8" y="-393.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Bounds (this Vector3 a, Vector3 diff) : BoundingBox static</text>
+<text text-anchor="start" x="8" y="-381.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Scale (this BoundingBox box, float scale) : BoundingBox static</text>
+<text text-anchor="start" x="8" y="-369.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Translate (this BoundingBox box, Vector3 position) : BoundingBox static</text>
+<text text-anchor="start" x="8" y="-357.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Scale (this BoundingSphere sphere, float scale) : BoundingSphere static</text>
+<text text-anchor="start" x="8" y="-345.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Translate (this BoundingSphere sphere, Vector3 position) : BoundingSphere static</text>
+<text text-anchor="start" x="8" y="-333.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Bounds (this Model model) : BoundingSphere[] static</text>
+<text text-anchor="start" x="8" y="-321.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Plus (this Point a, Point b) : Point static</text>
+<text text-anchor="start" x="8" y="-309.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ToPoint (this MouseState state) : Point static</text>
+<text text-anchor="start" x="8" y="-297.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ToPoint (this Vector2 v) : Point static</text>
+<text text-anchor="start" x="8" y="-285.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Scale (this Rectangle rect, Viewport viewport) : Rectangle static</text>
+<text text-anchor="start" x="8" y="-273.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Shrink (this Rectangle rect, int diff) : Rectangle static</text>
+<text text-anchor="start" x="8" y="-261.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Center (this Viewport viewport) : Vector2 static</text>
+<text text-anchor="start" x="8" y="-249.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ PrimaryDirection (this Vector2 v) : Vector2 static</text>
+<text text-anchor="start" x="8" y="-237.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RelativeTo (this Vector2 v, Viewport viewport) : Vector2 static</text>
+<text text-anchor="start" x="8" y="-225.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Scale (this Vector2 v, Viewport viewport) : Vector2 static</text>
+<text text-anchor="start" x="8" y="-213.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ToVector2 (this MouseState state) : Vector2 static</text>
+<text text-anchor="start" x="8" y="-201.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ToVector2 (this Point v) : Vector2 static</text>
+<text text-anchor="start" x="8" y="-189.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ToVector2 (this Viewport viewport) : Vector2 static</text>
+<text text-anchor="start" x="8" y="-177.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ArcBallMove (this Vector3 vectorToMove, Vector2 mouse, Vector3 up, Vector3 forward) : Vector3 static</text>
+<text text-anchor="start" x="8" y="-165.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Clamp (this Vector3 v, Vector3 lower, Vector3 higher) : Vector3 static</text>
+<text text-anchor="start" x="8" y="-153.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ MoveLinear (this Vector3 vectorToMove, Vector2 mouse, Vector3 up, Vector3 forward) : Vector3 static</text>
+<text text-anchor="start" x="8" y="-141.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ MoveLinear (this Vector3 vectorToMove, Vector3 mouse, Vector3 up, Vector3 forward) : Vector3 static</text>
+<text text-anchor="start" x="8" y="-129.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ PrimaryDirection (this Vector3 v) : Vector3 static</text>
+<text text-anchor="start" x="8" y="-117.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ PrimaryDirectionExcept (this Vector3 v, Vector3 wrongDirection) : Vector3 static</text>
+<text text-anchor="start" x="8" y="-105.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ PrimaryVector (this Vector3 v) : Vector3 static</text>
+<text text-anchor="start" x="8" y="-93.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RotateAroundVector (this Vector3 vectorToRotate, Vector3 axis, float angleRadians) : Vector3 static</text>
+<text text-anchor="start" x="8" y="-81.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RotateX (this Vector3 vectorToRotate, float angleRadians) : Vector3 static</text>
+<text text-anchor="start" x="8" y="-69.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RotateY (this Vector3 vectorToRotate, float angleRadians) : Vector3 static</text>
+<text text-anchor="start" x="8" y="-57.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RotateZ (this Vector3 vectorToRotate, float angleRadians) : Vector3 static</text>
+<text text-anchor="start" x="8" y="-45.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Clamp (this float v, int min, int max) : float static</text>
+<text text-anchor="start" x="8" y="-33.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Join (this string delimiter, List&lt;int&gt; list) : string static</text>
+<text text-anchor="start" x="8" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Print (this Vector3 v) : string static</text>
+<text text-anchor="start" x="8" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Swap&lt;T&gt; (ref T lhs, ref T rhs) static</text>
 </g>
 </g>
 </svg>

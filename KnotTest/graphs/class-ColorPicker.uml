@@ -1,21 +1,21 @@
 public class ColorPicker : Widget, IMouseEventListener
   Attributes:
-    - colors : List<Color>
     - tiles : List<Vector2>
-    - Vector2 tileSize : readonly static
     + SelectedColor : Color
-    + OnSelectColor : Action<Color>
-    # spriteBatch : SpriteBatch
     + IsMouseEventEnabled : bool
+    - colors : List<Color>
+    # spriteBatch : SpriteBatch
+    + OnSelectColor : Action<Color>
   Methods:
-    + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
-    + Draw  (GameTime gameTime) override
-    - CreateColors (int num) : IEnumerable<Color> static
+    - Vector2 tileSize (0.032f, 0.032f) : readonly static
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
-    - SelectColor  (Color color)
-    + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Draw  (GameTime gameTime)
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
     + SetHovered  (bool hovered)
+    - CreateColors (int num) : IEnumerable<Color> static
+    - SelectColor  (Color color)
+    + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
 
 public interface IMouseEventListener : 
   Attributes:
@@ -34,6 +34,56 @@ public abstract class Widget : DrawableGameStateComponent
   Methods:
     + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
     + bounds () : Rectangle
+
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+  Attributes:
+    + state : GameState
+    + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+  Attributes:
+    + state : GameState
+    + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+
+public abstract class Widget : DrawableGameStateComponent
+  Attributes:
+    + Info : WidgetInfo
+    + IsVisible : bool virtual
+  Methods:
+    + bounds () : Rectangle
+    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+  Attributes:
+    + state : GameState
+    + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
   Attributes:

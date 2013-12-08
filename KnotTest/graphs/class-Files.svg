@@ -15,18 +15,18 @@
 <text text-anchor="middle" x="198" y="-169.8" font-family="Helvetica,sans-Serif" font-size="8.00">Files</text>
 <polyline fill="none" stroke="black" points="0,-161 396,-161 "/>
 <text text-anchor="start" x="8" y="-149.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="8" y="-137.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Separator : char static</text>
-<text text-anchor="start" x="8" y="-125.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SettingsDirectory : string static</text>
+<text text-anchor="start" x="8" y="-137.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; baseDirectory : string static</text>
+<text text-anchor="start" x="8" y="-125.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ BaseDirectory : string static</text>
 <text text-anchor="start" x="8" y="-113.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SavegameDirectory : string static</text>
-<text text-anchor="start" x="8" y="-101.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; baseDirectory : string static</text>
-<text text-anchor="start" x="8" y="-89.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ BaseDirectory : string static</text>
+<text text-anchor="start" x="8" y="-101.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Separator : char static</text>
+<text text-anchor="start" x="8" y="-89.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SettingsDirectory : string static</text>
 <text text-anchor="start" x="8" y="-77.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="0,-69 396,-69 "/>
-<text text-anchor="start" x="8" y="-57.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ReadFrom (string file) : IEnumerable&lt;string&gt; static</text>
-<text text-anchor="start" x="8" y="-45.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsPath (string filepath) : bool static</text>
-<text text-anchor="start" x="8" y="-33.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ValidFilename (string humanReadableName) : string static</text>
-<text text-anchor="start" x="8" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SearchFiles (IEnumerable&lt;string&gt; directories, IEnumerable&lt;string&gt; extensions, Action&lt;string&gt; add) static</text>
-<text text-anchor="start" x="8" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SearchFiles (string directory, IEnumerable&lt;string&gt; extensions, Action&lt;string&gt; add) static</text>
+<text text-anchor="start" x="8" y="-57.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsPath (string filepath) : bool static</text>
+<text text-anchor="start" x="8" y="-45.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SearchFiles (string directory, IEnumerable&lt;string&gt; extensions, Action&lt;string&gt; add) static</text>
+<text text-anchor="start" x="8" y="-33.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ReadFrom (string file) : IEnumerable&lt;string&gt; static</text>
+<text text-anchor="start" x="8" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ValidFilename (string humanReadableName) : string static</text>
+<text text-anchor="start" x="8" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SearchFiles (IEnumerable&lt;string&gt; directories, IEnumerable&lt;string&gt; extensions, Action&lt;string&gt; add) static</text>
 </g>
 </g>
 </svg>

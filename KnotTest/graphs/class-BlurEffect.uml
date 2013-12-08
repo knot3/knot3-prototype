@@ -3,9 +3,9 @@ public class BlurEffect : RenderEffect
     - testEffect : Effect static
   Methods:
     + BlurEffect  (GameState state)
-    + Begin  (Color background, GameTime gameTime) override
-    + End  (GameTime gameTime) override
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+    + Begin  (Color background, GameTime gameTime)
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+    + End  (GameTime gameTime)
 
 public abstract class RenderEffect : IRenderEffect
   Attributes:
@@ -22,6 +22,32 @@ public abstract class RenderEffect : IRenderEffect
     + Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
     + RemapModel  (Model model) virtual
     + DrawModel  (GameModel model, GameTime gameTime) virtual
+
+public interface IRenderEffect : 
+  Attributes:
+    + RenderTarget : RenderTarget2D
+  Methods:
+    + Begin  (GameTime gameTime)
+    + End  (GameTime gameTime)
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+    + RemapModel  (Model model)
+    + DrawModel  (GameModel model, GameTime gameTime)
+
+public abstract class RenderEffect : IRenderEffect
+  Attributes:
+    - background : Color
+    - renderTarget : RenderTargetCache
+    - spriteBatch : SpriteBatch
+    # state : GameState
+    + RenderTarget : RenderTarget2D
+  Methods:
+    + RenderEffect  (GameState state)
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
+    + DrawModel  (GameModel model, GameTime gameTime) virtual
+    + RemapModel  (Model model) virtual
+    + Begin  (GameTime gameTime)
+    + Begin  (Color background, GameTime gameTime) virtual
+    + End  (GameTime gameTime) virtual
 
 public interface IRenderEffect : 
   Attributes:

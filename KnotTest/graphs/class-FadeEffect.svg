@@ -11,17 +11,17 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-538 255,-538 255,5 -4,5"/>
 <!-- Box_FadeEffect -->
 <g id="node1" class="node"><title>Box_FadeEffect</title>
-<polygon fill="#fcfcda" stroke="black" points="-0.5,-1 -0.5,-121 250.5,-121 250.5,-1 -0.5,-1"/>
+<polygon fill="#fcfcda" stroke="black" points="15.5,-1 15.5,-121 234.5,-121 234.5,-1 15.5,-1"/>
 <text text-anchor="middle" x="125" y="-109.8" font-family="Helvetica,sans-Serif" font-size="8.00">FadeEffect</text>
-<polyline fill="none" stroke="black" points="-0.5,-101 250.5,-101 "/>
-<text text-anchor="start" x="7.5" y="-89.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="7.5" y="-77.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; lastFrame : RenderTarget2D</text>
-<text text-anchor="start" x="7.5" y="-65.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; alpha : float</text>
-<text text-anchor="start" x="7.5" y="-53.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsFinished : bool</text>
-<text text-anchor="start" x="7.5" y="-41.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
-<polyline fill="none" stroke="black" points="-0.5,-33 250.5,-33 "/>
-<text text-anchor="start" x="7.5" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ FadeEffect (GameState state, GameState oldState)</text>
-<text text-anchor="start" x="7.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (SpriteBatch spriteBatch, GameTime gameTime) override</text>
+<polyline fill="none" stroke="black" points="15.5,-101 234.5,-101 "/>
+<text text-anchor="start" x="23.5" y="-89.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
+<text text-anchor="start" x="23.5" y="-77.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; alpha : float</text>
+<text text-anchor="start" x="23.5" y="-65.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; lastFrame : RenderTarget2D</text>
+<text text-anchor="start" x="23.5" y="-53.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsFinished : bool</text>
+<text text-anchor="start" x="23.5" y="-41.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
+<polyline fill="none" stroke="black" points="15.5,-33 234.5,-33 "/>
+<text text-anchor="start" x="23.5" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ FadeEffect (GameState state, GameState oldState)</text>
+<text text-anchor="start" x="23.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (SpriteBatch spriteBatch, GameTime gameTime)</text>
 </g>
 <!-- Box_RenderEffect -->
 <g id="node2" class="node"><title>Box_RenderEffect</title>
@@ -29,20 +29,20 @@
 <text text-anchor="middle" x="125" y="-351.8" font-family="Helvetica,sans-Serif" font-size="8.00">RenderEffect</text>
 <polyline fill="none" stroke="black" points="0,-343 250,-343 "/>
 <text text-anchor="start" x="8" y="-331.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="8" y="-319.8" font-family="Helvetica,sans-Serif" font-size="8.00"># state : GameState</text>
+<text text-anchor="start" x="8" y="-319.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; background : Color</text>
 <text text-anchor="start" x="8" y="-307.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; renderTarget : RenderTargetCache</text>
-<text text-anchor="start" x="8" y="-295.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; background : Color</text>
-<text text-anchor="start" x="8" y="-283.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
+<text text-anchor="start" x="8" y="-295.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
+<text text-anchor="start" x="8" y="-283.8" font-family="Helvetica,sans-Serif" font-size="8.00"># state : GameState</text>
 <text text-anchor="start" x="8" y="-271.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RenderTarget : RenderTarget2D</text>
 <text text-anchor="start" x="8" y="-259.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="0,-251 250,-251 "/>
 <text text-anchor="start" x="8" y="-239.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RenderEffect (GameState state)</text>
-<text text-anchor="start" x="8" y="-227.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Begin (GameTime gameTime)</text>
-<text text-anchor="start" x="8" y="-215.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Begin (Color background, GameTime gameTime) virtual</text>
-<text text-anchor="start" x="8" y="-203.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ End (GameTime gameTime) virtual</text>
-<text text-anchor="start" x="8" y="-191.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (SpriteBatch spriteBatch, GameTime gameTime) abstract</text>
-<text text-anchor="start" x="8" y="-179.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RemapModel (Model model) virtual</text>
-<text text-anchor="start" x="8" y="-167.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ DrawModel (GameModel model, GameTime gameTime) virtual</text>
+<text text-anchor="start" x="8" y="-227.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (SpriteBatch spriteBatch, GameTime gameTime) abstract</text>
+<text text-anchor="start" x="8" y="-215.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ DrawModel (GameModel model, GameTime gameTime) virtual</text>
+<text text-anchor="start" x="8" y="-203.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RemapModel (Model model) virtual</text>
+<text text-anchor="start" x="8" y="-191.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Begin (GameTime gameTime)</text>
+<text text-anchor="start" x="8" y="-179.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Begin (Color background, GameTime gameTime) virtual</text>
+<text text-anchor="start" x="8" y="-167.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ End (GameTime gameTime) virtual</text>
 </g>
 <!-- Box_RenderEffect&#45;&gt;Box_FadeEffect -->
 <g id="edge2" class="edge"><title>Box_RenderEffect&#45;&gt;Box_FadeEffect</title>
@@ -66,8 +66,13 @@
 </g>
 <!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
 <g id="edge4" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
-<path fill="none" stroke="midnightblue" d="M125,-390.867C125,-381.791 125,-372.415 125,-363.051"/>
-<polygon fill="none" stroke="midnightblue" points="121.5,-390.97 125,-400.97 128.5,-390.97 121.5,-390.97"/>
+<path fill="none" stroke="midnightblue" d="M118.458,-390.867C118.315,-381.791 118.245,-372.415 118.25,-363.051"/>
+<polygon fill="none" stroke="midnightblue" points="114.961,-391.039 118.652,-400.97 121.96,-390.905 114.961,-391.039"/>
+</g>
+<!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
+<g id="edge6" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
+<path fill="none" stroke="midnightblue" d="M131.542,-390.867C131.685,-381.791 131.755,-372.415 131.75,-363.051"/>
+<polygon fill="none" stroke="midnightblue" points="128.04,-390.905 131.348,-400.97 135.039,-391.039 128.04,-390.905"/>
 </g>
 </g>
 </svg>

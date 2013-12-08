@@ -15,13 +15,13 @@
 <text text-anchor="middle" x="118" y="-109.8" font-family="Helvetica,sans-Serif" font-size="8.00">ShadowGameModel</text>
 <polyline fill="none" stroke="black" points="0,-101 236,-101 "/>
 <text text-anchor="start" x="8" y="-89.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="8" y="-77.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; Model : GameModel</text>
-<text text-anchor="start" x="8" y="-65.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ShadowColor : Color</text>
+<text text-anchor="start" x="8" y="-77.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ShadowColor : Color</text>
+<text text-anchor="start" x="8" y="-65.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; Model : GameModel</text>
 <text text-anchor="start" x="8" y="-53.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ShadowAlpha : float</text>
 <text text-anchor="start" x="8" y="-41.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="0,-33 236,-33 "/>
 <text text-anchor="start" x="8" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ShadowGameModel (GameState state, GameModel model)</text>
-<text text-anchor="start" x="8" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime) override</text>
+<text text-anchor="start" x="8" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime)</text>
 </g>
 <!-- Box_ShadowGameObject -->
 <g id="node2" class="node"><title>Box_ShadowGameObject</title>
@@ -29,19 +29,19 @@
 <text text-anchor="middle" x="118" y="-339.8" font-family="Helvetica,sans-Serif" font-size="8.00">ShadowGameObject</text>
 <polyline fill="none" stroke="black" points="3.5,-331 232.5,-331 "/>
 <text text-anchor="start" x="11.5" y="-319.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="11.5" y="-307.8" font-family="Helvetica,sans-Serif" font-size="8.00"># state : GameState</text>
-<text text-anchor="start" x="11.5" y="-295.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; Obj : IGameObject</text>
+<text text-anchor="start" x="11.5" y="-307.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; Obj : IGameObject</text>
+<text text-anchor="start" x="11.5" y="-295.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OriginalPosition : Vector3</text>
 <text text-anchor="start" x="11.5" y="-283.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>
 <text text-anchor="start" x="11.5" y="-271.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic</text>
-<text text-anchor="start" x="11.5" y="-259.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ShadowPosition : Vector3</text>
-<text text-anchor="start" x="11.5" y="-247.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OriginalPosition : Vector3</text>
+<text text-anchor="start" x="11.5" y="-259.8" font-family="Helvetica,sans-Serif" font-size="8.00"># state : GameState</text>
+<text text-anchor="start" x="11.5" y="-247.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ShadowPosition : Vector3</text>
 <text text-anchor="start" x="11.5" y="-235.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="3.5,-227 232.5,-227 "/>
-<text text-anchor="start" x="11.5" y="-215.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ShadowGameObject (GameState state, IGameObject obj)</text>
-<text text-anchor="start" x="11.5" y="-203.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime) virtual</text>
-<text text-anchor="start" x="11.5" y="-191.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime) virtual</text>
-<text text-anchor="start" x="11.5" y="-179.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance</text>
-<text text-anchor="start" x="11.5" y="-167.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Center () : Vector3</text>
+<text text-anchor="start" x="11.5" y="-215.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime) virtual</text>
+<text text-anchor="start" x="11.5" y="-203.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance</text>
+<text text-anchor="start" x="11.5" y="-191.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ShadowGameObject (GameState state, IGameObject obj)</text>
+<text text-anchor="start" x="11.5" y="-179.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Center () : Vector3</text>
+<text text-anchor="start" x="11.5" y="-167.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime) virtual</text>
 </g>
 <!-- Box_ShadowGameObject&#45;&gt;Box_ShadowGameModel -->
 <g id="edge2" class="edge"><title>Box_ShadowGameObject&#45;&gt;Box_ShadowGameModel</title>
@@ -65,8 +65,13 @@
 </g>
 <!-- Box_IGameObject&#45;&gt;Box_ShadowGameObject -->
 <g id="edge4" class="edge"><title>Box_IGameObject&#45;&gt;Box_ShadowGameObject</title>
-<path fill="none" stroke="midnightblue" d="M118,-378.914C118,-369.899 118,-360.608 118,-351.359"/>
-<polygon fill="none" stroke="midnightblue" points="114.5,-378.958 118,-388.958 121.5,-378.958 114.5,-378.958"/>
+<path fill="none" stroke="midnightblue" d="M111.425,-378.914C111.291,-369.899 111.234,-360.608 111.254,-351.359"/>
+<polygon fill="none" stroke="midnightblue" points="107.926,-379.024 111.609,-388.958 114.925,-378.896 107.926,-379.024"/>
+</g>
+<!-- Box_IGameObject&#45;&gt;Box_ShadowGameObject -->
+<g id="edge6" class="edge"><title>Box_IGameObject&#45;&gt;Box_ShadowGameObject</title>
+<path fill="none" stroke="midnightblue" d="M124.575,-378.914C124.709,-369.899 124.766,-360.608 124.746,-351.359"/>
+<polygon fill="none" stroke="midnightblue" points="121.075,-378.896 124.391,-388.958 128.074,-379.024 121.075,-378.896"/>
 </g>
 </g>
 </svg>

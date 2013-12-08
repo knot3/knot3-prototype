@@ -11,14 +11,14 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-502 255,-502 255,5 -4,5"/>
 <!-- Box_NoEffect -->
 <g id="node1" class="node"><title>Box_NoEffect</title>
-<polygon fill="#fcfcda" stroke="black" points="-0.5,-1 -0.5,-85 250.5,-85 250.5,-1 -0.5,-1"/>
+<polygon fill="#fcfcda" stroke="black" points="15.5,-1 15.5,-85 234.5,-85 234.5,-1 15.5,-1"/>
 <text text-anchor="middle" x="125" y="-73.8" font-family="Helvetica,sans-Serif" font-size="8.00">NoEffect</text>
-<polyline fill="none" stroke="black" points="-0.5,-65 250.5,-65 "/>
-<text text-anchor="start" x="7.5" y="-53.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="7.5" y="-41.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
-<polyline fill="none" stroke="black" points="-0.5,-33 250.5,-33 "/>
-<text text-anchor="start" x="7.5" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ NoEffect (GameState state)</text>
-<text text-anchor="start" x="7.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (SpriteBatch spriteBatch, GameTime gameTime) override</text>
+<polyline fill="none" stroke="black" points="15.5,-65 234.5,-65 "/>
+<text text-anchor="start" x="23.5" y="-53.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
+<text text-anchor="start" x="23.5" y="-41.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
+<polyline fill="none" stroke="black" points="15.5,-33 234.5,-33 "/>
+<text text-anchor="start" x="23.5" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (SpriteBatch spriteBatch, GameTime gameTime)</text>
+<text text-anchor="start" x="23.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ NoEffect (GameState state)</text>
 </g>
 <!-- Box_RenderEffect -->
 <g id="node2" class="node"><title>Box_RenderEffect</title>
@@ -26,20 +26,20 @@
 <text text-anchor="middle" x="125" y="-315.8" font-family="Helvetica,sans-Serif" font-size="8.00">RenderEffect</text>
 <polyline fill="none" stroke="black" points="0,-307 250,-307 "/>
 <text text-anchor="start" x="8" y="-295.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="8" y="-283.8" font-family="Helvetica,sans-Serif" font-size="8.00"># state : GameState</text>
+<text text-anchor="start" x="8" y="-283.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; background : Color</text>
 <text text-anchor="start" x="8" y="-271.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; renderTarget : RenderTargetCache</text>
-<text text-anchor="start" x="8" y="-259.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; background : Color</text>
-<text text-anchor="start" x="8" y="-247.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
+<text text-anchor="start" x="8" y="-259.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
+<text text-anchor="start" x="8" y="-247.8" font-family="Helvetica,sans-Serif" font-size="8.00"># state : GameState</text>
 <text text-anchor="start" x="8" y="-235.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RenderTarget : RenderTarget2D</text>
 <text text-anchor="start" x="8" y="-223.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="0,-215 250,-215 "/>
 <text text-anchor="start" x="8" y="-203.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RenderEffect (GameState state)</text>
-<text text-anchor="start" x="8" y="-191.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Begin (GameTime gameTime)</text>
-<text text-anchor="start" x="8" y="-179.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Begin (Color background, GameTime gameTime) virtual</text>
-<text text-anchor="start" x="8" y="-167.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ End (GameTime gameTime) virtual</text>
-<text text-anchor="start" x="8" y="-155.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (SpriteBatch spriteBatch, GameTime gameTime) abstract</text>
-<text text-anchor="start" x="8" y="-143.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RemapModel (Model model) virtual</text>
-<text text-anchor="start" x="8" y="-131.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ DrawModel (GameModel model, GameTime gameTime) virtual</text>
+<text text-anchor="start" x="8" y="-191.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (SpriteBatch spriteBatch, GameTime gameTime) abstract</text>
+<text text-anchor="start" x="8" y="-179.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ DrawModel (GameModel model, GameTime gameTime) virtual</text>
+<text text-anchor="start" x="8" y="-167.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RemapModel (Model model) virtual</text>
+<text text-anchor="start" x="8" y="-155.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Begin (GameTime gameTime)</text>
+<text text-anchor="start" x="8" y="-143.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Begin (Color background, GameTime gameTime) virtual</text>
+<text text-anchor="start" x="8" y="-131.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ End (GameTime gameTime) virtual</text>
 </g>
 <!-- Box_RenderEffect&#45;&gt;Box_NoEffect -->
 <g id="edge2" class="edge"><title>Box_RenderEffect&#45;&gt;Box_NoEffect</title>
@@ -63,8 +63,13 @@
 </g>
 <!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
 <g id="edge4" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
-<path fill="none" stroke="midnightblue" d="M125,-354.867C125,-345.791 125,-336.415 125,-327.051"/>
-<polygon fill="none" stroke="midnightblue" points="121.5,-354.97 125,-364.97 128.5,-354.97 121.5,-354.97"/>
+<path fill="none" stroke="midnightblue" d="M118.458,-354.867C118.315,-345.791 118.245,-336.415 118.25,-327.051"/>
+<polygon fill="none" stroke="midnightblue" points="114.961,-355.039 118.652,-364.97 121.96,-354.905 114.961,-355.039"/>
+</g>
+<!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
+<g id="edge6" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
+<path fill="none" stroke="midnightblue" d="M131.542,-354.867C131.685,-345.791 131.755,-336.415 131.75,-327.051"/>
+<polygon fill="none" stroke="midnightblue" points="128.04,-354.905 131.348,-364.97 135.039,-355.039 128.04,-354.905"/>
 </g>
 </g>
 </svg>

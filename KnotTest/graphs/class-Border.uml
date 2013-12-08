@@ -1,8 +1,8 @@
 public class Border : 
   Attributes:
-    + Color : Color
-    + Size : Vector2
     + Padding : Vector2
+    + Size : Vector2
+    + Color : Color
     + Zero : Border static
   Methods:
     + Border  (Color color, Vector2 size, Vector2 padding)

@@ -15,11 +15,11 @@
 <text text-anchor="middle" x="107" y="-121.8" font-family="Helvetica,sans-Serif" font-size="8.00">GameStates</text>
 <polyline fill="none" stroke="black" points="0,-113 214,-113 "/>
 <text text-anchor="start" x="8" y="-101.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="8" y="-89.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ CreativeMode : CreativeModeScreen static</text>
-<text text-anchor="start" x="8" y="-77.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ StartScreen : StartScreen static</text>
-<text text-anchor="start" x="8" y="-65.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OptionScreen : OptionScreen static</text>
+<text text-anchor="start" x="8" y="-89.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ LoadSavegameScreen : LoadSavegameScreen static</text>
+<text text-anchor="start" x="8" y="-77.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OptionScreen : OptionScreen static</text>
+<text text-anchor="start" x="8" y="-65.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ StartScreen : StartScreen static</text>
 <text text-anchor="start" x="8" y="-53.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ VideoOptionScreen : VideoOptionScreen static</text>
-<text text-anchor="start" x="8" y="-41.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ LoadSavegameScreen : LoadSavegameScreen static</text>
+<text text-anchor="start" x="8" y="-41.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ CreativeMode : CreativeModeScreen static</text>
 <text text-anchor="start" x="8" y="-29.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="0,-21 214,-21 "/>
 <text text-anchor="start" x="8" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Initialize (Game game) static</text>

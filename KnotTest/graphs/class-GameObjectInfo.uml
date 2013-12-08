@@ -1,16 +1,16 @@
 public class GameObjectInfo : IEquatable<GameObjectInfo>
   Attributes:
-    + Position : Vector3
-    + IsVisible : bool
-    + IsSelectable : bool
     + IsMovable : bool
-    + operator : bool static
-    + operator ! : bool static
+    + IsSelectable : bool
+    + IsVisible : bool
+    + Position : Vector3
   Methods:
-    + GameObjectInfo  ()
+    + GameObjectInfo ()
+    + operator (GameObjectInfo o1, GameObjectInfo o2) : bool static
+    + Equals (Object obj) : bool
+    + GetHashCode () : int
+    + operator ! (GameObjectInfo o1, GameObjectInfo o2) : bool static
     + Equals (GameObjectInfo other) : bool virtual
-    + Equals (Object obj) : bool override
-    + GetHashCode () : int override
 
 public class GameModelInfo : GameObjectInfo
   Attributes:
@@ -41,6 +41,26 @@ public class PipeModelInfo : GameModelInfo
     + PipeModelInfo  (EdgeList edges, Edge edge, Vector3 offset)
     + Equals (GameObjectInfo other) : bool override
 
+public class NodeModelInfo : GameModelInfo
+  Attributes:
+    + EdgeA : Edge
+    + EdgeB : Edge
+    + Edges : EdgeList
+  Methods:
+    + NodeModelInfo  (EdgeList edges, Edge edgeA, Edge edgeB, Vector3 offset)
+    + Equals (GameObjectInfo other) : bool
+
+public class PipeModelInfo : GameModelInfo
+  Attributes:
+    + Edge : Edge
+    + Direction : Vector3
+    + PositionFrom : Vector3
+    + PositionTo : Vector3
+    + Edges : EdgeList
+  Methods:
+    + PipeModelInfo  (EdgeList edges, Edge edge, Vector3 offset)
+    + Equals (GameObjectInfo other) : bool
+
 public class TexturedRectangleInfo : GameObjectInfo
   Attributes:
     + Texturename : string
@@ -51,4 +71,64 @@ public class TexturedRectangleInfo : GameObjectInfo
   Methods:
     + TexturedRectangleInfo  (string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
     + Equals (GameObjectInfo other) : bool override
+
+public class GameModelInfo : GameObjectInfo
+  Attributes:
+    + Rotation : Angles3
+    + Scale : float
+    + Modelname : string
+  Methods:
+    + GameModelInfo  (string modelname)
+    + Equals (GameObjectInfo other) : bool
+
+public class NodeModelInfo : GameModelInfo
+  Attributes:
+    + Edges : EdgeList
+    + EdgeA : Edge
+    + EdgeB : Edge
+  Methods:
+    + NodeModelInfo  (EdgeList edges, Edge edgeA, Edge edgeB, Vector3 offset)
+    + Equals (GameObjectInfo other) : bool override
+
+public class PipeModelInfo : GameModelInfo
+  Attributes:
+    + Edges : EdgeList
+    + Edge : Edge
+    + Direction : Vector3
+    + PositionFrom : Vector3
+    + PositionTo : Vector3
+  Methods:
+    + PipeModelInfo  (EdgeList edges, Edge edge, Vector3 offset)
+    + Equals (GameObjectInfo other) : bool override
+
+public class NodeModelInfo : GameModelInfo
+  Attributes:
+    + EdgeA : Edge
+    + EdgeB : Edge
+    + Edges : EdgeList
+  Methods:
+    + NodeModelInfo  (EdgeList edges, Edge edgeA, Edge edgeB, Vector3 offset)
+    + Equals (GameObjectInfo other) : bool
+
+public class PipeModelInfo : GameModelInfo
+  Attributes:
+    + Edge : Edge
+    + Direction : Vector3
+    + PositionFrom : Vector3
+    + PositionTo : Vector3
+    + Edges : EdgeList
+  Methods:
+    + PipeModelInfo  (EdgeList edges, Edge edge, Vector3 offset)
+    + Equals (GameObjectInfo other) : bool
+
+public class TexturedRectangleInfo : GameObjectInfo
+  Attributes:
+    + Left : Vector3
+    + Up : Vector3
+    + Height : float
+    + Width : float
+    + Texturename : string
+  Methods:
+    + TexturedRectangleInfo  (string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
+    + Equals (GameObjectInfo other) : bool
 

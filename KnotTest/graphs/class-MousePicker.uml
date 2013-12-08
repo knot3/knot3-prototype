@@ -4,8 +4,23 @@ public class MousePicker : GameStateComponent
     - lastRayCheck : double
   Methods:
     + MousePicker  (GameState state, World world)
-    + Update  (GameTime gameTime) override
+    + Update  (GameTime gameTime)
     + UpdateMouseRay  (GameTime gameTime)
+
+public class GameStateComponent : Xna.GameComponent, IGameStateComponent
+  Attributes:
+    # InputOrder : DisplayLayer
+    + state : GameState
+    + Index : int
+  Methods:
+    + GameStateComponent  (GameState state, DisplayLayer inputOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
   Attributes:

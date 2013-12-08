@@ -67,3 +67,104 @@ public class MenuButton : MenuItem
   Methods:
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+public class DropDownMenu : MenuItem
+  Attributes:
+    - selected : MenuButton
+    - dropdown : VerticalMenu
+  Methods:
+    - ValuePosition (int dummy) : Vector2
+    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    - DropDownBackgroundColor (ItemState itemState) : Color
+    - DropDownForegroundColor (ItemState itemState) : Color
+    - ValueSize (int dummy) : Vector2
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + Collapse ()
+    + Draw  (GameTime gameTime)
+    + AddEntries  (DistinctOptionInfo option)
+    + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+
+public class MenuButton : MenuItem
+  Attributes:
+  Methods:
+    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+
+public class ColorPicker : Widget, IMouseEventListener
+  Attributes:
+    - tiles : List<Vector2>
+    + SelectedColor : Color
+    + IsMouseEventEnabled : bool
+    - colors : List<Color>
+    # spriteBatch : SpriteBatch
+    + OnSelectColor : Action<Color>
+  Methods:
+    - Vector2 tileSize (0.032f, 0.032f) : readonly static
+    - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
+    + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Draw  (GameTime gameTime)
+    + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + SetHovered  (bool hovered)
+    - CreateColors (int num) : IEnumerable<Color> static
+    - SelectColor  (Color color)
+    + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+
+public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
+  Attributes:
+    # spriteBatch : SpriteBatch
+    + IsMouseEventEnabled : bool
+    + ValidKeys : List<Keys>
+    + IsKeyEventEnabled : bool
+    + Info : MenuItemInfo
+  Methods:
+    + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + Collapse () virtual
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + MinimumSize (SpriteFont font) : Vector2
+    + TextPosition (SpriteFont font) : Vector2
+    + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    + Draw  (GameTime gameTime)
+    + SetHovered  (bool hovered)
+
+public class DropDownMenu : MenuItem
+  Attributes:
+    - dropdown : VerticalMenu
+    - selected : MenuButton
+  Methods:
+    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    + AddEntries  (DistinctOptionInfo option)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + Collapse  () override
+    + Draw  (GameTime gameTime) override
+    - ValuePosition (int dummy = 0) : Vector2
+    - ValueSize (int dummy = 0) : Vector2
+    - DropDownBackgroundColor (ItemState itemState) : Color
+    - DropDownForegroundColor (ItemState itemState) : Color
+
+public class MenuButton : MenuItem
+  Attributes:
+  Methods:
+    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+
+public class DropDownMenu : MenuItem
+  Attributes:
+    - selected : MenuButton
+    - dropdown : VerticalMenu
+  Methods:
+    - ValuePosition (int dummy) : Vector2
+    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    - DropDownBackgroundColor (ItemState itemState) : Color
+    - DropDownForegroundColor (ItemState itemState) : Color
+    - ValueSize (int dummy) : Vector2
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + Collapse ()
+    + Draw  (GameTime gameTime)
+    + AddEntries  (DistinctOptionInfo option)
+    + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+
+public class MenuButton : MenuItem
+  Attributes:
+  Methods:
+    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+

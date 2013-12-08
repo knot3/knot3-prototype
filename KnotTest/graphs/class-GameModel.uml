@@ -1,25 +1,25 @@
 public class GameModel : IGameObject
   Attributes:
-    # state : GameState
-    + Info : dynamic
-    + World : World
-    + Model : Model virtual
+    - _rotation : Angles3
+    - _worldMatrix : Matrix
+    - _position : Vector3
     + BaseColor : Color
     + HighlightColor : Color
-    + HighlightIntensity : float
-    + Alpha : float
-    - _scale : float
-    - _rotation : Angles3
-    - _position : Vector3
-    - _worldMatrix : Matrix
     + WorldMatrix : Matrix
+    + Info : dynamic
+    + Alpha : float
+    + HighlightIntensity : float
+    - _scale : float
+    # state : GameState
+    + World : World
+    + Model : Model virtual
   Methods:
+    - UpdateWorldMatrix ()
     + GameModel  (GameState state, GameModelInfo info)
-    + Update  (GameTime gameTime) virtual
-    + Draw  (GameTime gameTime) virtual
     + Intersects (Ray ray) : GameObjectDistance virtual
+    + Draw  (GameTime gameTime) virtual
     + Center () : Vector3
-    - UpdateWorldMatrix  ()
+    + Update  (GameTime gameTime) virtual
 
 public interface IGameObject : 
   Attributes:
@@ -54,4 +54,28 @@ public class TestModel : GameModel
   Methods:
     + TestModel  (GameState state, GameModelInfo info)
     + Update  (GameTime gameTime) override
+
+public class NodeModel : GameModel
+  Attributes:
+    + Info : NodeModelInfo
+  Methods:
+    + NodeModel  (GameState state, NodeModelInfo info)
+    + Draw  (GameTime gameTime)
+
+public class PipeModel : GameModel
+  Attributes:
+    - Bounds : BoundingSphere[]
+    + Info : PipeModelInfo
+  Methods:
+    + OnDataChange () : Action
+    + Draw  (GameTime gameTime)
+    + PipeModel  (GameState state, PipeModelInfo info)
+    + Intersects (Ray ray) : GameObjectDistance
+    + Update  (GameTime gameTime)
+
+public class TestModel : GameModel
+  Attributes:
+  Methods:
+    + Update  (GameTime gameTime)
+    + TestModel  (GameState state, GameModelInfo info)
 

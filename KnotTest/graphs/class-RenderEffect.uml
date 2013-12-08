@@ -1,18 +1,18 @@
 public abstract class RenderEffect : IRenderEffect
   Attributes:
-    # state : GameState
-    - renderTarget : RenderTargetCache
     - background : Color
+    - renderTarget : RenderTargetCache
     - spriteBatch : SpriteBatch
+    # state : GameState
     + RenderTarget : RenderTarget2D
   Methods:
     + RenderEffect  (GameState state)
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
+    + DrawModel  (GameModel model, GameTime gameTime) virtual
+    + RemapModel  (Model model) virtual
     + Begin  (GameTime gameTime)
     + Begin  (Color background, GameTime gameTime) virtual
     + End  (GameTime gameTime) virtual
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
-    + RemapModel  (Model model) virtual
-    + DrawModel  (GameModel model, GameTime gameTime) virtual
 
 public interface IRenderEffect : 
   Attributes:
@@ -62,4 +62,43 @@ public sealed class NoEffect : RenderEffect
   Methods:
     + NoEffect  (GameState state)
     + Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+
+public class BlurEffect : RenderEffect
+  Attributes:
+    - testEffect : Effect static
+  Methods:
+    + BlurEffect  (GameState state)
+    + Begin  (Color background, GameTime gameTime)
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+    + End  (GameTime gameTime)
+
+public class CelShadingEffect : RenderEffect
+  Attributes:
+    - outlineShader : Effect
+    - celMap : Texture2D
+    - lightDirection : Vector4
+    - outlineThickness : float
+    - outlineThreshold : float
+    - celShader : Effect
+    + Color : Color
+  Methods:
+    + CelShadingEffect  (GameState state)
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+    + DrawModel  (GameModel model, GameTime gameTime)
+    + RemapModel  (Model model)
+
+public class FadeEffect : RenderEffect
+  Attributes:
+    - alpha : float
+    - lastFrame : RenderTarget2D
+    + IsFinished : bool
+  Methods:
+    + FadeEffect  (GameState state, GameState oldState)
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+
+public sealed class NoEffect : RenderEffect
+  Attributes:
+  Methods:
+    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+    + NoEffect  (GameState state)
 

@@ -15,11 +15,11 @@
 <text text-anchor="middle" x="106" y="-85.8" font-family="Helvetica,sans-Serif" font-size="8.00">NodeModel</text>
 <polyline fill="none" stroke="black" points="2.5,-77 209.5,-77 "/>
 <text text-anchor="start" x="10.5" y="-65.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="10.5" y="-53.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : NodeModelInfo new</text>
+<text text-anchor="start" x="10.5" y="-53.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : NodeModelInfo</text>
 <text text-anchor="start" x="10.5" y="-41.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="2.5,-33 209.5,-33 "/>
 <text text-anchor="start" x="10.5" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ NodeModel (GameState state, NodeModelInfo info)</text>
-<text text-anchor="start" x="10.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime) override</text>
+<text text-anchor="start" x="10.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime)</text>
 </g>
 <!-- Box_GameModel -->
 <g id="node2" class="node"><title>Box_GameModel</title>
@@ -27,27 +27,27 @@
 <text text-anchor="middle" x="106" y="-411.8" font-family="Helvetica,sans-Serif" font-size="8.00">GameModel</text>
 <polyline fill="none" stroke="black" points="0,-403 212,-403 "/>
 <text text-anchor="start" x="8" y="-391.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="8" y="-379.8" font-family="Helvetica,sans-Serif" font-size="8.00"># state : GameState</text>
-<text text-anchor="start" x="8" y="-367.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic</text>
-<text text-anchor="start" x="8" y="-355.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>
-<text text-anchor="start" x="8" y="-343.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Model : Model virtual</text>
-<text text-anchor="start" x="8" y="-331.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ BaseColor : Color</text>
-<text text-anchor="start" x="8" y="-319.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ HighlightColor : Color</text>
-<text text-anchor="start" x="8" y="-307.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ HighlightIntensity : float</text>
+<text text-anchor="start" x="8" y="-379.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _rotation : Angles3</text>
+<text text-anchor="start" x="8" y="-367.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _worldMatrix : Matrix</text>
+<text text-anchor="start" x="8" y="-355.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _position : Vector3</text>
+<text text-anchor="start" x="8" y="-343.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ BaseColor : Color</text>
+<text text-anchor="start" x="8" y="-331.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ HighlightColor : Color</text>
+<text text-anchor="start" x="8" y="-319.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ WorldMatrix : Matrix</text>
+<text text-anchor="start" x="8" y="-307.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic</text>
 <text text-anchor="start" x="8" y="-295.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Alpha : float</text>
-<text text-anchor="start" x="8" y="-283.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _scale : float</text>
-<text text-anchor="start" x="8" y="-271.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _rotation : Angles3</text>
-<text text-anchor="start" x="8" y="-259.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _position : Vector3</text>
-<text text-anchor="start" x="8" y="-247.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _worldMatrix : Matrix</text>
-<text text-anchor="start" x="8" y="-235.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ WorldMatrix : Matrix</text>
+<text text-anchor="start" x="8" y="-283.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ HighlightIntensity : float</text>
+<text text-anchor="start" x="8" y="-271.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _scale : float</text>
+<text text-anchor="start" x="8" y="-259.8" font-family="Helvetica,sans-Serif" font-size="8.00"># state : GameState</text>
+<text text-anchor="start" x="8" y="-247.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>
+<text text-anchor="start" x="8" y="-235.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Model : Model virtual</text>
 <text text-anchor="start" x="8" y="-223.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="0,-215 212,-215 "/>
-<text text-anchor="start" x="8" y="-203.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ GameModel (GameState state, GameModelInfo info)</text>
-<text text-anchor="start" x="8" y="-191.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime) virtual</text>
-<text text-anchor="start" x="8" y="-179.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime) virtual</text>
-<text text-anchor="start" x="8" y="-167.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance virtual</text>
+<text text-anchor="start" x="8" y="-203.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; UpdateWorldMatrix ()</text>
+<text text-anchor="start" x="8" y="-191.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ GameModel (GameState state, GameModelInfo info)</text>
+<text text-anchor="start" x="8" y="-179.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance virtual</text>
+<text text-anchor="start" x="8" y="-167.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime) virtual</text>
 <text text-anchor="start" x="8" y="-155.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Center () : Vector3</text>
-<text text-anchor="start" x="8" y="-143.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; UpdateWorldMatrix ()</text>
+<text text-anchor="start" x="8" y="-143.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime) virtual</text>
 </g>
 <!-- Box_GameModel&#45;&gt;Box_NodeModel -->
 <g id="edge2" class="edge"><title>Box_GameModel&#45;&gt;Box_NodeModel</title>
@@ -71,8 +71,13 @@
 </g>
 <!-- Box_IGameObject&#45;&gt;Box_GameModel -->
 <g id="edge4" class="edge"><title>Box_IGameObject&#45;&gt;Box_GameModel</title>
-<path fill="none" stroke="midnightblue" d="M106,-450.739C106,-441.953 106,-432.79 106,-423.469"/>
-<polygon fill="none" stroke="midnightblue" points="102.5,-450.866 106,-460.866 109.5,-450.866 102.5,-450.866"/>
+<path fill="none" stroke="midnightblue" d="M99.7158,-450.739C99.5359,-441.953 99.4081,-432.79 99.3324,-423.469"/>
+<polygon fill="none" stroke="midnightblue" points="96.2197,-450.95 99.951,-460.866 103.218,-450.788 96.2197,-450.95"/>
+</g>
+<!-- Box_IGameObject&#45;&gt;Box_GameModel -->
+<g id="edge6" class="edge"><title>Box_IGameObject&#45;&gt;Box_GameModel</title>
+<path fill="none" stroke="midnightblue" d="M112.284,-450.739C112.464,-441.953 112.592,-432.79 112.668,-423.469"/>
+<polygon fill="none" stroke="midnightblue" points="108.782,-450.788 112.049,-460.866 115.78,-450.95 108.782,-450.788"/>
 </g>
 </g>
 </svg>

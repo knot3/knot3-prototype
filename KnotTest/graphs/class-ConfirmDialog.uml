@@ -1,12 +1,12 @@
 public class ConfirmDialog : Dialog
   Attributes:
     # Text : string[]
-    # OnYesClick : Action
-    # OnNoClick : Action
-    # OnCancelClick : Action
   Methods:
+    # OnYesClick () : Action
+    # OnCancelClick () : Action
+    # OnNoClick () : Action
+    # DrawDialog  (GameTime gameTime)
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
-    # DrawDialog  (GameTime gameTime) override
 
 public abstract class Dialog : Widget
   Attributes:
@@ -45,6 +45,143 @@ public interface IGameStateComponent : Xna.IGameComponent
   Methods:
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+  Attributes:
+    + state : GameState
+    + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+
+public abstract class Widget : DrawableGameStateComponent
+  Attributes:
+    + Info : WidgetInfo
+    + IsVisible : bool virtual
+  Methods:
+    + bounds () : Rectangle
+    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+  Attributes:
+    + state : GameState
+    + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+  Attributes:
+    + state : GameState
+    + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+
+public abstract class Dialog : Widget
+  Attributes:
+    # spriteBatch : SpriteBatch
+    + Done : Action
+    + buttons : Menu
+  Methods:
+    - ButtonBackgroundColor (ItemState itemState) : Color
+    # RelativeButtonSize (int n) : Vector2
+    + Dialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    - ButtonForegroundColor (ItemState itemState) : Color
+    # RelativeButtonPosition (int n) : Vector2
+    # DrawDialog  (GameTime gameTime) abstract
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + Draw  (GameTime gameTime)
+
+public abstract class Widget : DrawableGameStateComponent
+  Attributes:
+    + Info : WidgetInfo
+    + IsVisible : bool virtual
+  Methods:
+    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + bounds () : Rectangle
+
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+  Attributes:
+    + state : GameState
+    + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+  Attributes:
+    + state : GameState
+    + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+
+public abstract class Widget : DrawableGameStateComponent
+  Attributes:
+    + Info : WidgetInfo
+    + IsVisible : bool virtual
+  Methods:
+    + bounds () : Rectangle
+    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+  Attributes:
+    + state : GameState
+    + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+  Attributes:
+    + state : GameState
+    + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+
 public class TextInputDialog : ConfirmDialog
   Attributes:
     # TextInput : TextInput
@@ -53,6 +190,30 @@ public class TextInputDialog : ConfirmDialog
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
     # TextInputPosition () : Vector2
     # TextInputSize () : Vector2
+
+public class KnotSaveConfirmDialog : TextInputDialog
+  Attributes:
+  Methods:
+    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+
+public class KnotSaveConfirmDialog : TextInputDialog
+  Attributes:
+  Methods:
+    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+
+public class TextInputDialog : ConfirmDialog
+  Attributes:
+    # TextInput : TextInput
+  Methods:
+    # TextInputSize () : Vector2
+    + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    # TextInputPosition () : Vector2
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+
+public class KnotSaveConfirmDialog : TextInputDialog
+  Attributes:
+  Methods:
+    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:

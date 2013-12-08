@@ -1,15 +1,24 @@
 public class KeyHandler : GameStateComponent
   Attributes:
+    - KeyEventComponent : class
   Methods:
     + KeyHandler  (GameState state)
-    private class KeyEventComponent : 
-      Attributes:
-        + receiver : IKeyEventListener
-        + layer : int
-        + keyEvent : KeyEvent
-        + keys : List<Keys>
-      Methods:
-    + Update  (GameTime gameTime) override
+    + Update  (GameTime gameTime)
+
+public class GameStateComponent : Xna.GameComponent, IGameStateComponent
+  Attributes:
+    # InputOrder : DisplayLayer
+    + state : GameState
+    + Index : int
+  Methods:
+    + GameStateComponent  (GameState state, DisplayLayer inputOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
   Attributes:

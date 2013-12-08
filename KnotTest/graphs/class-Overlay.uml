@@ -1,24 +1,38 @@
 public class Overlay : DrawableGameStateComponent
   Attributes:
-    - spriteBatch : SpriteBatch
     - effect : BasicEffect
-    - World : World
-    - font : SpriteFont
-    - _total_frames : int
     - _elapsed_time : float
     - _fps : int
+    - World : World
+    - _total_frames : int
+    - spriteBatch : SpriteBatch
+    - font : SpriteFont
   Methods:
+    - DrawFPS  (GameTime gameTime)
+    - DrawString  (float n, int width, int height, Color color)
+    - DrawVectorCoordinates  (Vector3 vector, int width2, int width3, int width4, int height)
+    - UpdateFPS  (GameTime gameTime)
     + Overlay  (GameState state, World world)
-    # LoadContent  () override
-    + Draw  (GameTime gameTime) override
-    + Update  (GameTime gameTime) override
+    + Draw  (GameTime gameTime)
     - DrawCoordinates  (GameTime gameTime)
     - DrawOverlay  (GameTime gameTime)
-    - DrawVectorCoordinates  (Vector3 vector, int width2, int width3, int width4, int height)
     - DrawString  (string str, int width, int height, Color color)
-    - DrawString  (float n, int width, int height, Color color)
-    - UpdateFPS  (GameTime gameTime)
-    - DrawFPS  (GameTime gameTime)
+    # LoadContent ()
+    + Update  (GameTime gameTime)
+
+public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+  Attributes:
+    + state : GameState
+    + Index : int
+  Methods:
+    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    + Index : int
+  Methods:
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
   Attributes:

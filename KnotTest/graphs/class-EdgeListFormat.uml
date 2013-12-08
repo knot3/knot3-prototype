@@ -2,19 +2,19 @@ public class EdgeListFormat : IKnotFormat
   Attributes:
     + FileExtensions : string[]
   Methods:
-    + EdgeListFormat  ()
-    + LoadInfo (string filename) : KnotInfo
-    + LoadKnot (string filename) : Knot
-    + SaveKnot  (Knot knot)
-    + FindFilename (string knotName) : string
-    - ParseLines  (List<string> lines, EdgeList edges) static
-    - ParseLine (string line, out Edge edge, out Color color) : bool static
-    - ParseIntegers (string str) : IEnumerable<int> static
-    - ToLines (Knot knot) : IEnumerable<string> static
     - DecodeEdge (char c) : Edge static
+    - ParseIntegers (string str) : IEnumerable<int> static
     - EncodeEdge (Edge edge) : char static
-    - EncodeColor (Color c) : String static
+    + EdgeListFormat ()
+    + LoadKnot (string filename) : Knot
+    + FindFilename (string knotName) : string
+    + SaveKnot  (Knot knot)
     - DecodeColor (string hexString) : Color static
+    - ToLines (Knot knot) : IEnumerable<string> static
+    - EncodeColor (Color c) : String static
+    - ParseLine (string line, out Edge edge, out Color color) : bool static
+    - ParseLines  (List<string> lines, EdgeList edges) static
+    + LoadInfo (string filename) : KnotInfo
 
 public interface IKnotFormat : 
   Attributes:

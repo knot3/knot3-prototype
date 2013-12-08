@@ -1,13 +1,13 @@
 public class PipeModel : GameModel
   Attributes:
-    + Info : PipeModelInfo new
     - Bounds : BoundingSphere[]
-    + OnDataChange : Action
+    + Info : PipeModelInfo
   Methods:
+    + OnDataChange () : Action
+    + Draw  (GameTime gameTime)
     + PipeModel  (GameState state, PipeModelInfo info)
-    + Draw  (GameTime gameTime) override
-    + Update  (GameTime gameTime) override
-    + Intersects (Ray ray) : GameObjectDistance override
+    + Intersects (Ray ray) : GameObjectDistance
+    + Update  (GameTime gameTime)
 
 public class GameModel : IGameObject
   Attributes:
@@ -31,6 +31,39 @@ public class GameModel : IGameObject
     + Intersects (Ray ray) : GameObjectDistance virtual
     + Center () : Vector3
     - UpdateWorldMatrix  ()
+
+public interface IGameObject : 
+  Attributes:
+    + Info : dynamic
+    + World : World
+  Methods:
+    + Draw  (GameTime gameTime)
+    + Update  (GameTime gameTime)
+    + Intersects (Ray ray) : GameObjectDistance
+    + Center () : Vector3
+
+public class GameModel : IGameObject
+  Attributes:
+    - _rotation : Angles3
+    - _worldMatrix : Matrix
+    - _position : Vector3
+    + BaseColor : Color
+    + HighlightColor : Color
+    + WorldMatrix : Matrix
+    + Info : dynamic
+    + Alpha : float
+    + HighlightIntensity : float
+    - _scale : float
+    # state : GameState
+    + World : World
+    + Model : Model virtual
+  Methods:
+    - UpdateWorldMatrix ()
+    + GameModel  (GameState state, GameModelInfo info)
+    + Intersects (Ray ray) : GameObjectDistance virtual
+    + Draw  (GameTime gameTime) virtual
+    + Center () : Vector3
+    + Update  (GameTime gameTime) virtual
 
 public interface IGameObject : 
   Attributes:

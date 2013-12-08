@@ -11,35 +11,35 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-680 446,-680 446,5 -4,5"/>
 <!-- Box_Camera -->
 <g id="node1" class="node"><title>Box_Camera</title>
-<polygon fill="#fcfcda" stroke="black" points="186,-1 186,-337 356,-337 356,-1 186,-1"/>
+<polygon fill="#fcfcda" stroke="black" points="187,-1 187,-337 355,-337 355,-1 187,-1"/>
 <text text-anchor="middle" x="271" y="-325.8" font-family="Helvetica,sans-Serif" font-size="8.00">Camera</text>
-<polyline fill="none" stroke="black" points="186,-317 356,-317 "/>
-<text text-anchor="start" x="194" y="-305.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="194" y="-293.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; World : World</text>
-<text text-anchor="start" x="194" y="-281.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ WorldMatrix : Matrix</text>
-<text text-anchor="start" x="194" y="-269.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ViewMatrix : Matrix</text>
-<text text-anchor="start" x="194" y="-257.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ProjectionMatrix : Matrix</text>
-<text text-anchor="start" x="194" y="-245.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ DefaultPosition : Vector3</text>
-<text text-anchor="start" x="194" y="-233.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Position : Vector3</text>
-<text text-anchor="start" x="194" y="-221.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Target : Vector3</text>
-<text text-anchor="start" x="194" y="-209.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ UpVector : Vector3</text>
-<text text-anchor="start" x="194" y="-197.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; foV : float</text>
-<text text-anchor="start" x="194" y="-185.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ FoV : float</text>
-<text text-anchor="start" x="194" y="-173.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RotationAngle : Angles3</text>
-<text text-anchor="start" x="194" y="-161.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; AutoRotation : Angles3</text>
-<text text-anchor="start" x="194" y="-149.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; aspectRatio : float</text>
-<text text-anchor="start" x="194" y="-137.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; nearPlane : float</text>
-<text text-anchor="start" x="194" y="-125.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; farPlane : float</text>
-<text text-anchor="start" x="194" y="-113.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ TargetDistance : float</text>
-<text text-anchor="start" x="194" y="-101.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ TargetDirection : Vector3</text>
-<text text-anchor="start" x="194" y="-89.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ArcballTarget : Vector3</text>
-<text text-anchor="start" x="194" y="-77.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
-<polyline fill="none" stroke="black" points="186,-69 356,-69 "/>
-<text text-anchor="start" x="194" y="-57.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Camera (GameState state, World world)</text>
-<text text-anchor="start" x="194" y="-45.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime) override</text>
-<text text-anchor="start" x="194" y="-33.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; UpdateRotation (GameTime gameTime)</text>
-<text text-anchor="start" x="194" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; UpdateMatrices (GameTime gameTime)</text>
-<text text-anchor="start" x="194" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ GetMouseRay (Vector2 mouse) : Ray</text>
+<polyline fill="none" stroke="black" points="187,-317 355,-317 "/>
+<text text-anchor="start" x="195" y="-305.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
+<text text-anchor="start" x="195" y="-293.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; AutoRotation : Angles3</text>
+<text text-anchor="start" x="195" y="-281.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; aspectRatio : float</text>
+<text text-anchor="start" x="195" y="-269.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; farPlane : float</text>
+<text text-anchor="start" x="195" y="-257.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; nearPlane : float</text>
+<text text-anchor="start" x="195" y="-245.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RotationAngle : Angles3</text>
+<text text-anchor="start" x="195" y="-233.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ TargetDirection : Vector3</text>
+<text text-anchor="start" x="195" y="-221.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ FoV : float</text>
+<text text-anchor="start" x="195" y="-209.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; World : World</text>
+<text text-anchor="start" x="195" y="-197.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; foV : float</text>
+<text text-anchor="start" x="195" y="-185.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ProjectionMatrix : Matrix</text>
+<text text-anchor="start" x="195" y="-173.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ViewMatrix : Matrix</text>
+<text text-anchor="start" x="195" y="-161.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ WorldMatrix : Matrix</text>
+<text text-anchor="start" x="195" y="-149.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ArcballTarget : Vector3</text>
+<text text-anchor="start" x="195" y="-137.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ DefaultPosition : Vector3</text>
+<text text-anchor="start" x="195" y="-125.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Position : Vector3</text>
+<text text-anchor="start" x="195" y="-113.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Target : Vector3</text>
+<text text-anchor="start" x="195" y="-101.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ UpVector : Vector3</text>
+<text text-anchor="start" x="195" y="-89.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ TargetDistance : float</text>
+<text text-anchor="start" x="195" y="-77.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
+<polyline fill="none" stroke="black" points="187,-69 355,-69 "/>
+<text text-anchor="start" x="195" y="-57.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Camera (GameState state, World world)</text>
+<text text-anchor="start" x="195" y="-45.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ GetMouseRay (Vector2 mouse) : Ray</text>
+<text text-anchor="start" x="195" y="-33.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; UpdateMatrices (GameTime gameTime)</text>
+<text text-anchor="start" x="195" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; UpdateRotation (GameTime gameTime)</text>
+<text text-anchor="start" x="195" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime)</text>
 </g>
 <!-- Box_GameStateComponent -->
 <g id="node2" class="node"><title>Box_GameStateComponent</title>
@@ -73,8 +73,13 @@
 </g>
 <!-- Box_IGameStateComponent&#45;&gt;Box_GameStateComponent -->
 <g id="edge6" class="edge"><title>Box_IGameStateComponent&#45;&gt;Box_GameStateComponent</title>
-<path fill="none" stroke="midnightblue" d="M198.996,-525.005C206.749,-515.314 214.948,-505.065 222.928,-495.09"/>
-<polygon fill="none" stroke="midnightblue" points="196.118,-523 192.604,-532.995 201.584,-527.373 196.118,-523"/>
+<path fill="none" stroke="midnightblue" d="M192.497,-525.005C200,-515.314 208.136,-505.065 216.239,-495.09"/>
+<polygon fill="none" stroke="midnightblue" points="189.675,-522.933 186.358,-532.995 195.226,-527.198 189.675,-522.933"/>
+</g>
+<!-- Box_IGameStateComponent&#45;&gt;Box_GameStateComponent -->
+<g id="edge12" class="edge"><title>Box_IGameStateComponent&#45;&gt;Box_GameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M205.255,-525.295C213.332,-515.519 221.681,-505.165 229.618,-495.09"/>
+<polygon fill="none" stroke="midnightblue" points="202.554,-523.069 198.849,-532.995 207.935,-527.546 202.554,-523.069"/>
 </g>
 <!-- Box_XnaGameComponent -->
 <g id="node4" class="node"><title>Box_XnaGameComponent</title>
@@ -83,8 +88,13 @@
 </g>
 <!-- Box_XnaGameComponent&#45;&gt;Box_GameStateComponent -->
 <g id="edge4" class="edge"><title>Box_XnaGameComponent&#45;&gt;Box_GameStateComponent</title>
-<path fill="none" stroke="midnightblue" d="M369.529,-557.071C356.811,-541.314 337.556,-517.459 319.432,-495.004"/>
-<polygon fill="none" stroke="midnightblue" points="366.869,-559.348 375.873,-564.932 372.316,-554.952 366.869,-559.348"/>
+<path fill="none" stroke="midnightblue" d="M365.232,-557.507C350.878,-541.756 330.755,-517.667 312.743,-495.004"/>
+<polygon fill="none" stroke="midnightblue" points="362.785,-560.015 372.17,-564.932 367.9,-555.235 362.785,-560.015"/>
+</g>
+<!-- Box_XnaGameComponent&#45;&gt;Box_GameStateComponent -->
+<g id="edge10" class="edge"><title>Box_XnaGameComponent&#45;&gt;Box_GameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M373.912,-556.631C362.768,-540.873 344.352,-517.251 326.12,-495.004"/>
+<polygon fill="none" stroke="midnightblue" points="371.048,-558.645 379.576,-564.932 376.83,-554.699 371.048,-558.645"/>
 </g>
 <!-- Box_XnaIGameComponent -->
 <g id="node5" class="node"><title>Box_XnaIGameComponent</title>
@@ -93,8 +103,13 @@
 </g>
 <!-- Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent -->
 <g id="edge8" class="edge"><title>Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent</title>
-<path fill="none" stroke="midnightblue" d="M159,-644.454C159,-636.393 159,-626.828 159,-617.414"/>
-<polygon fill="none" stroke="midnightblue" points="155.5,-644.676 159,-654.676 162.5,-644.676 155.5,-644.676"/>
+<path fill="none" stroke="midnightblue" d="M153.253,-644.731C152.518,-636.612 152.187,-626.936 152.26,-617.414"/>
+<polygon fill="none" stroke="midnightblue" points="149.783,-645.192 154.506,-654.676 156.728,-644.317 149.783,-645.192"/>
+</g>
+<!-- Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent -->
+<g id="edge14" class="edge"><title>Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent</title>
+<path fill="none" stroke="midnightblue" d="M164.747,-644.731C165.482,-636.612 165.813,-626.936 165.74,-617.414"/>
+<polygon fill="none" stroke="midnightblue" points="161.272,-644.317 163.494,-654.676 168.217,-645.192 161.272,-644.317"/>
 </g>
 </g>
 </svg>

@@ -1,12 +1,19 @@
 public class PipeModelFactory : ModelFactory
   Attributes:
   Methods:
-    # CreateModel (GameState state, GameModelInfo info) : GameModel override
+    # CreateModel (GameState state, GameModelInfo info) : GameModel
 
 public abstract class ModelFactory : 
   Attributes:
     - GameModel> cache : Dictionary<GameModelInfo, new
     + this [GameState state, GameModelInfo info] : GameModel
   Methods:
+    # CreateModel (GameState state, GameModelInfo info) : GameModel abstract
+
+public abstract class ModelFactory : 
+  Attributes:
+    + this [GameState state, GameModelInfo info] : GameModel
+  Methods:
+    - GameModel> cache () : Dictionary<GameModelInfo,
     # CreateModel (GameState state, GameModelInfo info) : GameModel abstract
 

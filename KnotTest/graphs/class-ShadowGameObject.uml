@@ -1,17 +1,17 @@
 public class ShadowGameObject : IGameObject
   Attributes:
-    # state : GameState
     - Obj : IGameObject
+    + OriginalPosition : Vector3
     + World : World
     + Info : dynamic
+    # state : GameState
     + ShadowPosition : Vector3
-    + OriginalPosition : Vector3
   Methods:
-    + ShadowGameObject  (GameState state, IGameObject obj)
     + Update  (GameTime gameTime) virtual
-    + Draw  (GameTime gameTime) virtual
     + Intersects (Ray ray) : GameObjectDistance
+    + ShadowGameObject  (GameState state, IGameObject obj)
     + Center () : Vector3
+    + Draw  (GameTime gameTime) virtual
 
 public interface IGameObject : 
   Attributes:
@@ -31,4 +31,13 @@ public class ShadowGameModel : ShadowGameObject
   Methods:
     + ShadowGameModel  (GameState state, GameModel model)
     + Draw  (GameTime gameTime) override
+
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    + ShadowColor : Color
+    - Model : GameModel
+    + ShadowAlpha : float
+  Methods:
+    + ShadowGameModel  (GameState state, GameModel model)
+    + Draw  (GameTime gameTime)
 

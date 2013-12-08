@@ -1,28 +1,28 @@
 public class EdgeList : 
   Attributes:
-    - Edges : WrapList<Edge>
     + SelectedEdges : WrapList<Edge>
-    + EdgesChanged : Action<EdgeList>
     - NodeCache : Dictionary<int,Node>
-    + this [int i] : Edge
+    - Edges : WrapList<Edge>
     + Count : int
+    + this [int i] : Edge
   Methods:
-    + EdgeList  ()
-    + IndexOf (Edge edge) : int
-    + FromNode (int index) : Node
+    + EdgesChanged (list) : Action<EdgeList>
+    + EdgeList ()
     + FromNode (Edge edge) : Node
-    + ToNode (int index) : Node
+    + IndexOf (Edge edge) : int
+    + FromNodes (IEnumerable<Node> _nodes, IEnumerable<Color> _colors) : IEnumerable<Edge> static
+    + PrintSelectedEdges ()
+    + SelectEdge  (Edge selection, bool append)
+    + PathTo (Edge fromEdge, Edge toEdge) : Edge[]
+    + Interval (Edge a, Edge b) : List<Edge>
+    + FromNode (int index) : Node
     + ToNode (Edge edge) : Node
+    + ToNode (int index) : Node
+    + Compact () : bool
+    + Move (Edge selection, Vector3 direction) : bool
+    + Move (IEnumerable<Edge> selectedEdges, Vector3 direction, int times) : bool
     + Add  (Edge edge)
     + AddRange  (IEnumerable<Edge> edge)
-    + Interval (Edge a, Edge b) : List<Edge>
-    + SelectEdge  (Edge selection, bool append = false)
-    + SelectEdges  (Edge[] selection, bool append = false)
-    + SelectEdge  ()
-    + PrintSelectedEdges  ()
-    + Move (IEnumerable<Edge> selectedEdges, Vector3 direction, int times = 1) : bool
-    + Move (Edge selection, Vector3 direction) : bool
-    + Compact () : bool
-    + PathTo (Edge fromEdge, Edge toEdge) : Edge[]
-    + FromNodes (IEnumerable<Node> _nodes, IEnumerable<Color> _colors = null) : IEnumerable<Edge> static
+    + SelectEdge ()
+    + SelectEdges  (Edge[] selection, bool append)
 

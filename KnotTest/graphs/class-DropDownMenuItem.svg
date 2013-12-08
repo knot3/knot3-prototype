@@ -15,8 +15,8 @@
 <text text-anchor="middle" x="104" y="-85.8" font-family="Helvetica,sans-Serif" font-size="8.00">DropDownMenuItem</text>
 <polyline fill="none" stroke="black" points="-0.5,-77 208.5,-77 "/>
 <text text-anchor="start" x="7.5" y="-65.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="7.5" y="-53.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Text : string</text>
-<text text-anchor="start" x="7.5" y="-41.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OnSelected : Action</text>
+<text text-anchor="start" x="7.5" y="-53.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OnSelected : Action</text>
+<text text-anchor="start" x="7.5" y="-41.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Text : string</text>
 <text text-anchor="start" x="7.5" y="-29.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="-0.5,-21 208.5,-21 "/>
 <text text-anchor="start" x="7.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ DropDownMenuItem (string text, Action onSelected)</text>

@@ -1,15 +1,15 @@
 public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
   Attributes:
-    # state : GameState
     + World : World abstract
+    # state : GameState
     + Info : dynamic abstract
   Methods:
-    + KnotRenderer  (GameState state)
-    + OnEdgesChanged  (EdgeList edges) abstract
-    + Update  (GameTime gameTime) abstract
-    + Draw  (GameTime gameTime) abstract
     + Intersects (Ray ray) : GameObjectDistance abstract
     + Center () : Vector3 abstract
+    + Draw  (GameTime gameTime) abstract
+    + Update  (GameTime gameTime) abstract
+    + KnotRenderer  (GameState state)
+    + OnEdgesChanged  (EdgeList edges) abstract
 
 public interface IEdgeChangeListener : 
   Attributes:
@@ -58,4 +58,37 @@ public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
     + Draw  (GameTime gameTime) override
     + Intersects (Ray ray) : GameObjectDistance override
     + Center () : Vector3 override
+
+public class LineRenderer : KnotRenderer
+  Attributes:
+    - edges : EdgeList
+    - basicEffect : BasicEffect
+    + World : World
+    + Info : dynamic
+  Methods:
+    + LineRenderer  (GameState state, GameObjectInfo info)
+    + OnEdgesChanged  (EdgeList edges)
+    - DrawRoundedLines ()
+    + Intersects (Ray ray) : GameObjectDistance
+    + Center () : Vector3
+    + Draw  (GameTime gameTime)
+    + Update  (GameTime gameTime)
+
+public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
+  Attributes:
+    - knots : List<NodeModel>
+    - knotFactory : NodeModelFactory
+    - pipeFactory : PipeModelFactory
+    - pipes : List<PipeModel>
+    + World : World
+    + Info : dynamic
+  Methods:
+    - IEnumerable.GetEnumerator () : IEnumerator
+    + GetEnumerator () : IEnumerator<IGameObject>
+    + PipeRenderer  (GameState state, GameObjectInfo info)
+    + Intersects (Ray ray) : GameObjectDistance
+    + Draw  (GameTime gameTime)
+    + OnEdgesChanged  (EdgeList edges)
+    + Update  (GameTime gameTime)
+    + Center () : Vector3
 

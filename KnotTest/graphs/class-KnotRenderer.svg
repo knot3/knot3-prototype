@@ -15,17 +15,17 @@
 <text text-anchor="middle" x="317" y="-423.8" font-family="Helvetica,sans-Serif" font-size="8.00">KnotRenderer</text>
 <polyline fill="none" stroke="black" points="214,-415 420,-415 "/>
 <text text-anchor="start" x="222" y="-403.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="222" y="-391.8" font-family="Helvetica,sans-Serif" font-size="8.00"># state : GameState</text>
-<text text-anchor="start" x="222" y="-379.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World abstract</text>
+<text text-anchor="start" x="222" y="-391.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World abstract</text>
+<text text-anchor="start" x="222" y="-379.8" font-family="Helvetica,sans-Serif" font-size="8.00"># state : GameState</text>
 <text text-anchor="start" x="222" y="-367.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic abstract</text>
 <text text-anchor="start" x="222" y="-355.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="214,-347 420,-347 "/>
-<text text-anchor="start" x="222" y="-335.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ KnotRenderer (GameState state)</text>
-<text text-anchor="start" x="222" y="-323.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OnEdgesChanged (EdgeList edges) abstract</text>
-<text text-anchor="start" x="222" y="-311.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime) abstract</text>
-<text text-anchor="start" x="222" y="-299.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime) abstract</text>
-<text text-anchor="start" x="222" y="-287.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance abstract</text>
-<text text-anchor="start" x="222" y="-275.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Center () : Vector3 abstract</text>
+<text text-anchor="start" x="222" y="-335.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance abstract</text>
+<text text-anchor="start" x="222" y="-323.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Center () : Vector3 abstract</text>
+<text text-anchor="start" x="222" y="-311.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime) abstract</text>
+<text text-anchor="start" x="222" y="-299.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime) abstract</text>
+<text text-anchor="start" x="222" y="-287.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ KnotRenderer (GameState state)</text>
+<text text-anchor="start" x="222" y="-275.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OnEdgesChanged (EdgeList edges) abstract</text>
 </g>
 <!-- Box_LineRenderer -->
 <g id="node4" class="node"><title>Box_LineRenderer</title>
@@ -33,24 +33,29 @@
 <text text-anchor="middle" x="345" y="-199.8" font-family="Helvetica,sans-Serif" font-size="8.00">LineRenderer</text>
 <polyline fill="none" stroke="black" points="236,-191 454,-191 "/>
 <text text-anchor="start" x="244" y="-179.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="244" y="-167.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic override</text>
-<text text-anchor="start" x="244" y="-155.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World override</text>
-<text text-anchor="start" x="244" y="-143.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; basicEffect : BasicEffect</text>
-<text text-anchor="start" x="244" y="-131.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; edges : EdgeList</text>
+<text text-anchor="start" x="244" y="-167.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; edges : EdgeList</text>
+<text text-anchor="start" x="244" y="-155.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; basicEffect : BasicEffect</text>
+<text text-anchor="start" x="244" y="-143.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>
+<text text-anchor="start" x="244" y="-131.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic</text>
 <text text-anchor="start" x="244" y="-119.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="236,-111 454,-111 "/>
 <text text-anchor="start" x="244" y="-99.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ LineRenderer (GameState state, GameObjectInfo info)</text>
-<text text-anchor="start" x="244" y="-87.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime) override</text>
-<text text-anchor="start" x="244" y="-75.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OnEdgesChanged (EdgeList edges) override</text>
-<text text-anchor="start" x="244" y="-63.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime) override</text>
-<text text-anchor="start" x="244" y="-51.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; DrawRoundedLines ()</text>
-<text text-anchor="start" x="244" y="-39.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance override</text>
-<text text-anchor="start" x="244" y="-27.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Center () : Vector3 override</text>
+<text text-anchor="start" x="244" y="-87.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OnEdgesChanged (EdgeList edges)</text>
+<text text-anchor="start" x="244" y="-75.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; DrawRoundedLines ()</text>
+<text text-anchor="start" x="244" y="-63.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance</text>
+<text text-anchor="start" x="244" y="-51.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Center () : Vector3</text>
+<text text-anchor="start" x="244" y="-39.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime)</text>
+<text text-anchor="start" x="244" y="-27.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime)</text>
 </g>
 <!-- Box_KnotRenderer&#45;&gt;Box_LineRenderer -->
 <g id="edge6" class="edge"><title>Box_KnotRenderer&#45;&gt;Box_LineRenderer</title>
-<path fill="none" stroke="midnightblue" d="M328.204,-256.563C329.975,-241.64 331.808,-226.193 333.583,-211.23"/>
-<polygon fill="none" stroke="midnightblue" points="324.693,-256.455 326.99,-266.798 331.644,-257.28 324.693,-256.455"/>
+<path fill="none" stroke="midnightblue" d="M321.575,-256.563C323.191,-241.64 325.018,-226.193 326.936,-211.23"/>
+<polygon fill="none" stroke="midnightblue" points="318.064,-256.485 320.492,-266.798 325.025,-257.222 318.064,-256.485"/>
+</g>
+<!-- Box_KnotRenderer&#45;&gt;Box_LineRenderer -->
+<g id="edge12" class="edge"><title>Box_KnotRenderer&#45;&gt;Box_LineRenderer</title>
+<path fill="none" stroke="midnightblue" d="M334.833,-256.563C336.759,-241.64 338.598,-226.193 340.23,-211.23"/>
+<polygon fill="none" stroke="midnightblue" points="331.321,-256.427 333.488,-266.798 338.261,-257.34 331.321,-256.427"/>
 </g>
 <!-- Box_PipeRenderer -->
 <g id="node5" class="node"><title>Box_PipeRenderer</title>
@@ -58,27 +63,32 @@
 <text text-anchor="middle" x="109" y="-217.8" font-family="Helvetica,sans-Serif" font-size="8.00">PipeRenderer</text>
 <polyline fill="none" stroke="black" points="-0.5,-209 218.5,-209 "/>
 <text text-anchor="start" x="7.5" y="-197.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="7.5" y="-185.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic override</text>
-<text text-anchor="start" x="7.5" y="-173.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World override</text>
-<text text-anchor="start" x="7.5" y="-161.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pipes : List&lt;PipeModel&gt;</text>
-<text text-anchor="start" x="7.5" y="-149.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; knots : List&lt;NodeModel&gt;</text>
-<text text-anchor="start" x="7.5" y="-137.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pipeFactory : PipeModelFactory</text>
-<text text-anchor="start" x="7.5" y="-125.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; knotFactory : NodeModelFactory</text>
+<text text-anchor="start" x="7.5" y="-185.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; knots : List&lt;NodeModel&gt;</text>
+<text text-anchor="start" x="7.5" y="-173.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; knotFactory : NodeModelFactory</text>
+<text text-anchor="start" x="7.5" y="-161.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pipeFactory : PipeModelFactory</text>
+<text text-anchor="start" x="7.5" y="-149.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pipes : List&lt;PipeModel&gt;</text>
+<text text-anchor="start" x="7.5" y="-137.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>
+<text text-anchor="start" x="7.5" y="-125.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic</text>
 <text text-anchor="start" x="7.5" y="-113.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="-0.5,-105 218.5,-105 "/>
-<text text-anchor="start" x="7.5" y="-93.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ PipeRenderer (GameState state, GameObjectInfo info)</text>
-<text text-anchor="start" x="7.5" y="-81.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime) override</text>
-<text text-anchor="start" x="7.5" y="-69.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OnEdgesChanged (EdgeList edges) override</text>
-<text text-anchor="start" x="7.5" y="-57.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ GetEnumerator () : IEnumerator&lt;IGameObject&gt;</text>
-<text text-anchor="start" x="7.5" y="-45.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; IEnumerable.GetEnumerator () : IEnumerator</text>
-<text text-anchor="start" x="7.5" y="-33.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime) override</text>
-<text text-anchor="start" x="7.5" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance override</text>
-<text text-anchor="start" x="7.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Center () : Vector3 override</text>
+<text text-anchor="start" x="7.5" y="-93.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; IEnumerable.GetEnumerator () : IEnumerator</text>
+<text text-anchor="start" x="7.5" y="-81.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ GetEnumerator () : IEnumerator&lt;IGameObject&gt;</text>
+<text text-anchor="start" x="7.5" y="-69.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ PipeRenderer (GameState state, GameObjectInfo info)</text>
+<text text-anchor="start" x="7.5" y="-57.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance</text>
+<text text-anchor="start" x="7.5" y="-45.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime)</text>
+<text text-anchor="start" x="7.5" y="-33.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OnEdgesChanged (EdgeList edges)</text>
+<text text-anchor="start" x="7.5" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime)</text>
+<text text-anchor="start" x="7.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Center () : Vector3</text>
 </g>
 <!-- Box_KnotRenderer&#45;&gt;Box_PipeRenderer -->
 <g id="edge8" class="edge"><title>Box_KnotRenderer&#45;&gt;Box_PipeRenderer</title>
-<path fill="none" stroke="midnightblue" d="M235.939,-259.027C227.334,-249.263 218.508,-239.249 209.713,-229.271"/>
-<polygon fill="none" stroke="midnightblue" points="233.55,-261.61 242.788,-266.798 238.802,-256.982 233.55,-261.61"/>
+<path fill="none" stroke="midnightblue" d="M229.596,-259.317C220.795,-249.461 211.832,-239.348 202.966,-229.271"/>
+<polygon fill="none" stroke="midnightblue" points="227.014,-261.68 236.291,-266.798 232.23,-257.012 227.014,-261.68"/>
+</g>
+<!-- Box_KnotRenderer&#45;&gt;Box_PipeRenderer -->
+<g id="edge14" class="edge"><title>Box_KnotRenderer&#45;&gt;Box_PipeRenderer</title>
+<path fill="none" stroke="midnightblue" d="M242.541,-259.027C234.048,-249.263 225.271,-239.249 216.46,-229.271"/>
+<polygon fill="none" stroke="midnightblue" points="240.088,-261.54 249.286,-266.798 245.374,-256.952 240.088,-261.54"/>
 </g>
 <!-- Box_IEdgeChangeListener -->
 <g id="node2" class="node"><title>Box_IEdgeChangeListener</title>
@@ -122,8 +132,13 @@
 </g>
 <!-- Box_IEnumerable&#45;&gt;Box_PipeRenderer -->
 <g id="edge10" class="edge"><title>Box_IEnumerable&#45;&gt;Box_PipeRenderer</title>
-<path fill="none" stroke="midnightblue" d="M109,-330.641C109,-307.541 109,-267.994 109,-229.025"/>
-<polygon fill="none" stroke="midnightblue" points="105.5,-330.859 109,-340.859 112.5,-330.859 105.5,-330.859"/>
+<path fill="none" stroke="midnightblue" d="M105.001,-330.641C103.102,-307.541 102.187,-267.994 102.253,-229.025"/>
+<polygon fill="none" stroke="midnightblue" points="101.546,-331.268 106.047,-340.859 108.51,-330.555 101.546,-331.268"/>
+</g>
+<!-- Box_IEnumerable&#45;&gt;Box_PipeRenderer -->
+<g id="edge16" class="edge"><title>Box_IEnumerable&#45;&gt;Box_PipeRenderer</title>
+<path fill="none" stroke="midnightblue" d="M112.999,-330.641C114.898,-307.541 115.813,-267.994 115.747,-229.025"/>
+<polygon fill="none" stroke="midnightblue" points="109.49,-330.555 111.953,-340.859 116.454,-331.268 109.49,-330.555"/>
 </g>
 </g>
 </svg>

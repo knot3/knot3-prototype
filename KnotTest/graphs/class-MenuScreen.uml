@@ -1,21 +1,21 @@
 public abstract class MenuScreen : GameState
   Attributes:
-    - spriteBatch : SpriteBatch
     - backColor : Color
     - pointer : MousePointer
     # LinePoints : List<Vector2>
     # LineWidth : int
+    - spriteBatch : SpriteBatch
   Methods:
     + MenuScreen  (Core.Game game)
-    + Initialize  () override
-    + Update  (GameTime gameTime) override
-    + UpdateMenu  (GameTime gameTime) abstract
-    + Draw  (GameTime gameTime) override
-    + DrawMenu  (GameTime gameTime) abstract
-    + Activate  (GameTime gameTime) override
-    + Unload  () override
+    + Activate  (GameTime gameTime)
+    + Draw  (GameTime gameTime)
     # BackgroundColor (ItemState itemState) : Color
     # ForegroundColor (ItemState itemState) : Color
+    + DrawMenu  (GameTime gameTime) abstract
+    + UpdateMenu  (GameTime gameTime) abstract
+    + Initialize ()
+    + Unload ()
+    + Update  (GameTime gameTime)
 
 public abstract class GameState : 
   Attributes:
@@ -38,6 +38,28 @@ public abstract class GameState :
     + RemoveGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
     + Activate  (GameTime gameTime) virtual
     + Deactivate  (GameTime gameTime) virtual
+
+public abstract class GameState : 
+  Attributes:
+    + content : ContentManager
+    + NextState : GameState
+    + device : GraphicsDevice
+    + RenderEffects : RenderEffectStack
+    + viewport : Viewport
+    + game : Game
+    + graphics : GraphicsDeviceManager
+    + input : Input
+    + PostProcessing : RenderEffect
+  Methods:
+    + Draw  (GameTime gameTime) abstract
+    + Initialize () abstract
+    + Unload () abstract
+    + Activate  (GameTime gameTime) virtual
+    + GameState  (Game game)
+    + Update  (GameTime gameTime) abstract
+    + Deactivate  (GameTime gameTime) virtual
+    + AddGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    + RemoveGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
 
 public class StartScreen : MenuScreen
   Attributes:
@@ -88,4 +110,78 @@ public class VideoOptionScreen : OptionScreen
     + UpdateMenu  (GameTime gameTime) override
     + DrawMenu  (GameTime gameTime) override
     + Activate  (GameTime gameTime) override
+
+public class VideoOptionScreen : OptionScreen
+  Attributes:
+    - spriteBatch : SpriteBatch
+    - menu : VerticalMenu
+  Methods:
+    + VideoOptionScreen  (Core.Game game)
+    + Activate  (GameTime gameTime)
+    + DrawMenu  (GameTime gameTime)
+    + Initialize ()
+    + UpdateMenu  (GameTime gameTime)
+    + Collapse  (MenuItem item)
+
+public class StartScreen : MenuScreen
+  Attributes:
+    - spriteBatch : SpriteBatch
+    - logo : Texture2D
+    # menu : Menu
+  Methods:
+    + StartScreen  (Game game)
+    + Activate  (GameTime gameTime)
+    + UpdateMenu  (GameTime gameTime)
+    + DrawMenu  (GameTime gameTime)
+    + Initialize ()
+
+public class LoadSavegameScreen : MenuScreen
+  Attributes:
+    - spriteBatch : SpriteBatch
+    - menu : VerticalMenu
+    - format : IKnotFormat
+  Methods:
+    + LoadSavegameScreen  (Core.Game game)
+    + Activate  (GameTime gameTime)
+    + DrawMenu  (GameTime gameTime)
+    - AddDefaultKnots ()
+    - AddFileToList  (string filename)
+    - UpdateFiles ()
+    + Initialize ()
+    + UpdateMenu  (GameTime gameTime)
+
+public class OptionScreen : MenuScreen
+  Attributes:
+    - spriteBatch : SpriteBatch
+    - menu : VerticalMenu
+  Methods:
+    + OptionScreen  (Core.Game game)
+    + Activate  (GameTime gameTime)
+    + DrawMenu  (GameTime gameTime)
+    + UpdateMenu  (GameTime gameTime)
+    + Initialize ()
+
+public class VideoOptionScreen : OptionScreen
+  Attributes:
+    - menu : VerticalMenu
+    - spriteBatch : SpriteBatch
+  Methods:
+    + VideoOptionScreen  (Core.Game game)
+    + Initialize  () override
+    + Collapse  (MenuItem item)
+    + UpdateMenu  (GameTime gameTime) override
+    + DrawMenu  (GameTime gameTime) override
+    + Activate  (GameTime gameTime) override
+
+public class VideoOptionScreen : OptionScreen
+  Attributes:
+    - spriteBatch : SpriteBatch
+    - menu : VerticalMenu
+  Methods:
+    + VideoOptionScreen  (Core.Game game)
+    + Activate  (GameTime gameTime)
+    + DrawMenu  (GameTime gameTime)
+    + Initialize ()
+    + UpdateMenu  (GameTime gameTime)
+    + Collapse  (MenuItem item)
 

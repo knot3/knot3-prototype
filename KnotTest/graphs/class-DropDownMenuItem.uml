@@ -1,7 +1,7 @@
 public class DropDownMenuItem : 
   Attributes:
-    + Text : string
     + OnSelected : Action
+    + Text : string
   Methods:
     + DropDownMenuItem  (string text, Action onSelected)
 

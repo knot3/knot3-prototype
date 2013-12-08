@@ -1,11 +1,11 @@
 public class ConfigFile : 
   Attributes:
-    - Filename : string
     - ini : IniFile
-    + this [string section, string option, bool defaultValue : bool
-    + this [string section, string option, string defaultValue : string
-    + True : string static
     + False : string static
+    + True : string static
+    - Filename : string
+    + this [string section, string option, string defaultValue : string
+    + this [string section, string option, bool defaultValue : bool
   Methods:
     + ConfigFile  (string filename)
 

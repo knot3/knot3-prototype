@@ -1,20 +1,20 @@
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
   Attributes:
-    + Info : dynamic override
-    + World : World override
-    - pipes : List<PipeModel>
     - knots : List<NodeModel>
-    - pipeFactory : PipeModelFactory
     - knotFactory : NodeModelFactory
+    - pipeFactory : PipeModelFactory
+    - pipes : List<PipeModel>
+    + World : World
+    + Info : dynamic
   Methods:
-    + PipeRenderer  (GameState state, GameObjectInfo info)
-    + Update  (GameTime gameTime) override
-    + OnEdgesChanged  (EdgeList edges) override
-    + GetEnumerator () : IEnumerator<IGameObject>
     - IEnumerable.GetEnumerator () : IEnumerator
-    + Draw  (GameTime gameTime) override
-    + Intersects (Ray ray) : GameObjectDistance override
-    + Center () : Vector3 override
+    + GetEnumerator () : IEnumerator<IGameObject>
+    + PipeRenderer  (GameState state, GameObjectInfo info)
+    + Intersects (Ray ray) : GameObjectDistance
+    + Draw  (GameTime gameTime)
+    + OnEdgesChanged  (EdgeList edges)
+    + Update  (GameTime gameTime)
+    + Center () : Vector3
 
 public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
   Attributes:
@@ -28,6 +28,34 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     + Draw  (GameTime gameTime) abstract
     + Intersects (Ray ray) : GameObjectDistance abstract
     + Center () : Vector3 abstract
+
+public interface IEdgeChangeListener : 
+  Attributes:
+  Methods:
+    + OnEdgesChanged  (EdgeList edges)
+
+public interface IGameObject : 
+  Attributes:
+    + Info : dynamic
+    + World : World
+  Methods:
+    + Draw  (GameTime gameTime)
+    + Update  (GameTime gameTime)
+    + Intersects (Ray ray) : GameObjectDistance
+    + Center () : Vector3
+
+public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
+  Attributes:
+    + World : World abstract
+    # state : GameState
+    + Info : dynamic abstract
+  Methods:
+    + Intersects (Ray ray) : GameObjectDistance abstract
+    + Center () : Vector3 abstract
+    + Draw  (GameTime gameTime) abstract
+    + Update  (GameTime gameTime) abstract
+    + KnotRenderer  (GameState state)
+    + OnEdgesChanged  (EdgeList edges) abstract
 
 public interface IEdgeChangeListener : 
   Attributes:

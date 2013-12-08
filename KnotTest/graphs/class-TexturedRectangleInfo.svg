@@ -15,34 +15,34 @@
 <text text-anchor="middle" x="203" y="-133.8" font-family="Helvetica,sans-Serif" font-size="8.00">TexturedRectangleInfo</text>
 <polyline fill="none" stroke="black" points="-0.5,-125 406.5,-125 "/>
 <text text-anchor="start" x="7.5" y="-113.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="7.5" y="-101.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Texturename : string</text>
+<text text-anchor="start" x="7.5" y="-101.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Left : Vector3</text>
 <text text-anchor="start" x="7.5" y="-89.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Up : Vector3</text>
-<text text-anchor="start" x="7.5" y="-77.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Left : Vector3</text>
+<text text-anchor="start" x="7.5" y="-77.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Height : float</text>
 <text text-anchor="start" x="7.5" y="-65.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Width : float</text>
-<text text-anchor="start" x="7.5" y="-53.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Height : float</text>
+<text text-anchor="start" x="7.5" y="-53.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Texturename : string</text>
 <text text-anchor="start" x="7.5" y="-41.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="-0.5,-33 406.5,-33 "/>
 <text text-anchor="start" x="7.5" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ TexturedRectangleInfo (string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)</text>
-<text text-anchor="start" x="7.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Equals (GameObjectInfo other) : bool override</text>
+<text text-anchor="start" x="7.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Equals (GameObjectInfo other) : bool</text>
 </g>
 <!-- Box_GameObjectInfo -->
 <g id="node2" class="node"><title>Box_GameObjectInfo</title>
-<polygon fill="#fcfcda" stroke="black" points="113.5,-183 113.5,-363 292.5,-363 292.5,-183 113.5,-183"/>
+<polygon fill="#fcfcda" stroke="black" points="77.5,-183 77.5,-363 328.5,-363 328.5,-183 77.5,-183"/>
 <text text-anchor="middle" x="203" y="-351.8" font-family="Helvetica,sans-Serif" font-size="8.00">GameObjectInfo</text>
-<polyline fill="none" stroke="black" points="113.5,-343 292.5,-343 "/>
-<text text-anchor="start" x="121.5" y="-331.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="121.5" y="-319.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Position : Vector3</text>
-<text text-anchor="start" x="121.5" y="-307.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsVisible : bool</text>
-<text text-anchor="start" x="121.5" y="-295.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsSelectable : bool</text>
-<text text-anchor="start" x="121.5" y="-283.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsMovable : bool</text>
-<text text-anchor="start" x="121.5" y="-271.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ operator : bool static</text>
-<text text-anchor="start" x="121.5" y="-259.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ operator ! : bool static</text>
-<text text-anchor="start" x="121.5" y="-247.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
-<polyline fill="none" stroke="black" points="113.5,-239 292.5,-239 "/>
-<text text-anchor="start" x="121.5" y="-227.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ GameObjectInfo ()</text>
-<text text-anchor="start" x="121.5" y="-215.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Equals (GameObjectInfo other) : bool virtual</text>
-<text text-anchor="start" x="121.5" y="-203.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Equals (Object obj) : bool override</text>
-<text text-anchor="start" x="121.5" y="-191.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ GetHashCode () : int override</text>
+<polyline fill="none" stroke="black" points="77.5,-343 328.5,-343 "/>
+<text text-anchor="start" x="85.5" y="-331.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
+<text text-anchor="start" x="85.5" y="-319.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsMovable : bool</text>
+<text text-anchor="start" x="85.5" y="-307.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsSelectable : bool</text>
+<text text-anchor="start" x="85.5" y="-295.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsVisible : bool</text>
+<text text-anchor="start" x="85.5" y="-283.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Position : Vector3</text>
+<text text-anchor="start" x="85.5" y="-271.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
+<polyline fill="none" stroke="black" points="77.5,-263 328.5,-263 "/>
+<text text-anchor="start" x="85.5" y="-251.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ GameObjectInfo ()</text>
+<text text-anchor="start" x="85.5" y="-239.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ operator (GameObjectInfo o1, GameObjectInfo o2) : bool static</text>
+<text text-anchor="start" x="85.5" y="-227.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Equals (Object obj) : bool</text>
+<text text-anchor="start" x="85.5" y="-215.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ GetHashCode () : int</text>
+<text text-anchor="start" x="85.5" y="-203.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ operator ! (GameObjectInfo o1, GameObjectInfo o2) : bool static</text>
+<text text-anchor="start" x="85.5" y="-191.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Equals (GameObjectInfo other) : bool virtual</text>
 </g>
 <!-- Box_GameObjectInfo&#45;&gt;Box_TexturedRectangleInfo -->
 <g id="edge2" class="edge"><title>Box_GameObjectInfo&#45;&gt;Box_TexturedRectangleInfo</title>
@@ -56,8 +56,13 @@
 </g>
 <!-- Box_IEquatable&#45;&gt;Box_GameObjectInfo -->
 <g id="edge4" class="edge"><title>Box_IEquatable&#45;&gt;Box_GameObjectInfo</title>
-<path fill="none" stroke="midnightblue" d="M203,-390.572C203,-382.819 203,-373.407 203,-363.321"/>
-<polygon fill="none" stroke="midnightblue" points="199.5,-390.628 203,-400.628 206.5,-390.628 199.5,-390.628"/>
+<path fill="none" stroke="midnightblue" d="M198.039,-390.572C197.33,-382.819 196.833,-373.407 196.545,-363.321"/>
+<polygon fill="none" stroke="midnightblue" points="194.577,-391.107 199.227,-400.628 201.529,-390.286 194.577,-391.107"/>
+</g>
+<!-- Box_IEquatable&#45;&gt;Box_GameObjectInfo -->
+<g id="edge6" class="edge"><title>Box_IEquatable&#45;&gt;Box_GameObjectInfo</title>
+<path fill="none" stroke="midnightblue" d="M207.961,-390.572C208.67,-382.819 209.167,-373.407 209.455,-363.321"/>
+<polygon fill="none" stroke="midnightblue" points="204.471,-390.286 206.773,-400.628 211.423,-391.107 204.471,-390.286"/>
 </g>
 </g>
 </svg>
