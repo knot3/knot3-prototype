@@ -56,13 +56,8 @@
 </g>
 <!-- Box_WidgetInfo&#45;&gt;Box_MenuItemInfo -->
 <g id="edge4" class="edge"><title>Box_WidgetInfo&#45;&gt;Box_MenuItemInfo</title>
-<path fill="none" stroke="midnightblue" d="M186.311,-196.511C186.373,-187.227 186.481,-178.072 186.636,-169.239"/>
-<polygon fill="none" stroke="midnightblue" points="182.811,-196.61 186.262,-206.626 189.811,-196.643 182.811,-196.61"/>
-</g>
-<!-- Box_WidgetInfo&#45;&gt;Box_MenuItemInfo -->
-<g id="edge6" class="edge"><title>Box_WidgetInfo&#45;&gt;Box_MenuItemInfo</title>
-<path fill="none" stroke="midnightblue" d="M199.689,-196.511C199.627,-187.227 199.519,-178.072 199.364,-169.239"/>
-<polygon fill="none" stroke="midnightblue" points="196.189,-196.643 199.738,-206.626 203.189,-196.61 196.189,-196.643"/>
+<path fill="none" stroke="midnightblue" d="M193,-196.511C193,-187.227 193,-178.072 193,-169.239"/>
+<polygon fill="none" stroke="midnightblue" points="189.5,-196.626 193,-206.626 196.5,-196.626 189.5,-196.626"/>
 </g>
 <!-- Box_IEquatable -->
 <g id="node3" class="node"><title>Box_IEquatable</title>

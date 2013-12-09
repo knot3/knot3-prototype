@@ -33,8 +33,8 @@ namespace Knot3.GameObjects
 		// pipes and knots
 		private List<PipeModel> pipes;
 		private List<NodeModel> knots;
-		private PipeModelFactory pipeFactory;
-		private NodeModelFactory knotFactory;
+		private ModelFactory pipeFactory;
+		private ModelFactory knotFactory;
 
 		public PipeRenderer (GameState state, GameObjectInfo info)
 			: base(state)
@@ -42,8 +42,8 @@ namespace Knot3.GameObjects
 			Info = info;
 			pipes = new List<PipeModel> ();
 			knots = new List<NodeModel> ();
-			pipeFactory = new PipeModelFactory ();
-			knotFactory = new NodeModelFactory ();
+			pipeFactory = new ModelFactory ((s, i) => new PipeModel (s, i as PipeModelInfo));
+			knotFactory = new ModelFactory ((s, i) => new NodeModel (s, i as NodeModelInfo));
 		}
 
 		public override void Update (GameTime gameTime)

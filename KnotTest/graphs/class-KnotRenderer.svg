@@ -49,13 +49,8 @@
 </g>
 <!-- Box_KnotRenderer&#45;&gt;Box_LineRenderer -->
 <g id="edge6" class="edge"><title>Box_KnotRenderer&#45;&gt;Box_LineRenderer</title>
-<path fill="none" stroke="midnightblue" d="M321.575,-256.563C323.191,-241.64 325.018,-226.193 326.936,-211.23"/>
-<polygon fill="none" stroke="midnightblue" points="318.064,-256.485 320.492,-266.798 325.025,-257.222 318.064,-256.485"/>
-</g>
-<!-- Box_KnotRenderer&#45;&gt;Box_LineRenderer -->
-<g id="edge12" class="edge"><title>Box_KnotRenderer&#45;&gt;Box_LineRenderer</title>
-<path fill="none" stroke="midnightblue" d="M334.833,-256.563C336.759,-241.64 338.598,-226.193 340.23,-211.23"/>
-<polygon fill="none" stroke="midnightblue" points="331.321,-256.427 333.488,-266.798 338.261,-257.34 331.321,-256.427"/>
+<path fill="none" stroke="midnightblue" d="M328.204,-256.563C329.975,-241.64 331.808,-226.193 333.583,-211.23"/>
+<polygon fill="none" stroke="midnightblue" points="324.693,-256.455 326.99,-266.798 331.644,-257.28 324.693,-256.455"/>
 </g>
 <!-- Box_PipeRenderer -->
 <g id="node5" class="node"><title>Box_PipeRenderer</title>
@@ -64,8 +59,8 @@
 <polyline fill="none" stroke="black" points="-0.5,-209 218.5,-209 "/>
 <text text-anchor="start" x="7.5" y="-197.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
 <text text-anchor="start" x="7.5" y="-185.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; knots : List&lt;NodeModel&gt;</text>
-<text text-anchor="start" x="7.5" y="-173.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; knotFactory : NodeModelFactory</text>
-<text text-anchor="start" x="7.5" y="-161.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pipeFactory : PipeModelFactory</text>
+<text text-anchor="start" x="7.5" y="-173.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; knotFactory : ModelFactory</text>
+<text text-anchor="start" x="7.5" y="-161.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pipeFactory : ModelFactory</text>
 <text text-anchor="start" x="7.5" y="-149.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pipes : List&lt;PipeModel&gt;</text>
 <text text-anchor="start" x="7.5" y="-137.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>
 <text text-anchor="start" x="7.5" y="-125.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic</text>
@@ -77,18 +72,13 @@
 <text text-anchor="start" x="7.5" y="-57.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance</text>
 <text text-anchor="start" x="7.5" y="-45.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime)</text>
 <text text-anchor="start" x="7.5" y="-33.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ OnEdgesChanged (EdgeList edges)</text>
-<text text-anchor="start" x="7.5" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime)</text>
-<text text-anchor="start" x="7.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Center () : Vector3</text>
+<text text-anchor="start" x="7.5" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Center () : Vector3</text>
+<text text-anchor="start" x="7.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime)</text>
 </g>
 <!-- Box_KnotRenderer&#45;&gt;Box_PipeRenderer -->
 <g id="edge8" class="edge"><title>Box_KnotRenderer&#45;&gt;Box_PipeRenderer</title>
-<path fill="none" stroke="midnightblue" d="M229.596,-259.317C220.795,-249.461 211.832,-239.348 202.966,-229.271"/>
-<polygon fill="none" stroke="midnightblue" points="227.014,-261.68 236.291,-266.798 232.23,-257.012 227.014,-261.68"/>
-</g>
-<!-- Box_KnotRenderer&#45;&gt;Box_PipeRenderer -->
-<g id="edge14" class="edge"><title>Box_KnotRenderer&#45;&gt;Box_PipeRenderer</title>
-<path fill="none" stroke="midnightblue" d="M242.541,-259.027C234.048,-249.263 225.271,-239.249 216.46,-229.271"/>
-<polygon fill="none" stroke="midnightblue" points="240.088,-261.54 249.286,-266.798 245.374,-256.952 240.088,-261.54"/>
+<path fill="none" stroke="midnightblue" d="M235.939,-259.027C227.334,-249.263 218.508,-239.249 209.713,-229.271"/>
+<polygon fill="none" stroke="midnightblue" points="233.55,-261.61 242.788,-266.798 238.802,-256.982 233.55,-261.61"/>
 </g>
 <!-- Box_IEdgeChangeListener -->
 <g id="node2" class="node"><title>Box_IEdgeChangeListener</title>
@@ -132,13 +122,8 @@
 </g>
 <!-- Box_IEnumerable&#45;&gt;Box_PipeRenderer -->
 <g id="edge10" class="edge"><title>Box_IEnumerable&#45;&gt;Box_PipeRenderer</title>
-<path fill="none" stroke="midnightblue" d="M105.001,-330.641C103.102,-307.541 102.187,-267.994 102.253,-229.025"/>
-<polygon fill="none" stroke="midnightblue" points="101.546,-331.268 106.047,-340.859 108.51,-330.555 101.546,-331.268"/>
-</g>
-<!-- Box_IEnumerable&#45;&gt;Box_PipeRenderer -->
-<g id="edge16" class="edge"><title>Box_IEnumerable&#45;&gt;Box_PipeRenderer</title>
-<path fill="none" stroke="midnightblue" d="M112.999,-330.641C114.898,-307.541 115.813,-267.994 115.747,-229.025"/>
-<polygon fill="none" stroke="midnightblue" points="109.49,-330.555 111.953,-340.859 116.454,-331.268 109.49,-330.555"/>
+<path fill="none" stroke="midnightblue" d="M109,-330.641C109,-307.541 109,-267.994 109,-229.025"/>
+<polygon fill="none" stroke="midnightblue" points="105.5,-330.859 109,-340.859 112.5,-330.859 105.5,-330.859"/>
 </g>
 </g>
 </svg>

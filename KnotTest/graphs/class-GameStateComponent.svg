@@ -56,14 +56,9 @@
 <text text-anchor="start" x="366" y="-119.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime)</text>
 </g>
 <!-- Box_GameStateComponent&#45;&gt;Box_Camera -->
-<g id="edge28" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_Camera</title>
-<path fill="none" stroke="midnightblue" d="M498.747,-475.411C495.644,-466.406 492.431,-456.894 489.183,-447.109"/>
-<polygon fill="none" stroke="midnightblue" points="495.481,-476.674 502.068,-484.973 502.093,-474.378 495.481,-476.674"/>
-</g>
-<!-- Box_GameStateComponent&#45;&gt;Box_Camera -->
 <g id="edge8" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_Camera</title>
-<path fill="none" stroke="midnightblue" d="M510.694,-475.123C508.066,-466.203 505.229,-456.79 502.256,-447.109"/>
-<polygon fill="none" stroke="midnightblue" points="507.407,-476.354 513.569,-484.973 514.127,-474.393 507.407,-476.354"/>
+<path fill="none" stroke="midnightblue" d="M504.763,-475.411C501.885,-466.406 498.846,-456.894 495.719,-447.109"/>
+<polygon fill="none" stroke="midnightblue" points="501.441,-476.513 507.818,-484.973 508.108,-474.382 501.441,-476.513"/>
 </g>
 <!-- Box_ClickHandler -->
 <g id="node4" class="node"><title>Box_ClickHandler</title>
@@ -78,14 +73,9 @@
 <text text-anchor="start" x="552" y="-239.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime)</text>
 </g>
 <!-- Box_GameStateComponent&#45;&gt;Box_ClickHandler -->
-<g id="edge30" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_ClickHandler</title>
-<path fill="none" stroke="midnightblue" d="M543.531,-475.251C557.425,-428.679 577.068,-368.62 592.048,-327.275"/>
-<polygon fill="none" stroke="midnightblue" points="540.135,-474.391 540.657,-484.973 546.848,-476.375 540.135,-474.391"/>
-</g>
-<!-- Box_GameStateComponent&#45;&gt;Box_ClickHandler -->
 <g id="edge10" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_ClickHandler</title>
-<path fill="none" stroke="midnightblue" d="M555.57,-475.251C571.789,-428.679 590.982,-368.62 602.737,-327.275"/>
-<polygon fill="none" stroke="midnightblue" points="552.167,-474.378 552.158,-484.973 558.772,-476.696 552.167,-474.378"/>
+<path fill="none" stroke="midnightblue" d="M549.55,-475.251C564.607,-428.679 584.025,-368.62 597.392,-327.275"/>
+<polygon fill="none" stroke="midnightblue" points="546.153,-474.381 546.407,-484.973 552.814,-476.534 546.153,-474.381"/>
 </g>
 <!-- Box_Input -->
 <g id="node5" class="node"><title>Box_Input</title>
@@ -117,14 +107,9 @@
 <text text-anchor="start" x="708" y="-137.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Input (GameState state)</text>
 </g>
 <!-- Box_GameStateComponent&#45;&gt;Box_Input -->
-<g id="edge32" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_Input</title>
-<path fill="none" stroke="midnightblue" d="M638.962,-479.282C653.885,-469.472 668.629,-458.951 682,-448 689.327,-441.999 696.616,-435.638 703.818,-429.037"/>
-<polygon fill="none" stroke="midnightblue" points="636.658,-476.604 630.163,-484.975 640.461,-482.481 636.658,-476.604"/>
-</g>
-<!-- Box_GameStateComponent&#45;&gt;Box_Input -->
 <g id="edge12" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_Input</title>
-<path fill="none" stroke="midnightblue" d="M656.386,-479.557C671.609,-469.668 686.504,-459.053 700,-448 707.327,-441.999 714.616,-435.638 721.803,-429.037"/>
-<polygon fill="none" stroke="midnightblue" points="654.446,-476.643 647.902,-484.975 658.214,-482.543 654.446,-476.643"/>
+<path fill="none" stroke="midnightblue" d="M647.465,-479.557C662.609,-469.668 677.504,-459.053 691,-448 698.327,-441.999 705.616,-435.638 712.81,-429.037"/>
+<polygon fill="none" stroke="midnightblue" points="645.554,-476.625 639.033,-484.975 649.338,-482.514 645.554,-476.625"/>
 </g>
 <!-- Box_KeyHandler -->
 <g id="node7" class="node"><title>Box_KeyHandler</title>
@@ -139,14 +124,9 @@
 <text text-anchor="start" x="8" y="-239.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime)</text>
 </g>
 <!-- Box_GameStateComponent&#45;&gt;Box_KeyHandler -->
-<g id="edge40" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_KeyHandler</title>
-<path fill="none" stroke="midnightblue" d="M346.438,-515.856C260.925,-498.689 170.501,-475.052 138,-448 101.117,-417.301 80.7782,-365.351 71.9567,-327.134"/>
-<polygon fill="none" stroke="midnightblue" points="345.81,-519.299 356.3,-517.812 347.172,-512.433 345.81,-519.299"/>
-</g>
-<!-- Box_GameStateComponent&#45;&gt;Box_KeyHandler -->
-<g id="edge20" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_KeyHandler</title>
-<path fill="none" stroke="midnightblue" d="M346.317,-512.487C267.607,-495.655 186.425,-473.324 156,-448 119.117,-417.301 98.7782,-365.351 86.4433,-327.134"/>
-<polygon fill="none" stroke="midnightblue" points="345.891,-515.974 356.399,-514.616 347.338,-509.125 345.891,-515.974"/>
+<g id="edge18" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_KeyHandler</title>
+<path fill="none" stroke="midnightblue" d="M346.282,-514.188C264.196,-497.173 178.461,-474.187 147,-448 110.117,-417.301 89.7782,-365.351 79.2,-327.134"/>
+<polygon fill="none" stroke="midnightblue" points="345.771,-517.656 356.27,-516.233 347.176,-510.798 345.771,-517.656"/>
 </g>
 <!-- Box_MousePicker -->
 <g id="node8" class="node"><title>Box_MousePicker</title>
@@ -163,14 +143,9 @@
 <text text-anchor="start" x="163.5" y="-227.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ UpdateMouseRay (GameTime gameTime)</text>
 </g>
 <!-- Box_GameStateComponent&#45;&gt;Box_MousePicker -->
-<g id="edge22" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_MousePicker</title>
-<path fill="none" stroke="midnightblue" d="M379.529,-479.412C365.365,-469.9 351.879,-459.416 340,-448 307.962,-417.21 282.417,-374.11 266.212,-339.143"/>
-<polygon fill="none" stroke="midnightblue" points="377.652,-482.366 387.94,-484.9 381.477,-476.504 377.652,-482.366"/>
-</g>
-<!-- Box_GameStateComponent&#45;&gt;Box_MousePicker -->
-<g id="edge42" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_MousePicker</title>
-<path fill="none" stroke="midnightblue" d="M397.025,-479.145C383.113,-469.704 369.768,-459.309 358,-448 325.962,-417.21 300.417,-374.11 281.854,-339.143"/>
-<polygon fill="none" stroke="midnightblue" points="395.476,-482.316 405.751,-484.9 399.33,-476.472 395.476,-482.316"/>
+<g id="edge20" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_MousePicker</title>
+<path fill="none" stroke="midnightblue" d="M388.474,-479.412C374.365,-469.9 360.879,-459.416 349,-448 316.962,-417.21 291.417,-374.11 274.033,-339.143"/>
+<polygon fill="none" stroke="midnightblue" points="386.563,-482.345 396.845,-484.9 390.401,-476.49 386.563,-482.345"/>
 </g>
 <!-- Box_PipeColoring -->
 <g id="node9" class="node"><title>Box_PipeColoring</title>
@@ -188,14 +163,9 @@
 <text text-anchor="start" x="1012" y="-221.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime)</text>
 </g>
 <!-- Box_GameStateComponent&#45;&gt;Box_PipeColoring -->
-<g id="edge24" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_PipeColoring</title>
-<path fill="none" stroke="midnightblue" d="M707.658,-518.168C814.656,-500.397 938.335,-475.376 986,-448 1029.63,-422.942 1067.5,-380.923 1095.64,-345.054"/>
-<polygon fill="none" stroke="midnightblue" points="706.986,-514.731 697.688,-519.811 708.124,-521.638 706.986,-514.731"/>
-</g>
-<!-- Box_GameStateComponent&#45;&gt;Box_PipeColoring -->
-<g id="edge44" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_PipeColoring</title>
-<path fill="none" stroke="midnightblue" d="M707.893,-520.614C820.914,-502.734 954.104,-476.657 1004,-448 1047.63,-422.942 1085.5,-380.923 1111.42,-345.054"/>
-<polygon fill="none" stroke="midnightblue" points="707.054,-517.203 697.717,-522.211 708.139,-524.118 707.054,-517.203"/>
+<g id="edge22" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_PipeColoring</title>
+<path fill="none" stroke="midnightblue" d="M707.676,-519.429C817.7,-501.592 946.195,-476.031 995,-448 1038.63,-422.942 1076.5,-380.923 1103.53,-345.054"/>
+<polygon fill="none" stroke="midnightblue" points="707.084,-515.979 697.767,-521.023 708.196,-522.891 707.084,-515.979"/>
 </g>
 <!-- Box_IGameStateComponent -->
 <g id="node2" class="node"><title>Box_IGameStateComponent</title>
@@ -224,24 +194,9 @@
 <text text-anchor="start" x="773.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ MenuScreenInput (GameState state)</text>
 </g>
 <!-- Box_Input&#45;&gt;Box_MenuScreenInput -->
-<g id="edge36" class="edge"><title>Box_Input&#45;&gt;Box_MenuScreenInput</title>
-<path fill="none" stroke="midnightblue" d="M823.726,-118.789C824.594,-101.931 826.04,-86.212 828.065,-73.1491"/>
-<polygon fill="none" stroke="midnightblue" points="820.227,-118.69 823.282,-128.835 827.22,-118.999 820.227,-118.69"/>
-</g>
-<!-- Box_Input&#45;&gt;Box_MenuScreenInput -->
-<g id="edge38" class="edge"><title>Box_Input&#45;&gt;Box_MenuScreenInput</title>
-<path fill="none" stroke="midnightblue" d="M862.274,-118.789C861.406,-101.931 859.96,-86.212 857.935,-73.1491"/>
-<polygon fill="none" stroke="midnightblue" points="858.78,-118.999 862.718,-128.835 865.773,-118.69 858.78,-118.999"/>
-</g>
-<!-- Box_Input&#45;&gt;Box_MenuScreenInput -->
 <g id="edge16" class="edge"><title>Box_Input&#45;&gt;Box_MenuScreenInput</title>
-<path fill="none" stroke="midnightblue" d="M836.575,-118.789C836.865,-101.931 837.347,-86.212 838.022,-73.1491"/>
-<polygon fill="none" stroke="midnightblue" points="833.075,-118.784 836.427,-128.835 840.074,-118.888 833.075,-118.784"/>
-</g>
-<!-- Box_Input&#45;&gt;Box_MenuScreenInput -->
-<g id="edge18" class="edge"><title>Box_Input&#45;&gt;Box_MenuScreenInput</title>
-<path fill="none" stroke="midnightblue" d="M849.425,-118.789C849.135,-101.931 848.653,-86.212 847.978,-73.1491"/>
-<polygon fill="none" stroke="midnightblue" points="845.926,-118.888 849.573,-128.835 852.925,-118.784 845.926,-118.888"/>
+<path fill="none" stroke="midnightblue" d="M843,-118.789C843,-101.931 843,-86.212 843,-73.1491"/>
+<polygon fill="none" stroke="midnightblue" points="839.5,-118.835 843,-128.835 846.5,-118.835 839.5,-118.835"/>
 </g>
 <!-- Box_XnaGameComponent -->
 <g id="node10" class="node"><title>Box_XnaGameComponent</title>
@@ -269,24 +224,14 @@
 <text text-anchor="middle" x="995" y="-543.8" font-family="Helvetica,sans-Serif" font-size="8.00">IKeyEventListener</text>
 </g>
 <!-- Box_IKeyEventListener&#45;&gt;Box_Input -->
-<g id="edge34" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_Input</title>
-<path fill="none" stroke="midnightblue" d="M980.805,-526.541C966.851,-505.28 944.661,-468.229 922.111,-429.169"/>
-<polygon fill="none" stroke="midnightblue" points="977.944,-528.559 986.434,-534.897 983.75,-524.648 977.944,-528.559"/>
-</g>
-<!-- Box_IKeyEventListener&#45;&gt;Box_Input -->
 <g id="edge14" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_Input</title>
-<path fill="none" stroke="midnightblue" d="M987.676,-525.674C977.213,-504.283 957.304,-467.704 935.511,-429.169"/>
-<polygon fill="none" stroke="midnightblue" points="984.593,-527.342 992.02,-534.897 990.925,-524.359 984.593,-527.342"/>
+<path fill="none" stroke="midnightblue" d="M984.123,-525.965C971.923,-504.616 950.931,-467.879 928.811,-429.169"/>
+<polygon fill="none" stroke="midnightblue" points="981.227,-527.951 989.227,-534.897 987.304,-524.478 981.227,-527.951"/>
 </g>
 <!-- Box_IKeyEventListener&#45;&gt;Box_PipeColoring -->
-<g id="edge26" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_PipeColoring</title>
-<path fill="none" stroke="midnightblue" d="M1002.34,-525.637C1020.64,-488.244 1067.73,-404.539 1103.34,-345.033"/>
-<polygon fill="none" stroke="midnightblue" points="999.075,-524.359 997.98,-534.897 1005.41,-527.343 999.075,-524.359"/>
-</g>
-<!-- Box_IKeyEventListener&#45;&gt;Box_PipeColoring -->
-<g id="edge46" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_PipeColoring</title>
-<path fill="none" stroke="midnightblue" d="M1009.17,-526.586C1033.4,-489.677 1082.52,-405.048 1115.19,-345.033"/>
-<polygon fill="none" stroke="midnightblue" points="1006.25,-524.648 1003.57,-534.897 1012.06,-528.559 1006.25,-524.648"/>
+<g id="edge24" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_PipeColoring</title>
+<path fill="none" stroke="midnightblue" d="M1005.79,-526.114C1027.02,-488.96 1075.12,-404.793 1109.27,-345.033"/>
+<polygon fill="none" stroke="midnightblue" points="1002.7,-524.478 1000.77,-534.897 1008.77,-527.951 1002.7,-524.478"/>
 </g>
 </g>
 </svg>

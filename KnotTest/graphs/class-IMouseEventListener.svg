@@ -50,13 +50,8 @@
 </g>
 <!-- Box_IMouseEventListener&#45;&gt;Box_ColorPicker -->
 <g id="edge4" class="edge"><title>Box_IMouseEventListener&#45;&gt;Box_ColorPicker</title>
-<path fill="none" stroke="midnightblue" d="M240.728,-512.515C233.844,-503.073 226.745,-493.228 219.655,-483.296"/>
-<polygon fill="none" stroke="midnightblue" points="237.987,-514.698 246.717,-520.702 243.637,-510.564 237.987,-514.698"/>
-</g>
-<!-- Box_IMouseEventListener&#45;&gt;Box_ColorPicker -->
-<g id="edge22" class="edge"><title>Box_IMouseEventListener&#45;&gt;Box_ColorPicker</title>
-<path fill="none" stroke="midnightblue" d="M253.333,-512.229C246.871,-502.874 240.062,-493.128 233.122,-483.296"/>
-<polygon fill="none" stroke="midnightblue" points="250.611,-514.448 259.164,-520.702 256.378,-510.48 250.611,-514.448"/>
+<path fill="none" stroke="midnightblue" d="M247.129,-512.515C240.427,-503.073 233.439,-493.228 226.389,-483.296"/>
+<polygon fill="none" stroke="midnightblue" points="244.298,-514.573 252.94,-520.702 250.006,-510.521 244.298,-514.573"/>
 </g>
 <!-- Box_MenuItem -->
 <g id="node3" class="node"><title>Box_MenuItem</title>
@@ -83,14 +78,9 @@
 <text text-anchor="start" x="323.5" y="-251.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SetHovered (bool hovered)</text>
 </g>
 <!-- Box_IMouseEventListener&#45;&gt;Box_MenuItem -->
-<g id="edge26" class="edge"><title>Box_IMouseEventListener&#45;&gt;Box_MenuItem</title>
-<path fill="none" stroke="midnightblue" d="M354.222,-512.801C361.822,-503.272 369.832,-493.329 377.989,-483.296"/>
-<polygon fill="none" stroke="midnightblue" points="351.424,-510.696 347.94,-520.702 356.903,-515.053 351.424,-510.696"/>
-</g>
-<!-- Box_IMouseEventListener&#45;&gt;Box_MenuItem -->
 <g id="edge8" class="edge"><title>Box_IMouseEventListener&#45;&gt;Box_MenuItem</title>
-<path fill="none" stroke="midnightblue" d="M367.014,-512.801C374.984,-503.272 383.22,-493.329 391.456,-483.296"/>
-<polygon fill="none" stroke="midnightblue" points="364.132,-510.791 360.387,-520.702 369.495,-515.29 364.132,-510.791"/>
+<path fill="none" stroke="midnightblue" d="M360.618,-512.801C368.403,-503.272 376.526,-493.329 384.722,-483.296"/>
+<polygon fill="none" stroke="midnightblue" points="357.78,-510.743 354.163,-520.702 363.201,-515.172 357.78,-510.743"/>
 </g>
 <!-- Box_DropDownMenu -->
 <g id="node4" class="node"><title>Box_DropDownMenu</title>
@@ -114,24 +104,9 @@
 <text text-anchor="start" x="127.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ AddEntries (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)</text>
 </g>
 <!-- Box_MenuItem&#45;&gt;Box_DropDownMenu -->
-<g id="edge30" class="edge"><title>Box_MenuItem&#45;&gt;Box_DropDownMenu</title>
-<path fill="none" stroke="midnightblue" d="M371.873,-234.586C364.851,-224.686 357.975,-214.773 351.411,-205.078"/>
-<polygon fill="none" stroke="midnightblue" points="369.145,-236.788 377.804,-242.894 374.843,-232.721 369.145,-236.788"/>
-</g>
-<!-- Box_MenuItem&#45;&gt;Box_DropDownMenu -->
-<g id="edge34" class="edge"><title>Box_MenuItem&#45;&gt;Box_DropDownMenu</title>
-<path fill="none" stroke="midnightblue" d="M412.371,-234.586C405.381,-224.686 398.226,-214.773 391.069,-205.078"/>
-<polygon fill="none" stroke="midnightblue" points="409.591,-236.718 418.2,-242.894 415.321,-232.697 409.591,-236.718"/>
-</g>
-<!-- Box_MenuItem&#45;&gt;Box_DropDownMenu -->
 <g id="edge12" class="edge"><title>Box_MenuItem&#45;&gt;Box_DropDownMenu</title>
-<path fill="none" stroke="midnightblue" d="M385.373,-234.586C378.361,-224.686 371.392,-214.773 364.63,-205.078"/>
-<polygon fill="none" stroke="midnightblue" points="382.627,-236.765 391.269,-242.894 388.336,-232.713 382.627,-236.765"/>
-</g>
-<!-- Box_MenuItem&#45;&gt;Box_DropDownMenu -->
-<g id="edge16" class="edge"><title>Box_MenuItem&#45;&gt;Box_DropDownMenu</title>
-<path fill="none" stroke="midnightblue" d="M398.872,-234.586C391.871,-224.686 384.809,-214.773 377.85,-205.078"/>
-<polygon fill="none" stroke="midnightblue" points="396.109,-236.741 404.734,-242.894 401.828,-232.705 396.109,-236.741"/>
+<path fill="none" stroke="midnightblue" d="M392.122,-234.586C385.116,-224.686 378.101,-214.773 371.24,-205.078"/>
+<polygon fill="none" stroke="midnightblue" points="389.368,-236.753 398.002,-242.894 395.082,-232.709 389.368,-236.753"/>
 </g>
 <!-- Box_MenuButton -->
 <g id="node5" class="node"><title>Box_MenuButton</title>
@@ -144,24 +119,9 @@
 <text text-anchor="start" x="503.5" y="-75.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ MenuButton (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)</text>
 </g>
 <!-- Box_MenuItem&#45;&gt;Box_MenuButton -->
-<g id="edge32" class="edge"><title>Box_MenuItem&#45;&gt;Box_MenuButton</title>
-<path fill="none" stroke="midnightblue" d="M553.713,-234.467C578.478,-199.395 605.31,-164.181 626.98,-139.037"/>
-<polygon fill="none" stroke="midnightblue" points="550.679,-232.698 547.8,-242.894 556.409,-236.718 550.679,-232.698"/>
-</g>
-<!-- Box_MenuItem&#45;&gt;Box_MenuButton -->
-<g id="edge36" class="edge"><title>Box_MenuItem&#45;&gt;Box_MenuButton</title>
-<path fill="none" stroke="midnightblue" d="M594.211,-234.467C619.086,-199.395 642.096,-164.181 656.014,-139.037"/>
-<polygon fill="none" stroke="midnightblue" points="591.157,-232.721 588.196,-242.894 596.854,-236.788 591.157,-232.721"/>
-</g>
-<!-- Box_MenuItem&#45;&gt;Box_MenuButton -->
 <g id="edge14" class="edge"><title>Box_MenuItem&#45;&gt;Box_MenuButton</title>
-<path fill="none" stroke="midnightblue" d="M567.212,-234.467C592.014,-199.395 617.572,-164.181 636.658,-139.037"/>
-<polygon fill="none" stroke="midnightblue" points="564.172,-232.705 561.266,-242.894 569.891,-236.741 564.172,-232.705"/>
-</g>
-<!-- Box_MenuItem&#45;&gt;Box_MenuButton -->
-<g id="edge18" class="edge"><title>Box_MenuItem&#45;&gt;Box_MenuButton</title>
-<path fill="none" stroke="midnightblue" d="M580.712,-234.467C605.55,-199.395 629.834,-164.181 646.336,-139.037"/>
-<polygon fill="none" stroke="midnightblue" points="577.664,-232.713 574.731,-242.894 583.373,-236.765 577.664,-232.713"/>
+<path fill="none" stroke="midnightblue" d="M573.962,-234.467C598.782,-199.395 623.703,-164.181 641.497,-139.037"/>
+<polygon fill="none" stroke="midnightblue" points="570.918,-232.709 567.998,-242.894 576.632,-236.753 570.918,-232.709"/>
 </g>
 <!-- Box_Widget -->
 <g id="node6" class="node"><title>Box_Widget</title>
@@ -170,13 +130,8 @@
 </g>
 <!-- Box_Widget&#45;&gt;Box_ColorPicker -->
 <g id="edge2" class="edge"><title>Box_Widget&#45;&gt;Box_ColorPicker</title>
-<path fill="none" stroke="midnightblue" d="M122.367,-566.665C122.131,-546.998 123.499,-515.484 125.69,-483.064"/>
-<polygon fill="none" stroke="midnightblue" points="118.873,-566.912 122.697,-576.793 125.87,-566.684 118.873,-566.912"/>
-</g>
-<!-- Box_Widget&#45;&gt;Box_ColorPicker -->
-<g id="edge20" class="edge"><title>Box_Widget&#45;&gt;Box_ColorPicker</title>
-<path fill="none" stroke="midnightblue" d="M130.495,-566.94C133.554,-547.292 136.706,-515.635 139.158,-483.064"/>
-<polygon fill="none" stroke="midnightblue" points="127.047,-566.338 128.761,-576.793 133.941,-567.551 127.047,-566.338"/>
+<path fill="none" stroke="midnightblue" d="M126.452,-566.665C127.857,-546.998 130.108,-515.484 132.424,-483.064"/>
+<polygon fill="none" stroke="midnightblue" points="122.951,-566.569 125.729,-576.793 129.933,-567.068 122.951,-566.569"/>
 </g>
 <!-- Box_ItemWidget -->
 <g id="node7" class="node"><title>Box_ItemWidget</title>
@@ -184,14 +139,9 @@
 <text text-anchor="middle" x="483" y="-585.8" font-family="Helvetica,sans-Serif" font-size="8.00">ItemWidget</text>
 </g>
 <!-- Box_ItemWidget&#45;&gt;Box_MenuItem -->
-<g id="edge24" class="edge"><title>Box_ItemWidget&#45;&gt;Box_MenuItem</title>
-<path fill="none" stroke="midnightblue" d="M478.915,-566.665C477.274,-546.998 476.391,-515.484 476.266,-483.064"/>
-<polygon fill="none" stroke="midnightblue" points="475.452,-567.209 479.968,-576.793 482.415,-566.485 475.452,-567.209"/>
-</g>
-<!-- Box_ItemWidget&#45;&gt;Box_MenuItem -->
 <g id="edge6" class="edge"><title>Box_ItemWidget&#45;&gt;Box_MenuItem</title>
-<path fill="none" stroke="midnightblue" d="M487.085,-566.665C488.726,-546.998 489.609,-515.484 489.734,-483.064"/>
-<polygon fill="none" stroke="midnightblue" points="483.585,-566.485 486.032,-576.793 490.548,-567.209 483.585,-566.485"/>
+<path fill="none" stroke="midnightblue" d="M483,-566.665C483,-546.998 483,-515.484 483,-483.064"/>
+<polygon fill="none" stroke="midnightblue" points="479.5,-566.793 483,-576.793 486.5,-566.793 479.5,-566.793"/>
 </g>
 <!-- Box_IKeyEventListener -->
 <g id="node8" class="node"><title>Box_IKeyEventListener</title>
@@ -199,14 +149,9 @@
 <text text-anchor="middle" x="569" y="-585.8" font-family="Helvetica,sans-Serif" font-size="8.00">IKeyEventListener</text>
 </g>
 <!-- Box_IKeyEventListener&#45;&gt;Box_MenuItem -->
-<g id="edge28" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_MenuItem</title>
-<path fill="none" stroke="midnightblue" d="M557.619,-567.755C548.402,-548.176 535.169,-516.09 522.361,-483.064"/>
-<polygon fill="none" stroke="midnightblue" points="554.505,-569.355 562.049,-576.793 560.79,-566.273 554.505,-569.355"/>
-</g>
-<!-- Box_IKeyEventListener&#45;&gt;Box_MenuItem -->
 <g id="edge10" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_MenuItem</title>
-<path fill="none" stroke="midnightblue" d="M565.361,-566.94C559.473,-547.292 548.209,-515.635 535.83,-483.064"/>
-<polygon fill="none" stroke="midnightblue" points="562.052,-568.104 568.113,-576.793 568.794,-566.22 562.052,-568.104"/>
+<path fill="none" stroke="midnightblue" d="M561.403,-567.213C553.868,-547.587 541.659,-515.787 529.096,-483.064"/>
+<polygon fill="none" stroke="midnightblue" points="558.23,-568.712 565.081,-576.793 564.764,-566.203 558.23,-568.712"/>
 </g>
 </g>
 </svg>

@@ -18,7 +18,3 @@ public class PipeModel : GameModel
     + Draw (GameTime gameTime) override
     + Update (GameTime gameTime) override
     + Intersects (Ray ray) : GameObjectDistance override
-public class PipeModelFactory : ModelFactory
-  Attributes:
-  Methods:
-    # CreateModel (GameState state, GameModelInfo info) : GameModel override

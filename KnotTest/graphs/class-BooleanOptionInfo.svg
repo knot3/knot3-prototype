@@ -56,13 +56,8 @@
 </g>
 <!-- Box_OptionInfo&#45;&gt;Box_DistinctOptionInfo -->
 <g id="edge4" class="edge"><title>Box_OptionInfo&#45;&gt;Box_DistinctOptionInfo</title>
-<path fill="none" stroke="midnightblue" d="M204.255,-258.792C204.284,-249.442 204.439,-240.153 204.72,-231.449"/>
-<polygon fill="none" stroke="midnightblue" points="200.755,-258.942 204.273,-268.935 207.755,-258.929 200.755,-258.942"/>
-</g>
-<!-- Box_OptionInfo&#45;&gt;Box_DistinctOptionInfo -->
-<g id="edge6" class="edge"><title>Box_OptionInfo&#45;&gt;Box_DistinctOptionInfo</title>
-<path fill="none" stroke="midnightblue" d="M217.745,-258.792C217.716,-249.442 217.561,-240.153 217.28,-231.449"/>
-<polygon fill="none" stroke="midnightblue" points="214.245,-258.929 217.727,-268.935 221.245,-258.942 214.245,-258.929"/>
+<path fill="none" stroke="midnightblue" d="M211,-258.792C211,-249.442 211,-240.153 211,-231.449"/>
+<polygon fill="none" stroke="midnightblue" points="207.5,-258.935 211,-268.935 214.5,-258.935 207.5,-258.935"/>
 </g>
 </g>
 </svg>

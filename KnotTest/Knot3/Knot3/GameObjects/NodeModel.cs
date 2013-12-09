@@ -76,13 +76,5 @@ namespace Knot3.GameObjects
 			base.Draw (gameTime);
 		}
 	}
-
-	public class NodeModelFactory : ModelFactory
-	{
-		protected override GameModel CreateModel (GameState state, GameModelInfo info)
-		{
-			return new NodeModel (state, info as NodeModelInfo);
-		}
-	}
 }
 

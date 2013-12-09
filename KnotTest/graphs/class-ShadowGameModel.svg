@@ -65,13 +65,8 @@
 </g>
 <!-- Box_IGameObject&#45;&gt;Box_ShadowGameObject -->
 <g id="edge4" class="edge"><title>Box_IGameObject&#45;&gt;Box_ShadowGameObject</title>
-<path fill="none" stroke="midnightblue" d="M111.425,-378.914C111.291,-369.899 111.234,-360.608 111.254,-351.359"/>
-<polygon fill="none" stroke="midnightblue" points="107.926,-379.024 111.609,-388.958 114.925,-378.896 107.926,-379.024"/>
-</g>
-<!-- Box_IGameObject&#45;&gt;Box_ShadowGameObject -->
-<g id="edge6" class="edge"><title>Box_IGameObject&#45;&gt;Box_ShadowGameObject</title>
-<path fill="none" stroke="midnightblue" d="M124.575,-378.914C124.709,-369.899 124.766,-360.608 124.746,-351.359"/>
-<polygon fill="none" stroke="midnightblue" points="121.075,-378.896 124.391,-388.958 128.074,-379.024 121.075,-378.896"/>
+<path fill="none" stroke="midnightblue" d="M118,-378.914C118,-369.899 118,-360.608 118,-351.359"/>
+<polygon fill="none" stroke="midnightblue" points="114.5,-378.958 118,-388.958 121.5,-378.958 114.5,-378.958"/>
 </g>
 </g>
 </svg>

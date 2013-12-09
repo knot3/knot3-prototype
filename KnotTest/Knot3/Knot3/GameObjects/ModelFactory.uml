@@ -1,6 +1,7 @@
-public abstract class ModelFactory : 
+public sealed class ModelFactory : 
   Attributes:
     - cache : Dictionary<GameModelInfo,GameModel> new
+    - CreateModel : Func<GameState,GameModelInfo,GameModel>
   Methods:
+    + ModelFactory (Func<GameState, GameModelInfo, GameModel> createModel)
     + this (GameState state, GameModelInfo info) : GameModel
-    # CreateModel (GameState state, GameModelInfo info) : GameModel abstract

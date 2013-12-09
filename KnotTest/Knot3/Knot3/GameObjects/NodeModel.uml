@@ -12,7 +12,3 @@ public class NodeModel : GameModel
   Methods:
     + NodeModel (GameState state, NodeModelInfo info)
     + Draw (GameTime gameTime) override
-public class NodeModelFactory : ModelFactory
-  Attributes:
-  Methods:
-    # CreateModel (GameState state, GameModelInfo info) : GameModel override

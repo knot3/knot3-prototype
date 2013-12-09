@@ -64,13 +64,8 @@
 </g>
 <!-- Box_IEdgeChangeListener&#45;&gt;Box_KnotRenderer -->
 <g id="edge4" class="edge"><title>Box_IEdgeChangeListener&#45;&gt;Box_KnotRenderer</title>
-<path fill="none" stroke="midnightblue" d="M92.2201,-457.333C100.033,-439.765 109.757,-419.103 119.6,-399.051"/>
-<polygon fill="none" stroke="midnightblue" points="88.9006,-456.188 88.0877,-466.752 95.3108,-459.001 88.9006,-456.188"/>
-</g>
-<!-- Box_IEdgeChangeListener&#45;&gt;Box_KnotRenderer -->
-<g id="edge8" class="edge"><title>Box_IEdgeChangeListener&#45;&gt;Box_KnotRenderer</title>
-<path fill="none" stroke="midnightblue" d="M103.734,-457.821C112.993,-440.148 123.374,-419.288 133.032,-399.051"/>
-<polygon fill="none" stroke="midnightblue" points="100.591,-456.276 99.0037,-466.752 106.777,-459.553 100.591,-456.276"/>
+<path fill="none" stroke="midnightblue" d="M98.1046,-457.333C106.608,-439.765 116.61,-419.103 126.316,-399.051"/>
+<polygon fill="none" stroke="midnightblue" points="94.7523,-456.226 93.5457,-466.752 101.053,-459.276 94.7523,-456.226"/>
 </g>
 <!-- Box_IGameObject -->
 <g id="node4" class="node"><title>Box_IGameObject</title>
@@ -89,13 +84,8 @@
 </g>
 <!-- Box_IGameObject&#45;&gt;Box_KnotRenderer -->
 <g id="edge6" class="edge"><title>Box_IGameObject&#45;&gt;Box_KnotRenderer</title>
-<path fill="none" stroke="midnightblue" d="M215.049,-427.956C210.317,-418.44 205.551,-408.654 200.949,-399.01"/>
-<polygon fill="none" stroke="midnightblue" points="211.962,-429.607 219.568,-436.983 218.221,-426.474 211.962,-429.607"/>
-</g>
-<!-- Box_IGameObject&#45;&gt;Box_KnotRenderer -->
-<g id="edge10" class="edge"><title>Box_IGameObject&#45;&gt;Box_KnotRenderer</title>
-<path fill="none" stroke="midnightblue" d="M228.163,-427.661C223.724,-418.238 219.066,-408.555 214.381,-399.01"/>
-<polygon fill="none" stroke="midnightblue" points="225.115,-429.406 232.522,-436.983 231.456,-426.441 225.115,-429.406"/>
+<path fill="none" stroke="midnightblue" d="M221.675,-427.956C217.069,-418.44 212.333,-408.654 207.665,-399.01"/>
+<polygon fill="none" stroke="midnightblue" points="218.537,-429.507 226.045,-436.983 224.838,-426.457 218.537,-429.507"/>
 </g>
 </g>
 </svg>

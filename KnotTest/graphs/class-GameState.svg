@@ -67,13 +67,8 @@
 </g>
 <!-- Box_GameState&#45;&gt;Box_CreativeModeScreen -->
 <g id="edge2" class="edge"><title>Box_GameState&#45;&gt;Box_CreativeModeScreen</title>
-<path fill="none" stroke="midnightblue" d="M137.366,-753.116C134.52,-743.847 131.682,-734.511 128.891,-725.232"/>
-<polygon fill="none" stroke="midnightblue" points="134.044,-754.221 140.335,-762.747 140.734,-752.159 134.044,-754.221"/>
-</g>
-<!-- Box_GameState&#45;&gt;Box_CreativeModeScreen -->
-<g id="edge26" class="edge"><title>Box_GameState&#45;&gt;Box_CreativeModeScreen</title>
-<path fill="none" stroke="midnightblue" d="M150.815,-753.116C148.031,-743.847 145.199,-734.511 142.354,-725.232"/>
-<polygon fill="none" stroke="midnightblue" points="147.476,-754.169 153.695,-762.747 154.183,-752.163 147.476,-754.169"/>
+<path fill="none" stroke="midnightblue" d="M144.09,-753.116C141.275,-743.847 138.441,-734.511 135.623,-725.232"/>
+<polygon fill="none" stroke="midnightblue" points="140.76,-754.195 147.015,-762.747 147.458,-752.161 140.76,-754.195"/>
 </g>
 <!-- Box_MenuScreen -->
 <g id="node3" class="node"><title>Box_MenuScreen</title>
@@ -101,13 +96,8 @@
 </g>
 <!-- Box_GameState&#45;&gt;Box_MenuScreen -->
 <g id="edge4" class="edge"><title>Box_GameState&#45;&gt;Box_MenuScreen</title>
-<path fill="none" stroke="midnightblue" d="M227.684,-752.967C233.555,-733.615 239.64,-713.979 245.602,-695.162"/>
-<polygon fill="none" stroke="midnightblue" points="224.271,-752.162 224.729,-762.747 230.972,-754.187 224.271,-752.162"/>
-</g>
-<!-- Box_GameState&#45;&gt;Box_MenuScreen -->
-<g id="edge28" class="edge"><title>Box_GameState&#45;&gt;Box_MenuScreen</title>
-<path fill="none" stroke="midnightblue" d="M241.133,-752.967C247.135,-733.615 253.097,-713.979 258.679,-695.162"/>
-<polygon fill="none" stroke="midnightblue" points="237.72,-752.158 238.089,-762.747 244.403,-754.239 237.72,-752.158"/>
+<path fill="none" stroke="midnightblue" d="M234.409,-752.967C240.345,-733.615 246.368,-713.979 252.14,-695.162"/>
+<polygon fill="none" stroke="midnightblue" points="230.996,-752.16 231.409,-762.747 237.688,-754.213 230.996,-752.16"/>
 </g>
 <!-- Box_StartScreen -->
 <g id="node4" class="node"><title>Box_StartScreen</title>
@@ -127,24 +117,9 @@
 <text text-anchor="start" x="32" y="-221.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Initialize ()</text>
 </g>
 <!-- Box_MenuScreen&#45;&gt;Box_StartScreen -->
-<g id="edge30" class="edge"><title>Box_MenuScreen&#45;&gt;Box_StartScreen</title>
-<path fill="none" stroke="midnightblue" d="M187.614,-450.895C168.962,-423.1 150.75,-394.376 135.83,-369.074"/>
-<polygon fill="none" stroke="midnightblue" points="184.917,-453.156 193.413,-459.486 190.719,-449.24 184.917,-453.156"/>
-</g>
-<!-- Box_MenuScreen&#45;&gt;Box_StartScreen -->
-<g id="edge40" class="edge"><title>Box_MenuScreen&#45;&gt;Box_StartScreen</title>
-<path fill="none" stroke="midnightblue" d="M224.961,-446.423C207.984,-420.017 189.658,-392.986 172.402,-369.027"/>
-<polygon fill="none" stroke="midnightblue" points="222.088,-448.428 230.422,-454.97 227.987,-444.659 222.088,-448.428"/>
-</g>
-<!-- Box_MenuScreen&#45;&gt;Box_StartScreen -->
 <g id="edge6" class="edge"><title>Box_MenuScreen&#45;&gt;Box_StartScreen</title>
-<path fill="none" stroke="midnightblue" d="M198.068,-446.423C180.668,-420.017 163.172,-392.986 148.002,-369.027"/>
-<polygon fill="none" stroke="midnightblue" points="195.28,-448.553 203.711,-454.97 201.122,-444.696 195.28,-448.553"/>
-</g>
-<!-- Box_MenuScreen&#45;&gt;Box_StartScreen -->
-<g id="edge16" class="edge"><title>Box_MenuScreen&#45;&gt;Box_StartScreen</title>
-<path fill="none" stroke="midnightblue" d="M211.514,-446.423C194.326,-420.017 176.415,-392.986 160.202,-369.027"/>
-<polygon fill="none" stroke="midnightblue" points="208.684,-448.491 217.067,-454.97 214.554,-444.677 208.684,-448.491"/>
+<path fill="none" stroke="midnightblue" d="M204.791,-446.423C187.497,-420.017 169.794,-392.986 154.102,-369.027"/>
+<polygon fill="none" stroke="midnightblue" points="201.982,-448.522 210.389,-454.97 207.838,-444.687 201.982,-448.522"/>
 </g>
 <!-- Box_LoadSavegameScreen -->
 <g id="node5" class="node"><title>Box_LoadSavegameScreen</title>
@@ -167,24 +142,9 @@
 <text text-anchor="start" x="208" y="-203.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ UpdateMenu (GameTime gameTime)</text>
 </g>
 <!-- Box_MenuScreen&#45;&gt;Box_LoadSavegameScreen -->
-<g id="edge32" class="edge"><title>Box_MenuScreen&#45;&gt;Box_LoadSavegameScreen</title>
-<path fill="none" stroke="midnightblue" d="M268.813,-444.883C268.607,-425.527 268.906,-405.875 269.709,-387.378"/>
-<polygon fill="none" stroke="midnightblue" points="265.315,-445.025 268.967,-454.97 272.314,-444.918 265.315,-445.025"/>
-</g>
-<!-- Box_MenuScreen&#45;&gt;Box_LoadSavegameScreen -->
-<g id="edge42" class="edge"><title>Box_MenuScreen&#45;&gt;Box_LoadSavegameScreen</title>
-<path fill="none" stroke="midnightblue" d="M309.187,-444.883C309.393,-425.527 309.094,-405.875 308.291,-387.378"/>
-<polygon fill="none" stroke="midnightblue" points="305.686,-444.918 309.033,-454.97 312.685,-445.025 305.686,-444.918"/>
-</g>
-<!-- Box_MenuScreen&#45;&gt;Box_LoadSavegameScreen -->
 <g id="edge8" class="edge"><title>Box_MenuScreen&#45;&gt;Box_LoadSavegameScreen</title>
-<path fill="none" stroke="midnightblue" d="M282.271,-444.883C282.202,-425.527 282.302,-405.875 282.57,-387.378"/>
-<polygon fill="none" stroke="midnightblue" points="278.771,-444.988 282.322,-454.97 285.771,-444.952 278.771,-444.988"/>
-</g>
-<!-- Box_MenuScreen&#45;&gt;Box_LoadSavegameScreen -->
-<g id="edge18" class="edge"><title>Box_MenuScreen&#45;&gt;Box_LoadSavegameScreen</title>
-<path fill="none" stroke="midnightblue" d="M295.729,-444.883C295.798,-425.527 295.698,-405.875 295.43,-387.378"/>
-<polygon fill="none" stroke="midnightblue" points="292.229,-444.952 295.678,-454.97 299.229,-444.988 292.229,-444.952"/>
+<path fill="none" stroke="midnightblue" d="M289,-444.883C289,-425.527 289,-405.875 289,-387.378"/>
+<polygon fill="none" stroke="midnightblue" points="285.5,-444.97 289,-454.97 292.5,-444.97 285.5,-444.97"/>
 </g>
 <!-- Box_OptionScreen -->
 <g id="node6" class="node"><title>Box_OptionScreen</title>
@@ -203,24 +163,9 @@
 <text text-anchor="start" x="404" y="-227.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Initialize ()</text>
 </g>
 <!-- Box_MenuScreen&#45;&gt;Box_OptionScreen -->
-<g id="edge34" class="edge"><title>Box_MenuScreen&#45;&gt;Box_OptionScreen</title>
-<path fill="none" stroke="midnightblue" d="M352.968,-446.534C371.336,-417.959 391.289,-388.646 409.759,-363.281"/>
-<polygon fill="none" stroke="midnightblue" points="350.013,-444.659 347.578,-454.97 355.912,-448.428 350.013,-444.659"/>
-</g>
-<!-- Box_MenuScreen&#45;&gt;Box_OptionScreen -->
-<g id="edge44" class="edge"><title>Box_MenuScreen&#45;&gt;Box_OptionScreen</title>
-<path fill="none" stroke="midnightblue" d="M390.279,-451.055C410.424,-421.042 430.061,-389.936 445.601,-363.216"/>
-<polygon fill="none" stroke="midnightblue" points="387.282,-449.24 384.587,-459.486 393.083,-453.157 387.282,-449.24"/>
-</g>
-<!-- Box_MenuScreen&#45;&gt;Box_OptionScreen -->
 <g id="edge10" class="edge"><title>Box_MenuScreen&#45;&gt;Box_OptionScreen</title>
-<path fill="none" stroke="midnightblue" d="M366.414,-446.534C385.013,-417.959 404.462,-388.646 421.694,-363.281"/>
-<polygon fill="none" stroke="midnightblue" points="363.446,-444.677 360.933,-454.97 369.316,-448.491 363.446,-444.677"/>
-</g>
-<!-- Box_MenuScreen&#45;&gt;Box_OptionScreen -->
-<g id="edge20" class="edge"><title>Box_MenuScreen&#45;&gt;Box_OptionScreen</title>
-<path fill="none" stroke="midnightblue" d="M379.859,-446.534C398.689,-417.959 417.635,-388.646 433.629,-363.281"/>
-<polygon fill="none" stroke="midnightblue" points="376.878,-444.696 374.289,-454.97 382.72,-448.553 376.878,-444.696"/>
+<path fill="none" stroke="midnightblue" d="M373.136,-446.534C391.851,-417.959 411.049,-388.646 427.661,-363.281"/>
+<polygon fill="none" stroke="midnightblue" points="370.162,-444.687 367.611,-454.97 376.018,-448.522 370.162,-444.687"/>
 </g>
 <!-- Box_VideoOptionScreen -->
 <g id="node7" class="node"><title>Box_VideoOptionScreen</title>
@@ -240,44 +185,9 @@
 <text text-anchor="start" x="400.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Collapse (MenuItem item)</text>
 </g>
 <!-- Box_OptionScreen&#45;&gt;Box_VideoOptionScreen -->
-<g id="edge22" class="edge"><title>Box_OptionScreen&#45;&gt;Box_VideoOptionScreen</title>
-<path fill="none" stroke="midnightblue" d="M428.843,-208.993C427.263,-191.919 427.396,-173.968 429.242,-157.041"/>
-<polygon fill="none" stroke="midnightblue" points="425.365,-209.389 429.971,-218.931 432.32,-208.6 425.365,-209.389"/>
-</g>
-<!-- Box_OptionScreen&#45;&gt;Box_VideoOptionScreen -->
-<g id="edge24" class="edge"><title>Box_OptionScreen&#45;&gt;Box_VideoOptionScreen</title>
-<path fill="none" stroke="midnightblue" d="M468.4,-208.514C468.181,-191.583 468.202,-173.81 468.463,-157.041"/>
-<polygon fill="none" stroke="midnightblue" points="464.907,-208.988 468.567,-218.931 471.906,-208.876 464.907,-208.988"/>
-</g>
-<!-- Box_OptionScreen&#45;&gt;Box_VideoOptionScreen -->
-<g id="edge36" class="edge"><title>Box_OptionScreen&#45;&gt;Box_VideoOptionScreen</title>
-<path fill="none" stroke="midnightblue" d="M481.6,-208.514C481.819,-191.583 481.798,-173.81 481.537,-157.041"/>
-<polygon fill="none" stroke="midnightblue" points="478.094,-208.876 481.433,-218.931 485.093,-208.988 478.094,-208.876"/>
-</g>
-<!-- Box_OptionScreen&#45;&gt;Box_VideoOptionScreen -->
-<g id="edge38" class="edge"><title>Box_OptionScreen&#45;&gt;Box_VideoOptionScreen</title>
-<path fill="none" stroke="midnightblue" d="M494.8,-208.514C495.458,-191.583 495.394,-173.81 494.61,-157.041"/>
-<polygon fill="none" stroke="midnightblue" points="491.284,-208.774 494.298,-218.931 498.276,-209.111 491.284,-208.774"/>
-</g>
-<!-- Box_OptionScreen&#45;&gt;Box_VideoOptionScreen -->
-<g id="edge46" class="edge"><title>Box_OptionScreen&#45;&gt;Box_VideoOptionScreen</title>
-<path fill="none" stroke="midnightblue" d="M508.001,-208.514C509.096,-191.583 508.99,-173.81 507.684,-157.041"/>
-<polygon fill="none" stroke="midnightblue" points="504.476,-208.682 507.164,-218.931 511.454,-209.243 504.476,-208.682"/>
-</g>
-<!-- Box_OptionScreen&#45;&gt;Box_VideoOptionScreen -->
-<g id="edge48" class="edge"><title>Box_OptionScreen&#45;&gt;Box_VideoOptionScreen</title>
-<path fill="none" stroke="midnightblue" d="M521.157,-208.993C522.737,-191.919 522.604,-173.968 520.758,-157.041"/>
-<polygon fill="none" stroke="midnightblue" points="517.68,-208.6 520.029,-218.931 524.635,-209.389 517.68,-208.6"/>
-</g>
-<!-- Box_OptionScreen&#45;&gt;Box_VideoOptionScreen -->
 <g id="edge12" class="edge"><title>Box_OptionScreen&#45;&gt;Box_VideoOptionScreen</title>
-<path fill="none" stroke="midnightblue" d="M441.999,-208.514C440.904,-191.583 441.01,-173.81 442.316,-157.041"/>
-<polygon fill="none" stroke="midnightblue" points="438.546,-209.243 442.836,-218.931 445.524,-208.682 438.546,-209.243"/>
-</g>
-<!-- Box_OptionScreen&#45;&gt;Box_VideoOptionScreen -->
-<g id="edge14" class="edge"><title>Box_OptionScreen&#45;&gt;Box_VideoOptionScreen</title>
-<path fill="none" stroke="midnightblue" d="M455.2,-208.514C454.542,-191.583 454.606,-173.81 455.39,-157.041"/>
-<polygon fill="none" stroke="midnightblue" points="451.724,-209.111 455.702,-218.931 458.716,-208.774 451.724,-209.111"/>
+<path fill="none" stroke="midnightblue" d="M475,-208.514C475,-191.583 475,-173.81 475,-157.041"/>
+<polygon fill="none" stroke="midnightblue" points="471.5,-208.931 475,-218.931 478.5,-208.931 471.5,-208.931"/>
 </g>
 </g>
 </svg>

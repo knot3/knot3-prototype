@@ -75,13 +75,8 @@
 </g>
 <!-- Box_IGameObject&#45;&gt;Box_GameModel -->
 <g id="edge4" class="edge"><title>Box_IGameObject&#45;&gt;Box_GameModel</title>
-<path fill="none" stroke="midnightblue" d="M99.7158,-498.739C99.5359,-489.953 99.4081,-480.79 99.3324,-471.469"/>
-<polygon fill="none" stroke="midnightblue" points="96.2197,-498.95 99.951,-508.866 103.218,-498.788 96.2197,-498.95"/>
-</g>
-<!-- Box_IGameObject&#45;&gt;Box_GameModel -->
-<g id="edge6" class="edge"><title>Box_IGameObject&#45;&gt;Box_GameModel</title>
-<path fill="none" stroke="midnightblue" d="M112.284,-498.739C112.464,-489.953 112.592,-480.79 112.668,-471.469"/>
-<polygon fill="none" stroke="midnightblue" points="108.782,-498.788 112.049,-508.866 115.78,-498.95 108.782,-498.788"/>
+<path fill="none" stroke="midnightblue" d="M106,-498.739C106,-489.953 106,-480.79 106,-471.469"/>
+<polygon fill="none" stroke="midnightblue" points="102.5,-498.866 106,-508.866 109.5,-498.866 102.5,-498.866"/>
 </g>
 </g>
 </svg>

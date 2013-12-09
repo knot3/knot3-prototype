@@ -72,13 +72,8 @@
 </g>
 <!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
 <g id="edge4" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
-<path fill="none" stroke="midnightblue" d="M118.458,-462.867C118.315,-453.791 118.245,-444.415 118.25,-435.051"/>
-<polygon fill="none" stroke="midnightblue" points="114.961,-463.039 118.652,-472.97 121.96,-462.905 114.961,-463.039"/>
-</g>
-<!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
-<g id="edge6" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
-<path fill="none" stroke="midnightblue" d="M131.542,-462.867C131.685,-453.791 131.755,-444.415 131.75,-435.051"/>
-<polygon fill="none" stroke="midnightblue" points="128.04,-462.905 131.348,-472.97 135.039,-463.039 128.04,-462.905"/>
+<path fill="none" stroke="midnightblue" d="M125,-462.867C125,-453.791 125,-444.415 125,-435.051"/>
+<polygon fill="none" stroke="midnightblue" points="121.5,-462.97 125,-472.97 128.5,-462.97 121.5,-462.97"/>
 </g>
 </g>
 </svg>

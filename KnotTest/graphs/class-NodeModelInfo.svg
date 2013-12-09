@@ -63,13 +63,8 @@
 </g>
 <!-- Box_GameObjectInfo&#45;&gt;Box_GameModelInfo -->
 <g id="edge4" class="edge"><title>Box_GameObjectInfo&#45;&gt;Box_GameModelInfo</title>
-<path fill="none" stroke="midnightblue" d="M139.264,-306.639C139.304,-297.24 139.436,-287.925 139.657,-279.074"/>
-<polygon fill="none" stroke="midnightblue" points="135.764,-306.851 139.255,-316.855 142.764,-306.858 135.764,-306.851"/>
-</g>
-<!-- Box_GameObjectInfo&#45;&gt;Box_GameModelInfo -->
-<g id="edge10" class="edge"><title>Box_GameObjectInfo&#45;&gt;Box_GameModelInfo</title>
-<path fill="none" stroke="midnightblue" d="M152.736,-306.639C152.696,-297.24 152.564,-287.925 152.343,-279.074"/>
-<polygon fill="none" stroke="midnightblue" points="149.236,-306.858 152.745,-316.855 156.236,-306.851 149.236,-306.858"/>
+<path fill="none" stroke="midnightblue" d="M146,-306.639C146,-297.24 146,-287.925 146,-279.074"/>
+<polygon fill="none" stroke="midnightblue" points="142.5,-306.854 146,-316.855 149.5,-306.855 142.5,-306.854"/>
 </g>
 <!-- Box_IEquatable -->
 <g id="node4" class="node"><title>Box_IEquatable</title>
@@ -78,23 +73,8 @@
 </g>
 <!-- Box_IEquatable&#45;&gt;Box_GameObjectInfo -->
 <g id="edge6" class="edge"><title>Box_IEquatable&#45;&gt;Box_GameObjectInfo</title>
-<path fill="none" stroke="midnightblue" d="M131.265,-525.11C129.061,-517.257 127.518,-507.642 126.635,-497.321"/>
-<polygon fill="none" stroke="midnightblue" points="128.008,-526.397 134.68,-534.628 134.597,-524.033 128.008,-526.397"/>
-</g>
-<!-- Box_IEquatable&#45;&gt;Box_GameObjectInfo -->
-<g id="edge8" class="edge"><title>Box_IEquatable&#45;&gt;Box_GameObjectInfo</title>
-<path fill="none" stroke="midnightblue" d="M141.039,-524.572C140.33,-516.819 139.833,-507.407 139.545,-497.321"/>
-<polygon fill="none" stroke="midnightblue" points="137.577,-525.107 142.227,-534.628 144.529,-524.286 137.577,-525.107"/>
-</g>
-<!-- Box_IEquatable&#45;&gt;Box_GameObjectInfo -->
-<g id="edge12" class="edge"><title>Box_IEquatable&#45;&gt;Box_GameObjectInfo</title>
-<path fill="none" stroke="midnightblue" d="M150.961,-524.572C151.67,-516.819 152.167,-507.407 152.455,-497.321"/>
-<polygon fill="none" stroke="midnightblue" points="147.471,-524.286 149.773,-534.628 154.423,-525.107 147.471,-524.286"/>
-</g>
-<!-- Box_IEquatable&#45;&gt;Box_GameObjectInfo -->
-<g id="edge14" class="edge"><title>Box_IEquatable&#45;&gt;Box_GameObjectInfo</title>
-<path fill="none" stroke="midnightblue" d="M160.735,-525.11C162.939,-517.257 164.482,-507.642 165.365,-497.321"/>
-<polygon fill="none" stroke="midnightblue" points="157.403,-524.033 157.32,-534.628 163.992,-526.397 157.403,-524.033"/>
+<path fill="none" stroke="midnightblue" d="M146,-524.572C146,-516.819 146,-507.407 146,-497.321"/>
+<polygon fill="none" stroke="midnightblue" points="142.5,-524.628 146,-534.628 149.5,-524.628 142.5,-524.628"/>
 </g>
 </g>
 </svg>

@@ -1,27 +1,8 @@
-public abstract class ModelFactory : 
+public sealed class ModelFactory : 
   Attributes:
+    - GameModelInfo, GameModel> CreateModel : Func<GameState,
   Methods:
     - GameModel> cache () : Dictionary<GameModelInfo,
-    # CreateModel (GameState state, GameModelInfo info) : GameModel abstract
+    + ModelFactory  (Func<GameState, GameModelInfo, GameModel> createModel)
     + this (GameState state, GameModelInfo info) : GameModel
-
-public class NodeModelFactory : ModelFactory
-  Attributes:
-  Methods:
-    # CreateModel (GameState state, GameModelInfo info) : GameModel override
-
-public class PipeModelFactory : ModelFactory
-  Attributes:
-  Methods:
-    # CreateModel (GameState state, GameModelInfo info) : GameModel override
-
-public class NodeModelFactory : ModelFactory
-  Attributes:
-  Methods:
-    # CreateModel (GameState state, GameModelInfo info) : GameModel
-
-public class PipeModelFactory : ModelFactory
-  Attributes:
-  Methods:
-    # CreateModel (GameState state, GameModelInfo info) : GameModel
 

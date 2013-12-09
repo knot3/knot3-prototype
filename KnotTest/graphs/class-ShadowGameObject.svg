@@ -45,13 +45,8 @@
 </g>
 <!-- Box_ShadowGameObject&#45;&gt;Box_ShadowGameModel -->
 <g id="edge4" class="edge"><title>Box_ShadowGameObject&#45;&gt;Box_ShadowGameModel</title>
-<path fill="none" stroke="midnightblue" d="M111.278,-148.615C111.335,-139.209 111.477,-129.92 111.704,-121.11"/>
-<polygon fill="none" stroke="midnightblue" points="107.778,-148.843 111.25,-158.853 114.778,-148.862 107.778,-148.843"/>
-</g>
-<!-- Box_ShadowGameObject&#45;&gt;Box_ShadowGameModel -->
-<g id="edge6" class="edge"><title>Box_ShadowGameObject&#45;&gt;Box_ShadowGameModel</title>
-<path fill="none" stroke="midnightblue" d="M124.722,-148.615C124.665,-139.209 124.523,-129.92 124.296,-121.11"/>
-<polygon fill="none" stroke="midnightblue" points="121.222,-148.862 124.75,-158.853 128.222,-148.843 121.222,-148.862"/>
+<path fill="none" stroke="midnightblue" d="M118,-148.615C118,-139.209 118,-129.92 118,-121.11"/>
+<polygon fill="none" stroke="midnightblue" points="114.5,-148.852 118,-158.853 121.5,-148.853 114.5,-148.852"/>
 </g>
 <!-- Box_IGameObject -->
 <g id="node2" class="node"><title>Box_IGameObject</title>

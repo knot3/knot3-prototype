@@ -63,13 +63,8 @@
 </g>
 <!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
 <g id="edge4" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
-<path fill="none" stroke="midnightblue" d="M118.458,-354.867C118.315,-345.791 118.245,-336.415 118.25,-327.051"/>
-<polygon fill="none" stroke="midnightblue" points="114.961,-355.039 118.652,-364.97 121.96,-354.905 114.961,-355.039"/>
-</g>
-<!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
-<g id="edge6" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
-<path fill="none" stroke="midnightblue" d="M131.542,-354.867C131.685,-345.791 131.755,-336.415 131.75,-327.051"/>
-<polygon fill="none" stroke="midnightblue" points="128.04,-354.905 131.348,-364.97 135.039,-355.039 128.04,-354.905"/>
+<path fill="none" stroke="midnightblue" d="M125,-354.867C125,-345.791 125,-336.415 125,-327.051"/>
+<polygon fill="none" stroke="midnightblue" points="121.5,-354.97 125,-364.97 128.5,-354.97 121.5,-354.97"/>
 </g>
 </g>
 </svg>

@@ -47,13 +47,8 @@
 </g>
 <!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
 <g id="edge2" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
-<path fill="none" stroke="midnightblue" d="M460.458,-462.867C460.315,-453.791 460.245,-444.415 460.25,-435.051"/>
-<polygon fill="none" stroke="midnightblue" points="456.961,-463.039 460.652,-472.97 463.96,-462.905 456.961,-463.039"/>
-</g>
-<!-- Box_IRenderEffect&#45;&gt;Box_RenderEffect -->
-<g id="edge20" class="edge"><title>Box_IRenderEffect&#45;&gt;Box_RenderEffect</title>
-<path fill="none" stroke="midnightblue" d="M473.542,-462.867C473.685,-453.791 473.755,-444.415 473.75,-435.051"/>
-<polygon fill="none" stroke="midnightblue" points="470.04,-462.905 473.348,-472.97 477.039,-463.039 470.04,-462.905"/>
+<path fill="none" stroke="midnightblue" d="M467,-462.867C467,-453.791 467,-444.415 467,-435.051"/>
+<polygon fill="none" stroke="midnightblue" points="463.5,-462.97 467,-472.97 470.5,-462.97 463.5,-462.97"/>
 </g>
 <!-- Box_BlurEffect -->
 <g id="node3" class="node"><title>Box_BlurEffect</title>
@@ -71,23 +66,8 @@
 </g>
 <!-- Box_RenderEffect&#45;&gt;Box_BlurEffect -->
 <g id="edge4" class="edge"><title>Box_RenderEffect&#45;&gt;Box_BlurEffect</title>
-<path fill="none" stroke="midnightblue" d="M332.951,-274.9C289.181,-251.26 241.454,-222.758 200,-194 183.767,-182.739 166.988,-169.817 152.022,-157.155"/>
-<polygon fill="none" stroke="midnightblue" points="331.471,-278.077 341.938,-279.714 334.777,-271.907 331.471,-278.077"/>
-</g>
-<!-- Box_RenderEffect&#45;&gt;Box_BlurEffect -->
-<g id="edge22" class="edge"><title>Box_RenderEffect&#45;&gt;Box_BlurEffect</title>
-<path fill="none" stroke="midnightblue" d="M333.225,-255.578C300.814,-236.438 266.688,-215.289 236,-194 219.767,-182.739 202.988,-169.817 187.135,-157.155"/>
-<polygon fill="none" stroke="midnightblue" points="331.475,-258.609 341.87,-260.66 335.023,-252.575 331.475,-258.609"/>
-</g>
-<!-- Box_RenderEffect&#45;&gt;Box_BlurEffect -->
-<g id="edge30" class="edge"><title>Box_RenderEffect&#45;&gt;Box_BlurEffect</title>
-<path fill="none" stroke="midnightblue" d="M333.322,-245.065C306.648,-228.825 279.168,-211.459 254,-194 237.767,-182.739 220.988,-169.817 204.691,-157.155"/>
-<polygon fill="none" stroke="midnightblue" points="331.585,-248.105 341.95,-250.297 335.214,-242.119 331.585,-248.105"/>
-</g>
-<!-- Box_RenderEffect&#45;&gt;Box_BlurEffect -->
-<g id="edge12" class="edge"><title>Box_RenderEffect&#45;&gt;Box_BlurEffect</title>
-<path fill="none" stroke="midnightblue" d="M332.638,-265.3C294.697,-243.736 253.986,-218.964 218,-194 201.767,-182.739 184.988,-169.817 169.579,-157.155"/>
-<polygon fill="none" stroke="midnightblue" points="331.277,-268.552 341.705,-270.424 334.721,-262.457 331.277,-268.552"/>
+<path fill="none" stroke="midnightblue" d="M333.008,-260.552C297.808,-240.136 260.372,-217.151 227,-194 210.767,-182.739 193.988,-169.817 178.357,-157.155"/>
+<polygon fill="none" stroke="midnightblue" points="331.494,-263.719 341.905,-265.686 334.992,-257.656 331.494,-263.719"/>
 </g>
 <!-- Box_CelShadingEffect -->
 <g id="node4" class="node"><title>Box_CelShadingEffect</title>
@@ -110,24 +90,9 @@
 <text text-anchor="start" x="243.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ RemapModel (Model model)</text>
 </g>
 <!-- Box_RenderEffect&#45;&gt;Box_CelShadingEffect -->
-<g id="edge24" class="edge"><title>Box_RenderEffect&#45;&gt;Box_CelShadingEffect</title>
-<path fill="none" stroke="midnightblue" d="M390.696,-221.774C385.82,-212.271 381.091,-202.709 376.633,-193.336"/>
-<polygon fill="none" stroke="midnightblue" points="387.698,-223.596 395.41,-230.86 393.911,-220.371 387.698,-223.596"/>
-</g>
-<!-- Box_RenderEffect&#45;&gt;Box_CelShadingEffect -->
-<g id="edge32" class="edge"><title>Box_RenderEffect&#45;&gt;Box_CelShadingEffect</title>
-<path fill="none" stroke="midnightblue" d="M431.136,-221.774C426.428,-212.271 421.514,-202.709 416.52,-193.336"/>
-<polygon fill="none" stroke="midnightblue" points="428.043,-223.417 435.584,-230.86 434.33,-220.339 428.043,-223.417"/>
-</g>
-<!-- Box_RenderEffect&#45;&gt;Box_CelShadingEffect -->
 <g id="edge6" class="edge"><title>Box_RenderEffect&#45;&gt;Box_CelShadingEffect</title>
-<path fill="none" stroke="midnightblue" d="M404.176,-221.774C399.356,-212.271 394.565,-202.709 389.928,-193.336"/>
-<polygon fill="none" stroke="midnightblue" points="401.145,-223.536 408.801,-230.86 407.383,-220.36 401.145,-223.536"/>
-</g>
-<!-- Box_RenderEffect&#45;&gt;Box_CelShadingEffect -->
-<g id="edge14" class="edge"><title>Box_RenderEffect&#45;&gt;Box_CelShadingEffect</title>
-<path fill="none" stroke="midnightblue" d="M417.656,-221.774C412.892,-212.271 408.04,-202.709 403.224,-193.336"/>
-<polygon fill="none" stroke="midnightblue" points="414.594,-223.476 422.192,-230.86 420.856,-220.349 414.594,-223.476"/>
+<path fill="none" stroke="midnightblue" d="M410.916,-221.774C406.124,-212.271 401.302,-202.709 396.576,-193.336"/>
+<polygon fill="none" stroke="midnightblue" points="407.869,-223.506 415.497,-230.86 414.12,-220.355 407.869,-223.506"/>
 </g>
 <!-- Box_FadeEffect -->
 <g id="node5" class="node"><title>Box_FadeEffect</title>
@@ -144,24 +109,9 @@
 <text text-anchor="start" x="485.5" y="-45.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (SpriteBatch spriteBatch, GameTime gameTime)</text>
 </g>
 <!-- Box_RenderEffect&#45;&gt;Box_FadeEffect -->
-<g id="edge26" class="edge"><title>Box_RenderEffect&#45;&gt;Box_FadeEffect</title>
-<path fill="none" stroke="midnightblue" d="M503.381,-221.683C514.509,-199.418 526.763,-176.835 538.524,-157.118"/>
-<polygon fill="none" stroke="midnightblue" points="500.139,-220.343 498.849,-230.86 506.415,-223.443 500.139,-220.343"/>
-</g>
-<!-- Box_RenderEffect&#45;&gt;Box_FadeEffect -->
-<g id="edge34" class="edge"><title>Box_RenderEffect&#45;&gt;Box_FadeEffect</title>
-<path fill="none" stroke="midnightblue" d="M543.669,-221.98C555.241,-199.619 566.012,-176.923 574.339,-157.118"/>
-<polygon fill="none" stroke="midnightblue" points="540.558,-220.377 539.022,-230.86 546.76,-223.622 540.558,-220.377"/>
-</g>
-<!-- Box_RenderEffect&#45;&gt;Box_FadeEffect -->
 <g id="edge8" class="edge"><title>Box_RenderEffect&#45;&gt;Box_FadeEffect</title>
-<path fill="none" stroke="midnightblue" d="M516.861,-221.683C528.118,-199.418 539.858,-176.835 550.462,-157.118"/>
-<polygon fill="none" stroke="midnightblue" points="513.612,-220.354 512.24,-230.86 519.864,-223.502 513.612,-220.354"/>
-</g>
-<!-- Box_RenderEffect&#45;&gt;Box_FadeEffect -->
-<g id="edge16" class="edge"><title>Box_RenderEffect&#45;&gt;Box_FadeEffect</title>
-<path fill="none" stroke="midnightblue" d="M530.342,-221.683C541.727,-199.418 552.953,-176.835 562.401,-157.118"/>
-<polygon fill="none" stroke="midnightblue" points="527.085,-220.365 525.631,-230.86 533.312,-223.562 527.085,-220.365"/>
+<path fill="none" stroke="midnightblue" d="M523.602,-221.683C534.923,-199.418 546.406,-176.835 556.432,-157.118"/>
+<polygon fill="none" stroke="midnightblue" points="520.348,-220.359 518.936,-230.86 526.588,-223.532 520.348,-220.359"/>
 </g>
 <!-- Box_NoEffect -->
 <g id="node6" class="node"><title>Box_NoEffect</title>
@@ -175,24 +125,9 @@
 <text text-anchor="start" x="721.5" y="-63.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ NoEffect (GameState state)</text>
 </g>
 <!-- Box_RenderEffect&#45;&gt;Box_NoEffect -->
-<g id="edge28" class="edge"><title>Box_RenderEffect&#45;&gt;Box_NoEffect</title>
-<path fill="none" stroke="midnightblue" d="M601.052,-243.886C626.956,-227.968 653.57,-211.014 678,-194 702.047,-177.253 727.32,-156.891 750.451,-139.155"/>
-<polygon fill="none" stroke="midnightblue" points="599.001,-241.038 592.298,-249.243 602.655,-247.008 599.001,-241.038"/>
-</g>
-<!-- Box_RenderEffect&#45;&gt;Box_NoEffect -->
-<g id="edge36" class="edge"><title>Box_RenderEffect&#45;&gt;Box_NoEffect</title>
-<path fill="none" stroke="midnightblue" d="M600.977,-274.314C644.155,-250.756 691.132,-222.461 732,-194 756.047,-177.253 781.32,-156.891 800.108,-139.155"/>
-<polygon fill="none" stroke="midnightblue" points="599.238,-271.276 592.11,-279.115 602.571,-277.432 599.238,-271.276"/>
-</g>
-<!-- Box_RenderEffect&#45;&gt;Box_NoEffect -->
 <g id="edge10" class="edge"><title>Box_RenderEffect&#45;&gt;Box_NoEffect</title>
-<path fill="none" stroke="midnightblue" d="M601.097,-254.543C632.775,-235.653 666.03,-214.871 696,-194 720.047,-177.253 745.32,-156.891 767.004,-139.155"/>
-<polygon fill="none" stroke="midnightblue" points="599.021,-251.705 592.208,-259.82 602.594,-257.725 599.021,-251.705"/>
-</g>
-<!-- Box_RenderEffect&#45;&gt;Box_NoEffect -->
-<g id="edge18" class="edge"><title>Box_RenderEffect&#45;&gt;Box_NoEffect</title>
-<path fill="none" stroke="midnightblue" d="M601.138,-264.693C638.519,-243.241 678.557,-218.683 714,-194 738.047,-177.253 763.32,-156.891 783.556,-139.155"/>
-<polygon fill="none" stroke="midnightblue" points="599.155,-261.795 592.203,-269.791 602.623,-267.875 599.155,-261.795"/>
+<path fill="none" stroke="midnightblue" d="M600.983,-259.768C635.555,-239.522 672.24,-216.814 705,-194 729.047,-177.253 754.32,-156.891 775.28,-139.155"/>
+<polygon fill="none" stroke="midnightblue" points="599.121,-256.803 592.243,-264.861 602.645,-262.851 599.121,-256.803"/>
 </g>
 </g>
 </svg>

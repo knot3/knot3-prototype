@@ -48,13 +48,8 @@
 </g>
 <!-- Box_IKnotFormat&#45;&gt;Box_EdgeListFormat -->
 <g id="edge2" class="edge"><title>Box_IKnotFormat&#45;&gt;Box_EdgeListFormat</title>
-<path fill="none" stroke="midnightblue" d="M212.226,-258.321C206.083,-248.922 199.735,-239.074 193.407,-229.13"/>
-<polygon fill="none" stroke="midnightblue" points="209.39,-260.378 217.804,-266.816 215.241,-256.536 209.39,-260.378"/>
-</g>
-<!-- Box_IKnotFormat&#45;&gt;Box_EdgeListFormat -->
-<g id="edge6" class="edge"><title>Box_IKnotFormat&#45;&gt;Box_EdgeListFormat</title>
-<path fill="none" stroke="midnightblue" d="M224.777,-258.033C219.09,-248.721 213.049,-238.973 206.871,-229.13"/>
-<polygon fill="none" stroke="midnightblue" points="221.93,-260.088 230.115,-266.816 227.913,-256.453 221.93,-260.088"/>
+<path fill="none" stroke="midnightblue" d="M218.59,-258.321C212.649,-248.922 206.424,-239.074 200.139,-229.13"/>
+<polygon fill="none" stroke="midnightblue" points="215.658,-260.233 223.959,-266.816 221.575,-256.493 215.658,-260.233"/>
 </g>
 <!-- Box_KnotListFormat -->
 <g id="node3" class="node"><title>Box_KnotListFormat</title>
@@ -75,13 +70,8 @@
 </g>
 <!-- Box_IKnotFormat&#45;&gt;Box_KnotListFormat -->
 <g id="edge4" class="edge"><title>Box_IKnotFormat&#45;&gt;Box_KnotListFormat</title>
-<path fill="none" stroke="midnightblue" d="M299.195,-258.078C311.852,-237.352 326.263,-214.463 340.043,-193.183"/>
-<polygon fill="none" stroke="midnightblue" points="296.087,-256.453 293.885,-266.816 302.069,-260.088 296.087,-256.453"/>
-</g>
-<!-- Box_IKnotFormat&#45;&gt;Box_KnotListFormat -->
-<g id="edge8" class="edge"><title>Box_IKnotFormat&#45;&gt;Box_KnotListFormat</title>
-<path fill="none" stroke="midnightblue" d="M311.752,-258.355C325.346,-237.557 339.942,-214.558 353.121,-193.183"/>
-<polygon fill="none" stroke="midnightblue" points="308.759,-256.536 306.196,-266.816 314.61,-260.378 308.759,-256.536"/>
+<path fill="none" stroke="midnightblue" d="M305.389,-258.355C318.535,-237.557 333.072,-214.558 346.582,-193.183"/>
+<polygon fill="none" stroke="midnightblue" points="302.425,-256.493 300.041,-266.816 308.342,-260.233 302.425,-256.493"/>
 </g>
 </g>
 </svg>

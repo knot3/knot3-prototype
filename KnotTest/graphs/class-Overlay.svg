@@ -67,13 +67,8 @@
 </g>
 <!-- Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent -->
 <g id="edge6" class="edge"><title>Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent</title>
-<path fill="none" stroke="midnightblue" d="M197.382,-453.244C205.992,-443.448 215.283,-433.125 224.426,-423.192"/>
-<polygon fill="none" stroke="midnightblue" points="194.578,-451.134 190.638,-460.969 199.851,-455.737 194.578,-451.134"/>
-</g>
-<!-- Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent -->
-<g id="edge12" class="edge"><title>Box_IGameStateComponent&#45;&gt;Box_DrawableGameStateComponent</title>
-<path fill="none" stroke="midnightblue" d="M210.207,-453.535C219.371,-443.653 228.822,-433.224 237.705,-423.192"/>
-<polygon fill="none" stroke="midnightblue" points="207.532,-451.27 203.268,-460.969 212.65,-456.047 207.532,-451.27"/>
+<path fill="none" stroke="midnightblue" d="M203.666,-453.535C212.59,-443.653 222.007,-433.224 231.065,-423.192"/>
+<polygon fill="none" stroke="midnightblue" points="201.057,-451.202 196.953,-460.969 206.253,-455.893 201.057,-451.202"/>
 </g>
 <!-- Box_XnaDrawableGameComponent -->
 <g id="node4" class="node"><title>Box_XnaDrawableGameComponent</title>
@@ -82,13 +77,8 @@
 </g>
 <!-- Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent -->
 <g id="edge4" class="edge"><title>Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent</title>
-<path fill="none" stroke="midnightblue" d="M380.851,-485.879C364.835,-470.019 342.101,-445.562 322.223,-423.111"/>
-<polygon fill="none" stroke="midnightblue" points="378.513,-488.487 388.132,-492.928 383.382,-483.458 378.513,-488.487"/>
-</g>
-<!-- Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent -->
-<g id="edge10" class="edge"><title>Box_XnaDrawableGameComponent&#45;&gt;Box_DrawableGameStateComponent</title>
-<path fill="none" stroke="midnightblue" d="M389.532,-485.006C376.823,-469.13 355.791,-445.153 335.499,-423.111"/>
-<polygon fill="none" stroke="midnightblue" points="386.783,-487.173 395.679,-492.928 392.314,-482.882 386.783,-487.173"/>
+<path fill="none" stroke="midnightblue" d="M385.148,-485.445C370.817,-469.574 348.95,-445.357 328.861,-423.111"/>
+<polygon fill="none" stroke="midnightblue" points="382.606,-487.852 391.905,-492.928 387.801,-483.161 382.606,-487.852"/>
 </g>
 <!-- Box_XnaIGameComponent -->
 <g id="node5" class="node"><title>Box_XnaIGameComponent</title>
@@ -97,13 +87,8 @@
 </g>
 <!-- Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent -->
 <g id="edge8" class="edge"><title>Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent</title>
-<path fill="none" stroke="midnightblue" d="M153.253,-572.731C152.518,-564.612 152.187,-554.936 152.26,-545.414"/>
-<polygon fill="none" stroke="midnightblue" points="149.783,-573.192 154.506,-582.676 156.728,-572.317 149.783,-573.192"/>
-</g>
-<!-- Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent -->
-<g id="edge14" class="edge"><title>Box_XnaIGameComponent&#45;&gt;Box_IGameStateComponent</title>
-<path fill="none" stroke="midnightblue" d="M164.747,-572.731C165.482,-564.612 165.813,-554.936 165.74,-545.414"/>
-<polygon fill="none" stroke="midnightblue" points="161.272,-572.317 163.494,-582.676 168.217,-573.192 161.272,-572.317"/>
+<path fill="none" stroke="midnightblue" d="M159,-572.454C159,-564.393 159,-554.828 159,-545.414"/>
+<polygon fill="none" stroke="midnightblue" points="155.5,-572.676 159,-582.676 162.5,-572.676 155.5,-572.676"/>
 </g>
 </g>
 </svg>

@@ -35,13 +35,8 @@
 </g>
 <!-- Box_DistinctOptionInfo&#45;&gt;Box_BooleanOptionInfo -->
 <g id="edge4" class="edge"><title>Box_DistinctOptionInfo&#45;&gt;Box_BooleanOptionInfo</title>
-<path fill="none" stroke="midnightblue" d="M204.298,-124.498C204.194,-115.418 204.258,-106.127 204.489,-97.3061"/>
-<polygon fill="none" stroke="midnightblue" points="200.801,-124.69 204.487,-134.623 207.8,-124.559 200.801,-124.69"/>
-</g>
-<!-- Box_DistinctOptionInfo&#45;&gt;Box_BooleanOptionInfo -->
-<g id="edge6" class="edge"><title>Box_DistinctOptionInfo&#45;&gt;Box_BooleanOptionInfo</title>
-<path fill="none" stroke="midnightblue" d="M217.702,-124.498C217.806,-115.418 217.742,-106.127 217.511,-97.3061"/>
-<polygon fill="none" stroke="midnightblue" points="214.2,-124.559 217.513,-134.623 221.199,-124.69 214.2,-124.559"/>
+<path fill="none" stroke="midnightblue" d="M211,-124.498C211,-115.418 211,-106.127 211,-97.3061"/>
+<polygon fill="none" stroke="midnightblue" points="207.5,-124.623 211,-134.623 214.5,-124.623 207.5,-124.623"/>
 </g>
 <!-- Box_OptionInfo -->
 <g id="node2" class="node"><title>Box_OptionInfo</title>

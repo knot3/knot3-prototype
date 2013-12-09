@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Knot3/Knot3/UserInterface/Widget.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Knot3/Knot3/GameObjects/World.cs">
     <Files>
       <File FileName="Knot3/Knot3/Core/StartScreen.cs" Line="42" Column="1" />
       <File FileName="Knot3/Knot3/UserInterface/ColorPicker.cs" Line="67" Column="24" />
@@ -15,6 +15,7 @@
       <File FileName="Knot3/Knot3/Core/IKeyEventListener.cs" Line="21" Column="34" />
       <File FileName="Knot3/Knot3/Core/Game.cs" Line="163" Column="49" />
       <File FileName="Knot3/Knot3/UserInterface/Widget.cs" Line="121" Column="3" />
+      <File FileName="Knot3/Knot3/GameObjects/World.cs" Line="179" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

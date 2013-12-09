@@ -51,13 +51,8 @@
 </g>
 <!-- Box_GameModel&#45;&gt;Box_NodeModel -->
 <g id="edge4" class="edge"><title>Box_GameModel&#45;&gt;Box_NodeModel</title>
-<path fill="none" stroke="midnightblue" d="M211.18,-205.086C185.257,-175.357 159.504,-145.256 139.603,-121.312"/>
-<polygon fill="none" stroke="midnightblue" points="208.556,-207.402 217.77,-212.632 213.828,-202.798 208.556,-207.402"/>
-</g>
-<!-- Box_GameModel&#45;&gt;Box_NodeModel -->
-<g id="edge10" class="edge"><title>Box_GameModel&#45;&gt;Box_NodeModel</title>
-<path fill="none" stroke="midnightblue" d="M211.297,-189.733C189.756,-165.083 168.325,-140.953 150.265,-121.089"/>
-<polygon fill="none" stroke="midnightblue" points="208.771,-192.161 217.983,-197.396 214.046,-187.559 208.771,-192.161"/>
+<path fill="none" stroke="midnightblue" d="M211.033,-197.165C187.372,-169.97 163.861,-142.949 144.843,-121.092"/>
+<polygon fill="none" stroke="midnightblue" points="208.503,-199.589 217.708,-204.836 213.784,-194.994 208.503,-199.589"/>
 </g>
 <!-- Box_PipeModel -->
 <g id="node4" class="node"><title>Box_PipeModel</title>
@@ -77,13 +72,8 @@
 </g>
 <!-- Box_GameModel&#45;&gt;Box_PipeModel -->
 <g id="edge6" class="edge"><title>Box_GameModel&#45;&gt;Box_PipeModel</title>
-<path fill="none" stroke="midnightblue" d="M317.391,-172.642C317.49,-163.228 317.64,-154.023 317.842,-145.25"/>
-<polygon fill="none" stroke="midnightblue" points="313.889,-172.902 317.304,-182.931 320.889,-172.961 313.889,-172.902"/>
-</g>
-<!-- Box_GameModel&#45;&gt;Box_PipeModel -->
-<g id="edge12" class="edge"><title>Box_GameModel&#45;&gt;Box_PipeModel</title>
-<path fill="none" stroke="midnightblue" d="M330.609,-172.642C330.51,-163.228 330.36,-154.023 330.158,-145.25"/>
-<polygon fill="none" stroke="midnightblue" points="327.111,-172.961 330.696,-182.931 334.111,-172.902 327.111,-172.961"/>
+<path fill="none" stroke="midnightblue" d="M324,-172.642C324,-163.228 324,-154.023 324,-145.25"/>
+<polygon fill="none" stroke="midnightblue" points="320.5,-172.931 324,-182.931 327.5,-172.931 320.5,-172.931"/>
 </g>
 <!-- Box_TestModel -->
 <g id="node5" class="node"><title>Box_TestModel</title>
@@ -98,13 +88,8 @@
 </g>
 <!-- Box_GameModel&#45;&gt;Box_TestModel -->
 <g id="edge8" class="edge"><title>Box_GameModel&#45;&gt;Box_TestModel</title>
-<path fill="none" stroke="midnightblue" d="M436.723,-189.71C460.496,-162.507 484.133,-135.938 503.252,-115.039"/>
-<polygon fill="none" stroke="midnightblue" points="433.954,-187.559 430.017,-197.396 439.229,-192.161 433.954,-187.559"/>
-</g>
-<!-- Box_GameModel&#45;&gt;Box_TestModel -->
-<g id="edge14" class="edge"><title>Box_GameModel&#45;&gt;Box_TestModel</title>
-<path fill="none" stroke="midnightblue" d="M437.004,-204.875C465.17,-172.571 493.118,-139.846 513.562,-115.076"/>
-<polygon fill="none" stroke="midnightblue" points="434.171,-202.798 430.23,-212.632 439.444,-207.402 434.171,-202.798"/>
+<path fill="none" stroke="midnightblue" d="M436.878,-197.266C462.783,-167.494 488.512,-137.923 508.37,-115.1"/>
+<polygon fill="none" stroke="midnightblue" points="434.216,-194.994 430.292,-204.836 439.497,-199.589 434.216,-194.994"/>
 </g>
 <!-- Box_IGameObject -->
 <g id="node2" class="node"><title>Box_IGameObject</title>

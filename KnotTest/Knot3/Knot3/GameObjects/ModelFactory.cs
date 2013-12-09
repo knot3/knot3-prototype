@@ -19,10 +19,17 @@ using Knot3.RenderEffects;
 
 namespace Knot3.GameObjects
 {
-	public abstract class ModelFactory
+	public sealed class ModelFactory
 	{
 		// cache
 		private Dictionary<GameModelInfo, GameModel> cache = new Dictionary<GameModelInfo, GameModel> ();
+
+		private Func<GameState, GameModelInfo, GameModel> CreateModel;
+
+		public ModelFactory (Func<GameState, GameModelInfo, GameModel> createModel)
+		{
+			CreateModel = createModel;
+		}
 		
 		public GameModel this [GameState state, GameModelInfo info] {
 			get {
@@ -33,8 +40,6 @@ namespace Knot3.GameObjects
 				}
 			}
 		}
-
-		protected abstract GameModel CreateModel(GameState state, GameModelInfo info);
 	}
 }
 

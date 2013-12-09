@@ -1,8 +1,8 @@
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
   Attributes:
     - knots : List<NodeModel>
-    - knotFactory : NodeModelFactory
-    - pipeFactory : PipeModelFactory
+    - knotFactory : ModelFactory
+    - pipeFactory : ModelFactory
     - pipes : List<PipeModel>
     + World : World
     + Info : dynamic
@@ -13,8 +13,8 @@ public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
     + Intersects (Ray ray) : GameObjectDistance
     + Draw  (GameTime gameTime)
     + OnEdgesChanged  (EdgeList edges)
-    + Update  (GameTime gameTime)
     + Center () : Vector3
+    + Update  (GameTime gameTime)
 
 public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
   Attributes:

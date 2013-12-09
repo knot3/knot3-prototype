@@ -44,13 +44,8 @@
 </g>
 <!-- Box_GameObjectInfo&#45;&gt;Box_GameModelInfo -->
 <g id="edge4" class="edge"><title>Box_GameObjectInfo&#45;&gt;Box_GameModelInfo</title>
-<path fill="none" stroke="midnightblue" d="M354.947,-356.606C344.363,-342.418 333.928,-328.186 324.494,-315.054"/>
-<polygon fill="none" stroke="midnightblue" points="352.395,-359.038 361.19,-364.946 358,-354.843 352.395,-359.038"/>
-</g>
-<!-- Box_GameObjectInfo&#45;&gt;Box_GameModelInfo -->
-<g id="edge16" class="edge"><title>Box_GameObjectInfo&#45;&gt;Box_GameModelInfo</title>
-<path fill="none" stroke="midnightblue" d="M368.446,-356.606C357.889,-342.418 347.119,-328.186 336.987,-315.054"/>
-<polygon fill="none" stroke="midnightblue" points="365.862,-358.998 374.63,-364.946 371.485,-354.829 365.862,-358.998"/>
+<path fill="none" stroke="midnightblue" d="M361.696,-356.606C351.126,-342.418 340.524,-328.186 330.74,-315.054"/>
+<polygon fill="none" stroke="midnightblue" points="359.129,-359.018 367.91,-364.946 364.742,-354.836 359.129,-359.018"/>
 </g>
 <!-- Box_TexturedRectangleInfo -->
 <g id="node5" class="node"><title>Box_TexturedRectangleInfo</title>
@@ -69,14 +64,9 @@
 <text text-anchor="start" x="389.5" y="-191.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Equals (GameObjectInfo other) : bool</text>
 </g>
 <!-- Box_GameObjectInfo&#45;&gt;Box_TexturedRectangleInfo -->
-<g id="edge26" class="edge"><title>Box_GameObjectInfo&#45;&gt;Box_TexturedRectangleInfo</title>
-<path fill="none" stroke="midnightblue" d="M501.811,-356.921C509.317,-346.897 516.933,-336.848 524.356,-327.176"/>
-<polygon fill="none" stroke="midnightblue" points="498.997,-354.839 495.82,-364.946 504.607,-359.026 498.997,-354.839"/>
-</g>
-<!-- Box_GameObjectInfo&#45;&gt;Box_TexturedRectangleInfo -->
-<g id="edge14" class="edge"><title>Box_GameObjectInfo&#45;&gt;Box_TexturedRectangleInfo</title>
-<path fill="none" stroke="midnightblue" d="M515.308,-356.921C522.838,-346.897 530.296,-336.848 537.38,-327.176"/>
-<polygon fill="none" stroke="midnightblue" points="512.484,-354.854 509.261,-364.946 518.074,-359.066 512.484,-354.854"/>
+<g id="edge10" class="edge"><title>Box_GameObjectInfo&#45;&gt;Box_TexturedRectangleInfo</title>
+<path fill="none" stroke="midnightblue" d="M508.559,-356.921C516.077,-346.897 523.614,-336.848 530.868,-327.176"/>
+<polygon fill="none" stroke="midnightblue" points="505.74,-354.846 502.54,-364.946 511.34,-359.046 505.74,-354.846"/>
 </g>
 <!-- Box_NodeModelInfo -->
 <g id="node3" class="node"><title>Box_NodeModelInfo</title>
@@ -93,24 +83,9 @@
 <text text-anchor="start" x="7.5" y="-21.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Equals (GameObjectInfo other) : bool</text>
 </g>
 <!-- Box_GameModelInfo&#45;&gt;Box_NodeModelInfo -->
-<g id="edge22" class="edge"><title>Box_GameModelInfo&#45;&gt;Box_NodeModelInfo</title>
-<path fill="none" stroke="midnightblue" d="M213.925,-186.873C199.407,-169.188 185.021,-150.27 173.011,-133.035"/>
-<polygon fill="none" stroke="midnightblue" points="211.513,-189.448 220.596,-194.902 216.897,-184.974 211.513,-189.448"/>
-</g>
-<!-- Box_GameModelInfo&#45;&gt;Box_NodeModelInfo -->
 <g id="edge6" class="edge"><title>Box_GameModelInfo&#45;&gt;Box_NodeModelInfo</title>
-<path fill="none" stroke="midnightblue" d="M227.038,-186.873C213.129,-169.188 198.633,-150.27 185.791,-133.035"/>
-<polygon fill="none" stroke="midnightblue" points="224.434,-189.224 233.379,-194.902 229.928,-184.885 224.434,-189.224"/>
-</g>
-<!-- Box_GameModelInfo&#45;&gt;Box_NodeModelInfo -->
-<g id="edge10" class="edge"><title>Box_GameModelInfo&#45;&gt;Box_NodeModelInfo</title>
-<path fill="none" stroke="midnightblue" d="M240.152,-186.873C226.852,-169.188 212.244,-150.27 198.571,-133.035"/>
-<polygon fill="none" stroke="midnightblue" points="237.367,-188.994 246.162,-194.902 242.971,-184.799 237.367,-188.994"/>
-</g>
-<!-- Box_GameModelInfo&#45;&gt;Box_NodeModelInfo -->
-<g id="edge18" class="edge"><title>Box_GameModelInfo&#45;&gt;Box_NodeModelInfo</title>
-<path fill="none" stroke="midnightblue" d="M252.922,-186.395C240.31,-168.847 225.725,-150.115 211.351,-133.035"/>
-<polygon fill="none" stroke="midnightblue" points="250.31,-188.763 258.945,-194.902 256.023,-184.718 250.31,-188.763"/>
+<path fill="none" stroke="midnightblue" d="M233.595,-186.873C219.991,-169.188 205.439,-150.27 192.181,-133.035"/>
+<polygon fill="none" stroke="midnightblue" points="230.899,-189.11 239.771,-194.902 236.448,-184.842 230.899,-189.11"/>
 </g>
 <!-- Box_PipeModelInfo -->
 <g id="node4" class="node"><title>Box_PipeModelInfo</title>
@@ -129,24 +104,9 @@
 <text text-anchor="start" x="317.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Equals (GameObjectInfo other) : bool</text>
 </g>
 <!-- Box_GameModelInfo&#45;&gt;Box_PipeModelInfo -->
-<g id="edge24" class="edge"><title>Box_GameModelInfo&#45;&gt;Box_PipeModelInfo</title>
-<path fill="none" stroke="midnightblue" d="M319.332,-186.565C329.145,-173.008 340.144,-158.737 351.315,-145.064"/>
-<polygon fill="none" stroke="midnightblue" points="316.343,-184.728 313.385,-194.902 322.042,-188.794 316.343,-184.728"/>
-</g>
-<!-- Box_GameModelInfo&#45;&gt;Box_PipeModelInfo -->
 <g id="edge8" class="edge"><title>Box_GameModelInfo&#45;&gt;Box_PipeModelInfo</title>
-<path fill="none" stroke="midnightblue" d="M332.457,-186.565C342.729,-173.008 353.766,-158.737 364.552,-145.064"/>
-<polygon fill="none" stroke="midnightblue" points="329.395,-184.811 326.168,-194.902 334.984,-189.026 329.395,-184.811"/>
-</g>
-<!-- Box_GameModelInfo&#45;&gt;Box_PipeModelInfo -->
-<g id="edge12" class="edge"><title>Box_GameModelInfo&#45;&gt;Box_PipeModelInfo</title>
-<path fill="none" stroke="midnightblue" d="M345.277,-186.948C356.105,-173.277 367.29,-158.866 377.789,-145.064"/>
-<polygon fill="none" stroke="midnightblue" points="342.436,-184.897 338.951,-194.902 347.915,-189.254 342.436,-184.897"/>
-</g>
-<!-- Box_GameModelInfo&#45;&gt;Box_PipeModelInfo -->
-<g id="edge20" class="edge"><title>Box_GameModelInfo&#45;&gt;Box_PipeModelInfo</title>
-<path fill="none" stroke="midnightblue" d="M358.388,-186.948C369.688,-173.277 380.916,-158.866 391.025,-145.064"/>
-<polygon fill="none" stroke="midnightblue" points="355.466,-184.986 351.734,-194.902 360.835,-189.478 355.466,-184.986"/>
+<path fill="none" stroke="midnightblue" d="M338.721,-186.948C349.313,-173.277 360.477,-158.866 371.17,-145.064"/>
+<polygon fill="none" stroke="midnightblue" points="335.917,-184.853 332.559,-194.902 341.451,-189.14 335.917,-184.853"/>
 </g>
 <!-- Box_IEquatable -->
 <g id="node6" class="node"><title>Box_IEquatable</title>

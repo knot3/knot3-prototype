@@ -66,13 +66,8 @@
 </g>
 <!-- Box_IEquatable&#45;&gt;Box_WidgetInfo -->
 <g id="edge4" class="edge"><title>Box_IEquatable&#45;&gt;Box_WidgetInfo</title>
-<path fill="none" stroke="midnightblue" d="M188.625,-511.043C187.939,-503.294 187.401,-493.721 187.012,-483.115"/>
-<polygon fill="none" stroke="midnightblue" points="185.149,-511.45 189.737,-521 192.105,-510.673 185.149,-511.45"/>
-</g>
-<!-- Box_IEquatable&#45;&gt;Box_WidgetInfo -->
-<g id="edge6" class="edge"><title>Box_IEquatable&#45;&gt;Box_WidgetInfo</title>
-<path fill="none" stroke="midnightblue" d="M197.375,-511.043C198.061,-503.294 198.599,-493.721 198.988,-483.115"/>
-<polygon fill="none" stroke="midnightblue" points="193.895,-510.673 196.263,-521 200.851,-511.45 193.895,-510.673"/>
+<path fill="none" stroke="midnightblue" d="M193,-510.772C193,-503.071 193,-493.598 193,-483.115"/>
+<polygon fill="none" stroke="midnightblue" points="189.5,-511 193,-521 196.5,-511 189.5,-511"/>
 </g>
 </g>
 </svg>

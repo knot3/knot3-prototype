@@ -43,14 +43,9 @@
 <text text-anchor="start" x="114.5" y="-9.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Collapse (MenuItem item)</text>
 </g>
 <!-- Box_OptionScreen&#45;&gt;Box_VideoOptionScreen -->
-<g id="edge8" class="edge"><title>Box_OptionScreen&#45;&gt;Box_VideoOptionScreen</title>
-<path fill="none" stroke="midnightblue" d="M182.296,-184.644C182.224,-175.529 182.237,-166.267 182.335,-157.206"/>
-<polygon fill="none" stroke="midnightblue" points="178.799,-184.893 182.415,-194.852 185.798,-184.812 178.799,-184.893"/>
-</g>
-<!-- Box_OptionScreen&#45;&gt;Box_VideoOptionScreen -->
-<g id="edge10" class="edge"><title>Box_OptionScreen&#45;&gt;Box_VideoOptionScreen</title>
-<path fill="none" stroke="midnightblue" d="M195.704,-184.644C195.776,-175.529 195.763,-166.267 195.665,-157.206"/>
-<polygon fill="none" stroke="midnightblue" points="192.202,-184.812 195.585,-194.852 199.201,-184.893 192.202,-184.812"/>
+<g id="edge6" class="edge"><title>Box_OptionScreen&#45;&gt;Box_VideoOptionScreen</title>
+<path fill="none" stroke="midnightblue" d="M189,-184.644C189,-175.529 189,-166.267 189,-157.206"/>
+<polygon fill="none" stroke="midnightblue" points="185.5,-184.852 189,-194.852 192.5,-184.852 185.5,-184.852"/>
 </g>
 <!-- Box_MenuScreen -->
 <g id="node2" class="node"><title>Box_MenuScreen</title>
@@ -110,13 +105,8 @@
 </g>
 <!-- Box_GameState&#45;&gt;Box_MenuScreen -->
 <g id="edge4" class="edge"><title>Box_GameState&#45;&gt;Box_MenuScreen</title>
-<path fill="none" stroke="midnightblue" d="M182.25,-644.863C182.25,-635.547 182.286,-626.232 182.358,-617.064"/>
-<polygon fill="none" stroke="midnightblue" points="178.75,-644.971 182.264,-654.966 185.75,-644.961 178.75,-644.971"/>
-</g>
-<!-- Box_GameState&#45;&gt;Box_MenuScreen -->
-<g id="edge6" class="edge"><title>Box_GameState&#45;&gt;Box_MenuScreen</title>
-<path fill="none" stroke="midnightblue" d="M195.75,-644.863C195.75,-635.547 195.714,-626.232 195.642,-617.064"/>
-<polygon fill="none" stroke="midnightblue" points="192.25,-644.961 195.736,-654.966 199.25,-644.971 192.25,-644.961"/>
+<path fill="none" stroke="midnightblue" d="M189,-644.863C189,-635.547 189,-626.232 189,-617.064"/>
+<polygon fill="none" stroke="midnightblue" points="185.5,-644.966 189,-654.966 192.5,-644.966 185.5,-644.966"/>
 </g>
 </g>
 </svg>

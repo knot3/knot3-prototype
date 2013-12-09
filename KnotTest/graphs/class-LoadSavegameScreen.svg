@@ -87,13 +87,8 @@
 </g>
 <!-- Box_GameState&#45;&gt;Box_MenuScreen -->
 <g id="edge4" class="edge"><title>Box_GameState&#45;&gt;Box_MenuScreen</title>
-<path fill="none" stroke="midnightblue" d="M182.25,-498.863C182.25,-489.547 182.286,-480.232 182.358,-471.064"/>
-<polygon fill="none" stroke="midnightblue" points="178.75,-498.971 182.264,-508.966 185.75,-498.961 178.75,-498.971"/>
-</g>
-<!-- Box_GameState&#45;&gt;Box_MenuScreen -->
-<g id="edge6" class="edge"><title>Box_GameState&#45;&gt;Box_MenuScreen</title>
-<path fill="none" stroke="midnightblue" d="M195.75,-498.863C195.75,-489.547 195.714,-480.232 195.642,-471.064"/>
-<polygon fill="none" stroke="midnightblue" points="192.25,-498.961 195.736,-508.966 199.25,-498.971 192.25,-498.961"/>
+<path fill="none" stroke="midnightblue" d="M189,-498.863C189,-489.547 189,-480.232 189,-471.064"/>
+<polygon fill="none" stroke="midnightblue" points="185.5,-498.966 189,-508.966 192.5,-498.966 185.5,-498.966"/>
 </g>
 </g>
 </svg>
