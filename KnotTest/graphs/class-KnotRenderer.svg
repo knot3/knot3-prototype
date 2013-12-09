@@ -58,8 +58,8 @@
 <text text-anchor="middle" x="109" y="-217.8" font-family="Helvetica,sans-Serif" font-size="8.00">PipeRenderer</text>
 <polyline fill="none" stroke="black" points="-0.5,-209 218.5,-209 "/>
 <text text-anchor="start" x="7.5" y="-197.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="7.5" y="-185.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; knots : List&lt;NodeModel&gt;</text>
-<text text-anchor="start" x="7.5" y="-173.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; knotFactory : ModelFactory</text>
+<text text-anchor="start" x="7.5" y="-185.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; nodes : List&lt;NodeModel&gt;</text>
+<text text-anchor="start" x="7.5" y="-173.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; nodeFactory : ModelFactory</text>
 <text text-anchor="start" x="7.5" y="-161.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pipeFactory : ModelFactory</text>
 <text text-anchor="start" x="7.5" y="-149.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pipes : List&lt;PipeModel&gt;</text>
 <text text-anchor="start" x="7.5" y="-137.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>

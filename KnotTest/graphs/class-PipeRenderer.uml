@@ -1,7 +1,7 @@
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
   Attributes:
-    - knots : List<NodeModel>
-    - knotFactory : ModelFactory
+    - nodes : List<NodeModel>
+    - nodeFactory : ModelFactory
     - pipeFactory : ModelFactory
     - pipes : List<PipeModel>
     + World : World

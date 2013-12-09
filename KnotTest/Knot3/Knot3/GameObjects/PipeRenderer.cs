@@ -32,18 +32,18 @@ namespace Knot3.GameObjects
 
 		// pipes and knots
 		private List<PipeModel> pipes;
-		private List<NodeModel> knots;
+		private List<NodeModel> nodes;
 		private ModelFactory pipeFactory;
-		private ModelFactory knotFactory;
+		private ModelFactory nodeFactory;
 
 		public PipeRenderer (GameState state, GameObjectInfo info)
 			: base(state)
 		{
 			Info = info;
 			pipes = new List<PipeModel> ();
-			knots = new List<NodeModel> ();
+			nodes = new List<NodeModel> ();
 			pipeFactory = new ModelFactory ((s, i) => new PipeModel (s, i as PipeModelInfo));
-			knotFactory = new ModelFactory ((s, i) => new NodeModel (s, i as NodeModelInfo));
+			nodeFactory = new ModelFactory ((s, i) => new NodeModel (s, i as NodeModelInfo));
 		}
 
 		public override void Update (GameTime gameTime)
@@ -51,8 +51,8 @@ namespace Knot3.GameObjects
 			for (int i = 0; i < pipes.Count; ++i) {
 				pipes [i].Update (gameTime);
 			}
-			for (int i = 0; i < knots.Count; ++i) {
-				knots [i].Update (gameTime);
+			for (int i = 0; i < nodes.Count; ++i) {
+				nodes [i].Update (gameTime);
 			}
 		}
 
@@ -67,12 +67,12 @@ namespace Knot3.GameObjects
 				pipes.Add (pipe);
 			}
 
-			knots.Clear ();
+			nodes.Clear ();
 			for (int n = 0; n < edges.Count; n++) {
 				NodeModelInfo info = new NodeModelInfo (edges, edges [n], edges [n + 1], Info.Position);
-				NodeModel knot = knotFactory [state, info] as NodeModel;
+				NodeModel knot = nodeFactory [state, info] as NodeModel;
 				knot.World = World;
-				knots.Add (knot);
+				nodes.Add (knot);
 			}
 		}
 		
@@ -81,8 +81,8 @@ namespace Knot3.GameObjects
 			foreach (PipeModel pipe in pipes) {
 				yield return pipe;
 			}
-			foreach (NodeModel knot in knots) {
-				yield return knot;
+			foreach (NodeModel node in nodes) {
+				yield return node;
 			}
 		}
 
@@ -99,7 +99,7 @@ namespace Knot3.GameObjects
 			foreach (PipeModel pipe in pipes) {
 				pipe.Draw (gameTime);
 			}
-			foreach (NodeModel knot in knots) {
+			foreach (NodeModel knot in nodes) {
 				knot.Draw (gameTime);
 			}
 		}

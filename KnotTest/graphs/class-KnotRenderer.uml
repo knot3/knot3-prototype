@@ -46,9 +46,9 @@ public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
     + Info : dynamic override
     + World : World override
     - pipes : List<PipeModel>
-    - knots : List<NodeModel>
+    - nodes : List<NodeModel>
     - pipeFactory : ModelFactory
-    - knotFactory : ModelFactory
+    - nodeFactory : ModelFactory
   Methods:
     + PipeRenderer  (GameState state, GameObjectInfo info)
     + Update  (GameTime gameTime) override
@@ -76,8 +76,8 @@ public class LineRenderer : KnotRenderer
 
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
   Attributes:
-    - knots : List<NodeModel>
-    - knotFactory : ModelFactory
+    - nodes : List<NodeModel>
+    - nodeFactory : ModelFactory
     - pipeFactory : ModelFactory
     - pipes : List<PipeModel>
     + World : World
