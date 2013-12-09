@@ -99,8 +99,8 @@ namespace Knot3.GameObjects
 			foreach (PipeModel pipe in pipes) {
 				pipe.Draw (gameTime);
 			}
-			foreach (NodeModel knot in nodes) {
-				knot.Draw (gameTime);
+			foreach (NodeModel node in nodes) {
+				node.Draw (gameTime);
 			}
 		}
 
