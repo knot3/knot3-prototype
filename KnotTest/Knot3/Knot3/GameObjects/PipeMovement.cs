@@ -68,6 +68,7 @@ namespace Knot3.GameObjects
 					MoveShadowPipes (currentMousePosition);
 				} else if (state.input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					MovePipes (currentMousePosition);
+                    shadowObjects.Clear();
 				} else {
 					previousMousePosition = Vector3.Zero;
 					shadowObjects.Clear ();
