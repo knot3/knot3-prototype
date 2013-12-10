@@ -98,6 +98,7 @@ namespace Knot3.GameObjects
 		
 		public override void Draw (GameTime gameTime)
 		{
+			Overlay.Profiler["# InFrustum"] = 0;
 			Overlay.Profiler ["Pipes"] = Knot3.Core.Game.Time (() => {
 				foreach (PipeModel pipe in pipes) {
 					pipe.Draw (gameTime);

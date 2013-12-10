@@ -106,7 +106,11 @@ namespace Knot3.GameObjects
 		public virtual void Draw (GameTime gameTime)
 		{
 			if (Info.IsVisible) {
-				state.RenderEffects.Current.DrawModel (this, gameTime);
+				if (inFrustum ()) {
+					Overlay.Profiler ["# InFrustum"]++;
+
+					state.RenderEffects.Current.DrawModel (this, gameTime);
+				}
 			}
 		}
 
@@ -116,8 +120,7 @@ namespace Knot3.GameObjects
 
 		public virtual GameObjectDistance Intersects (Ray ray)
 		{
-			foreach (BoundingSphere _sphere in Model.Bounds()) {
-				BoundingSphere sphere = _sphere.Scale ((float)Info.Scale).Translate ((Vector3)Info.Position);
+			foreach (BoundingSphere sphere in Bounds) {
 				float? distance = ray.Intersects (sphere);
 				if (distance != null) {
 					GameObjectDistance intersection = new GameObjectDistance () {
@@ -138,6 +141,18 @@ namespace Knot3.GameObjects
 			}
 			return center / Info.Scale + Info.Position;
 		}
+
+		private bool inFrustum ()
+		{
+			bool inFrustum = false;
+			foreach (BoundingSphere sphere in Bounds) {
+				bool intersects;
+				World.Camera.ViewFrustum.FastIntersects (sphere, out intersects);
+				if (intersects)
+					inFrustum = true;
+			}
+			return inFrustum;
+		}
 		
 		#endregion
 
@@ -147,20 +162,37 @@ namespace Knot3.GameObjects
 		private Angles3 _rotation;
 		private Vector3 _position;
 		private Matrix _worldMatrix;
+		private BoundingSphere[] _bounds;
 
 		public Matrix WorldMatrix {
 			get {
-				UpdateWorldMatrix ();
+				UpdatePrecomputed ();
 				return _worldMatrix;
 			}
 		}
 
-		private void UpdateWorldMatrix ()
+		private BoundingSphere[] Bounds {
+			get {
+				UpdatePrecomputed ();
+				return _bounds;
+			}
+		}
+
+		private void UpdatePrecomputed ()
 		{
 			if (Info.Scale != _scale || Info.Rotation != _rotation || Info.Position != _position) {
+				// world matrix
 				_worldMatrix = Matrix.CreateScale (Info.Scale)
 					* Matrix.CreateFromYawPitchRoll (Info.Rotation.Y, Info.Rotation.X, Info.Rotation.Z)
 					* Matrix.CreateTranslation (Info.Position);
+
+				// bounding spheres
+				_bounds = Model.Bounds ().ToArray ();
+				for (int i = 0; i < _bounds.Length; ++i) {
+					_bounds [i] = _bounds [i].Scale ((float)Info.Scale).Translate ((Vector3)Info.Position);
+				}
+
+				// attrs
 				_scale = Info.Scale;
 				_rotation = Info.Rotation;
 				_position = Info.Position;

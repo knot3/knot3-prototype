@@ -50,6 +50,8 @@ namespace Knot3.Core
 		/// </value>
 		public Matrix ProjectionMatrix { get; private set; }
 
+		public BoundingFrustum ViewFrustum { get; private set; }
+
 		/// <summary>
 		/// Gets the default position.
 		/// </summary>
@@ -135,6 +137,7 @@ namespace Knot3.Core
 			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
 			WorldMatrix = Matrix.CreateFromYawPitchRoll (RotationAngle.Y, RotationAngle.X, RotationAngle.Z);
 			ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FoV), aspectRatio, nearPlane, farPlane);
+			ViewFrustum = new BoundingFrustum (ViewMatrix * ProjectionMatrix);
 		}
 
 		/// <summary>
