@@ -69,10 +69,12 @@ namespace Knot3.GameObjects
 
 			nodes.Clear ();
 			for (int n = 0; n < edges.Count; n++) {
-				NodeModelInfo info = new NodeModelInfo (edges, edges [n], edges [n + 1], Info.Position);
-				NodeModel knot = nodeFactory [state, info] as NodeModel;
-				knot.World = World;
-				nodes.Add (knot);
+				if (edges [n].Direction != edges [n + 1].Direction) {
+					NodeModelInfo info = new NodeModelInfo (edges, edges [n], edges [n + 1], Info.Position);
+					NodeModel node = nodeFactory [state, info] as NodeModel;
+					node.World = World;
+					nodes.Add (node);
+				}
 			}
 		}
 		
@@ -102,6 +104,8 @@ namespace Knot3.GameObjects
 			foreach (NodeModel node in nodes) {
 				node.Draw (gameTime);
 			}
+			Overlay.Profiler ["# Pipes"] = pipes.Count ();
+			Overlay.Profiler ["# Nodes"] = nodes.Count ();
 		}
 
 		#endregion
