@@ -30,6 +30,7 @@ namespace Knot3.GameObjects
 
 		// ray check
 		private double lastRayCheck = 0;
+		private Vector2 lastMousePosition = Vector2.Zero;
 
 		/// <summary>
 		/// Initializes a new MousePicking component.
@@ -49,9 +50,13 @@ namespace Knot3.GameObjects
 		public void UpdateMouseRay (GameTime gameTime)
 		{
 			double millis = gameTime.TotalGameTime.TotalMilliseconds;
-			if (millis > lastRayCheck + 10 && (state.input.CurrentInputAction == InputAction.TargetMove
-				|| state.input.CurrentInputAction == InputAction.FreeMouse)) {
+			if (millis > lastRayCheck + 10
+			    && (state.input.CurrentInputAction == InputAction.TargetMove
+					|| state.input.CurrentInputAction == InputAction.FreeMouse)
+			    && Core.Input.MouseState.ToVector2 () != lastMousePosition) {
+
 				lastRayCheck = millis;
+				lastMousePosition = Core.Input.MouseState.ToVector2 ();
 
 				Ray ray = World.Camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
 

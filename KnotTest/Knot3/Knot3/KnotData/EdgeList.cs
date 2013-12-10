@@ -63,12 +63,14 @@ namespace Knot3.KnotData
 			if (NodeCache.ContainsKey (index)) {
 				return NodeCache [index];
 			} else {
-				Node node = new Node (0, 0, 0);
+				float x = 0, y = 0, z = 0;
 				for (int i = 0; i < index; ++i) {
-					node += Edges [i].Direction;
+					Vector3 v = Edges [i].Direction;
+					x += v.X;
+					y += v.Y;
+					z += v.Z;
 				}
-				NodeCache [index] = node;
-				return node;
+				return NodeCache [index] = new Node ((int)x, (int)y, (int)z);
 			}
 		}
 
