@@ -70,7 +70,7 @@ namespace Knot3.KnotData
 		public static Knot RandomKnot (int count, IKnotFormat format)
 		{
 			EdgeList edges = new EdgeList ();
-			for (int i = 0; i < 30; ++i) {
+			for (int i = 0; i < 3000; ++i) {
 				edges.Add (Edge.RandomEdge ());
 			}
 			edges.Compact ();

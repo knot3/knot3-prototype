@@ -119,27 +119,23 @@ namespace Knot3.GameObjects
 		
 		public override void Draw (GameTime gameTime)
 		{
-			TimeSpan span = Knot3.Core.Game.Time (() => {
-				// begin the post processing effect scope
-				Color background = knotRenderEffect is CelShadingEffect ? Color.CornflowerBlue : Color.Black;
-				state.PostProcessing.Begin (background, gameTime);
+			// begin the post processing effect scope
+			Color background = knotRenderEffect is CelShadingEffect ? Color.CornflowerBlue : Color.Black;
+			state.PostProcessing.Begin (background, gameTime);
 
-				// begin the knot render effect
-				knotRenderEffect.Begin (gameTime);
+			// begin the knot render effect
+			knotRenderEffect.Begin (gameTime);
 
-				foreach (IGameObject obj in Objects) {
-					obj.World = this;
-					obj.Draw (gameTime);
-				}
-
-				// end of the knot render effect
-				knotRenderEffect.End (gameTime);
-			
-				// end of the post processing effect
-				state.PostProcessing.End (gameTime);
+			foreach (IGameObject obj in Objects) {
+				obj.World = this;
+				obj.Draw (gameTime);
 			}
-			);
-			Overlay.Profiler["World"] = span.TotalMilliseconds;
+
+			// end of the knot render effect
+			knotRenderEffect.End (gameTime);
+			
+			// end of the post processing effect
+			state.PostProcessing.End (gameTime);
 		}
 
 		public override void Update (GameTime gameTime)

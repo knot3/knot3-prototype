@@ -98,12 +98,18 @@ namespace Knot3.GameObjects
 		
 		public override void Draw (GameTime gameTime)
 		{
-			foreach (PipeModel pipe in pipes) {
-				pipe.Draw (gameTime);
+			Overlay.Profiler ["Pipes"] = Knot3.Core.Game.Time (() => {
+				foreach (PipeModel pipe in pipes) {
+					pipe.Draw (gameTime);
+				}
 			}
-			foreach (NodeModel node in nodes) {
-				node.Draw (gameTime);
+			).TotalMilliseconds;
+			Overlay.Profiler ["Nodes"] = Knot3.Core.Game.Time (() => {
+				foreach (NodeModel node in nodes) {
+					node.Draw (gameTime);
+				}
 			}
+			).TotalMilliseconds;
 			Overlay.Profiler ["# Pipes"] = pipes.Count ();
 			Overlay.Profiler ["# Nodes"] = nodes.Count ();
 		}
