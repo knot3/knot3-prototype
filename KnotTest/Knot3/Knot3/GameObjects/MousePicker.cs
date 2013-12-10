@@ -44,16 +44,20 @@ namespace Knot3.GameObjects
 		public override void Update (GameTime gameTime)
 		{
 			// mouse ray selection
-			UpdateMouseRay (gameTime);
+			TimeSpan span = Knot3.Core.Game.Time (() => {
+				UpdateMouseRay (gameTime);
+			}
+			);
+			Overlay.Profiler ["Ray"] = span.TotalMilliseconds;
 		}
 
 		public void UpdateMouseRay (GameTime gameTime)
 		{
 			double millis = gameTime.TotalGameTime.TotalMilliseconds;
 			if (millis > lastRayCheck + 10
-			    && (state.input.CurrentInputAction == InputAction.TargetMove
-					|| state.input.CurrentInputAction == InputAction.FreeMouse)
-			    && Core.Input.MouseState.ToVector2 () != lastMousePosition) {
+				&& (state.input.CurrentInputAction == InputAction.TargetMove
+				|| state.input.CurrentInputAction == InputAction.FreeMouse)
+				&& Core.Input.MouseState.ToVector2 () != lastMousePosition) {
 
 				lastRayCheck = millis;
 				lastMousePosition = Core.Input.MouseState.ToVector2 ();
