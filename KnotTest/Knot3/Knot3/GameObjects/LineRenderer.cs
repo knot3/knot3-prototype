@@ -56,9 +56,12 @@ namespace Knot3.GameObjects
 			basicEffect.View = World.Camera.ViewMatrix;
 			basicEffect.Projection = World.Camera.ProjectionMatrix;
 
-			if (edges.Count > 0) {
-				DrawRoundedLines ();
-			}
+			TimeSpan span = Knot3.Core.Game.Time (() => {
+				if (edges.Count > 0) {
+					DrawRoundedLines ();
+				}}
+			);
+			Overlay.Profiler ["Lines"] = span.TotalMilliseconds;
 		}
 
 		private void DrawRoundedLines ()

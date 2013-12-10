@@ -75,6 +75,7 @@ namespace Knot3.Core
 				DrawOverlay (gameTime);
 			if (Options.Default ["video", "fps-overlay", true])
 				DrawFPS (gameTime);
+				DrawProfiler (gameTime);
 		}
 		
 		public override void Update (GameTime gameTime)
@@ -195,6 +196,19 @@ namespace Knot3.Core
 			_total_frames++;
 			spriteBatch.Begin ();
 			DrawString ("FPS: " + _fps, state.viewport.Width - 150, 20, Color.White);
+			spriteBatch.End ();
+		}
+
+		public static Dictionary<string, double> Profiler = new Dictionary<string, double>();
+
+		private void DrawProfiler (GameTime gameTime)
+		{
+			spriteBatch.Begin ();
+			int height = 40;
+			foreach (string name in Profiler.Keys) {
+				DrawString (name+": " + Profiler[name], state.viewport.Width - 150, height, Color.White);
+				height += 20;
+			}
 			spriteBatch.End ();
 		}
 	}
