@@ -1,4 +1,4 @@
-public struct Node : 
+public struct Node : IEquatable<Node>, ICloneable
   Attributes:
     + X : int
     + Y : int
@@ -10,7 +10,9 @@ public struct Node :
     + : this() (int x, int y, int z) : Node
     + operator + (Node a, Vector3 b) : Node static
     + operator - (Node a, Node b) : Vector3 static
+    + Equals (Node other) : bool
     + Equals (object obj) : bool override
     + GetHashCode () : int override
     + ToString () : string override
+    + Clone () : object
     + Vector () : Vector3

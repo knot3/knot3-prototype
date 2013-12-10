@@ -29,6 +29,7 @@ public class Overlay : DrawableGameStateComponent
     - _total_frames : int
     - _elapsed_time : float
     - _fps : int
+    + Profiler : Dictionary<string,double> static
   Methods:
     + Overlay  (GameState state, World world)
     # LoadContent  () override
@@ -41,6 +42,7 @@ public class Overlay : DrawableGameStateComponent
     - DrawString  (float n, int width, int height, Color color)
     - UpdateFPS  (GameTime gameTime)
     - DrawFPS  (GameTime gameTime)
+    - DrawProfiler  (GameTime gameTime)
 
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
   Attributes:
@@ -732,7 +734,9 @@ public class Overlay : DrawableGameStateComponent
     - spriteBatch : SpriteBatch
     - font : SpriteFont
   Methods:
+    + double> Profiler () : Dictionary<string, static
     - DrawFPS  (GameTime gameTime)
+    - DrawProfiler  (GameTime gameTime)
     - DrawString  (float n, int width, int height, Color color)
     - DrawVectorCoordinates  (Vector3 vector, int width2, int width3, int width4, int height)
     - UpdateFPS  (GameTime gameTime)
@@ -1431,6 +1435,7 @@ public class Camera : GameStateComponent
     + WorldMatrix : Matrix
     + ViewMatrix : Matrix
     + ProjectionMatrix : Matrix
+    + ViewFrustum : BoundingFrustum
     + DefaultPosition : Vector3
     + Position : Vector3
     + Target : Vector3
@@ -1515,6 +1520,7 @@ public class MousePicker : GameStateComponent
   Attributes:
     - World : World
     - lastRayCheck : double
+    - lastMousePosition : Vector2
   Methods:
     + MousePicker  (GameState state, World world)
     + Update  (GameTime gameTime) override
@@ -1541,6 +1547,7 @@ public class Camera : GameStateComponent
     + FoV : float
     - World : World
     - foV : float
+    + ViewFrustum : BoundingFrustum
     + ProjectionMatrix : Matrix
     + ViewMatrix : Matrix
     + WorldMatrix : Matrix
@@ -1607,6 +1614,7 @@ public class KeyHandler : GameStateComponent
 
 public class MousePicker : GameStateComponent
   Attributes:
+    - lastMousePosition : Vector2
     - World : World
     - lastRayCheck : double
   Methods:
@@ -1649,6 +1657,7 @@ public class Overlay : DrawableGameStateComponent
     - _total_frames : int
     - _elapsed_time : float
     - _fps : int
+    + Profiler : Dictionary<string,double> static
   Methods:
     + Overlay  (GameState state, World world)
     # LoadContent  () override
@@ -1661,6 +1670,7 @@ public class Overlay : DrawableGameStateComponent
     - DrawString  (float n, int width, int height, Color color)
     - UpdateFPS  (GameTime gameTime)
     - DrawFPS  (GameTime gameTime)
+    - DrawProfiler  (GameTime gameTime)
 
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
   Attributes:
@@ -2352,7 +2362,9 @@ public class Overlay : DrawableGameStateComponent
     - spriteBatch : SpriteBatch
     - font : SpriteFont
   Methods:
+    + double> Profiler () : Dictionary<string, static
     - DrawFPS  (GameTime gameTime)
+    - DrawProfiler  (GameTime gameTime)
     - DrawString  (float n, int width, int height, Color color)
     - DrawVectorCoordinates  (Vector3 vector, int width2, int width3, int width4, int height)
     - UpdateFPS  (GameTime gameTime)
@@ -3051,6 +3063,7 @@ public class Camera : GameStateComponent
     + WorldMatrix : Matrix
     + ViewMatrix : Matrix
     + ProjectionMatrix : Matrix
+    + ViewFrustum : BoundingFrustum
     + DefaultPosition : Vector3
     + Position : Vector3
     + Target : Vector3
@@ -3135,6 +3148,7 @@ public class MousePicker : GameStateComponent
   Attributes:
     - World : World
     - lastRayCheck : double
+    - lastMousePosition : Vector2
   Methods:
     + MousePicker  (GameState state, World world)
     + Update  (GameTime gameTime) override
@@ -3161,6 +3175,7 @@ public class Camera : GameStateComponent
     + FoV : float
     - World : World
     - foV : float
+    + ViewFrustum : BoundingFrustum
     + ProjectionMatrix : Matrix
     + ViewMatrix : Matrix
     + WorldMatrix : Matrix
@@ -3227,6 +3242,7 @@ public class KeyHandler : GameStateComponent
 
 public class MousePicker : GameStateComponent
   Attributes:
+    - lastMousePosition : Vector2
     - World : World
     - lastRayCheck : double
   Methods:

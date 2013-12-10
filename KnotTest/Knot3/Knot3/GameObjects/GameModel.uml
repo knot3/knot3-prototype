@@ -20,11 +20,14 @@ public class GameModel : IGameObject
     - _rotation : Angles3
     - _position : Vector3
     - _worldMatrix : Matrix
+    - _bounds : BoundingSphere[]
     + WorldMatrix : Matrix
+    - Bounds : BoundingSphere[]
   Methods:
     + GameModel (GameState state, GameModelInfo info)
     + Update (GameTime gameTime) virtual
     + Draw (GameTime gameTime) virtual
     + Intersects (Ray ray) : GameObjectDistance virtual
     + Center () : Vector3
-    - UpdateWorldMatrix ()
+    - inFrustum () : bool
+    - UpdatePrecomputed ()

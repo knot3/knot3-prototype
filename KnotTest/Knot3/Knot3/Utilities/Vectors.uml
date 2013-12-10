@@ -43,3 +43,10 @@ private static class SwapExtension :
   Attributes:
   Methods:
     + Swap<T> (this T x, ref T y) : T static
+public static class FrustumHelper : 
+  Attributes:
+  Methods:
+    + GetNegativeVertex (this BoundingBox aabb, ref Vector3 normal) : Vector3 static
+    + GetPositiveVertex (this BoundingBox aabb, ref Vector3 normal) : Vector3 static
+    + FastIntersects (this BoundingFrustum boundingfrustum, BoundingSphere aabb, out bool intersects) static
+    + FastIntersects (this BoundingFrustum boundingfrustum, BoundingBox aabb, out bool intersects) static

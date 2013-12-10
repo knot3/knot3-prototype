@@ -8,7 +8,9 @@ public class Overlay : DrawableGameStateComponent
     - spriteBatch : SpriteBatch
     - font : SpriteFont
   Methods:
+    + double> Profiler () : Dictionary<string, static
     - DrawFPS  (GameTime gameTime)
+    - DrawProfiler  (GameTime gameTime)
     - DrawString  (float n, int width, int height, Color color)
     - DrawVectorCoordinates  (Vector3 vector, int width2, int width3, int width4, int height)
     - UpdateFPS  (GameTime gameTime)

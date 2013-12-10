@@ -22,14 +22,17 @@ public class GameModel : IGameObject
     - _rotation : Angles3
     - _position : Vector3
     - _worldMatrix : Matrix
+    - _bounds : BoundingSphere[]
     + WorldMatrix : Matrix
+    - Bounds : BoundingSphere[]
   Methods:
     + GameModel  (GameState state, GameModelInfo info)
     + Update  (GameTime gameTime) virtual
     + Draw  (GameTime gameTime) virtual
     + Intersects (Ray ray) : GameObjectDistance virtual
     + Center () : Vector3
-    - UpdateWorldMatrix  ()
+    - inFrustum () : bool
+    - UpdatePrecomputed  ()
 
 public class NodeModel : GameModel
   Attributes:
@@ -150,11 +153,11 @@ public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
     + Info : dynamic
   Methods:
     - IEnumerable.GetEnumerator () : IEnumerator
-    + GetEnumerator () : IEnumerator<IGameObject>
     + PipeRenderer  (GameState state, GameObjectInfo info)
-    + Intersects (Ray ray) : GameObjectDistance
     + Draw  (GameTime gameTime)
     + OnEdgesChanged  (EdgeList edges)
+    + GetEnumerator () : IEnumerator<IGameObject>
+    + Intersects (Ray ray) : GameObjectDistance
     + Center () : Vector3
     + Update  (GameTime gameTime)
 
@@ -257,6 +260,8 @@ public class TexturedRectangle : IGameObject
 public class GameModel : IGameObject
   Attributes:
     - _rotation : Angles3
+    - Bounds : BoundingSphere[]
+    - _bounds : BoundingSphere[]
     - _worldMatrix : Matrix
     - _position : Vector3
     + BaseColor : Color
@@ -270,11 +275,12 @@ public class GameModel : IGameObject
     + World : World
     + Model : Model virtual
   Methods:
-    - UpdateWorldMatrix ()
+    - UpdatePrecomputed ()
     + GameModel  (GameState state, GameModelInfo info)
-    + Intersects (Ray ray) : GameObjectDistance virtual
     + Draw  (GameTime gameTime) virtual
+    - inFrustum () : bool
     + Center () : Vector3
+    + Intersects (Ray ray) : GameObjectDistance virtual
     + Update  (GameTime gameTime) virtual
 
 public class NodeModel : GameModel
@@ -396,11 +402,11 @@ public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
     + Info : dynamic
   Methods:
     - IEnumerable.GetEnumerator () : IEnumerator
-    + GetEnumerator () : IEnumerator<IGameObject>
     + PipeRenderer  (GameState state, GameObjectInfo info)
-    + Intersects (Ray ray) : GameObjectDistance
     + Draw  (GameTime gameTime)
     + OnEdgesChanged  (EdgeList edges)
+    + GetEnumerator () : IEnumerator<IGameObject>
+    + Intersects (Ray ray) : GameObjectDistance
     + Center () : Vector3
     + Update  (GameTime gameTime)
 

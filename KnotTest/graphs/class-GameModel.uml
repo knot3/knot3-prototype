@@ -1,6 +1,8 @@
 public class GameModel : IGameObject
   Attributes:
     - _rotation : Angles3
+    - Bounds : BoundingSphere[]
+    - _bounds : BoundingSphere[]
     - _worldMatrix : Matrix
     - _position : Vector3
     + BaseColor : Color
@@ -14,11 +16,12 @@ public class GameModel : IGameObject
     + World : World
     + Model : Model virtual
   Methods:
-    - UpdateWorldMatrix ()
+    - UpdatePrecomputed ()
     + GameModel  (GameState state, GameModelInfo info)
-    + Intersects (Ray ray) : GameObjectDistance virtual
     + Draw  (GameTime gameTime) virtual
+    - inFrustum () : bool
     + Center () : Vector3
+    + Intersects (Ray ray) : GameObjectDistance virtual
     + Update  (GameTime gameTime) virtual
 
 public interface IGameObject : 

@@ -4,6 +4,7 @@ public class Camera : GameStateComponent
     + WorldMatrix : Matrix
     + ViewMatrix : Matrix
     + ProjectionMatrix : Matrix
+    + ViewFrustum : BoundingFrustum
     + DefaultPosition : Vector3
     + Position : Vector3
     + Target : Vector3

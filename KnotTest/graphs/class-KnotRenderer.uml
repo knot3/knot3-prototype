@@ -84,11 +84,11 @@ public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
     + Info : dynamic
   Methods:
     - IEnumerable.GetEnumerator () : IEnumerator
-    + GetEnumerator () : IEnumerator<IGameObject>
     + PipeRenderer  (GameState state, GameObjectInfo info)
-    + Intersects (Ray ray) : GameObjectDistance
     + Draw  (GameTime gameTime)
     + OnEdgesChanged  (EdgeList edges)
+    + GetEnumerator () : IEnumerator<IGameObject>
+    + Intersects (Ray ray) : GameObjectDistance
     + Center () : Vector3
     + Update  (GameTime gameTime)
 

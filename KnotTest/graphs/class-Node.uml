@@ -1,14 +1,16 @@
-public struct Node : 
+public struct Node : IEquatable<Node>, ICloneable
   Attributes:
     + X : int
     + Y : int
     + Z : int
     + Scale : int static
   Methods:
+    + GetHashCode () : int
     + Node (int x, int y, int z) : this()
     + Vector () : Vector3
+    + Equals (Node other) : bool
+    + Clone () : object
     + Equals (object obj) : bool
-    + GetHashCode () : int
     + ToString () : string
     + operator (Node a, Vector3 b) : Node static
     - operator (Node a, Node b) : Vector3 static

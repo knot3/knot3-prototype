@@ -29,6 +29,7 @@ public class Overlay : DrawableGameStateComponent
     - _total_frames : int
     - _elapsed_time : float
     - _fps : int
+    + Profiler : Dictionary<string,double> static
   Methods:
     + Overlay  (GameState state, World world)
     # LoadContent  () override
@@ -41,6 +42,7 @@ public class Overlay : DrawableGameStateComponent
     - DrawString  (float n, int width, int height, Color color)
     - UpdateFPS  (GameTime gameTime)
     - DrawFPS  (GameTime gameTime)
+    - DrawProfiler  (GameTime gameTime)
 
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
   Attributes:
@@ -732,7 +734,9 @@ public class Overlay : DrawableGameStateComponent
     - spriteBatch : SpriteBatch
     - font : SpriteFont
   Methods:
+    + double> Profiler () : Dictionary<string, static
     - DrawFPS  (GameTime gameTime)
+    - DrawProfiler  (GameTime gameTime)
     - DrawString  (float n, int width, int height, Color color)
     - DrawVectorCoordinates  (Vector3 vector, int width2, int width3, int width4, int height)
     - UpdateFPS  (GameTime gameTime)
