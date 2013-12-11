@@ -16,7 +16,7 @@
 <polyline fill="none" stroke="black" points="318,-669 604,-669 "/>
 <text text-anchor="start" x="326" y="-657.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
 <text text-anchor="start" x="326" y="-645.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
-<text text-anchor="start" x="326" y="-633.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Index : int</text>
+<text text-anchor="start" x="326" y="-633.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Index : DisplayLayer</text>
 <text text-anchor="start" x="326" y="-621.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ IsKeyEventEnabled : bool</text>
 <text text-anchor="start" x="326" y="-609.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="318,-601 604,-601 "/>

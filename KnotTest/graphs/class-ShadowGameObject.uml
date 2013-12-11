@@ -1,9 +1,9 @@
 public class ShadowGameObject : IGameObject
   Attributes:
     - Obj : IGameObject
+    + Info : GameObjectInfo
     + OriginalPosition : Vector3
     + World : World
-    + Info : dynamic
     # state : GameState
     + ShadowPosition : Vector3
   Methods:
@@ -15,7 +15,7 @@ public class ShadowGameObject : IGameObject
 
 public interface IGameObject : 
   Attributes:
-    + Info : dynamic
+    + Info : GameObjectInfo
     + World : World
   Methods:
     + Draw  (GameTime gameTime)

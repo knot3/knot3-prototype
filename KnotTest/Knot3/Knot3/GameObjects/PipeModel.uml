@@ -16,5 +16,4 @@ public class PipeModel : GameModel
   Methods:
     + PipeModel (GameState state, PipeModelInfo info)
     + Draw (GameTime gameTime) override
-    + Update (GameTime gameTime) override
     + Intersects (Ray ray) : GameObjectDistance override

@@ -5,7 +5,7 @@ public class KeyHandler : GameStateComponent
     private class KeyEventComponent : 
       Attributes:
         + receiver : IKeyEventListener
-        + layer : int
+        + layer : DisplayLayer
         + keyEvent : KeyEvent
         + keys : List<Keys>
       Methods:

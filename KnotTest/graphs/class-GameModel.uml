@@ -1,32 +1,36 @@
 public class GameModel : IGameObject
   Attributes:
+    - IGameObject.Info : GameObjectInfo
     - _rotation : Angles3
     - Bounds : BoundingSphere[]
     - _bounds : BoundingSphere[]
     - _worldMatrix : Matrix
     - _position : Vector3
+    - _inFrustum : bool
+    # InCameraFrustum : bool
     + BaseColor : Color
     + HighlightColor : Color
+    + Info : GameModelInfo
     + WorldMatrix : Matrix
-    + Info : dynamic
+    + World : World
     + Alpha : float
     + HighlightIntensity : float
+    - _world : World
     - _scale : float
     # state : GameState
-    + World : World
     + Model : Model virtual
   Methods:
+    - OnViewChanged ()
     - UpdatePrecomputed ()
     + GameModel  (GameState state, GameModelInfo info)
     + Draw  (GameTime gameTime) virtual
-    - inFrustum () : bool
     + Center () : Vector3
     + Intersects (Ray ray) : GameObjectDistance virtual
     + Update  (GameTime gameTime) virtual
 
 public interface IGameObject : 
   Attributes:
-    + Info : dynamic
+    + Info : GameObjectInfo
     + World : World
   Methods:
     + Draw  (GameTime gameTime)
@@ -49,7 +53,6 @@ public class PipeModel : GameModel
   Methods:
     + PipeModel  (GameState state, PipeModelInfo info)
     + Draw  (GameTime gameTime) override
-    + Update  (GameTime gameTime) override
     + Intersects (Ray ray) : GameObjectDistance override
 
 public class TestModel : GameModel
@@ -74,7 +77,6 @@ public class PipeModel : GameModel
     + Draw  (GameTime gameTime)
     + PipeModel  (GameState state, PipeModelInfo info)
     + Intersects (Ray ray) : GameObjectDistance
-    + Update  (GameTime gameTime)
 
 public class TestModel : GameModel
   Attributes:

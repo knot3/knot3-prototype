@@ -48,5 +48,5 @@ public static class FrustumHelper :
   Methods:
     + GetNegativeVertex (this BoundingBox aabb, ref Vector3 normal) : Vector3 static
     + GetPositiveVertex (this BoundingBox aabb, ref Vector3 normal) : Vector3 static
-    + FastIntersects (this BoundingFrustum boundingfrustum, BoundingSphere aabb, out bool intersects) static
-    + FastIntersects (this BoundingFrustum boundingfrustum, BoundingBox aabb, out bool intersects) static
+    + FastIntersects (this BoundingFrustum boundingfrustum, ref BoundingSphere aabb) : bool static
+    + FastIntersects (this BoundingFrustum boundingfrustum, ref BoundingBox aabb) : bool static

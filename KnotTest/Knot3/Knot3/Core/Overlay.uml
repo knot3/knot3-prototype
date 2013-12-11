@@ -7,7 +7,8 @@ public class Overlay : DrawableGameStateComponent
     - _total_frames : int
     - _elapsed_time : float
     - _fps : int
-    + Profiler : Dictionary<string,double> static
+    - profiler : Hashtable static
+    + Profiler : HashtableWrapper static
   Methods:
     + Overlay (GameState state, World world)
     # LoadContent () override
@@ -21,3 +22,8 @@ public class Overlay : DrawableGameStateComponent
     - UpdateFPS (GameTime gameTime)
     - DrawFPS (GameTime gameTime)
     - DrawProfiler (GameTime gameTime)
+    public class HashtableWrapper : 
+      Attributes:
+      Methods:
+        + this (string str) : double
+        + ContainsKey (string str) : bool

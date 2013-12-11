@@ -9,7 +9,9 @@ public class GameModelInfo : GameObjectInfo
 public class GameModel : IGameObject
   Attributes:
     # state : GameState
-    + Info : dynamic
+    - IGameObject.Info : GameObjectInfo
+    + Info : GameModelInfo
+    - _world : World
     + World : World
     + Model : Model virtual
     + BaseColor : Color
@@ -21,13 +23,15 @@ public class GameModel : IGameObject
     - _position : Vector3
     - _worldMatrix : Matrix
     - _bounds : BoundingSphere[]
+    - _inFrustum : bool
     + WorldMatrix : Matrix
     - Bounds : BoundingSphere[]
+    # InCameraFrustum : bool
   Methods:
     + GameModel (GameState state, GameModelInfo info)
     + Update (GameTime gameTime) virtual
     + Draw (GameTime gameTime) virtual
     + Intersects (Ray ray) : GameObjectDistance virtual
     + Center () : Vector3
-    - inFrustum () : bool
     - UpdatePrecomputed ()
+    - OnViewChanged ()

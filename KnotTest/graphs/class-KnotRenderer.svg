@@ -17,7 +17,7 @@
 <text text-anchor="start" x="222" y="-403.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
 <text text-anchor="start" x="222" y="-391.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World abstract</text>
 <text text-anchor="start" x="222" y="-379.8" font-family="Helvetica,sans-Serif" font-size="8.00"># state : GameState</text>
-<text text-anchor="start" x="222" y="-367.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic abstract</text>
+<text text-anchor="start" x="222" y="-367.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : GameObjectInfo abstract</text>
 <text text-anchor="start" x="222" y="-355.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="214,-347 420,-347 "/>
 <text text-anchor="start" x="222" y="-335.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance abstract</text>
@@ -35,8 +35,8 @@
 <text text-anchor="start" x="244" y="-179.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
 <text text-anchor="start" x="244" y="-167.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; edges : EdgeList</text>
 <text text-anchor="start" x="244" y="-155.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; basicEffect : BasicEffect</text>
-<text text-anchor="start" x="244" y="-143.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>
-<text text-anchor="start" x="244" y="-131.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic</text>
+<text text-anchor="start" x="244" y="-143.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : GameObjectInfo</text>
+<text text-anchor="start" x="244" y="-131.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>
 <text text-anchor="start" x="244" y="-119.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="236,-111 454,-111 "/>
 <text text-anchor="start" x="244" y="-99.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ LineRenderer (GameState state, GameObjectInfo info)</text>
@@ -62,8 +62,8 @@
 <text text-anchor="start" x="7.5" y="-173.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; nodeFactory : ModelFactory</text>
 <text text-anchor="start" x="7.5" y="-161.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pipeFactory : ModelFactory</text>
 <text text-anchor="start" x="7.5" y="-149.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pipes : List&lt;PipeModel&gt;</text>
-<text text-anchor="start" x="7.5" y="-137.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>
-<text text-anchor="start" x="7.5" y="-125.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic</text>
+<text text-anchor="start" x="7.5" y="-137.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : GameObjectInfo</text>
+<text text-anchor="start" x="7.5" y="-125.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>
 <text text-anchor="start" x="7.5" y="-113.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="-0.5,-105 218.5,-105 "/>
 <text text-anchor="start" x="7.5" y="-93.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; IEnumerable.GetEnumerator () : IEnumerator</text>
@@ -101,7 +101,7 @@
 <text text-anchor="middle" x="408" y="-593.8" font-family="Helvetica,sans-Serif" font-size="8.00">IGameObject</text>
 <polyline fill="none" stroke="black" points="320,-585 496,-585 "/>
 <text text-anchor="start" x="328" y="-573.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="328" y="-561.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic</text>
+<text text-anchor="start" x="328" y="-561.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : GameObjectInfo</text>
 <text text-anchor="start" x="328" y="-549.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>
 <text text-anchor="start" x="328" y="-537.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="320,-529 496,-529 "/>

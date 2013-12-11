@@ -3,7 +3,7 @@ public class MovableGameObject : IGameObject
     - state : GameState
     - Obj : IGameObject
     + World : World
-    + Info : dynamic
+    + Info : GameObjectInfo
   Methods:
     + MovableGameObject (GameState state, IGameObject obj)
     # CurrentGroundPlane () : Plane

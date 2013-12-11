@@ -1,5 +1,6 @@
 public class TexturedRectangle : IGameObject
   Attributes:
+    - IGameObject.Info : GameObjectInfo
     - basicEffect : BasicEffect
     - texture : Texture2D
     - LowerLeft : Vector3
@@ -8,7 +9,7 @@ public class TexturedRectangle : IGameObject
     - UpperRight : Vector3
     - Vertices : VertexPositionNormalTexture[]
     - Indexes : short[]
-    + Info : dynamic
+    + Info : TexturedRectangleInfo
     - UpperLeft : Vector3
     # state : GameState
     + World : World
@@ -25,7 +26,7 @@ public class TexturedRectangle : IGameObject
 
 public interface IGameObject : 
   Attributes:
-    + Info : dynamic
+    + Info : GameObjectInfo
     + World : World
   Methods:
     + Draw  (GameTime gameTime)

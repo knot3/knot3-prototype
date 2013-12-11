@@ -19,8 +19,8 @@
 <text text-anchor="start" x="155.5" y="-173.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; nodeFactory : ModelFactory</text>
 <text text-anchor="start" x="155.5" y="-161.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pipeFactory : ModelFactory</text>
 <text text-anchor="start" x="155.5" y="-149.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pipes : List&lt;PipeModel&gt;</text>
-<text text-anchor="start" x="155.5" y="-137.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>
-<text text-anchor="start" x="155.5" y="-125.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic</text>
+<text text-anchor="start" x="155.5" y="-137.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : GameObjectInfo</text>
+<text text-anchor="start" x="155.5" y="-125.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>
 <text text-anchor="start" x="155.5" y="-113.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="147.5,-105 366.5,-105 "/>
 <text text-anchor="start" x="155.5" y="-93.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; IEnumerable.GetEnumerator () : IEnumerator</text>
@@ -40,7 +40,7 @@
 <text text-anchor="start" x="72" y="-403.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
 <text text-anchor="start" x="72" y="-391.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World abstract</text>
 <text text-anchor="start" x="72" y="-379.8" font-family="Helvetica,sans-Serif" font-size="8.00"># state : GameState</text>
-<text text-anchor="start" x="72" y="-367.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic abstract</text>
+<text text-anchor="start" x="72" y="-367.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : GameObjectInfo abstract</text>
 <text text-anchor="start" x="72" y="-355.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="64,-347 270,-347 "/>
 <text text-anchor="start" x="72" y="-335.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance abstract</text>
@@ -76,7 +76,7 @@
 <text text-anchor="middle" x="258" y="-593.8" font-family="Helvetica,sans-Serif" font-size="8.00">IGameObject</text>
 <polyline fill="none" stroke="black" points="170,-585 346,-585 "/>
 <text text-anchor="start" x="178" y="-573.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="178" y="-561.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : dynamic</text>
+<text text-anchor="start" x="178" y="-561.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Info : GameObjectInfo</text>
 <text text-anchor="start" x="178" y="-549.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>
 <text text-anchor="start" x="178" y="-537.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="170,-529 346,-529 "/>

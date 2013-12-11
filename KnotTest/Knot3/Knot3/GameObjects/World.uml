@@ -6,6 +6,8 @@ public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
     + SelectedObject : IGameObject
     + Camera : Camera
     - floor : TexturedRectangle
+    - _redraw : bool
+    + Redraw : bool
   Methods:
     + World (GameState state)
     + SelectObject (IGameObject obj, GameTime gameTime)

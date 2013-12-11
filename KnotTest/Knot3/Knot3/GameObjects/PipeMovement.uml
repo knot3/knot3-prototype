@@ -2,10 +2,11 @@ public class PipeMovement : IGameObject, IEnumerable<IGameObject>
   Attributes:
     - state : GameState
     + World : World
-    + Info : dynamic
+    + Info : GameObjectInfo
     + Knot : Knot
     - previousMousePosition : Vector3
     - shadowObjects : List<ShadowGameObject>
+    - knownEdgeLists : HashSet<EdgeList> new
   Methods:
     + PipeMovement (GameState state, World world, GameObjectInfo info)
     + Update (GameTime gameTime)
@@ -24,7 +25,7 @@ public class ShadowGameObject : IGameObject
     # state : GameState
     - Obj : IGameObject
     + World : World
-    + Info : dynamic
+    + Info : GameObjectInfo
     + ShadowPosition : Vector3
     + OriginalPosition : Vector3
   Methods:

@@ -1,14 +1,15 @@
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
   Attributes:
+    + Index : DisplayLayer
+    - _index : DisplayLayer
     + state : GameState
-    + Index : int
   Methods:
-    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
 public interface IGameStateComponent : Xna.IGameComponent
   Attributes:
-    + Index : int
+    + Index : DisplayLayer
   Methods:
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
@@ -29,7 +30,8 @@ public class Overlay : DrawableGameStateComponent
     - _total_frames : int
     - _elapsed_time : float
     - _fps : int
-    + Profiler : Dictionary<string,double> static
+    - profiler : Hashtable static
+    + Profiler : HashtableWrapper static
   Methods:
     + Overlay  (GameState state, World world)
     # LoadContent  () override
@@ -43,6 +45,11 @@ public class Overlay : DrawableGameStateComponent
     - UpdateFPS  (GameTime gameTime)
     - DrawFPS  (GameTime gameTime)
     - DrawProfiler  (GameTime gameTime)
+    public class HashtableWrapper : 
+      Attributes:
+      Methods:
+        + this (string str) : double
+        + ContainsKey (string str) : bool
 
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
   Attributes:
@@ -52,6 +59,8 @@ public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
     + SelectedObject : IGameObject
     + Camera : Camera
     - floor : TexturedRectangle
+    - _redraw : bool
+    + Redraw : bool
   Methods:
     + World  (GameState state)
     + SelectObject  (IGameObject obj, GameTime gameTime)
@@ -730,13 +739,14 @@ public class Overlay : DrawableGameStateComponent
     - _elapsed_time : float
     - _fps : int
     - World : World
+    + HashtableWrapper : class
     - _total_frames : int
     - spriteBatch : SpriteBatch
     - font : SpriteFont
   Methods:
-    + double> Profiler () : Dictionary<string, static
+    - profiler () : Hashtable static
+    + Profiler () : HashtableWrapper static
     - DrawFPS  (GameTime gameTime)
-    - DrawProfiler  (GameTime gameTime)
     - DrawString  (float n, int width, int height, Color color)
     - DrawVectorCoordinates  (Vector3 vector, int width2, int width3, int width4, int height)
     - UpdateFPS  (GameTime gameTime)
@@ -744,6 +754,7 @@ public class Overlay : DrawableGameStateComponent
     + Draw  (GameTime gameTime)
     - DrawCoordinates  (GameTime gameTime)
     - DrawOverlay  (GameTime gameTime)
+    - DrawProfiler  (GameTime gameTime)
     - DrawString  (string str, int width, int height, Color color)
     # LoadContent ()
     + Update  (GameTime gameTime)
@@ -751,7 +762,9 @@ public class Overlay : DrawableGameStateComponent
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
   Attributes:
     - knotRenderEffect : RenderEffect
+    - _redraw : bool
     + Objects : List<IGameObject>
+    + Redraw : bool
     - knotRenderEffects : List<RenderEffect>
     - floor : TexturedRectangle
     + Camera : Camera
@@ -762,10 +775,10 @@ public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
     + SelectedObjectDistance () : float
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Draw  (GameTime gameTime)
+    + Update  (GameTime gameTime)
     + Add  (IGameObject obj)
     + GetEnumerator () : IEnumerator<IGameObject>
     + Initialize ()
-    + Update  (GameTime gameTime)
     + SelectObject  (IGameObject obj, GameTime gameTime)
 
 public abstract class Widget : DrawableGameStateComponent

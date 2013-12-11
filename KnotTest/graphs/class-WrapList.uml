@@ -7,10 +7,10 @@ public class WrapList<T> : IEnumerable<T>
     - IEnumerable.GetEnumerator () : IEnumerator
     - WrapIndex (int i) : int
     - RebuildIndex ()
-    + Contains (T elem) : bool
     + this (T t) : int
     + ToString () : string
     + Add  (T elem)
+    + AddRange  (IEnumerable<T> elems)
     + Clear ()
     + InsertAt  (int i, T elem)
     + Remove  (T[] elems)
@@ -19,5 +19,8 @@ public class WrapList<T> : IEnumerable<T>
     + this (int i) : T
     + WrapList  (IEnumerable<T> elems)
     + WrapList ()
-    + AddRange  (IEnumerable<T> elems)
+    + Contains (T elem) : bool
+    + AddRange  (params T[] elems)
+    + Set  (IEnumerable<T> elems)
+    + Set  (params T[] elems)
 

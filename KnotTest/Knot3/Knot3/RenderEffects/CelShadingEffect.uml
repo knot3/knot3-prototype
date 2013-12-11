@@ -9,6 +9,6 @@ public class CelShadingEffect : RenderEffect
     + Color : Color
   Methods:
     + CelShadingEffect (GameState state)
-    + Draw (SpriteBatch spriteBatch, GameTime gameTime) override
+    # Draw (SpriteBatch spriteBatch, GameTime gameTime) override
     + RemapModel (Model model) override
     + DrawModel (GameModel model, GameTime gameTime) override

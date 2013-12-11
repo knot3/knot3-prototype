@@ -3,8 +3,8 @@ public class BlurEffect : RenderEffect
     - testEffect : Effect static
   Methods:
     + BlurEffect  (GameState state)
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime)
     + Begin  (Color background, GameTime gameTime)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
     + End  (GameTime gameTime)
 
 public abstract class RenderEffect : IRenderEffect
@@ -19,9 +19,11 @@ public abstract class RenderEffect : IRenderEffect
     + Begin  (GameTime gameTime)
     + Begin  (Color background, GameTime gameTime) virtual
     + End  (GameTime gameTime) virtual
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
+    + DrawLastFrame  (GameTime gameTime)
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
     + RemapModel  (Model model) virtual
     + DrawModel  (GameModel model, GameTime gameTime) virtual
+    # ModifyBasicEffect  (BasicEffect effect, GameModel model)
 
 public interface IRenderEffect : 
   Attributes:
@@ -29,9 +31,9 @@ public interface IRenderEffect :
   Methods:
     + Begin  (GameTime gameTime)
     + End  (GameTime gameTime)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
     + RemapModel  (Model model)
     + DrawModel  (GameModel model, GameTime gameTime)
+    + DrawLastFrame  (GameTime gameTime)
 
 public abstract class RenderEffect : IRenderEffect
   Attributes:
@@ -41,13 +43,15 @@ public abstract class RenderEffect : IRenderEffect
     # state : GameState
     + RenderTarget : RenderTarget2D
   Methods:
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
     + RenderEffect  (GameState state)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
     + DrawModel  (GameModel model, GameTime gameTime) virtual
     + RemapModel  (Model model) virtual
     + Begin  (GameTime gameTime)
+    # ModifyBasicEffect  (BasicEffect effect, GameModel model)
     + Begin  (Color background, GameTime gameTime) virtual
     + End  (GameTime gameTime) virtual
+    + DrawLastFrame  (GameTime gameTime)
 
 public interface IRenderEffect : 
   Attributes:
@@ -55,7 +59,7 @@ public interface IRenderEffect :
   Methods:
     + Begin  (GameTime gameTime)
     + End  (GameTime gameTime)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
     + RemapModel  (Model model)
     + DrawModel  (GameModel model, GameTime gameTime)
+    + DrawLastFrame  (GameTime gameTime)
 

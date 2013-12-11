@@ -12,7 +12,6 @@ public class EdgeList :
     + IndexOf (Edge edge) : int
     + FromNodes (IEnumerable<Node> _nodes, IEnumerable<Color> _colors) : IEnumerable<Edge> static
     + PrintSelectedEdges ()
-    + SelectEdge  (Edge selection, bool append)
     + PathTo (Edge fromEdge, Edge toEdge) : Edge[]
     + Interval (Edge a, Edge b) : List<Edge>
     + FromNode (int index) : Node
@@ -23,6 +22,4 @@ public class EdgeList :
     + Move (IEnumerable<Edge> selectedEdges, Vector3 direction, int times) : bool
     + Add  (Edge edge)
     + AddRange  (IEnumerable<Edge> edge)
-    + SelectEdge ()
-    + SelectEdges  (Edge[] selection, bool append)
 

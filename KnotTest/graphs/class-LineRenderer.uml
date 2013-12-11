@@ -2,8 +2,8 @@ public class LineRenderer : KnotRenderer
   Attributes:
     - edges : EdgeList
     - basicEffect : BasicEffect
+    + Info : GameObjectInfo
     + World : World
-    + Info : dynamic
   Methods:
     + LineRenderer  (GameState state, GameObjectInfo info)
     + OnEdgesChanged  (EdgeList edges)
@@ -17,7 +17,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
   Attributes:
     # state : GameState
     + World : World abstract
-    + Info : dynamic abstract
+    + Info : GameObjectInfo abstract
   Methods:
     + KnotRenderer  (GameState state)
     + OnEdgesChanged  (EdgeList edges) abstract
@@ -33,7 +33,7 @@ public interface IEdgeChangeListener :
 
 public interface IGameObject : 
   Attributes:
-    + Info : dynamic
+    + Info : GameObjectInfo
     + World : World
   Methods:
     + Draw  (GameTime gameTime)
@@ -45,7 +45,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
   Attributes:
     + World : World abstract
     # state : GameState
-    + Info : dynamic abstract
+    + Info : GameObjectInfo abstract
   Methods:
     + Intersects (Ray ray) : GameObjectDistance abstract
     + Center () : Vector3 abstract
@@ -61,7 +61,7 @@ public interface IEdgeChangeListener :
 
 public interface IGameObject : 
   Attributes:
-    + Info : dynamic
+    + Info : GameObjectInfo
     + World : World
   Methods:
     + Draw  (GameTime gameTime)

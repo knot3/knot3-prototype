@@ -1,15 +1,16 @@
 public interface IGameStateComponent : Xna.IGameComponent
   Attributes:
-    + Index : int
+    + Index : DisplayLayer
   Methods:
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
   Attributes:
     + state : GameState
-    + Index : int
+    - _index : DisplayLayer
+    + Index : DisplayLayer
   Methods:
-    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
 public class MousePointer : DrawableGameStateComponent
@@ -29,7 +30,8 @@ public class Overlay : DrawableGameStateComponent
     - _total_frames : int
     - _elapsed_time : float
     - _fps : int
-    + Profiler : Dictionary<string,double> static
+    - profiler : Hashtable static
+    + Profiler : HashtableWrapper static
   Methods:
     + Overlay  (GameState state, World world)
     # LoadContent  () override
@@ -43,6 +45,11 @@ public class Overlay : DrawableGameStateComponent
     - UpdateFPS  (GameTime gameTime)
     - DrawFPS  (GameTime gameTime)
     - DrawProfiler  (GameTime gameTime)
+    public class HashtableWrapper : 
+      Attributes:
+      Methods:
+        + this (string str) : double
+        + ContainsKey (string str) : bool
 
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
   Attributes:
@@ -52,6 +59,8 @@ public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
     + SelectedObject : IGameObject
     + Camera : Camera
     - floor : TexturedRectangle
+    - _redraw : bool
+    + Redraw : bool
   Methods:
     + World  (GameState state)
     + SelectObject  (IGameObject obj, GameTime gameTime)
@@ -730,13 +739,14 @@ public class Overlay : DrawableGameStateComponent
     - _elapsed_time : float
     - _fps : int
     - World : World
+    + HashtableWrapper : class
     - _total_frames : int
     - spriteBatch : SpriteBatch
     - font : SpriteFont
   Methods:
-    + double> Profiler () : Dictionary<string, static
+    - profiler () : Hashtable static
+    + Profiler () : HashtableWrapper static
     - DrawFPS  (GameTime gameTime)
-    - DrawProfiler  (GameTime gameTime)
     - DrawString  (float n, int width, int height, Color color)
     - DrawVectorCoordinates  (Vector3 vector, int width2, int width3, int width4, int height)
     - UpdateFPS  (GameTime gameTime)
@@ -744,6 +754,7 @@ public class Overlay : DrawableGameStateComponent
     + Draw  (GameTime gameTime)
     - DrawCoordinates  (GameTime gameTime)
     - DrawOverlay  (GameTime gameTime)
+    - DrawProfiler  (GameTime gameTime)
     - DrawString  (string str, int width, int height, Color color)
     # LoadContent ()
     + Update  (GameTime gameTime)
@@ -751,7 +762,9 @@ public class Overlay : DrawableGameStateComponent
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
   Attributes:
     - knotRenderEffect : RenderEffect
+    - _redraw : bool
     + Objects : List<IGameObject>
+    + Redraw : bool
     - knotRenderEffects : List<RenderEffect>
     - floor : TexturedRectangle
     + Camera : Camera
@@ -762,10 +775,10 @@ public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
     + SelectedObjectDistance () : float
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Draw  (GameTime gameTime)
+    + Update  (GameTime gameTime)
     + Add  (IGameObject obj)
     + GetEnumerator () : IEnumerator<IGameObject>
     + Initialize ()
-    + Update  (GameTime gameTime)
     + SelectObject  (IGameObject obj, GameTime gameTime)
 
 public abstract class Widget : DrawableGameStateComponent
@@ -1422,11 +1435,10 @@ public class MenuButton : MenuItem
 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
   Attributes:
-    # InputOrder : DisplayLayer
     + state : GameState
-    + Index : int
+    + Index : DisplayLayer
   Methods:
-    + GameStateComponent  (GameState state, DisplayLayer inputOrder)
+    + GameStateComponent  (GameState state, DisplayLayer index)
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
 public class Camera : GameStateComponent
@@ -1437,11 +1449,14 @@ public class Camera : GameStateComponent
     + ProjectionMatrix : Matrix
     + ViewFrustum : BoundingFrustum
     + DefaultPosition : Vector3
+    - _position : Vector3
     + Position : Vector3
+    - _target : Vector3
     + Target : Vector3
     + UpVector : Vector3
     - foV : float
     + FoV : float
+    + OnViewChanged : Action
     + RotationAngle : Angles3
     - AutoRotation : Angles3
     - aspectRatio : float
@@ -1464,7 +1479,7 @@ public class ClickHandler : GameStateComponent
     private class ClickEventComponent : 
       Attributes:
         + receiver : IMouseEventListener
-        + layer : int
+        + layer : DisplayLayer
         + relativePosition : Vector2
       Methods:
     + Update  (GameTime gameTime) override
@@ -1510,11 +1525,22 @@ public class KeyHandler : GameStateComponent
     private class KeyEventComponent : 
       Attributes:
         + receiver : IKeyEventListener
-        + layer : int
+        + layer : DisplayLayer
         + keyEvent : KeyEvent
         + keys : List<Keys>
       Methods:
     + Update  (GameTime gameTime) override
+
+public class MousePicker : GameStateComponent
+  Attributes:
+    - World : World
+    - lastRayCheck : double
+    - lastMousePosition : Vector2
+  Methods:
+    + MousePicker  (GameState state, World world)
+    + Update  (GameTime gameTime) override
+    - CheckMouseRay  (GameTime gameTime)
+    - UpdateMouseRay  (GameTime gameTime)
 
 public class MousePicker : GameStateComponent
   Attributes:
@@ -1539,25 +1565,28 @@ public class PipeColoring : GameStateComponent, IKeyEventListener
 public class Camera : GameStateComponent
   Attributes:
     - AutoRotation : Angles3
+    - _target : Vector3
     - aspectRatio : float
     - farPlane : float
     - nearPlane : float
-    + RotationAngle : Angles3
+    + Position : Vector3
+    + Target : Vector3
     + TargetDirection : Vector3
+    + UpVector : Vector3
     + FoV : float
     - World : World
+    - _position : Vector3
     - foV : float
+    + RotationAngle : Angles3
     + ViewFrustum : BoundingFrustum
     + ProjectionMatrix : Matrix
     + ViewMatrix : Matrix
     + WorldMatrix : Matrix
     + ArcballTarget : Vector3
     + DefaultPosition : Vector3
-    + Position : Vector3
-    + Target : Vector3
-    + UpVector : Vector3
     + TargetDistance : float
   Methods:
+    + OnViewChanged () : Action
     + Camera  (GameState state, World world)
     + GetMouseRay (Vector2 mouse) : Ray
     - UpdateMatrices  (GameTime gameTime)
@@ -1618,6 +1647,17 @@ public class MousePicker : GameStateComponent
     - World : World
     - lastRayCheck : double
   Methods:
+    - UpdateMouseRay  (GameTime gameTime)
+    + MousePicker  (GameState state, World world)
+    - CheckMouseRay  (GameTime gameTime)
+    + Update  (GameTime gameTime)
+
+public class MousePicker : GameStateComponent
+  Attributes:
+    - lastMousePosition : Vector2
+    - World : World
+    - lastRayCheck : double
+  Methods:
     + MousePicker  (GameState state, World world)
     + Update  (GameTime gameTime)
     + UpdateMouseRay  (GameTime gameTime)
@@ -1634,10 +1674,11 @@ public class PipeColoring : GameStateComponent, IKeyEventListener
 
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
   Attributes:
+    + Index : DisplayLayer
+    - _index : DisplayLayer
     + state : GameState
-    + Index : int
   Methods:
-    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
 public class MousePointer : DrawableGameStateComponent
@@ -1657,7 +1698,8 @@ public class Overlay : DrawableGameStateComponent
     - _total_frames : int
     - _elapsed_time : float
     - _fps : int
-    + Profiler : Dictionary<string,double> static
+    - profiler : Hashtable static
+    + Profiler : HashtableWrapper static
   Methods:
     + Overlay  (GameState state, World world)
     # LoadContent  () override
@@ -1671,6 +1713,11 @@ public class Overlay : DrawableGameStateComponent
     - UpdateFPS  (GameTime gameTime)
     - DrawFPS  (GameTime gameTime)
     - DrawProfiler  (GameTime gameTime)
+    public class HashtableWrapper : 
+      Attributes:
+      Methods:
+        + this (string str) : double
+        + ContainsKey (string str) : bool
 
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
   Attributes:
@@ -1680,6 +1727,8 @@ public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
     + SelectedObject : IGameObject
     + Camera : Camera
     - floor : TexturedRectangle
+    - _redraw : bool
+    + Redraw : bool
   Methods:
     + World  (GameState state)
     + SelectObject  (IGameObject obj, GameTime gameTime)
@@ -2358,13 +2407,14 @@ public class Overlay : DrawableGameStateComponent
     - _elapsed_time : float
     - _fps : int
     - World : World
+    + HashtableWrapper : class
     - _total_frames : int
     - spriteBatch : SpriteBatch
     - font : SpriteFont
   Methods:
-    + double> Profiler () : Dictionary<string, static
+    - profiler () : Hashtable static
+    + Profiler () : HashtableWrapper static
     - DrawFPS  (GameTime gameTime)
-    - DrawProfiler  (GameTime gameTime)
     - DrawString  (float n, int width, int height, Color color)
     - DrawVectorCoordinates  (Vector3 vector, int width2, int width3, int width4, int height)
     - UpdateFPS  (GameTime gameTime)
@@ -2372,6 +2422,7 @@ public class Overlay : DrawableGameStateComponent
     + Draw  (GameTime gameTime)
     - DrawCoordinates  (GameTime gameTime)
     - DrawOverlay  (GameTime gameTime)
+    - DrawProfiler  (GameTime gameTime)
     - DrawString  (string str, int width, int height, Color color)
     # LoadContent ()
     + Update  (GameTime gameTime)
@@ -2379,7 +2430,9 @@ public class Overlay : DrawableGameStateComponent
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
   Attributes:
     - knotRenderEffect : RenderEffect
+    - _redraw : bool
     + Objects : List<IGameObject>
+    + Redraw : bool
     - knotRenderEffects : List<RenderEffect>
     - floor : TexturedRectangle
     + Camera : Camera
@@ -2390,10 +2443,10 @@ public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
     + SelectedObjectDistance () : float
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Draw  (GameTime gameTime)
+    + Update  (GameTime gameTime)
     + Add  (IGameObject obj)
     + GetEnumerator () : IEnumerator<IGameObject>
     + Initialize ()
-    + Update  (GameTime gameTime)
     + SelectObject  (IGameObject obj, GameTime gameTime)
 
 public abstract class Widget : DrawableGameStateComponent
@@ -3050,11 +3103,10 @@ public class MenuButton : MenuItem
 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
   Attributes:
-    # InputOrder : DisplayLayer
+    + Index : DisplayLayer
     + state : GameState
-    + Index : int
   Methods:
-    + GameStateComponent  (GameState state, DisplayLayer inputOrder)
+    + GameStateComponent  (GameState state, DisplayLayer index)
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
 public class Camera : GameStateComponent
@@ -3065,11 +3117,14 @@ public class Camera : GameStateComponent
     + ProjectionMatrix : Matrix
     + ViewFrustum : BoundingFrustum
     + DefaultPosition : Vector3
+    - _position : Vector3
     + Position : Vector3
+    - _target : Vector3
     + Target : Vector3
     + UpVector : Vector3
     - foV : float
     + FoV : float
+    + OnViewChanged : Action
     + RotationAngle : Angles3
     - AutoRotation : Angles3
     - aspectRatio : float
@@ -3092,7 +3147,7 @@ public class ClickHandler : GameStateComponent
     private class ClickEventComponent : 
       Attributes:
         + receiver : IMouseEventListener
-        + layer : int
+        + layer : DisplayLayer
         + relativePosition : Vector2
       Methods:
     + Update  (GameTime gameTime) override
@@ -3138,11 +3193,22 @@ public class KeyHandler : GameStateComponent
     private class KeyEventComponent : 
       Attributes:
         + receiver : IKeyEventListener
-        + layer : int
+        + layer : DisplayLayer
         + keyEvent : KeyEvent
         + keys : List<Keys>
       Methods:
     + Update  (GameTime gameTime) override
+
+public class MousePicker : GameStateComponent
+  Attributes:
+    - World : World
+    - lastRayCheck : double
+    - lastMousePosition : Vector2
+  Methods:
+    + MousePicker  (GameState state, World world)
+    + Update  (GameTime gameTime) override
+    - CheckMouseRay  (GameTime gameTime)
+    - UpdateMouseRay  (GameTime gameTime)
 
 public class MousePicker : GameStateComponent
   Attributes:
@@ -3167,25 +3233,28 @@ public class PipeColoring : GameStateComponent, IKeyEventListener
 public class Camera : GameStateComponent
   Attributes:
     - AutoRotation : Angles3
+    - _target : Vector3
     - aspectRatio : float
     - farPlane : float
     - nearPlane : float
-    + RotationAngle : Angles3
+    + Position : Vector3
+    + Target : Vector3
     + TargetDirection : Vector3
+    + UpVector : Vector3
     + FoV : float
     - World : World
+    - _position : Vector3
     - foV : float
+    + RotationAngle : Angles3
     + ViewFrustum : BoundingFrustum
     + ProjectionMatrix : Matrix
     + ViewMatrix : Matrix
     + WorldMatrix : Matrix
     + ArcballTarget : Vector3
     + DefaultPosition : Vector3
-    + Position : Vector3
-    + Target : Vector3
-    + UpVector : Vector3
     + TargetDistance : float
   Methods:
+    + OnViewChanged () : Action
     + Camera  (GameState state, World world)
     + GetMouseRay (Vector2 mouse) : Ray
     - UpdateMatrices  (GameTime gameTime)
@@ -3238,6 +3307,17 @@ public class KeyHandler : GameStateComponent
     - KeyEventComponent : class
   Methods:
     + KeyHandler  (GameState state)
+    + Update  (GameTime gameTime)
+
+public class MousePicker : GameStateComponent
+  Attributes:
+    - lastMousePosition : Vector2
+    - World : World
+    - lastRayCheck : double
+  Methods:
+    - UpdateMouseRay  (GameTime gameTime)
+    + MousePicker  (GameState state, World world)
+    - CheckMouseRay  (GameTime gameTime)
     + Update  (GameTime gameTime)
 
 public class MousePicker : GameStateComponent

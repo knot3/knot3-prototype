@@ -4,9 +4,9 @@ public interface IRenderEffect :
   Methods:
     + Begin  (GameTime gameTime)
     + End  (GameTime gameTime)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
     + RemapModel  (Model model)
     + DrawModel  (GameModel model, GameTime gameTime)
+    + DrawLastFrame  (GameTime gameTime)
 
 public abstract class RenderEffect : IRenderEffect
   Attributes:
@@ -20,9 +20,11 @@ public abstract class RenderEffect : IRenderEffect
     + Begin  (GameTime gameTime)
     + Begin  (Color background, GameTime gameTime) virtual
     + End  (GameTime gameTime) virtual
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
+    + DrawLastFrame  (GameTime gameTime)
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
     + RemapModel  (Model model) virtual
     + DrawModel  (GameModel model, GameTime gameTime) virtual
+    # ModifyBasicEffect  (BasicEffect effect, GameModel model)
 
 public class BlurEffect : RenderEffect
   Attributes:
@@ -31,7 +33,7 @@ public class BlurEffect : RenderEffect
     + BlurEffect  (GameState state)
     + Begin  (Color background, GameTime gameTime) override
     + End  (GameTime gameTime) override
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
 
 public class CelShadingEffect : RenderEffect
   Attributes:
@@ -44,7 +46,7 @@ public class CelShadingEffect : RenderEffect
     + Color : Color
   Methods:
     + CelShadingEffect  (GameState state)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
     + RemapModel  (Model model) override
     + DrawModel  (GameModel model, GameTime gameTime) override
 
@@ -55,21 +57,37 @@ public class FadeEffect : RenderEffect
     + IsFinished : bool
   Methods:
     + FadeEffect  (GameState state, GameState oldState)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+
+public class InstancingTest : RenderEffect
+  Attributes:
+    - instanceHash : Hashtable new
+  Methods:
+    + InstancingTest  (GameState state)
+    + Begin  (Color background, GameTime gameTime) override
+    + End  (GameTime gameTime) override
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+    private class ModelInstances : 
+      Attributes:
+        + Model : GameModel
+        + WorldMatrices : Matrix[]
+        + Count : int
+      Methods:
+    + DrawModel  (GameModel model, GameTime gameTime) override
 
 public sealed class NoEffect : RenderEffect
   Attributes:
   Methods:
     + NoEffect  (GameState state)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
 
 public class BlurEffect : RenderEffect
   Attributes:
     - testEffect : Effect static
   Methods:
     + BlurEffect  (GameState state)
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime)
     + Begin  (Color background, GameTime gameTime)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
     + End  (GameTime gameTime)
 
 public class CelShadingEffect : RenderEffect
@@ -83,7 +101,7 @@ public class CelShadingEffect : RenderEffect
     + Color : Color
   Methods:
     + CelShadingEffect  (GameState state)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime)
     + DrawModel  (GameModel model, GameTime gameTime)
     + RemapModel  (Model model)
 
@@ -93,13 +111,24 @@ public class FadeEffect : RenderEffect
     - lastFrame : RenderTarget2D
     + IsFinished : bool
   Methods:
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime)
     + FadeEffect  (GameState state, GameState oldState)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+
+public class InstancingTest : RenderEffect
+  Attributes:
+    - ModelInstances : class
+  Methods:
+    - instanceHash () : Hashtable
+    + Begin  (Color background, GameTime gameTime)
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+    + InstancingTest  (GameState state)
+    + DrawModel  (GameModel model, GameTime gameTime)
+    + End  (GameTime gameTime)
 
 public sealed class NoEffect : RenderEffect
   Attributes:
   Methods:
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime)
     + NoEffect  (GameState state)
 
 public abstract class RenderEffect : IRenderEffect
@@ -110,13 +139,15 @@ public abstract class RenderEffect : IRenderEffect
     # state : GameState
     + RenderTarget : RenderTarget2D
   Methods:
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
     + RenderEffect  (GameState state)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
     + DrawModel  (GameModel model, GameTime gameTime) virtual
     + RemapModel  (Model model) virtual
     + Begin  (GameTime gameTime)
+    # ModifyBasicEffect  (BasicEffect effect, GameModel model)
     + Begin  (Color background, GameTime gameTime) virtual
     + End  (GameTime gameTime) virtual
+    + DrawLastFrame  (GameTime gameTime)
 
 public class BlurEffect : RenderEffect
   Attributes:
@@ -125,7 +156,7 @@ public class BlurEffect : RenderEffect
     + BlurEffect  (GameState state)
     + Begin  (Color background, GameTime gameTime) override
     + End  (GameTime gameTime) override
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
 
 public class CelShadingEffect : RenderEffect
   Attributes:
@@ -138,7 +169,7 @@ public class CelShadingEffect : RenderEffect
     + Color : Color
   Methods:
     + CelShadingEffect  (GameState state)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
     + RemapModel  (Model model) override
     + DrawModel  (GameModel model, GameTime gameTime) override
 
@@ -149,21 +180,37 @@ public class FadeEffect : RenderEffect
     + IsFinished : bool
   Methods:
     + FadeEffect  (GameState state, GameState oldState)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+
+public class InstancingTest : RenderEffect
+  Attributes:
+    - instanceHash : Hashtable new
+  Methods:
+    + InstancingTest  (GameState state)
+    + Begin  (Color background, GameTime gameTime) override
+    + End  (GameTime gameTime) override
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+    private class ModelInstances : 
+      Attributes:
+        + Model : GameModel
+        + WorldMatrices : Matrix[]
+        + Count : int
+      Methods:
+    + DrawModel  (GameModel model, GameTime gameTime) override
 
 public sealed class NoEffect : RenderEffect
   Attributes:
   Methods:
     + NoEffect  (GameState state)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) override
 
 public class BlurEffect : RenderEffect
   Attributes:
     - testEffect : Effect static
   Methods:
     + BlurEffect  (GameState state)
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime)
     + Begin  (Color background, GameTime gameTime)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
     + End  (GameTime gameTime)
 
 public class CelShadingEffect : RenderEffect
@@ -177,7 +224,7 @@ public class CelShadingEffect : RenderEffect
     + Color : Color
   Methods:
     + CelShadingEffect  (GameState state)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime)
     + DrawModel  (GameModel model, GameTime gameTime)
     + RemapModel  (Model model)
 
@@ -187,12 +234,23 @@ public class FadeEffect : RenderEffect
     - lastFrame : RenderTarget2D
     + IsFinished : bool
   Methods:
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime)
     + FadeEffect  (GameState state, GameState oldState)
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+
+public class InstancingTest : RenderEffect
+  Attributes:
+    - ModelInstances : class
+  Methods:
+    - instanceHash () : Hashtable
+    + Begin  (Color background, GameTime gameTime)
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+    + InstancingTest  (GameState state)
+    + DrawModel  (GameModel model, GameTime gameTime)
+    + End  (GameTime gameTime)
 
 public sealed class NoEffect : RenderEffect
   Attributes:
   Methods:
-    + Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+    # Draw  (SpriteBatch spriteBatch, GameTime gameTime)
     + NoEffect  (GameState state)
 

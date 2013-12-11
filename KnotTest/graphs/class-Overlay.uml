@@ -4,13 +4,14 @@ public class Overlay : DrawableGameStateComponent
     - _elapsed_time : float
     - _fps : int
     - World : World
+    + HashtableWrapper : class
     - _total_frames : int
     - spriteBatch : SpriteBatch
     - font : SpriteFont
   Methods:
-    + double> Profiler () : Dictionary<string, static
+    - profiler () : Hashtable static
+    + Profiler () : HashtableWrapper static
     - DrawFPS  (GameTime gameTime)
-    - DrawProfiler  (GameTime gameTime)
     - DrawString  (float n, int width, int height, Color color)
     - DrawVectorCoordinates  (Vector3 vector, int width2, int width3, int width4, int height)
     - UpdateFPS  (GameTime gameTime)
@@ -18,6 +19,7 @@ public class Overlay : DrawableGameStateComponent
     + Draw  (GameTime gameTime)
     - DrawCoordinates  (GameTime gameTime)
     - DrawOverlay  (GameTime gameTime)
+    - DrawProfiler  (GameTime gameTime)
     - DrawString  (string str, int width, int height, Color color)
     # LoadContent ()
     + Update  (GameTime gameTime)
@@ -25,28 +27,30 @@ public class Overlay : DrawableGameStateComponent
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
   Attributes:
     + state : GameState
-    + Index : int
+    - _index : DisplayLayer
+    + Index : DisplayLayer
   Methods:
-    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
 public interface IGameStateComponent : Xna.IGameComponent
   Attributes:
-    + Index : int
+    + Index : DisplayLayer
   Methods:
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
   Attributes:
+    + Index : DisplayLayer
+    - _index : DisplayLayer
     + state : GameState
-    + Index : int
   Methods:
-    + DrawableGameStateComponent  (GameState state, DisplayLayer drawOrder)
+    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
 public interface IGameStateComponent : Xna.IGameComponent
   Attributes:
-    + Index : int
+    + Index : DisplayLayer
   Methods:
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 

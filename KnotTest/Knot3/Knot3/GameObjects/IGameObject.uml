@@ -1,6 +1,6 @@
 public interface IGameObject : 
   Attributes:
-    + Info : dynamic
+    + Info : GameObjectInfo
     + World : World
   Methods:
     + Draw (GameTime gameTime)

@@ -3,7 +3,7 @@ public class MovableGameObject : IGameObject
     - Obj : IGameObject
     + World : World
     - state : GameState
-    + Info : dynamic
+    + Info : GameObjectInfo
   Methods:
     # CurrentGroundPlane () : Plane
     + MovableGameObject  (GameState state, IGameObject obj)
@@ -16,7 +16,7 @@ public class MovableGameObject : IGameObject
 
 public interface IGameObject : 
   Attributes:
-    + Info : dynamic
+    + Info : GameObjectInfo
     + World : World
   Methods:
     + Draw  (GameTime gameTime)

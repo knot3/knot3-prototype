@@ -1,6 +1,6 @@
 public interface IGameObject : 
   Attributes:
-    + Info : dynamic
+    + Info : GameObjectInfo
     + World : World
   Methods:
     + Draw  (GameTime gameTime)
@@ -11,7 +11,9 @@ public interface IGameObject :
 public class GameModel : IGameObject
   Attributes:
     # state : GameState
-    + Info : dynamic
+    - IGameObject.Info : GameObjectInfo
+    + Info : GameModelInfo
+    - _world : World
     + World : World
     + Model : Model virtual
     + BaseColor : Color
@@ -23,16 +25,18 @@ public class GameModel : IGameObject
     - _position : Vector3
     - _worldMatrix : Matrix
     - _bounds : BoundingSphere[]
+    - _inFrustum : bool
     + WorldMatrix : Matrix
     - Bounds : BoundingSphere[]
+    # InCameraFrustum : bool
   Methods:
     + GameModel  (GameState state, GameModelInfo info)
     + Update  (GameTime gameTime) virtual
     + Draw  (GameTime gameTime) virtual
     + Intersects (Ray ray) : GameObjectDistance virtual
     + Center () : Vector3
-    - inFrustum () : bool
     - UpdatePrecomputed  ()
+    - OnViewChanged  ()
 
 public class NodeModel : GameModel
   Attributes:
@@ -49,7 +53,6 @@ public class PipeModel : GameModel
   Methods:
     + PipeModel  (GameState state, PipeModelInfo info)
     + Draw  (GameTime gameTime) override
-    + Update  (GameTime gameTime) override
     + Intersects (Ray ray) : GameObjectDistance override
 
 public class TestModel : GameModel
@@ -74,7 +77,6 @@ public class PipeModel : GameModel
     + Draw  (GameTime gameTime)
     + PipeModel  (GameState state, PipeModelInfo info)
     + Intersects (Ray ray) : GameObjectDistance
-    + Update  (GameTime gameTime)
 
 public class TestModel : GameModel
   Attributes:
@@ -86,7 +88,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
   Attributes:
     # state : GameState
     + World : World abstract
-    + Info : dynamic abstract
+    + Info : GameObjectInfo abstract
   Methods:
     + KnotRenderer  (GameState state)
     + OnEdgesChanged  (EdgeList edges) abstract
@@ -97,7 +99,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
 
 public class LineRenderer : KnotRenderer
   Attributes:
-    + Info : dynamic override
+    + Info : GameObjectInfo override
     + World : World override
     - basicEffect : BasicEffect
     - edges : EdgeList
@@ -112,7 +114,7 @@ public class LineRenderer : KnotRenderer
 
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
   Attributes:
-    + Info : dynamic override
+    + Info : GameObjectInfo override
     + World : World override
     - pipes : List<PipeModel>
     - nodes : List<NodeModel>
@@ -132,8 +134,8 @@ public class LineRenderer : KnotRenderer
   Attributes:
     - edges : EdgeList
     - basicEffect : BasicEffect
+    + Info : GameObjectInfo
     + World : World
-    + Info : dynamic
   Methods:
     + LineRenderer  (GameState state, GameObjectInfo info)
     + OnEdgesChanged  (EdgeList edges)
@@ -149,8 +151,8 @@ public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
     - nodeFactory : ModelFactory
     - pipeFactory : ModelFactory
     - pipes : List<PipeModel>
+    + Info : GameObjectInfo
     + World : World
-    + Info : dynamic
   Methods:
     - IEnumerable.GetEnumerator () : IEnumerator
     + PipeRenderer  (GameState state, GameObjectInfo info)
@@ -166,7 +168,7 @@ public class MovableGameObject : IGameObject
     - state : GameState
     - Obj : IGameObject
     + World : World
-    + Info : dynamic
+    + Info : GameObjectInfo
   Methods:
     + MovableGameObject  (GameState state, IGameObject obj)
     # CurrentGroundPlane () : Plane
@@ -181,10 +183,11 @@ public class PipeMovement : IGameObject, IEnumerable<IGameObject>
   Attributes:
     - state : GameState
     + World : World
-    + Info : dynamic
+    + Info : GameObjectInfo
     + Knot : Knot
     - previousMousePosition : Vector3
     - shadowObjects : List<ShadowGameObject>
+    - knownEdgeLists : HashSet<EdgeList> new
   Methods:
     + PipeMovement  (GameState state, World world, GameObjectInfo info)
     + Update  (GameTime gameTime)
@@ -204,7 +207,7 @@ public class ShadowGameObject : IGameObject
     # state : GameState
     - Obj : IGameObject
     + World : World
-    + Info : dynamic
+    + Info : GameObjectInfo
     + ShadowPosition : Vector3
     + OriginalPosition : Vector3
   Methods:
@@ -235,7 +238,8 @@ public class ShadowGameModel : ShadowGameObject
 public class TexturedRectangle : IGameObject
   Attributes:
     # state : GameState
-    + Info : dynamic
+    - IGameObject.Info : GameObjectInfo
+    + Info : TexturedRectangleInfo
     + World : World
     - UpperLeft : Vector3
     - LowerLeft : Vector3
@@ -259,26 +263,30 @@ public class TexturedRectangle : IGameObject
 
 public class GameModel : IGameObject
   Attributes:
+    - IGameObject.Info : GameObjectInfo
     - _rotation : Angles3
     - Bounds : BoundingSphere[]
     - _bounds : BoundingSphere[]
     - _worldMatrix : Matrix
     - _position : Vector3
+    - _inFrustum : bool
+    # InCameraFrustum : bool
     + BaseColor : Color
     + HighlightColor : Color
+    + Info : GameModelInfo
     + WorldMatrix : Matrix
-    + Info : dynamic
+    + World : World
     + Alpha : float
     + HighlightIntensity : float
+    - _world : World
     - _scale : float
     # state : GameState
-    + World : World
     + Model : Model virtual
   Methods:
+    - OnViewChanged ()
     - UpdatePrecomputed ()
     + GameModel  (GameState state, GameModelInfo info)
     + Draw  (GameTime gameTime) virtual
-    - inFrustum () : bool
     + Center () : Vector3
     + Intersects (Ray ray) : GameObjectDistance virtual
     + Update  (GameTime gameTime) virtual
@@ -298,7 +306,6 @@ public class PipeModel : GameModel
   Methods:
     + PipeModel  (GameState state, PipeModelInfo info)
     + Draw  (GameTime gameTime) override
-    + Update  (GameTime gameTime) override
     + Intersects (Ray ray) : GameObjectDistance override
 
 public class TestModel : GameModel
@@ -323,7 +330,6 @@ public class PipeModel : GameModel
     + Draw  (GameTime gameTime)
     + PipeModel  (GameState state, PipeModelInfo info)
     + Intersects (Ray ray) : GameObjectDistance
-    + Update  (GameTime gameTime)
 
 public class TestModel : GameModel
   Attributes:
@@ -335,7 +341,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
   Attributes:
     + World : World abstract
     # state : GameState
-    + Info : dynamic abstract
+    + Info : GameObjectInfo abstract
   Methods:
     + Intersects (Ray ray) : GameObjectDistance abstract
     + Center () : Vector3 abstract
@@ -346,7 +352,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
 
 public class LineRenderer : KnotRenderer
   Attributes:
-    + Info : dynamic override
+    + Info : GameObjectInfo override
     + World : World override
     - basicEffect : BasicEffect
     - edges : EdgeList
@@ -361,7 +367,7 @@ public class LineRenderer : KnotRenderer
 
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
   Attributes:
-    + Info : dynamic override
+    + Info : GameObjectInfo override
     + World : World override
     - pipes : List<PipeModel>
     - nodes : List<NodeModel>
@@ -381,8 +387,8 @@ public class LineRenderer : KnotRenderer
   Attributes:
     - edges : EdgeList
     - basicEffect : BasicEffect
+    + Info : GameObjectInfo
     + World : World
-    + Info : dynamic
   Methods:
     + LineRenderer  (GameState state, GameObjectInfo info)
     + OnEdgesChanged  (EdgeList edges)
@@ -398,8 +404,8 @@ public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
     - nodeFactory : ModelFactory
     - pipeFactory : ModelFactory
     - pipes : List<PipeModel>
+    + Info : GameObjectInfo
     + World : World
-    + Info : dynamic
   Methods:
     - IEnumerable.GetEnumerator () : IEnumerator
     + PipeRenderer  (GameState state, GameObjectInfo info)
@@ -415,7 +421,7 @@ public class MovableGameObject : IGameObject
     - Obj : IGameObject
     + World : World
     - state : GameState
-    + Info : dynamic
+    + Info : GameObjectInfo
   Methods:
     # CurrentGroundPlane () : Plane
     + MovableGameObject  (GameState state, IGameObject obj)
@@ -429,9 +435,9 @@ public class MovableGameObject : IGameObject
 public class ShadowGameObject : IGameObject
   Attributes:
     - Obj : IGameObject
+    + Info : GameObjectInfo
     + OriginalPosition : Vector3
     + World : World
-    + Info : dynamic
     # state : GameState
     + ShadowPosition : Vector3
   Methods:
@@ -465,24 +471,26 @@ public class PipeMovement : IGameObject, IEnumerable<IGameObject>
     + World : World
     - state : GameState
     - previousMousePosition : Vector3
+    + Info : GameObjectInfo
     + Knot : Knot
-    + Info : dynamic
   Methods:
+    - knownEdgeLists () : HashSet<EdgeList>
     - IEnumerable.GetEnumerator () : IEnumerator
-    - CreateShadowPipes ()
+    - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out float count)
     - MovePipes  (Vector3 currentMousePosition)
     + Intersects (Ray ray) : GameObjectDistance
     + GetEnumerator () : IEnumerator<IGameObject>
     + PipeMovement  (GameState state, World world, GameObjectInfo info)
     + Draw  (GameTime gameTime)
-    + Update  (GameTime gameTime)
-    - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out float count)
     - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out int countInt)
+    - CreateShadowPipes ()
     - MoveShadowPipes  (Vector3 currentMousePosition)
     + Center () : Vector3
+    + Update  (GameTime gameTime)
 
 public class TexturedRectangle : IGameObject
   Attributes:
+    - IGameObject.Info : GameObjectInfo
     - basicEffect : BasicEffect
     - texture : Texture2D
     - LowerLeft : Vector3
@@ -491,7 +499,7 @@ public class TexturedRectangle : IGameObject
     - UpperRight : Vector3
     - Vertices : VertexPositionNormalTexture[]
     - Indexes : short[]
-    + Info : dynamic
+    + Info : TexturedRectangleInfo
     - UpperLeft : Vector3
     # state : GameState
     + World : World

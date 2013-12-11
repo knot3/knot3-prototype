@@ -5,4 +5,4 @@ public class BlurEffect : RenderEffect
     + BlurEffect (GameState state)
     + Begin (Color background, GameTime gameTime) override
     + End (GameTime gameTime) override
-    + Draw (SpriteBatch spriteBatch, GameTime gameTime) override
+    # Draw (SpriteBatch spriteBatch, GameTime gameTime) override

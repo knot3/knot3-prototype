@@ -1,6 +1,6 @@
 public interface IMouseEventListener : 
   Attributes:
-    + Index : int
+    + Index : DisplayLayer
     + IsMouseEventEnabled : bool
   Methods:
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)

@@ -1,7 +1,7 @@
 public interface IKeyEventListener : 
   Attributes:
     + ValidKeys : List<Keys>
-    + Index : int
+    + Index : DisplayLayer
     + IsKeyEventEnabled : bool
   Methods:
     + OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)

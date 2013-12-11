@@ -16,9 +16,6 @@ public class EdgeList :
     + Add (Edge edge)
     + AddRange (IEnumerable<Edge> edge)
     + Interval (Edge a, Edge b) : List<Edge>
-    + SelectEdge (Edge selection, bool append = false)
-    + SelectEdges (Edge[] selection, bool append = false)
-    + SelectEdge ()
     + PrintSelectedEdges ()
     + Move (IEnumerable<Edge> selectedEdges, Vector3 direction, int times = 1) : bool
     + Move (Edge selection, Vector3 direction) : bool

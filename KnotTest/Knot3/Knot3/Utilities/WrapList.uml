@@ -15,7 +15,10 @@ public class WrapList<T> : IEnumerable<T>
     + Remove (T[] elems)
     + InsertAt (int i, T elem)
     + Replace (T find, T[] elem)
+    + AddRange (params T[] elems)
     + AddRange (IEnumerable<T> elems)
+    + Set (params T[] elems)
+    + Set (IEnumerable<T> elems)
     + Contains (T elem) : bool
     + GetEnumerator () : IEnumerator<T>
     - IEnumerable.GetEnumerator () : IEnumerator

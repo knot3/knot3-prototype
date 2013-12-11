@@ -1,9 +1,10 @@
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
   Attributes:
     + state : GameState
-    + Index : int
+    - _index : DisplayLayer
+    + Index : DisplayLayer
   Methods:
-    + DrawableGameStateComponent (GameState state, DisplayLayer drawOrder)
+    + DrawableGameStateComponent (GameState state, DisplayLayer index)
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 public enum DisplayLayer
     None
