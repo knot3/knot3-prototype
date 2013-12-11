@@ -188,9 +188,10 @@ namespace Knot3.KnotData
 		{
 			yield return knot.Info.Name;
 			knot.Edges.Compact ();
-			for (int i = 0; i < knot.Edges.Count; ++i) {
-				Node node = knot.Edges.FromNode (knot.Edges [i]);
-				Color color = knot.Edges [i].Color;
+			NodeMap nodeMap = new NodeMap(knot.Edges);
+			foreach (Edge edge in knot.Edges) {
+				Node node = nodeMap.FromNode (edge);
+				Color color = edge.Color;
 				yield return node.X + ":" + node.Y + ":" + node.Z + "#" + color.R + ":" + color.G + ":" + color.B;
 			}
 		}

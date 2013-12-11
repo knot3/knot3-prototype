@@ -31,7 +31,7 @@ public class CreativeModeScreen : GameState
     - movement : PipeMovement
     - coloring : PipeColoring
     - lineRenderer : LineRenderer
-    - pipeRenderer : PipeRenderer
+    - pipeRenderer : ModelRenderer
     - dialog : Dialog
     + Knot : Knot
   Methods:
@@ -191,12 +191,12 @@ public class CreativeModeScreen : GameState
   Attributes:
     - dialog : Dialog
     - lineRenderer : LineRenderer
+    - pipeRenderer : ModelRenderer
     - picker : MousePicker
     - pointer : MousePointer
     - overlay : Overlay
     - coloring : PipeColoring
     - movement : PipeMovement
-    - pipeRenderer : PipeRenderer
     - world : World
     - knotModified : bool
     + Knot : Knot

@@ -2,12 +2,12 @@ public class CreativeModeScreen : GameState
   Attributes:
     - dialog : Dialog
     - lineRenderer : LineRenderer
+    - pipeRenderer : ModelRenderer
     - picker : MousePicker
     - pointer : MousePointer
     - overlay : Overlay
     - coloring : PipeColoring
     - movement : PipeMovement
-    - pipeRenderer : PipeRenderer
     - world : World
     - knotModified : bool
     + Knot : Knot

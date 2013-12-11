@@ -1,12 +1,13 @@
 public class PipeModelInfo : GameModelInfo
   Attributes:
     + Edge : Edge
+    + NodeMap : NodeMap
     + Direction : Vector3
     + PositionFrom : Vector3
     + PositionTo : Vector3
-    + Edges : EdgeList
+    + EdgeList : EdgeList
   Methods:
-    + PipeModelInfo  (EdgeList edges, Edge edge, Vector3 offset)
+    + PipeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
     + Equals (GameObjectInfo other) : bool
 
 public class GameModelInfo : GameObjectInfo

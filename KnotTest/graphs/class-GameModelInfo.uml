@@ -37,41 +37,45 @@ public class GameObjectInfo : IEquatable<GameObjectInfo>
 
 public class NodeModelInfo : GameModelInfo
   Attributes:
-    + Edges : EdgeList
+    + EdgeList : EdgeList
+    + NodeMap : NodeMap
     + EdgeA : Edge
     + EdgeB : Edge
   Methods:
-    + NodeModelInfo  (EdgeList edges, Edge edgeA, Edge edgeB, Vector3 offset)
+    + NodeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
     + Equals (GameObjectInfo other) : bool override
 
 public class PipeModelInfo : GameModelInfo
   Attributes:
-    + Edges : EdgeList
+    + EdgeList : EdgeList
+    + NodeMap : NodeMap
     + Edge : Edge
     + Direction : Vector3
     + PositionFrom : Vector3
     + PositionTo : Vector3
   Methods:
-    + PipeModelInfo  (EdgeList edges, Edge edge, Vector3 offset)
+    + PipeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
     + Equals (GameObjectInfo other) : bool override
 
 public class NodeModelInfo : GameModelInfo
   Attributes:
     + EdgeA : Edge
     + EdgeB : Edge
-    + Edges : EdgeList
+    + NodeMap : NodeMap
+    + EdgeList : EdgeList
   Methods:
-    + NodeModelInfo  (EdgeList edges, Edge edgeA, Edge edgeB, Vector3 offset)
+    + NodeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
     + Equals (GameObjectInfo other) : bool
 
 public class PipeModelInfo : GameModelInfo
   Attributes:
     + Edge : Edge
+    + NodeMap : NodeMap
     + Direction : Vector3
     + PositionFrom : Vector3
     + PositionTo : Vector3
-    + Edges : EdgeList
+    + EdgeList : EdgeList
   Methods:
-    + PipeModelInfo  (EdgeList edges, Edge edge, Vector3 offset)
+    + PipeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
     + Equals (GameObjectInfo other) : bool
 

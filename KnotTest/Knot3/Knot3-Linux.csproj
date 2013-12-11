@@ -92,7 +92,6 @@
     <Compile Include="Knot3\GameObjects\PipeModel.cs" />
     <Compile Include="Knot3\GameObjects\NodeModel.cs" />
     <Compile Include="Knot3\GameObjects\LineRenderer.cs" />
-    <Compile Include="Knot3\GameObjects\PipeRenderer.cs" />
     <Compile Include="Knot3\GameObjects\IGameObject.cs" />
     <Compile Include="Knot3\GameObjects\ModelFactory.cs" />
     <Compile Include="Knot3\UserInterface\MenuItem.cs" />
@@ -125,6 +124,8 @@
     <Compile Include="Knot3\GameObjects\PipeColoring.cs" />
     <Compile Include="Knot3\GameObjects\ModelMousePicker.cs" />
     <Compile Include="Knot3\RenderEffects\InstancingTest.cs" />
+    <Compile Include="Knot3\GameObjects\ModelRenderer.cs" />
+    <Compile Include="Knot3\KnotData\NodeMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />

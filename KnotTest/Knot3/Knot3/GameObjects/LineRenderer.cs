@@ -45,6 +45,7 @@ namespace Knot3.GameObjects
 
 		public override void OnEdgesChanged (EdgeList edges)
 		{
+			base.OnEdgesChanged (edges);
 			this.edges = edges;
 		}
 
@@ -72,8 +73,8 @@ namespace Knot3.GameObjects
 
 			Vector3 last = new Vector3 (0, 0, 0);
 			for (int n = 0; n < edges.Count; n++) {
-				Vector3 p1 = edges.FromNode (n).Vector () + offset;
-				Vector3 p2 = edges.ToNode (n).Vector () + offset;
+				Vector3 p1 = nodeMap.FromNode (edges [n]).Vector () + offset;
+				Vector3 p2 = nodeMap.ToNode (edges [n]).Vector () + offset;
 
 				var diff = p1 - p2;
 				diff.Normalize ();

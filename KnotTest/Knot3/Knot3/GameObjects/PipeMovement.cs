@@ -59,7 +59,7 @@ namespace Knot3.GameObjects
 					World.Redraw = true;
 					try {
 						Edge e = pipe.Info.Edge;
-						EdgeList edges = pipe.Info.Edges;
+						EdgeList edges = pipe.Info.EdgeList;
 						knownEdgeLists.Add (edges);
 						Console.WriteLine ("knownEdgeLists=" + knownEdgeLists.Count);
 

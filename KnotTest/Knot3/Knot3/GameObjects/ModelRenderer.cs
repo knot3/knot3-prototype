@@ -24,7 +24,7 @@ namespace Knot3.GameObjects
 	/// Verwaltet eine Liste von Spielobjekten der Klassen PipeModel (Röhren) und NodeModel (Knotenpunkt)
 	/// für ein gegebenes KnotData.Knot-Objekt und zeichnet diese über die World-Klasse.
 	/// </summary>
-	public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
+	public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
 	{
 		public override GameObjectInfo Info { get; protected set; }
 
@@ -36,7 +36,7 @@ namespace Knot3.GameObjects
 		private ModelFactory pipeFactory;
 		private ModelFactory nodeFactory;
 
-		public PipeRenderer (GameState state, GameObjectInfo info)
+		public ModelRenderer (GameState state, GameObjectInfo info)
 			: base(state)
 		{
 			Info = info;
@@ -56,11 +56,13 @@ namespace Knot3.GameObjects
 			}
 		}
 
-		public override void OnEdgesChanged (EdgeList edges)
+		public override void OnEdgesChanged (EdgeList edgeList)
 		{
+			base.OnEdgesChanged(edgeList);
+
 			pipes.Clear ();
-			for (int n = 0; n < edges.Count; n++) {
-				PipeModelInfo info = new PipeModelInfo (edges, edges [n], Info.Position);
+			foreach (Edge edge in edgeList) {
+				PipeModelInfo info = new PipeModelInfo (edgeList, nodeMap, edge, Info.Position);
 				PipeModel pipe = pipeFactory [state, info] as PipeModel;
 				// pipe.OnDataChange = () => UpdatePipes (edges);
 				pipe.World = World;
@@ -68,9 +70,9 @@ namespace Knot3.GameObjects
 			}
 
 			nodes.Clear ();
-			for (int n = 0; n < edges.Count; n++) {
-				if (edges [n].Direction != edges [n + 1].Direction) {
-					NodeModelInfo info = new NodeModelInfo (edges, edges [n], edges [n + 1], Info.Position);
+			for (int n = 0; n < edgeList.Count; n++) {
+				if (edgeList [n].Direction != edgeList [n + 1].Direction) {
+					NodeModelInfo info = new NodeModelInfo (edgeList, nodeMap, edgeList [n], edgeList [n + 1], Info.Position);
 					NodeModel node = nodeFactory [state, info] as NodeModel;
 					node.World = World;
 					nodes.Add (node);

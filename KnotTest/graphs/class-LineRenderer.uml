@@ -18,9 +18,10 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     # state : GameState
     + World : World abstract
     + Info : GameObjectInfo abstract
+    # nodeMap : NodeMap new
   Methods:
     + KnotRenderer  (GameState state)
-    + OnEdgesChanged  (EdgeList edges) abstract
+    + OnEdgesChanged  (EdgeList edges) virtual
     + Update  (GameTime gameTime) abstract
     + Draw  (GameTime gameTime) abstract
     + Intersects (Ray ray) : GameObjectDistance abstract
@@ -47,12 +48,13 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     # state : GameState
     + Info : GameObjectInfo abstract
   Methods:
+    # nodeMap () : NodeMap
     + Intersects (Ray ray) : GameObjectDistance abstract
     + Center () : Vector3 abstract
     + Draw  (GameTime gameTime) abstract
-    + Update  (GameTime gameTime) abstract
     + KnotRenderer  (GameState state)
-    + OnEdgesChanged  (EdgeList edges) abstract
+    + Update  (GameTime gameTime) abstract
+    + OnEdgesChanged  (EdgeList edges) virtual
 
 public interface IEdgeChangeListener : 
   Attributes:

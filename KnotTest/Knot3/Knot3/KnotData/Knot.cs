@@ -74,8 +74,8 @@ namespace Knot3.KnotData
 				edges.Add (Edge.RandomEdge ());
 			}
 			edges.Compact ();
-			for (int i = 0; i < edges.Count; ++i) {
-				edges [i].Color = Edge.RandomColor ();
+			foreach (Edge edge in edges) {
+				edge.Color = Edge.RandomColor ();
 			}
 
 			return UntitledKnot (edges, format);
@@ -98,8 +98,8 @@ namespace Knot3.KnotData
 			}
 			);
 			edges.Compact ();
-			for (int i = 0; i < edges.Count; ++i) {
-				edges [i].Color = Edge.RandomColor ();
+			foreach (Edge edge in edges) {
+				edge.Color = Edge.RandomColor ();
 			}
 
 			return UntitledKnot (edges, format);

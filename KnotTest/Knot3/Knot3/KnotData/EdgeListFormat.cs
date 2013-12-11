@@ -170,10 +170,8 @@ namespace Knot3.KnotData
 		{
 			yield return knot.Info.Name;
 			knot.Edges.Compact ();
-			for (int i = 0; i < knot.Edges.Count; ++i) {
-				Edge edge = knot.Edges [i];
-				Color color = knot.Edges [i].Color;
-				yield return EncodeEdge (edge) + EncodeColor (color);
+			foreach (Edge edge in knot.Edges) {
+				yield return EncodeEdge (edge) + EncodeColor (edge.Color);
 			}
 		}
 

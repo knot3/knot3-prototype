@@ -21,18 +21,20 @@ namespace Knot3.GameObjects
 {
 	public class NodeModelInfo : GameModelInfo
 	{
-		public EdgeList Edges;
+		public EdgeList EdgeList;
+		public NodeMap NodeMap;
 		public Edge EdgeA;
 		public Edge EdgeB;
 
-		public NodeModelInfo (EdgeList edges, Edge edgeA, Edge edgeB, Vector3 offset)
+		public NodeModelInfo (EdgeList edgeList, NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
 			: base("knot1")
 		{
-			Edges = edges;
+			EdgeList = edgeList;
+			NodeMap = nodeMap;
 			EdgeA = edgeA;
 			EdgeB = edgeB;
 			IsVisible = edgeA.Direction != edgeB.Direction;
-			Position = edges.ToNode (edgeA).Vector ();
+			Position = nodeMap.ToNode (edgeA).Vector ();
 			Scale = 5f;
 		}
 

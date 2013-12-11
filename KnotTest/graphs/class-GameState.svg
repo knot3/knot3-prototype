@@ -44,12 +44,12 @@
 <text text-anchor="start" x="12" y="-693.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
 <text text-anchor="start" x="12" y="-681.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; dialog : Dialog</text>
 <text text-anchor="start" x="12" y="-669.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; lineRenderer : LineRenderer</text>
-<text text-anchor="start" x="12" y="-657.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; picker : MousePicker</text>
-<text text-anchor="start" x="12" y="-645.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pointer : MousePointer</text>
-<text text-anchor="start" x="12" y="-633.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; overlay : Overlay</text>
-<text text-anchor="start" x="12" y="-621.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; coloring : PipeColoring</text>
-<text text-anchor="start" x="12" y="-609.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; movement : PipeMovement</text>
-<text text-anchor="start" x="12" y="-597.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pipeRenderer : PipeRenderer</text>
+<text text-anchor="start" x="12" y="-657.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pipeRenderer : ModelRenderer</text>
+<text text-anchor="start" x="12" y="-645.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; picker : MousePicker</text>
+<text text-anchor="start" x="12" y="-633.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; pointer : MousePointer</text>
+<text text-anchor="start" x="12" y="-621.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; overlay : Overlay</text>
+<text text-anchor="start" x="12" y="-609.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; coloring : PipeColoring</text>
+<text text-anchor="start" x="12" y="-597.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; movement : PipeMovement</text>
 <text text-anchor="start" x="12" y="-585.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; world : World</text>
 <text text-anchor="start" x="12" y="-573.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; knotModified : bool</text>
 <text text-anchor="start" x="12" y="-561.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Knot : Knot</text>

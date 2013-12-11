@@ -27,12 +27,17 @@ namespace Knot3.GameObjects
 
 		public abstract GameObjectInfo Info { get; protected set; }
 
+		protected NodeMap nodeMap = new NodeMap ();
+		
 		public KnotRenderer (GameState state)
 		{
 			this.state = state;
 		}
 
-		public abstract void OnEdgesChanged (EdgeList edges);
+		public virtual void OnEdgesChanged (EdgeList edges)
+		{
+			nodeMap.OnEdgesChanged(edges);
+		}
 
 		public abstract void Update (GameTime gameTime);
 

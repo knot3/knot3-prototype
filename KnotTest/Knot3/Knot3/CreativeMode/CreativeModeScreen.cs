@@ -39,7 +39,7 @@ namespace Knot3.CreativeMode
 		private PipeMovement movement;
 		private PipeColoring coloring;
 		private LineRenderer lineRenderer;
-		private PipeRenderer pipeRenderer;
+		private ModelRenderer pipeRenderer;
 		private Dialog dialog;
 
 		/// <summary>
@@ -72,7 +72,7 @@ namespace Knot3.CreativeMode
 			// pipe renderer
 			var knotRenderInfo = new GameObjectInfo ();
 			knotRenderInfo.Position = Vector3.Zero;
-			pipeRenderer = new PipeRenderer (this, knotRenderInfo);
+			pipeRenderer = new ModelRenderer (this, knotRenderInfo);
 			world.Add (pipeRenderer as IGameObject);
 			
 			// pipe movements

@@ -3,9 +3,10 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     # state : GameState
     + World : World abstract
     + Info : GameObjectInfo abstract
+    # nodeMap : NodeMap new
   Methods:
     + KnotRenderer (GameState state)
-    + OnEdgesChanged (EdgeList edges) abstract
+    + OnEdgesChanged (EdgeList edges) virtual
     + Update (GameTime gameTime) abstract
     + Draw (GameTime gameTime) abstract
     + Intersects (Ray ray) : GameObjectDistance abstract

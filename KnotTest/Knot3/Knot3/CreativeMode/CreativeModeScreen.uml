@@ -9,7 +9,7 @@ public class CreativeModeScreen : GameState
     - movement : PipeMovement
     - coloring : PipeColoring
     - lineRenderer : LineRenderer
-    - pipeRenderer : PipeRenderer
+    - pipeRenderer : ModelRenderer
     - dialog : Dialog
     + Knot : Knot
   Methods:
