@@ -37,7 +37,7 @@ namespace Knot3.RenderEffects
 			base.End (gameTime);
 		}
 
-		protected override void Draw (SpriteBatch spriteBatch, GameTime gameTime)
+		protected override void DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime)
 		{
 			testEffect.CurrentTechnique = testEffect.Techniques ["BlurTest1"];
 			//testEffect.Parameters["World"].SetValue(camera.WorldMatrix);

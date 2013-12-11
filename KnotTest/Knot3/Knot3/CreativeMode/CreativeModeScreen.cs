@@ -161,6 +161,7 @@ namespace Knot3.CreativeMode
 
 			if (PostProcessing is FadeEffect && (PostProcessing as FadeEffect).IsFinished) {
 				PostProcessing = new NoEffect (this);
+				world.Redraw = true;
 			}
 		}
 

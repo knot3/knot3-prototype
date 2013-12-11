@@ -9,7 +9,7 @@ public class CelShadingEffect : RenderEffect
     + Color : Color
   Methods:
     + CelShadingEffect  (GameState state)
-    # Draw  (SpriteBatch spriteBatch, GameTime gameTime)
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime)
     + DrawModel  (GameModel model, GameTime gameTime)
     + RemapModel  (Model model)
 
@@ -26,7 +26,7 @@ public abstract class RenderEffect : IRenderEffect
     + Begin  (Color background, GameTime gameTime) virtual
     + End  (GameTime gameTime) virtual
     + DrawLastFrame  (GameTime gameTime)
-    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) abstract
     + RemapModel  (Model model) virtual
     + DrawModel  (GameModel model, GameTime gameTime) virtual
     # ModifyBasicEffect  (BasicEffect effect, GameModel model)
@@ -49,7 +49,7 @@ public abstract class RenderEffect : IRenderEffect
     # state : GameState
     + RenderTarget : RenderTarget2D
   Methods:
-    # Draw  (SpriteBatch spriteBatch, GameTime gameTime) abstract
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) abstract
     + RenderEffect  (GameState state)
     + DrawModel  (GameModel model, GameTime gameTime) virtual
     + RemapModel  (Model model) virtual

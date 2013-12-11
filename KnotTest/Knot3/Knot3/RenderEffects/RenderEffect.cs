@@ -140,7 +140,7 @@ namespace Knot3.RenderEffects
 				state.device.PopRenderTarget ();
 				spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 
-				Draw (spriteBatch, gameTime);
+				DrawRenderTarget (spriteBatch, gameTime);
 
 				spriteBatch.End ();
 				state.RenderEffects.Pop ();
@@ -152,11 +152,11 @@ namespace Knot3.RenderEffects
 		public void DrawLastFrame (GameTime gameTime)
 		{
 			spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
-			Draw (spriteBatch, gameTime);
+			DrawRenderTarget (spriteBatch, gameTime);
 			spriteBatch.End ();
 		}
 
-		protected abstract void Draw (SpriteBatch spriteBatch, GameTime gameTime);
+		protected abstract void DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime);
 
 		/// <summary>
 		/// Die XNA-3D-Modelle haben standardmäßig einen BasicEffect-Shader als zu verwendenden Shader zugewiesen.

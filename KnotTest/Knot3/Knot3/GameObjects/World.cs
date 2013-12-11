@@ -74,7 +74,9 @@ namespace Knot3.GameObjects
 			var floorInfo = new TexturedRectangleInfo (
 				texturename: "floor", origin: position + new Vector3 (size.X, 0, size.Z) / 2,
 				left: Vector3.Left, width: size.X, up: Vector3.Forward, height: size.Z
-			);
+			) {
+				IsVisible = false
+			};
 			floor = new TexturedRectangle (state, floorInfo);
 			Objects.Add (floor);
 		}
@@ -155,6 +157,9 @@ namespace Knot3.GameObjects
 
 		public override void Update (GameTime gameTime)
 		{
+			if (state.PostProcessing is FadeEffect)
+				Redraw = true;
+
 			// run the update method on all game objects
 			foreach (IGameObject obj in Objects) {
 				obj.Update (gameTime);

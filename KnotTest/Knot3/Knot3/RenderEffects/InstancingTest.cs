@@ -38,7 +38,7 @@ namespace Knot3.RenderEffects
 			base.End (gameTime);
 		}
 
-		protected override void Draw (SpriteBatch spriteBatch, GameTime gameTime)
+		protected override void DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime)
 		{
 			foreach (string key in instanceHash.Keys) {
 				ModelInstances instances = instanceHash [key] as ModelInstances;
