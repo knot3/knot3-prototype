@@ -196,7 +196,7 @@ namespace Knot3.Core
 		{
 			_total_frames++;
 			spriteBatch.Begin ();
-			DrawString ("FPS: " + _fps, state.viewport.Width - 150, 20, Color.White);
+			DrawString ("FPS: " + _fps, state.viewport.Width - 200, 20, Color.White);
 			spriteBatch.End ();
 		}
 
@@ -208,7 +208,7 @@ namespace Knot3.Core
 			spriteBatch.Begin ();
 			int height = 40;
 			foreach (string name in profiler.Keys) {
-				DrawString (name + ": " + Profiler [name], state.viewport.Width - 150, height, Color.White);
+                DrawString(name + ": " + Profiler[name], state.viewport.Width - 200, height, Color.White);
 				height += 20;
 			}
 			spriteBatch.End ();

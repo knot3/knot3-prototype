@@ -44,7 +44,8 @@ namespace Knot3.Core
 						}
 					}
 
-					if (keysInvolved.Count > 0 && receiver.IsKeyEventEnabled && (best == null || component.Index >= best.layer)) {
+                    if (keysInvolved.Count > 0 && receiver.IsKeyEventEnabled && (best == null || (int)component.Index >= (int)best.layer))
+                    {
 						best = new KeyEventComponent {
 							receiver = receiver,
 							layer = receiver.Index,

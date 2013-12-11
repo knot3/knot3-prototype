@@ -209,12 +209,12 @@ namespace Knot3.CreativeMode
 						if (World.SelectedObject != null && World.SelectedObject.Info.IsMovable)
 							action = InputAction.SelectedObjectShadowMove;
 						else
-							action = InputAction.TargetMove;
+                            action = InputAction.FreeMouse;
 					} else if (MouseState.LeftButton == ButtonState.Released && PreviousMouseState.LeftButton == ButtonState.Pressed) {
 						if (World.SelectedObject != null && World.SelectedObject.Info.IsMovable)
 							action = InputAction.SelectedObjectMove;
 						else
-							action = InputAction.TargetMove;
+                            action = InputAction.FreeMouse;
 					}
 					// right mouse button pressed
 					else if (MouseState.RightButton == ButtonState.Pressed)
