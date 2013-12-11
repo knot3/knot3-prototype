@@ -19,11 +19,11 @@ namespace Knot3.RenderEffects
 
 		void End (GameTime gameTime);
 
-		void Draw (SpriteBatch spriteBatch, GameTime gameTime);
-
 		void RemapModel (Model model);
 
 		void DrawModel (GameModel model, GameTime gameTime);
+
+		void DrawLastFrame (GameTime gameTime);
 	}
 }
 

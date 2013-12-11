@@ -83,6 +83,7 @@ namespace Knot3.GameObjects
 		{
 			if (SelectedObject != obj) {
 				SelectedObject = obj;
+				Redraw = true;
 			}
 		}
 
@@ -106,6 +107,7 @@ namespace Knot3.GameObjects
 		{
 			// knot render effects
 			knotRenderEffects = new List<RenderEffect> ();
+			knotRenderEffects.Add (new InstancingTest (state));
 			knotRenderEffects.Add (new NoEffect (state));
 			knotRenderEffects.Add (new BlurEffect (state));
 			knotRenderEffects.Add (new CelShadingEffect (state));
@@ -116,26 +118,39 @@ namespace Knot3.GameObjects
 				knotRenderEffect = new NoEffect (state);
 			}
 		}
+
+		private bool _redraw = true;
+
+		public bool Redraw {
+			get { return _redraw; }
+			set { _redraw = value; }
+		}
 		
 		public override void Draw (GameTime gameTime)
 		{
-			// begin the post processing effect scope
-			Color background = knotRenderEffect is CelShadingEffect ? Color.CornflowerBlue : Color.Black;
-			state.PostProcessing.Begin (background, gameTime);
+			if (Redraw) {
+				Redraw = false;
 
-			// begin the knot render effect
-			knotRenderEffect.Begin (gameTime);
+				// begin the post processing effect scope
+				Color background = knotRenderEffect is CelShadingEffect ? Color.CornflowerBlue : Color.Black;
+				state.PostProcessing.Begin (background, gameTime);
 
-			foreach (IGameObject obj in Objects) {
-				obj.World = this;
-				obj.Draw (gameTime);
-			}
+				// begin the knot render effect
+				knotRenderEffect.Begin (gameTime);
 
-			// end of the knot render effect
-			knotRenderEffect.End (gameTime);
+				foreach (IGameObject obj in Objects) {
+					obj.World = this;
+					obj.Draw (gameTime);
+				}
+
+				// end of the knot render effect
+				knotRenderEffect.End (gameTime);
 			
-			// end of the post processing effect
-			state.PostProcessing.End (gameTime);
+				// end of the post processing effect
+				state.PostProcessing.End (gameTime);
+			} else {
+				state.PostProcessing.DrawLastFrame (gameTime);
+			}
 		}
 
 		public override void Update (GameTime gameTime)
@@ -150,6 +165,11 @@ namespace Knot3.GameObjects
 				knotRenderEffect = knotRenderEffects [
 				    (knotRenderEffects.IndexOf (knotRenderEffect) + 1) % knotRenderEffects.Count
 				];
+				Redraw = true;
+			}
+
+			if (Keys.N.IsDown ()) {
+				Redraw = true;
 			}
 
 			// spawn a game object
@@ -161,6 +181,7 @@ namespace Knot3.GameObjects
 				info.IsMovable = true;
 				var obj = new MovableGameObject (state, new TestModel (state, info));
 				Objects.Add (obj);
+				Redraw = true;
 			}
 			if (Keys.P.IsDown ()) {
 				//objects.Add (new GameModel (state, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
@@ -170,6 +191,7 @@ namespace Knot3.GameObjects
 				info.IsMovable = true;
 				var obj = new MovableGameObject (state, new TestModel (state, info));
 				Objects.Add (obj);
+				Redraw = true;
 			}
 
 			// is the floor visible?

@@ -55,7 +55,9 @@ namespace Knot3.GameObjects
 
 		protected GameState state;
 
-		public dynamic Info { get; private set; }
+		GameObjectInfo IGameObject.Info { get { return Info; } }
+
+		public TexturedRectangleInfo Info { get; private set; }
 
 		public World World { get; set; }
 

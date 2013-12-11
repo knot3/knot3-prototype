@@ -133,16 +133,30 @@ namespace Knot3.RenderEffects
 		/// </param>
 		public virtual void End (GameTime gameTime)
 		{
-			state.device.PopRenderTarget ();
+			if (!Overlay.Profiler.ContainsKey ("RenderEffect"))
+				Overlay.Profiler ["RenderEffect"] = 0;
+			Overlay.Profiler ["RenderEffect"] += Knot3.Core.Game.Time (() => {
+
+				state.device.PopRenderTarget ();
+				spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
+
+				Draw (spriteBatch, gameTime);
+
+				spriteBatch.End ();
+				state.RenderEffects.Pop ();
+
+			}
+			).TotalMilliseconds;
+		}
+		
+		public void DrawLastFrame (GameTime gameTime)
+		{
 			spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
-
 			Draw (spriteBatch, gameTime);
-
 			spriteBatch.End ();
-			state.RenderEffects.Pop ();
 		}
 
-		public abstract void Draw (SpriteBatch spriteBatch, GameTime gameTime);
+		protected abstract void Draw (SpriteBatch spriteBatch, GameTime gameTime);
 
 		/// <summary>
 		/// Die XNA-3D-Modelle haben standardmäßig einen BasicEffect-Shader als zu verwendenden Shader zugewiesen.
@@ -169,34 +183,7 @@ namespace Knot3.RenderEffects
 			foreach (ModelMesh mesh in model.Model.Meshes) {
 				foreach (ModelMeshPart part in mesh.MeshParts) {
 					if (part.Effect is BasicEffect) {
-						BasicEffect effect = part.Effect as BasicEffect;
-
-						// lighting
-						if (Keys.L.IsHeldDown ()) {
-							effect.LightingEnabled = false;
-						} else {
-							effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
-						}
-
-						// matrices
-						effect.World = model.WorldMatrix * model.World.Camera.WorldMatrix;
-						effect.View = model.World.Camera.ViewMatrix;
-						effect.Projection = model.World.Camera.ProjectionMatrix;
-
-						// colors
-						if (model.BaseColor != Color.Transparent) {
-							if (model.HighlightIntensity != 0f) {
-								effect.DiffuseColor = model.BaseColor.Mix (model.HighlightColor, model.HighlightIntensity).ToVector3 ();
-							} else {
-								effect.DiffuseColor = model.BaseColor.ToVector3 ();
-							}
-						}
-						if (background == Color.Transparent) {
-							effect.Alpha = model.Alpha;
-						} else {
-							effect.DiffuseColor = new Color (effect.DiffuseColor).Mix (background, 1f - model.Alpha).ToVector3 ();
-						}
-						effect.FogEnabled = false;
+						ModifyBasicEffect (part.Effect as BasicEffect, model);
 					}
 				}
 			}
@@ -204,6 +191,36 @@ namespace Knot3.RenderEffects
 			foreach (ModelMesh mesh in model.Model.Meshes) {
 				mesh.Draw ();
 			}
+		}
+
+		protected void ModifyBasicEffect (BasicEffect effect, GameModel model)
+		{
+			// lighting
+			if (Keys.L.IsHeldDown ()) {
+				effect.LightingEnabled = false;
+			} else {
+				effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
+			}
+
+			// matrices
+			effect.World = model.WorldMatrix * model.World.Camera.WorldMatrix;
+			effect.View = model.World.Camera.ViewMatrix;
+			effect.Projection = model.World.Camera.ProjectionMatrix;
+
+			// colors
+			if (model.BaseColor != Color.Transparent) {
+				if (model.HighlightIntensity != 0f) {
+					effect.DiffuseColor = model.BaseColor.Mix (model.HighlightColor, model.HighlightIntensity).ToVector3 ();
+				} else {
+					effect.DiffuseColor = model.BaseColor.ToVector3 ();
+				}
+			}
+			if (background == Color.Transparent) {
+				effect.Alpha = model.Alpha;
+			} else {
+				effect.DiffuseColor = new Color (effect.DiffuseColor).Mix (background, 1f - model.Alpha).ToVector3 ();
+			}
+			effect.FogEnabled = false;
 		}
 	}
 }

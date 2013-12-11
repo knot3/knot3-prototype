@@ -18,7 +18,7 @@ namespace Knot3.Core
 		private class KeyEventComponent
 		{
 			public IKeyEventListener receiver;
-			public int layer = 0;
+			public DisplayLayer layer = 0;
 			public KeyEvent keyEvent;
 			public List<Keys> keys;
 		}

@@ -58,9 +58,20 @@ namespace Knot3.GameObjects
 		/// </summary>
 		protected GameState state;
 
-		public dynamic Info { get; private set; }
+		GameObjectInfo IGameObject.Info { get { return Info; } }
 
-		public World World { get; set; }
+		public GameModelInfo Info { get; protected set; }
+
+		private World _world;
+
+		public World World {
+			get { return _world; }
+			set {
+				_world = value;
+				_world.Camera.OnViewChanged += OnViewChanged;
+				OnViewChanged ();
+			}
+		}
 
 		/// <summary>
 		/// Das XNA-3D-Modell.
@@ -106,7 +117,7 @@ namespace Knot3.GameObjects
 		public virtual void Draw (GameTime gameTime)
 		{
 			if (Info.IsVisible) {
-				if (inFrustum ()) {
+				if (InCameraFrustum) {
 					Overlay.Profiler ["# InFrustum"]++;
 
 					state.RenderEffects.Current.DrawModel (this, gameTime);
@@ -141,28 +152,17 @@ namespace Knot3.GameObjects
 			}
 			return center / Info.Scale + Info.Position;
 		}
-
-		private bool inFrustum ()
-		{
-			bool inFrustum = false;
-			foreach (BoundingSphere sphere in Bounds) {
-				bool intersects;
-				World.Camera.ViewFrustum.FastIntersects (sphere, out intersects);
-				if (intersects)
-					inFrustum = true;
-			}
-			return inFrustum;
-		}
 		
 		#endregion
 
-		#region Matrix Cache
+		#region Cache
 
 		private float _scale;
 		private Angles3 _rotation;
 		private Vector3 _position;
 		private Matrix _worldMatrix;
 		private BoundingSphere[] _bounds;
+		private bool _inFrustum;
 
 		public Matrix WorldMatrix {
 			get {
@@ -178,9 +178,16 @@ namespace Knot3.GameObjects
 			}
 		}
 
+		protected bool InCameraFrustum {
+			get {
+				return _inFrustum;
+			}
+		}
+
 		private void UpdatePrecomputed ()
 		{
 			if (Info.Scale != _scale || Info.Rotation != _rotation || Info.Position != _position) {
+
 				// world matrix
 				_worldMatrix = Matrix.CreateScale (Info.Scale)
 					* Matrix.CreateFromYawPitchRoll (Info.Rotation.Y, Info.Rotation.X, Info.Rotation.Z)
@@ -196,6 +203,19 @@ namespace Knot3.GameObjects
 				_scale = Info.Scale;
 				_rotation = Info.Rotation;
 				_position = Info.Position;
+			}
+		}
+
+		private void OnViewChanged ()
+		{
+			// camera frustum
+			_inFrustum = false;
+			foreach (BoundingSphere _sphere in Bounds) {
+				var sphere = _sphere;
+				if (World.Camera.ViewFrustum.FastIntersects (ref sphere)) {
+					_inFrustum = true;
+					break;
+				}
 			}
 		}
 

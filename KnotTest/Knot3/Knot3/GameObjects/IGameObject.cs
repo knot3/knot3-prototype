@@ -22,7 +22,7 @@ namespace Knot3.GameObjects
 	/// </summary>
 	public interface IGameObject
 	{
-		dynamic Info { get; }
+		GameObjectInfo Info { get; }
 
 		World World { get; set; }
 

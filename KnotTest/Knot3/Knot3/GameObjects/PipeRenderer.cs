@@ -26,7 +26,7 @@ namespace Knot3.GameObjects
 	/// </summary>
 	public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
 	{
-		public override dynamic Info { get; protected set; }
+		public override GameObjectInfo Info { get; protected set; }
 
 		public override World World { get; set; }
 
@@ -76,6 +76,9 @@ namespace Knot3.GameObjects
 					nodes.Add (node);
 				}
 			}
+
+			World.Redraw = true;
+			Console.WriteLine ("Redraw=true <- PipeRenderer");
 		}
 		
 		public IEnumerator<IGameObject> GetEnumerator ()
@@ -99,6 +102,7 @@ namespace Knot3.GameObjects
 		public override void Draw (GameTime gameTime)
 		{
 			Overlay.Profiler["# InFrustum"] = 0;
+			Overlay.Profiler ["RenderEffect"] = 0;
 			Overlay.Profiler ["Pipes"] = Knot3.Core.Game.Time (() => {
 				foreach (PipeModel pipe in pipes) {
 					pipe.Draw (gameTime);

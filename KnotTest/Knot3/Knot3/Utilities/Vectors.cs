@@ -312,14 +312,18 @@ namespace Knot3.Utilities
 			return p;
 		}
 
-		public static void FastIntersects (this BoundingFrustum boundingfrustum, BoundingSphere aabb, out bool intersects)
+		public static bool FastIntersects (this BoundingFrustum boundingfrustum, ref BoundingSphere aabb)
 		{
-			boundingfrustum.FastIntersects(BoundingBox.CreateFromSphere(aabb), out intersects);
+			if (boundingfrustum == null)
+				return false;
+			var box = BoundingBox.CreateFromSphere (aabb);
+			return boundingfrustum.FastIntersects (ref box);
 		}
 
-		public static void FastIntersects (this BoundingFrustum boundingfrustum, BoundingBox aabb, out bool intersects)
+		public static bool FastIntersects (this BoundingFrustum boundingfrustum, ref BoundingBox aabb)
 		{
-			intersects = false;
+			if (boundingfrustum == null)
+				return false; 
 
 			Plane plane;
 			Vector3 normal, p;
@@ -331,7 +335,7 @@ namespace Knot3.Utilities
 			normal.Z = -normal.Z;
 			p = aabb.GetPositiveVertex (ref normal);
 			if (-plane.D + normal.X * p.X + normal.Y * p.Y + normal.Z * p.Z < 0)
-				return;
+				return false;
 
 			plane = boundingfrustum.Far;
 			normal = plane.Normal;
@@ -340,7 +344,7 @@ namespace Knot3.Utilities
 			normal.Z = -normal.Z;
 			p = aabb.GetPositiveVertex (ref normal);
 			if (-plane.D + normal.X * p.X + normal.Y * p.Y + normal.Z * p.Z < 0)
-				return;
+				return false;
 
 			plane = boundingfrustum.Left;
 			normal = plane.Normal;
@@ -349,7 +353,7 @@ namespace Knot3.Utilities
 			normal.Z = -normal.Z;
 			p = aabb.GetPositiveVertex (ref normal);
 			if (-plane.D + normal.X * p.X + normal.Y * p.Y + normal.Z * p.Z < 0)
-				return;
+				return false;
 
 			plane = boundingfrustum.Near;
 			normal = plane.Normal;
@@ -358,7 +362,7 @@ namespace Knot3.Utilities
 			normal.Z = -normal.Z;
 			p = aabb.GetPositiveVertex (ref normal);
 			if (-plane.D + normal.X * p.X + normal.Y * p.Y + normal.Z * p.Z < 0)
-				return;
+				return false;
 
 			plane = boundingfrustum.Right;
 			normal = plane.Normal;
@@ -367,7 +371,7 @@ namespace Knot3.Utilities
 			normal.Z = -normal.Z;
 			p = aabb.GetPositiveVertex (ref normal);
 			if (-plane.D + normal.X * p.X + normal.Y * p.Y + normal.Z * p.Z < 0)
-				return;
+				return false;
 
 			plane = boundingfrustum.Top;
 			normal = plane.Normal;
@@ -376,9 +380,9 @@ namespace Knot3.Utilities
 			normal.Z = -normal.Z;
 			p = aabb.GetPositiveVertex (ref normal);
 			if (-plane.D + normal.X * p.X + normal.Y * p.Y + normal.Z * p.Z < 0)
-				return;
+				return false;
 
-			intersects = true;
+			return true;
 		}
 	}
 }

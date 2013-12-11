@@ -16,7 +16,7 @@ namespace Knot3.Core
 
 		List<Keys> ValidKeys { get; }
 
-		int Index { get; }
+		DisplayLayer Index { get; }
 
 		bool IsKeyEventEnabled { get; }
 	}

@@ -59,14 +59,13 @@ namespace Knot3.GameObjects
 	{
 		#region Attributes and Properties
 
-		public new NodeModelInfo Info { get; private set; }
+		public new NodeModelInfo Info { get { return base.Info as NodeModelInfo; } set { base.Info = value; } }
 
 		#endregion
 
 		public NodeModel (GameState state, NodeModelInfo info)
 			: base(state, info)
 		{
-			Info = info;
 		}
 
 		public override void Draw (GameTime gameTime)

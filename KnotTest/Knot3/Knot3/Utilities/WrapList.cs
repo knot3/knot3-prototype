@@ -94,11 +94,27 @@ namespace Knot3.Utilities
 			}
 		}
 
-		public void AddRange (IEnumerable<T> elems)
+		public void AddRange (params T[] elems)
 		{
 			foreach (T elem in elems) {
 				Add (elem);
 			}
+		}
+
+		public void AddRange (IEnumerable<T> elems)
+		{
+			AddRange (elems.ToArray());
+		}
+
+		public void Set (params T[] elems)
+		{
+			Clear();
+			AddRange(elems);
+		}
+
+		public void Set (IEnumerable<T> elems)
+		{
+			Set (elems.ToArray());
 		}
 
 		public bool Contains (T elem)

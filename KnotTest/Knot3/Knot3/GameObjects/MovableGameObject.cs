@@ -37,7 +37,7 @@ namespace Knot3.GameObjects
 			Obj.Info.IsMovable = true;
 		}
 
-		public dynamic Info {
+		public GameObjectInfo Info {
 			get {
 				return Obj.Info;
 			}

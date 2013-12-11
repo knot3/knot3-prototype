@@ -60,13 +60,23 @@ namespace Knot3.Core
 		/// </value>
 		public Vector3 DefaultPosition { get; private set; }
 
+		private Vector3 _position;
+
 		/// <summary>
 		/// Gets or sets the current camera position.
 		/// </summary>
 		/// <value>
 		/// The current camera position.
 		/// </value>
-		public Vector3 Position { get; set; }
+		public Vector3 Position {
+			get { return _position; }
+			set {
+				OnViewChanged ();
+				_position = value;
+			}
+		}
+
+		private Vector3 _target;
 
 		/// <summary>
 		/// Gets or sets the current camera target.
@@ -74,7 +84,13 @@ namespace Knot3.Core
 		/// <value>
 		/// The current camera target.
 		/// </value>
-		public Vector3 Target { get; set; }
+		public Vector3 Target {
+			get { return _target; }
+			set {
+				OnViewChanged ();
+				_target = value;
+			}
+		}
 
 		public Vector3 UpVector { get; private set; }
 
@@ -91,6 +107,7 @@ namespace Knot3.Core
 			set { foV = MathHelper.Clamp (value, 40, 100); }
 		}
 
+		public Action OnViewChanged = () => {};
 		public Angles3 RotationAngle = Angles3.Zero;
 		private Angles3 AutoRotation = Angles3.Zero;
 		private float aspectRatio;
@@ -111,12 +128,13 @@ namespace Knot3.Core
 			Position = DefaultPosition;
 			Target = new Vector3 (0, 0, 0);
 			UpVector = Vector3.Up;
-			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
  
 			FoV = MathHelper.ToDegrees (MathHelper.PiOver4);
 			aspectRatio = state.viewport.AspectRatio;
 			nearPlane = 0.5f;
 			farPlane = 10000.0f;
+			
+			UpdateMatrices (null);
 		}
 
 		public override void Update (GameTime gameTime)

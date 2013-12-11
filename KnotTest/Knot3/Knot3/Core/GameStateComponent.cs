@@ -22,13 +22,11 @@ namespace Knot3.Core
 	/// </summary>
 	public class GameStateComponent : Xna.GameComponent, IGameStateComponent
 	{
-		protected DisplayLayer InputOrder;
-
-		public GameStateComponent (GameState state, DisplayLayer inputOrder)
+		public GameStateComponent (GameState state, DisplayLayer index)
 			: base(state.game)
 		{
 			this.state = state;
-			this.InputOrder = inputOrder;
+			this.Index = index;
 		}
 
 		/// <summary>
@@ -44,7 +42,7 @@ namespace Knot3.Core
 			yield break;
 		}
 
-		public int Index { get { return (int)InputOrder; } }
+		public DisplayLayer Index { get; set; }
 	}
 }
 

@@ -16,7 +16,7 @@ namespace Knot3.Core
 		private class ClickEventComponent
 		{
 			public IMouseEventListener receiver;
-			public int layer = 0;
+			public DisplayLayer layer = 0;
 			public Vector2 relativePosition;
 		}
 

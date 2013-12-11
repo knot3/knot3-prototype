@@ -26,7 +26,7 @@ namespace Knot3.RenderEffects
 		{
 		}
 
-		public override void Draw (SpriteBatch spriteBatch, GameTime gameTime)
+		protected override void Draw (SpriteBatch spriteBatch, GameTime gameTime)
 		{
 			spriteBatch.Draw (RenderTarget, Vector2.Zero, Color.White);
 		}

@@ -29,7 +29,7 @@ namespace Knot3.GameObjects
 		public World World { get; set; }
 
 		// info
-		public dynamic Info { get; private set; }
+		public GameObjectInfo Info { get; private set; }
 
 		// the knot
 		public Knot Knot { get; set; }
@@ -46,11 +46,45 @@ namespace Knot3.GameObjects
 			shadowObjects = new List<ShadowGameObject> ();
 		}
 
+		private HashSet<EdgeList> knownEdgeLists = new HashSet<EdgeList> ();
+
 		public void Update (GameTime gameTime)
 		{
 			// check whether the hovered object is a pipe
 			if (World.SelectedObject is PipeModel) {
 				PipeModel pipe = World.SelectedObject as PipeModel;
+
+				// pipe selection
+				if (Core.Input.LeftButton == ClickState.SingleClick) {
+					World.Redraw = true;
+					try {
+						Edge e = pipe.Info.Edge;
+						EdgeList edges = pipe.Info.Edges;
+						knownEdgeLists.Add (edges);
+						Console.WriteLine ("knownEdgeLists=" + knownEdgeLists.Count);
+
+						// CTRL
+						if (Keys.LeftControl.IsHeldDown ()) {
+							edges.SelectedEdges.Add (e);
+						}
+						// Shift
+						else if (Keys.LeftShift.IsHeldDown ()) {
+							if (edges.SelectedEdges.Count != 0) {
+								Edge last = edges.SelectedEdges [-1];
+								edges.SelectedEdges.AddRange (edges.Interval (last, e));
+							}
+							edges.SelectedEdges.Add (e);
+						}
+						// mouse click only
+						else {
+							edges.SelectedEdges.Set (e);
+						}
+					} catch (ArgumentOutOfRangeException exp) {
+						Console.WriteLine (exp.ToString ());
+					}
+				}
+
+				// find out the current mouse position in 3D
 				Vector3 screenLocation = state.viewport.Project (
 					pipe.Center (), World.Camera.ProjectionMatrix, World.Camera.ViewMatrix, World.Camera.WorldMatrix
 				);
@@ -59,19 +93,37 @@ namespace Knot3.GameObjects
 					World.Camera.ProjectionMatrix, World.Camera.ViewMatrix, Matrix.Identity
 				);
 
-				// is SelectedObjectMove the current input action?
+				// show a shadow
 				if (state.input.CurrentInputAction == InputAction.SelectedObjectShadowMove) {
 					if (previousMousePosition == Vector3.Zero) {
 						previousMousePosition = currentMousePosition;
 						CreateShadowPipes ();
 					}
 					MoveShadowPipes (currentMousePosition);
-				} else if (state.input.CurrentInputAction == InputAction.SelectedObjectMove) {
+					World.Redraw = true;
+				}
+				// perform the move
+				else if (state.input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					MovePipes (currentMousePosition);
-                    shadowObjects.Clear();
-				} else {
-					previousMousePosition = Vector3.Zero;
 					shadowObjects.Clear ();
+					World.Redraw = true;
+				}
+				// do nothing
+				else {
+					previousMousePosition = Vector3.Zero;
+					if (shadowObjects.Count > 0) {
+						shadowObjects.Clear ();
+						World.Redraw = true;
+					}
+				}
+			}
+			// selected object is not a PipeModel
+			else {
+				// left click clears the selection
+				if (Core.Input.LeftButton == ClickState.SingleClick) {
+					foreach (EdgeList edges in knownEdgeLists) {
+						edges.SelectedEdges.Clear ();
+					}
 				}
 			}
 		}
@@ -79,13 +131,10 @@ namespace Knot3.GameObjects
 		private void CreateShadowPipes ()
 		{
 			shadowObjects.Clear ();
-			foreach (IGameObject container in World.Objects) {
-				if (container is IEnumerable<IGameObject>) {
-					foreach (IGameObject obj in (container as IEnumerable<IGameObject>)) {
-						// Console.WriteLine ("CreateShadowPipes: " + obj);
-						if (obj is PipeModel && Knot.Edges.SelectedEdges.Contains (obj.Info.Edge)) {
-							shadowObjects.Add (new ShadowGameModel (state, obj as GameModel));
-						}
+			foreach (IEnumerable<IGameObject> container in World.Objects.OfType<IEnumerable<IGameObject>>()) {
+				foreach (PipeModel pipe in container.OfType<PipeModel>()) {
+					if (Knot.Edges.SelectedEdges.Contains (pipe.Info.Edge)) {
+						shadowObjects.Add (new ShadowGameModel (state, pipe as GameModel));
 					}
 				}
 			}
@@ -185,7 +234,7 @@ namespace Knot3.GameObjects
 		}
 
 		// info
-		public dynamic Info { get; private set; }
+		public GameObjectInfo Info { get; private set; }
 
 		public ShadowGameObject (GameState state, IGameObject obj)
 		{

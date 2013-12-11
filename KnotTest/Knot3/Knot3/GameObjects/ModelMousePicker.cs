@@ -44,14 +44,10 @@ namespace Knot3.GameObjects
 		public override void Update (GameTime gameTime)
 		{
 			// mouse ray selection
-			TimeSpan span = Knot3.Core.Game.Time (() => {
-				UpdateMouseRay (gameTime);
-			}
-			);
-			Overlay.Profiler ["Ray"] = span.TotalMilliseconds;
+			CheckMouseRay (gameTime);
 		}
 
-		public void UpdateMouseRay (GameTime gameTime)
+		private void CheckMouseRay (GameTime gameTime)
 		{
 			double millis = gameTime.TotalGameTime.TotalMilliseconds;
 			if (millis > lastRayCheck + 10
@@ -62,25 +58,34 @@ namespace Knot3.GameObjects
 				lastRayCheck = millis;
 				lastMousePosition = Core.Input.MouseState.ToVector2 ();
 
-				Ray ray = World.Camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
+				Overlay.Profiler ["Ray"] = Knot3.Core.Game.Time (() => {
 
-				GameObjectDistance nearest = null;
-				foreach (IGameObject obj in World.Objects) {
-					if (obj.Info.IsVisible) {
-						GameObjectDistance intersection = obj.Intersects (ray);
-						if (intersection != null) {
-							//Console.WriteLine ("time=" + (int)gameTime.TotalGameTime.TotalMilliseconds +
-							//	", obj = " + obj + ", distance = " + MathHelper.Clamp ((float)distance, 0, 100000)
-							//);
-							if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
-								nearest = intersection;
-							}
+					UpdateMouseRay (gameTime);
+
+				}
+				).TotalMilliseconds;
+			}
+		}
+
+		private void UpdateMouseRay (GameTime gameTime)
+		{
+			Ray ray = World.Camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
+
+			GameObjectDistance nearest = null;
+			foreach (IGameObject obj in World.Objects) {
+				if (obj.Info.IsVisible) {
+					GameObjectDistance intersection = obj.Intersects (ray);
+					if (intersection != null) {
+						if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
+							nearest = intersection;
 						}
 					}
 				}
-				if (nearest != null) {
-					World.SelectObject (nearest.Object, gameTime);
-				}
+			}
+			if (nearest != null) {
+				World.SelectObject (nearest.Object, gameTime);
+			} else {
+				World.SelectObject (null, gameTime);
 			}
 		}
 	}

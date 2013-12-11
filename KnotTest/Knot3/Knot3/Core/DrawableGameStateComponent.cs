@@ -22,11 +22,11 @@ namespace Knot3.Core
 	/// </summary>
 	public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
 	{
-		public DrawableGameStateComponent (GameState state, DisplayLayer drawOrder)
+		public DrawableGameStateComponent (GameState state, DisplayLayer index)
 			: base(state.game)
 		{
 			this.state = state;
-			this.DrawOrder = (int)drawOrder;
+			this.Index = index;
 		}
 
 		/// <summary>
@@ -42,7 +42,12 @@ namespace Knot3.Core
 			yield break;
 		}
 
-		public int Index { get { return DrawOrder; } }
+		private DisplayLayer _index;
+
+		public DisplayLayer Index {
+			get { return _index; }
+			set { _index = value; DrawOrder = (int)value; }
+		}
 	}
 
 	public enum DisplayLayer

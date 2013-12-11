@@ -173,7 +173,6 @@
     <Compile Include="Knot3\Core\IKeyEventListener.cs" />
     <Compile Include="Knot3\GameObjects\IEdgeChangeListener.cs" />
     <Compile Include="Knot3\CreativeMode\KnotModeInput.cs" />
-    <Compile Include="Knot3\GameObjects\MousePicker.cs" />
     <Compile Include="Knot3\KnotData\EdgeList.cs" />
     <Compile Include="Knot3\KnotData\Edge.cs" />
     <Compile Include="Knot3\KnotData\KnotListFormat.cs" />
@@ -184,6 +183,8 @@
     <Compile Include="Knot3\RenderEffects\IRenderEffect.cs" />
     <Compile Include="Knot3\UserInterface\ColorPicker.cs" />
     <Compile Include="Knot3\GameObjects\PipeColoring.cs" />
+    <Compile Include="Knot3\GameObjects\ModelMousePicker.cs" />
+    <Compile Include="Knot3\RenderEffects\InstancingTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

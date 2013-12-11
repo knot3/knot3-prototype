@@ -51,6 +51,9 @@ namespace Knot3.CreativeMode
 
 		protected override void UpdateKeys (GameTime gameTime)
 		{
+			Console.WriteLine ("Redraw=true <- UpdateKeys");
+			World.Redraw = true;
+
 			Vector3 keyboardMove = Vector3.Zero;
 			Vector2 arcballMove = Vector2.Zero;
 			Vector2 selfRotate = Vector2.Zero;
@@ -177,15 +180,14 @@ namespace Knot3.CreativeMode
 
 		protected override void UpdateMouse (GameTime gameTime)
 		{
-
 			// fullscreen recently toggled?
 			if (FullscreenToggled) {
 				FullscreenToggled = false;
 
 			} else if (MouseState != PreviousMouseState) {
+
 				// mouse movements
 				Vector2 mouseMove = new Vector2 (MouseState.X - PreviousMouseState.X, MouseState.Y - PreviousMouseState.Y);
-				//Console.WriteLine ("mouseMove=" + mouseMove);
 
 				InputAction action;
 				// grab mouse movement
@@ -230,10 +232,12 @@ namespace Knot3.CreativeMode
 					camera.Position = camera.ArcballTarget + (camera.Position - camera.ArcballTarget).ArcBallMove (
 						mouseMove, camera.UpVector, camera.TargetDirection
 					);
+					World.Redraw = true;
 					break;
 				// move the target vector
 				case InputAction.TargetMove:
 					camera.Target = camera.Target.MoveLinear (mouseMove, camera.UpVector, camera.TargetDirection);
+					World.Redraw = true;
 					break;
 				}
 				CurrentInputAction = action;
@@ -241,8 +245,10 @@ namespace Knot3.CreativeMode
 				// scroll wheel zoom
 				if (MouseState.ScrollWheelValue < PreviousMouseState.ScrollWheelValue) {
 					camera.TargetDistance += 40;
+					World.Redraw = true;
 				} else if (MouseState.ScrollWheelValue > PreviousMouseState.ScrollWheelValue) {
 					camera.TargetDistance -= 40;
+					World.Redraw = true;
 				}
 			}
 

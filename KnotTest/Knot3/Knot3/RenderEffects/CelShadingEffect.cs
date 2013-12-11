@@ -64,7 +64,7 @@ namespace Knot3.RenderEffects
 			}
 		}
 
-		public override void Draw (SpriteBatch spriteBatch, GameTime gameTime)
+		protected override void Draw (SpriteBatch spriteBatch, GameTime gameTime)
 		{
 			spriteBatch.End ();
 			spriteBatch.Begin (SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, outlineShader);

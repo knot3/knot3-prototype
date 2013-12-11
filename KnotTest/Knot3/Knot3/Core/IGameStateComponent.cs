@@ -14,7 +14,7 @@ namespace Knot3.Core
 	{
 		IEnumerable<IGameStateComponent> SubComponents (GameTime gameTime);
 
-		int Index { get; }
+		DisplayLayer Index { get; }
 	}
 }
 

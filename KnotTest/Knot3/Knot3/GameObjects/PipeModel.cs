@@ -68,7 +68,7 @@ namespace Knot3.GameObjects
 	{
 		#region Attributes and Properties
 
-		public new PipeModelInfo Info { get; private set; }
+		public new PipeModelInfo Info { get { return base.Info as PipeModelInfo; } set { base.Info = value; } }
 
 		private BoundingSphere[] Bounds;
 		public Action OnDataChange = () => {};
@@ -78,8 +78,6 @@ namespace Knot3.GameObjects
 		public PipeModel (GameState state, PipeModelInfo info)
 			: base(state, info)
 		{
-			Info = info;
-
 			if (Info.Direction.Y == 1) {
 				Info.Rotation += Angles3.FromDegrees (90, 0, 0);
 			} else if (Info.Direction.Y == -1) {
@@ -102,56 +100,17 @@ namespace Knot3.GameObjects
 		public override void Draw (GameTime gameTime)
 		{
 			BaseColor = Info.Edge.Color;
-			if (Info.Edges.SelectedEdges.Contains (Info.Edge)) {
-				float intensity = (float)((int)gameTime.TotalGameTime.TotalMilliseconds % 2000) / 2000f;
-				intensity = intensity * 2 - 1;
-				if (intensity < 0) {
-					intensity = 0 - intensity;
-				}
-				HighlightIntensity = intensity * 0.9f;
+			if (World.SelectedObject == this) {
+				HighlightIntensity = 0.40f;
 				HighlightColor = Color.White;
-			} else if (World.SelectedObject == this) {
-				HighlightIntensity = 0.5f;
+			} else if (Info.Edges.SelectedEdges.Contains (Info.Edge)) {
+				HighlightIntensity = 0.80f;
 				HighlightColor = Color.White;
 			} else {
 				HighlightIntensity = 0f;
 			}
 
 			base.Draw (gameTime);
-		}
-
-		public override void Update (GameTime gameTime)
-		{
-			// check whether this object is hovered
-			if (World.SelectedObject == this) {
-
-				// if the left mouse button is pressed, select the edge
-				if (Core.Input.LeftButton == ClickState.SingleClick) {
-					try {
-						// CTRL
-						if (Keys.LeftControl.IsHeldDown ()) {
-							Info.Edges.SelectEdge (Info.Edge, true);
-						}
-						// Shift
-						else if (Keys.LeftShift.IsHeldDown ()) {
-							WrapList<Edge> selection = Info.Edges.SelectedEdges;
-							if (selection.Count != 0) {
-								Edge last = selection [selection.Count - 1];
-								Info.Edges.SelectEdges (Info.Edges.Interval (last, Info.Edge).ToArray (), true);
-							}
-							Info.Edges.SelectEdge (Info.Edge, true);
-						}
-						// mouse click only
-						else {
-							Info.Edges.SelectEdge (Info.Edge, false);
-						}
-					} catch (ArgumentOutOfRangeException exp) {
-						Console.WriteLine (exp.ToString ());
-					}
-				}
-			}
-
-			base.Update (gameTime);
 		}
 
 		public override GameObjectDistance Intersects (Ray ray)

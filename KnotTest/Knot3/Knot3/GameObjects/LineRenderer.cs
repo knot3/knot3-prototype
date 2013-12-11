@@ -22,7 +22,7 @@ namespace Knot3.GameObjects
 	/// </summary>
 	public class LineRenderer : KnotRenderer
 	{
-		public override dynamic Info { get; protected set; }
+		public override GameObjectInfo Info { get; protected set; }
 
 		public override World World { get; set; }
 

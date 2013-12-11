@@ -25,7 +25,7 @@ namespace Knot3.GameObjects
 
 		public abstract World World { get; set; }
 
-		public abstract dynamic Info { get; protected set; }
+		public abstract GameObjectInfo Info { get; protected set; }
 
 		public KnotRenderer (GameState state)
 		{

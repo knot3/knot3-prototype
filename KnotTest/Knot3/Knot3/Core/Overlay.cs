@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Settings;
 using Knot3.GameObjects;
+using System.Collections;
 
 namespace Knot3.Core
 {
@@ -75,7 +76,7 @@ namespace Knot3.Core
 				DrawOverlay (gameTime);
 			if (Options.Default ["video", "fps-overlay", true])
 				DrawFPS (gameTime);
-				DrawProfiler (gameTime);
+			DrawProfiler (gameTime);
 		}
 		
 		public override void Update (GameTime gameTime)
@@ -199,17 +200,34 @@ namespace Knot3.Core
 			spriteBatch.End ();
 		}
 
-		public static Dictionary<string, double> Profiler = new Dictionary<string, double>();
+		private static Hashtable profiler = new Hashtable ();
+		public static HashtableWrapper Profiler = new HashtableWrapper ();
 
 		private void DrawProfiler (GameTime gameTime)
 		{
 			spriteBatch.Begin ();
 			int height = 40;
-			foreach (string name in Profiler.Keys) {
-				DrawString (name+": " + Profiler[name], state.viewport.Width - 150, height, Color.White);
+			foreach (string name in profiler.Keys) {
+				DrawString (name + ": " + Profiler [name], state.viewport.Width - 150, height, Color.White);
 				height += 20;
 			}
 			spriteBatch.End ();
+		}
+
+		public class HashtableWrapper
+		{
+			public double this [string str] {
+				get {
+					return (double)profiler [str];
+				}
+				set {
+					profiler [str] = value;
+				}
+			}
+
+			public bool ContainsKey (string str) {
+				return profiler.ContainsKey(str);
+			}
 		}
 	}
 }

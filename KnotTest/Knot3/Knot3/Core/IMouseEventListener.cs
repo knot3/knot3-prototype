@@ -19,7 +19,7 @@ namespace Knot3.Core
 
 		Rectangle bounds ();
 
-		int Index { get; }
+		DisplayLayer Index { get; }
 
 		bool IsMouseEventEnabled { get; }
 	}

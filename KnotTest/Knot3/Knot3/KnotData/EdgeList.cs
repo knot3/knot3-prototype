@@ -125,25 +125,6 @@ namespace Knot3.KnotData
 
 		public int Count { get { return Edges.Count; } }
 
-		public void SelectEdge (Edge selection, bool append = false)
-		{
-			if (!append)
-				SelectedEdges.Clear ();
-			SelectedEdges.Add (selection);
-		}
-
-		public void SelectEdges (Edge[] selection, bool append = false)
-		{
-			if (!append)
-				SelectedEdges.Clear ();
-			SelectedEdges.AddRange (selection);
-		}
-
-		public void SelectEdge ()
-		{
-			SelectedEdges .Clear ();
-		}
-
 		public void PrintSelectedEdges ()
 		{
 			Console.Write ("selected edges: ");
