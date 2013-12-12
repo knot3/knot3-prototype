@@ -23,7 +23,7 @@ namespace Knot3.GameObjects
 	/// Ein GameStateComponent, der das IGameObject aus der World selektiert, das 
 	/// sich unter der aktuellen Mausposition befindet.
 	/// </summary>
-	public class MousePicker : GameStateComponent
+	public class ModelMousePicker : GameStateComponent
 	{
 		// game world
 		private World World { get; set; }
@@ -35,7 +35,7 @@ namespace Knot3.GameObjects
 		/// <summary>
 		/// Initializes a new MousePicking component.
 		/// </summary>
-		public MousePicker (GameState state, World world)
+		public ModelMousePicker (GameState state, World world)
 			: base(state, DisplayLayer.None)
 		{
 			World = world;

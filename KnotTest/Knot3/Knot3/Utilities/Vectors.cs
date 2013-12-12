@@ -89,7 +89,7 @@ namespace Knot3.Utilities
 			else if (v.Y.Abs () > v.X.Abs ())
 				return new Vector2 (0, v.Y);
 			else
-				return Vector2.Zero;
+				return new Vector2 (v.X, 0);
 		}
 
 		public static Vector3 PrimaryVector (this Vector3 v)
@@ -101,7 +101,7 @@ namespace Knot3.Utilities
 			else if (v.Z.Abs () > v.Y.Abs () && v.Z.Abs () > v.X.Abs ())
 				return new Vector3 (0, 0, v.Z);
 			else
-				return Vector3.Zero;
+				return new Vector3 (v.X, 0, 0);
 		}
 
 		public static Vector2 PrimaryDirection (this Vector2 v)
@@ -158,9 +158,19 @@ namespace Knot3.Utilities
 			return new BoundingSphere (sphere.Center, sphere.Radius * scale);
 		}
 
+		public static BoundingSphere Scale (this BoundingSphere sphere, Vector3 scale)
+		{
+			return new BoundingSphere (sphere.Center, sphere.Radius * scale.PrimaryVector().Length());
+		}
+
 		public static BoundingSphere Translate (this BoundingSphere sphere, Vector3 position)
 		{
 			return new BoundingSphere (Vector3.Transform (sphere.Center, Matrix.CreateTranslation (position)), sphere.Radius);
+		}
+
+		public static BoundingSphere Rotate (this BoundingSphere sphere, Angles3 rotation)
+		{
+			return new BoundingSphere (Vector3.Transform (sphere.Center, Matrix.CreateFromYawPitchRoll (rotation.Y, rotation.X, rotation.Z)), sphere.Radius);
 		}
 
 		public static BoundingBox Scale (this BoundingBox box, float scale)
@@ -270,6 +280,17 @@ namespace Knot3.Utilities
 		public static string Print (this Vector3 v)
 		{
 			return "(" + v.X + "," + v.Y + "," + v.Z + ")";
+		}
+
+		public static BoundingSphere[] CylinderBounds (float length, float radius, Vector3 direction, Vector3 position)
+		{
+			float distance = radius / 4;
+			BoundingSphere[] bounds = new BoundingSphere[(int)(length / distance)];
+			for (int offset = 0; offset < (int)(length / distance); ++offset) {
+				bounds [offset] = new BoundingSphere (position + direction * offset * distance, radius);
+				//Console.WriteLine ("sphere[" + offset + "]=" + Bounds [offset]);
+			}
+			return bounds;
 		}
 	}
 

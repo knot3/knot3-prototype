@@ -50,6 +50,12 @@ namespace Knot3.GameObjects
 
 		public void Update (GameTime gameTime)
 		{
+			TrySelectObject (gameTime);
+			TryMovePipes (gameTime);
+		}
+
+		private void TrySelectObject (GameTime gameTime)
+		{
 			// check whether the hovered object is a pipe
 			if (World.SelectedObject is PipeModel) {
 				PipeModel pipe = World.SelectedObject as PipeModel;
@@ -83,10 +89,19 @@ namespace Knot3.GameObjects
 						Console.WriteLine (exp.ToString ());
 					}
 				}
+			}
+		}
+
+		private void TryMovePipes (GameTime gameTime)
+		{
+			// check whether the hovered object is a pipe
+			if (World.SelectedObject is PipeModel || World.SelectedObject is ArrowModel) {
+				GameModel selectedModel = World.SelectedObject as GameModel;
 
 				// find out the current mouse position in 3D
 				Vector3 screenLocation = state.viewport.Project (
-					pipe.Center (), World.Camera.ProjectionMatrix, World.Camera.ViewMatrix, World.Camera.WorldMatrix
+					selectedModel.Center (), World.Camera.ProjectionMatrix,
+					World.Camera.ViewMatrix, World.Camera.WorldMatrix
 				);
 				Vector3 currentMousePosition = state.viewport.Unproject (
 					new Vector3 (Core.Input.MouseState.ToVector2 (), screenLocation.Z),

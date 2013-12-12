@@ -33,8 +33,10 @@ namespace Knot3.GameObjects
 		// pipes and knots
 		private List<PipeModel> pipes;
 		private List<NodeModel> nodes;
+		private List<ArrowModel> arrows;
 		private ModelFactory pipeFactory;
 		private ModelFactory nodeFactory;
+		private ModelFactory arrowFactory;
 
 		public ModelRenderer (GameState state, GameObjectInfo info)
 			: base(state)
@@ -42,23 +44,28 @@ namespace Knot3.GameObjects
 			Info = info;
 			pipes = new List<PipeModel> ();
 			nodes = new List<NodeModel> ();
+			arrows = new List<ArrowModel> ();
 			pipeFactory = new ModelFactory ((s, i) => new PipeModel (s, i as PipeModelInfo));
 			nodeFactory = new ModelFactory ((s, i) => new NodeModel (s, i as NodeModelInfo));
+			arrowFactory = new ModelFactory ((s, i) => new ArrowModel (s, i as ArrowModelInfo));
 		}
 
 		public override void Update (GameTime gameTime)
 		{
-			for (int i = 0; i < pipes.Count; ++i) {
-				pipes [i].Update (gameTime);
+			foreach (PipeModel pipe in pipes) {
+				pipe.Update (gameTime);
 			}
-			for (int i = 0; i < nodes.Count; ++i) {
-				nodes [i].Update (gameTime);
+			foreach (NodeModel node in nodes) {
+				node.Update (gameTime);
+			}
+			foreach (ArrowModel arrow in arrows) {
+				arrow.Update (gameTime);
 			}
 		}
 
 		public override void OnEdgesChanged (EdgeList edgeList)
 		{
-			base.OnEdgesChanged(edgeList);
+			base.OnEdgesChanged (edgeList);
 
 			pipes.Clear ();
 			foreach (Edge edge in edgeList) {
@@ -79,8 +86,33 @@ namespace Knot3.GameObjects
 				}
 			}
 
+			CreateArrows (edgeList.SelectedEdges);
+
 			World.Redraw = true;
 			Console.WriteLine ("Redraw=true <- PipeRenderer");
+		}
+
+		public void CreateArrows (WrapList<Edge> selectedEdges)
+		{
+			Vector3[] validDirections = new Vector3[]{
+				Vector3.Up, Vector3.Down, Vector3.Left, Vector3.Right, Vector3.Backward, Vector3.Forward
+			};
+
+			arrows.Clear ();
+			foreach (Edge edge in selectedEdges) {
+				try {
+					Node node1 = nodeMap.FromNode (edge);
+					Node node2 = nodeMap.ToNode (edge);
+					foreach (Vector3 direction in validDirections) {
+						ArrowModelInfo info = new ArrowModelInfo (node1.CenterBetween (node2), direction, Info.Position);
+						ArrowModel arrow = arrowFactory [state, info] as ArrowModel;
+						arrow.World = World;
+						arrows.Add (arrow);
+					}
+				} catch (NullReferenceException ex) {
+					Console.WriteLine (ex.ToString ());
+				}
+			}
 		}
 		
 		public IEnumerator<IGameObject> GetEnumerator ()
@@ -90,6 +122,9 @@ namespace Knot3.GameObjects
 			}
 			foreach (NodeModel node in nodes) {
 				yield return node;
+			}
+			foreach (ArrowModel arrow in arrows) {
+				yield return arrow;
 			}
 		}
 
@@ -103,7 +138,7 @@ namespace Knot3.GameObjects
 		
 		public override void Draw (GameTime gameTime)
 		{
-			Overlay.Profiler["# InFrustum"] = 0;
+			Overlay.Profiler ["# InFrustum"] = 0;
 			Overlay.Profiler ["RenderEffect"] = 0;
 			Overlay.Profiler ["Pipes"] = Knot3.Core.Game.Time (() => {
 				foreach (PipeModel pipe in pipes) {
@@ -114,6 +149,12 @@ namespace Knot3.GameObjects
 			Overlay.Profiler ["Nodes"] = Knot3.Core.Game.Time (() => {
 				foreach (NodeModel node in nodes) {
 					node.Draw (gameTime);
+				}
+			}
+			).TotalMilliseconds;
+			Overlay.Profiler ["Arrows"] = Knot3.Core.Game.Time (() => {
+				foreach (ArrowModel arrow in arrows) {
+					arrow.Draw (gameTime);
 				}
 			}
 			).TotalMilliseconds;
@@ -131,6 +172,14 @@ namespace Knot3.GameObjects
 			if (!state.input.GrabMouseMovement) {
 				foreach (PipeModel pipe in pipes) {
 					GameObjectDistance intersection = pipe.Intersects (ray);
+					if (intersection != null) {
+						if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
+							nearest = intersection;
+						}
+					}
+				}
+				foreach (ArrowModel arrow in arrows) {
+					GameObjectDistance intersection = arrow.Intersects (ray);
 					if (intersection != null) {
 						if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
 							nearest = intersection;

@@ -20,29 +20,18 @@ using Knot3.UserInterface;
 
 namespace Knot3.GameObjects
 {
-	public class PipeModelInfo : GameModelInfo
+	public class ArrowModelInfo : GameModelInfo
 	{
-		public EdgeList EdgeList;
-		public NodeMap NodeMap;
-		public Edge Edge;
 		public Vector3 Direction;
-		public Vector3 PositionFrom;
-		public Vector3 PositionTo;
+		public float Length = 40f;
+		public float Diameter = 8f;
 
-		public PipeModelInfo (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
+		public ArrowModelInfo (Vector3 position, Vector3 direction, Vector3 offset)
 			: base("pipe1")
 		{
-			EdgeList = edgeList;
-			NodeMap = nodeMap;
-			Edge = edge;
-			Node node1 = nodeMap.FromNode (edge);
-			Node node2 = nodeMap.ToNode (edge);
-			PositionFrom = node1.Vector () + offset;
-			PositionTo = node2.Vector () + offset;
-			Position = node1.CenterBetween (node2) + offset;
-			Direction = PositionTo - PositionFrom;
-			Direction.Normalize ();
-			Scale = Vector3.One * 10f;
+			Direction = direction.PrimaryDirection ();
+			Position = position + Direction * Node.Scale / 3 + offset;
+			Scale = new Vector3 (Diameter, Diameter, Length / 10f);
 			// a pipe is movable
 			IsMovable = true;
 		}
@@ -52,8 +41,8 @@ namespace Knot3.GameObjects
 			if (other == null) 
 				return false;
 
-			if (other is PipeModelInfo) {
-				if (this.Edge == (other as PipeModelInfo).Edge && base.Equals (other))
+			if (other is ArrowModelInfo) {
+				if (this.Position == other.Position && this.Direction == (other as ArrowModelInfo).Direction && base.Equals (other))
 					return true;
 				else
 					return false;
@@ -63,21 +52,17 @@ namespace Knot3.GameObjects
 		}
 	}
 	
-	/// <summary>
-	/// Ein GameModel, das eine 3D-Röhre zeichnet.
-	/// </summary>
-	public class PipeModel : GameModel
+	public class ArrowModel : GameModel
 	{
 		#region Attributes and Properties
 
-		public new PipeModelInfo Info { get { return base.Info as PipeModelInfo; } set { base.Info = value; } }
+		public new ArrowModelInfo Info { get { return base.Info as ArrowModelInfo; } set { base.Info = value; } }
 
 		private BoundingSphere[] Bounds;
-		public Action OnDataChange = () => {};
 
 		#endregion
 
-		public PipeModel (GameState state, PipeModelInfo info)
+		public ArrowModel (GameState state, ArrowModelInfo info)
 			: base(state, info)
 		{
 			if (Info.Direction.Y == 1) {
@@ -91,27 +76,16 @@ namespace Knot3.GameObjects
 				Info.Rotation += Angles3.FromDegrees (0, 270, 0);
 			}
 
-			float length = (info.PositionTo - info.PositionFrom).Length ();
-			float radius = Info.Scale.PrimaryVector ().Length ();
-			Bounds = Vectors.CylinderBounds (length, radius, Info.Direction, info.PositionFrom);
-
-			/*float distance = radius / 4;
-			Bounds = new BoundingSphere[(int)(length / distance)];
-			for (int offset = 0; offset < (int)(length / distance); ++offset) {
-				Bounds [offset] = new BoundingSphere (info.PositionFrom + Info.Direction * offset * distance, radius);
-				//Console.WriteLine ("sphere[" + offset + "]=" + Bounds [offset]);
-			}*/
+			Bounds = Vectors.CylinderBounds (Info.Length, Info.Diameter / 2, Info.Direction,
+			                                 info.Position - info.Direction * Info.Length / 2);
 		}
 
 		public override void Draw (GameTime gameTime)
 		{
-			BaseColor = Info.Edge.Color;
+			BaseColor = Color.Red;
 			if (World.SelectedObject == this) {
-				HighlightIntensity = 0.40f;
-				HighlightColor = Color.White;
-			} else if (Info.EdgeList.SelectedEdges.Contains (Info.Edge)) {
-				HighlightIntensity = 0.80f;
-				HighlightColor = Color.White;
+				HighlightIntensity = 1f;
+				HighlightColor = Color.Orange;
 			} else {
 				HighlightIntensity = 0f;
 			}

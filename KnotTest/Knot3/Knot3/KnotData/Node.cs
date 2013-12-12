@@ -105,6 +105,13 @@ namespace Knot3.KnotData
 			return new Vector3 (X * Scale, Y * Scale, Z * Scale);
 		}
 
+		public Vector3 CenterBetween (Node other)
+		{
+			Vector3 positionFrom = this.Vector ();
+			Vector3 positionTo = other.Vector ();
+			return positionFrom + (positionTo - positionFrom) / 2;
+		}
+
 		#endregion
 	}
 }

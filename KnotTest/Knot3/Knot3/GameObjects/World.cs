@@ -38,13 +38,29 @@ namespace Knot3.GameObjects
 		/// </value>
 		public List<IGameObject> Objects { get; private set; }
 
+		private IGameObject _selectedObject;
+
 		/// <summary>
 		/// Das selektierte Spielobjekt, wobei selektiert nur bedeutet, dass die Maus darüber liegt.
 		/// </summary>
 		/// <value>
 		/// The selected object.
 		/// </value>
-		public IGameObject SelectedObject { get; private set; }
+		public IGameObject SelectedObject {
+			get {
+				return _selectedObject;
+			}
+			private set {
+				_selectedObject = value;
+				SelectionChanged (_selectedObject);
+				Redraw = true;
+			}
+		}
+
+		/// <summary>
+		/// When the selection is changed.
+		/// </summary>
+		public Action<IGameObject> SelectionChanged = (o) => {};
 
 		/// <summary>
 		/// Gets the camera for this game world.
@@ -182,7 +198,7 @@ namespace Knot3.GameObjects
 				//objects.Add (new GameModel (state, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
 				var info = new GameModelInfo ("Test3D");
 				info.Position = new Vector3 (200, 200, 200);
-				info.Scale = 0.1f;
+				info.Scale = Vector3.One * 0.1f;
 				info.IsMovable = true;
 				var obj = new MovableGameObject (state, new TestModel (state, info));
 				Objects.Add (obj);
@@ -192,7 +208,7 @@ namespace Knot3.GameObjects
 				//objects.Add (new GameModel (state, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
 				var info = new GameModelInfo ("pipe1");
 				info.Position = new Vector3 (-200, 200, -200);
-				info.Scale = 30f;
+				info.Scale = Vector3.One * 30f;
 				info.IsMovable = true;
 				var obj = new MovableGameObject (state, new TestModel (state, info));
 				Objects.Add (obj);

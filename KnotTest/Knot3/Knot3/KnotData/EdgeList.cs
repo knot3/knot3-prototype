@@ -24,6 +24,11 @@ namespace Knot3.KnotData
 
 		public Action<EdgeList> EdgesChanged = (list) => {};
 
+		public Action<WrapList<Edge>> SelectionChanged {
+			get { return SelectedEdges.SelectionChanged; }
+			set { SelectedEdges.SelectionChanged = value; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -151,6 +156,12 @@ namespace Knot3.KnotData
 						done = false;
 						successful = true;
 						break;
+					}
+				}
+				for (int j = 0; j < SelectedEdges.Count; ++j) {
+					if (!edges.Contains(SelectedEdges[j])) {
+						SelectedEdges.Remove(SelectedEdges[j]);
+						--j;
 					}
 				}
 				if (edges.Count >= 2) {

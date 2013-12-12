@@ -186,6 +186,7 @@
     <Compile Include="Knot3\RenderEffects\InstancingTest.cs" />
     <Compile Include="Knot3\GameObjects\ModelRenderer.cs" />
     <Compile Include="Knot3\KnotData\NodeMap.cs" />
+    <Compile Include="Knot3\GameObjects\ArrowModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

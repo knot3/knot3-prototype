@@ -35,7 +35,7 @@ namespace Knot3.CreativeMode
 		private World world;
 		private MousePointer pointer;
 		private Overlay overlay;
-		private MousePicker picker;
+		private ModelMousePicker picker;
 		private PipeMovement movement;
 		private PipeColoring coloring;
 		private LineRenderer lineRenderer;
@@ -67,7 +67,7 @@ namespace Knot3.CreativeMode
 			// pointer
 			pointer = new MousePointer (this);
 			// picker
-			picker = new MousePicker (this, world);
+			picker = new ModelMousePicker (this, world);
 
 			// pipe renderer
 			var knotRenderInfo = new GameObjectInfo ();
@@ -99,6 +99,7 @@ namespace Knot3.CreativeMode
 				knot.EdgesChanged += lineRenderer.OnEdgesChanged;
 				knot.EdgesChanged += (e) => knotModified = true;
 				knot.EdgesChanged (knot.Edges);
+				knot.Edges.SelectionChanged += (o) => pipeRenderer.CreateArrows (Knot.Edges.SelectedEdges);
 				movement.Knot = knot;
 				coloring.Knot = knot;
 				knotModified = false;

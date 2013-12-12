@@ -9,6 +9,7 @@ namespace Knot3.Utilities
 	{
 		private List<T> list = new List<T> ();
 		private Dictionary<T, int> indexOf = new Dictionary<T, int> ();
+		public Action<WrapList<T>> SelectionChanged = (l) => {};
 
 		public WrapList ()
 		{
@@ -58,6 +59,7 @@ namespace Knot3.Utilities
 		{
 			list.Clear ();
 			indexOf.Clear ();
+			SelectionChanged (this);
 		}
 
 		public void Add (T elem)
@@ -65,15 +67,17 @@ namespace Knot3.Utilities
 			list.Remove (elem);
 			list.Add (elem);
 			RebuildIndex ();
+			SelectionChanged (this);
 		}
 
-		public void Remove (T[] elems)
+		public void Remove (params T[] elems)
 		{
 			foreach (T elem in elems) {
 				indexOf.Remove (elem);
 				list.Remove (elem);
 			}
 			RebuildIndex ();
+			SelectionChanged (this);
 		}
 
 		public void InsertAt (int i, T elem)
@@ -81,9 +85,10 @@ namespace Knot3.Utilities
 			i = WrapIndex (i);
 			list.Insert (i, elem);
 			RebuildIndex ();
+			SelectionChanged (this);
 		}
 
-		public void Replace (T find, T[] elem)
+		public void Replace (T find, params T[] elem)
 		{
 			if (Contains (find)) {
 				int i = indexOf [find];
@@ -91,6 +96,7 @@ namespace Knot3.Utilities
 				list.Remove (find);
 				list.InsertRange (i, elem);
 				RebuildIndex ();
+				SelectionChanged (this);
 			}
 		}
 
@@ -103,18 +109,18 @@ namespace Knot3.Utilities
 
 		public void AddRange (IEnumerable<T> elems)
 		{
-			AddRange (elems.ToArray());
+			AddRange (elems.ToArray ());
 		}
 
 		public void Set (params T[] elems)
 		{
-			Clear();
-			AddRange(elems);
+			Clear ();
+			AddRange (elems);
 		}
 
 		public void Set (IEnumerable<T> elems)
 		{
-			Set (elems.ToArray());
+			Set (elems.ToArray ());
 		}
 
 		public bool Contains (T elem)

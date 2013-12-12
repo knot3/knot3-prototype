@@ -35,7 +35,7 @@ namespace Knot3.GameObjects
 			EdgeB = edgeB;
 			IsVisible = edgeA.Direction != edgeB.Direction;
 			Position = nodeMap.ToNode (edgeA).Vector ();
-			Scale = 5f;
+			Scale = Vector3.One * 5f;
 		}
 
 		public override bool Equals (GameObjectInfo other)

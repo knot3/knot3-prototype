@@ -21,13 +21,13 @@ namespace Knot3.GameObjects
 	{
 		public string Modelname;
 		public Angles3 Rotation;
-		public float Scale;
+		public Vector3 Scale;
 
 		public GameModelInfo (string modelname)
 		{
 			Modelname = modelname;
 			Rotation = Angles3.Zero;
-			Scale = 1f;
+			Scale = Vector3.One;
 		}
 
 		public override bool Equals (GameObjectInfo other)
@@ -157,7 +157,7 @@ namespace Knot3.GameObjects
 
 		#region Cache
 
-		private float _scale;
+		private Vector3 _scale;
 		private Angles3 _rotation;
 		private Vector3 _position;
 		private Matrix _worldMatrix;
@@ -196,7 +196,7 @@ namespace Knot3.GameObjects
 				// bounding spheres
 				_bounds = Model.Bounds ().ToArray ();
 				for (int i = 0; i < _bounds.Length; ++i) {
-					_bounds [i] = _bounds [i].Scale ((float)Info.Scale).Translate ((Vector3)Info.Position);
+					_bounds [i] = _bounds [i].Scale (Info.Scale).Rotate(Info.Rotation).Translate ((Vector3)Info.Position);
 				}
 
 				// attrs
