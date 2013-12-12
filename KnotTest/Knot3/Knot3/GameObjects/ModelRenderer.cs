@@ -94,24 +94,32 @@ namespace Knot3.GameObjects
 
 		public void CreateArrows (WrapList<Edge> selectedEdges)
 		{
+			arrows.Clear ();
+			//foreach (Edge edge in selectedEdges) {
+			//	CreateArrow (edge);
+			//}
+			if (selectedEdges.Count > 0) {
+				CreateArrow (selectedEdges [(int)selectedEdges.Count / 2]);
+			}
+		}
+
+		private void CreateArrow (Edge edge)
+		{
 			Vector3[] validDirections = new Vector3[]{
 				Vector3.Up, Vector3.Down, Vector3.Left, Vector3.Right, Vector3.Backward, Vector3.Forward
 			};
 
-			arrows.Clear ();
-			foreach (Edge edge in selectedEdges) {
-				try {
-					Node node1 = nodeMap.FromNode (edge);
-					Node node2 = nodeMap.ToNode (edge);
-					foreach (Vector3 direction in validDirections) {
-						ArrowModelInfo info = new ArrowModelInfo (node1.CenterBetween (node2), direction, Info.Position);
-						ArrowModel arrow = arrowFactory [state, info] as ArrowModel;
-						arrow.World = World;
-						arrows.Add (arrow);
-					}
-				} catch (NullReferenceException ex) {
-					Console.WriteLine (ex.ToString ());
+			try {
+				Node node1 = nodeMap.FromNode (edge);
+				Node node2 = nodeMap.ToNode (edge);
+				foreach (Vector3 direction in validDirections) {
+					ArrowModelInfo info = new ArrowModelInfo (node1.CenterBetween (node2), direction, Info.Position);
+					ArrowModel arrow = arrowFactory [state, info] as ArrowModel;
+					arrow.World = World;
+					arrows.Add (arrow);
 				}
+			} catch (NullReferenceException ex) {
+				Console.WriteLine (ex.ToString ());
 			}
 		}
 		

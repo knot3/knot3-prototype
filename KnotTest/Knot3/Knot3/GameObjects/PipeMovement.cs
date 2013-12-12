@@ -114,7 +114,10 @@ namespace Knot3.GameObjects
 						previousMousePosition = currentMousePosition;
 						CreateShadowPipes ();
 					}
-					MoveShadowPipes (currentMousePosition);
+					if (selectedModel is ArrowModel)
+						MoveShadowPipes (currentMousePosition, (selectedModel as ArrowModel).Info.Direction);
+					else
+						MoveShadowPipes (currentMousePosition);
 					World.Redraw = true;
 				}
 				// perform the move
@@ -152,6 +155,9 @@ namespace Knot3.GameObjects
 						shadowObjects.Add (new ShadowGameModel (state, pipe as GameModel));
 					}
 				}
+				foreach (ArrowModel arrow in container.OfType<ArrowModel>()) {
+					shadowObjects.Add (new ShadowGameModel (state, arrow as GameModel));
+				}
 			}
 		}
 
@@ -167,6 +173,19 @@ namespace Knot3.GameObjects
 			float countFloat;
 			ComputeDirection (currentMousePosition, out direction, out countFloat);
 			countInt = (int)Math.Round (countFloat);
+		}
+
+		private void MoveShadowPipes (Vector3 currentMousePosition, Vector3 direction3D)
+		{
+			Vector3 dummy;
+			float count;
+			ComputeDirection (currentMousePosition, out dummy, out count);
+			foreach (ShadowGameModel shadowObj in shadowObjects) {
+				shadowObj.ShadowPosition = shadowObj.OriginalPosition + direction3D * count * Node.Scale;
+				shadowObj.ShadowAlpha = 0.3f;
+				shadowObj.ShadowColor = Color.White;
+				// Console.WriteLine ("MoveShadowPipes: " + shadowObj + ", direction=" + direction3D * count);
+			}
 		}
 
 		private void MoveShadowPipes (Vector3 currentMousePosition)
