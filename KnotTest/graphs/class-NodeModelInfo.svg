@@ -31,7 +31,7 @@
 <polyline fill="none" stroke="black" points="110,-271 266,-271 "/>
 <text text-anchor="start" x="118" y="-259.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
 <text text-anchor="start" x="118" y="-247.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Rotation : Angles3</text>
-<text text-anchor="start" x="118" y="-235.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Scale : float</text>
+<text text-anchor="start" x="118" y="-235.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Scale : Vector3</text>
 <text text-anchor="start" x="118" y="-223.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Modelname : string</text>
 <text text-anchor="start" x="118" y="-211.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="110,-203 266,-203 "/>

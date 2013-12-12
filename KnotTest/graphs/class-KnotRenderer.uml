@@ -48,12 +48,15 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     + World : World override
     - pipes : List<PipeModel>
     - nodes : List<NodeModel>
+    - arrows : List<ArrowModel>
     - pipeFactory : ModelFactory
     - nodeFactory : ModelFactory
+    - arrowFactory : ModelFactory
   Methods:
     + ModelRenderer  (GameState state, GameObjectInfo info)
     + Update  (GameTime gameTime) override
     + OnEdgesChanged  (EdgeList edgeList) override
+    + CreateArrows  (WrapList<Edge> selectedEdges)
     + GetEnumerator () : IEnumerator<IGameObject>
     - IEnumerable.GetEnumerator () : IEnumerator
     + Draw  (GameTime gameTime) override
@@ -95,7 +98,9 @@ public class LineRenderer : KnotRenderer
 
 public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
   Attributes:
+    - arrows : List<ArrowModel>
     - nodes : List<NodeModel>
+    - arrowFactory : ModelFactory
     - nodeFactory : ModelFactory
     - pipeFactory : ModelFactory
     - pipes : List<PipeModel>
@@ -103,13 +108,14 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     + World : World
   Methods:
     - IEnumerable.GetEnumerator () : IEnumerator
+    + GetEnumerator () : IEnumerator<IGameObject>
     + ModelRenderer  (GameState state, GameObjectInfo info)
     + Draw  (GameTime gameTime)
     + OnEdgesChanged  (EdgeList edgeList)
-    + GetEnumerator () : IEnumerator<IGameObject>
     + Intersects (Ray ray) : GameObjectDistance
     + Center () : Vector3
     + Update  (GameTime gameTime)
+    + CreateArrows  (WrapList<Edge> selectedEdges)
 
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
   Attributes:

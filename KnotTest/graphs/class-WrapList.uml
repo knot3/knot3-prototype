@@ -4,23 +4,24 @@ public class WrapList<T> : IEnumerable<T>
   Methods:
     - int> indexOf () : Dictionary<T,
     - list () : List<T>
+    + SelectionChanged (l) : Action<WrapList<T>>
     - IEnumerable.GetEnumerator () : IEnumerator
     - WrapIndex (int i) : int
     - RebuildIndex ()
+    + Contains (T elem) : bool
     + this (T t) : int
     + ToString () : string
-    + Add  (T elem)
     + AddRange  (IEnumerable<T> elems)
+    + AddRange  (params T[] elems)
     + Clear ()
-    + InsertAt  (int i, T elem)
-    + Remove  (T[] elems)
-    + Replace  (T find, T[] elem)
+    + Set  (params T[] elems)
     + GetEnumerator () : IEnumerator<T>
     + this (int i) : T
     + WrapList  (IEnumerable<T> elems)
     + WrapList ()
-    + Contains (T elem) : bool
-    + AddRange  (params T[] elems)
+    + Add  (T elem)
+    + InsertAt  (int i, T elem)
+    + Remove  (params T[] elems)
+    + Replace  (T find, params T[] elem)
     + Set  (IEnumerable<T> elems)
-    + Set  (params T[] elems)
 

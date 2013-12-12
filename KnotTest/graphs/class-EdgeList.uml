@@ -2,17 +2,18 @@ public class EdgeList : IEnumerable<Edge>
   Attributes:
     + SelectedEdges : WrapList<Edge>
     - edges : WrapList<Edge>
+    + SelectionChanged : Action<WrapList<Edge>>
     + Count : int
   Methods:
     + EdgesChanged (list) : Action<EdgeList>
     - IEnumerable.GetEnumerator () : IEnumerator
     - IndexOf (Edge edge) : int
     + this (int i) : Edge
+    + EdgeList ()
     + FromNodes (IEnumerable<Node> _nodes, IEnumerable<Color> _colors) : IEnumerable<Edge> static
     + Add  (Edge edge)
     + PrintSelectedEdges ()
     - End () : Node
-    + EdgeList ()
     + PathTo (Edge fromEdge, Edge toEdge, Vector3 distance) : Edge[]
     + GetEnumerator () : IEnumerator<Edge>
     + Interval (Edge a, Edge b) : List<Edge>

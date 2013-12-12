@@ -20,7 +20,9 @@ public static class Vectors :
     + Bounds (this Model model) : BoundingSphere[] static
     + Bounds (this Vector3 a, Vector3 diff) : BoundingBox static
     + Scale (this BoundingSphere sphere, float scale) : BoundingSphere static
+    + Scale (this BoundingSphere sphere, Vector3 scale) : BoundingSphere static
     + Translate (this BoundingSphere sphere, Vector3 position) : BoundingSphere static
+    + Rotate (this BoundingSphere sphere, Angles3 rotation) : BoundingSphere static
     + Scale (this BoundingBox box, float scale) : BoundingBox static
     + Translate (this BoundingBox box, Vector3 position) : BoundingBox static
     + ToVector2 (this MouseState state) : Vector2 static
@@ -39,6 +41,7 @@ public static class Vectors :
     + Shrink (this Rectangle rect, int diff) : Rectangle static
     + Swap<T> (ref T lhs, ref T rhs) static
     + Print (this Vector3 v) : string static
+    + CylinderBounds (float length, float radius, Vector3 direction, Vector3 position) : BoundingSphere[] static
 private static class SwapExtension : 
   Attributes:
   Methods:

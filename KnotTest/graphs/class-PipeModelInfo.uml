@@ -14,7 +14,7 @@ public class GameModelInfo : GameObjectInfo
   Attributes:
     + Modelname : string
     + Rotation : Angles3
-    + Scale : float
+    + Scale : Vector3
   Methods:
     + GameModelInfo  (string modelname)
     + Equals (GameObjectInfo other) : bool override
@@ -50,7 +50,7 @@ public class GameObjectInfo : IEquatable<GameObjectInfo>
 public class GameModelInfo : GameObjectInfo
   Attributes:
     + Rotation : Angles3
-    + Scale : float
+    + Scale : Vector3
     + Modelname : string
   Methods:
     + GameModelInfo  (string modelname)

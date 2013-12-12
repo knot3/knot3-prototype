@@ -27,7 +27,7 @@ public class CreativeModeScreen : GameState
     - world : World
     - pointer : MousePointer
     - overlay : Overlay
-    - picker : MousePicker
+    - picker : ModelMousePicker
     - movement : PipeMovement
     - coloring : PipeColoring
     - lineRenderer : LineRenderer
@@ -191,8 +191,8 @@ public class CreativeModeScreen : GameState
   Attributes:
     - dialog : Dialog
     - lineRenderer : LineRenderer
+    - picker : ModelMousePicker
     - pipeRenderer : ModelRenderer
-    - picker : MousePicker
     - pointer : MousePointer
     - overlay : Overlay
     - coloring : PipeColoring

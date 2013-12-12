@@ -7,6 +7,7 @@ public struct Node : IEquatable<Node>, ICloneable
   Methods:
     + GetHashCode () : int
     + Node (int x, int y, int z) : this()
+    + CenterBetween (Node other) : Vector3
     + Vector () : Vector3
     + Equals (Node other) : bool
     + Clone () : object

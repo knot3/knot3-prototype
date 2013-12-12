@@ -2,13 +2,15 @@ public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
   Attributes:
     - knotRenderEffect : RenderEffect
     - _redraw : bool
+    + SelectedObject : IGameObject
     + Objects : List<IGameObject>
     + Redraw : bool
+    - _selectedObject : IGameObject
     - knotRenderEffects : List<RenderEffect>
     - floor : TexturedRectangle
     + Camera : Camera
-    + SelectedObject : IGameObject
   Methods:
+    + SelectionChanged (o) : Action<IGameObject>
     - IEnumerable.GetEnumerator () : IEnumerator
     + World  (GameState state)
     + SelectedObjectDistance () : float

@@ -20,7 +20,7 @@ public class GameModel : IGameObject
     + HighlightColor : Color
     + HighlightIntensity : float
     + Alpha : float
-    - _scale : float
+    - _scale : Vector3
     - _rotation : Angles3
     - _position : Vector3
     - _worldMatrix : Matrix
@@ -37,6 +37,15 @@ public class GameModel : IGameObject
     + Center () : Vector3
     - UpdatePrecomputed  ()
     - OnViewChanged  ()
+
+public class ArrowModel : GameModel
+  Attributes:
+    + Info : ArrowModelInfo new
+    - Bounds : BoundingSphere[]
+  Methods:
+    + ArrowModel  (GameState state, ArrowModelInfo info)
+    + Draw  (GameTime gameTime) override
+    + Intersects (Ray ray) : GameObjectDistance override
 
 public class NodeModel : GameModel
   Attributes:
@@ -61,6 +70,15 @@ public class TestModel : GameModel
     + TestModel  (GameState state, GameModelInfo info)
     + Update  (GameTime gameTime) override
 
+public class ArrowModel : GameModel
+  Attributes:
+    - Bounds : BoundingSphere[]
+    + Info : ArrowModelInfo
+  Methods:
+    + ArrowModel  (GameState state, ArrowModelInfo info)
+    + Intersects (Ray ray) : GameObjectDistance
+    + Draw  (GameTime gameTime)
+
 public class NodeModel : GameModel
   Attributes:
     + Info : NodeModelInfo
@@ -74,9 +92,9 @@ public class PipeModel : GameModel
     + Info : PipeModelInfo
   Methods:
     + OnDataChange () : Action
-    + Draw  (GameTime gameTime)
     + PipeModel  (GameState state, PipeModelInfo info)
     + Intersects (Ray ray) : GameObjectDistance
+    + Draw  (GameTime gameTime)
 
 public class TestModel : GameModel
   Attributes:
@@ -119,12 +137,15 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     + World : World override
     - pipes : List<PipeModel>
     - nodes : List<NodeModel>
+    - arrows : List<ArrowModel>
     - pipeFactory : ModelFactory
     - nodeFactory : ModelFactory
+    - arrowFactory : ModelFactory
   Methods:
     + ModelRenderer  (GameState state, GameObjectInfo info)
     + Update  (GameTime gameTime) override
     + OnEdgesChanged  (EdgeList edgeList) override
+    + CreateArrows  (WrapList<Edge> selectedEdges)
     + GetEnumerator () : IEnumerator<IGameObject>
     - IEnumerable.GetEnumerator () : IEnumerator
     + Draw  (GameTime gameTime) override
@@ -166,7 +187,9 @@ public class LineRenderer : KnotRenderer
 
 public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
   Attributes:
+    - arrows : List<ArrowModel>
     - nodes : List<NodeModel>
+    - arrowFactory : ModelFactory
     - nodeFactory : ModelFactory
     - pipeFactory : ModelFactory
     - pipes : List<PipeModel>
@@ -174,13 +197,14 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     + World : World
   Methods:
     - IEnumerable.GetEnumerator () : IEnumerator
+    + GetEnumerator () : IEnumerator<IGameObject>
     + ModelRenderer  (GameState state, GameObjectInfo info)
     + Draw  (GameTime gameTime)
     + OnEdgesChanged  (EdgeList edgeList)
-    + GetEnumerator () : IEnumerator<IGameObject>
     + Intersects (Ray ray) : GameObjectDistance
     + Center () : Vector3
     + Update  (GameTime gameTime)
+    + CreateArrows  (WrapList<Edge> selectedEdges)
 
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
   Attributes:
@@ -228,6 +252,8 @@ public class PipeMovement : IGameObject, IEnumerable<IGameObject>
   Methods:
     + PipeMovement  (GameState state, World world, GameObjectInfo info)
     + Update  (GameTime gameTime)
+    - TrySelectObject  (GameTime gameTime)
+    - TryMovePipes  (GameTime gameTime)
     - CreateShadowPipes  ()
     - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out float count)
     - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out int countInt)
@@ -315,8 +341,8 @@ public class GameModel : IGameObject
     + World : World
     + Alpha : float
     + HighlightIntensity : float
+    - _scale : Vector3
     - _world : World
-    - _scale : float
     # state : GameState
     + Model : Model virtual
   Methods:
@@ -327,6 +353,15 @@ public class GameModel : IGameObject
     + Center () : Vector3
     + Intersects (Ray ray) : GameObjectDistance virtual
     + Update  (GameTime gameTime) virtual
+
+public class ArrowModel : GameModel
+  Attributes:
+    + Info : ArrowModelInfo new
+    - Bounds : BoundingSphere[]
+  Methods:
+    + ArrowModel  (GameState state, ArrowModelInfo info)
+    + Draw  (GameTime gameTime) override
+    + Intersects (Ray ray) : GameObjectDistance override
 
 public class NodeModel : GameModel
   Attributes:
@@ -351,6 +386,15 @@ public class TestModel : GameModel
     + TestModel  (GameState state, GameModelInfo info)
     + Update  (GameTime gameTime) override
 
+public class ArrowModel : GameModel
+  Attributes:
+    - Bounds : BoundingSphere[]
+    + Info : ArrowModelInfo
+  Methods:
+    + ArrowModel  (GameState state, ArrowModelInfo info)
+    + Intersects (Ray ray) : GameObjectDistance
+    + Draw  (GameTime gameTime)
+
 public class NodeModel : GameModel
   Attributes:
     + Info : NodeModelInfo
@@ -364,9 +408,9 @@ public class PipeModel : GameModel
     + Info : PipeModelInfo
   Methods:
     + OnDataChange () : Action
-    + Draw  (GameTime gameTime)
     + PipeModel  (GameState state, PipeModelInfo info)
     + Intersects (Ray ray) : GameObjectDistance
+    + Draw  (GameTime gameTime)
 
 public class TestModel : GameModel
   Attributes:
@@ -409,12 +453,15 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     + World : World override
     - pipes : List<PipeModel>
     - nodes : List<NodeModel>
+    - arrows : List<ArrowModel>
     - pipeFactory : ModelFactory
     - nodeFactory : ModelFactory
+    - arrowFactory : ModelFactory
   Methods:
     + ModelRenderer  (GameState state, GameObjectInfo info)
     + Update  (GameTime gameTime) override
     + OnEdgesChanged  (EdgeList edgeList) override
+    + CreateArrows  (WrapList<Edge> selectedEdges)
     + GetEnumerator () : IEnumerator<IGameObject>
     - IEnumerable.GetEnumerator () : IEnumerator
     + Draw  (GameTime gameTime) override
@@ -456,7 +503,9 @@ public class LineRenderer : KnotRenderer
 
 public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
   Attributes:
+    - arrows : List<ArrowModel>
     - nodes : List<NodeModel>
+    - arrowFactory : ModelFactory
     - nodeFactory : ModelFactory
     - pipeFactory : ModelFactory
     - pipes : List<PipeModel>
@@ -464,13 +513,14 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     + World : World
   Methods:
     - IEnumerable.GetEnumerator () : IEnumerator
+    + GetEnumerator () : IEnumerator<IGameObject>
     + ModelRenderer  (GameState state, GameObjectInfo info)
     + Draw  (GameTime gameTime)
     + OnEdgesChanged  (EdgeList edgeList)
-    + GetEnumerator () : IEnumerator<IGameObject>
     + Intersects (Ray ray) : GameObjectDistance
     + Center () : Vector3
     + Update  (GameTime gameTime)
+    + CreateArrows  (WrapList<Edge> selectedEdges)
 
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
   Attributes:
@@ -559,6 +609,8 @@ public class PipeMovement : IGameObject, IEnumerable<IGameObject>
     - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out int countInt)
     - CreateShadowPipes ()
     - MoveShadowPipes  (Vector3 currentMousePosition)
+    - TryMovePipes  (GameTime gameTime)
+    - TrySelectObject  (GameTime gameTime)
     + Center () : Vector3
     + Update  (GameTime gameTime)
 

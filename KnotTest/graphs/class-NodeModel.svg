@@ -42,8 +42,8 @@
 <text text-anchor="start" x="8" y="-319.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World : World</text>
 <text text-anchor="start" x="8" y="-307.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Alpha : float</text>
 <text text-anchor="start" x="8" y="-295.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ HighlightIntensity : float</text>
-<text text-anchor="start" x="8" y="-283.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _world : World</text>
-<text text-anchor="start" x="8" y="-271.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _scale : float</text>
+<text text-anchor="start" x="8" y="-283.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _scale : Vector3</text>
+<text text-anchor="start" x="8" y="-271.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _world : World</text>
 <text text-anchor="start" x="8" y="-259.8" font-family="Helvetica,sans-Serif" font-size="8.00"># state : GameState</text>
 <text text-anchor="start" x="8" y="-247.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Model : Model virtual</text>
 <text text-anchor="start" x="8" y="-235.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>

@@ -79,34 +79,36 @@
 </g>
 <!-- Box_World -->
 <g id="node5" class="node"><title>Box_World</title>
-<polygon fill="#fcfcda" stroke="black" points="1007,-993 1007,-1269 1325,-1269 1325,-993 1007,-993"/>
-<text text-anchor="middle" x="1166" y="-1257.8" font-family="Helvetica,sans-Serif" font-size="8.00">World</text>
-<polyline fill="none" stroke="black" points="1007,-1249 1325,-1249 "/>
-<text text-anchor="start" x="1015" y="-1237.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
-<text text-anchor="start" x="1015" y="-1225.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; knotRenderEffect : RenderEffect</text>
-<text text-anchor="start" x="1015" y="-1213.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _redraw : bool</text>
+<polygon fill="#fcfcda" stroke="black" points="1007,-981 1007,-1281 1325,-1281 1325,-981 1007,-981"/>
+<text text-anchor="middle" x="1166" y="-1269.8" font-family="Helvetica,sans-Serif" font-size="8.00">World</text>
+<polyline fill="none" stroke="black" points="1007,-1261 1325,-1261 "/>
+<text text-anchor="start" x="1015" y="-1249.8" font-family="Helvetica,sans-Serif" font-size="8.00">Attributes:</text>
+<text text-anchor="start" x="1015" y="-1237.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; knotRenderEffect : RenderEffect</text>
+<text text-anchor="start" x="1015" y="-1225.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _redraw : bool</text>
+<text text-anchor="start" x="1015" y="-1213.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SelectedObject : IGameObject</text>
 <text text-anchor="start" x="1015" y="-1201.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Objects : List&lt;IGameObject&gt;</text>
 <text text-anchor="start" x="1015" y="-1189.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Redraw : bool</text>
-<text text-anchor="start" x="1015" y="-1177.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; knotRenderEffects : List&lt;RenderEffect&gt;</text>
-<text text-anchor="start" x="1015" y="-1165.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; floor : TexturedRectangle</text>
-<text text-anchor="start" x="1015" y="-1153.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Camera : Camera</text>
-<text text-anchor="start" x="1015" y="-1141.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SelectedObject : IGameObject</text>
+<text text-anchor="start" x="1015" y="-1177.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; _selectedObject : IGameObject</text>
+<text text-anchor="start" x="1015" y="-1165.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; knotRenderEffects : List&lt;RenderEffect&gt;</text>
+<text text-anchor="start" x="1015" y="-1153.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; floor : TexturedRectangle</text>
+<text text-anchor="start" x="1015" y="-1141.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Camera : Camera</text>
 <text text-anchor="start" x="1015" y="-1129.8" font-family="Helvetica,sans-Serif" font-size="8.00">Methods:</text>
 <polyline fill="none" stroke="black" points="1007,-1121 1325,-1121 "/>
-<text text-anchor="start" x="1015" y="-1109.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; IEnumerable.GetEnumerator () : IEnumerator</text>
-<text text-anchor="start" x="1015" y="-1097.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World (GameState state)</text>
-<text text-anchor="start" x="1015" y="-1085.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SelectedObjectDistance () : float</text>
-<text text-anchor="start" x="1015" y="-1073.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SubComponents (GameTime gameTime) : IEnumerable&lt;IGameStateComponent&gt;</text>
-<text text-anchor="start" x="1015" y="-1061.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime)</text>
-<text text-anchor="start" x="1015" y="-1049.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime)</text>
-<text text-anchor="start" x="1015" y="-1037.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Add (IGameObject obj)</text>
-<text text-anchor="start" x="1015" y="-1025.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ GetEnumerator () : IEnumerator&lt;IGameObject&gt;</text>
-<text text-anchor="start" x="1015" y="-1013.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Initialize ()</text>
-<text text-anchor="start" x="1015" y="-1001.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SelectObject (IGameObject obj, GameTime gameTime)</text>
+<text text-anchor="start" x="1015" y="-1109.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SelectionChanged (o) : Action&lt;IGameObject&gt;</text>
+<text text-anchor="start" x="1015" y="-1097.8" font-family="Helvetica,sans-Serif" font-size="8.00">&#45; IEnumerable.GetEnumerator () : IEnumerator</text>
+<text text-anchor="start" x="1015" y="-1085.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ World (GameState state)</text>
+<text text-anchor="start" x="1015" y="-1073.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SelectedObjectDistance () : float</text>
+<text text-anchor="start" x="1015" y="-1061.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SubComponents (GameTime gameTime) : IEnumerable&lt;IGameStateComponent&gt;</text>
+<text text-anchor="start" x="1015" y="-1049.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Draw (GameTime gameTime)</text>
+<text text-anchor="start" x="1015" y="-1037.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Update (GameTime gameTime)</text>
+<text text-anchor="start" x="1015" y="-1025.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Add (IGameObject obj)</text>
+<text text-anchor="start" x="1015" y="-1013.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ GetEnumerator () : IEnumerator&lt;IGameObject&gt;</text>
+<text text-anchor="start" x="1015" y="-1001.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ Initialize ()</text>
+<text text-anchor="start" x="1015" y="-989.8" font-family="Helvetica,sans-Serif" font-size="8.00">+ SelectObject (IGameObject obj, GameTime gameTime)</text>
 </g>
 <!-- Box_DrawableGameStateComponent&#45;&gt;Box_World -->
 <g id="edge12" class="edge"><title>Box_DrawableGameStateComponent&#45;&gt;Box_World</title>
-<path fill="none" stroke="midnightblue" d="M775.156,-1368.75C847.658,-1354.55 929.944,-1331.44 998,-1294 1011.09,-1286.8 1023.88,-1278.31 1036.19,-1269.05"/>
+<path fill="none" stroke="midnightblue" d="M775.156,-1368.75C847.658,-1354.55 929.944,-1331.44 998,-1294 1005.21,-1290.03 1012.33,-1285.67 1019.33,-1281.01"/>
 <polygon fill="none" stroke="midnightblue" points="774.156,-1365.38 764.993,-1370.7 775.473,-1372.26 774.156,-1365.38"/>
 </g>
 <!-- Box_Widget -->
@@ -445,7 +447,7 @@
 </g>
 <!-- Box_IEnumerable&#45;&gt;Box_World -->
 <g id="edge14" class="edge"><title>Box_IEnumerable&#45;&gt;Box_World</title>
-<path fill="none" stroke="midnightblue" d="M1166,-1370.77C1166,-1348.08 1166,-1309.21 1166,-1269.3"/>
+<path fill="none" stroke="midnightblue" d="M1166,-1370.62C1166,-1350.21 1166,-1316.79 1166,-1281.31"/>
 <polygon fill="none" stroke="midnightblue" points="1162.5,-1370.81 1166,-1380.81 1169.5,-1370.81 1162.5,-1370.81"/>
 </g>
 <!-- Box_IMouseEventListener -->

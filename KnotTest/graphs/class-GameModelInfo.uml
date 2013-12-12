@@ -1,7 +1,7 @@
 public class GameModelInfo : GameObjectInfo
   Attributes:
     + Rotation : Angles3
-    + Scale : float
+    + Scale : Vector3
     + Modelname : string
   Methods:
     + GameModelInfo  (string modelname)
@@ -35,6 +35,15 @@ public class GameObjectInfo : IEquatable<GameObjectInfo>
     + operator ! (GameObjectInfo o1, GameObjectInfo o2) : bool static
     + Equals (GameObjectInfo other) : bool virtual
 
+public class ArrowModelInfo : GameModelInfo
+  Attributes:
+    + Direction : Vector3
+    + Length : float
+    + Diameter : float
+  Methods:
+    + ArrowModelInfo  (Vector3 position, Vector3 direction, Vector3 offset)
+    + Equals (GameObjectInfo other) : bool override
+
 public class NodeModelInfo : GameModelInfo
   Attributes:
     + EdgeList : EdgeList
@@ -56,6 +65,15 @@ public class PipeModelInfo : GameModelInfo
   Methods:
     + PipeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
     + Equals (GameObjectInfo other) : bool override
+
+public class ArrowModelInfo : GameModelInfo
+  Attributes:
+    + Diameter : float
+    + Length : float
+    + Direction : Vector3
+  Methods:
+    + ArrowModelInfo  (Vector3 position, Vector3 direction, Vector3 offset)
+    + Equals (GameObjectInfo other) : bool
 
 public class NodeModelInfo : GameModelInfo
   Attributes:

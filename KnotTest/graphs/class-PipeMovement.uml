@@ -18,6 +18,8 @@ public class PipeMovement : IGameObject, IEnumerable<IGameObject>
     - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out int countInt)
     - CreateShadowPipes ()
     - MoveShadowPipes  (Vector3 currentMousePosition)
+    - TryMovePipes  (GameTime gameTime)
+    - TrySelectObject  (GameTime gameTime)
     + Center () : Vector3
     + Update  (GameTime gameTime)
 

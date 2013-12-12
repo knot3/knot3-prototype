@@ -4,9 +4,9 @@ public class PipeModel : GameModel
     + Info : PipeModelInfo
   Methods:
     + OnDataChange () : Action
-    + Draw  (GameTime gameTime)
     + PipeModel  (GameState state, PipeModelInfo info)
     + Intersects (Ray ray) : GameObjectDistance
+    + Draw  (GameTime gameTime)
 
 public class GameModel : IGameObject
   Attributes:
@@ -20,7 +20,7 @@ public class GameModel : IGameObject
     + HighlightColor : Color
     + HighlightIntensity : float
     + Alpha : float
-    - _scale : float
+    - _scale : Vector3
     - _rotation : Angles3
     - _position : Vector3
     - _worldMatrix : Matrix
@@ -65,8 +65,8 @@ public class GameModel : IGameObject
     + World : World
     + Alpha : float
     + HighlightIntensity : float
+    - _scale : Vector3
     - _world : World
-    - _scale : float
     # state : GameState
     + Model : Model virtual
   Methods:

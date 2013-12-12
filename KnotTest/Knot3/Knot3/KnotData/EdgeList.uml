@@ -3,6 +3,7 @@ public class EdgeList : IEnumerable<Edge>
     - edges : WrapList<Edge>
     + SelectedEdges : WrapList<Edge>
     + EdgesChanged : Action<EdgeList>
+    + SelectionChanged : Action<WrapList<Edge>>
     + Count : int
   Methods:
     + EdgeList ()

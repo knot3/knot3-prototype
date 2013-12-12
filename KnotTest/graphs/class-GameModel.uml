@@ -15,8 +15,8 @@ public class GameModel : IGameObject
     + World : World
     + Alpha : float
     + HighlightIntensity : float
+    - _scale : Vector3
     - _world : World
-    - _scale : float
     # state : GameState
     + Model : Model virtual
   Methods:
@@ -37,6 +37,15 @@ public interface IGameObject :
     + Update  (GameTime gameTime)
     + Intersects (Ray ray) : GameObjectDistance
     + Center () : Vector3
+
+public class ArrowModel : GameModel
+  Attributes:
+    + Info : ArrowModelInfo new
+    - Bounds : BoundingSphere[]
+  Methods:
+    + ArrowModel  (GameState state, ArrowModelInfo info)
+    + Draw  (GameTime gameTime) override
+    + Intersects (Ray ray) : GameObjectDistance override
 
 public class NodeModel : GameModel
   Attributes:
@@ -61,6 +70,15 @@ public class TestModel : GameModel
     + TestModel  (GameState state, GameModelInfo info)
     + Update  (GameTime gameTime) override
 
+public class ArrowModel : GameModel
+  Attributes:
+    - Bounds : BoundingSphere[]
+    + Info : ArrowModelInfo
+  Methods:
+    + ArrowModel  (GameState state, ArrowModelInfo info)
+    + Intersects (Ray ray) : GameObjectDistance
+    + Draw  (GameTime gameTime)
+
 public class NodeModel : GameModel
   Attributes:
     + Info : NodeModelInfo
@@ -74,9 +92,9 @@ public class PipeModel : GameModel
     + Info : PipeModelInfo
   Methods:
     + OnDataChange () : Action
-    + Draw  (GameTime gameTime)
     + PipeModel  (GameState state, PipeModelInfo info)
     + Intersects (Ray ray) : GameObjectDistance
+    + Draw  (GameTime gameTime)
 
 public class TestModel : GameModel
   Attributes:

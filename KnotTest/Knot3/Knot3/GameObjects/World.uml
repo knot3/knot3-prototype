@@ -3,7 +3,9 @@ public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
     - knotRenderEffects : List<RenderEffect>
     - knotRenderEffect : RenderEffect
     + Objects : List<IGameObject>
+    - _selectedObject : IGameObject
     + SelectedObject : IGameObject
+    + SelectionChanged : Action<IGameObject>
     + Camera : Camera
     - floor : TexturedRectangle
     - _redraw : bool

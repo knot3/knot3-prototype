@@ -5,7 +5,7 @@ public class CreativeModeScreen : GameState
     - world : World
     - pointer : MousePointer
     - overlay : Overlay
-    - picker : MousePicker
+    - picker : ModelMousePicker
     - movement : PipeMovement
     - coloring : PipeColoring
     - lineRenderer : LineRenderer

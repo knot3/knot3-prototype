@@ -16,3 +16,4 @@ public struct Node : IEquatable<Node>, ICloneable
     + ToString () : string override
     + Clone () : object
     + Vector () : Vector3
+    + CenterBetween (Node other) : Vector3

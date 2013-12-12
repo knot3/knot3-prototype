@@ -10,6 +10,8 @@ public class PipeMovement : IGameObject, IEnumerable<IGameObject>
   Methods:
     + PipeMovement (GameState state, World world, GameObjectInfo info)
     + Update (GameTime gameTime)
+    - TrySelectObject (GameTime gameTime)
+    - TryMovePipes (GameTime gameTime)
     - CreateShadowPipes ()
     - ComputeDirection (Vector3 currentMousePosition, out Vector3 direction, out float count)
     - ComputeDirection (Vector3 currentMousePosition, out Vector3 direction, out int countInt)
