@@ -24,14 +24,14 @@ namespace Knot3.GameObjects
 		// cache
 		private Dictionary<GameModelInfo, GameModel> cache = new Dictionary<GameModelInfo, GameModel> ();
 
-		private Func<GameState, GameModelInfo, GameModel> CreateModel;
+		private Func<GameScreen, GameModelInfo, GameModel> CreateModel;
 
-		public ModelFactory (Func<GameState, GameModelInfo, GameModel> createModel)
+		public ModelFactory (Func<GameScreen, GameModelInfo, GameModel> createModel)
 		{
 			CreateModel = createModel;
 		}
 		
-		public GameModel this [GameState state, GameModelInfo info] {
+		public GameModel this [GameScreen state, GameModelInfo info] {
 			get {
 				if (cache.ContainsKey (info)) {
 					return cache [info];

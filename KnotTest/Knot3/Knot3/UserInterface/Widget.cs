@@ -115,14 +115,14 @@ namespace Knot3.UserInterface
 	/// Alle GUI-Elemente erben von der Klasse Widget, die immer vorhandene Attribute und häufig verwendete
 	/// Methoden zur Verfügung stellt.
 	/// </summary>
-	public abstract class Widget : DrawableGameStateComponent
+	public abstract class Widget : DrawableGameScreenComponent
 	{
 		public WidgetInfo Info { get; set; }
 
 		// visibility
 		public virtual bool IsVisible { get; set; }
 
-		public Widget (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+		public Widget (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
 			: base(state, drawOrder)
 		{
 			Info = info;
@@ -146,7 +146,7 @@ namespace Knot3.UserInterface
 		protected int ItemNum;
 		public ItemState ItemState;
 
-		public ItemWidget (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
+		public ItemWidget (GameScreen state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 			: base(state, info, drawOrder)
 		{
 			ItemNum = itemNum;

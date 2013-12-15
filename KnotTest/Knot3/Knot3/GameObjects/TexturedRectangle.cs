@@ -53,7 +53,7 @@ namespace Knot3.GameObjects
 	{
 		#region Attributes and Properties
 
-		protected GameState state;
+		protected GameScreen state;
 
 		GameObjectInfo IGameObject.Info { get { return Info; } }
 
@@ -75,7 +75,7 @@ namespace Knot3.GameObjects
 
 		#region Constructors
 
-		public TexturedRectangle (GameState state, TexturedRectangleInfo info)
+		public TexturedRectangle (GameScreen state, TexturedRectangleInfo info)
 		{
 			this.state = state;
 			Info = info;

@@ -31,7 +31,7 @@ namespace Knot3.RenderEffects
 		float outlineThreshold = 0.2f;  // current edge detection threshold
 
 
-		public CelShadingEffect (GameState state)
+		public CelShadingEffect (GameScreen state)
 			: base(state)
 		{
 			/* Set our light direction for the cel-shader

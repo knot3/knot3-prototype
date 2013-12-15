@@ -78,8 +78,8 @@ namespace Knot3.CreativeMode
 				// delegate to load the file
 				if (knotInfo.IsValid) {
 					Console.WriteLine ("File is valid: " + knotInfo);
-					GameStates.CreativeMode.Knot = format.LoadKnot (filename);
-					NextState = GameStates.CreativeMode;
+					GameScreens.CreativeMode.Knot = format.LoadKnot (filename);
+					NextState = GameScreens.CreativeMode;
 				} else {
 					Console.WriteLine ("File is invalid: " + knotInfo);
 				}
@@ -95,14 +95,14 @@ namespace Knot3.CreativeMode
 			Action RandomKnot = () => {
 				Knot knot = Knot.RandomKnot (20, format);
 				Console.WriteLine ("Random Knot: " + knot.Info);
-				GameStates.CreativeMode.Knot = knot;
-				NextState = GameStates.CreativeMode;
+				GameScreens.CreativeMode.Knot = knot;
+				NextState = GameScreens.CreativeMode;
 			};
 			Action DefaultKnot = () => {
 				Knot knot = Knot.DefaultKnot (format);
 				Console.WriteLine ("Default Knot: " + knot.Info);
-				GameStates.CreativeMode.Knot = knot;
-				NextState = GameStates.CreativeMode;
+				GameScreens.CreativeMode.Knot = knot;
+				NextState = GameScreens.CreativeMode;
 			};
 			MenuItemInfo info = new MenuItemInfo (text: "New Knot", onClick: DefaultKnot);
 			menu.AddButton (info);
@@ -117,7 +117,7 @@ namespace Knot3.CreativeMode
 
 			// when is escape is pressed, go to start screen
 			if (Keys.Escape.IsDown ()) {
-				NextState = GameStates.StartScreen;
+				NextState = GameScreens.StartScreen;
 			}
 		}
 		

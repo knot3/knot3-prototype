@@ -8,9 +8,9 @@ using Knot3.Utilities;
 
 namespace Knot3.Core
 {
-	public class KeyHandler : GameStateComponent
+	public class WidgetKeyHandler : GameScreenComponent
 	{
-		public KeyHandler (GameState state)
+		public WidgetKeyHandler (GameScreen state)
 			: base(state, DisplayLayer.None)
 		{
 		}
@@ -26,7 +26,7 @@ namespace Knot3.Core
 		public override void Update (GameTime gameTime)
 		{
 			KeyEventComponent best = null;
-			foreach (IGameStateComponent component in state.game.Components) {
+			foreach (IGameScreenComponent component in state.game.Components) {
 				if (component is IKeyEventListener) {
 
 					// keyboard input

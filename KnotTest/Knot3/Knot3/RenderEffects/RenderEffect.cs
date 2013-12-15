@@ -66,9 +66,9 @@ namespace Knot3.RenderEffects
 	public abstract class RenderEffect : IRenderEffect
 	{
 		/// <summary>
-		/// Der zugewiesene GameState. Dieser Effekt kann nur innerhalb dieses GameState's verwendet werden.
+		/// Der zugewiesene GameScreen. Dieser Effekt kann nur innerhalb dieses GameScreen's verwendet werden.
 		/// </summary>
-		protected GameState state;
+		protected GameScreen state;
 		private RenderTargetCache renderTarget;
 		private Color background;
 		private SpriteBatch spriteBatch;
@@ -79,7 +79,7 @@ namespace Knot3.RenderEffects
 		/// <param name='state'>
 		/// Game State.
 		/// </param>
-		public RenderEffect (GameState state)
+		public RenderEffect (GameScreen state)
 		{
 			this.state = state;
 			renderTarget = new RenderTargetCache (state.device);

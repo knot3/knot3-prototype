@@ -21,7 +21,7 @@ namespace Knot3.GameObjects
 {
 	public abstract class KnotRenderer: IEdgeChangeListener, IGameObject
 	{
-		protected GameState state;
+		protected GameScreen state;
 
 		public abstract World World { get; set; }
 
@@ -29,7 +29,7 @@ namespace Knot3.GameObjects
 
 		protected NodeMap nodeMap = new NodeMap ();
 		
-		public KnotRenderer (GameState state)
+		public KnotRenderer (GameScreen state)
 		{
 			this.state = state;
 		}

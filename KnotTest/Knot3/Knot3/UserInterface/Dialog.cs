@@ -26,7 +26,7 @@ namespace Knot3.UserInterface
 		// textures
 		protected SpriteBatch spriteBatch;
 
-		public Dialog (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+		public Dialog (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
 			: base(state, info, drawOrder)
 		{
 			IsVisible = true;
@@ -61,9 +61,9 @@ namespace Knot3.UserInterface
 			return new Vector2 (x, 0.06f);
 		}
 
-		public override IEnumerable<IGameStateComponent> SubComponents (GameTime gameTime)
+		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime gameTime)
 		{
-			foreach (DrawableGameStateComponent component in base.SubComponents(gameTime)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents(gameTime)) {
 				yield return component;
 			}
 			yield return buttons;

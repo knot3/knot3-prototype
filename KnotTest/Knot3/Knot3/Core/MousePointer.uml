@@ -1,11 +1,11 @@
 // 
-public class MousePointer : DrawableGameStateComponent
+public class MousePointer : DrawableGameScreenComponent
   Attributes:
     // 
     - spriteBatch : SpriteBatch
   Methods:
     // 
-    + MousePointer (GameState state)
+    + MousePointer (GameScreen state)
     // 
     + Draw (GameTime gameTime) override
     // 

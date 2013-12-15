@@ -7,7 +7,7 @@ public class VerticalMenu : Menu
     # spriteBatch : SpriteBatch
   Methods:
     // 
-    + VerticalMenu (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + VerticalMenu (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + AddButton (MenuItemInfo info) : MenuButton override
     // 

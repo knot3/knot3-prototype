@@ -18,16 +18,15 @@ using Knot3.Utilities;
 namespace Knot3.Core
 {
 	/// <summary>
-	/// Die abstrakte Klasse Input stellt eine Basisklasse für Input-Handler bereit.
-	/// Sie ist ein GameStateComponent, existiert daher einmal pro GameState, und fängt
-	/// in der Rolle als IKeyEvent Tastatureingaben ab.
+	/// Die Klasse Input stellt eine statische Methoden bereit, die von allen Input-Handlern benötigt werden.
+	/// Sie ist ein GameScreenComponent und existiert daher einmal pro GameScreen.
 	/// </summary>
-	public abstract class Input : GameStateComponent, IKeyEventListener
+	public class InputManager : GameScreenComponent
 	{
 		#region Attributes
 
 		// state atributes
-		protected static bool FullscreenToggled;
+		public static bool FullscreenToggled;
 		/// <summary>
 		/// Der Status der Tastatur zur Zeit des vorherigen Frames.
 		/// </summary>
@@ -54,9 +53,9 @@ namespace Knot3.Core
 
 		public bool GrabMouseMovement { get; set; }
 
-		public InputAction CurrentInputAction { get; protected set; }
+		public InputAction CurrentInputAction { get; set; }
 
-		public WASDMode WASDMode { get; protected set; }
+		public WASDMode WASDMode { get; set; }
 
 		#endregion
 
@@ -66,7 +65,7 @@ namespace Knot3.Core
 		/// <param name='state'>
 		/// Game State.
 		/// </param>
-		public Input (GameState state)
+		public InputManager (GameScreen state)
 			: base(state, DisplayLayer.None)
 		{
 			FullscreenToggled = false;
@@ -75,9 +74,6 @@ namespace Knot3.Core
 
 			PreviousKeyboardState = KeyboardState = Keyboard.GetState ();
 			PreviousMouseState = MouseState = Mouse.GetState ();
-
-			ValidKeys = new List<Keys> ();
-			ValidKeys.AddRange (new []{ Keys.G, Keys.F11 });
 		}
 
 		public override void Update (GameTime gameTime)
@@ -120,11 +116,6 @@ namespace Knot3.Core
 				}
 			}
 
-			UpdateMouse (gameTime);
-		}
-
-		protected virtual void UpdateKeys (GameTime gameTime)
-		{
 			// fullscreen
 			if (Keys.G.IsDown () || Keys.F11.IsDown ()) {
 				state.game.IsFullscreen = !state.game.IsFullscreen;
@@ -132,23 +123,10 @@ namespace Knot3.Core
 			}
 		}
 
-		protected virtual void UpdateMouse (GameTime gameTime)
-		{
-		}
-
-		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
-		{
-			UpdateKeys (gameTime);
-		}
-
-		public List<Keys> ValidKeys { get; set; }
-
-		public bool IsKeyEventEnabled { get { return true; } }
-
 		/// <summary>
 		/// Der aktuelle Status der Maus.
 		/// </summary>
-		public static MouseState MouseState { get; protected set; }
+		public static MouseState MouseState { get; set; }
 
 		/// <summary>
 		/// Der aktuelle Status der Tastatur.
@@ -239,9 +217,9 @@ namespace Knot3.Core
 		public static bool IsDown (this Keys key)
 		{
 			// Is the key down?
-			if (Input.KeyboardState.IsKeyDown (key)) {
+			if (InputManager.KeyboardState.IsKeyDown (key)) {
 				// If not down last update, key has just been pressed.
-				if (!Input.PreviousKeyboardState.IsKeyDown (key)) {
+				if (!InputManager.PreviousKeyboardState.IsKeyDown (key)) {
 					return true;
 				}
 			}
@@ -260,7 +238,7 @@ namespace Knot3.Core
 		public static bool IsHeldDown (this Keys key)
 		{
 			// Is the key down?
-			return Input.KeyboardState.IsKeyDown (key);
+			return InputManager.KeyboardState.IsKeyDown (key);
 		}
 	}
 }

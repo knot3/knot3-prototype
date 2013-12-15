@@ -32,7 +32,7 @@ namespace Knot3.GameObjects
 		// edges
 		private EdgeList edges;
 
-		public LineRenderer (GameState state, GameObjectInfo info)
+		public LineRenderer (GameScreen state, GameObjectInfo info)
 			: base(state)
 		{
 			Info = info;

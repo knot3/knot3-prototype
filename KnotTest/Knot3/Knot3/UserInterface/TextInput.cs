@@ -33,7 +33,7 @@ namespace Knot3.UserInterface
 		// textures
 		protected SpriteBatch spriteBatch;
 
-		public TextInput (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+		public TextInput (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
 			: base(state, info, drawOrder)
 		{
 			// load fonts

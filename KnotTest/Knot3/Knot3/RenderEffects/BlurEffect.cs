@@ -21,7 +21,7 @@ namespace Knot3.RenderEffects
 	{
 		private static Effect testEffect;
 
-		public BlurEffect (GameState state)
+		public BlurEffect (GameScreen state)
 			: base(state)
 		{
 			testEffect = state.LoadEffect ("blur");

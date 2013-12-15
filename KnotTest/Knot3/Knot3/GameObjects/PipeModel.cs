@@ -77,7 +77,7 @@ namespace Knot3.GameObjects
 
 		#endregion
 
-		public PipeModel (GameState state, PipeModelInfo info)
+		public PipeModel (GameScreen state, PipeModelInfo info)
 			: base(state, info)
 		{
 			if (Info.Direction.Y == 1) {

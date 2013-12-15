@@ -23,7 +23,7 @@ namespace Knot3.UserInterface
 		private VerticalMenu dropdown;
 		private MenuButton selected;
 
-		public DropDownMenu (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+		public DropDownMenu (GameScreen state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 			: base(state, drawOrder, itemNum, info)
 		{
 			// drop-down menu
@@ -50,7 +50,7 @@ namespace Knot3.UserInterface
 			// action to open the drop-down menu
 			info.OnClick = () =>
 			{
-				GameStates.VideoOptionScreen.Collapse (this);
+				GameScreens.VideoOptionScreen.Collapse (this);
 				if (dropdown.IsVisible == true) {
 					dropdown.IsVisible = false;
 				} else {
@@ -84,9 +84,9 @@ namespace Knot3.UserInterface
 			selected.Info.Text = option.Value;
 		}
 		
-		public override IEnumerable<IGameStateComponent> SubComponents (GameTime gameTime)
+		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime gameTime)
 		{
-			foreach (DrawableGameStateComponent component in base.SubComponents(gameTime)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents(gameTime)) {
 				yield return component;
 			}
 			yield return selected;

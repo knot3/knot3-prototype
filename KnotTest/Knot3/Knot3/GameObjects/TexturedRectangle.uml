@@ -20,7 +20,7 @@ public class TexturedRectangleInfo : GameObjectInfo
 public class TexturedRectangle : IGameObject
   Attributes:
     // 
-    # state : GameState
+    # state : GameScreen
     // 
     - IGameObject.Info : GameObjectInfo
     // 
@@ -47,7 +47,7 @@ public class TexturedRectangle : IGameObject
     - texture : Texture2D
   Methods:
     // 
-    + TexturedRectangle (GameState state, TexturedRectangleInfo info)
+    + TexturedRectangle (GameScreen state, TexturedRectangleInfo info)
     // 
     + Update (GameTime gameTime)
     // 

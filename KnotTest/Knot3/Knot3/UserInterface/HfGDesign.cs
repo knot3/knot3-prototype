@@ -24,7 +24,7 @@ namespace Knot3.UserInterface
 		private static Texture2D texture;
 		private static SpriteFont menuFont;
 
-		public static SpriteFont MenuFont (GameState state)
+		public static SpriteFont MenuFont (GameScreen state)
 		{
 			if (menuFont != null) {
 				return menuFont;
@@ -40,7 +40,7 @@ namespace Knot3.UserInterface
 			}
 		}
 
-		public static void DrawLines (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameState state, GameTime gameTime)
+		public static void DrawLines (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameScreen state, GameTime gameTime)
 		{
 			lineWidth = (int)new Vector2 (lineWidth, lineWidth).Scale (state.viewport).X;
 			if (texture == null)

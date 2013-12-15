@@ -1,5 +1,5 @@
 // 
-public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
+public class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
   Attributes:
     // 
     - knotRenderEffects : List<RenderEffect>
@@ -23,7 +23,7 @@ public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
     + Redraw : bool
   Methods:
     // 
-    + World (GameState state)
+    + World (GameScreen state)
     // 
     + SelectObject (IGameObject obj, GameTime gameTime)
     // 
@@ -41,12 +41,12 @@ public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
     // 
     - IEnumerable.GetEnumerator () : IEnumerator
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
 // 
 public class TestModel : GameModel
   Attributes:
   Methods:
     // 
-    + TestModel (GameState state, GameModelInfo info)
+    + TestModel (GameScreen state, GameModelInfo info)
     // 
     + Update (GameTime gameTime) override

@@ -11,9 +11,9 @@ public static class HfGDesign :
     - menuFont : SpriteFont static
   Methods:
     // 
-    + MenuFont (GameState state) : SpriteFont static
+    + MenuFont (GameScreen state) : SpriteFont static
     // 
-    + DrawLines (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameState state, GameTime gameTime) static
+    + DrawLines (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameScreen state, GameTime gameTime) static
     // 
     + CreateRectangle (int lineWidth, float x, float y, float w, float h) : Rectangle static
     // 

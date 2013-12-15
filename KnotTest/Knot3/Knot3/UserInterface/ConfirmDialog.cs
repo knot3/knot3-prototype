@@ -27,7 +27,7 @@ namespace Knot3.UserInterface
 		protected Action OnNoClick = () => {};
 		protected Action OnCancelClick = () => {};
 
-		public ConfirmDialog (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+		public ConfirmDialog (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
 			: base(state, info, drawOrder)
 		{
 			// text

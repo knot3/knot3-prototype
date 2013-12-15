@@ -1,9 +1,9 @@
 // 
-public class KeyHandler : GameStateComponent
+public class KeyHandler : GameScreenComponent
   Attributes:
   Methods:
     // 
-    + KeyHandler (GameState state)
+    + KeyHandler (GameScreen state)
     // 
     private class KeyEventComponent : 
       Attributes:

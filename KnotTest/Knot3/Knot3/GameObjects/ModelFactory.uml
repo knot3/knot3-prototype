@@ -4,9 +4,9 @@ public sealed class ModelFactory :
     // 
     - cache : Dictionary<GameModelInfo,GameModel> new
     // 
-    - CreateModel : Func<GameState,GameModelInfo,GameModel>
+    - CreateModel : Func<GameScreen,GameModelInfo,GameModel>
   Methods:
     // 
-    + ModelFactory (Func<GameState, GameModelInfo, GameModel> createModel)
+    + ModelFactory (Func<GameScreen, GameModelInfo, GameModel> createModel)
     // 
-    + this (GameState state, GameModelInfo info) : GameModel
+    + this (GameScreen state, GameModelInfo info) : GameModel

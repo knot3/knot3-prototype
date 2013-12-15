@@ -16,12 +16,12 @@ namespace Knot3.Utilities
 		{
 			bool catched = false;
 			if (lastKey != Keys.None) {
-				if (Core.Input.KeyboardState.IsKeyUp (lastKey))
+				if (InputManager.KeyboardState.IsKeyUp (lastKey))
 					lastKey = Keys.None;
 				else if ((gameTime.TotalGameTime.TotalMilliseconds - lastMillis) > 200)
 					lastKey = Keys.None;
 			}
-			Keys[] keys = Core.Input.KeyboardState.GetPressedKeys ();
+			Keys[] keys = InputManager.KeyboardState.GetPressedKeys ();
 			if (lastKey == Keys.None) {
 				for (int i = 0; i < keys.Length; ++i) {
 					if (keys [i] != Keys.LeftShift && keys [i] != Keys.RightShift) {

@@ -17,7 +17,7 @@ public class ColorPicker : Widget, IMouseEventListener
     + IsMouseEventEnabled : bool
   Methods:
     // 
-    + ColorPicker (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + ColorPicker (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + Draw (GameTime gameTime) override
     // 

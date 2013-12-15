@@ -81,7 +81,7 @@ namespace Knot3.UserInterface
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TestGame1.MenuItem"/> class.
 		/// </summary>
-		public MenuItem (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+		public MenuItem (GameScreen state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 			: base(state, info, drawOrder, itemNum)
 		{
 			// create a sprite batch

@@ -22,7 +22,7 @@ namespace Knot3.UserInterface
 		// text input
 		protected TextInput TextInput;
 
-		public TextInputDialog (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+		public TextInputDialog (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
 			: base(state, info, drawOrder)
 		{
 			var textInputInfo = new WidgetInfo () {
@@ -35,9 +35,9 @@ namespace Knot3.UserInterface
 			TextInput = new TextInput (state, textInputInfo, DisplayLayer.SubMenu);
 		}
 
-		public override IEnumerable<IGameStateComponent> SubComponents (GameTime gameTime)
+		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime gameTime)
 		{
-			foreach (DrawableGameStateComponent component in base.SubComponents(gameTime)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents(gameTime)) {
 				yield return component;
 			}
 			yield return TextInput;

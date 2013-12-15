@@ -39,7 +39,7 @@ public class WidgetInfo : IEquatable<WidgetInfo>
     // 
     + GetHashCode () : int override
 // 
-public abstract class Widget : DrawableGameStateComponent
+public abstract class Widget : DrawableGameScreenComponent
   Attributes:
     // 
     + Info : WidgetInfo
@@ -47,7 +47,7 @@ public abstract class Widget : DrawableGameStateComponent
     + IsVisible : bool virtual
   Methods:
     // 
-    + Widget (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Widget (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + bounds () : Rectangle
 // 
@@ -59,7 +59,7 @@ public abstract class ItemWidget : Widget
     + ItemState : ItemState
   Methods:
     // 
-    + ItemWidget (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
+    + ItemWidget (GameScreen state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 public enum ItemState
     Unselected = 0
     Selected

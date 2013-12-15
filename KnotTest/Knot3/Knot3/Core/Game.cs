@@ -18,7 +18,7 @@ using Knot3.RenderEffects;
 namespace Knot3.Core
 {
 	/// <summary>
-	/// Die Haupt-Klasse des Spiels. Verwaltet den jeweils aktuellen GameState.
+	/// Die Haupt-Klasse des Spiels. Verwaltet den jeweils aktuellen GameScreen.
 	/// </summary>
 	public class Game : Microsoft.Xna.Framework.Game
 	{
@@ -26,7 +26,7 @@ namespace Knot3.Core
 		public GraphicsDeviceManager graphics { get; private set; }
 
 		// custom classes
-		public GameState State { get; private set; }
+		public GameScreen State { get; private set; }
 
 		// colors, sizes, ...
 		public static Vector2 DefaultSize = new Vector2 (1280, 720);
@@ -74,8 +74,8 @@ namespace Knot3.Core
 		/// </summary>
 		protected override void LoadContent ()
 		{
-			GameStates.Initialize (this);
-			State = GameStates.StartScreen;
+			GameScreens.Initialize (this);
+			State = GameScreens.StartScreen;
 			State.Activate (null);
 		}
 

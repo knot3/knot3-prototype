@@ -3,4 +3,4 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton (GameScreen state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)

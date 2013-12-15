@@ -20,10 +20,10 @@ using Knot3.Settings;
 namespace Knot3.GameObjects
 {
 	/// <summary>
-	/// Ein GameStateComponent, der das IGameObject aus der World selektiert, das 
+	/// Ein GameScreenComponent, der das IGameObject aus der World selektiert, das 
 	/// sich unter der aktuellen Mausposition befindet.
 	/// </summary>
-	public class ModelMousePicker : GameStateComponent
+	public class ModelMousePicker : GameScreenComponent
 	{
 		// game world
 		private World World { get; set; }
@@ -35,7 +35,7 @@ namespace Knot3.GameObjects
 		/// <summary>
 		/// Initializes a new MousePicking component.
 		/// </summary>
-		public ModelMousePicker (GameState state, World world)
+		public ModelMousePicker (GameScreen state, World world)
 			: base(state, DisplayLayer.None)
 		{
 			World = world;
@@ -53,10 +53,10 @@ namespace Knot3.GameObjects
 			if (millis > lastRayCheck + 10
 				&& (state.input.CurrentInputAction == InputAction.TargetMove
 				|| state.input.CurrentInputAction == InputAction.FreeMouse)
-				&& Core.Input.MouseState.ToVector2 () != lastMousePosition) {
+				&& InputManager.MouseState.ToVector2 () != lastMousePosition) {
 
 				lastRayCheck = millis;
-				lastMousePosition = Core.Input.MouseState.ToVector2 ();
+				lastMousePosition = InputManager.MouseState.ToVector2 ();
 
 				Overlay.Profiler ["Ray"] = Knot3.Core.Game.Time (() => {
 
@@ -69,7 +69,7 @@ namespace Knot3.GameObjects
 
 		private void UpdateMouseRay (GameTime gameTime)
 		{
-			Ray ray = World.Camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
+			Ray ray = World.Camera.GetMouseRay (InputManager.MouseState.ToVector2 ());
 
 			GameObjectDistance nearest = null;
 			foreach (IGameObject obj in World.Objects) {

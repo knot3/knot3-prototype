@@ -21,7 +21,7 @@ namespace Knot3.RenderEffects
 		private RenderTarget2D lastFrame;
 		private float alpha;
 
-		public FadeEffect (GameState state, GameState oldState)
+		public FadeEffect (GameScreen state, GameScreen oldState)
 			: base(state)
 		{
 			if (oldState != null) {

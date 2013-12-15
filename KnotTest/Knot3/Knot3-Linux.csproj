@@ -83,7 +83,6 @@
     <Compile Include="Knot3\RenderEffects\RenderTargets.cs" />
     <Compile Include="Knot3\RenderEffects\NoEffect.cs" />
     <Compile Include="Knot3\Utilities\Models.cs" />
-    <Compile Include="Knot3\UserInterface\MenuScreenInput.cs" />
     <Compile Include="Knot3\UserInterface\TextInputDialog.cs" />
     <Compile Include="Knot3\UserInterface\TextInput.cs" />
     <Compile Include="Knot3\UserInterface\Widget.cs" />
@@ -96,22 +95,18 @@
     <Compile Include="Knot3\GameObjects\ModelFactory.cs" />
     <Compile Include="Knot3\UserInterface\MenuItem.cs" />
     <Compile Include="Knot3\Core\Camera.cs" />
-    <Compile Include="Knot3\Core\ClickHandler.cs" />
-    <Compile Include="Knot3\Core\DrawableGameStateComponent.cs" />
+    <Compile Include="Knot3\Core\DrawableGameScreenComponent.cs" />
     <Compile Include="Knot3\Core\Game.cs" />
-    <Compile Include="Knot3\Core\GameState.cs" />
-    <Compile Include="Knot3\Core\GameStateComponent.cs" />
-    <Compile Include="Knot3\Core\IGameStateComponent.cs" />
-    <Compile Include="Knot3\Core\KeyHandler.cs" />
+    <Compile Include="Knot3\Core\GameScreen.cs" />
+    <Compile Include="Knot3\Core\GameScreenComponent.cs" />
+    <Compile Include="Knot3\Core\IGameScreenComponent.cs" />
     <Compile Include="Knot3\Core\MousePointer.cs" />
     <Compile Include="Knot3\Core\Overlay.cs" />
     <Compile Include="Knot3\Core\StartScreen.cs" />
-    <Compile Include="Knot3\Core\Input.cs" />
     <Compile Include="Knot3\GameObjects\MovableGameObject.cs" />
     <Compile Include="Knot3\Core\IMouseEventListener.cs" />
     <Compile Include="Knot3\Core\IKeyEventListener.cs" />
     <Compile Include="Knot3\GameObjects\IEdgeChangeListener.cs" />
-    <Compile Include="Knot3\CreativeMode\KnotModeInput.cs" />
     <Compile Include="Knot3\KnotData\EdgeList.cs" />
     <Compile Include="Knot3\KnotData\Edge.cs" />
     <Compile Include="Knot3\KnotData\KnotListFormat.cs" />
@@ -127,6 +122,10 @@
     <Compile Include="Knot3\GameObjects\ModelRenderer.cs" />
     <Compile Include="Knot3\KnotData\NodeMap.cs" />
     <Compile Include="Knot3\GameObjects\ArrowModel.cs" />
+    <Compile Include="Knot3\Core\WidgetKeyHandler.cs" />
+    <Compile Include="Knot3\Core\WidgetMouseHandler.cs" />
+    <Compile Include="Knot3\CreativeMode\KnotInputHandler.cs" />
+    <Compile Include="Knot3\Core\InputManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />

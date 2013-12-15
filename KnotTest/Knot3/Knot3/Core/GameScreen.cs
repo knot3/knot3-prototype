@@ -20,10 +20,10 @@ using Knot3.UserInterface;
 namespace Knot3.Core
 {
 	/// <summary>
-	/// Die abstrakte Klasse GameState steht für einen bestimmten Zustand des Spiels und verwaltet
-	/// eine Liste von IGameStateComponent-Objekten, die einzelne Komponenten zeichenen und auf Eingaben reagieren.
+	/// Die abstrakte Klasse GameScreen steht für einen bestimmten Zustand des Spiels und verwaltet
+	/// eine Liste von IGameScreenComponent-Objekten, die einzelne Komponenten zeichenen und auf Eingaben reagieren.
 	/// </summary>
-	public abstract class GameState
+	public abstract class GameScreen
 	{
 		/// <summary>
 		/// The game.
@@ -36,29 +36,30 @@ namespace Knot3.Core
 		/// <value>
 		/// The next game state.
 		/// </value>
-		public GameState NextState { get; set; }
+		public GameScreen NextState { get; set; }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Knot3.GameState"/> class.
+		/// Initializes a new instance of the <see cref="Knot3.GameScreen"/> class.
 		/// </summary>
 		/// <param name='game'>
 		/// The Game.
 		/// </param>
-		public GameState (Game game)
+		public GameScreen (Game game)
 		{
 			this.game = game;
 			this.NextState = this;
 			this.RenderEffects = new RenderEffectStack (defaultEffect: new NoEffect (this));
 			this.PostProcessing = new NoEffect (this);
+			this.input = new InputManager (this);
 		}
 
 		/// <summary>
-		/// Gets the input handler for this game state.
+		/// Gets the basic input handler for this game state.
 		/// </summary>
 		/// <value>
 		/// The input handler.
 		/// </value>
-		public Input input { get; protected set; }
+		public InputManager input { get; set; }
 
 		/// <summary>
 		/// Gets the graphics device manager for this game state.
@@ -137,9 +138,9 @@ namespace Knot3.Core
 		/// <param name='components'>
 		/// Game Components.
 		/// </param>
-		public void AddGameComponents (GameTime gameTime, params IGameStateComponent[] components)
+		public void AddGameComponents (GameTime gameTime, params IGameScreenComponent[] components)
 		{
-			foreach (IGameStateComponent component in components) {
+			foreach (IGameScreenComponent component in components) {
 				//Console.WriteLine ("AddGameComponents: " + component);
 				game.Components.Add (component);
 				AddGameComponents (gameTime, component.SubComponents (gameTime).ToArray ());
@@ -152,9 +153,9 @@ namespace Knot3.Core
 		/// <param name='components'>
 		/// Game Components.
 		/// </param>
-		public void RemoveGameComponents (GameTime gameTime, params IGameStateComponent[] components)
+		public void RemoveGameComponents (GameTime gameTime, params IGameScreenComponent[] components)
 		{
-			foreach (IGameStateComponent component in components) {
+			foreach (IGameScreenComponent component in components) {
 				Console.WriteLine ("RemoveGameComponents: " + component);
 				RemoveGameComponents (gameTime, component.SubComponents (gameTime).ToArray ());
 				game.Components.Remove (component);
@@ -170,7 +171,7 @@ namespace Knot3.Core
 		public virtual void Activate (GameTime gameTime)
 		{
 			Console.WriteLine ("Activate: " + this);
-			AddGameComponents (gameTime, new KeyHandler (this), new ClickHandler (this));
+			AddGameComponents (gameTime, input, new WidgetKeyHandler (this), new WidgetMouseHandler (this));
 		}
 
 		/// <summary>
@@ -187,9 +188,9 @@ namespace Knot3.Core
 	}
 
 	/// <summary>
-	/// Verwaltet Referenzen auf alle dauerhaft im Speicher liegenden GameState-Objekte des Spiels.
+	/// Verwaltet Referenzen auf alle dauerhaft im Speicher liegenden GameScreen-Objekte des Spiels.
 	/// </summary>
-	public static class GameStates
+	public static class GameScreens
 	{
 		public static CreativeModeScreen CreativeMode;
 		public static StartScreen StartScreen;

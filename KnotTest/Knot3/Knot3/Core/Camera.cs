@@ -19,10 +19,10 @@ using Knot3.GameObjects;
 namespace Knot3.Core
 {
 	/// <summary>
-	/// Ein GameStateComponent, der bei jedem Update die View-, World- und Projectionmatrizen auf Basis der 
+	/// Ein GameScreenComponent, der bei jedem Update die View-, World- und Projectionmatrizen auf Basis der 
 	/// aktuellen Kameraposition neu berechnet.
 	/// </summary>
-	public class Camera : GameStateComponent
+	public class Camera : GameScreenComponent
 	{
 		World World { get; set; }
 
@@ -120,7 +120,7 @@ namespace Knot3.Core
 		/// <param name='state'>
 		/// Game State.
 		/// </param>
-		public Camera (GameState state, World world)
+		public Camera (GameScreen state, World world)
 			: base(state, DisplayLayer.None)
 		{
 			World = world;

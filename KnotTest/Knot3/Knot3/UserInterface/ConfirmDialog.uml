@@ -11,6 +11,6 @@ public class ConfirmDialog : Dialog
     # OnCancelClick : Action
   Methods:
     // 
-    + ConfirmDialog (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + ConfirmDialog (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
     // 
     # DrawDialog (GameTime gameTime) override

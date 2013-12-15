@@ -54,9 +54,9 @@ namespace Knot3.GameObjects
 		#region Attributes and Properties
 
 		/// <summary>
-		/// Der zugewiesene GameState. Dieses Objekt kann nur innerhalb dieses GameState's verwendet werden.
+		/// Der zugewiesene GameScreen. Dieses Objekt kann nur innerhalb dieses GameScreen's verwendet werden.
 		/// </summary>
-		protected GameState state;
+		protected GameScreen state;
 
 		GameObjectInfo IGameObject.Info { get { return Info; } }
 
@@ -90,7 +90,7 @@ namespace Knot3.GameObjects
 
 		#region Constructors
 
-		public GameModel (GameState state, GameModelInfo info)
+		public GameModel (GameScreen state, GameModelInfo info)
 		{
 			this.state = state;
 			Info = info;

@@ -23,7 +23,7 @@ namespace Knot3.GameObjects
 	public class PipeMovement : IGameObject, IEnumerable<IGameObject>
 	{
 		// game state
-		private GameState state;
+		private GameScreen state;
 
 		// game world
 		public World World { get; set; }
@@ -38,7 +38,7 @@ namespace Knot3.GameObjects
 		private Vector3 previousMousePosition = Vector3.Zero;
 		private List<ShadowGameObject> shadowObjects;
 
-		public PipeMovement (GameState state, World world, GameObjectInfo info)
+		public PipeMovement (GameScreen state, World world, GameObjectInfo info)
 		{
 			this.state = state;
 			this.World = world;
@@ -61,7 +61,7 @@ namespace Knot3.GameObjects
 				PipeModel pipe = World.SelectedObject as PipeModel;
 
 				// pipe selection
-				if (Core.Input.LeftButton == ClickState.SingleClick) {
+				if (InputManager.LeftButton == ClickState.SingleClick) {
 					World.Redraw = true;
 					try {
 						Edge e = pipe.Info.Edge;
@@ -104,7 +104,7 @@ namespace Knot3.GameObjects
 					World.Camera.ViewMatrix, World.Camera.WorldMatrix
 				);
 				Vector3 currentMousePosition = state.viewport.Unproject (
-					new Vector3 (Core.Input.MouseState.ToVector2 (), screenLocation.Z),
+					new Vector3 (InputManager.MouseState.ToVector2 (), screenLocation.Z),
 					World.Camera.ProjectionMatrix, World.Camera.ViewMatrix, Matrix.Identity
 				);
 
@@ -138,7 +138,7 @@ namespace Knot3.GameObjects
 			// selected object is not a PipeModel
 			else {
 				// left click clears the selection
-				if (Core.Input.LeftButton == ClickState.SingleClick) {
+				if (InputManager.LeftButton == ClickState.SingleClick) {
 					foreach (EdgeList edges in knownEdgeLists) {
 						edges.SelectedEdges.Clear ();
 					}
@@ -256,7 +256,7 @@ namespace Knot3.GameObjects
 	public class ShadowGameObject : IGameObject
 	{
 		// game state
-		protected GameState state;
+		protected GameScreen state;
 
 		// the decorated object
 		private IGameObject Obj;
@@ -270,7 +270,7 @@ namespace Knot3.GameObjects
 		// info
 		public GameObjectInfo Info { get; private set; }
 
-		public ShadowGameObject (GameState state, IGameObject obj)
+		public ShadowGameObject (GameScreen state, IGameObject obj)
 		{
  this.state = state;
 			Info = new GameObjectInfo ();
@@ -340,7 +340,7 @@ namespace Knot3.GameObjects
 
 		public float ShadowAlpha { get; set; }
 
-		public ShadowGameModel (GameState state, GameModel model)
+		public ShadowGameModel (GameScreen state, GameModel model)
 			: base(state, model)
 		{
 			Model = model;

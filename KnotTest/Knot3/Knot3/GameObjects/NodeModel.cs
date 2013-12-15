@@ -65,7 +65,7 @@ namespace Knot3.GameObjects
 
 		#endregion
 
-		public NodeModel (GameState state, NodeModelInfo info)
+		public NodeModel (GameScreen state, NodeModelInfo info)
 			: base(state, info)
 		{
 		}

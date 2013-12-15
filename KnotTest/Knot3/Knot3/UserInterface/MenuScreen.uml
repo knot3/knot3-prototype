@@ -1,5 +1,5 @@
 // 
-public abstract class MenuScreen : GameState
+public abstract class MenuScreen : GameScreen
   Attributes:
     // 
     - spriteBatch : SpriteBatch

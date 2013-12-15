@@ -24,7 +24,7 @@ namespace Knot3.GameObjects
 	/// Eine Liste von Spielobjekten (Interface IGameObject), die in einer 3D-Welt gezeichnet werden. Ruft die Update()-
 	/// und Draw()-Methoden der Spielobjekte auf.
 	/// </summary>
-	public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
+	public class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
 	{
 		// graphics-related classes
 		private List<RenderEffect> knotRenderEffects;
@@ -75,7 +75,7 @@ namespace Knot3.GameObjects
 		/// <summary>
 		/// Initializes a new Overlay
 		/// </summary>
-		public World (GameState state)
+		public World (GameScreen state)
 			: base(state, DisplayLayer.World)
 		{
 			// camera
@@ -232,9 +232,9 @@ namespace Knot3.GameObjects
 			return GetEnumerator (); // Just return the generic version
 		}
 
-		public override IEnumerable<IGameStateComponent> SubComponents (GameTime gameTime)
+		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime gameTime)
 		{
-			foreach (DrawableGameStateComponent component in base.SubComponents(gameTime)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents(gameTime)) {
 				yield return component;
 			}
 			yield return Camera;
@@ -244,7 +244,7 @@ namespace Knot3.GameObjects
 	
 	public class TestModel : GameModel
 	{
-		public TestModel (GameState state, GameModelInfo info)
+		public TestModel (GameScreen state, GameModelInfo info)
 			: base(state, info)
 		{
 		}

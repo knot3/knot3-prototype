@@ -53,15 +53,15 @@ namespace Knot3.Core
 
 			menu.AddButton (new MenuItemInfo (
 				text: "Creative", left: 0.700f, top: 0.250f, right: 0.960f, bottom: 0.380f,
-			    onClick: () => NextState = GameStates.LoadSavegameScreen).AddKey (Keys.Space)
+			    onClick: () => NextState = GameScreens.LoadSavegameScreen).AddKey (Keys.Space)
 			);
 			menu.AddButton (new MenuItemInfo (
 				text: "Challenge", left: 0.000f, top: 0.050f, right: 0.380f, bottom: 0.190f,
-			    onClick: () => NextState = GameStates.CreativeMode).AddKey (Keys.RightWindows)
+			    onClick: () => NextState = GameScreens.CreativeMode).AddKey (Keys.RightWindows)
 			);
 			menu.AddButton (new MenuItemInfo (
 				text: "Options", left: 0.260f, top: 0.840f, right: 0.480f, bottom: 0.950f,
-			    onClick: () => NextState = GameStates.OptionScreen).AddKey (Keys.O)
+			    onClick: () => NextState = GameScreens.OptionScreen).AddKey (Keys.O)
 			);
 			menu.AddButton (new MenuItemInfo (
 				text: "Exit", left: 0.800f, top: 0.535f, right: 0.980f, bottom: 0.790f,

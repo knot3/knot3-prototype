@@ -25,7 +25,7 @@ public class Menu : Widget
     + IsVisible : bool override
   Methods:
     // 
-    + Menu (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Menu (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
     // 
     - assignMenuItemInfo (ref MenuItemInfo info, int num, MenuItem item)
     // 
@@ -39,6 +39,6 @@ public class Menu : Widget
     // 
     + Clear ()
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     + CollapseMenus (MenuItem menu)

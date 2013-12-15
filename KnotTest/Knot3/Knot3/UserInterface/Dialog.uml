@@ -9,13 +9,13 @@ public abstract class Dialog : Widget
     # spriteBatch : SpriteBatch
   Methods:
     // 
-    + Dialog (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Dialog (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
     // 
     # RelativeButtonPosition (int n) : Vector2
     // 
     # RelativeButtonSize (int n) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     + Draw (GameTime gameTime) override
     // 

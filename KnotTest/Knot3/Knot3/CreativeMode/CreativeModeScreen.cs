@@ -25,7 +25,7 @@ namespace Knot3.CreativeMode
 	/// <summary>
 	/// Der Creative-Modus, in dem ein Knoten erstellt und bearbeitet werden kann.
 	/// </summary>
-	public class CreativeModeScreen : GameState
+	public class CreativeModeScreen : GameScreen
 	{
 		// the knot to draw
 		private Knot knot;
@@ -33,6 +33,7 @@ namespace Knot3.CreativeMode
 
 		// the game components
 		private World world;
+		private KnotInputHandler knotInput;
 		private MousePointer pointer;
 		private Overlay overlay;
 		private ModelMousePicker picker;
@@ -61,7 +62,7 @@ namespace Knot3.CreativeMode
 			// world
 			world = new World (this);
 			// input
-			input = new KnotModeInput (this, world);
+			knotInput = new KnotInputHandler (this, world);
 			// overlay
 			overlay = new Overlay (this, world);
 			// pointer
@@ -141,7 +142,7 @@ namespace Knot3.CreativeMode
 						};
 					}
 				} else {
-					NextState = GameStates.StartScreen;
+					NextState = GameScreens.StartScreen;
 				}
 				return;
 			}
@@ -174,7 +175,7 @@ namespace Knot3.CreativeMode
 		public override void Activate (GameTime gameTime)
 		{
 			base.Activate (gameTime);
-			AddGameComponents (gameTime, input, overlay, pointer, world, picker, coloring);
+			AddGameComponents (gameTime, knotInput, overlay, pointer, world, picker, coloring);
 		}
 
 		public override void Unload ()
@@ -184,7 +185,7 @@ namespace Knot3.CreativeMode
 
 	public class KnotSaveConfirmDialog : TextInputDialog
 	{
-		public KnotSaveConfirmDialog (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+		public KnotSaveConfirmDialog (GameScreen state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 			: base(state, info, drawOrder)
 		{
 			Info.RelativeSize = () => new Vector2 (0.500f, 0.250f);
@@ -198,11 +199,11 @@ namespace Knot3.CreativeMode
 				Console.WriteLine ("OnYesClick");
 				knot.Rename (TextInput.InputText);
 				knot.Save ();
-				state.NextState = GameStates.StartScreen;
+				state.NextState = GameScreens.StartScreen;
 			};
 			OnNoClick += () => {
 				Console.WriteLine ("OnNoClick");
-				state.NextState = GameStates.StartScreen;
+				state.NextState = GameScreens.StartScreen;
 			};
 		}
 	}

@@ -21,11 +21,11 @@ using Knot3.UserInterface;
 
 namespace Knot3.GameObjects
 {
-	public class PipeColoring : GameStateComponent, IKeyEventListener
+	public class PipeColoring : GameScreenComponent, IKeyEventListener
 	{
 		public Knot Knot { get; set; }
 
-		public PipeColoring (GameState state)
+		public PipeColoring (GameScreen state)
 			: base(state, DisplayLayer.None)
 		{
 			ValidKeys = new List<Keys> ();

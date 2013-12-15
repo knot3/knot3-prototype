@@ -6,9 +6,9 @@ using Knot3.Utilities;
 
 namespace Knot3.Core
 {
-	public class ClickHandler : GameStateComponent
+	public class WidgetMouseHandler : GameScreenComponent
 	{
-		public ClickHandler (GameState state)
+		public WidgetMouseHandler (GameScreen state)
 			: base(state, DisplayLayer.None)
 		{
 		}
@@ -23,28 +23,28 @@ namespace Knot3.Core
 		public override void Update (GameTime gameTime)
 		{
 			ClickEventComponent best = null;
-			foreach (IGameStateComponent _component in state.game.Components) {
+			foreach (IGameScreenComponent _component in state.game.Components) {
 				if (_component is IMouseEventListener) {
 					IMouseEventListener receiver = _component as IMouseEventListener;
 					// mouse input
 					Rectangle bounds = receiver.bounds ();
-					bool hovered = bounds.Contains (Input.MouseState.ToPoint ());
+					bool hovered = bounds.Contains (InputManager.MouseState.ToPoint ());
 					receiver.SetHovered (hovered);
 					if (hovered && receiver.IsMouseEventEnabled && (best == null || receiver.Index > best.layer)) {
 						best = new ClickEventComponent {
 							receiver = receiver,
 							layer = receiver.Index,
-							relativePosition = Input.MouseState.ToVector2()-bounds.Location.ToVector2()
+							relativePosition = InputManager.MouseState.ToVector2()-bounds.Location.ToVector2()
 						};
 					}
 				}
 			}
 			if (best != null) {
-				if (Input.LeftButton != ClickState.None) {
-					best.receiver.OnLeftClick (best.relativePosition, Input.LeftButton, gameTime);
+				if (InputManager.LeftButton != ClickState.None) {
+					best.receiver.OnLeftClick (best.relativePosition, InputManager.LeftButton, gameTime);
 				}
-				if (Input.RightButton != ClickState.None) {
-					best.receiver.OnRightClick (best.relativePosition, Input.LeftButton, gameTime);
+				if (InputManager.RightButton != ClickState.None) {
+					best.receiver.OnRightClick (best.relativePosition, InputManager.LeftButton, gameTime);
 				}
 			}
 		}

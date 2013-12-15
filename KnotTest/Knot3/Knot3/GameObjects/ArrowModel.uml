@@ -21,7 +21,7 @@ public class ArrowModel : GameModel
     - Bounds : BoundingSphere[]
   Methods:
     // 
-    + ArrowModel (GameState state, ArrowModelInfo info)
+    + ArrowModel (GameScreen state, ArrowModelInfo info)
     // 
     + Draw (GameTime gameTime) override
     // 

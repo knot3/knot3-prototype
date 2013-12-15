@@ -21,7 +21,7 @@ namespace Knot3.RenderEffects
 {
 	public class InstancingTest : RenderEffect
 	{
-		public InstancingTest (GameState state)
+		public InstancingTest (GameScreen state)
 			: base(state)
 		{
 		}

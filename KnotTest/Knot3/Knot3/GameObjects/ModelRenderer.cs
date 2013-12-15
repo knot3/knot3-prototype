@@ -38,7 +38,7 @@ namespace Knot3.GameObjects
 		private ModelFactory nodeFactory;
 		private ModelFactory arrowFactory;
 
-		public ModelRenderer (GameState state, GameObjectInfo info)
+		public ModelRenderer (GameScreen state, GameObjectInfo info)
 			: base(state)
 		{
 			Info = info;

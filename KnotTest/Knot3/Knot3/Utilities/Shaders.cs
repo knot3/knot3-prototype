@@ -18,7 +18,7 @@ namespace Knot3.Utilities
 {
 	public static class Shaders
 	{
-		public static Effect LoadEffect (this GameState state, string name)
+		public static Effect LoadEffect (this GameScreen state, string name)
 		{
 			if (Mono.IsRunningOnMono ())
 				return LoadEffectMono (state, name);
@@ -26,12 +26,12 @@ namespace Knot3.Utilities
 				return LoadEffectDotnet (state, name);
 		}
 
-		private static Effect LoadEffectMono (GameState state, string name)
+		private static Effect LoadEffectMono (GameScreen state, string name)
 		{
 			return new Effect (state.device, System.IO.File.ReadAllBytes ("Content/" + name + ".mgfx"));
 		}
 
-		private static Effect LoadEffectDotnet (GameState state, string name)
+		private static Effect LoadEffectDotnet (GameScreen state, string name)
 		{
 			return state.content.Load<Effect> (name);
 		}

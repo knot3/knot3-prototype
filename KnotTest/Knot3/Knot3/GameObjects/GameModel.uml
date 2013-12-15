@@ -16,7 +16,7 @@ public class GameModelInfo : GameObjectInfo
 public class GameModel : IGameObject
   Attributes:
     // 
-    # state : GameState
+    # state : GameScreen
     // 
     - IGameObject.Info : GameObjectInfo
     // 
@@ -55,7 +55,7 @@ public class GameModel : IGameObject
     # InCameraFrustum : bool
   Methods:
     // 
-    + GameModel (GameState state, GameModelInfo info)
+    + GameModel (GameScreen state, GameModelInfo info)
     // 
     + Update (GameTime gameTime) virtual
     // 

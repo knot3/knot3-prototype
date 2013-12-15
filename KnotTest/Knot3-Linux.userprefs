@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Knot3/Knot3/GameObjects/PipeMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Knot3/Knot3/Core/Input.cs">
     <Files>
       <File FileName="Knot3/Knot3/Core/StartScreen.cs" Line="38" Column="23" />
       <File FileName="Knot3/Knot3/UserInterface/ColorPicker.cs" Line="67" Column="24" />
@@ -15,7 +15,7 @@
       <File FileName="Knot3/Knot3/Core/Overlay.cs" Line="229" Column="23" />
       <File FileName="../../../BTSync/instances.fx" Line="100" Column="17" />
       <File FileName="Knot3/Knot3/RenderEffects/RenderEffect.cs" Line="143" Column="21" />
-      <File FileName="Knot3/Knot3/Core/Camera.cs" Line="140" Column="50" />
+      <File FileName="Knot3/Knot3/Core/Camera.cs" Line="224" Column="14" />
       <File FileName="Knot3/Knot3/CreativeMode/KnotModeInput.cs" Line="224" Column="38" />
       <File FileName="Knot3/Knot3/RenderEffects/InstancingTest.cs" Line="41" Column="43" />
       <File FileName="Knot3/Knot3/GameObjects/GameModel.cs" Line="195" Column="5" />
@@ -45,6 +45,11 @@
       <File FileName="Knot3/Knot3/GameObjects/ModelMousePicker.cs" Line="75" Column="48" />
       <File FileName="Knot3/Knot3/GameObjects/World.cs" Line="56" Column="19" />
       <File FileName="Knot3/Knot3/Utilities/WrapList.cs" Line="18" Column="41" />
+      <File FileName="Knot3/Knot3/KnotData/Edge.cs" Line="116" Column="4" />
+      <File FileName="Knot3/Knot3/GameObjects/KnotRenderer.cs" Line="30" Column="26" />
+      <File FileName="Knot3/Knot3/KnotData/Node.cs" Line="112" Column="58" />
+      <File FileName="Knot3/Knot3/Utilities/Angles3.cs" Line="29" Column="1" />
+      <File FileName="Knot3/Knot3/Core/Input.cs" Line="41" Column="53" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

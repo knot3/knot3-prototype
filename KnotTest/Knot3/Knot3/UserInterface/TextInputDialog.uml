@@ -5,9 +5,9 @@ public class TextInputDialog : ConfirmDialog
     # TextInput : TextInput
   Methods:
     // 
-    + TextInputDialog (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + TextInputDialog (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     # TextInputPosition () : Vector2
     // 

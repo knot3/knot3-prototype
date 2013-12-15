@@ -16,7 +16,7 @@ using Knot3.Core;
 
 namespace Knot3.UserInterface
 {
-	public abstract class MenuScreen : GameState
+	public abstract class MenuScreen : GameScreen
 	{
 		// graphics-related attributes
 		private SpriteBatch spriteBatch;
@@ -42,9 +42,6 @@ namespace Knot3.UserInterface
 		{
 			// create a new SpriteBatch, which can be used to draw textures
 			spriteBatch = new SpriteBatch (graphics.GraphicsDevice);
-
-			// input
-			input = new MenuScreenInput (this);
 
 			// pointer
 			pointer = new MousePointer (this);
@@ -78,7 +75,7 @@ namespace Knot3.UserInterface
 		public override void Activate (GameTime gameTime)
 		{
 			base.Activate (gameTime);
-			AddGameComponents (gameTime, input, pointer);
+			AddGameComponents (gameTime, pointer);
 		}
 
 		public override void Unload ()

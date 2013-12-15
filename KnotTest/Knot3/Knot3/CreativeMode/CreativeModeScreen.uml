@@ -1,5 +1,5 @@
 // 
-public class CreativeModeScreen : GameState
+public class CreativeModeScreen : GameScreen
   Attributes:
     // 
     - knot : Knot
@@ -47,4 +47,4 @@ public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog (GameScreen state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)

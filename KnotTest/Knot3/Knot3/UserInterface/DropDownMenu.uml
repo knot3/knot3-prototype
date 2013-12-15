@@ -7,13 +7,13 @@ public class DropDownMenu : MenuItem
     - selected : MenuButton
   Methods:
     // 
-    + DropDownMenu (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu (GameScreen state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + AddEntries (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
     // 
     + AddEntries (DistinctOptionInfo option)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     + Collapse () override
     // 

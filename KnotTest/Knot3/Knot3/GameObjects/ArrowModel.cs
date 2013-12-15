@@ -62,7 +62,7 @@ namespace Knot3.GameObjects
 
 		#endregion
 
-		public ArrowModel (GameState state, ArrowModelInfo info)
+		public ArrowModel (GameScreen state, ArrowModelInfo info)
 			: base(state, info)
 		{
 			if (Info.Direction.Y == 1) {

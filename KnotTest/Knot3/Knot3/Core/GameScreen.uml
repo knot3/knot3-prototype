@@ -1,10 +1,10 @@
 // 
-public abstract class GameState : 
+public abstract class GameScreen : 
   Attributes:
     // 
     + game : Game
     // 
-    + NextState : GameState
+    + NextState : GameScreen
     // 
     + input : Input
     // 
@@ -21,7 +21,7 @@ public abstract class GameState :
     + PostProcessing : RenderEffect
   Methods:
     // 
-    + GameState (Game game)
+    + GameScreen (Game game)
     // 
     + Initialize () abstract
     // 
@@ -31,15 +31,15 @@ public abstract class GameState :
     // 
     + Unload () abstract
     // 
-    + AddGameComponents (GameTime gameTime, params IGameStateComponent[] components)
+    + AddGameComponents (GameTime gameTime, params IGameScreenComponent[] components)
     // 
-    + RemoveGameComponents (GameTime gameTime, params IGameStateComponent[] components)
+    + RemoveGameComponents (GameTime gameTime, params IGameScreenComponent[] components)
     // 
     + Activate (GameTime gameTime) virtual
     // 
     + Deactivate (GameTime gameTime) virtual
 // 
-public static class GameStates : 
+public static class GameScreens : 
   Attributes:
     // 
     + CreativeMode : CreativeModeScreen static

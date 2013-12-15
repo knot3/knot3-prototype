@@ -1,5 +1,5 @@
 // 
-public class Overlay : DrawableGameStateComponent
+public class Overlay : DrawableGameScreenComponent
   Attributes:
     // 
     - spriteBatch : SpriteBatch
@@ -21,7 +21,7 @@ public class Overlay : DrawableGameStateComponent
     + Profiler : HashtableWrapper static
   Methods:
     // 
-    + Overlay (GameState state, World world)
+    + Overlay (GameScreen state, World world)
     // 
     # LoadContent () override
     // 

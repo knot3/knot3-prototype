@@ -1,5 +1,5 @@
 // 
-public class Camera : GameStateComponent
+public class Camera : GameScreenComponent
   Attributes:
     // 
     - World : World
@@ -47,7 +47,7 @@ public class Camera : GameStateComponent
     + ArcballTarget : Vector3
   Methods:
     // 
-    + Camera (GameState state, World world)
+    + Camera (GameScreen state, World world)
     // 
     + Update (GameTime gameTime) override
     // 

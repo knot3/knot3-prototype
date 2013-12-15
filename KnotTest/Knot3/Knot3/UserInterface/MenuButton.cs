@@ -19,7 +19,7 @@ namespace Knot3.UserInterface
 {
 	public class MenuButton : MenuItem
 	{
-		public MenuButton (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+		public MenuButton (GameScreen state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 			: base(state, drawOrder, itemNum, info)
 		{
 		}

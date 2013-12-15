@@ -1,5 +1,5 @@
 // 
-public abstract class Input : GameStateComponent, IKeyEventListener
+public abstract class Input : GameScreenComponent, IKeyEventListener
   Attributes:
     // 
     # FullscreenToggled : bool static
@@ -33,7 +33,7 @@ public abstract class Input : GameStateComponent, IKeyEventListener
     + KeyboardState : KeyboardState static
   Methods:
     // 
-    + Input (GameState state)
+    + Input (GameScreen state)
     // 
     + Update (GameTime gameTime) override
     // 

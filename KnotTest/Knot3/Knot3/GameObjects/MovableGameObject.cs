@@ -22,7 +22,7 @@ namespace Knot3.GameObjects
 	/// </summary>
 	public class MovableGameObject : IGameObject
 	{
-		private GameState state;
+		private GameScreen state;
 		private IGameObject Obj;
 
 		public World World {
@@ -30,7 +30,7 @@ namespace Knot3.GameObjects
 			set {}
 		}
 
-		public MovableGameObject (GameState state, IGameObject obj)
+		public MovableGameObject (GameScreen state, IGameObject obj)
 		{
  			this.state = state;
 			Obj = obj;
@@ -57,7 +57,7 @@ namespace Knot3.GameObjects
 
 		protected Ray CurrentMouseRay ()
 		{
-			Ray ray = World.Camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
+			Ray ray = World.Camera.GetMouseRay (InputManager.MouseState.ToVector2 ());
 			return ray;
 		}
 

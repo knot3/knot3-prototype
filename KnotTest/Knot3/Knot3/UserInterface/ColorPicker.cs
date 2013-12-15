@@ -24,7 +24,7 @@ namespace Knot3.UserInterface
 		// textures
 		protected SpriteBatch spriteBatch;
 
-		public ColorPicker (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+		public ColorPicker (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
 			: base(state, info, drawOrder)
 		{
 			info.BackgroundColor = () => Color.Black;

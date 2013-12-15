@@ -17,12 +17,12 @@ using Knot3.GameObjects;
 namespace Knot3.Core
 {
 	/// <summary>
-	/// Eine Implementierung von IGameStateComponent. Erbt von DrawableGameComponent aus XNA
+	/// Eine Implementierung von IGameScreenComponent. Erbt von DrawableGameComponent aus XNA
 	/// und hat daher außer der Update()-Methode auch eine Draw()-Methode.
 	/// </summary>
-	public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+	public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
 	{
-		public DrawableGameStateComponent (GameState state, DisplayLayer index)
+		public DrawableGameScreenComponent (GameScreen state, DisplayLayer index)
 			: base(state.game)
 		{
 			this.state = state;
@@ -30,14 +30,14 @@ namespace Knot3.Core
 		}
 
 		/// <summary>
-		/// Gets the GameState associated with this object.
+		/// Gets the GameScreen associated with this object.
 		/// </summary>
 		/// <value>
 		/// The Game state.
 		/// </value>
-		public GameState state { get; private set; }
+		public GameScreen state { get; private set; }
 
-		public virtual IEnumerable<IGameStateComponent> SubComponents (GameTime gameTime)
+		public virtual IEnumerable<IGameScreenComponent> SubComponents (GameTime gameTime)
 		{
 			yield break;
 		}

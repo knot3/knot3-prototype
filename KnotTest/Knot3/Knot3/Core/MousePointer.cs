@@ -17,9 +17,9 @@ using Knot3.Utilities;
 namespace Knot3.Core
 {
 	/// <summary>
-	/// Ein DrawableGameStateComponent, der einen Mauszeiger zeichnet.
+	/// Ein DrawableGameScreenComponent, der einen Mauszeiger zeichnet.
 	/// </summary>
-	public class MousePointer : DrawableGameStateComponent
+	public class MousePointer : DrawableGameScreenComponent
 	{
 		// graphics-related classes
 		private SpriteBatch spriteBatch;
@@ -30,7 +30,7 @@ namespace Knot3.Core
 		/// <param name='state'>
 		/// State.
 		/// </param>
-		public MousePointer (GameState state)
+		public MousePointer (GameScreen state)
 			: base(state, DisplayLayer.Cursor)
 		{
 			// create a new SpriteBatch, which can be used to draw textures
@@ -56,10 +56,10 @@ namespace Knot3.Core
 				Texture2D cursorTex = state.content.Load<Texture2D> ("cursor");
 				if (state.input.GrabMouseMovement || state.input.CurrentInputAction == InputAction.TargetMove
 					|| (state.input.CurrentInputAction == InputAction.ArcballMove
-					&& (Input.MouseState.LeftButton == ButtonState.Pressed || Input.MouseState.RightButton == ButtonState.Pressed))) {
+					&& (InputManager.MouseState.LeftButton == ButtonState.Pressed || InputManager.MouseState.RightButton == ButtonState.Pressed))) {
 					spriteBatch.Draw (cursorTex, state.device.Viewport.Center (), Color.White);
 				} else {
-					spriteBatch.Draw (cursorTex, new Vector2 (Input.MouseState.X, Input.MouseState.Y), Color.White);
+					spriteBatch.Draw (cursorTex, new Vector2 (InputManager.MouseState.X, InputManager.MouseState.Y), Color.White);
 				}
 
 				spriteBatch.End ();

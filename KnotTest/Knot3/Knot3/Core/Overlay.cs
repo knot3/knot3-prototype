@@ -19,9 +19,9 @@ using System.Collections;
 namespace Knot3.Core
 {
 	/// <summary>
-	/// Ein DrawableGameStateComponent, der ein Debugging-Overlay zeichnet.
+	/// Ein DrawableGameScreenComponent, der ein Debugging-Overlay zeichnet.
 	/// </summary>
-	public class Overlay : DrawableGameStateComponent
+	public class Overlay : DrawableGameScreenComponent
 	{
 		// graphics-related classes
 		private SpriteBatch spriteBatch;
@@ -35,7 +35,7 @@ namespace Knot3.Core
 		/// <summary>
 		/// Initializes a new Overlay-
 		/// </summary>
-		public Overlay (GameState state, World world)
+		public Overlay (GameScreen state, World world)
 			: base(state, DisplayLayer.Overlay)
 		{
 			// game world

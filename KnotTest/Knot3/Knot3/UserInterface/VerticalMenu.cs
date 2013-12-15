@@ -26,7 +26,7 @@ namespace Knot3.UserInterface
 		// textures
 		protected SpriteBatch spriteBatch;
 
-		public VerticalMenu (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+		public VerticalMenu (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
 			: base(state, info, drawOrder)
 		{
 			info.RelativeSize = () => new Vector2 (

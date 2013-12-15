@@ -21,6 +21,6 @@ public class NodeModel : GameModel
     + Info : NodeModelInfo new
   Methods:
     // 
-    + NodeModel (GameState state, NodeModelInfo info)
+    + NodeModel (GameScreen state, NodeModelInfo info)
     // 
     + Draw (GameTime gameTime) override

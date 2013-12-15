@@ -32,7 +32,7 @@ namespace Knot3.UserInterface
 		// menu-related attributes
 		protected List<MenuItem> Items;
 
-		public Menu (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+		public Menu (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
 			: base(state, info, drawOrder)
 		{
 			Items = new List<MenuItem> ();
@@ -112,12 +112,12 @@ namespace Knot3.UserInterface
 			Items.Clear ();
 		}
 
-		public override IEnumerable<IGameStateComponent> SubComponents (GameTime gameTime)
+		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime gameTime)
 		{
-			foreach (DrawableGameStateComponent component in base.SubComponents(gameTime)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents(gameTime)) {
 				yield return component;
 			}
-			foreach (DrawableGameStateComponent item in Items) {
+			foreach (DrawableGameScreenComponent item in Items) {
 				yield return item;
 			}
 		}

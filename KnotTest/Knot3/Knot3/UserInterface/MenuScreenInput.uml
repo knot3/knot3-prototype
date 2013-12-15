@@ -3,4 +3,4 @@ public class MenuScreenInput : Input
   Attributes:
   Methods:
     // 
-    + MenuScreenInput (GameState state)
+    + MenuScreenInput (GameScreen state)

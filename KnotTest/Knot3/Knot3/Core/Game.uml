@@ -4,7 +4,7 @@ public class Game : Microsoft.Xna.Framework.Game
     // 
     + graphics : GraphicsDeviceManager
     // 
-    + State : GameState
+    + State : GameScreen
     // 
     + DefaultSize : Vector2 static
     // 
