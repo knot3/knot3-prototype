@@ -23,4 +23,4 @@ public class NodeModel : GameModel
     // 
     + NodeModel (GameScreen screen, NodeModelInfo info)
     // 
-    + Draw (GameTime gameTime) override
+    + Draw (GameTime time) override

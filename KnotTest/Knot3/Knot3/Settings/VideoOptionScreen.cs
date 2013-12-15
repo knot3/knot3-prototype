@@ -82,13 +82,13 @@ namespace Knot3.Settings
 			menu.CollapseMenus (item);
 		}
 
-		public override void UpdateMenu (GameTime gameTime)
+		public override void UpdateMenu (GameTime time)
 		{
 		}
 		
-		public override void DrawMenu (GameTime gameTime)
+		public override void DrawMenu (GameTime time)
 		{
-			base.DrawMenu (gameTime);
+			base.DrawMenu (time);
 
 			spriteBatch.Begin (SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
 
@@ -98,10 +98,10 @@ namespace Knot3.Settings
 			spriteBatch.End ();
 		}
 
-		public override void Activate (GameTime gameTime)
+		public override void Activate (GameTime time)
 		{
-			base.Activate (gameTime);
-			AddGameComponents (gameTime, menu);
+			base.Activate (time);
+			AddGameComponents (time, menu);
 		}
 	}
 }

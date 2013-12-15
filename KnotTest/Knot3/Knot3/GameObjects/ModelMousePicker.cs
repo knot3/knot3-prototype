@@ -41,15 +41,15 @@ namespace Knot3.GameObjects
 			World = world;
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
 			// mouse ray selection
-			CheckMouseRay (gameTime);
+			CheckMouseRay (time);
 		}
 
-		private void CheckMouseRay (GameTime gameTime)
+		private void CheckMouseRay (GameTime time)
 		{
-			double millis = gameTime.TotalGameTime.TotalMilliseconds;
+			double millis = time.TotalGameTime.TotalMilliseconds;
 			if (millis > lastRayCheck + 10
 				&& (screen.input.CurrentInputAction == InputAction.TargetMove
 				|| screen.input.CurrentInputAction == InputAction.FreeMouse)
@@ -60,14 +60,14 @@ namespace Knot3.GameObjects
 
 				Overlay.Profiler ["Ray"] = Knot3.Core.Game.Time (() => {
 
-					UpdateMouseRay (gameTime);
+					UpdateMouseRay (time);
 
 				}
 				).TotalMilliseconds;
 			}
 		}
 
-		private void UpdateMouseRay (GameTime gameTime)
+		private void UpdateMouseRay (GameTime time)
 		{
 			Ray ray = World.Camera.GetMouseRay (InputManager.MouseState.ToVector2 ());
 
@@ -83,9 +83,9 @@ namespace Knot3.GameObjects
 				}
 			}
 			if (nearest != null) {
-				World.SelectObject (nearest.Object, gameTime);
+				World.SelectObject (nearest.Object, time);
 			} else {
-				World.SelectObject (null, gameTime);
+				World.SelectObject (null, time);
 			}
 		}
 	}

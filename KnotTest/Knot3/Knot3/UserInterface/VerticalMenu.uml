@@ -19,7 +19,7 @@ public class VerticalMenu : Menu
     // 
     + Align (Viewport viewport, float scale, int posX, int posY, int? sizeX = null, int? sizeY = null, float padding = 0.15f)
     // 
-    + Draw (GameTime gameTime) override
+    + Draw (GameTime time) override
 // 
 public class Border : 
   Attributes:

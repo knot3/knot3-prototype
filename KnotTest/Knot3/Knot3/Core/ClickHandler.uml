@@ -15,4 +15,4 @@ public class ClickHandler : GameScreenComponent
         + relativePosition : Vector2
       Methods:
     // 
-    + Update (GameTime gameTime) override
+    + Update (GameTime time) override

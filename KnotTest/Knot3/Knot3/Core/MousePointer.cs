@@ -40,15 +40,15 @@ namespace Knot3.Core
 		/// <summary>
 		/// Draw the Overlay.
 		/// </summary>
-		/// <param name='gameTime'>
+		/// <param name='time'>
 		/// Game time.
 		/// </param>
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
-			DrawCursor (gameTime);
+			DrawCursor (time);
 		}
 
-		private void DrawCursor (GameTime gameTime)
+		private void DrawCursor (GameTime time)
 		{
 			if (!Utilities.Mono.IsRunningOnMono ()) {
 				spriteBatch.Begin ();

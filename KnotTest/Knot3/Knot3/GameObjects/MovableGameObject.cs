@@ -74,7 +74,7 @@ namespace Knot3.GameObjects
 			}
 		}
 
-		public virtual void Update (GameTime gameTime)
+		public virtual void Update (GameTime time)
 		{
 			// check whether is object is movable and whether it is selected
 			bool isSelected = World.SelectedObject == this || World.SelectedObject == Obj;
@@ -90,16 +90,16 @@ namespace Knot3.GameObjects
 				}
 			}
 
-			Obj.Update (gameTime);
+			Obj.Update (time);
 		}
 
 		#endregion
 
 		#region Draw
 
-		public void Draw (GameTime gameTime)
+		public void Draw (GameTime time)
 		{
-			Obj.Draw (gameTime);
+			Obj.Draw (time);
 		}
 
 		#endregion

@@ -84,9 +84,9 @@ namespace Knot3.UserInterface
 			selected.Info.Text = option.Value;
 		}
 		
-		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime gameTime)
+		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(gameTime)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
 				yield return component;
 			}
 			yield return selected;
@@ -98,9 +98,9 @@ namespace Knot3.UserInterface
 			dropdown.IsVisible = false;
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
-			base.Draw (gameTime);
+			base.Draw (time);
 
 			if (IsVisible && dropdown.IsVisible) {
 				// draw dropdown menu

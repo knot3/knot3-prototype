@@ -20,7 +20,7 @@ namespace Knot3.Core
 			public Vector2 relativePosition;
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
 			ClickEventComponent best = null;
 			foreach (IGameScreenComponent _component in screen.game.Components) {
@@ -41,10 +41,10 @@ namespace Knot3.Core
 			}
 			if (best != null) {
 				if (InputManager.LeftButton != ClickState.None) {
-					best.receiver.OnLeftClick (best.relativePosition, InputManager.LeftButton, gameTime);
+					best.receiver.OnLeftClick (best.relativePosition, InputManager.LeftButton, time);
 				}
 				if (InputManager.RightButton != ClickState.None) {
-					best.receiver.OnRightClick (best.relativePosition, InputManager.LeftButton, gameTime);
+					best.receiver.OnRightClick (best.relativePosition, InputManager.LeftButton, time);
 				}
 			}
 		}

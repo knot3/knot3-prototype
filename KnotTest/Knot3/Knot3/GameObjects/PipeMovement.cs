@@ -48,13 +48,13 @@ namespace Knot3.GameObjects
 
 		private HashSet<EdgeList> knownEdgeLists = new HashSet<EdgeList> ();
 
-		public void Update (GameTime gameTime)
+		public void Update (GameTime time)
 		{
-			TrySelectObject (gameTime);
-			TryMovePipes (gameTime);
+			TrySelectObject (time);
+			TryMovePipes (time);
 		}
 
-		private void TrySelectObject (GameTime gameTime)
+		private void TrySelectObject (GameTime time)
 		{
 			// check whether the hovered object is a pipe
 			if (World.SelectedObject is PipeModel) {
@@ -92,7 +92,7 @@ namespace Knot3.GameObjects
 			}
 		}
 
-		private void TryMovePipes (GameTime gameTime)
+		private void TryMovePipes (GameTime time)
 		{
 			// check whether the hovered object is a pipe
 			if (World.SelectedObject is PipeModel || World.SelectedObject is ArrowModel) {
@@ -218,10 +218,10 @@ namespace Knot3.GameObjects
 			}
 		}
 
-		public void Draw (GameTime gameTime)
+		public void Draw (GameTime time)
 		{
 			foreach (IGameObject shadowObj in shadowObjects) {
-				shadowObj.Draw (gameTime);
+				shadowObj.Draw (time);
 			}
 		}
 
@@ -297,7 +297,7 @@ namespace Knot3.GameObjects
 
 		#region Update
 
-		public virtual void Update (GameTime gameTime)
+		public virtual void Update (GameTime time)
 		{
 			Info.IsVisible = Math.Abs ((ShadowPosition - Obj.Info.Position).Length ()) > 50;
 		}
@@ -306,11 +306,11 @@ namespace Knot3.GameObjects
 
 		#region Draw
 
-		public virtual void Draw (GameTime gameTime)
+		public virtual void Draw (GameTime time)
 		{
 			Vector3 originalPositon = Obj.Info.Position;
 			Obj.Info.Position = ShadowPosition;
-			Obj.Draw (gameTime);
+			Obj.Draw (time);
 			Obj.Info.Position = originalPositon;
 		}
 
@@ -346,7 +346,7 @@ namespace Knot3.GameObjects
 			Model = model;
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			// swap position, colors, alpha
 			Vector3 originalPositon = Model.Info.Position;
@@ -357,7 +357,7 @@ namespace Knot3.GameObjects
 			Model.Alpha = ShadowAlpha;
 
 			// draw
-			screen.RenderEffects.Current.DrawModel (Model, gameTime);
+			screen.RenderEffects.Current.DrawModel (Model, time);
 
 			// swap everything back
 			Model.Info.Position = originalPositon;

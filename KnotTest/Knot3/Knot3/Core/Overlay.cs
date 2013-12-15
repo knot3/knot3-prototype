@@ -65,26 +65,26 @@ namespace Knot3.Core
 		/// <summary>
 		/// Draw the Overlay.
 		/// </summary>
-		/// <param name='gameTime'>
+		/// <param name='time'>
 		/// Game time.
 		/// </param>
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			if (Options.Default ["video", "debug-coordinates", false])
-				DrawCoordinates (gameTime);
+				DrawCoordinates (time);
 			if (Options.Default ["video", "camera-overlay", true])
-				DrawOverlay (gameTime);
+				DrawOverlay (time);
 			if (Options.Default ["video", "fps-overlay", true])
-				DrawFPS (gameTime);
-			DrawProfiler (gameTime);
+				DrawFPS (time);
+			DrawProfiler (time);
 		}
 		
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
-			UpdateFPS (gameTime);
+			UpdateFPS (time);
 		}
 
-		private void DrawCoordinates (GameTime gameTime)
+		private void DrawCoordinates (GameTime time)
 		{
 			int length = 2000;
 			var vertices = new VertexPositionColor[6];
@@ -109,7 +109,7 @@ namespace Knot3.Core
 			screen.device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3, VertexPositionColor.VertexDeclaration);
 		}
 
-		private void DrawOverlay (GameTime gameTime)
+		private void DrawOverlay (GameTime time)
 		{
 			spriteBatch.Begin ();
 
@@ -181,9 +181,9 @@ namespace Knot3.Core
 		float _elapsed_time = 0.0f;
 		int _fps = 0;
 
-		private void UpdateFPS (GameTime gameTime)
+		private void UpdateFPS (GameTime time)
 		{
-			_elapsed_time += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+			_elapsed_time += (float)time.ElapsedGameTime.TotalMilliseconds;
 
 			if (_elapsed_time >= 1000.0f) {
 				_fps = _total_frames;
@@ -192,7 +192,7 @@ namespace Knot3.Core
 			}
 		}
 
-		private void DrawFPS (GameTime gameTime)
+		private void DrawFPS (GameTime time)
 		{
 			_total_frames++;
 			spriteBatch.Begin ();
@@ -203,7 +203,7 @@ namespace Knot3.Core
 		private static Hashtable profiler = new Hashtable ();
 		public static HashtableWrapper Profiler = new HashtableWrapper ();
 
-		private void DrawProfiler (GameTime gameTime)
+		private void DrawProfiler (GameTime time)
 		{
 			spriteBatch.Begin ();
 			int height = 40;

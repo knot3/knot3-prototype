@@ -76,7 +76,7 @@ namespace Knot3.Core
 			PreviousMouseState = MouseState = Mouse.GetState ();
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
 			// update saved screen.
 			PreviousKeyboardState = KeyboardState;
@@ -84,7 +84,7 @@ namespace Knot3.Core
 			KeyboardState = Keyboard.GetState ();
 			MouseState = Mouse.GetState ();
 
-			if (gameTime != null) {
+			if (time != null) {
 				bool mouseMoved;
 				if (MouseState != PreviousMouseState) {
 					// mouse movements
@@ -94,7 +94,7 @@ namespace Knot3.Core
 					mouseMoved = false;
 				}
 
-				LeftButtonClickTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
+				LeftButtonClickTimer += time.ElapsedGameTime.TotalMilliseconds;
 				if (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton != ButtonState.Pressed) {
 					LeftButton = LeftButtonClickTimer < 500 && !mouseMoved
 						? ClickState.DoubleClick : ClickState.SingleClick;
@@ -104,7 +104,7 @@ namespace Knot3.Core
 				} else {
 					LeftButton = ClickState.None;
 				}
-				RightButtonClickTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
+				RightButtonClickTimer += time.ElapsedGameTime.TotalMilliseconds;
 				if (MouseState.RightButton == ButtonState.Pressed && PreviousMouseState.RightButton != ButtonState.Pressed) {
 					RightButton = RightButtonClickTimer < 500 && !mouseMoved
 						? ClickState.DoubleClick : ClickState.SingleClick;

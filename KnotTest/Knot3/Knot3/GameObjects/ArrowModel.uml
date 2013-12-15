@@ -23,6 +23,6 @@ public class ArrowModel : GameModel
     // 
     + ArrowModel (GameScreen screen, ArrowModelInfo info)
     // 
-    + Draw (GameTime gameTime) override
+    + Draw (GameTime time) override
     // 
     + Intersects (Ray ray) : GameObjectDistance override

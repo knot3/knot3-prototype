@@ -12,7 +12,7 @@ namespace Knot3.Core
 	/// </summary>
 	public interface IGameScreenComponent : Xna.IGameComponent
 	{
-		IEnumerable<IGameScreenComponent> SubComponents (GameTime gameTime);
+		IEnumerable<IGameScreenComponent> SubComponents (GameTime time);
 
 		DisplayLayer Index { get; }
 	}

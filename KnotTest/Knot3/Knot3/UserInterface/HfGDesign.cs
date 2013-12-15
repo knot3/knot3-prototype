@@ -40,7 +40,7 @@ namespace Knot3.UserInterface
 			}
 		}
 
-		public static void DrawLines (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameScreen screen, GameTime gameTime)
+		public static void DrawLines (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameScreen screen, GameTime time)
 		{
 			lineWidth = (int)new Vector2 (lineWidth, lineWidth).Scale (screen.viewport).X;
 			if (texture == null)

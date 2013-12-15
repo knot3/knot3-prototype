@@ -13,4 +13,4 @@ public class ConfirmDialog : Dialog
     // 
     + ConfirmDialog (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    # DrawDialog (GameTime gameTime) override
+    # DrawDialog (GameTime time) override

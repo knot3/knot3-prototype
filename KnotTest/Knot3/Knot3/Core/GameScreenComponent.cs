@@ -37,7 +37,7 @@ namespace Knot3.Core
 		/// </value>
 		public GameScreen screen { get; private set; }
 
-		public virtual IEnumerable<IGameScreenComponent> SubComponents (GameTime gameTime)
+		public virtual IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
 			yield break;
 		}

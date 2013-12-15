@@ -46,7 +46,7 @@ namespace Knot3.UserInterface
 			};
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			if (IsVisible) {
 				spriteBatch.Begin ();
@@ -113,7 +113,7 @@ namespace Knot3.UserInterface
 			IsVisible = false;
 		}
 
-		public void OnLeftClick (Vector2 position, ClickState click, GameTime gameTime)
+		public void OnLeftClick (Vector2 position, ClickState click, GameTime time)
 		{
 			position = position.RelativeTo (screen.viewport);
 			Console.WriteLine ("ColorPicker.OnLeftClick: positon=" + position);
@@ -133,7 +133,7 @@ namespace Knot3.UserInterface
 			}
 		}
 
-		public void OnRightClick (Vector2 position, ClickState click, GameTime gameTime)
+		public void OnRightClick (Vector2 position, ClickState click, GameTime time)
 		{
 		}
 

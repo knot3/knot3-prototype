@@ -7,9 +7,9 @@ public interface IGameObject :
     + World : World
   Methods:
     // 
-    + Draw (GameTime gameTime)
+    + Draw (GameTime time)
     // 
-    + Update (GameTime gameTime)
+    + Update (GameTime time)
     // 
     + Intersects (Ray ray) : GameObjectDistance
     // 

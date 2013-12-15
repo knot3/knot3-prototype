@@ -97,7 +97,7 @@ namespace Knot3.GameObjects
 			Objects.Add (floor);
 		}
 
-		public void SelectObject (IGameObject obj, GameTime gameTime)
+		public void SelectObject (IGameObject obj, GameTime time)
 		{
 			if (SelectedObject != obj) {
 				SelectedObject = obj;
@@ -144,41 +144,41 @@ namespace Knot3.GameObjects
 			set { _redraw = value; }
 		}
 		
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			if (Redraw) {
 				Redraw = false;
 
 				// begin the post processing effect scope
 				Color background = currentEffect is CelShadingEffect ? Color.CornflowerBlue : Color.Black;
-				screen.PostProcessing.Begin (background, gameTime);
+				screen.PostProcessing.Begin (background, time);
 
 				// begin the knot render effect
-				currentEffect.Begin (gameTime);
+				currentEffect.Begin (time);
 
 				foreach (IGameObject obj in Objects) {
 					obj.World = this;
-					obj.Draw (gameTime);
+					obj.Draw (time);
 				}
 
 				// end of the knot render effect
-				currentEffect.End (gameTime);
+				currentEffect.End (time);
 			
 				// end of the post processing effect
-				screen.PostProcessing.End (gameTime);
+				screen.PostProcessing.End (time);
 			} else {
-				screen.PostProcessing.DrawLastFrame (gameTime);
+				screen.PostProcessing.DrawLastFrame (time);
 			}
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
 			if (screen.PostProcessing is FadeEffect)
 				Redraw = true;
 
 			// run the update method on all game objects
 			foreach (IGameObject obj in Objects) {
-				obj.Update (gameTime);
+				obj.Update (time);
 			}
 
 			// post processing effects
@@ -230,9 +230,9 @@ namespace Knot3.GameObjects
 			return GetEnumerator (); // Just return the generic version
 		}
 
-		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime gameTime)
+		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(gameTime)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
 				yield return component;
 			}
 			yield return Camera;
@@ -246,12 +246,12 @@ namespace Knot3.GameObjects
 		{
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
 			if (Keys.U.IsHeldDown ()) {
 				Info.Position = Info.Position.RotateY (MathHelper.PiOver4 / 100f);
 			}
-			base.Update (gameTime);
+			base.Update (time);
 		}
 	}
 }

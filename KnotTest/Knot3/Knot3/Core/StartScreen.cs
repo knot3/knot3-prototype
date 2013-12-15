@@ -78,13 +78,13 @@ namespace Knot3.Core
 			);
 		}
 		
-		public override void UpdateMenu (GameTime gameTime)
+		public override void UpdateMenu (GameTime time)
 		{
 			// menu
-			menu.Update (gameTime);
+			menu.Update (time);
 		}
 		
-		public override void DrawMenu (GameTime gameTime)
+		public override void DrawMenu (GameTime time)
 		{
 			spriteBatch.Begin ();
 			// logo
@@ -92,10 +92,10 @@ namespace Knot3.Core
 			spriteBatch.End ();
 		}
 
-		public override void Activate (GameTime gameTime)
+		public override void Activate (GameTime time)
 		{
-			base.Activate (gameTime);
-			AddGameComponents (gameTime, menu);
+			base.Activate (time);
+			AddGameComponents (time, menu);
 		}
 	}
 }

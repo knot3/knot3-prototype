@@ -106,7 +106,7 @@ namespace Knot3.GameObjects
 
 		#region Update
 		
-		public virtual void Update (GameTime gameTime)
+		public virtual void Update (GameTime time)
 		{
 		}
 
@@ -114,13 +114,13 @@ namespace Knot3.GameObjects
 
 		#region Draw
 
-		public virtual void Draw (GameTime gameTime)
+		public virtual void Draw (GameTime time)
 		{
 			if (Info.IsVisible) {
 				if (InCameraFrustum) {
 					Overlay.Profiler ["# InFrustum"]++;
 
-					screen.RenderEffects.Current.DrawModel (this, gameTime);
+					screen.RenderEffects.Current.DrawModel (this, time);
 				}
 			}
 		}

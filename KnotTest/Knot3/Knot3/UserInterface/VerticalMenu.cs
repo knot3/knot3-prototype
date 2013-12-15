@@ -103,9 +103,9 @@ namespace Knot3.UserInterface
 			Align (viewport, scale, new Vector2 (posX, posY), itemSize, padding);
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
-			base.Draw (gameTime);
+			base.Draw (time);
 
 			if (IsVisible) {
 				Point min = Info.ScaledPosition (screen.viewport).ToPoint ();

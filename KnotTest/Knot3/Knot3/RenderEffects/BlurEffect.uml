@@ -7,8 +7,8 @@ public class BlurEffect : RenderEffect
     // 
     + BlurEffect (GameScreen screen)
     // 
-    + Begin (Color background, GameTime gameTime) override
+    + Begin (Color background, GameTime time) override
     // 
-    + End (GameTime gameTime) override
+    + End (GameTime time) override
     // 
-    # DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) override
+    # DrawRenderTarget (SpriteBatch spriteBatch, GameTime time) override

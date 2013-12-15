@@ -25,13 +25,13 @@ public class Overlay : DrawableGameScreenComponent
     // 
     # LoadContent () override
     // 
-    + Draw (GameTime gameTime) override
+    + Draw (GameTime time) override
     // 
-    + Update (GameTime gameTime) override
+    + Update (GameTime time) override
     // 
-    - DrawCoordinates (GameTime gameTime)
+    - DrawCoordinates (GameTime time)
     // 
-    - DrawOverlay (GameTime gameTime)
+    - DrawOverlay (GameTime time)
     // 
     - DrawVectorCoordinates (Vector3 vector, int width2, int width3, int width4, int height)
     // 
@@ -39,11 +39,11 @@ public class Overlay : DrawableGameScreenComponent
     // 
     - DrawString (float n, int width, int height, Color color)
     // 
-    - UpdateFPS (GameTime gameTime)
+    - UpdateFPS (GameTime time)
     // 
-    - DrawFPS (GameTime gameTime)
+    - DrawFPS (GameTime time)
     // 
-    - DrawProfiler (GameTime gameTime)
+    - DrawProfiler (GameTime time)
     // 
     public class HashtableWrapper : 
       Attributes:

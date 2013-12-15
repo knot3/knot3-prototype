@@ -35,13 +35,13 @@ public class CreativeModeScreen : GameScreen
     // 
     + LoadFile (string file)
     // 
-    + Update (GameTime gameTime) override
+    + Update (GameTime time) override
     // 
-    - UpdateInput (GameTime gameTime)
+    - UpdateInput (GameTime time)
     // 
-    + Draw (GameTime gameTime) override
+    + Draw (GameTime time) override
     // 
-    + Activate (GameTime gameTime) override
+    + Activate (GameTime time) override
     // 
     + Unload () override
 // 

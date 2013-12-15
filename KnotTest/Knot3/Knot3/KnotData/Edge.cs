@@ -112,9 +112,9 @@ namespace Knot3.KnotData
 			return Colors [r.Next () % Colors.Count];
 		}
 
-		public static Color RandomColor (GameTime gameTime)
+		public static Color RandomColor (GameTime time)
 		{
-			return Colors [(int)gameTime.TotalGameTime.TotalSeconds % Colors.Count];
+			return Colors [(int)time.TotalGameTime.TotalSeconds % Colors.Count];
 		}
 
 		public static Edge RandomEdge ()

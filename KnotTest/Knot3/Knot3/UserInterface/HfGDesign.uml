@@ -13,7 +13,7 @@ public static class HfGDesign :
     // 
     + MenuFont (GameScreen screen) : SpriteFont static
     // 
-    + DrawLines (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameScreen screen, GameTime gameTime) static
+    + DrawLines (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameScreen screen, GameTime time) static
     // 
     + CreateRectangle (int lineWidth, float x, float y, float w, float h) : Rectangle static
     // 

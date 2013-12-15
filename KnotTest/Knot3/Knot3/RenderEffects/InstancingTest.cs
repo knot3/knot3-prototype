@@ -26,19 +26,19 @@ namespace Knot3.RenderEffects
 		{
 		}
 
-		public override void Begin (Color background, GameTime gameTime)
+		public override void Begin (Color background, GameTime time)
 		{
-			base.Begin (background, gameTime);
+			base.Begin (background, time);
 
 			Overlay.Profiler ["DrawModel1"] = 0;
 		}
 
-		public override void End (GameTime gameTime)
+		public override void End (GameTime time)
 		{
-			base.End (gameTime);
+			base.End (time);
 		}
 
-		protected override void DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime)
+		protected override void DrawRenderTarget (SpriteBatch spriteBatch, GameTime time)
 		{
 			foreach (string key in instanceHash.Keys) {
 				ModelInstances instances = instanceHash [key] as ModelInstances;
@@ -97,7 +97,7 @@ namespace Knot3.RenderEffects
 			public int Count;
 		};
 
-		public override void DrawModel (GameModel model, GameTime gameTime)
+		public override void DrawModel (GameModel model, GameTime time)
 		{
 			//Overlay.Profiler ["DrawModel1"] += Knot3.Core.Game.Time (() => {
 

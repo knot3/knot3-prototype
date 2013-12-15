@@ -9,7 +9,7 @@ public interface IKeyEventListener :
     + IsKeyEventEnabled : bool
   Methods:
     // 
-    + OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
 public enum KeyEvent
     None = 0
     KeyDown

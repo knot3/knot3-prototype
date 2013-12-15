@@ -35,9 +35,9 @@ namespace Knot3.UserInterface
 			TextInput = new TextInput (screen, textInputInfo, DisplayLayer.SubMenu);
 		}
 
-		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime gameTime)
+		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(gameTime)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
 				yield return component;
 			}
 			yield return TextInput;

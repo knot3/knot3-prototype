@@ -11,6 +11,6 @@ public class PipeColoring : GameScreenComponent, IKeyEventListener
     // 
     + PipeColoring (GameScreen screen)
     // 
-    + Update (GameTime gameTime) override
+    + Update (GameTime time) override
     // 
-    + OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)

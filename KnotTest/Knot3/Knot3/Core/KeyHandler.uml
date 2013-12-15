@@ -17,4 +17,4 @@ public class KeyHandler : GameScreenComponent
         + keys : List<Keys>
       Methods:
     // 
-    + Update (GameTime gameTime) override
+    + Update (GameTime time) override

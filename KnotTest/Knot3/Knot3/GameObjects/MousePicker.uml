@@ -5,5 +5,5 @@ public class MousePicker : GameScreenComponent
     - lastMousePosition : Vector2
   Methods:
     + MousePicker (GameScreen screen, World world)
-    + Update (GameTime gameTime) override
-    + UpdateMouseRay (GameTime gameTime)
+    + Update (GameTime time) override
+    + UpdateMouseRay (GameTime time)

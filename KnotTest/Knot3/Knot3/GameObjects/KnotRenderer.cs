@@ -39,9 +39,9 @@ namespace Knot3.GameObjects
 			nodeMap.OnEdgesChanged(edges);
 		}
 
-		public abstract void Update (GameTime gameTime);
+		public abstract void Update (GameTime time);
 
-		public abstract void Draw (GameTime gameTime);
+		public abstract void Draw (GameTime time);
 
 		public abstract GameObjectDistance Intersects (Ray ray);
 

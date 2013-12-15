@@ -27,17 +27,17 @@ namespace Knot3.RenderEffects
 			testEffect = screen.LoadEffect ("blur");
 		}
 
-		public override void Begin (Color background, GameTime gameTime)
+		public override void Begin (Color background, GameTime time)
 		{
-			base.Begin (background, gameTime);
+			base.Begin (background, time);
 		}
 
-		public override void End (GameTime gameTime)
+		public override void End (GameTime time)
 		{
-			base.End (gameTime);
+			base.End (time);
 		}
 
-		protected override void DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime)
+		protected override void DrawRenderTarget (SpriteBatch spriteBatch, GameTime time)
 		{
 			testEffect.CurrentTechnique = testEffect.Techniques ["BlurTest1"];
 			//testEffect.Parameters["World"].SetValue(camera.WorldMatrix);

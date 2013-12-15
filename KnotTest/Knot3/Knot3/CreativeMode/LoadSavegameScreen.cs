@@ -110,10 +110,10 @@ namespace Knot3.CreativeMode
 			menu.AddButton (info);
 		}
 		
-		public override void UpdateMenu (GameTime gameTime)
+		public override void UpdateMenu (GameTime time)
 		{
 			// menu
-			menu.Update (gameTime);
+			menu.Update (time);
 
 			// when is escape is pressed, go to start screen
 			if (Keys.Escape.IsDown ()) {
@@ -121,7 +121,7 @@ namespace Knot3.CreativeMode
 			}
 		}
 		
-		public override void DrawMenu (GameTime gameTime)
+		public override void DrawMenu (GameTime time)
 		{
 			spriteBatch.Begin ();
 
@@ -137,11 +137,11 @@ namespace Knot3.CreativeMode
 			spriteBatch.End ();
 		}
 
-		public override void Activate (GameTime gameTime)
+		public override void Activate (GameTime time)
 		{
 			UpdateFiles ();
-			base.Activate (gameTime);
-			AddGameComponents (gameTime, menu);
+			base.Activate (time);
+			AddGameComponents (time, menu);
 		}
 	}
 }

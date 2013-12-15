@@ -23,7 +23,7 @@ namespace Knot3.Core
 			public List<Keys> keys;
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
 			KeyEventComponent best = null;
 			foreach (IGameScreenComponent component in screen.game.Components) {
@@ -56,7 +56,7 @@ namespace Knot3.Core
 				}
 			}
 			if (best != null) {
-				best.receiver.OnKeyEvent (best.keys, best.keyEvent, gameTime);
+				best.receiver.OnKeyEvent (best.keys, best.keyEvent, time);
 			}
 		}
 	}

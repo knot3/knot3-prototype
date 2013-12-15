@@ -70,11 +70,11 @@ namespace Knot3.GameObjects
 		{
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			BaseColor = Info.EdgeA.Color.Mix (Info.EdgeB.Color);
 
-			base.Draw (gameTime);
+			base.Draw (time);
 		}
 	}
 }

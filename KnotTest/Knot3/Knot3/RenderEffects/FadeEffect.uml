@@ -11,4 +11,4 @@ public class FadeEffect : RenderEffect
     // 
     + FadeEffect (GameScreen screen, GameScreen oldState)
     // 
-    # DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) override
+    # DrawRenderTarget (SpriteBatch spriteBatch, GameTime time) override

@@ -12,13 +12,13 @@ namespace Knot3.Utilities
 		private static Keys lastKey = Keys.None;
 		private static double lastMillis = 0;
 
-		public static bool TryTextInput (ref string str, GameTime gameTime)
+		public static bool TryTextInput (ref string str, GameTime time)
 		{
 			bool catched = false;
 			if (lastKey != Keys.None) {
 				if (InputManager.KeyboardState.IsKeyUp (lastKey))
 					lastKey = Keys.None;
-				else if ((gameTime.TotalGameTime.TotalMilliseconds - lastMillis) > 200)
+				else if ((time.TotalGameTime.TotalMilliseconds - lastMillis) > 200)
 					lastKey = Keys.None;
 			}
 			Keys[] keys = InputManager.KeyboardState.GetPressedKeys ();
@@ -42,7 +42,7 @@ namespace Knot3.Utilities
 					}
 				}
 
-				lastMillis = gameTime.TotalGameTime.TotalMilliseconds;
+				lastMillis = time.TotalGameTime.TotalMilliseconds;
 			}
 			return catched;
 		}

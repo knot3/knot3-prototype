@@ -42,12 +42,12 @@ namespace Knot3.UserInterface
 			spriteBatch = new SpriteBatch (screen.device);
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
 
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			spriteBatch.Begin ();
 			// background
@@ -71,9 +71,9 @@ namespace Knot3.UserInterface
 			spriteBatch.End ();
 		}
 
-		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
 		{
-			Text.TryTextInput (ref InputText, gameTime);
+			Text.TryTextInput (ref InputText, time);
 		}
 
 		public List<Keys> ValidKeys { get { return Text.ValidKeys; } }

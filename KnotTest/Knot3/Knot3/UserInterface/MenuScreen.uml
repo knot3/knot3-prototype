@@ -17,15 +17,15 @@ public abstract class MenuScreen : GameScreen
     // 
     + Initialize () override
     // 
-    + Update (GameTime gameTime) override
+    + Update (GameTime time) override
     // 
-    + UpdateMenu (GameTime gameTime) abstract
+    + UpdateMenu (GameTime time) abstract
     // 
-    + Draw (GameTime gameTime) override
+    + Draw (GameTime time) override
     // 
-    + DrawMenu (GameTime gameTime) abstract
+    + DrawMenu (GameTime time) abstract
     // 
-    + Activate (GameTime gameTime) override
+    + Activate (GameTime time) override
     // 
     + Unload () override
     // 

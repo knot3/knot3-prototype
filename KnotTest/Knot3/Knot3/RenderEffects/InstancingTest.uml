@@ -7,11 +7,11 @@ public class InstancingTest : RenderEffect
     // 
     + InstancingTest (GameScreen screen)
     // 
-    + Begin (Color background, GameTime gameTime) override
+    + Begin (Color background, GameTime time) override
     // 
-    + End (GameTime gameTime) override
+    + End (GameTime time) override
     // 
-    # DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) override
+    # DrawRenderTarget (SpriteBatch spriteBatch, GameTime time) override
     // 
     private class ModelInstances : 
       Attributes:
@@ -23,4 +23,4 @@ public class InstancingTest : RenderEffect
         + Count : int
       Methods:
     // 
-    + DrawModel (GameModel model, GameTime gameTime) override
+    + DrawModel (GameModel model, GameTime time) override

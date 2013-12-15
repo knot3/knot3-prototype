@@ -19,8 +19,8 @@ public class LoadSavegameScreen : MenuScreen
     // 
     - AddDefaultKnots ()
     // 
-    + UpdateMenu (GameTime gameTime) override
+    + UpdateMenu (GameTime time) override
     // 
-    + DrawMenu (GameTime gameTime) override
+    + DrawMenu (GameTime time) override
     // 
-    + Activate (GameTime gameTime) override
+    + Activate (GameTime time) override

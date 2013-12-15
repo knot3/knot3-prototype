@@ -31,18 +31,18 @@ public abstract class RenderEffect : IRenderEffect
     // 
     + RenderEffect (GameScreen screen)
     // 
-    + Begin (GameTime gameTime)
+    + Begin (GameTime time)
     // 
-    + Begin (Color background, GameTime gameTime) virtual
+    + Begin (Color background, GameTime time) virtual
     // 
-    + End (GameTime gameTime) virtual
+    + End (GameTime time) virtual
     // 
-    + DrawLastFrame (GameTime gameTime)
+    + DrawLastFrame (GameTime time)
     // 
-    # DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) abstract
+    # DrawRenderTarget (SpriteBatch spriteBatch, GameTime time) abstract
     // 
     + RemapModel (Model model) virtual
     // 
-    + DrawModel (GameModel model, GameTime gameTime) virtual
+    + DrawModel (GameModel model, GameTime time) virtual
     // 
     # ModifyBasicEffect (BasicEffect effect, GameModel model)

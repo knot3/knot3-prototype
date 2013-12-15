@@ -19,7 +19,7 @@ public class ColorPicker : Widget, IMouseEventListener
     // 
     + ColorPicker (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + Draw (GameTime gameTime) override
+    + Draw (GameTime time) override
     // 
     - CreateColors (int num) : IEnumerable<Color> static
     // 
@@ -27,8 +27,8 @@ public class ColorPicker : Widget, IMouseEventListener
     // 
     - SelectColor (Color color)
     // 
-    + OnLeftClick (Vector2 position, ClickState click, GameTime gameTime)
+    + OnLeftClick (Vector2 position, ClickState click, GameTime time)
     // 
-    + OnRightClick (Vector2 position, ClickState click, GameTime gameTime)
+    + OnRightClick (Vector2 position, ClickState click, GameTime time)
     // 
     + SetHovered (bool hovered)

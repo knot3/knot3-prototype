@@ -137,19 +137,19 @@ namespace Knot3.Core
 			UpdateMatrices (null);
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
-			UpdateRotation (gameTime);
-			UpdateMatrices (gameTime);
+			UpdateRotation (time);
+			UpdateMatrices (time);
 		}
 
-		private void UpdateRotation (GameTime gameTime)
+		private void UpdateRotation (GameTime time)
 		{
 			// auto rotation
 			RotationAngle += AutoRotation;
 		}
 
-		private void UpdateMatrices (GameTime gameTime)
+		private void UpdateMatrices (GameTime time)
 		{ 
 			// setting up rotation
 			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);

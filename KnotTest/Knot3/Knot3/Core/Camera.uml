@@ -49,10 +49,10 @@ public class Camera : GameScreenComponent
     // 
     + Camera (GameScreen screen, World world)
     // 
-    + Update (GameTime gameTime) override
+    + Update (GameTime time) override
     // 
-    - UpdateRotation (GameTime gameTime)
+    - UpdateRotation (GameTime time)
     // 
-    - UpdateMatrices (GameTime gameTime)
+    - UpdateMatrices (GameTime time)
     // 
     + GetMouseRay (Vector2 mouse) : Ray

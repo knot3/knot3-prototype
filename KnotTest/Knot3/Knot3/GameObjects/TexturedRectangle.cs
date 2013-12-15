@@ -92,7 +92,7 @@ namespace Knot3.GameObjects
 
 		#region Update
 		
-		public void Update (GameTime gameTime)
+		public void Update (GameTime time)
 		{
 		}
 
@@ -100,7 +100,7 @@ namespace Knot3.GameObjects
 
 		#region Draw
 
-		public void Draw (GameTime gameTime)
+		public void Draw (GameTime time)
 		{
 			if (Info.IsVisible) {
 				basicEffect.World = World.Camera.WorldMatrix;

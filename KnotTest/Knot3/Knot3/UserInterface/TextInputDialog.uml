@@ -7,7 +7,7 @@ public class TextInputDialog : ConfirmDialog
     // 
     + TextInputDialog (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
     # TextInputPosition () : Vector2
     // 

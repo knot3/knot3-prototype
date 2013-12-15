@@ -7,6 +7,6 @@ public class MousePointer : DrawableGameScreenComponent
     // 
     + MousePointer (GameScreen screen)
     // 
-    + Draw (GameTime gameTime) override
+    + Draw (GameTime time) override
     // 
-    - DrawCursor (GameTime gameTime)
+    - DrawCursor (GameTime time)

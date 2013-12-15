@@ -21,7 +21,7 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     // 
     + ModelRenderer (GameScreen screen, GameObjectInfo info)
     // 
-    + Update (GameTime gameTime) override
+    + Update (GameTime time) override
     // 
     + OnEdgesChanged (EdgeList edgeList) override
     // 
@@ -33,7 +33,7 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     // 
     - IEnumerable.GetEnumerator () : IEnumerator
     // 
-    + Draw (GameTime gameTime) override
+    + Draw (GameTime time) override
     // 
     + Intersects (Ray ray) : GameObjectDistance override
     // 

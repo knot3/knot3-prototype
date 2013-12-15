@@ -53,6 +53,6 @@ public class Edge :
     // 
     + RandomColor () : Color static
     // 
-    + RandomColor (GameTime gameTime) : Color static
+    + RandomColor (GameTime time) : Color static
     // 
     + RandomEdge () : Edge static

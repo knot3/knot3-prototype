@@ -92,28 +92,28 @@ namespace Knot3.Core
 		/// Allows the game to run logic such as updating the world,
 		/// checking for collisions, gathering input, and playing audio.
 		/// </summary>
-		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		protected override void Update (GameTime gameTime)
+		/// <param name="time">Provides a snapshot of timing values.</param>
+		protected override void Update (GameTime time)
 		{
 			// change game screen?
 			if (State != State.NextState) {
 				State.NextState.PostProcessing = new FadeEffect (State.NextState, State);
-				State.Deactivate (gameTime);
+				State.Deactivate (time);
 				State = State.NextState.NextState = State.NextState;
-				State.Activate (gameTime);
+				State.Activate (time);
 			}
 
 			// global keyboard ans mouse input 
-			UpdateInput (gameTime);
+			UpdateInput (time);
 
 			// set the next game screen
-			State.Update (gameTime);
+			State.Update (time);
 
 			// base method
-			base.Update (gameTime);
+			base.Update (time);
 		}
 
-		private void UpdateInput (GameTime gameTime)
+		private void UpdateInput (GameTime time)
 		{
 			// allows the game to exit
 			if (Keys.F8.IsDown ()) {
@@ -125,14 +125,14 @@ namespace Knot3.Core
 		/// <summary>
 		/// This is called when the game should draw itself.
 		/// </summary>
-		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		protected override void Draw (GameTime gameTime)
+		/// <param name="time">Provides a snapshot of timing values.</param>
+		protected override void Draw (GameTime time)
 		{
 			// current game screen
-			State.Draw (gameTime);
+			State.Draw (time);
 
 			// base class
-			base.Draw (gameTime);
+			base.Draw (time);
 		}
 
 		public bool VSync {

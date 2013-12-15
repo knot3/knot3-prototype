@@ -39,7 +39,7 @@ namespace Knot3.GameObjects
 			basicEffect = new BasicEffect (screen.device);
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
 		}
 
@@ -51,7 +51,7 @@ namespace Knot3.GameObjects
 
 		#region Draw
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			basicEffect.World = World.Camera.WorldMatrix;
 			basicEffect.View = World.Camera.ViewMatrix;

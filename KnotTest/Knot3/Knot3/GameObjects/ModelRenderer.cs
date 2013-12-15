@@ -50,16 +50,16 @@ namespace Knot3.GameObjects
 			arrowFactory = new ModelFactory ((s, i) => new ArrowModel (s, i as ArrowModelInfo));
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
 			foreach (PipeModel pipe in pipes) {
-				pipe.Update (gameTime);
+				pipe.Update (time);
 			}
 			foreach (NodeModel node in nodes) {
-				node.Update (gameTime);
+				node.Update (time);
 			}
 			foreach (ArrowModel arrow in arrows) {
-				arrow.Update (gameTime);
+				arrow.Update (time);
 			}
 		}
 
@@ -144,25 +144,25 @@ namespace Knot3.GameObjects
 
 		#region Draw
 		
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			Overlay.Profiler ["# InFrustum"] = 0;
 			Overlay.Profiler ["RenderEffect"] = 0;
 			Overlay.Profiler ["Pipes"] = Knot3.Core.Game.Time (() => {
 				foreach (PipeModel pipe in pipes) {
-					pipe.Draw (gameTime);
+					pipe.Draw (time);
 				}
 			}
 			).TotalMilliseconds;
 			Overlay.Profiler ["Nodes"] = Knot3.Core.Game.Time (() => {
 				foreach (NodeModel node in nodes) {
-					node.Draw (gameTime);
+					node.Draw (time);
 				}
 			}
 			).TotalMilliseconds;
 			Overlay.Profiler ["Arrows"] = Knot3.Core.Game.Time (() => {
 				foreach (ArrowModel arrow in arrows) {
-					arrow.Draw (gameTime);
+					arrow.Draw (time);
 				}
 			}
 			).TotalMilliseconds;

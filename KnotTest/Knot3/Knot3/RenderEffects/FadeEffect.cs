@@ -30,7 +30,7 @@ namespace Knot3.RenderEffects
 			}
 		}
 
-		protected override void DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime)
+		protected override void DrawRenderTarget (SpriteBatch spriteBatch, GameTime time)
 		{
 			if (lastFrame != null) {
 				alpha -= 0.05f;

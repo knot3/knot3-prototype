@@ -88,9 +88,9 @@ namespace Knot3.UserInterface
 			spriteBatch = new SpriteBatch (screen.device);
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
-			base.Draw (gameTime);
+			base.Draw (time);
 
 			if (IsVisible) {
 				spriteBatch.Begin ();
@@ -149,16 +149,16 @@ namespace Knot3.UserInterface
 
 		public List<Keys> ValidKeys { get { return Info.Keys; } }
 
-		public void OnLeftClick (Vector2 position, ClickState click, GameTime gameTime)
+		public void OnLeftClick (Vector2 position, ClickState click, GameTime time)
 		{
 			Info.OnClick ();
 		}
 
-		public void OnRightClick (Vector2 position, ClickState click, GameTime gameTime)
+		public void OnRightClick (Vector2 position, ClickState click, GameTime time)
 		{
 		}
 
-		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
 		{
 			if (keyEvent == KeyEvent.KeyDown) {
 				Info.OnClick ();

@@ -32,20 +32,20 @@ namespace Knot3.GameObjects
 			ValidKeys.Add (Keys.C);
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
 		}
 		
-		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
 		{
 			// change color?
 			if (Knot.Edges.SelectedEdges.Count () > 0 && Keys.C.IsDown ()) {
 				ColorPicker picker = new ColorPicker (screen, new WidgetInfo (), DisplayLayer.Dialog);
-				picker.OnSelectColor = (c) => screen.RemoveGameComponents (gameTime, picker);
+				picker.OnSelectColor = (c) => screen.RemoveGameComponents (time, picker);
 				foreach (Edge edge in Knot.Edges.SelectedEdges) {
 					picker.OnSelectColor += (c) => edge.Color = c;
 				}
-				screen.AddGameComponents (gameTime, picker);
+				screen.AddGameComponents (time, picker);
 			}
 		}
 

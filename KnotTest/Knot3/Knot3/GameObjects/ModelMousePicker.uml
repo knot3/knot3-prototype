@@ -11,8 +11,8 @@ public class ModelMousePicker : GameScreenComponent
     // 
     + ModelMousePicker (GameScreen screen, World world)
     // 
-    + Update (GameTime gameTime) override
+    + Update (GameTime time) override
     // 
-    - CheckMouseRay (GameTime gameTime)
+    - CheckMouseRay (GameTime time)
     // 
-    - UpdateMouseRay (GameTime gameTime)
+    - UpdateMouseRay (GameTime time)

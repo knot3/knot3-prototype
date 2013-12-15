@@ -19,11 +19,11 @@ public class PipeMovement : IGameObject, IEnumerable<IGameObject>
     // 
     + PipeMovement (GameScreen screen, World world, GameObjectInfo info)
     // 
-    + Update (GameTime gameTime)
+    + Update (GameTime time)
     // 
-    - TrySelectObject (GameTime gameTime)
+    - TrySelectObject (GameTime time)
     // 
-    - TryMovePipes (GameTime gameTime)
+    - TryMovePipes (GameTime time)
     // 
     - CreateShadowPipes ()
     // 
@@ -37,7 +37,7 @@ public class PipeMovement : IGameObject, IEnumerable<IGameObject>
     // 
     - MovePipes (Vector3 currentMousePosition)
     // 
-    + Draw (GameTime gameTime)
+    + Draw (GameTime time)
     // 
     + GetEnumerator () : IEnumerator<IGameObject>
     // 
@@ -65,9 +65,9 @@ public class ShadowGameObject : IGameObject
     // 
     + ShadowGameObject (GameScreen screen, IGameObject obj)
     // 
-    + Update (GameTime gameTime) virtual
+    + Update (GameTime time) virtual
     // 
-    + Draw (GameTime gameTime) virtual
+    + Draw (GameTime time) virtual
     // 
     + Intersects (Ray ray) : GameObjectDistance
     // 
@@ -85,4 +85,4 @@ public class ShadowGameModel : ShadowGameObject
     // 
     + ShadowGameModel (GameScreen screen, GameModel model)
     // 
-    + Draw (GameTime gameTime) override
+    + Draw (GameTime time) override

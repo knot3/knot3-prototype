@@ -35,13 +35,13 @@ public abstract class Input : GameScreenComponent, IKeyEventListener
     // 
     + Input (GameScreen screen)
     // 
-    + Update (GameTime gameTime) override
+    + Update (GameTime time) override
     // 
-    # UpdateKeys (GameTime gameTime) virtual
+    # UpdateKeys (GameTime time) virtual
     // 
-    # UpdateMouse (GameTime gameTime) virtual
+    # UpdateMouse (GameTime time) virtual
     // 
-    + OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
 public enum InputAction
     None = 0
     ArcballMove

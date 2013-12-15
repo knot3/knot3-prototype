@@ -114,18 +114,18 @@ namespace Knot3.Core
 		/// <summary>
 		/// Update the game screen.
 		/// </summary>
-		/// <param name='gameTime'>
+		/// <param name='time'>
 		/// The Game time.
 		/// </param>
-		public abstract void Update (GameTime gameTime);
+		public abstract void Update (GameTime time);
 
 		/// <summary>
 		/// Draw the game screen.
 		/// </summary>
-		/// <param name='gameTime'>
+		/// <param name='time'>
 		/// The Game time.
 		/// </param>
-		public abstract void Draw (GameTime gameTime);
+		public abstract void Draw (GameTime time);
 
 		/// <summary>
 		/// Unload the game screen.
@@ -138,12 +138,12 @@ namespace Knot3.Core
 		/// <param name='components'>
 		/// Game Components.
 		/// </param>
-		public void AddGameComponents (GameTime gameTime, params IGameScreenComponent[] components)
+		public void AddGameComponents (GameTime time, params IGameScreenComponent[] components)
 		{
 			foreach (IGameScreenComponent component in components) {
 				//Console.WriteLine ("AddGameComponents: " + component);
 				game.Components.Add (component);
-				AddGameComponents (gameTime, component.SubComponents (gameTime).ToArray ());
+				AddGameComponents (time, component.SubComponents (time).ToArray ());
 			}
 		}
 
@@ -153,11 +153,11 @@ namespace Knot3.Core
 		/// <param name='components'>
 		/// Game Components.
 		/// </param>
-		public void RemoveGameComponents (GameTime gameTime, params IGameScreenComponent[] components)
+		public void RemoveGameComponents (GameTime time, params IGameScreenComponent[] components)
 		{
 			foreach (IGameScreenComponent component in components) {
 				Console.WriteLine ("RemoveGameComponents: " + component);
-				RemoveGameComponents (gameTime, component.SubComponents (gameTime).ToArray ());
+				RemoveGameComponents (time, component.SubComponents (time).ToArray ());
 				game.Components.Remove (component);
 			}
 		}
@@ -165,22 +165,22 @@ namespace Knot3.Core
 		/// <summary>
 		/// This is run when this game screen becomes the active game screen.
 		/// </summary>
-		/// <param name='gameTime'>
+		/// <param name='time'>
 		/// The Game time.
 		/// </param>
-		public virtual void Activate (GameTime gameTime)
+		public virtual void Activate (GameTime time)
 		{
 			Console.WriteLine ("Activate: " + this);
-			AddGameComponents (gameTime, input, new WidgetKeyHandler (this), new WidgetMouseHandler (this));
+			AddGameComponents (time, input, new WidgetKeyHandler (this), new WidgetMouseHandler (this));
 		}
 
 		/// <summary>
 		/// This is run when this game screen is about to becomes inactive.
 		/// </summary>
-		/// <param name='gameTime'>
+		/// <param name='time'>
 		/// The Game time.
 		/// </param>
-		public virtual void Deactivate (GameTime gameTime)
+		public virtual void Deactivate (GameTime time)
 		{
 			Console.WriteLine ("Deactivate: " + this);
 			game.Components.Clear ();

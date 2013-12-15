@@ -12,7 +12,7 @@ namespace Knot3.Core
 	/// </summary>
 	public interface IKeyEventListener
 	{
-		void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime);
+		void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time);
 
 		List<Keys> ValidKeys { get; }
 

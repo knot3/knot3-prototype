@@ -57,9 +57,9 @@ public class GameModel : IGameObject
     // 
     + GameModel (GameScreen screen, GameModelInfo info)
     // 
-    + Update (GameTime gameTime) virtual
+    + Update (GameTime time) virtual
     // 
-    + Draw (GameTime gameTime) virtual
+    + Draw (GameTime time) virtual
     // 
     + Intersects (Ray ray) : GameObjectDistance virtual
     // 

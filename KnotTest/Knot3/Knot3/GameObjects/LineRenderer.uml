@@ -13,11 +13,11 @@ public class LineRenderer : KnotRenderer
     // 
     + LineRenderer (GameScreen screen, GameObjectInfo info)
     // 
-    + Update (GameTime gameTime) override
+    + Update (GameTime time) override
     // 
     + OnEdgesChanged (EdgeList edges) override
     // 
-    + Draw (GameTime gameTime) override
+    + Draw (GameTime time) override
     // 
     - DrawRoundedLines ()
     // 

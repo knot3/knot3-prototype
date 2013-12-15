@@ -15,9 +15,9 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     // 
     + OnEdgesChanged (EdgeList edges) virtual
     // 
-    + Update (GameTime gameTime) abstract
+    + Update (GameTime time) abstract
     // 
-    + Draw (GameTime gameTime) abstract
+    + Draw (GameTime time) abstract
     // 
     + Intersects (Ray ray) : GameObjectDistance abstract
     // 

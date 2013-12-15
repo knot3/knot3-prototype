@@ -103,7 +103,7 @@ namespace Knot3.GameObjects
 			}*/
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			BaseColor = Info.Edge.Color;
 			if (World.SelectedObject == this) {
@@ -116,7 +116,7 @@ namespace Knot3.GameObjects
 				HighlightIntensity = 0f;
 			}
 
-			base.Draw (gameTime);
+			base.Draw (time);
 		}
 
 		public override GameObjectDistance Intersects (Ray ray)

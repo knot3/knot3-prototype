@@ -50,7 +50,7 @@ namespace Knot3.CreativeMode
 			);
 		}
 
-		protected void UpdateKeys (GameTime gameTime)
+		protected void UpdateKeys (GameTime time)
 		{
 			Console.WriteLine ("Redraw=true <- UpdateKeys");
 			World.Redraw = true;
@@ -149,13 +149,13 @@ namespace Knot3.CreativeMode
 				// set position to default
 				camera.Position = camera.DefaultPosition;
 				// don't select a game object
-				World.SelectObject (null, gameTime);
+				World.SelectObject (null, time);
 			}
 
 			// grab mouse movent
 			if (Keys.LeftAlt.IsDown ()) {
 				screen.input.GrabMouseMovement = !screen.input.GrabMouseMovement;
-				World.SelectObject (null, gameTime);
+				World.SelectObject (null, time);
 			}
 
 			// switch WASD mode
@@ -171,13 +171,13 @@ namespace Knot3.CreativeMode
 			}
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
-			UpdateMouse (gameTime);
+			UpdateMouse (time);
 			ResetMousePosition ();
 		}
 
-		protected void UpdateMouse (GameTime gameTime)
+		protected void UpdateMouse (GameTime time)
 		{
 			// fullscreen recently toggled?
 			if (InputManager.FullscreenToggled) {
@@ -265,9 +265,9 @@ namespace Knot3.CreativeMode
 			}
 		}
 
-		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
 		{
-			UpdateKeys (gameTime);
+			UpdateKeys (time);
 		}
 
 		public List<Keys> ValidKeys { get; set; }

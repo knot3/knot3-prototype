@@ -67,7 +67,7 @@ namespace Knot3.UserInterface
 			buttons.AddButton (itemInfo);
 		}
 
-		protected override void DrawDialog (GameTime gameTime)
+		protected override void DrawDialog (GameTime time)
 		{
 			SpriteFont font = HfGDesign.MenuFont (screen);
 			// text

@@ -11,7 +11,7 @@ public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, I
     // 
     + DrawableGameScreenComponent (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 public enum DisplayLayer
     None
     Background

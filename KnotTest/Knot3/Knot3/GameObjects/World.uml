@@ -25,7 +25,7 @@ public class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
     // 
     + World (GameScreen screen)
     // 
-    + SelectObject (IGameObject obj, GameTime gameTime)
+    + SelectObject (IGameObject obj, GameTime time)
     // 
     + SelectedObjectDistance () : float
     // 
@@ -33,15 +33,15 @@ public class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
     // 
     + Initialize () override
     // 
-    + Draw (GameTime gameTime) override
+    + Draw (GameTime time) override
     // 
-    + Update (GameTime gameTime) override
+    + Update (GameTime time) override
     // 
     + GetEnumerator () : IEnumerator<IGameObject>
     // 
     - IEnumerable.GetEnumerator () : IEnumerator
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
 // 
 public class TestModel : GameModel
   Attributes:
@@ -49,4 +49,4 @@ public class TestModel : GameModel
     // 
     + TestModel (GameScreen screen, GameModelInfo info)
     // 
-    + Update (GameTime gameTime) override
+    + Update (GameTime time) override

@@ -25,10 +25,10 @@ public class Game : Microsoft.Xna.Framework.Game
     // 
     # UnloadContent () override
     // 
-    # Update (GameTime gameTime) override
+    # Update (GameTime time) override
     // 
-    - UpdateInput (GameTime gameTime)
+    - UpdateInput (GameTime time)
     // 
-    # Draw (GameTime gameTime) override
+    # Draw (GameTime time) override
     // 
     + Time (Action action) : TimeSpan static

@@ -25,19 +25,19 @@ public abstract class GameScreen :
     // 
     + Initialize () abstract
     // 
-    + Update (GameTime gameTime) abstract
+    + Update (GameTime time) abstract
     // 
-    + Draw (GameTime gameTime) abstract
+    + Draw (GameTime time) abstract
     // 
     + Unload () abstract
     // 
-    + AddGameComponents (GameTime gameTime, params IGameScreenComponent[] components)
+    + AddGameComponents (GameTime time, params IGameScreenComponent[] components)
     // 
-    + RemoveGameComponents (GameTime gameTime, params IGameScreenComponent[] components)
+    + RemoveGameComponents (GameTime time, params IGameScreenComponent[] components)
     // 
-    + Activate (GameTime gameTime) virtual
+    + Activate (GameTime time) virtual
     // 
-    + Deactivate (GameTime gameTime) virtual
+    + Deactivate (GameTime time) virtual
 // 
 public static class GameScreens : 
   Attributes:

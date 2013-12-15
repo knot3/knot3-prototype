@@ -112,9 +112,9 @@ namespace Knot3.UserInterface
 			Items.Clear ();
 		}
 
-		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime gameTime)
+		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(gameTime)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
 				yield return component;
 			}
 			foreach (DrawableGameScreenComponent item in Items) {

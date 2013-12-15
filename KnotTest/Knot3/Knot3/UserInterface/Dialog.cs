@@ -61,15 +61,15 @@ namespace Knot3.UserInterface
 			return new Vector2 (x, 0.06f);
 		}
 
-		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime gameTime)
+		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(gameTime)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
 				yield return component;
 			}
 			yield return buttons;
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			if (IsVisible) {
 				spriteBatch.Begin ();
@@ -83,13 +83,13 @@ namespace Knot3.UserInterface
 					Textures.Create (screen.device, Info.BackgroundColor ()), rect, Color.Black * 0.95f
 				);
 
-				DrawDialog (gameTime);
+				DrawDialog (time);
 			
 				spriteBatch.End ();
 			}
 		}
 
-		protected abstract void DrawDialog (GameTime gameTime);
+		protected abstract void DrawDialog (GameTime time);
 
 		private Color ButtonBackgroundColor (ItemState itemState)
 		{

@@ -19,8 +19,8 @@ public class CelShadingEffect : RenderEffect
     // 
     + CelShadingEffect (GameScreen screen)
     // 
-    # DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) override
+    # DrawRenderTarget (SpriteBatch spriteBatch, GameTime time) override
     // 
     + RemapModel (Model model) override
     // 
-    + DrawModel (GameModel model, GameTime gameTime) override
+    + DrawModel (GameModel model, GameTime time) override

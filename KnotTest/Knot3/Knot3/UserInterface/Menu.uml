@@ -39,6 +39,6 @@ public class Menu : Widget
     // 
     + Clear ()
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
     + CollapseMenus (MenuItem menu)

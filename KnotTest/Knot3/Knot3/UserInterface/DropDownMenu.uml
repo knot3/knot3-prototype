@@ -13,11 +13,11 @@ public class DropDownMenu : MenuItem
     // 
     + AddEntries (DistinctOptionInfo option)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
     + Collapse () override
     // 
-    + Draw (GameTime gameTime) override
+    + Draw (GameTime time) override
     // 
     - ValuePosition (int dummy = 0) : Vector2
     // 

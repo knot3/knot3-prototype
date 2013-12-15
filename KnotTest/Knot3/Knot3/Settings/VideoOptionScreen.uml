@@ -13,8 +13,8 @@ public class VideoOptionScreen : OptionScreen
     // 
     + Collapse (MenuItem item)
     // 
-    + UpdateMenu (GameTime gameTime) override
+    + UpdateMenu (GameTime time) override
     // 
-    + DrawMenu (GameTime gameTime) override
+    + DrawMenu (GameTime time) override
     // 
-    + Activate (GameTime gameTime) override
+    + Activate (GameTime time) override

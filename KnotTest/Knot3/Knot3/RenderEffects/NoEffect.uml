@@ -5,4 +5,4 @@ public sealed class NoEffect : RenderEffect
     // 
     + NoEffect (GameScreen screen)
     // 
-    # DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) override
+    # DrawRenderTarget (SpriteBatch spriteBatch, GameTime time) override

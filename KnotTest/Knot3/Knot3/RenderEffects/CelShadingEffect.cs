@@ -64,7 +64,7 @@ namespace Knot3.RenderEffects
 			}
 		}
 
-		protected override void DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime)
+		protected override void DrawRenderTarget (SpriteBatch spriteBatch, GameTime time)
 		{
 			spriteBatch.End ();
 			spriteBatch.Begin (SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, outlineShader);
@@ -80,7 +80,7 @@ namespace Knot3.RenderEffects
 			}
 		}
 
-		public override void DrawModel (GameModel model, GameTime gameTime)
+		public override void DrawModel (GameModel model, GameTime time)
 		{
 			Camera camera = model.World.Camera;
 			lightDirection = new Vector4 (-Vector3.Cross (Vector3.Normalize (camera.TargetDirection), camera.UpVector), 1);

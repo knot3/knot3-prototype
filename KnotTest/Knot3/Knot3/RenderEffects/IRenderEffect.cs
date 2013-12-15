@@ -15,15 +15,15 @@ namespace Knot3.RenderEffects
 	{
 		RenderTarget2D RenderTarget { get; }
 
-		void Begin (GameTime gameTime);
+		void Begin (GameTime time);
 
-		void End (GameTime gameTime);
+		void End (GameTime time);
 
 		void RemapModel (Model model);
 
-		void DrawModel (GameModel model, GameTime gameTime);
+		void DrawModel (GameModel model, GameTime time);
 
-		void DrawLastFrame (GameTime gameTime);
+		void DrawLastFrame (GameTime time);
 	}
 }
 

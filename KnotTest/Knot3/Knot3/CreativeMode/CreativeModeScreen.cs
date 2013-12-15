@@ -112,16 +112,16 @@ namespace Knot3.CreativeMode
 			Console.WriteLine ("load file: " + file);
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
 			if (dialog != null) {
 				// dialog
 			} else {
-				UpdateInput (gameTime);
+				UpdateInput (time);
 			}
 		}
 
-		private void UpdateInput (GameTime gameTime)
+		private void UpdateInput (GameTime time)
 		{
 			// when is escape is pressed, go to start screen
 			if (Keys.Escape.IsDown ()) {
@@ -135,9 +135,9 @@ namespace Knot3.CreativeMode
 							drawOrder: DisplayLayer.Dialog,
 							knot: knot
 						);
-						AddGameComponents (gameTime, dialog);
+						AddGameComponents (time, dialog);
 						dialog.Done += () => {
-							RemoveGameComponents (gameTime, dialog);
+							RemoveGameComponents (time, dialog);
 							dialog = null;
 						};
 					}
@@ -167,15 +167,15 @@ namespace Knot3.CreativeMode
 			}
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			// all drawing is done in game components
 		}
 
-		public override void Activate (GameTime gameTime)
+		public override void Activate (GameTime time)
 		{
-			base.Activate (gameTime);
-			AddGameComponents (gameTime, knotInput, overlay, pointer, world, picker, coloring);
+			base.Activate (time);
+			AddGameComponents (time, knotInput, overlay, pointer, world, picker, coloring);
 		}
 
 		public override void Unload ()

@@ -15,11 +15,11 @@ public abstract class Dialog : Widget
     // 
     # RelativeButtonSize (int n) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
-    + Draw (GameTime gameTime) override
+    + Draw (GameTime time) override
     // 
-    # DrawDialog (GameTime gameTime) abstract
+    # DrawDialog (GameTime time) abstract
     // 
     - ButtonBackgroundColor (ItemState itemState) : Color
     // 

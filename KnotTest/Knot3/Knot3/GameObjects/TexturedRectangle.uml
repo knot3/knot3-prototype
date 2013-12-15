@@ -49,9 +49,9 @@ public class TexturedRectangle : IGameObject
     // 
     + TexturedRectangle (GameScreen screen, TexturedRectangleInfo info)
     // 
-    + Update (GameTime gameTime)
+    + Update (GameTime time)
     // 
-    + Draw (GameTime gameTime)
+    + Draw (GameTime time)
     // 
     - FillVertices ()
     // 

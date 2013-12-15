@@ -7,9 +7,9 @@ public interface IMouseEventListener :
     + IsMouseEventEnabled : bool
   Methods:
     // 
-    + OnLeftClick (Vector2 position, ClickState click, GameTime gameTime)
+    + OnLeftClick (Vector2 position, ClickState click, GameTime time)
     // 
-    + OnRightClick (Vector2 position, ClickState click, GameTime gameTime)
+    + OnRightClick (Vector2 position, ClickState click, GameTime time)
     // 
     + SetHovered (bool hovered)
     // 

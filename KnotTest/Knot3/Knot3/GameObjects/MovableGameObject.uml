@@ -19,9 +19,9 @@ public class MovableGameObject : IGameObject
     // 
     # CurrentMousePosition (Ray ray, Plane groundPlane) : Vector3?
     // 
-    + Update (GameTime gameTime) virtual
+    + Update (GameTime time) virtual
     // 
-    + Draw (GameTime gameTime)
+    + Draw (GameTime time)
     // 
     + Intersects (Ray ray) : GameObjectDistance
     // 

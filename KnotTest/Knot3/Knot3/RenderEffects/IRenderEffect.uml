@@ -5,12 +5,12 @@ public interface IRenderEffect :
     + RenderTarget : RenderTarget2D
   Methods:
     // 
-    + Begin (GameTime gameTime)
+    + Begin (GameTime time)
     // 
-    + End (GameTime gameTime)
+    + End (GameTime time)
     // 
     + RemapModel (Model model)
     // 
-    + DrawModel (GameModel model, GameTime gameTime)
+    + DrawModel (GameModel model, GameTime time)
     // 
-    + DrawLastFrame (GameTime gameTime)
+    + DrawLastFrame (GameTime time)
