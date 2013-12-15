@@ -28,14 +28,14 @@ namespace Knot3.CreativeMode
 		// ...
 		private int wasdSpeed = 10;
 
-		public KnotInputHandler (GameScreen state, World world)
-			: base(state, DisplayLayer.None)
+		public KnotInputHandler (GameScreen screen, World world)
+			: base(screen, DisplayLayer.None)
 		{
 			// game world
 			World = world;
 
 			// default values
-			state.input.GrabMouseMovement = false;
+			screen.input.GrabMouseMovement = false;
 			ResetMousePosition ();
 
 			// keys to accept
@@ -60,7 +60,7 @@ namespace Knot3.CreativeMode
 			Vector2 selfRotate = Vector2.Zero;
 
 			// W,A,S,D,Q,E
-			if (state.input.WASDMode == WASDMode.ArcballMode) {
+			if (screen.input.WASDMode == WASDMode.ArcballMode) {
 				if (Keys.A.IsHeldDown ())
 					arcballMove += new Vector2 (-1, 0);
 				if (Keys.D.IsHeldDown ())
@@ -77,7 +77,7 @@ namespace Knot3.CreativeMode
 					selfRotate += new Vector2 (-1, 0);
 				if (Keys.E.IsHeldDown ())
 					selfRotate += new Vector2 (1, 0);
-			} else if (state.input.WASDMode == WASDMode.FirstPersonMode) {
+			} else if (screen.input.WASDMode == WASDMode.FirstPersonMode) {
 				if (Keys.A.IsHeldDown ())
 					keyboardMove += new Vector3 (-1, 0, 0);
 				if (Keys.D.IsHeldDown ())
@@ -112,7 +112,7 @@ namespace Knot3.CreativeMode
 				// linear move, target and position
 				camera.Target = camera.Target.MoveLinear (keyboardMove, camera.UpVector, camera.TargetDirection);
 				camera.Position = camera.Position.MoveLinear (keyboardMove, camera.UpVector, camera.TargetDirection);
-				state.input.CurrentInputAction = InputAction.FPSMove;
+				screen.input.CurrentInputAction = InputAction.FPSMove;
 			}
 
 			// apply arcball movements to the target
@@ -123,7 +123,7 @@ namespace Knot3.CreativeMode
 				camera.Position = camera.ArcballTarget + (camera.Position - camera.ArcballTarget).ArcBallMove (
 						arcballMove, camera.UpVector, camera.TargetDirection
 				);
-				state.input.CurrentInputAction = InputAction.ArcballMove;
+				screen.input.CurrentInputAction = InputAction.ArcballMove;
 			}
 
 			// apply arcball movements to the camera
@@ -131,7 +131,7 @@ namespace Knot3.CreativeMode
 				camera.Target = camera.Position + (camera.Target - camera.Position).ArcBallMove (
 						selfRotate, camera.UpVector, camera.TargetDirection
 				);
-				state.input.CurrentInputAction = InputAction.ArcballMove;
+				screen.input.CurrentInputAction = InputAction.ArcballMove;
 			}
 
 			// Plus/Minus Keys
@@ -154,18 +154,18 @@ namespace Knot3.CreativeMode
 
 			// grab mouse movent
 			if (Keys.LeftAlt.IsDown ()) {
-				state.input.GrabMouseMovement = !state.input.GrabMouseMovement;
+				screen.input.GrabMouseMovement = !screen.input.GrabMouseMovement;
 				World.SelectObject (null, gameTime);
 			}
 
 			// switch WASD mode
 			if (Keys.Tab.IsDown ()) {
-				switch (state.input.WASDMode) {
+				switch (screen.input.WASDMode) {
 				case WASDMode.ArcballMode:
-					state.input.WASDMode = WASDMode.FirstPersonMode;
+					screen.input.WASDMode = WASDMode.FirstPersonMode;
 					break;
 				case WASDMode.FirstPersonMode:
-					state.input.WASDMode = WASDMode.ArcballMode;
+					screen.input.WASDMode = WASDMode.ArcballMode;
 					break;
 				}
 			}
@@ -193,7 +193,7 @@ namespace Knot3.CreativeMode
 
 				InputAction action;
 				// grab mouse movement
-				if (state.input.GrabMouseMovement) {
+				if (screen.input.GrabMouseMovement) {
 					// left mouse button pressed
 					if (InputManager.MouseState.LeftButton == ButtonState.Pressed)
 						action = InputAction.ArcballMove;
@@ -242,7 +242,7 @@ namespace Knot3.CreativeMode
 					World.Redraw = true;
 					break;
 				}
-				state.input.CurrentInputAction = action;
+				screen.input.CurrentInputAction = action;
 
 				// scroll wheel zoom
 				if (InputManager.MouseState.ScrollWheelValue < InputManager.PreviousMouseState.ScrollWheelValue) {
@@ -258,8 +258,8 @@ namespace Knot3.CreativeMode
 		private void ResetMousePosition ()
 		{
 			if (InputManager.MouseState != InputManager.PreviousMouseState) {
-				if (state.input.GrabMouseMovement || (state.input.CurrentInputAction == InputAction.ArcballMove)) {
-					Mouse.SetPosition (state.viewport.Width / 2, state.viewport.Height / 2);
+				if (screen.input.GrabMouseMovement || (screen.input.CurrentInputAction == InputAction.ArcballMove)) {
+					Mouse.SetPosition (screen.viewport.Width / 2, screen.viewport.Height / 2);
 					InputManager.MouseState = Mouse.GetState ();
 				}
 			}

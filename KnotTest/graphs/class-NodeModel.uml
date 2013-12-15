@@ -5,7 +5,7 @@ public class NodeModel : GameModel
     + Info : NodeModelInfo
   Methods:
     // 
-    + NodeModel  (GameState state, NodeModelInfo info)
+    + NodeModel  (GameScreen screen, NodeModelInfo info)
     // 
     + Draw  (GameTime gameTime)
 
@@ -13,7 +13,7 @@ public class NodeModel : GameModel
 public class GameModel : IGameObject
   Attributes:
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     - IGameObject.Info : GameObjectInfo
     // 
@@ -52,7 +52,7 @@ public class GameModel : IGameObject
     # InCameraFrustum : bool
   Methods:
     // 
-    + GameModel  (GameState state, GameModelInfo info)
+    + GameModel  (GameScreen screen, GameModelInfo info)
     // 
     + Update  (GameTime gameTime) virtual
     // 
@@ -121,14 +121,14 @@ public class GameModel : IGameObject
     // 
     - _world : World
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     + Model : Model virtual
   Methods:
     - OnViewChanged ()
     - UpdatePrecomputed ()
     // 
-    + GameModel  (GameState state, GameModelInfo info)
+    + GameModel  (GameScreen screen, GameModelInfo info)
     // 
     + Draw  (GameTime gameTime) virtual
     // 

@@ -22,7 +22,7 @@ namespace Knot3.GameObjects
 	/// </summary>
 	public class MovableGameObject : IGameObject
 	{
-		private GameScreen state;
+		private GameScreen screen;
 		private IGameObject Obj;
 
 		public World World {
@@ -30,9 +30,9 @@ namespace Knot3.GameObjects
 			set {}
 		}
 
-		public MovableGameObject (GameScreen state, IGameObject obj)
+		public MovableGameObject (GameScreen screen, IGameObject obj)
 		{
- 			this.state = state;
+ 			this.screen = screen;
 			Obj = obj;
 			Obj.Info.IsMovable = true;
 		}
@@ -80,7 +80,7 @@ namespace Knot3.GameObjects
 			bool isSelected = World.SelectedObject == this || World.SelectedObject == Obj;
 			if (Info.IsVisible && Info.IsMovable && isSelected) {
 				// is SelectedObjectMove the current input action?
-				if (state.input.CurrentInputAction == InputAction.SelectedObjectMove) {
+				if (screen.input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					Plane groundPlane = CurrentGroundPlane ();
 					Ray ray = CurrentMouseRay ();
 					Vector3? newPosition = CurrentMousePosition (ray, groundPlane);

@@ -36,14 +36,14 @@
 <text text-anchor="middle" x="167" y="-335.8" font-family="Arial" font-size="8.00">KnotRenderer</text>
 <polyline fill="none" stroke="black" points="61.5,-329 272.5,-329 "/>
 <text text-anchor="start" x="69.5" y="-317.8" font-family="Arial" font-size="8.00">+ World : World abstract</text>
-<text text-anchor="start" x="69.5" y="-307.8" font-family="Arial" font-size="8.00"># state : GameState</text>
+<text text-anchor="start" x="69.5" y="-307.8" font-family="Arial" font-size="8.00"># screen : GameScreen</text>
 <text text-anchor="start" x="69.5" y="-297.8" font-family="Arial" font-size="8.00">+ Info : GameObjectInfo abstract</text>
 <polyline fill="none" stroke="black" points="61.5,-291 272.5,-291 "/>
 <text text-anchor="start" x="69.5" y="-279.8" font-family="Arial" font-size="8.00"># nodeMap () : NodeMap</text>
 <text text-anchor="start" x="69.5" y="-269.8" font-family="Arial" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance abstract</text>
 <text text-anchor="start" x="69.5" y="-259.8" font-family="Arial" font-size="8.00">+ Center () : Vector3 abstract</text>
 <text text-anchor="start" x="69.5" y="-249.8" font-family="Arial" font-size="8.00">+ Draw (GameTime gameTime) abstract</text>
-<text text-anchor="start" x="69.5" y="-239.8" font-family="Arial" font-size="8.00">+ KnotRenderer (GameState state)</text>
+<text text-anchor="start" x="69.5" y="-239.8" font-family="Arial" font-size="8.00">+ KnotRenderer (GameScreen screen)</text>
 <text text-anchor="start" x="69.5" y="-229.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime) abstract</text>
 <text text-anchor="start" x="69.5" y="-219.8" font-family="Arial" font-size="8.00">+ OnEdgesChanged (EdgeList edges) virtual</text>
 </g>

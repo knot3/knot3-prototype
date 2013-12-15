@@ -117,11 +117,11 @@ namespace Knot3.Core
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Knot3.Core.Camera"/> class.
 		/// </summary>
-		/// <param name='state'>
+		/// <param name='screen'>
 		/// Game State.
 		/// </param>
-		public Camera (GameScreen state, World world)
-			: base(state, DisplayLayer.None)
+		public Camera (GameScreen screen, World world)
+			: base(screen, DisplayLayer.None)
 		{
 			World = world;
 			DefaultPosition = new Vector3 (400, 400, 700);
@@ -130,7 +130,7 @@ namespace Knot3.Core
 			UpVector = Vector3.Up;
  
 			FoV = MathHelper.ToDegrees (MathHelper.PiOver4);
-			aspectRatio = state.viewport.AspectRatio;
+			aspectRatio = screen.viewport.AspectRatio;
 			nearPlane = 0.5f;
 			farPlane = 10000.0f;
 			
@@ -204,7 +204,7 @@ namespace Knot3.Core
 		/// </param>
 		public Ray GetMouseRay (Vector2 mouse)
 		{
-			Viewport viewport = state.viewport;
+			Viewport viewport = screen.viewport;
 
 			Vector3 nearPoint = new Vector3 (mouse, 0);
 			Vector3 farPoint = new Vector3 (mouse, 1);

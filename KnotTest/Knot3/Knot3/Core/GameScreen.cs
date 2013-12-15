@@ -31,10 +31,10 @@ namespace Knot3.Core
 		public Game game;
 
 		/// <summary>
-		/// Gets or sets the next game state.
+		/// Gets or sets the next game screen.
 		/// </summary>
 		/// <value>
-		/// The next game state.
+		/// The next game screen.
 		/// </value>
 		public GameScreen NextState { get; set; }
 
@@ -54,7 +54,7 @@ namespace Knot3.Core
 		}
 
 		/// <summary>
-		/// Gets the basic input handler for this game state.
+		/// Gets the basic input handler for this game screen.
 		/// </summary>
 		/// <value>
 		/// The input handler.
@@ -62,7 +62,7 @@ namespace Knot3.Core
 		public InputManager input { get; set; }
 
 		/// <summary>
-		/// Gets the graphics device manager for this game state.
+		/// Gets the graphics device manager for this game screen.
 		/// </summary>
 		/// <value>
 		/// The graphics device manager.
@@ -70,7 +70,7 @@ namespace Knot3.Core
 		public GraphicsDeviceManager graphics { get { return game.graphics; } }
 
 		/// <summary>
-		/// Gets the graphics device for this game state.
+		/// Gets the graphics device for this game screen.
 		/// </summary>
 		/// <value>
 		/// The graphics device.
@@ -78,7 +78,7 @@ namespace Knot3.Core
 		public GraphicsDevice device { get { return game.GraphicsDevice; } }
 
 		/// <summary>
-		/// Gets the viewport for this game state.
+		/// Gets the viewport for this game screen.
 		/// </summary>
 		/// <value>
 		/// The viewport.
@@ -86,7 +86,7 @@ namespace Knot3.Core
 		public Viewport viewport { get { return device.Viewport; } }
 
 		/// <summary>
-		/// Gets the content manager for this game state.
+		/// Gets the content manager for this game screen.
 		/// </summary>
 		/// <value>
 		/// The content manager.
@@ -94,7 +94,7 @@ namespace Knot3.Core
 		public ContentManager content { get { return game.Content; } }
 
 		/// <summary>
-		/// Gets the currently active render effects for this game state.
+		/// Gets the currently active render effects for this game screen.
 		/// </summary>
 		/// <value>
 		/// The currently active render effects.
@@ -102,17 +102,17 @@ namespace Knot3.Core
 		public RenderEffectStack RenderEffects { get; private set; }
 
 		/// <summary>
-		/// The post processing effect of this game state.
+		/// The post processing effect of this game screen.
 		/// </summary>
 		public RenderEffect PostProcessing;
 
 		/// <summary>
-		/// Initialize the game state.
+		/// Initialize the game screen.
 		/// </summary>
 		public abstract void Initialize ();
 
 		/// <summary>
-		/// Update the game state.
+		/// Update the game screen.
 		/// </summary>
 		/// <param name='gameTime'>
 		/// The Game time.
@@ -120,7 +120,7 @@ namespace Knot3.Core
 		public abstract void Update (GameTime gameTime);
 
 		/// <summary>
-		/// Draw the game state.
+		/// Draw the game screen.
 		/// </summary>
 		/// <param name='gameTime'>
 		/// The Game time.
@@ -128,7 +128,7 @@ namespace Knot3.Core
 		public abstract void Draw (GameTime gameTime);
 
 		/// <summary>
-		/// Unload the game state.
+		/// Unload the game screen.
 		/// </summary>
 		public abstract void Unload ();
 
@@ -163,7 +163,7 @@ namespace Knot3.Core
 		}
 
 		/// <summary>
-		/// This is run when this game state becomes the active game state.
+		/// This is run when this game screen becomes the active game screen.
 		/// </summary>
 		/// <param name='gameTime'>
 		/// The Game time.
@@ -175,7 +175,7 @@ namespace Knot3.Core
 		}
 
 		/// <summary>
-		/// This is run when this game state is about to becomes inactive.
+		/// This is run when this game screen is about to becomes inactive.
 		/// </summary>
 		/// <param name='gameTime'>
 		/// The Game time.

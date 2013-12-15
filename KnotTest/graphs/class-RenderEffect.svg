@@ -17,11 +17,11 @@
 <text text-anchor="start" x="559.5" y="-327.8" font-family="Arial" font-size="8.00">&#45; background : Color</text>
 <text text-anchor="start" x="559.5" y="-317.8" font-family="Arial" font-size="8.00">&#45; renderTarget : RenderTargetCache</text>
 <text text-anchor="start" x="559.5" y="-307.8" font-family="Arial" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
-<text text-anchor="start" x="559.5" y="-297.8" font-family="Arial" font-size="8.00"># state : GameState</text>
+<text text-anchor="start" x="559.5" y="-297.8" font-family="Arial" font-size="8.00"># screen : GameScreen</text>
 <text text-anchor="start" x="559.5" y="-287.8" font-family="Arial" font-size="8.00">+ RenderTarget : RenderTarget2D</text>
 <polyline fill="none" stroke="black" points="551.5,-281 850.5,-281 "/>
 <text text-anchor="start" x="559.5" y="-269.8" font-family="Arial" font-size="8.00"># DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) abstract</text>
-<text text-anchor="start" x="559.5" y="-259.8" font-family="Arial" font-size="8.00">+ RenderEffect (GameState state)</text>
+<text text-anchor="start" x="559.5" y="-259.8" font-family="Arial" font-size="8.00">+ RenderEffect (GameScreen screen)</text>
 <text text-anchor="start" x="559.5" y="-249.8" font-family="Arial" font-size="8.00">+ DrawModel (GameModel model, GameTime gameTime) virtual</text>
 <text text-anchor="start" x="559.5" y="-239.8" font-family="Arial" font-size="8.00">+ RemapModel (Model model) virtual</text>
 <text text-anchor="start" x="559.5" y="-229.8" font-family="Arial" font-size="8.00">+ Begin (GameTime gameTime)</text>
@@ -37,7 +37,7 @@
 <polyline fill="none" stroke="black" points="0,-97 266,-97 "/>
 <text text-anchor="start" x="8" y="-85.8" font-family="Arial" font-size="8.00">&#45; testEffect : Effect static</text>
 <polyline fill="none" stroke="black" points="0,-79 266,-79 "/>
-<text text-anchor="start" x="8" y="-67.8" font-family="Arial" font-size="8.00">+ BlurEffect (GameState state)</text>
+<text text-anchor="start" x="8" y="-67.8" font-family="Arial" font-size="8.00">+ BlurEffect (GameScreen screen)</text>
 <text text-anchor="start" x="8" y="-57.8" font-family="Arial" font-size="8.00"># DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime)</text>
 <text text-anchor="start" x="8" y="-47.8" font-family="Arial" font-size="8.00">+ Begin (Color background, GameTime gameTime)</text>
 <text text-anchor="start" x="8" y="-37.8" font-family="Arial" font-size="8.00">+ End (GameTime gameTime)</text>
@@ -60,7 +60,7 @@
 <text text-anchor="start" x="292" y="-65.8" font-family="Arial" font-size="8.00">&#45; celShader : Effect</text>
 <text text-anchor="start" x="292" y="-55.8" font-family="Arial" font-size="8.00">+ Color : Color</text>
 <polyline fill="none" stroke="black" points="284,-49 550,-49 "/>
-<text text-anchor="start" x="292" y="-37.8" font-family="Arial" font-size="8.00">+ CelShadingEffect (GameState state)</text>
+<text text-anchor="start" x="292" y="-37.8" font-family="Arial" font-size="8.00">+ CelShadingEffect (GameScreen screen)</text>
 <text text-anchor="start" x="292" y="-27.8" font-family="Arial" font-size="8.00"># DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime)</text>
 <text text-anchor="start" x="292" y="-17.8" font-family="Arial" font-size="8.00">+ DrawModel (GameModel model, GameTime gameTime)</text>
 <text text-anchor="start" x="292" y="-7.8" font-family="Arial" font-size="8.00">+ RemapModel (Model model)</text>
@@ -80,7 +80,7 @@
 <text text-anchor="start" x="576" y="-65.8" font-family="Arial" font-size="8.00">+ IsFinished : bool</text>
 <polyline fill="none" stroke="black" points="568,-59 834,-59 "/>
 <text text-anchor="start" x="576" y="-47.8" font-family="Arial" font-size="8.00"># DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime)</text>
-<text text-anchor="start" x="576" y="-37.8" font-family="Arial" font-size="8.00">+ FadeEffect (GameState state, GameState oldState)</text>
+<text text-anchor="start" x="576" y="-37.8" font-family="Arial" font-size="8.00">+ FadeEffect (GameScreen screen, GameScreen oldState)</text>
 </g>
 <!-- Box_RenderEffect&#45;&gt;Box_FadeEffect -->
 <g id="edge8" class="edge"><title>Box_RenderEffect&#45;&gt;Box_FadeEffect</title>
@@ -97,7 +97,7 @@
 <text text-anchor="start" x="860" y="-77.8" font-family="Arial" font-size="8.00">&#45; instanceHash () : Hashtable</text>
 <text text-anchor="start" x="860" y="-67.8" font-family="Arial" font-size="8.00">+ Begin (Color background, GameTime gameTime)</text>
 <text text-anchor="start" x="860" y="-57.8" font-family="Arial" font-size="8.00"># DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime)</text>
-<text text-anchor="start" x="860" y="-47.8" font-family="Arial" font-size="8.00">+ InstancingTest (GameState state)</text>
+<text text-anchor="start" x="860" y="-47.8" font-family="Arial" font-size="8.00">+ InstancingTest (GameScreen screen)</text>
 <text text-anchor="start" x="860" y="-37.8" font-family="Arial" font-size="8.00">+ DrawModel (GameModel model, GameTime gameTime)</text>
 <text text-anchor="start" x="860" y="-27.8" font-family="Arial" font-size="8.00">+ End (GameTime gameTime)</text>
 </g>
@@ -114,7 +114,7 @@
 <text text-anchor="middle" x="1269" y="-75.8" font-family="Arial" font-size="8.00"> </text>
 <polyline fill="none" stroke="black" points="1136,-69 1402,-69 "/>
 <text text-anchor="start" x="1144" y="-57.8" font-family="Arial" font-size="8.00"># DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime)</text>
-<text text-anchor="start" x="1144" y="-47.8" font-family="Arial" font-size="8.00">+ NoEffect (GameState state)</text>
+<text text-anchor="start" x="1144" y="-47.8" font-family="Arial" font-size="8.00">+ NoEffect (GameScreen screen)</text>
 </g>
 <!-- Box_RenderEffect&#45;&gt;Box_NoEffect -->
 <g id="edge12" class="edge"><title>Box_RenderEffect&#45;&gt;Box_NoEffect</title>

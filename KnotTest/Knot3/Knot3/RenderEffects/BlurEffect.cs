@@ -21,10 +21,10 @@ namespace Knot3.RenderEffects
 	{
 		private static Effect testEffect;
 
-		public BlurEffect (GameScreen state)
-			: base(state)
+		public BlurEffect (GameScreen screen)
+			: base(screen)
 		{
-			testEffect = state.LoadEffect ("blur");
+			testEffect = screen.LoadEffect ("blur");
 		}
 
 		public override void Begin (Color background, GameTime gameTime)

@@ -22,8 +22,8 @@ namespace Knot3.GameObjects
 {
 	public class PipeMovement : IGameObject, IEnumerable<IGameObject>
 	{
-		// game state
-		private GameScreen state;
+		// game screen
+		private GameScreen screen;
 
 		// game world
 		public World World { get; set; }
@@ -38,9 +38,9 @@ namespace Knot3.GameObjects
 		private Vector3 previousMousePosition = Vector3.Zero;
 		private List<ShadowGameObject> shadowObjects;
 
-		public PipeMovement (GameScreen state, World world, GameObjectInfo info)
+		public PipeMovement (GameScreen screen, World world, GameObjectInfo info)
 		{
-			this.state = state;
+			this.screen = screen;
 			this.World = world;
 			Info = info;
 			shadowObjects = new List<ShadowGameObject> ();
@@ -99,17 +99,17 @@ namespace Knot3.GameObjects
 				GameModel selectedModel = World.SelectedObject as GameModel;
 
 				// find out the current mouse position in 3D
-				Vector3 screenLocation = state.viewport.Project (
+				Vector3 screenLocation = screen.viewport.Project (
 					selectedModel.Center (), World.Camera.ProjectionMatrix,
 					World.Camera.ViewMatrix, World.Camera.WorldMatrix
 				);
-				Vector3 currentMousePosition = state.viewport.Unproject (
+				Vector3 currentMousePosition = screen.viewport.Unproject (
 					new Vector3 (InputManager.MouseState.ToVector2 (), screenLocation.Z),
 					World.Camera.ProjectionMatrix, World.Camera.ViewMatrix, Matrix.Identity
 				);
 
 				// show a shadow
-				if (state.input.CurrentInputAction == InputAction.SelectedObjectShadowMove) {
+				if (screen.input.CurrentInputAction == InputAction.SelectedObjectShadowMove) {
 					if (previousMousePosition == Vector3.Zero) {
 						previousMousePosition = currentMousePosition;
 						CreateShadowPipes ();
@@ -121,7 +121,7 @@ namespace Knot3.GameObjects
 					World.Redraw = true;
 				}
 				// perform the move
-				else if (state.input.CurrentInputAction == InputAction.SelectedObjectMove) {
+				else if (screen.input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					MovePipes (currentMousePosition);
 					shadowObjects.Clear ();
 					World.Redraw = true;
@@ -152,11 +152,11 @@ namespace Knot3.GameObjects
 			foreach (IEnumerable<IGameObject> container in World.Objects.OfType<IEnumerable<IGameObject>>()) {
 				foreach (PipeModel pipe in container.OfType<PipeModel>()) {
 					if (Knot.Edges.SelectedEdges.Contains (pipe.Info.Edge)) {
-						shadowObjects.Add (new ShadowGameModel (state, pipe as GameModel));
+						shadowObjects.Add (new ShadowGameModel (screen, pipe as GameModel));
 					}
 				}
 				foreach (ArrowModel arrow in container.OfType<ArrowModel>()) {
-					shadowObjects.Add (new ShadowGameModel (state, arrow as GameModel));
+					shadowObjects.Add (new ShadowGameModel (screen, arrow as GameModel));
 				}
 			}
 		}
@@ -255,8 +255,8 @@ namespace Knot3.GameObjects
 	
 	public class ShadowGameObject : IGameObject
 	{
-		// game state
-		protected GameScreen state;
+		// game screen
+		protected GameScreen screen;
 
 		// the decorated object
 		private IGameObject Obj;
@@ -270,9 +270,9 @@ namespace Knot3.GameObjects
 		// info
 		public GameObjectInfo Info { get; private set; }
 
-		public ShadowGameObject (GameScreen state, IGameObject obj)
+		public ShadowGameObject (GameScreen screen, IGameObject obj)
 		{
- this.state = state;
+ this.screen = screen;
 			Info = new GameObjectInfo ();
 			Obj = obj;
 			Info.IsVisible = true;
@@ -340,8 +340,8 @@ namespace Knot3.GameObjects
 
 		public float ShadowAlpha { get; set; }
 
-		public ShadowGameModel (GameScreen state, GameModel model)
-			: base(state, model)
+		public ShadowGameModel (GameScreen screen, GameModel model)
+			: base(screen, model)
 		{
 			Model = model;
 		}
@@ -357,7 +357,7 @@ namespace Knot3.GameObjects
 			Model.Alpha = ShadowAlpha;
 
 			// draw
-			state.RenderEffects.Current.DrawModel (Model, gameTime);
+			screen.RenderEffects.Current.DrawModel (Model, gameTime);
 
 			// swap everything back
 			Model.Info.Position = originalPositon;

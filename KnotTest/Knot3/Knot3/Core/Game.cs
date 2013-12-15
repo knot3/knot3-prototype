@@ -95,7 +95,7 @@ namespace Knot3.Core
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update (GameTime gameTime)
 		{
-			// change game state?
+			// change game screen?
 			if (State != State.NextState) {
 				State.NextState.PostProcessing = new FadeEffect (State.NextState, State);
 				State.Deactivate (gameTime);
@@ -106,7 +106,7 @@ namespace Knot3.Core
 			// global keyboard ans mouse input 
 			UpdateInput (gameTime);
 
-			// set the next game state
+			// set the next game screen
 			State.Update (gameTime);
 
 			// base method
@@ -128,7 +128,7 @@ namespace Knot3.Core
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw (GameTime gameTime)
 		{
-			// current game state
+			// current game screen
 			State.Draw (gameTime);
 
 			// base class

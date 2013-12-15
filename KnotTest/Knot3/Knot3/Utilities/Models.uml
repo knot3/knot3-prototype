@@ -11,6 +11,6 @@ public static class Models :
     - invalidModels : HashSet<string> static
   Methods:
     // 
-    + LoadModel (GameScreen state, string name) : Model static
+    + LoadModel (GameScreen screen, string name) : Model static
     // 
     - LoadModel (ContentManager content, IRenderEffect pp, string name) : Model static

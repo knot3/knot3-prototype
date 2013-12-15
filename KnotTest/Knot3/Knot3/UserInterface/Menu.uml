@@ -25,7 +25,7 @@ public class Menu : Widget
     + IsVisible : bool override
   Methods:
     // 
-    + Menu (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
+    + Menu (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     - assignMenuItemInfo (ref MenuItemInfo info, int num, MenuItem item)
     // 

@@ -5,13 +5,13 @@ public class TestModel : GameModel
     // 
     + Update  (GameTime gameTime)
     // 
-    + TestModel  (GameState state, GameModelInfo info)
+    + TestModel  (GameScreen screen, GameModelInfo info)
 
 // 
 public class GameModel : IGameObject
   Attributes:
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     - IGameObject.Info : GameObjectInfo
     // 
@@ -50,7 +50,7 @@ public class GameModel : IGameObject
     # InCameraFrustum : bool
   Methods:
     // 
-    + GameModel  (GameState state, GameModelInfo info)
+    + GameModel  (GameScreen screen, GameModelInfo info)
     // 
     + Update  (GameTime gameTime) virtual
     // 
@@ -119,14 +119,14 @@ public class GameModel : IGameObject
     // 
     - _world : World
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     + Model : Model virtual
   Methods:
     - OnViewChanged ()
     - UpdatePrecomputed ()
     // 
-    + GameModel  (GameState state, GameModelInfo info)
+    + GameModel  (GameScreen screen, GameModelInfo info)
     // 
     + Draw  (GameTime gameTime) virtual
     // 

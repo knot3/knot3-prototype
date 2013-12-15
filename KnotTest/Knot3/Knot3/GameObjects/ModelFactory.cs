@@ -31,12 +31,12 @@ namespace Knot3.GameObjects
 			CreateModel = createModel;
 		}
 		
-		public GameModel this [GameScreen state, GameModelInfo info] {
+		public GameModel this [GameScreen screen, GameModelInfo info] {
 			get {
 				if (cache.ContainsKey (info)) {
 					return cache [info];
 				} else {
-					return cache [info] = CreateModel(state, info);
+					return cache [info] = CreateModel(screen, info);
 				}
 			}
 		}

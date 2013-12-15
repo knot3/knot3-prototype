@@ -19,7 +19,7 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     - arrowFactory : ModelFactory
   Methods:
     // 
-    + ModelRenderer (GameScreen state, GameObjectInfo info)
+    + ModelRenderer (GameScreen screen, GameObjectInfo info)
     // 
     + Update (GameTime gameTime) override
     // 

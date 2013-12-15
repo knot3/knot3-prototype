@@ -9,7 +9,7 @@ public class KnotModeInput : Core.Input
     - wasdSpeed : int
   Methods:
     // 
-    + KnotModeInput (GameScreen state, World world)
+    + KnotModeInput (GameScreen screen, World world)
     // 
     # UpdateKeys (GameTime gameTime) override
     // 

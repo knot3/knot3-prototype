@@ -16,7 +16,7 @@
 <polyline fill="none" stroke="black" points="1,-237 341,-237 "/>
 <text text-anchor="start" x="9" y="-225.8" font-family="Arial" font-size="8.00">&#45; shadowObjects : List&lt;ShadowGameObject&gt;</text>
 <text text-anchor="start" x="9" y="-215.8" font-family="Arial" font-size="8.00">+ World : World</text>
-<text text-anchor="start" x="9" y="-205.8" font-family="Arial" font-size="8.00">&#45; state : GameState</text>
+<text text-anchor="start" x="9" y="-205.8" font-family="Arial" font-size="8.00">&#45; screen : GameScreen</text>
 <text text-anchor="start" x="9" y="-195.8" font-family="Arial" font-size="8.00">&#45; previousMousePosition : Vector3</text>
 <text text-anchor="start" x="9" y="-185.8" font-family="Arial" font-size="8.00">+ Info : GameObjectInfo</text>
 <text text-anchor="start" x="9" y="-175.8" font-family="Arial" font-size="8.00">+ Knot : Knot</text>
@@ -27,7 +27,7 @@
 <text text-anchor="start" x="9" y="-127.8" font-family="Arial" font-size="8.00">&#45; MoveShadowPipes (Vector3 currentMousePosition)</text>
 <text text-anchor="start" x="9" y="-117.8" font-family="Arial" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance</text>
 <text text-anchor="start" x="9" y="-107.8" font-family="Arial" font-size="8.00">+ GetEnumerator () : IEnumerator&lt;IGameObject&gt;</text>
-<text text-anchor="start" x="9" y="-97.8" font-family="Arial" font-size="8.00">+ PipeMovement (GameState state, World world, GameObjectInfo info)</text>
+<text text-anchor="start" x="9" y="-97.8" font-family="Arial" font-size="8.00">+ PipeMovement (GameScreen screen, World world, GameObjectInfo info)</text>
 <text text-anchor="start" x="9" y="-87.8" font-family="Arial" font-size="8.00">+ Draw (GameTime gameTime)</text>
 <text text-anchor="start" x="9" y="-77.8" font-family="Arial" font-size="8.00">&#45; ComputeDirection (Vector3 currentMousePosition, out Vector3 direction, out float count)</text>
 <text text-anchor="start" x="9" y="-67.8" font-family="Arial" font-size="8.00">&#45; ComputeDirection (Vector3 currentMousePosition, out Vector3 direction, out int countInt)</text>

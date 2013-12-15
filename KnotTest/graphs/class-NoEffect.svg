@@ -17,7 +17,7 @@
 <text text-anchor="middle" x="149" y="-35.8" font-family="Arial" font-size="8.00"> </text>
 <polyline fill="none" stroke="black" points="16,-29 282,-29 "/>
 <text text-anchor="start" x="24" y="-17.8" font-family="Arial" font-size="8.00"># DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime)</text>
-<text text-anchor="start" x="24" y="-7.8" font-family="Arial" font-size="8.00">+ NoEffect (GameState state)</text>
+<text text-anchor="start" x="24" y="-7.8" font-family="Arial" font-size="8.00">+ NoEffect (GameScreen screen)</text>
 </g>
 <!-- Box_RenderEffect -->
 <g id="node2" class="node"><title>Box_RenderEffect</title>
@@ -27,11 +27,11 @@
 <text text-anchor="start" x="7.5" y="-247.8" font-family="Arial" font-size="8.00">&#45; background : Color</text>
 <text text-anchor="start" x="7.5" y="-237.8" font-family="Arial" font-size="8.00">&#45; renderTarget : RenderTargetCache</text>
 <text text-anchor="start" x="7.5" y="-227.8" font-family="Arial" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
-<text text-anchor="start" x="7.5" y="-217.8" font-family="Arial" font-size="8.00"># state : GameState</text>
+<text text-anchor="start" x="7.5" y="-217.8" font-family="Arial" font-size="8.00"># screen : GameScreen</text>
 <text text-anchor="start" x="7.5" y="-207.8" font-family="Arial" font-size="8.00">+ RenderTarget : RenderTarget2D</text>
 <polyline fill="none" stroke="black" points="-0.5,-201 298.5,-201 "/>
 <text text-anchor="start" x="7.5" y="-189.8" font-family="Arial" font-size="8.00"># DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) abstract</text>
-<text text-anchor="start" x="7.5" y="-179.8" font-family="Arial" font-size="8.00">+ RenderEffect (GameState state)</text>
+<text text-anchor="start" x="7.5" y="-179.8" font-family="Arial" font-size="8.00">+ RenderEffect (GameScreen screen)</text>
 <text text-anchor="start" x="7.5" y="-169.8" font-family="Arial" font-size="8.00">+ DrawModel (GameModel model, GameTime gameTime) virtual</text>
 <text text-anchor="start" x="7.5" y="-159.8" font-family="Arial" font-size="8.00">+ RemapModel (Model model) virtual</text>
 <text text-anchor="start" x="7.5" y="-149.8" font-family="Arial" font-size="8.00">+ Begin (GameTime gameTime)</text>

@@ -2,7 +2,7 @@
 public class PipeMovement : IGameObject, IEnumerable<IGameObject>
   Attributes:
     // 
-    - state : GameScreen
+    - screen : GameScreen
     // 
     + World : World
     // 
@@ -17,7 +17,7 @@ public class PipeMovement : IGameObject, IEnumerable<IGameObject>
     - knownEdgeLists : HashSet<EdgeList> new
   Methods:
     // 
-    + PipeMovement (GameScreen state, World world, GameObjectInfo info)
+    + PipeMovement (GameScreen screen, World world, GameObjectInfo info)
     // 
     + Update (GameTime gameTime)
     // 
@@ -50,7 +50,7 @@ public class PipeMovement : IGameObject, IEnumerable<IGameObject>
 public class ShadowGameObject : IGameObject
   Attributes:
     // 
-    # state : GameScreen
+    # screen : GameScreen
     // 
     - Obj : IGameObject
     // 
@@ -63,7 +63,7 @@ public class ShadowGameObject : IGameObject
     + OriginalPosition : Vector3
   Methods:
     // 
-    + ShadowGameObject (GameScreen state, IGameObject obj)
+    + ShadowGameObject (GameScreen screen, IGameObject obj)
     // 
     + Update (GameTime gameTime) virtual
     // 
@@ -83,6 +83,6 @@ public class ShadowGameModel : ShadowGameObject
     + ShadowAlpha : float
   Methods:
     // 
-    + ShadowGameModel (GameScreen state, GameModel model)
+    + ShadowGameModel (GameScreen screen, GameModel model)
     // 
     + Draw (GameTime gameTime) override

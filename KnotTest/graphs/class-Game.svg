@@ -17,7 +17,7 @@
 <text text-anchor="start" x="7.5" y="-155.8" font-family="Arial" font-size="8.00">+ IsFullscreen : bool</text>
 <text text-anchor="start" x="7.5" y="-145.8" font-family="Arial" font-size="8.00">+ Debug : bool static</text>
 <text text-anchor="start" x="7.5" y="-135.8" font-family="Arial" font-size="8.00">&#45; isFullscreen : bool</text>
-<text text-anchor="start" x="7.5" y="-125.8" font-family="Arial" font-size="8.00">+ State : GameState</text>
+<text text-anchor="start" x="7.5" y="-125.8" font-family="Arial" font-size="8.00">+ State : GameScreen</text>
 <text text-anchor="start" x="7.5" y="-115.8" font-family="Arial" font-size="8.00">+ graphics : GraphicsDeviceManager</text>
 <text text-anchor="start" x="7.5" y="-105.8" font-family="Arial" font-size="8.00">+ VSync : bool</text>
 <polyline fill="none" stroke="black" points="-0.5,-99 166.5,-99 "/>

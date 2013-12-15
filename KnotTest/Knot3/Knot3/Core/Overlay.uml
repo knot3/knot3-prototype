@@ -21,7 +21,7 @@ public class Overlay : DrawableGameScreenComponent
     + Profiler : HashtableWrapper static
   Methods:
     // 
-    + Overlay (GameScreen state, World world)
+    + Overlay (GameScreen screen, World world)
     // 
     # LoadContent () override
     // 

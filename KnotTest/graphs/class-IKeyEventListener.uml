@@ -12,7 +12,7 @@ public interface IKeyEventListener :
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 
 // 
-public abstract class Input : GameStateComponent, IKeyEventListener
+public abstract class Input : GameScreenComponent, IKeyEventListener
   Attributes:
     // 
     # FullscreenToggled : bool static
@@ -46,7 +46,7 @@ public abstract class Input : GameStateComponent, IKeyEventListener
     + KeyboardState : KeyboardState static
   Methods:
     // 
-    + Input  (GameState state)
+    + Input  (GameScreen screen)
     // 
     + Update  (GameTime gameTime) override
     // 
@@ -61,7 +61,7 @@ public class MenuScreenInput : Input
   Attributes:
   Methods:
     // 
-    + MenuScreenInput  (GameState state)
+    + MenuScreenInput  (GameScreen screen)
 
 // 
 public class MenuScreenInput : Input
@@ -71,7 +71,34 @@ public class MenuScreenInput : Input
     + MenuScreenInput  (GameState state)
 
 // 
-public class PipeColoring : GameStateComponent, IKeyEventListener
+public class KnotInputHandler : GameScreenComponent, IKeyEventListener
+  Attributes:
+    // 
+    - World : World
+    // 
+    - camera : Camera
+    // 
+    - wasdSpeed : int
+    // 
+    + ValidKeys : List<Keys>
+    // 
+    + IsKeyEventEnabled : bool
+  Methods:
+    // 
+    + KnotInputHandler  (GameScreen screen, World world)
+    // 
+    # UpdateKeys  (GameTime gameTime)
+    // 
+    + Update  (GameTime gameTime) override
+    // 
+    # UpdateMouse  (GameTime gameTime)
+    // 
+    - ResetMousePosition  ()
+    // 
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+
+// 
+public class PipeColoring : GameScreenComponent, IKeyEventListener
   Attributes:
     // 
     + Knot : Knot
@@ -81,7 +108,7 @@ public class PipeColoring : GameStateComponent, IKeyEventListener
     + IsKeyEventEnabled : bool
   Methods:
     // 
-    + PipeColoring  (GameState state)
+    + PipeColoring  (GameScreen screen)
     // 
     + Update  (GameTime gameTime) override
     // 
@@ -102,7 +129,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     + IsMouseEventEnabled : bool
   Methods:
     // 
-    + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + Draw  (GameTime gameTime) override
     // 
@@ -131,13 +158,13 @@ public class DropDownMenu : MenuItem
     - selected : MenuButton
   Methods:
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     + Collapse  () override
     // 
@@ -156,7 +183,7 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
 // 
 public class DropDownMenu : MenuItem
@@ -169,7 +196,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValuePosition (int dummy) : Vector2
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
@@ -177,7 +204,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValueSize (int dummy) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
     + Collapse ()
     // 
     + Draw  (GameTime gameTime)
@@ -191,7 +218,7 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
 // 
 public class TextInput : Widget, IKeyEventListener
@@ -208,7 +235,7 @@ public class TextInput : Widget, IKeyEventListener
     + IsKeyEventEnabled : bool
   Methods:
     // 
-    + TextInput  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + TextInput  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + Update  (GameTime gameTime) override
     // 
@@ -266,7 +293,7 @@ public class MenuScreenInput : Input
   Attributes:
   Methods:
     // 
-    + MenuScreenInput  (GameState state)
+    + MenuScreenInput  (GameScreen screen)
 
 // 
 public class MenuScreenInput : Input
@@ -276,7 +303,33 @@ public class MenuScreenInput : Input
     + MenuScreenInput  (GameState state)
 
 // 
-public class PipeColoring : GameStateComponent, IKeyEventListener
+public class KnotInputHandler : GameScreenComponent, IKeyEventListener
+  Attributes:
+    // 
+    - wasdSpeed : int
+    // 
+    - camera : Camera
+    // 
+    - World : World
+    // 
+    + ValidKeys : List<Keys>
+    // 
+    + IsKeyEventEnabled : bool
+  Methods:
+    // 
+    # UpdateMouse  (GameTime gameTime)
+    // 
+    + KnotInputHandler  (GameScreen screen, World world)
+    // 
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    - ResetMousePosition ()
+    // 
+    # UpdateKeys  (GameTime gameTime)
+    // 
+    + Update  (GameTime gameTime)
+
+// 
+public class PipeColoring : GameScreenComponent, IKeyEventListener
   Attributes:
     // 
     + ValidKeys : List<Keys>
@@ -288,7 +341,7 @@ public class PipeColoring : GameStateComponent, IKeyEventListener
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
     // 
-    + PipeColoring  (GameState state)
+    + PipeColoring  (GameScreen screen)
     // 
     + Update  (GameTime gameTime)
 
@@ -307,7 +360,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     + Info : MenuItemInfo
   Methods:
     // 
-    + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Collapse () virtual
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
@@ -335,13 +388,13 @@ public class DropDownMenu : MenuItem
     - selected : MenuButton
   Methods:
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     + Collapse  () override
     // 
@@ -360,7 +413,7 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
 // 
 public class DropDownMenu : MenuItem
@@ -373,7 +426,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValuePosition (int dummy) : Vector2
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
@@ -381,7 +434,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValueSize (int dummy) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
     + Collapse ()
     // 
     + Draw  (GameTime gameTime)
@@ -395,7 +448,7 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
 // 
 public class TextInput : Widget, IKeyEventListener
@@ -412,7 +465,7 @@ public class TextInput : Widget, IKeyEventListener
     + InputText : string
   Methods:
     // 
-    + TextInput  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + TextInput  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + Draw  (GameTime gameTime)
     // 

@@ -8,7 +8,7 @@ public class Game : Microsoft.Xna.Framework.Game
     // 
     - isFullscreen : bool
     // 
-    + State : GameState
+    + State : GameScreen
     // 
     + graphics : GraphicsDeviceManager
     // 

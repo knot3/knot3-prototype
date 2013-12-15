@@ -33,7 +33,7 @@ public abstract class Input : GameScreenComponent, IKeyEventListener
     + KeyboardState : KeyboardState static
   Methods:
     // 
-    + Input (GameScreen state)
+    + Input (GameScreen screen)
     // 
     + Update (GameTime gameTime) override
     // 

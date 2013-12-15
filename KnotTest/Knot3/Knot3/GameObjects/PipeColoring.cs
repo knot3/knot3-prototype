@@ -25,8 +25,8 @@ namespace Knot3.GameObjects
 	{
 		public Knot Knot { get; set; }
 
-		public PipeColoring (GameScreen state)
-			: base(state, DisplayLayer.None)
+		public PipeColoring (GameScreen screen)
+			: base(screen, DisplayLayer.None)
 		{
 			ValidKeys = new List<Keys> ();
 			ValidKeys.Add (Keys.C);
@@ -40,12 +40,12 @@ namespace Knot3.GameObjects
 		{
 			// change color?
 			if (Knot.Edges.SelectedEdges.Count () > 0 && Keys.C.IsDown ()) {
-				ColorPicker picker = new ColorPicker (state, new WidgetInfo (), DisplayLayer.Dialog);
-				picker.OnSelectColor = (c) => state.RemoveGameComponents (gameTime, picker);
+				ColorPicker picker = new ColorPicker (screen, new WidgetInfo (), DisplayLayer.Dialog);
+				picker.OnSelectColor = (c) => screen.RemoveGameComponents (gameTime, picker);
 				foreach (Edge edge in Knot.Edges.SelectedEdges) {
 					picker.OnSelectColor += (c) => edge.Color = c;
 				}
-				state.AddGameComponents (gameTime, picker);
+				screen.AddGameComponents (gameTime, picker);
 			}
 		}
 

@@ -9,4 +9,4 @@ public sealed class ModelFactory :
     // 
     + ModelFactory (Func<GameScreen, GameModelInfo, GameModel> createModel)
     // 
-    + this (GameScreen state, GameModelInfo info) : GameModel
+    + this (GameScreen screen, GameModelInfo info) : GameModel

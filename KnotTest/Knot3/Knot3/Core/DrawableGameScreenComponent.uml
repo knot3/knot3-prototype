@@ -2,14 +2,14 @@
 public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
-    + state : GameScreen
+    + screen : GameScreen
     // 
     - _index : DisplayLayer
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + DrawableGameScreenComponent (GameScreen state, DisplayLayer index)
+    + DrawableGameScreenComponent (GameScreen screen, DisplayLayer index)
     // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 public enum DisplayLayer

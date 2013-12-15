@@ -36,14 +36,14 @@ public class GameModel : IGameObject
     // 
     - _world : World
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     + Model : Model virtual
   Methods:
     - OnViewChanged ()
     - UpdatePrecomputed ()
     // 
-    + GameModel  (GameState state, GameModelInfo info)
+    + GameModel  (GameScreen screen, GameModelInfo info)
     // 
     + Draw  (GameTime gameTime) virtual
     // 
@@ -79,7 +79,7 @@ public class ArrowModel : GameModel
     - Bounds : BoundingSphere[]
   Methods:
     // 
-    + ArrowModel  (GameState state, ArrowModelInfo info)
+    + ArrowModel  (GameScreen screen, ArrowModelInfo info)
     // 
     + Draw  (GameTime gameTime) override
     // 
@@ -92,7 +92,7 @@ public class NodeModel : GameModel
     + Info : NodeModelInfo new
   Methods:
     // 
-    + NodeModel  (GameState state, NodeModelInfo info)
+    + NodeModel  (GameScreen screen, NodeModelInfo info)
     // 
     + Draw  (GameTime gameTime) override
 
@@ -107,7 +107,7 @@ public class PipeModel : GameModel
     + OnDataChange : Action
   Methods:
     // 
-    + PipeModel  (GameState state, PipeModelInfo info)
+    + PipeModel  (GameScreen screen, PipeModelInfo info)
     // 
     + Draw  (GameTime gameTime) override
     // 
@@ -118,7 +118,7 @@ public class TestModel : GameModel
   Attributes:
   Methods:
     // 
-    + TestModel  (GameState state, GameModelInfo info)
+    + TestModel  (GameScreen screen, GameModelInfo info)
     // 
     + Update  (GameTime gameTime) override
 
@@ -131,7 +131,7 @@ public class ArrowModel : GameModel
     + Info : ArrowModelInfo
   Methods:
     // 
-    + ArrowModel  (GameState state, ArrowModelInfo info)
+    + ArrowModel  (GameScreen screen, ArrowModelInfo info)
     // 
     + Intersects (Ray ray) : GameObjectDistance
     // 
@@ -144,7 +144,7 @@ public class NodeModel : GameModel
     + Info : NodeModelInfo
   Methods:
     // 
-    + NodeModel  (GameState state, NodeModelInfo info)
+    + NodeModel  (GameScreen screen, NodeModelInfo info)
     // 
     + Draw  (GameTime gameTime)
 
@@ -159,7 +159,7 @@ public class PipeModel : GameModel
     // 
     + OnDataChange () : Action
     // 
-    + PipeModel  (GameState state, PipeModelInfo info)
+    + PipeModel  (GameScreen screen, PipeModelInfo info)
     // 
     + Intersects (Ray ray) : GameObjectDistance
     // 
@@ -172,5 +172,5 @@ public class TestModel : GameModel
     // 
     + Update  (GameTime gameTime)
     // 
-    + TestModel  (GameState state, GameModelInfo info)
+    + TestModel  (GameScreen screen, GameModelInfo info)
 

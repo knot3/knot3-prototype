@@ -22,7 +22,7 @@
 <text text-anchor="start" x="24" y="-65.8" font-family="Arial" font-size="8.00">&#45; celShader : Effect</text>
 <text text-anchor="start" x="24" y="-55.8" font-family="Arial" font-size="8.00">+ Color : Color</text>
 <polyline fill="none" stroke="black" points="16,-49 282,-49 "/>
-<text text-anchor="start" x="24" y="-37.8" font-family="Arial" font-size="8.00">+ CelShadingEffect (GameState state)</text>
+<text text-anchor="start" x="24" y="-37.8" font-family="Arial" font-size="8.00">+ CelShadingEffect (GameScreen screen)</text>
 <text text-anchor="start" x="24" y="-27.8" font-family="Arial" font-size="8.00"># DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime)</text>
 <text text-anchor="start" x="24" y="-17.8" font-family="Arial" font-size="8.00">+ DrawModel (GameModel model, GameTime gameTime)</text>
 <text text-anchor="start" x="24" y="-7.8" font-family="Arial" font-size="8.00">+ RemapModel (Model model)</text>
@@ -35,11 +35,11 @@
 <text text-anchor="start" x="7.5" y="-327.8" font-family="Arial" font-size="8.00">&#45; background : Color</text>
 <text text-anchor="start" x="7.5" y="-317.8" font-family="Arial" font-size="8.00">&#45; renderTarget : RenderTargetCache</text>
 <text text-anchor="start" x="7.5" y="-307.8" font-family="Arial" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
-<text text-anchor="start" x="7.5" y="-297.8" font-family="Arial" font-size="8.00"># state : GameState</text>
+<text text-anchor="start" x="7.5" y="-297.8" font-family="Arial" font-size="8.00"># screen : GameScreen</text>
 <text text-anchor="start" x="7.5" y="-287.8" font-family="Arial" font-size="8.00">+ RenderTarget : RenderTarget2D</text>
 <polyline fill="none" stroke="black" points="-0.5,-281 298.5,-281 "/>
 <text text-anchor="start" x="7.5" y="-269.8" font-family="Arial" font-size="8.00"># DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) abstract</text>
-<text text-anchor="start" x="7.5" y="-259.8" font-family="Arial" font-size="8.00">+ RenderEffect (GameState state)</text>
+<text text-anchor="start" x="7.5" y="-259.8" font-family="Arial" font-size="8.00">+ RenderEffect (GameScreen screen)</text>
 <text text-anchor="start" x="7.5" y="-249.8" font-family="Arial" font-size="8.00">+ DrawModel (GameModel model, GameTime gameTime) virtual</text>
 <text text-anchor="start" x="7.5" y="-239.8" font-family="Arial" font-size="8.00">+ RemapModel (Model model) virtual</text>
 <text text-anchor="start" x="7.5" y="-229.8" font-family="Arial" font-size="8.00">+ Begin (GameTime gameTime)</text>

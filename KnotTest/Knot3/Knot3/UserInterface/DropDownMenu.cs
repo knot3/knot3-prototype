@@ -23,11 +23,11 @@ namespace Knot3.UserInterface
 		private VerticalMenu dropdown;
 		private MenuButton selected;
 
-		public DropDownMenu (GameScreen state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
-			: base(state, drawOrder, itemNum, info)
+		public DropDownMenu (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+			: base(screen, drawOrder, itemNum, info)
 		{
 			// drop-down menu
-			dropdown = new VerticalMenu (state, new WidgetInfo (), DisplayLayer.SubMenu);
+			dropdown = new VerticalMenu (screen, new WidgetInfo (), DisplayLayer.SubMenu);
 			
 			dropdown.ItemForegroundColor = DropDownForegroundColor;
 			dropdown.ItemBackgroundColor = DropDownBackgroundColor;
@@ -43,7 +43,7 @@ namespace Knot3.UserInterface
 				RelativeSize = () => ValueSize (0),
 				OnClick = () => info.OnClick (),
 			};
-			selected = new MenuButton (state, DisplayLayer.MenuItem, 0, valueInfo);
+			selected = new MenuButton (screen, DisplayLayer.MenuItem, 0, valueInfo);
 			selected.Info.ForegroundColor = () => DropDownForegroundColor (selected.ItemState);
 			selected.Info.BackgroundColor = () => DropDownBackgroundColor (selected.ItemState);
 
@@ -106,7 +106,7 @@ namespace Knot3.UserInterface
 				// draw dropdown menu
 				Vector2 position = ValuePosition ();
 				Vector2 size = ValueSize ();
-				dropdown.Align (state.viewport, 1f, (int)position.X, (int)position.Y, (int)size.X, (int)size.Y, 0f);
+				dropdown.Align (screen.viewport, 1f, (int)position.X, (int)position.Y, (int)size.X, (int)size.Y, 0f);
 			}
 		}
 

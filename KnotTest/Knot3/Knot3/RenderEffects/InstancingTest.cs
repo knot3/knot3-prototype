@@ -21,8 +21,8 @@ namespace Knot3.RenderEffects
 {
 	public class InstancingTest : RenderEffect
 	{
-		public InstancingTest (GameScreen state)
-			: base(state)
+		public InstancingTest (GameScreen screen)
+			: base(screen)
 		{
 		}
 
@@ -47,18 +47,18 @@ namespace Knot3.RenderEffects
 				if (instances.Count == 0)
 					continue;
 
-				// set the stencil state
-				state.device.DepthStencilState = DepthStencilState.Default;
-				// Setting the other states isn't really necessary but good form
-				state.device.BlendState = BlendState.Opaque;
-				state.device.RasterizerState = RasterizerState.CullCounterClockwise;
-				state.device.SamplerStates [0] = SamplerState.LinearWrap;
+				// set the stencil screen
+				screen.device.DepthStencilState = DepthStencilState.Default;
+				// Setting the other screens isn't really necessary but good form
+				screen.device.BlendState = BlendState.Opaque;
+				screen.device.RasterizerState = RasterizerState.CullCounterClockwise;
+				screen.device.SamplerStates [0] = SamplerState.LinearWrap;
 
 				foreach (ModelMesh mesh in model.Model.Meshes) {
 					foreach (ModelMeshPart part in mesh.MeshParts) {
 						// set the vertex and index buffers only once, for all objects
-						state.device.SetVertexBuffer (part.VertexBuffer);
-						state.device.Indices = part.IndexBuffer;
+						screen.device.SetVertexBuffer (part.VertexBuffer);
+						screen.device.Indices = part.IndexBuffer;
 
 						BasicEffect effect = part.Effect as BasicEffect;
 						ModifyBasicEffect (effect, model);
@@ -73,7 +73,7 @@ namespace Knot3.RenderEffects
 							foreach (EffectPass pass in part.Effect.CurrentTechnique.Passes) {
 								pass.Apply ();
 
-								state.device.DrawIndexedPrimitives (
+								screen.device.DrawIndexedPrimitives (
 									PrimitiveType.TriangleList, part.VertexOffset, 0, part.NumVertices,
 									part.StartIndex, part.PrimitiveCount //, instances.Length
 								);

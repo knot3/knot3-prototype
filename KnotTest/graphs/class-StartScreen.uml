@@ -19,7 +19,7 @@ public class StartScreen : MenuScreen
     + Initialize ()
 
 // 
-public abstract class MenuScreen : GameState
+public abstract class MenuScreen : GameScreen
   Attributes:
     // 
     - spriteBatch : SpriteBatch
@@ -54,14 +54,14 @@ public abstract class MenuScreen : GameState
     # ForegroundColor (ItemState itemState) : Color
 
 // 
-public abstract class GameState : 
+public abstract class GameScreen : 
   Attributes:
     // 
     + game : Game
     // 
-    + NextState : GameState
+    + NextState : GameScreen
     // 
-    + input : Input
+    + input : InputManager
     // 
     + graphics : GraphicsDeviceManager
     // 
@@ -76,7 +76,7 @@ public abstract class GameState :
     + PostProcessing : RenderEffect
   Methods:
     // 
-    + GameState  (Game game)
+    + GameScreen  (Game game)
     // 
     + Initialize  () abstract
     // 
@@ -86,21 +86,21 @@ public abstract class GameState :
     // 
     + Unload  () abstract
     // 
-    + AddGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    + AddGameComponents  (GameTime gameTime, params IGameScreenComponent[] components)
     // 
-    + RemoveGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    + RemoveGameComponents  (GameTime gameTime, params IGameScreenComponent[] components)
     // 
     + Activate  (GameTime gameTime) virtual
     // 
     + Deactivate  (GameTime gameTime) virtual
 
 // 
-public abstract class GameState : 
+public abstract class GameScreen : 
   Attributes:
     // 
     + content : ContentManager
     // 
-    + NextState : GameState
+    + NextState : GameScreen
     // 
     + device : GraphicsDevice
     // 
@@ -112,7 +112,7 @@ public abstract class GameState :
     // 
     + graphics : GraphicsDeviceManager
     // 
-    + input : Input
+    + input : InputManager
     // 
     + PostProcessing : RenderEffect
   Methods:
@@ -123,18 +123,18 @@ public abstract class GameState :
     // 
     + Activate  (GameTime gameTime) virtual
     // 
-    + GameState  (Game game)
+    + GameScreen  (Game game)
     // 
     + Update  (GameTime gameTime) abstract
     // 
     + Deactivate  (GameTime gameTime) virtual
     // 
-    + AddGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    + AddGameComponents  (GameTime gameTime, params IGameScreenComponent[] components)
     // 
-    + RemoveGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    + RemoveGameComponents  (GameTime gameTime, params IGameScreenComponent[] components)
 
 // 
-public abstract class MenuScreen : GameState
+public abstract class MenuScreen : GameScreen
   Attributes:
     // 
     - backColor : Color
@@ -167,14 +167,14 @@ public abstract class MenuScreen : GameState
     + Update  (GameTime gameTime)
 
 // 
-public abstract class GameState : 
+public abstract class GameScreen : 
   Attributes:
     // 
     + game : Game
     // 
-    + NextState : GameState
+    + NextState : GameScreen
     // 
-    + input : Input
+    + input : InputManager
     // 
     + graphics : GraphicsDeviceManager
     // 
@@ -189,7 +189,7 @@ public abstract class GameState :
     + PostProcessing : RenderEffect
   Methods:
     // 
-    + GameState  (Game game)
+    + GameScreen  (Game game)
     // 
     + Initialize  () abstract
     // 
@@ -199,21 +199,21 @@ public abstract class GameState :
     // 
     + Unload  () abstract
     // 
-    + AddGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    + AddGameComponents  (GameTime gameTime, params IGameScreenComponent[] components)
     // 
-    + RemoveGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    + RemoveGameComponents  (GameTime gameTime, params IGameScreenComponent[] components)
     // 
     + Activate  (GameTime gameTime) virtual
     // 
     + Deactivate  (GameTime gameTime) virtual
 
 // 
-public abstract class GameState : 
+public abstract class GameScreen : 
   Attributes:
     // 
     + content : ContentManager
     // 
-    + NextState : GameState
+    + NextState : GameScreen
     // 
     + device : GraphicsDevice
     // 
@@ -225,7 +225,7 @@ public abstract class GameState :
     // 
     + graphics : GraphicsDeviceManager
     // 
-    + input : Input
+    + input : InputManager
     // 
     + PostProcessing : RenderEffect
   Methods:
@@ -236,13 +236,13 @@ public abstract class GameState :
     // 
     + Activate  (GameTime gameTime) virtual
     // 
-    + GameState  (Game game)
+    + GameScreen  (Game game)
     // 
     + Update  (GameTime gameTime) abstract
     // 
     + Deactivate  (GameTime gameTime) virtual
     // 
-    + AddGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    + AddGameComponents  (GameTime gameTime, params IGameScreenComponent[] components)
     // 
-    + RemoveGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    + RemoveGameComponents  (GameTime gameTime, params IGameScreenComponent[] components)
 

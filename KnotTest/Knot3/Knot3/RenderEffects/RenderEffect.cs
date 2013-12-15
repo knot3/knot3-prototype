@@ -68,7 +68,7 @@ namespace Knot3.RenderEffects
 		/// <summary>
 		/// Der zugewiesene GameScreen. Dieser Effekt kann nur innerhalb dieses GameScreen's verwendet werden.
 		/// </summary>
-		protected GameScreen state;
+		protected GameScreen screen;
 		private RenderTargetCache renderTarget;
 		private Color background;
 		private SpriteBatch spriteBatch;
@@ -76,14 +76,14 @@ namespace Knot3.RenderEffects
 		/// <summary>
 		/// Erstellt einen neuen RenderEffect.
 		/// </summary>
-		/// <param name='state'>
+		/// <param name='screen'>
 		/// Game State.
 		/// </param>
-		public RenderEffect (GameScreen state)
+		public RenderEffect (GameScreen screen)
 		{
-			this.state = state;
-			renderTarget = new RenderTargetCache (state.device);
-			spriteBatch = new SpriteBatch (state.device);
+			this.screen = screen;
+			renderTarget = new RenderTargetCache (screen.device);
+			spriteBatch = new SpriteBatch (screen.device);
 			background = Color.Transparent;
 		}
 
@@ -109,18 +109,18 @@ namespace Knot3.RenderEffects
 
 		public virtual void Begin (Color background, GameTime gameTime)
 		{
-			state.RenderEffects.Push (this);
+			screen.RenderEffects.Push (this);
 			RenderTarget2D current = RenderTarget;
-			state.device.PushRenderTarget (current);
-			state.device.Clear (background);
+			screen.device.PushRenderTarget (current);
+			screen.device.Clear (background);
 			this.background = background;
 
-			// set the stencil state
-			state.device.DepthStencilState = DepthStencilState.Default;
-			// Setting the other states isn't really necessary but good form
-			state.device.BlendState = BlendState.Opaque;
-			state.device.RasterizerState = RasterizerState.CullCounterClockwise;
-			state.device.SamplerStates [0] = SamplerState.LinearWrap;
+			// set the stencil screen
+			screen.device.DepthStencilState = DepthStencilState.Default;
+			// Setting the other screens isn't really necessary but good form
+			screen.device.BlendState = BlendState.Opaque;
+			screen.device.RasterizerState = RasterizerState.CullCounterClockwise;
+			screen.device.SamplerStates [0] = SamplerState.LinearWrap;
 		}
 
 		/// <summary>
@@ -137,13 +137,13 @@ namespace Knot3.RenderEffects
 				Overlay.Profiler ["RenderEffect"] = 0;
 			Overlay.Profiler ["RenderEffect"] += Knot3.Core.Game.Time (() => {
 
-				state.device.PopRenderTarget ();
+				screen.device.PopRenderTarget ();
 				spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 
 				DrawRenderTarget (spriteBatch, gameTime);
 
 				spriteBatch.End ();
-				state.RenderEffects.Pop ();
+				screen.RenderEffects.Pop ();
 
 			}
 			).TotalMilliseconds;

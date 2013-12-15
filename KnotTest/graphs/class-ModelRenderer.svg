@@ -11,28 +11,28 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-524 409,-524 409,5 -4,5"/>
 <!-- Box_ModelRenderer -->
 <g id="node1" class="node"><title>Box_ModelRenderer</title>
-<polygon fill="#fcfcda" stroke="black" points="145,-1 145,-215 369,-215 369,-1 145,-1"/>
+<polygon fill="#fcfcda" stroke="black" points="137.5,-1 137.5,-215 376.5,-215 376.5,-1 137.5,-1"/>
 <text text-anchor="middle" x="257" y="-203.8" font-family="Arial" font-size="8.00">ModelRenderer</text>
-<polyline fill="none" stroke="black" points="145,-197 369,-197 "/>
-<text text-anchor="start" x="153" y="-185.8" font-family="Arial" font-size="8.00">&#45; arrows : List&lt;ArrowModel&gt;</text>
-<text text-anchor="start" x="153" y="-175.8" font-family="Arial" font-size="8.00">&#45; nodes : List&lt;NodeModel&gt;</text>
-<text text-anchor="start" x="153" y="-165.8" font-family="Arial" font-size="8.00">&#45; arrowFactory : ModelFactory</text>
-<text text-anchor="start" x="153" y="-155.8" font-family="Arial" font-size="8.00">&#45; nodeFactory : ModelFactory</text>
-<text text-anchor="start" x="153" y="-145.8" font-family="Arial" font-size="8.00">&#45; pipeFactory : ModelFactory</text>
-<text text-anchor="start" x="153" y="-135.8" font-family="Arial" font-size="8.00">&#45; pipes : List&lt;PipeModel&gt;</text>
-<text text-anchor="start" x="153" y="-125.8" font-family="Arial" font-size="8.00">+ Info : GameObjectInfo</text>
-<text text-anchor="start" x="153" y="-115.8" font-family="Arial" font-size="8.00">+ World : World</text>
-<polyline fill="none" stroke="black" points="145,-109 369,-109 "/>
-<text text-anchor="start" x="153" y="-97.8" font-family="Arial" font-size="8.00">&#45; IEnumerable.GetEnumerator () : IEnumerator</text>
-<text text-anchor="start" x="153" y="-87.8" font-family="Arial" font-size="8.00">&#45; CreateArrow (Edge edge)</text>
-<text text-anchor="start" x="153" y="-77.8" font-family="Arial" font-size="8.00">+ ModelRenderer (GameState state, GameObjectInfo info)</text>
-<text text-anchor="start" x="153" y="-67.8" font-family="Arial" font-size="8.00">+ Draw (GameTime gameTime)</text>
-<text text-anchor="start" x="153" y="-57.8" font-family="Arial" font-size="8.00">+ OnEdgesChanged (EdgeList edgeList)</text>
-<text text-anchor="start" x="153" y="-47.8" font-family="Arial" font-size="8.00">+ GetEnumerator () : IEnumerator&lt;IGameObject&gt;</text>
-<text text-anchor="start" x="153" y="-37.8" font-family="Arial" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance</text>
-<text text-anchor="start" x="153" y="-27.8" font-family="Arial" font-size="8.00">+ Center () : Vector3</text>
-<text text-anchor="start" x="153" y="-17.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime)</text>
-<text text-anchor="start" x="153" y="-7.8" font-family="Arial" font-size="8.00">+ CreateArrows (WrapList&lt;Edge&gt; selectedEdges)</text>
+<polyline fill="none" stroke="black" points="137.5,-197 376.5,-197 "/>
+<text text-anchor="start" x="145.5" y="-185.8" font-family="Arial" font-size="8.00">&#45; arrows : List&lt;ArrowModel&gt;</text>
+<text text-anchor="start" x="145.5" y="-175.8" font-family="Arial" font-size="8.00">&#45; nodes : List&lt;NodeModel&gt;</text>
+<text text-anchor="start" x="145.5" y="-165.8" font-family="Arial" font-size="8.00">&#45; arrowFactory : ModelFactory</text>
+<text text-anchor="start" x="145.5" y="-155.8" font-family="Arial" font-size="8.00">&#45; nodeFactory : ModelFactory</text>
+<text text-anchor="start" x="145.5" y="-145.8" font-family="Arial" font-size="8.00">&#45; pipeFactory : ModelFactory</text>
+<text text-anchor="start" x="145.5" y="-135.8" font-family="Arial" font-size="8.00">&#45; pipes : List&lt;PipeModel&gt;</text>
+<text text-anchor="start" x="145.5" y="-125.8" font-family="Arial" font-size="8.00">+ Info : GameObjectInfo</text>
+<text text-anchor="start" x="145.5" y="-115.8" font-family="Arial" font-size="8.00">+ World : World</text>
+<polyline fill="none" stroke="black" points="137.5,-109 376.5,-109 "/>
+<text text-anchor="start" x="145.5" y="-97.8" font-family="Arial" font-size="8.00">&#45; IEnumerable.GetEnumerator () : IEnumerator</text>
+<text text-anchor="start" x="145.5" y="-87.8" font-family="Arial" font-size="8.00">&#45; CreateArrow (Edge edge)</text>
+<text text-anchor="start" x="145.5" y="-77.8" font-family="Arial" font-size="8.00">+ ModelRenderer (GameScreen screen, GameObjectInfo info)</text>
+<text text-anchor="start" x="145.5" y="-67.8" font-family="Arial" font-size="8.00">+ Draw (GameTime gameTime)</text>
+<text text-anchor="start" x="145.5" y="-57.8" font-family="Arial" font-size="8.00">+ OnEdgesChanged (EdgeList edgeList)</text>
+<text text-anchor="start" x="145.5" y="-47.8" font-family="Arial" font-size="8.00">+ GetEnumerator () : IEnumerator&lt;IGameObject&gt;</text>
+<text text-anchor="start" x="145.5" y="-37.8" font-family="Arial" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance</text>
+<text text-anchor="start" x="145.5" y="-27.8" font-family="Arial" font-size="8.00">+ Center () : Vector3</text>
+<text text-anchor="start" x="145.5" y="-17.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime)</text>
+<text text-anchor="start" x="145.5" y="-7.8" font-family="Arial" font-size="8.00">+ CreateArrows (WrapList&lt;Edge&gt; selectedEdges)</text>
 </g>
 <!-- Box_KnotRenderer -->
 <g id="node2" class="node"><title>Box_KnotRenderer</title>
@@ -40,14 +40,14 @@
 <text text-anchor="middle" x="167" y="-375.8" font-family="Arial" font-size="8.00">KnotRenderer</text>
 <polyline fill="none" stroke="black" points="61.5,-369 272.5,-369 "/>
 <text text-anchor="start" x="69.5" y="-357.8" font-family="Arial" font-size="8.00">+ World : World abstract</text>
-<text text-anchor="start" x="69.5" y="-347.8" font-family="Arial" font-size="8.00"># state : GameState</text>
+<text text-anchor="start" x="69.5" y="-347.8" font-family="Arial" font-size="8.00"># screen : GameScreen</text>
 <text text-anchor="start" x="69.5" y="-337.8" font-family="Arial" font-size="8.00">+ Info : GameObjectInfo abstract</text>
 <polyline fill="none" stroke="black" points="61.5,-331 272.5,-331 "/>
 <text text-anchor="start" x="69.5" y="-319.8" font-family="Arial" font-size="8.00"># nodeMap () : NodeMap</text>
 <text text-anchor="start" x="69.5" y="-309.8" font-family="Arial" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance abstract</text>
 <text text-anchor="start" x="69.5" y="-299.8" font-family="Arial" font-size="8.00">+ Center () : Vector3 abstract</text>
 <text text-anchor="start" x="69.5" y="-289.8" font-family="Arial" font-size="8.00">+ Draw (GameTime gameTime) abstract</text>
-<text text-anchor="start" x="69.5" y="-279.8" font-family="Arial" font-size="8.00">+ KnotRenderer (GameState state)</text>
+<text text-anchor="start" x="69.5" y="-279.8" font-family="Arial" font-size="8.00">+ KnotRenderer (GameScreen screen)</text>
 <text text-anchor="start" x="69.5" y="-269.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime) abstract</text>
 <text text-anchor="start" x="69.5" y="-259.8" font-family="Arial" font-size="8.00">+ OnEdgesChanged (EdgeList edges) virtual</text>
 </g>

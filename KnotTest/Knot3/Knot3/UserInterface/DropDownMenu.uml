@@ -7,7 +7,7 @@ public class DropDownMenu : MenuItem
     - selected : MenuButton
   Methods:
     // 
-    + DropDownMenu (GameScreen state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + AddEntries (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
     // 

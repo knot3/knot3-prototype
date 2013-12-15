@@ -31,8 +31,8 @@ namespace Knot3.RenderEffects
 		float outlineThreshold = 0.2f;  // current edge detection threshold
 
 
-		public CelShadingEffect (GameScreen state)
-			: base(state)
+		public CelShadingEffect (GameScreen screen)
+			: base(screen)
 		{
 			/* Set our light direction for the cel-shader
              */
@@ -40,19 +40,19 @@ namespace Knot3.RenderEffects
 
 			/* Load and initialize the cel-shader effect
              */
-			celShader = state.LoadEffect ("CelShader");
+			celShader = screen.LoadEffect ("CelShader");
 			celShader.Parameters ["LightDirection"].SetValue (lightDirection);
-			celMap = state.content.Load<Texture2D> ("CelMap");
+			celMap = screen.content.Load<Texture2D> ("CelMap");
 			celShader.Parameters ["Color"].SetValue (Color.Green.ToVector4 ());
 			celShader.Parameters ["CelMap"].SetValue (celMap);
 
 			/* Load and initialize the outline shader effect
              */
-			outlineShader = state.LoadEffect ("OutlineShader");
+			outlineShader = screen.LoadEffect ("OutlineShader");
 			outlineShader.Parameters ["Thickness"].SetValue (outlineThickness);
 			outlineShader.Parameters ["Threshold"].SetValue (outlineThreshold);
 			outlineShader.Parameters ["ScreenSize"].SetValue (
-                new Vector2 (state.viewport.Bounds.Width, state.viewport.Bounds.Height));
+                new Vector2 (screen.viewport.Bounds.Width, screen.viewport.Bounds.Height));
 		}
 
 		public Color Color {

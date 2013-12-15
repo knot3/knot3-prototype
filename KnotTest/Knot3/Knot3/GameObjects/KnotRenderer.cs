@@ -21,7 +21,7 @@ namespace Knot3.GameObjects
 {
 	public abstract class KnotRenderer: IEdgeChangeListener, IGameObject
 	{
-		protected GameScreen state;
+		protected GameScreen screen;
 
 		public abstract World World { get; set; }
 
@@ -29,9 +29,9 @@ namespace Knot3.GameObjects
 
 		protected NodeMap nodeMap = new NodeMap ();
 		
-		public KnotRenderer (GameScreen state)
+		public KnotRenderer (GameScreen screen)
 		{
-			this.state = state;
+			this.screen = screen;
 		}
 
 		public virtual void OnEdgesChanged (EdgeList edges)

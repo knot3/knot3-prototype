@@ -3,6 +3,6 @@ public sealed class NoEffect : RenderEffect
   Attributes:
   Methods:
     // 
-    + NoEffect (GameScreen state)
+    + NoEffect (GameScreen screen)
     // 
     # DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) override

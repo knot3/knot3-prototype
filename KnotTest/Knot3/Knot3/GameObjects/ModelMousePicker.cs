@@ -35,8 +35,8 @@ namespace Knot3.GameObjects
 		/// <summary>
 		/// Initializes a new MousePicking component.
 		/// </summary>
-		public ModelMousePicker (GameScreen state, World world)
-			: base(state, DisplayLayer.None)
+		public ModelMousePicker (GameScreen screen, World world)
+			: base(screen, DisplayLayer.None)
 		{
 			World = world;
 		}
@@ -51,8 +51,8 @@ namespace Knot3.GameObjects
 		{
 			double millis = gameTime.TotalGameTime.TotalMilliseconds;
 			if (millis > lastRayCheck + 10
-				&& (state.input.CurrentInputAction == InputAction.TargetMove
-				|| state.input.CurrentInputAction == InputAction.FreeMouse)
+				&& (screen.input.CurrentInputAction == InputAction.TargetMove
+				|| screen.input.CurrentInputAction == InputAction.FreeMouse)
 				&& InputManager.MouseState.ToVector2 () != lastMousePosition) {
 
 				lastRayCheck = millis;

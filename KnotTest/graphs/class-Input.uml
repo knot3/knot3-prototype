@@ -44,28 +44,6 @@ public abstract class Input : GameStateComponent, IKeyEventListener
     + Input  (GameState state)
 
 // 
-public class GameStateComponent : Xna.GameComponent, IGameStateComponent
-  Attributes:
-    // 
-    + state : GameState
-    // 
-    + Index : DisplayLayer
-  Methods:
-    // 
-    + GameStateComponent  (GameState state, DisplayLayer index)
-    // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
-
-// 
-public interface IGameStateComponent : Xna.IGameComponent
-  Attributes:
-    // 
-    + Index : DisplayLayer
-  Methods:
-    // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
-
-// 
 public interface IKeyEventListener : 
   Attributes:
     // 
@@ -78,34 +56,20 @@ public interface IKeyEventListener :
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 
-// 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
   Attributes:
-    // 
     + Index : DisplayLayer
-    // 
     + state : GameState
   Methods:
-    // 
     + GameStateComponent  (GameState state, DisplayLayer index)
-    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
-
-// 
-public interface IGameStateComponent : Xna.IGameComponent
-  Attributes:
-    // 
-    + Index : DisplayLayer
-  Methods:
-    // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
 // 
 public class MenuScreenInput : Input
   Attributes:
   Methods:
     // 
-    + MenuScreenInput  (GameState state)
+    + MenuScreenInput  (GameScreen screen)
 
 // 
 public class MenuScreenInput : Input

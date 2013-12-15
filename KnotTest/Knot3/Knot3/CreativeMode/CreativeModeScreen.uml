@@ -8,6 +8,8 @@ public class CreativeModeScreen : GameScreen
     // 
     - world : World
     // 
+    - knotInput : KnotInputHandler
+    // 
     - pointer : MousePointer
     // 
     - overlay : Overlay
@@ -47,4 +49,4 @@ public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog (GameScreen state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)

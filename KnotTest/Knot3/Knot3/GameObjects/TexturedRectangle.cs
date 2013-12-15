@@ -53,7 +53,7 @@ namespace Knot3.GameObjects
 	{
 		#region Attributes and Properties
 
-		protected GameScreen state;
+		protected GameScreen screen;
 
 		GameObjectInfo IGameObject.Info { get { return Info; } }
 
@@ -75,14 +75,14 @@ namespace Knot3.GameObjects
 
 		#region Constructors
 
-		public TexturedRectangle (GameScreen state, TexturedRectangleInfo info)
+		public TexturedRectangle (GameScreen screen, TexturedRectangleInfo info)
 		{
-			this.state = state;
+			this.screen = screen;
 			Info = info;
 			SetPosition (Info.Position);
 
-			basicEffect = new BasicEffect (state.device);
-			texture = Textures.LoadTexture (state.content, info.Texturename);
+			basicEffect = new BasicEffect (screen.device);
+			texture = Textures.LoadTexture (screen.content, info.Texturename);
 			if (texture != null) {
 				FillVertices ();
 			}
@@ -120,7 +120,7 @@ namespace Knot3.GameObjects
 				foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes) {
 					pass.Apply ();
 
-					state.device.DrawUserIndexedPrimitives<VertexPositionNormalTexture> (
+					screen.device.DrawUserIndexedPrimitives<VertexPositionNormalTexture> (
                     PrimitiveType.TriangleList, Vertices, 0, Vertices.Length, Indexes, 0, Indexes.Length / 3
 					);
 				}

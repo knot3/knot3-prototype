@@ -56,7 +56,7 @@ namespace Knot3.GameObjects
 		/// <summary>
 		/// Der zugewiesene GameScreen. Dieses Objekt kann nur innerhalb dieses GameScreen's verwendet werden.
 		/// </summary>
-		protected GameScreen state;
+		protected GameScreen screen;
 
 		GameObjectInfo IGameObject.Info { get { return Info; } }
 
@@ -79,7 +79,7 @@ namespace Knot3.GameObjects
 		/// <value>
 		/// The model.
 		/// </value>
-		public virtual Model Model { get { return Models.LoadModel (state, Info.Modelname); } }
+		public virtual Model Model { get { return Models.LoadModel (screen, Info.Modelname); } }
 
 		public Color BaseColor;
 		public Color HighlightColor;
@@ -90,9 +90,9 @@ namespace Knot3.GameObjects
 
 		#region Constructors
 
-		public GameModel (GameScreen state, GameModelInfo info)
+		public GameModel (GameScreen screen, GameModelInfo info)
 		{
-			this.state = state;
+			this.screen = screen;
 			Info = info;
 
 			// colors
@@ -120,7 +120,7 @@ namespace Knot3.GameObjects
 				if (InCameraFrustum) {
 					Overlay.Profiler ["# InFrustum"]++;
 
-					state.RenderEffects.Current.DrawModel (this, gameTime);
+					screen.RenderEffects.Current.DrawModel (this, gameTime);
 				}
 			}
 		}

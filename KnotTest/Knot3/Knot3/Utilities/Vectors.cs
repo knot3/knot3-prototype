@@ -184,14 +184,14 @@ namespace Knot3.Utilities
 			return new BoundingBox (Vector3.Transform (box.Min, translation), Vector3.Transform (box.Max, translation));
 		}
 
-		public static Vector2 ToVector2 (this MouseState state)
+		public static Vector2 ToVector2 (this MouseState screen)
 		{
-			return new Vector2 (state.X, state.Y);
+			return new Vector2 (screen.X, screen.Y);
 		}
 
-		public static Point ToPoint (this MouseState state)
+		public static Point ToPoint (this MouseState screen)
 		{
-			return new Point (state.X, state.Y);
+			return new Point (screen.X, screen.Y);
 		}
 
 		public static Vector2 ToVector2 (this Viewport viewport)

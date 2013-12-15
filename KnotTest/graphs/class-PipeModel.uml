@@ -9,7 +9,7 @@ public class PipeModel : GameModel
     // 
     + OnDataChange () : Action
     // 
-    + PipeModel  (GameState state, PipeModelInfo info)
+    + PipeModel  (GameScreen screen, PipeModelInfo info)
     // 
     + Intersects (Ray ray) : GameObjectDistance
     // 
@@ -19,7 +19,7 @@ public class PipeModel : GameModel
 public class GameModel : IGameObject
   Attributes:
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     - IGameObject.Info : GameObjectInfo
     // 
@@ -58,7 +58,7 @@ public class GameModel : IGameObject
     # InCameraFrustum : bool
   Methods:
     // 
-    + GameModel  (GameState state, GameModelInfo info)
+    + GameModel  (GameScreen screen, GameModelInfo info)
     // 
     + Update  (GameTime gameTime) virtual
     // 
@@ -127,14 +127,14 @@ public class GameModel : IGameObject
     // 
     - _world : World
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     + Model : Model virtual
   Methods:
     - OnViewChanged ()
     - UpdatePrecomputed ()
     // 
-    + GameModel  (GameState state, GameModelInfo info)
+    + GameModel  (GameScreen screen, GameModelInfo info)
     // 
     + Draw  (GameTime gameTime) virtual
     // 

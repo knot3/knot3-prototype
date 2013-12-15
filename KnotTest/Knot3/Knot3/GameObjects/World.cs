@@ -27,8 +27,8 @@ namespace Knot3.GameObjects
 	public class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
 	{
 		// graphics-related classes
-		private List<RenderEffect> knotRenderEffects;
-		private RenderEffect knotRenderEffect;
+		private List<IRenderEffect> effects;
+		private IRenderEffect currentEffect;
 
 		/// <summary>
 		/// Die Liste von Spielobjekten.
@@ -75,11 +75,11 @@ namespace Knot3.GameObjects
 		/// <summary>
 		/// Initializes a new Overlay
 		/// </summary>
-		public World (GameScreen state)
-			: base(state, DisplayLayer.World)
+		public World (GameScreen screen)
+			: base(screen, DisplayLayer.World)
 		{
 			// camera
-			Camera = new Camera (state, this);
+			Camera = new Camera (screen, this);
 
 			// the list of game objects
 			Objects = new List<IGameObject> ();
@@ -93,7 +93,7 @@ namespace Knot3.GameObjects
 			) {
 				IsVisible = false
 			};
-			floor = new TexturedRectangle (state, floorInfo);
+			floor = new TexturedRectangle (screen, floorInfo);
 			Objects.Add (floor);
 		}
 
@@ -124,16 +124,16 @@ namespace Knot3.GameObjects
 		public override void Initialize ()
 		{
 			// knot render effects
-			knotRenderEffects = new List<RenderEffect> ();
-			knotRenderEffects.Add (new InstancingTest (state));
-			knotRenderEffects.Add (new NoEffect (state));
-			knotRenderEffects.Add (new BlurEffect (state));
-			knotRenderEffects.Add (new CelShadingEffect (state));
+			effects = new List<IRenderEffect> ();
+			effects.Add (new InstancingTest (screen));
+			effects.Add (new NoEffect (screen));
+			effects.Add (new BlurEffect (screen));
+			effects.Add (new CelShadingEffect (screen));
 
 			if (Options.Default ["video", "cel-shading", true]) {
-				knotRenderEffect = new CelShadingEffect (state);
+				currentEffect = new CelShadingEffect (screen);
 			} else {
-				knotRenderEffect = new NoEffect (state);
+				currentEffect = new NoEffect (screen);
 			}
 		}
 
@@ -150,11 +150,11 @@ namespace Knot3.GameObjects
 				Redraw = false;
 
 				// begin the post processing effect scope
-				Color background = knotRenderEffect is CelShadingEffect ? Color.CornflowerBlue : Color.Black;
-				state.PostProcessing.Begin (background, gameTime);
+				Color background = currentEffect is CelShadingEffect ? Color.CornflowerBlue : Color.Black;
+				screen.PostProcessing.Begin (background, gameTime);
 
 				// begin the knot render effect
-				knotRenderEffect.Begin (gameTime);
+				currentEffect.Begin (gameTime);
 
 				foreach (IGameObject obj in Objects) {
 					obj.World = this;
@@ -162,18 +162,18 @@ namespace Knot3.GameObjects
 				}
 
 				// end of the knot render effect
-				knotRenderEffect.End (gameTime);
+				currentEffect.End (gameTime);
 			
 				// end of the post processing effect
-				state.PostProcessing.End (gameTime);
+				screen.PostProcessing.End (gameTime);
 			} else {
-				state.PostProcessing.DrawLastFrame (gameTime);
+				screen.PostProcessing.DrawLastFrame (gameTime);
 			}
 		}
 
 		public override void Update (GameTime gameTime)
 		{
-			if (state.PostProcessing is FadeEffect)
+			if (screen.PostProcessing is FadeEffect)
 				Redraw = true;
 
 			// run the update method on all game objects
@@ -183,9 +183,7 @@ namespace Knot3.GameObjects
 
 			// post processing effects
 			if (Keys.O.IsDown ()) {
-				knotRenderEffect = knotRenderEffects [
-				    (knotRenderEffects.IndexOf (knotRenderEffect) + 1) % knotRenderEffects.Count
-				];
+				currentEffect = effects [(effects.IndexOf (currentEffect) + 1) % effects.Count];
 				Redraw = true;
 			}
 
@@ -195,22 +193,22 @@ namespace Knot3.GameObjects
 
 			// spawn a game object
 			if (Keys.Z.IsDown ()) {
-				//objects.Add (new GameModel (state, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
+				//objects.Add (new GameModel (screen, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
 				var info = new GameModelInfo ("Test3D");
 				info.Position = new Vector3 (200, 200, 200);
 				info.Scale = Vector3.One * 0.1f;
 				info.IsMovable = true;
-				var obj = new MovableGameObject (state, new TestModel (state, info));
+				var obj = new MovableGameObject (screen, new TestModel (screen, info));
 				Objects.Add (obj);
 				Redraw = true;
 			}
 			if (Keys.P.IsDown ()) {
-				//objects.Add (new GameModel (state, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
+				//objects.Add (new GameModel (screen, "Test3D", new Vector3 (-200, 200, 200), 0.1f));
 				var info = new GameModelInfo ("pipe1");
 				info.Position = new Vector3 (-200, 200, -200);
 				info.Scale = Vector3.One * 30f;
 				info.IsMovable = true;
-				var obj = new MovableGameObject (state, new TestModel (state, info));
+				var obj = new MovableGameObject (screen, new TestModel (screen, info));
 				Objects.Add (obj);
 				Redraw = true;
 			}
@@ -239,13 +237,12 @@ namespace Knot3.GameObjects
 			}
 			yield return Camera;
 		}
-
 	}
 	
 	public class TestModel : GameModel
 	{
-		public TestModel (GameScreen state, GameModelInfo info)
-			: base(state, info)
+		public TestModel (GameScreen screen, GameModelInfo info)
+			: base(screen, info)
 		{
 		}
 

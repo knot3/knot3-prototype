@@ -5,7 +5,7 @@ public class BlurEffect : RenderEffect
     - testEffect : Effect static
   Methods:
     // 
-    + BlurEffect  (GameState state)
+    + BlurEffect  (GameScreen screen)
     // 
     # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime)
     // 
@@ -17,7 +17,7 @@ public class BlurEffect : RenderEffect
 public abstract class RenderEffect : IRenderEffect
   Attributes:
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     - renderTarget : RenderTargetCache
     // 
@@ -28,7 +28,7 @@ public abstract class RenderEffect : IRenderEffect
     + RenderTarget : RenderTarget2D
   Methods:
     // 
-    + RenderEffect  (GameState state)
+    + RenderEffect  (GameScreen screen)
     // 
     + Begin  (GameTime gameTime)
     // 
@@ -73,14 +73,14 @@ public abstract class RenderEffect : IRenderEffect
     // 
     - spriteBatch : SpriteBatch
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     + RenderTarget : RenderTarget2D
   Methods:
     // 
     # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) abstract
     // 
-    + RenderEffect  (GameState state)
+    + RenderEffect  (GameScreen screen)
     // 
     + DrawModel  (GameModel model, GameTime gameTime) virtual
     // 

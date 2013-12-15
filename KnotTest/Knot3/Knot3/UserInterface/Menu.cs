@@ -32,8 +32,8 @@ namespace Knot3.UserInterface
 		// menu-related attributes
 		protected List<MenuItem> Items;
 
-		public Menu (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
-			: base(state, info, drawOrder)
+		public Menu (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+			: base(screen, info, drawOrder)
 		{
 			Items = new List<MenuItem> ();
 		}
@@ -57,7 +57,7 @@ namespace Knot3.UserInterface
 		public virtual MenuButton AddButton (MenuItemInfo info)
 		{
 			int num = Items.Count;
-			MenuButton item = new MenuButton (state, ItemDisplayLayer, num, info);
+			MenuButton item = new MenuButton (screen, ItemDisplayLayer, num, info);
 			assignMenuItemInfo (ref info, num, item);
 			Items.Add (item);
 			return item;
@@ -66,7 +66,7 @@ namespace Knot3.UserInterface
 		public virtual void AddDropDown (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
 		{
 			int num = Items.Count;
-			DropDownMenu item = new DropDownMenu (state, ItemDisplayLayer, num, info);
+			DropDownMenu item = new DropDownMenu (screen, ItemDisplayLayer, num, info);
 			assignMenuItemInfo (ref info, num, item);
 			item.AddEntries (items, defaultItem);
 			Items.Add (item);
@@ -75,7 +75,7 @@ namespace Knot3.UserInterface
 		public virtual void AddDropDown (MenuItemInfo info, DistinctOptionInfo option)
 		{
 			int num = Items.Count;
-			DropDownMenu item = new DropDownMenu (state, ItemDisplayLayer, num, info);
+			DropDownMenu item = new DropDownMenu (screen, ItemDisplayLayer, num, info);
 			assignMenuItemInfo (ref info, num, item);
 			item.AddEntries (option);
 			Items.Add (item);

@@ -20,7 +20,7 @@
 <text text-anchor="start" x="7.5" y="-37.8" font-family="Arial" font-size="8.00">&#45; ContentManager&gt; contentManagers () : Dictionary&lt;string, static</text>
 <text text-anchor="start" x="7.5" y="-27.8" font-family="Arial" font-size="8.00">&#45; invalidModels () : HashSet&lt;string&gt; static</text>
 <text text-anchor="start" x="7.5" y="-17.8" font-family="Arial" font-size="8.00">&#45; LoadModel (ContentManager content, IRenderEffect pp, string name) : Model static</text>
-<text text-anchor="start" x="7.5" y="-7.8" font-family="Arial" font-size="8.00">+ LoadModel (GameState state, string name) : Model static</text>
+<text text-anchor="start" x="7.5" y="-7.8" font-family="Arial" font-size="8.00">+ LoadModel (GameScreen screen, string name) : Model static</text>
 </g>
 </g>
 </svg>

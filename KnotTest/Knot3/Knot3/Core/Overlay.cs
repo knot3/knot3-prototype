@@ -35,15 +35,15 @@ namespace Knot3.Core
 		/// <summary>
 		/// Initializes a new Overlay-
 		/// </summary>
-		public Overlay (GameScreen state, World world)
-			: base(state, DisplayLayer.Overlay)
+		public Overlay (GameScreen screen, World world)
+			: base(screen, DisplayLayer.Overlay)
 		{
 			// game world
 			World = world;
 
 			// create a new SpriteBatch, which can be used to draw textures
-			effect = new BasicEffect (state.device);
-			spriteBatch = new SpriteBatch (state.device);
+			effect = new BasicEffect (screen.device);
+			spriteBatch = new SpriteBatch (screen.device);
 			effect.VertexColorEnabled = true;
 			effect.World = Matrix.CreateFromYawPitchRoll (0, 0, 0);
 		}
@@ -55,7 +55,7 @@ namespace Knot3.Core
 		{
 			// load fonts
 			try {
-				font = state.content.Load<SpriteFont> ("Font");
+				font = screen.content.Load<SpriteFont> ("Font");
 			} catch (ContentLoadException ex) {
 				font = null;
 				Console.WriteLine (ex.Message);
@@ -106,7 +106,7 @@ namespace Knot3.Core
           
 			effect.CurrentTechnique.Passes [0].Apply ();
             
-			state.device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3, VertexPositionColor.VertexDeclaration);
+			screen.device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3, VertexPositionColor.VertexDeclaration);
 		}
 
 		private void DrawOverlay (GameTime gameTime)
@@ -143,8 +143,8 @@ namespace Knot3.Core
 			height += 20;
 			DrawString ("WASD: ", width1, height, Color.White);
 			string wasdMode =
-					  state.input.WASDMode == WASDMode.ArcballMode ? "Arcball"
-					: state.input.WASDMode == WASDMode.FirstPersonMode ? "FPS"
+					  screen.input.WASDMode == WASDMode.ArcballMode ? "Arcball"
+					: screen.input.WASDMode == WASDMode.FirstPersonMode ? "FPS"
 					: "unknown";
 			DrawString (wasdMode, width2, height, Color.White);
 
@@ -196,7 +196,7 @@ namespace Knot3.Core
 		{
 			_total_frames++;
 			spriteBatch.Begin ();
-			DrawString ("FPS: " + _fps, state.viewport.Width - 200, 20, Color.White);
+			DrawString ("FPS: " + _fps, screen.viewport.Width - 200, 20, Color.White);
 			spriteBatch.End ();
 		}
 
@@ -208,7 +208,7 @@ namespace Knot3.Core
 			spriteBatch.Begin ();
 			int height = 40;
 			foreach (string name in profiler.Keys) {
-                DrawString(name + ": " + Profiler[name], state.viewport.Width - 200, height, Color.White);
+                DrawString(name + ": " + Profiler[name], screen.viewport.Width - 200, height, Color.White);
 				height += 20;
 			}
 			spriteBatch.End ();

@@ -24,8 +24,8 @@ namespace Knot3.UserInterface
 		// textures
 		protected SpriteBatch spriteBatch;
 
-		public ColorPicker (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
-			: base(state, info, drawOrder)
+		public ColorPicker (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+			: base(screen, info, drawOrder)
 		{
 			info.BackgroundColor = () => Color.Black;
 			info.ForegroundColor = () => Color.White;
@@ -37,7 +37,7 @@ namespace Knot3.UserInterface
 			tiles = new List<Vector2> (CreateTiles (colors));
 
 			// create a new SpriteBatch, which can be used to draw textures
-			spriteBatch = new SpriteBatch (state.device);
+			spriteBatch = new SpriteBatch (screen.device);
 
 			info.RelativePosition = () => (Vector2.One - info.RelativeSize ()) / 2;
 			info.RelativeSize = () => {
@@ -52,20 +52,20 @@ namespace Knot3.UserInterface
 				spriteBatch.Begin ();
 
 				// background
-				Rectangle rect = Info.ScaledRectangle (state.viewport);
+				Rectangle rect = Info.ScaledRectangle (screen.viewport);
 				spriteBatch.Draw (
-					Textures.Create (state.device, Color.Black), rect.Grow (2), Color.White
+					Textures.Create (screen.device, Color.Black), rect.Grow (2), Color.White
 				);
 
 				// color tiles
 				int i = 0;
 				foreach (Vector2 tile in tiles) {
 					rect = HfGDesign.CreateRectangle (
-						Info.ScaledPosition (state.viewport) + tile.Scale (state.viewport),
-						tileSize.Scale (state.viewport)
+						Info.ScaledPosition (screen.viewport) + tile.Scale (screen.viewport),
+						tileSize.Scale (screen.viewport)
 					);
 					spriteBatch.Draw (
-						Textures.Create (state.device, colors [i]), rect.Shrink (1), Color.White
+						Textures.Create (screen.device, colors [i]), rect.Shrink (1), Color.White
 					);
 
 					++i;
@@ -115,7 +115,7 @@ namespace Knot3.UserInterface
 
 		public void OnLeftClick (Vector2 position, ClickState click, GameTime gameTime)
 		{
-			position = position.RelativeTo (state.viewport);
+			position = position.RelativeTo (screen.viewport);
 			Console.WriteLine ("ColorPicker.OnLeftClick: positon=" + position);
 			int i = 0;
 			foreach (Vector2 tile in tiles) {

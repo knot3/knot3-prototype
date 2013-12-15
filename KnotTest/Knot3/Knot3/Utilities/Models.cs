@@ -33,17 +33,17 @@ namespace Knot3.Utilities
 		private static Dictionary<string, ContentManager> contentManagers = new Dictionary<string, ContentManager> ();
 		private static HashSet<string> invalidModels = new HashSet<string> ();
 
-		public static Model LoadModel (GameScreen state, string name)
+		public static Model LoadModel (GameScreen screen, string name)
 		{
 			ContentManager content;
-			if (contentManagers.ContainsKey (state.RenderEffects.Current.ToString ()))
-				content = contentManagers [state.RenderEffects.Current.ToString ()];
+			if (contentManagers.ContainsKey (screen.RenderEffects.Current.ToString ()))
+				content = contentManagers [screen.RenderEffects.Current.ToString ()];
 			else
-				contentManagers [state.RenderEffects.Current.ToString ()] = content = new ContentManager (state.content.ServiceProvider, state.content.RootDirectory);
+				contentManagers [screen.RenderEffects.Current.ToString ()] = content = new ContentManager (screen.content.ServiceProvider, screen.content.RootDirectory);
 
-			Model model = LoadModel (content, state.RenderEffects.Current, name + "-" + Quality);
+			Model model = LoadModel (content, screen.RenderEffects.Current, name + "-" + Quality);
 			if (model == null)
-				model = LoadModel (content, state.RenderEffects.Current, name);
+				model = LoadModel (content, screen.RenderEffects.Current, name);
 			return model;
 		}
 

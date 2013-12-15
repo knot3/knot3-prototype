@@ -9,6 +9,6 @@ public class FadeEffect : RenderEffect
     + IsFinished : bool
   Methods:
     // 
-    + FadeEffect (GameScreen state, GameScreen oldState)
+    + FadeEffect (GameScreen screen, GameScreen oldState)
     // 
     # DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) override

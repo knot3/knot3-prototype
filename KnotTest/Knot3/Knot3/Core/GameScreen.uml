@@ -6,7 +6,7 @@ public abstract class GameScreen :
     // 
     + NextState : GameScreen
     // 
-    + input : Input
+    + input : InputManager
     // 
     + graphics : GraphicsDeviceManager
     // 

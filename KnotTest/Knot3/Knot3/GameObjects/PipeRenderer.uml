@@ -7,7 +7,7 @@ public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
     - pipeFactory : ModelFactory
     - nodeFactory : ModelFactory
   Methods:
-    + PipeRenderer (GameScreen state, GameObjectInfo info)
+    + PipeRenderer (GameScreen screen, GameObjectInfo info)
     + Update (GameTime gameTime) override
     + OnEdgesChanged (EdgeList edges) override
     + GetEnumerator () : IEnumerator<IGameObject>

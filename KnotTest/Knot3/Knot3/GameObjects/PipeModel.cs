@@ -77,8 +77,8 @@ namespace Knot3.GameObjects
 
 		#endregion
 
-		public PipeModel (GameScreen state, PipeModelInfo info)
-			: base(state, info)
+		public PipeModel (GameScreen screen, PipeModelInfo info)
+			: base(screen, info)
 		{
 			if (Info.Direction.Y == 1) {
 				Info.Rotation += Angles3.FromDegrees (90, 0, 0);

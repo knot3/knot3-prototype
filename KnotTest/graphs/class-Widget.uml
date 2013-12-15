@@ -1,5 +1,5 @@
 // 
-public abstract class Widget : DrawableGameStateComponent
+public abstract class Widget : DrawableGameScreenComponent
   Attributes:
     // 
     + Info : WidgetInfo
@@ -9,55 +9,55 @@ public abstract class Widget : DrawableGameStateComponent
     // 
     + bounds () : Rectangle
     // 
-    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Widget  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
-    + state : GameState
+    + screen : GameScreen
     // 
     - _index : DisplayLayer
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
     + Index : DisplayLayer
     // 
     - _index : DisplayLayer
     // 
-    + state : GameState
+    + screen : GameScreen
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
 public class ColorPicker : Widget, IMouseEventListener
@@ -78,7 +78,7 @@ public class ColorPicker : Widget, IMouseEventListener
     + IsMouseEventEnabled : bool
   Methods:
     // 
-    + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + ColorPicker  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + Draw  (GameTime gameTime) override
     // 
@@ -105,13 +105,13 @@ public abstract class Dialog : Widget
     # spriteBatch : SpriteBatch
   Methods:
     // 
-    + Dialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Dialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     # RelativeButtonPosition (int n) : Vector2
     // 
     # RelativeButtonSize (int n) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     + Draw  (GameTime gameTime) override
     // 
@@ -134,7 +134,7 @@ public class ConfirmDialog : Dialog
     # OnCancelClick : Action
   Methods:
     // 
-    + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + ConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     # DrawDialog  (GameTime gameTime) override
 
@@ -145,9 +145,9 @@ public class TextInputDialog : ConfirmDialog
     # TextInput : TextInput
   Methods:
     // 
-    + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + TextInputDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     # TextInputPosition () : Vector2
     // 
@@ -158,14 +158,14 @@ public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class TextInputDialog : ConfirmDialog
@@ -176,25 +176,25 @@ public class TextInputDialog : ConfirmDialog
     // 
     # TextInputSize () : Vector2
     // 
-    + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + TextInputDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     # TextInputPosition () : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class ConfirmDialog : Dialog
@@ -211,7 +211,7 @@ public class ConfirmDialog : Dialog
     // 
     # DrawDialog  (GameTime gameTime)
     // 
-    + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + ConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
 
 // 
 public class TextInputDialog : ConfirmDialog
@@ -220,9 +220,9 @@ public class TextInputDialog : ConfirmDialog
     # TextInput : TextInput
   Methods:
     // 
-    + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + TextInputDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     # TextInputPosition () : Vector2
     // 
@@ -233,14 +233,14 @@ public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class TextInputDialog : ConfirmDialog
@@ -251,25 +251,25 @@ public class TextInputDialog : ConfirmDialog
     // 
     # TextInputSize () : Vector2
     // 
-    + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + TextInputDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     # TextInputPosition () : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class Menu : Widget
@@ -298,7 +298,7 @@ public class Menu : Widget
     + IsVisible : bool override
   Methods:
     // 
-    + Menu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Menu  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     - assignMenuItemInfo  (ref MenuItemInfo info, int num, MenuItem item)
     // 
@@ -312,7 +312,7 @@ public class Menu : Widget
     // 
     + Clear  ()
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     + CollapseMenus  (MenuItem menu)
 
@@ -325,7 +325,7 @@ public class VerticalMenu : Menu
     # spriteBatch : SpriteBatch
   Methods:
     // 
-    + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + VerticalMenu  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + AddButton (MenuItemInfo info) : MenuButton override
     // 
@@ -348,7 +348,7 @@ public class VerticalMenu : Menu
     + Border : Border
   Methods:
     // 
-    + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + VerticalMenu  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
     // 
@@ -377,7 +377,7 @@ public class TextInput : Widget, IKeyEventListener
     + IsKeyEventEnabled : bool
   Methods:
     // 
-    + TextInput  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + TextInput  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + Update  (GameTime gameTime) override
     // 
@@ -394,7 +394,7 @@ public abstract class ItemWidget : Widget
     + ItemState : ItemState
   Methods:
     // 
-    + ItemWidget  (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
+    + ItemWidget  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 
 // 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
@@ -411,7 +411,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     + IsMouseEventEnabled : bool
   Methods:
     // 
-    + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + Draw  (GameTime gameTime) override
     // 
@@ -440,13 +440,13 @@ public class DropDownMenu : MenuItem
     - selected : MenuButton
   Methods:
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     + Collapse  () override
     // 
@@ -465,7 +465,7 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
 // 
 public class DropDownMenu : MenuItem
@@ -478,7 +478,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValuePosition (int dummy) : Vector2
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
@@ -486,7 +486,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValueSize (int dummy) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
     + Collapse ()
     // 
     + Draw  (GameTime gameTime)
@@ -500,7 +500,7 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
 // 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
@@ -517,7 +517,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     + Info : MenuItemInfo
   Methods:
     // 
-    + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Collapse () virtual
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
@@ -545,13 +545,13 @@ public class DropDownMenu : MenuItem
     - selected : MenuButton
   Methods:
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     + Collapse  () override
     // 
@@ -570,7 +570,7 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
 // 
 public class DropDownMenu : MenuItem
@@ -583,7 +583,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValuePosition (int dummy) : Vector2
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
@@ -591,7 +591,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValueSize (int dummy) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
     + Collapse ()
     // 
     + Draw  (GameTime gameTime)
@@ -605,7 +605,7 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
 // 
 public class ColorPicker : Widget, IMouseEventListener
@@ -628,7 +628,7 @@ public class ColorPicker : Widget, IMouseEventListener
     // 
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
     // 
-    + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + ColorPicker  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + Draw  (GameTime gameTime)
     // 
@@ -657,7 +657,7 @@ public abstract class Dialog : Widget
     // 
     # RelativeButtonSize (int n) : Vector2
     // 
-    + Dialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Dialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     - ButtonForegroundColor (ItemState itemState) : Color
     // 
@@ -665,7 +665,7 @@ public abstract class Dialog : Widget
     // 
     # DrawDialog  (GameTime gameTime) abstract
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
     // 
     + Draw  (GameTime gameTime)
 
@@ -682,7 +682,7 @@ public class ConfirmDialog : Dialog
     # OnCancelClick : Action
   Methods:
     // 
-    + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + ConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     # DrawDialog  (GameTime gameTime) override
 
@@ -693,9 +693,9 @@ public class TextInputDialog : ConfirmDialog
     # TextInput : TextInput
   Methods:
     // 
-    + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + TextInputDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     # TextInputPosition () : Vector2
     // 
@@ -706,14 +706,14 @@ public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class TextInputDialog : ConfirmDialog
@@ -724,25 +724,25 @@ public class TextInputDialog : ConfirmDialog
     // 
     # TextInputSize () : Vector2
     // 
-    + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + TextInputDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     # TextInputPosition () : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class ConfirmDialog : Dialog
@@ -759,7 +759,7 @@ public class ConfirmDialog : Dialog
     // 
     # DrawDialog  (GameTime gameTime)
     // 
-    + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + ConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
 
 // 
 public class TextInputDialog : ConfirmDialog
@@ -768,9 +768,9 @@ public class TextInputDialog : ConfirmDialog
     # TextInput : TextInput
   Methods:
     // 
-    + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + TextInputDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     # TextInputPosition () : Vector2
     // 
@@ -781,14 +781,14 @@ public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class TextInputDialog : ConfirmDialog
@@ -799,25 +799,25 @@ public class TextInputDialog : ConfirmDialog
     // 
     # TextInputSize () : Vector2
     // 
-    + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + TextInputDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     # TextInputPosition () : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
     // 
-    + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    + KnotSaveConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
 // 
 public class Menu : Widget
@@ -844,11 +844,11 @@ public class Menu : Widget
     // 
     - assignMenuItemInfo  (ref MenuItemInfo info, int num, MenuItem item)
     // 
-    + Menu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Menu  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + this (int i) : MenuItem
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
     // 
     + CollapseMenus  (MenuItem menu)
     // 
@@ -868,7 +868,7 @@ public class VerticalMenu : Menu
     # spriteBatch : SpriteBatch
   Methods:
     // 
-    + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + VerticalMenu  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + AddButton (MenuItemInfo info) : MenuButton override
     // 
@@ -891,7 +891,7 @@ public class VerticalMenu : Menu
     + Border : Border
   Methods:
     // 
-    + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + VerticalMenu  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
     // 
@@ -920,7 +920,7 @@ public class TextInput : Widget, IKeyEventListener
     + InputText : string
   Methods:
     // 
-    + TextInput  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + TextInput  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + Draw  (GameTime gameTime)
     // 
@@ -937,7 +937,7 @@ public abstract class ItemWidget : Widget
     # ItemNum : int
   Methods:
     // 
-    + ItemWidget  (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
+    + ItemWidget  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 
 // 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
@@ -954,7 +954,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     + IsMouseEventEnabled : bool
   Methods:
     // 
-    + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + Draw  (GameTime gameTime) override
     // 
@@ -983,13 +983,13 @@ public class DropDownMenu : MenuItem
     - selected : MenuButton
   Methods:
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     + Collapse  () override
     // 
@@ -1008,7 +1008,7 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
 // 
 public class DropDownMenu : MenuItem
@@ -1021,7 +1021,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValuePosition (int dummy) : Vector2
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
@@ -1029,7 +1029,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValueSize (int dummy) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
     + Collapse ()
     // 
     + Draw  (GameTime gameTime)
@@ -1043,7 +1043,7 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
 // 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
@@ -1060,7 +1060,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     + Info : MenuItemInfo
   Methods:
     // 
-    + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Collapse () virtual
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
@@ -1088,13 +1088,13 @@ public class DropDownMenu : MenuItem
     - selected : MenuButton
   Methods:
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     + Collapse  () override
     // 
@@ -1113,7 +1113,7 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
 // 
 public class DropDownMenu : MenuItem
@@ -1126,7 +1126,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValuePosition (int dummy) : Vector2
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
@@ -1134,7 +1134,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValueSize (int dummy) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
     + Collapse ()
     // 
     + Draw  (GameTime gameTime)
@@ -1148,5 +1148,5 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 

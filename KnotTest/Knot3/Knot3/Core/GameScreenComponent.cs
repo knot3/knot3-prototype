@@ -22,10 +22,10 @@ namespace Knot3.Core
 	/// </summary>
 	public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
 	{
-		public GameScreenComponent (GameScreen state, DisplayLayer index)
-			: base(state.game)
+		public GameScreenComponent (GameScreen screen, DisplayLayer index)
+			: base(screen.game)
 		{
-			this.state = state;
+			this.screen = screen;
 			this.Index = index;
 		}
 
@@ -33,9 +33,9 @@ namespace Knot3.Core
 		/// Gets the GameScreen associated with this object.
 		/// </summary>
 		/// <value>
-		/// The Game state.
+		/// The Game screen.
 		/// </value>
-		public GameScreen state { get; private set; }
+		public GameScreen screen { get; private set; }
 
 		public virtual IEnumerable<IGameScreenComponent> SubComponents (GameTime gameTime)
 		{

@@ -35,7 +35,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     + IsMouseEventEnabled : bool
   Methods:
     // 
-    + MenuItem (GameScreen state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuItem (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + Draw (GameTime gameTime) override
     // 

@@ -93,33 +93,33 @@
 <path fill="none" stroke="midnightblue" d="M348.124,-326.973C363.623,-309.77 379.157,-292.529 392.925,-277.248"/>
 <polygon fill="none" stroke="midnightblue" points="345.105,-325.095 341.011,-334.867 350.305,-329.78 345.105,-325.095"/>
 </g>
-<!-- Box_GameState -->
-<g id="node2" class="node"><title>Box_GameState</title>
-<polygon fill="#fcfcda" stroke="black" points="73.5,-557 73.5,-771 442.5,-771 442.5,-557 73.5,-557"/>
-<text text-anchor="middle" x="258" y="-759.8" font-family="Arial" font-size="8.00">GameState</text>
-<polyline fill="none" stroke="black" points="73.5,-753 442.5,-753 "/>
-<text text-anchor="start" x="81.5" y="-741.8" font-family="Arial" font-size="8.00">+ content : ContentManager</text>
-<text text-anchor="start" x="81.5" y="-731.8" font-family="Arial" font-size="8.00">+ NextState : GameState</text>
-<text text-anchor="start" x="81.5" y="-721.8" font-family="Arial" font-size="8.00">+ device : GraphicsDevice</text>
-<text text-anchor="start" x="81.5" y="-711.8" font-family="Arial" font-size="8.00">+ RenderEffects : RenderEffectStack</text>
-<text text-anchor="start" x="81.5" y="-701.8" font-family="Arial" font-size="8.00">+ viewport : Viewport</text>
-<text text-anchor="start" x="81.5" y="-691.8" font-family="Arial" font-size="8.00">+ game : Game</text>
-<text text-anchor="start" x="81.5" y="-681.8" font-family="Arial" font-size="8.00">+ graphics : GraphicsDeviceManager</text>
-<text text-anchor="start" x="81.5" y="-671.8" font-family="Arial" font-size="8.00">+ input : Input</text>
-<text text-anchor="start" x="81.5" y="-661.8" font-family="Arial" font-size="8.00">+ PostProcessing : RenderEffect</text>
-<polyline fill="none" stroke="black" points="73.5,-655 442.5,-655 "/>
-<text text-anchor="start" x="81.5" y="-643.8" font-family="Arial" font-size="8.00">+ Draw (GameTime gameTime) abstract</text>
-<text text-anchor="start" x="81.5" y="-633.8" font-family="Arial" font-size="8.00">+ Initialize () abstract</text>
-<text text-anchor="start" x="81.5" y="-623.8" font-family="Arial" font-size="8.00">+ Unload () abstract</text>
-<text text-anchor="start" x="81.5" y="-613.8" font-family="Arial" font-size="8.00">+ Activate (GameTime gameTime) virtual</text>
-<text text-anchor="start" x="81.5" y="-603.8" font-family="Arial" font-size="8.00">+ GameState (Game game)</text>
-<text text-anchor="start" x="81.5" y="-593.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime) abstract</text>
-<text text-anchor="start" x="81.5" y="-583.8" font-family="Arial" font-size="8.00">+ Deactivate (GameTime gameTime) virtual</text>
-<text text-anchor="start" x="81.5" y="-573.8" font-family="Arial" font-size="8.00">+ AddGameComponents (GameTime gameTime, params IGameStateComponent[] components)</text>
-<text text-anchor="start" x="81.5" y="-563.8" font-family="Arial" font-size="8.00">+ RemoveGameComponents (GameTime gameTime, params IGameStateComponent[] components)</text>
+<!-- Box_GameScreen -->
+<g id="node2" class="node"><title>Box_GameScreen</title>
+<polygon fill="#fcfcda" stroke="black" points="69.5,-557 69.5,-771 446.5,-771 446.5,-557 69.5,-557"/>
+<text text-anchor="middle" x="258" y="-759.8" font-family="Arial" font-size="8.00">GameScreen</text>
+<polyline fill="none" stroke="black" points="69.5,-753 446.5,-753 "/>
+<text text-anchor="start" x="77.5" y="-741.8" font-family="Arial" font-size="8.00">+ content : ContentManager</text>
+<text text-anchor="start" x="77.5" y="-731.8" font-family="Arial" font-size="8.00">+ NextState : GameScreen</text>
+<text text-anchor="start" x="77.5" y="-721.8" font-family="Arial" font-size="8.00">+ device : GraphicsDevice</text>
+<text text-anchor="start" x="77.5" y="-711.8" font-family="Arial" font-size="8.00">+ RenderEffects : RenderEffectStack</text>
+<text text-anchor="start" x="77.5" y="-701.8" font-family="Arial" font-size="8.00">+ viewport : Viewport</text>
+<text text-anchor="start" x="77.5" y="-691.8" font-family="Arial" font-size="8.00">+ game : Game</text>
+<text text-anchor="start" x="77.5" y="-681.8" font-family="Arial" font-size="8.00">+ graphics : GraphicsDeviceManager</text>
+<text text-anchor="start" x="77.5" y="-671.8" font-family="Arial" font-size="8.00">+ input : InputManager</text>
+<text text-anchor="start" x="77.5" y="-661.8" font-family="Arial" font-size="8.00">+ PostProcessing : RenderEffect</text>
+<polyline fill="none" stroke="black" points="69.5,-655 446.5,-655 "/>
+<text text-anchor="start" x="77.5" y="-643.8" font-family="Arial" font-size="8.00">+ Draw (GameTime gameTime) abstract</text>
+<text text-anchor="start" x="77.5" y="-633.8" font-family="Arial" font-size="8.00">+ Initialize () abstract</text>
+<text text-anchor="start" x="77.5" y="-623.8" font-family="Arial" font-size="8.00">+ Unload () abstract</text>
+<text text-anchor="start" x="77.5" y="-613.8" font-family="Arial" font-size="8.00">+ Activate (GameTime gameTime) virtual</text>
+<text text-anchor="start" x="77.5" y="-603.8" font-family="Arial" font-size="8.00">+ GameScreen (Game game)</text>
+<text text-anchor="start" x="77.5" y="-593.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime) abstract</text>
+<text text-anchor="start" x="77.5" y="-583.8" font-family="Arial" font-size="8.00">+ Deactivate (GameTime gameTime) virtual</text>
+<text text-anchor="start" x="77.5" y="-573.8" font-family="Arial" font-size="8.00">+ AddGameComponents (GameTime gameTime, params IGameScreenComponent[] components)</text>
+<text text-anchor="start" x="77.5" y="-563.8" font-family="Arial" font-size="8.00">+ RemoveGameComponents (GameTime gameTime, params IGameScreenComponent[] components)</text>
 </g>
-<!-- Box_GameState&#45;&gt;Box_MenuScreen -->
-<g id="edge2" class="edge"><title>Box_GameState&#45;&gt;Box_MenuScreen</title>
+<!-- Box_GameScreen&#45;&gt;Box_MenuScreen -->
+<g id="edge2" class="edge"><title>Box_GameScreen&#45;&gt;Box_MenuScreen</title>
 <path fill="none" stroke="midnightblue" d="M258,-546.846C258,-537.529 258,-528.201 258,-519.092"/>
 <polygon fill="none" stroke="midnightblue" points="254.5,-546.941 258,-556.941 261.5,-546.941 254.5,-546.941"/>
 </g>

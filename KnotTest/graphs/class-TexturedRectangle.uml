@@ -24,7 +24,7 @@ public class TexturedRectangle : IGameObject
     // 
     - UpperLeft : Vector3
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     + World : World
   Methods:
@@ -34,7 +34,7 @@ public class TexturedRectangle : IGameObject
     // 
     + Intersects (Ray ray) : GameObjectDistance
     // 
-    + TexturedRectangle  (GameState state, TexturedRectangleInfo info)
+    + TexturedRectangle  (GameScreen screen, TexturedRectangleInfo info)
     // 
     + Draw  (GameTime gameTime)
     // 

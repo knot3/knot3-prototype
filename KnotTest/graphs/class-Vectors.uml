@@ -33,7 +33,7 @@ public static class Vectors :
     // 
     + Plus (this Point a, Point b) : Point static
     // 
-    + ToPoint (this MouseState state) : Point static
+    + ToPoint (this MouseState screen) : Point static
     // 
     + ToPoint (this Vector2 v) : Point static
     // 
@@ -49,7 +49,7 @@ public static class Vectors :
     // 
     + Scale (this Vector2 v, Viewport viewport) : Vector2 static
     // 
-    + ToVector2 (this MouseState state) : Vector2 static
+    + ToVector2 (this MouseState screen) : Vector2 static
     // 
     + ToVector2 (this Point v) : Vector2 static
     // 

@@ -31,7 +31,7 @@
 <text text-anchor="start" x="8" y="-287.8" font-family="Arial" font-size="8.00">+ Bounds (this Model model) : BoundingSphere[] static</text>
 <text text-anchor="start" x="8" y="-277.8" font-family="Arial" font-size="8.00">+ CylinderBounds (float length, float radius, Vector3 direction, Vector3 position) : BoundingSphere[] static</text>
 <text text-anchor="start" x="8" y="-267.8" font-family="Arial" font-size="8.00">+ Plus (this Point a, Point b) : Point static</text>
-<text text-anchor="start" x="8" y="-257.8" font-family="Arial" font-size="8.00">+ ToPoint (this MouseState state) : Point static</text>
+<text text-anchor="start" x="8" y="-257.8" font-family="Arial" font-size="8.00">+ ToPoint (this MouseState screen) : Point static</text>
 <text text-anchor="start" x="8" y="-247.8" font-family="Arial" font-size="8.00">+ ToPoint (this Vector2 v) : Point static</text>
 <text text-anchor="start" x="8" y="-237.8" font-family="Arial" font-size="8.00">+ Scale (this Rectangle rect, Viewport viewport) : Rectangle static</text>
 <text text-anchor="start" x="8" y="-227.8" font-family="Arial" font-size="8.00">+ Shrink (this Rectangle rect, int diff) : Rectangle static</text>
@@ -39,7 +39,7 @@
 <text text-anchor="start" x="8" y="-207.8" font-family="Arial" font-size="8.00">+ PrimaryDirection (this Vector2 v) : Vector2 static</text>
 <text text-anchor="start" x="8" y="-197.8" font-family="Arial" font-size="8.00">+ RelativeTo (this Vector2 v, Viewport viewport) : Vector2 static</text>
 <text text-anchor="start" x="8" y="-187.8" font-family="Arial" font-size="8.00">+ Scale (this Vector2 v, Viewport viewport) : Vector2 static</text>
-<text text-anchor="start" x="8" y="-177.8" font-family="Arial" font-size="8.00">+ ToVector2 (this MouseState state) : Vector2 static</text>
+<text text-anchor="start" x="8" y="-177.8" font-family="Arial" font-size="8.00">+ ToVector2 (this MouseState screen) : Vector2 static</text>
 <text text-anchor="start" x="8" y="-167.8" font-family="Arial" font-size="8.00">+ ToVector2 (this Point v) : Vector2 static</text>
 <text text-anchor="start" x="8" y="-157.8" font-family="Arial" font-size="8.00">+ ToVector2 (this Viewport viewport) : Vector2 static</text>
 <text text-anchor="start" x="8" y="-147.8" font-family="Arial" font-size="8.00">+ ArcBallMove (this Vector3 vectorToMove, Vector2 mouse, Vector3 up, Vector3 forward) : Vector3 static</text>

@@ -3,7 +3,7 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
 // 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
@@ -20,7 +20,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     + IsMouseEventEnabled : bool
   Methods:
     // 
-    + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + Draw  (GameTime gameTime) override
     // 
@@ -79,10 +79,10 @@ public abstract class ItemWidget : Widget
     + ItemState : ItemState
   Methods:
     // 
-    + ItemWidget  (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
+    + ItemWidget  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 
 // 
-public abstract class Widget : DrawableGameStateComponent
+public abstract class Widget : DrawableGameScreenComponent
   Attributes:
     // 
     + Info : WidgetInfo
@@ -90,60 +90,60 @@ public abstract class Widget : DrawableGameStateComponent
     + IsVisible : bool virtual
   Methods:
     // 
-    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Widget  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + bounds () : Rectangle
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
-    + state : GameState
+    + screen : GameScreen
     // 
     - _index : DisplayLayer
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
     + Index : DisplayLayer
     // 
     - _index : DisplayLayer
     // 
-    + state : GameState
+    + screen : GameScreen
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
-public abstract class Widget : DrawableGameStateComponent
+public abstract class Widget : DrawableGameScreenComponent
   Attributes:
     // 
     + Info : WidgetInfo
@@ -153,55 +153,55 @@ public abstract class Widget : DrawableGameStateComponent
     // 
     + bounds () : Rectangle
     // 
-    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Widget  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
-    + state : GameState
+    + screen : GameScreen
     // 
     - _index : DisplayLayer
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
     + Index : DisplayLayer
     // 
     - _index : DisplayLayer
     // 
-    + state : GameState
+    + screen : GameScreen
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
 public abstract class ItemWidget : Widget
@@ -212,10 +212,10 @@ public abstract class ItemWidget : Widget
     # ItemNum : int
   Methods:
     // 
-    + ItemWidget  (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
+    + ItemWidget  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 
 // 
-public abstract class Widget : DrawableGameStateComponent
+public abstract class Widget : DrawableGameScreenComponent
   Attributes:
     // 
     + Info : WidgetInfo
@@ -223,60 +223,60 @@ public abstract class Widget : DrawableGameStateComponent
     + IsVisible : bool virtual
   Methods:
     // 
-    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Widget  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + bounds () : Rectangle
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
-    + state : GameState
+    + screen : GameScreen
     // 
     - _index : DisplayLayer
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
     + Index : DisplayLayer
     // 
     - _index : DisplayLayer
     // 
-    + state : GameState
+    + screen : GameScreen
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
-public abstract class Widget : DrawableGameStateComponent
+public abstract class Widget : DrawableGameScreenComponent
   Attributes:
     // 
     + Info : WidgetInfo
@@ -286,55 +286,55 @@ public abstract class Widget : DrawableGameStateComponent
     // 
     + bounds () : Rectangle
     // 
-    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Widget  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
-    + state : GameState
+    + screen : GameScreen
     // 
     - _index : DisplayLayer
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
     + Index : DisplayLayer
     // 
     - _index : DisplayLayer
     // 
-    + state : GameState
+    + screen : GameScreen
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
@@ -351,7 +351,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     + Info : MenuItemInfo
   Methods:
     // 
-    + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Collapse () virtual
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
@@ -409,10 +409,10 @@ public abstract class ItemWidget : Widget
     + ItemState : ItemState
   Methods:
     // 
-    + ItemWidget  (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
+    + ItemWidget  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 
 // 
-public abstract class Widget : DrawableGameStateComponent
+public abstract class Widget : DrawableGameScreenComponent
   Attributes:
     // 
     + Info : WidgetInfo
@@ -420,60 +420,60 @@ public abstract class Widget : DrawableGameStateComponent
     + IsVisible : bool virtual
   Methods:
     // 
-    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Widget  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + bounds () : Rectangle
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
-    + state : GameState
+    + screen : GameScreen
     // 
     - _index : DisplayLayer
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
     + Index : DisplayLayer
     // 
     - _index : DisplayLayer
     // 
-    + state : GameState
+    + screen : GameScreen
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
-public abstract class Widget : DrawableGameStateComponent
+public abstract class Widget : DrawableGameScreenComponent
   Attributes:
     // 
     + Info : WidgetInfo
@@ -483,55 +483,55 @@ public abstract class Widget : DrawableGameStateComponent
     // 
     + bounds () : Rectangle
     // 
-    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Widget  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
-    + state : GameState
+    + screen : GameScreen
     // 
     - _index : DisplayLayer
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
     + Index : DisplayLayer
     // 
     - _index : DisplayLayer
     // 
-    + state : GameState
+    + screen : GameScreen
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
 public abstract class ItemWidget : Widget
@@ -542,10 +542,10 @@ public abstract class ItemWidget : Widget
     # ItemNum : int
   Methods:
     // 
-    + ItemWidget  (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
+    + ItemWidget  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 
 // 
-public abstract class Widget : DrawableGameStateComponent
+public abstract class Widget : DrawableGameScreenComponent
   Attributes:
     // 
     + Info : WidgetInfo
@@ -553,60 +553,60 @@ public abstract class Widget : DrawableGameStateComponent
     + IsVisible : bool virtual
   Methods:
     // 
-    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Widget  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + bounds () : Rectangle
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
-    + state : GameState
+    + screen : GameScreen
     // 
     - _index : DisplayLayer
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
     + Index : DisplayLayer
     // 
     - _index : DisplayLayer
     // 
-    + state : GameState
+    + screen : GameScreen
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
-public abstract class Widget : DrawableGameStateComponent
+public abstract class Widget : DrawableGameScreenComponent
   Attributes:
     // 
     + Info : WidgetInfo
@@ -616,53 +616,53 @@ public abstract class Widget : DrawableGameStateComponent
     // 
     + bounds () : Rectangle
     // 
-    + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + Widget  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
-    + state : GameState
+    + screen : GameScreen
     // 
     - _index : DisplayLayer
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
     + Index : DisplayLayer
     // 
     - _index : DisplayLayer
     // 
-    + state : GameState
+    + screen : GameScreen
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 

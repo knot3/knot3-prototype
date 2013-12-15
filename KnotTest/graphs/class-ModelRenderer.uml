@@ -23,7 +23,7 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     // 
     - CreateArrow  (Edge edge)
     // 
-    + ModelRenderer  (GameState state, GameObjectInfo info)
+    + ModelRenderer  (GameScreen screen, GameObjectInfo info)
     // 
     + Draw  (GameTime gameTime)
     // 
@@ -43,7 +43,7 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
 public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
   Attributes:
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     + World : World abstract
     // 
@@ -52,7 +52,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     # nodeMap : NodeMap new
   Methods:
     // 
-    + KnotRenderer  (GameState state)
+    + KnotRenderer  (GameScreen screen)
     // 
     + OnEdgesChanged  (EdgeList edges) virtual
     // 
@@ -94,7 +94,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     // 
     + World : World abstract
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     + Info : GameObjectInfo abstract
   Methods:
@@ -107,7 +107,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     // 
     + Draw  (GameTime gameTime) abstract
     // 
-    + KnotRenderer  (GameState state)
+    + KnotRenderer  (GameScreen screen)
     // 
     + Update  (GameTime gameTime) abstract
     // 

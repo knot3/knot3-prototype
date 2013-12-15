@@ -9,7 +9,7 @@ public interface IEdgeChangeListener :
 public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
   Attributes:
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     + World : World abstract
     // 
@@ -18,7 +18,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     # nodeMap : NodeMap new
   Methods:
     // 
-    + KnotRenderer  (GameState state)
+    + KnotRenderer  (GameScreen screen)
     // 
     + OnEdgesChanged  (EdgeList edges) virtual
     // 
@@ -43,7 +43,7 @@ public class LineRenderer : KnotRenderer
     - edges : EdgeList
   Methods:
     // 
-    + LineRenderer  (GameState state, GameObjectInfo info)
+    + LineRenderer  (GameScreen screen, GameObjectInfo info)
     // 
     + Update  (GameTime gameTime) override
     // 
@@ -78,7 +78,7 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     - arrowFactory : ModelFactory
   Methods:
     // 
-    + ModelRenderer  (GameState state, GameObjectInfo info)
+    + ModelRenderer  (GameScreen screen, GameObjectInfo info)
     // 
     + Update  (GameTime gameTime) override
     // 
@@ -107,7 +107,7 @@ public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
     - pipeFactory : ModelFactory
     - nodeFactory : ModelFactory
   Methods:
-    + PipeRenderer  (GameState state, GameObjectInfo info)
+    + PipeRenderer  (GameScreen screen, GameObjectInfo info)
     + Update  (GameTime gameTime) override
     + OnEdgesChanged  (EdgeList edges) override
     + GetEnumerator () : IEnumerator<IGameObject>
@@ -129,7 +129,7 @@ public class LineRenderer : KnotRenderer
     + World : World
   Methods:
     // 
-    + LineRenderer  (GameState state, GameObjectInfo info)
+    + LineRenderer  (GameScreen screen, GameObjectInfo info)
     // 
     + OnEdgesChanged  (EdgeList edges)
     - DrawRoundedLines ()
@@ -167,7 +167,7 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     // 
     - CreateArrow  (Edge edge)
     // 
-    + ModelRenderer  (GameState state, GameObjectInfo info)
+    + ModelRenderer  (GameScreen screen, GameObjectInfo info)
     // 
     + Draw  (GameTime gameTime)
     // 
@@ -207,7 +207,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     // 
     + World : World abstract
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     + Info : GameObjectInfo abstract
   Methods:
@@ -220,7 +220,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     // 
     + Draw  (GameTime gameTime) abstract
     // 
-    + KnotRenderer  (GameState state)
+    + KnotRenderer  (GameScreen screen)
     // 
     + Update  (GameTime gameTime) abstract
     // 
@@ -239,7 +239,7 @@ public class LineRenderer : KnotRenderer
     - edges : EdgeList
   Methods:
     // 
-    + LineRenderer  (GameState state, GameObjectInfo info)
+    + LineRenderer  (GameScreen screen, GameObjectInfo info)
     // 
     + Update  (GameTime gameTime) override
     // 
@@ -274,7 +274,7 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     - arrowFactory : ModelFactory
   Methods:
     // 
-    + ModelRenderer  (GameState state, GameObjectInfo info)
+    + ModelRenderer  (GameScreen screen, GameObjectInfo info)
     // 
     + Update  (GameTime gameTime) override
     // 
@@ -303,7 +303,7 @@ public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
     - pipeFactory : ModelFactory
     - nodeFactory : ModelFactory
   Methods:
-    + PipeRenderer  (GameState state, GameObjectInfo info)
+    + PipeRenderer  (GameScreen screen, GameObjectInfo info)
     + Update  (GameTime gameTime) override
     + OnEdgesChanged  (EdgeList edges) override
     + GetEnumerator () : IEnumerator<IGameObject>
@@ -325,7 +325,7 @@ public class LineRenderer : KnotRenderer
     + World : World
   Methods:
     // 
-    + LineRenderer  (GameState state, GameObjectInfo info)
+    + LineRenderer  (GameScreen screen, GameObjectInfo info)
     // 
     + OnEdgesChanged  (EdgeList edges)
     - DrawRoundedLines ()
@@ -363,7 +363,7 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     // 
     - CreateArrow  (Edge edge)
     // 
-    + ModelRenderer  (GameState state, GameObjectInfo info)
+    + ModelRenderer  (GameScreen screen, GameObjectInfo info)
     // 
     + Draw  (GameTime gameTime)
     // 

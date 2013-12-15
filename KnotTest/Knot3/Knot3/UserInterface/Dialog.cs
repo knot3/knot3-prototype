@@ -26,8 +26,8 @@ namespace Knot3.UserInterface
 		// textures
 		protected SpriteBatch spriteBatch;
 
-		public Dialog (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
-			: base(state, info, drawOrder)
+		public Dialog (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+			: base(screen, info, drawOrder)
 		{
 			IsVisible = true;
 			Done = () => {
@@ -35,11 +35,11 @@ namespace Knot3.UserInterface
 			};
 
 			// create a new SpriteBatch, which can be used to draw textures
-			spriteBatch = new SpriteBatch (state.device);
+			spriteBatch = new SpriteBatch (screen.device);
 
 			// menu
 			WidgetInfo menuInfo = new WidgetInfo ();
-			buttons = new Menu (state, menuInfo, DisplayLayer.Menu);
+			buttons = new Menu (screen, menuInfo, DisplayLayer.Menu);
 			buttons.ItemForegroundColor = ButtonForegroundColor;
 			buttons.ItemBackgroundColor = ButtonBackgroundColor;
 			buttons.ItemAlignX = HAlign.Center;
@@ -75,12 +75,12 @@ namespace Knot3.UserInterface
 				spriteBatch.Begin ();
 
 				// background
-				Rectangle rect = Info.ScaledRectangle (state.viewport);
+				Rectangle rect = Info.ScaledRectangle (screen.viewport);
 				spriteBatch.Draw (
-					Textures.Create (state.device, HfGDesign.LineColor), rect.Grow (3), Color.White
+					Textures.Create (screen.device, HfGDesign.LineColor), rect.Grow (3), Color.White
 				);
 				spriteBatch.Draw (
-					Textures.Create (state.device, Info.BackgroundColor ()), rect, Color.Black * 0.95f
+					Textures.Create (screen.device, Info.BackgroundColor ()), rect, Color.Black * 0.95f
 				);
 
 				DrawDialog (gameTime);

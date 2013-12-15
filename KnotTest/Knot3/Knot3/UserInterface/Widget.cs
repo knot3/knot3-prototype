@@ -122,8 +122,8 @@ namespace Knot3.UserInterface
 		// visibility
 		public virtual bool IsVisible { get; set; }
 
-		public Widget (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
-			: base(state, drawOrder)
+		public Widget (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+			: base(screen, drawOrder)
 		{
 			Info = info;
 			IsVisible = true;
@@ -131,8 +131,8 @@ namespace Knot3.UserInterface
 
 		public Rectangle bounds ()
 		{
-			Point topLeft = Info.ScaledPosition (state.viewport).ToPoint ();
-			Point size = Info.ScaledSize (state.viewport).ToPoint ();
+			Point topLeft = Info.ScaledPosition (screen.viewport).ToPoint ();
+			Point size = Info.ScaledSize (screen.viewport).ToPoint ();
 			return new Rectangle (topLeft.X, topLeft.Y, size.X, size.Y);
 		}
 	}
@@ -146,8 +146,8 @@ namespace Knot3.UserInterface
 		protected int ItemNum;
 		public ItemState ItemState;
 
-		public ItemWidget (GameScreen state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
-			: base(state, info, drawOrder)
+		public ItemWidget (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
+			: base(screen, info, drawOrder)
 		{
 			ItemNum = itemNum;
 		}

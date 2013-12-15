@@ -25,7 +25,7 @@ namespace Knot3.Core
 	{
 		#region Attributes
 
-		// state atributes
+		// screen atributes
 		public static bool FullscreenToggled;
 		/// <summary>
 		/// Der Status der Tastatur zur Zeit des vorherigen Frames.
@@ -62,11 +62,11 @@ namespace Knot3.Core
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TestGame1.Input"/> class.
 		/// </summary>
-		/// <param name='state'>
+		/// <param name='screen'>
 		/// Game State.
 		/// </param>
-		public InputManager (GameScreen state)
-			: base(state, DisplayLayer.None)
+		public InputManager (GameScreen screen)
+			: base(screen, DisplayLayer.None)
 		{
 			FullscreenToggled = false;
 			WASDMode = WASDMode.ArcballMode;
@@ -78,7 +78,7 @@ namespace Knot3.Core
 
 		public override void Update (GameTime gameTime)
 		{
-			// update saved state.
+			// update saved screen.
 			PreviousKeyboardState = KeyboardState;
 			PreviousMouseState = MouseState;
 			KeyboardState = Keyboard.GetState ();
@@ -118,7 +118,7 @@ namespace Knot3.Core
 
 			// fullscreen
 			if (Keys.G.IsDown () || Keys.F11.IsDown ()) {
-				state.game.IsFullscreen = !state.game.IsFullscreen;
+				screen.game.IsFullscreen = !screen.game.IsFullscreen;
 				FullscreenToggled = true;
 			}
 		}

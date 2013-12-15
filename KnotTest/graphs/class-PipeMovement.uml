@@ -6,7 +6,7 @@ public class PipeMovement : IGameObject, IEnumerable<IGameObject>
     // 
     + World : World
     // 
-    - state : GameState
+    - screen : GameScreen
     // 
     - previousMousePosition : Vector3
     // 
@@ -27,7 +27,7 @@ public class PipeMovement : IGameObject, IEnumerable<IGameObject>
     // 
     + GetEnumerator () : IEnumerator<IGameObject>
     // 
-    + PipeMovement  (GameState state, World world, GameObjectInfo info)
+    + PipeMovement  (GameScreen screen, World world, GameObjectInfo info)
     // 
     + Draw  (GameTime gameTime)
     // 

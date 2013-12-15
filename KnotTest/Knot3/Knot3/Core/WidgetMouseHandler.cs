@@ -8,8 +8,8 @@ namespace Knot3.Core
 {
 	public class WidgetMouseHandler : GameScreenComponent
 	{
-		public WidgetMouseHandler (GameScreen state)
-			: base(state, DisplayLayer.None)
+		public WidgetMouseHandler (GameScreen screen)
+			: base(screen, DisplayLayer.None)
 		{
 		}
 
@@ -23,7 +23,7 @@ namespace Knot3.Core
 		public override void Update (GameTime gameTime)
 		{
 			ClickEventComponent best = null;
-			foreach (IGameScreenComponent _component in state.game.Components) {
+			foreach (IGameScreenComponent _component in screen.game.Components) {
 				if (_component is IMouseEventListener) {
 					IMouseEventListener receiver = _component as IMouseEventListener;
 					// mouse input

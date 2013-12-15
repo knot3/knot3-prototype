@@ -130,7 +130,7 @@ namespace Knot3.CreativeMode
 						dialog.Done ();
 					} else {
 						dialog = new KnotSaveConfirmDialog (
-							state: this, 
+							screen: this, 
 							info: new WidgetInfo (),
 							drawOrder: DisplayLayer.Dialog,
 							knot: knot
@@ -185,8 +185,8 @@ namespace Knot3.CreativeMode
 
 	public class KnotSaveConfirmDialog : TextInputDialog
 	{
-		public KnotSaveConfirmDialog (GameScreen state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
-			: base(state, info, drawOrder)
+		public KnotSaveConfirmDialog (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+			: base(screen, info, drawOrder)
 		{
 			Info.RelativeSize = () => new Vector2 (0.500f, 0.250f);
 			Info.RelativePadding = () => new Vector2 (0.016f, 0.016f);
@@ -199,11 +199,11 @@ namespace Knot3.CreativeMode
 				Console.WriteLine ("OnYesClick");
 				knot.Rename (TextInput.InputText);
 				knot.Save ();
-				state.NextState = GameScreens.StartScreen;
+				screen.NextState = GameScreens.StartScreen;
 			};
 			OnNoClick += () => {
 				Console.WriteLine ("OnNoClick");
-				state.NextState = GameScreens.StartScreen;
+				screen.NextState = GameScreens.StartScreen;
 			};
 		}
 	}

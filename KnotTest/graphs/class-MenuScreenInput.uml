@@ -6,7 +6,7 @@ public class MenuScreenInput : Input
     + MenuScreenInput  (GameState state)
 
 // 
-public abstract class Input : GameStateComponent, IKeyEventListener
+public abstract class Input : GameScreenComponent, IKeyEventListener
   Attributes:
     // 
     # FullscreenToggled : bool static
@@ -40,7 +40,7 @@ public abstract class Input : GameStateComponent, IKeyEventListener
     + KeyboardState : KeyboardState static
   Methods:
     // 
-    + Input  (GameState state)
+    + Input  (GameScreen screen)
     // 
     + Update  (GameTime gameTime) override
     // 
@@ -51,26 +51,26 @@ public abstract class Input : GameStateComponent, IKeyEventListener
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 
 // 
-public class GameStateComponent : Xna.GameComponent, IGameStateComponent
+public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
   Attributes:
     // 
-    + state : GameState
+    + screen : GameScreen
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + GameStateComponent  (GameState state, DisplayLayer index)
+    + GameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
 public interface IKeyEventListener : 
@@ -86,26 +86,26 @@ public interface IKeyEventListener :
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 
 // 
-public class GameStateComponent : Xna.GameComponent, IGameStateComponent
+public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
   Attributes:
     // 
     + Index : DisplayLayer
     // 
-    + state : GameState
+    + screen : GameScreen
   Methods:
     // 
-    + GameStateComponent  (GameState state, DisplayLayer index)
+    + GameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
 public abstract class Input : GameStateComponent, IKeyEventListener
@@ -153,28 +153,6 @@ public abstract class Input : GameStateComponent, IKeyEventListener
     + Input  (GameState state)
 
 // 
-public class GameStateComponent : Xna.GameComponent, IGameStateComponent
-  Attributes:
-    // 
-    + state : GameState
-    // 
-    + Index : DisplayLayer
-  Methods:
-    // 
-    + GameStateComponent  (GameState state, DisplayLayer index)
-    // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
-
-// 
-public interface IGameStateComponent : Xna.IGameComponent
-  Attributes:
-    // 
-    + Index : DisplayLayer
-  Methods:
-    // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
-
-// 
 public interface IKeyEventListener : 
   Attributes:
     // 
@@ -187,25 +165,11 @@ public interface IKeyEventListener :
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 
-// 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
   Attributes:
-    // 
     + Index : DisplayLayer
-    // 
     + state : GameState
   Methods:
-    // 
     + GameStateComponent  (GameState state, DisplayLayer index)
-    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
-
-// 
-public interface IGameStateComponent : Xna.IGameComponent
-  Attributes:
-    // 
-    + Index : DisplayLayer
-  Methods:
-    // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 

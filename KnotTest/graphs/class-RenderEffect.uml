@@ -8,14 +8,14 @@ public abstract class RenderEffect : IRenderEffect
     // 
     - spriteBatch : SpriteBatch
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     + RenderTarget : RenderTarget2D
   Methods:
     // 
     # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) abstract
     // 
-    + RenderEffect  (GameState state)
+    + RenderEffect  (GameScreen screen)
     // 
     + DrawModel  (GameModel model, GameTime gameTime) virtual
     // 
@@ -55,7 +55,7 @@ public class BlurEffect : RenderEffect
     - testEffect : Effect static
   Methods:
     // 
-    + BlurEffect  (GameState state)
+    + BlurEffect  (GameScreen screen)
     // 
     + Begin  (Color background, GameTime gameTime) override
     // 
@@ -82,7 +82,7 @@ public class CelShadingEffect : RenderEffect
     + Color : Color
   Methods:
     // 
-    + CelShadingEffect  (GameState state)
+    + CelShadingEffect  (GameScreen screen)
     // 
     # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) override
     // 
@@ -101,7 +101,7 @@ public class FadeEffect : RenderEffect
     + IsFinished : bool
   Methods:
     // 
-    + FadeEffect  (GameState state, GameState oldState)
+    + FadeEffect  (GameScreen screen, GameScreen oldState)
     // 
     # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) override
 
@@ -112,7 +112,7 @@ public class InstancingTest : RenderEffect
     - instanceHash : Hashtable new
   Methods:
     // 
-    + InstancingTest  (GameState state)
+    + InstancingTest  (GameScreen screen)
     // 
     + Begin  (Color background, GameTime gameTime) override
     // 
@@ -137,7 +137,7 @@ public sealed class NoEffect : RenderEffect
   Attributes:
   Methods:
     // 
-    + NoEffect  (GameState state)
+    + NoEffect  (GameScreen screen)
     // 
     # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) override
 
@@ -148,7 +148,7 @@ public class BlurEffect : RenderEffect
     - testEffect : Effect static
   Methods:
     // 
-    + BlurEffect  (GameState state)
+    + BlurEffect  (GameScreen screen)
     // 
     # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime)
     // 
@@ -175,7 +175,7 @@ public class CelShadingEffect : RenderEffect
     + Color : Color
   Methods:
     // 
-    + CelShadingEffect  (GameState state)
+    + CelShadingEffect  (GameScreen screen)
     // 
     # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime)
     // 
@@ -196,7 +196,7 @@ public class FadeEffect : RenderEffect
     // 
     # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime)
     // 
-    + FadeEffect  (GameState state, GameState oldState)
+    + FadeEffect  (GameScreen screen, GameScreen oldState)
 
 // 
 public class InstancingTest : RenderEffect
@@ -210,7 +210,7 @@ public class InstancingTest : RenderEffect
     // 
     # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime)
     // 
-    + InstancingTest  (GameState state)
+    + InstancingTest  (GameScreen screen)
     // 
     + DrawModel  (GameModel model, GameTime gameTime)
     // 
@@ -223,5 +223,5 @@ public sealed class NoEffect : RenderEffect
     // 
     # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime)
     // 
-    + NoEffect  (GameState state)
+    + NoEffect  (GameScreen screen)
 

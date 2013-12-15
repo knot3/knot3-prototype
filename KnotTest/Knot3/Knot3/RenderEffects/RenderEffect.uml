@@ -18,7 +18,7 @@ public class RenderEffectStack :
 public abstract class RenderEffect : IRenderEffect
   Attributes:
     // 
-    # state : GameScreen
+    # screen : GameScreen
     // 
     - renderTarget : RenderTargetCache
     // 
@@ -29,7 +29,7 @@ public abstract class RenderEffect : IRenderEffect
     + RenderTarget : RenderTarget2D
   Methods:
     // 
-    + RenderEffect (GameScreen state)
+    + RenderEffect (GameScreen screen)
     // 
     + Begin (GameTime gameTime)
     // 

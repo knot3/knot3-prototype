@@ -62,8 +62,8 @@ namespace Knot3.GameObjects
 
 		#endregion
 
-		public ArrowModel (GameScreen state, ArrowModelInfo info)
-			: base(state, info)
+		public ArrowModel (GameScreen screen, ArrowModelInfo info)
+			: base(screen, info)
 		{
 			if (Info.Direction.Y == 1) {
 				Info.Rotation += Angles3.FromDegrees (90, 0, 0);

@@ -10,8 +10,8 @@ namespace Knot3.Core
 {
 	public class WidgetKeyHandler : GameScreenComponent
 	{
-		public WidgetKeyHandler (GameScreen state)
-			: base(state, DisplayLayer.None)
+		public WidgetKeyHandler (GameScreen screen)
+			: base(screen, DisplayLayer.None)
 		{
 		}
 
@@ -26,7 +26,7 @@ namespace Knot3.Core
 		public override void Update (GameTime gameTime)
 		{
 			KeyEventComponent best = null;
-			foreach (IGameScreenComponent component in state.game.Components) {
+			foreach (IGameScreenComponent component in screen.game.Components) {
 				if (component is IKeyEventListener) {
 
 					// keyboard input

@@ -47,7 +47,7 @@ public class Camera : GameScreenComponent
     + ArcballTarget : Vector3
   Methods:
     // 
-    + Camera (GameScreen state, World world)
+    + Camera (GameScreen screen, World world)
     // 
     + Update (GameTime gameTime) override
     // 

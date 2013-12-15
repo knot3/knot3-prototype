@@ -5,7 +5,7 @@ public class InstancingTest : RenderEffect
     - instanceHash : Hashtable new
   Methods:
     // 
-    + InstancingTest (GameScreen state)
+    + InstancingTest (GameScreen screen)
     // 
     + Begin (Color background, GameTime gameTime) override
     // 

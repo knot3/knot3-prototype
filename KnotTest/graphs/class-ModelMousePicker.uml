@@ -1,5 +1,5 @@
 // 
-public class ModelMousePicker : GameStateComponent
+public class ModelMousePicker : GameScreenComponent
   Attributes:
     // 
     - lastMousePosition : Vector2
@@ -11,53 +11,53 @@ public class ModelMousePicker : GameStateComponent
     // 
     - UpdateMouseRay  (GameTime gameTime)
     // 
-    + ModelMousePicker  (GameState state, World world)
+    + ModelMousePicker  (GameScreen screen, World world)
     // 
     - CheckMouseRay  (GameTime gameTime)
     // 
     + Update  (GameTime gameTime)
 
 // 
-public class GameStateComponent : Xna.GameComponent, IGameStateComponent
+public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
   Attributes:
     // 
-    + state : GameState
+    + screen : GameScreen
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + GameStateComponent  (GameState state, DisplayLayer index)
+    + GameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
-public class GameStateComponent : Xna.GameComponent, IGameStateComponent
+public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
   Attributes:
     // 
     + Index : DisplayLayer
     // 
-    + state : GameState
+    + screen : GameScreen
   Methods:
     // 
-    + GameStateComponent  (GameState state, DisplayLayer index)
+    + GameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 

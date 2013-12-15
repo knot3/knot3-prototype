@@ -11,7 +11,7 @@ public class LineRenderer : KnotRenderer
     - edges : EdgeList
   Methods:
     // 
-    + LineRenderer (GameScreen state, GameObjectInfo info)
+    + LineRenderer (GameScreen screen, GameObjectInfo info)
     // 
     + Update (GameTime gameTime) override
     // 

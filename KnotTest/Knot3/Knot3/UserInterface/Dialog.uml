@@ -9,7 +9,7 @@ public abstract class Dialog : Widget
     # spriteBatch : SpriteBatch
   Methods:
     // 
-    + Dialog (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
+    + Dialog (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     # RelativeButtonPosition (int n) : Vector2
     // 

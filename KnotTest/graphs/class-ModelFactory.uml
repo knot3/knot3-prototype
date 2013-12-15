@@ -1,11 +1,11 @@
 // 
 public sealed class ModelFactory : 
   Attributes:
-    - GameModelInfo, GameModel> CreateModel : Func<GameState,
+    - GameModelInfo, GameModel> CreateModel : Func<GameScreen,
   Methods:
     - GameModel> cache () : Dictionary<GameModelInfo,
     // 
-    + ModelFactory  (Func<GameState, GameModelInfo, GameModel> createModel)
+    + ModelFactory  (Func<GameScreen, GameModelInfo, GameModel> createModel)
     // 
-    + this (GameState state, GameModelInfo info) : GameModel
+    + this (GameScreen screen, GameModelInfo info) : GameModel
 

@@ -9,7 +9,7 @@ public class PipeColoring : GameScreenComponent, IKeyEventListener
     + IsKeyEventEnabled : bool
   Methods:
     // 
-    + PipeColoring (GameScreen state)
+    + PipeColoring (GameScreen screen)
     // 
     + Update (GameTime gameTime) override
     // 

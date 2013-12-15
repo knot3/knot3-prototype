@@ -9,7 +9,7 @@ public class ModelMousePicker : GameScreenComponent
     - lastMousePosition : Vector2
   Methods:
     // 
-    + ModelMousePicker (GameScreen state, World world)
+    + ModelMousePicker (GameScreen screen, World world)
     // 
     + Update (GameTime gameTime) override
     // 

@@ -1,5 +1,5 @@
 // 
-public class Overlay : DrawableGameStateComponent
+public class Overlay : DrawableGameScreenComponent
   Attributes:
     // 
     - effect : BasicEffect
@@ -30,7 +30,7 @@ public class Overlay : DrawableGameStateComponent
     // 
     - UpdateFPS  (GameTime gameTime)
     // 
-    + Overlay  (GameState state, World world)
+    + Overlay  (GameScreen screen, World world)
     // 
     + Draw  (GameTime gameTime)
     // 
@@ -46,50 +46,50 @@ public class Overlay : DrawableGameStateComponent
     + Update  (GameTime gameTime)
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
-    + state : GameState
+    + screen : GameScreen
     // 
     - _index : DisplayLayer
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 
 // 
-public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
   Attributes:
     // 
     + Index : DisplayLayer
     // 
     - _index : DisplayLayer
     // 
-    + state : GameState
+    + screen : GameScreen
   Methods:
     // 
-    + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
 
 // 
-public interface IGameStateComponent : Xna.IGameComponent
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
     // 
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
 

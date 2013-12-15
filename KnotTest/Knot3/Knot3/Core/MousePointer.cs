@@ -27,14 +27,14 @@ namespace Knot3.Core
 		/// <summary>
 		/// Initializes a new mouse pointer.
 		/// </summary>
-		/// <param name='state'>
+		/// <param name='screen'>
 		/// State.
 		/// </param>
-		public MousePointer (GameScreen state)
-			: base(state, DisplayLayer.Cursor)
+		public MousePointer (GameScreen screen)
+			: base(screen, DisplayLayer.Cursor)
 		{
 			// create a new SpriteBatch, which can be used to draw textures
-			spriteBatch = new SpriteBatch (state.device);
+			spriteBatch = new SpriteBatch (screen.device);
 		}
 
 		/// <summary>
@@ -53,11 +53,11 @@ namespace Knot3.Core
 			if (!Utilities.Mono.IsRunningOnMono ()) {
 				spriteBatch.Begin ();
             
-				Texture2D cursorTex = state.content.Load<Texture2D> ("cursor");
-				if (state.input.GrabMouseMovement || state.input.CurrentInputAction == InputAction.TargetMove
-					|| (state.input.CurrentInputAction == InputAction.ArcballMove
+				Texture2D cursorTex = screen.content.Load<Texture2D> ("cursor");
+				if (screen.input.GrabMouseMovement || screen.input.CurrentInputAction == InputAction.TargetMove
+					|| (screen.input.CurrentInputAction == InputAction.ArcballMove
 					&& (InputManager.MouseState.LeftButton == ButtonState.Pressed || InputManager.MouseState.RightButton == ButtonState.Pressed))) {
-					spriteBatch.Draw (cursorTex, state.device.Viewport.Center (), Color.White);
+					spriteBatch.Draw (cursorTex, screen.device.Viewport.Center (), Color.White);
 				} else {
 					spriteBatch.Draw (cursorTex, new Vector2 (InputManager.MouseState.X, InputManager.MouseState.Y), Color.White);
 				}

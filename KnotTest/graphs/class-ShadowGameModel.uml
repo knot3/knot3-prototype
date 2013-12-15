@@ -9,7 +9,7 @@ public class ShadowGameModel : ShadowGameObject
     + ShadowAlpha : float
   Methods:
     // 
-    + ShadowGameModel  (GameState state, GameModel model)
+    + ShadowGameModel  (GameScreen screen, GameModel model)
     // 
     + Draw  (GameTime gameTime)
 
@@ -17,7 +17,7 @@ public class ShadowGameModel : ShadowGameObject
 public class ShadowGameObject : IGameObject
   Attributes:
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     - Obj : IGameObject
     // 
@@ -30,7 +30,7 @@ public class ShadowGameObject : IGameObject
     + OriginalPosition : Vector3
   Methods:
     // 
-    + ShadowGameObject  (GameState state, IGameObject obj)
+    + ShadowGameObject  (GameScreen screen, IGameObject obj)
     // 
     + Update  (GameTime gameTime) virtual
     // 
@@ -69,7 +69,7 @@ public class ShadowGameObject : IGameObject
     // 
     + World : World
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     + ShadowPosition : Vector3
   Methods:
@@ -78,7 +78,7 @@ public class ShadowGameObject : IGameObject
     // 
     + Intersects (Ray ray) : GameObjectDistance
     // 
-    + ShadowGameObject  (GameState state, IGameObject obj)
+    + ShadowGameObject  (GameScreen screen, IGameObject obj)
     // 
     + Center () : Vector3
     // 

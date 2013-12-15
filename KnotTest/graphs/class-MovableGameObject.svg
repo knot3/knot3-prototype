@@ -16,11 +16,11 @@
 <polyline fill="none" stroke="black" points="-0.5,-137 250.5,-137 "/>
 <text text-anchor="start" x="7.5" y="-125.8" font-family="Arial" font-size="8.00">&#45; Obj : IGameObject</text>
 <text text-anchor="start" x="7.5" y="-115.8" font-family="Arial" font-size="8.00">+ World : World</text>
-<text text-anchor="start" x="7.5" y="-105.8" font-family="Arial" font-size="8.00">&#45; state : GameState</text>
+<text text-anchor="start" x="7.5" y="-105.8" font-family="Arial" font-size="8.00">&#45; screen : GameScreen</text>
 <text text-anchor="start" x="7.5" y="-95.8" font-family="Arial" font-size="8.00">+ Info : GameObjectInfo</text>
 <polyline fill="none" stroke="black" points="-0.5,-89 250.5,-89 "/>
 <text text-anchor="start" x="7.5" y="-77.8" font-family="Arial" font-size="8.00"># CurrentGroundPlane () : Plane</text>
-<text text-anchor="start" x="7.5" y="-67.8" font-family="Arial" font-size="8.00">+ MovableGameObject (GameState state, IGameObject obj)</text>
+<text text-anchor="start" x="7.5" y="-67.8" font-family="Arial" font-size="8.00">+ MovableGameObject (GameScreen screen, IGameObject obj)</text>
 <text text-anchor="start" x="7.5" y="-57.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime) virtual</text>
 <text text-anchor="start" x="7.5" y="-47.8" font-family="Arial" font-size="8.00"># CurrentMouseRay () : Ray</text>
 <text text-anchor="start" x="7.5" y="-37.8" font-family="Arial" font-size="8.00"># CurrentMousePosition (Ray ray, Plane groundPlane) : Vector3?</text>

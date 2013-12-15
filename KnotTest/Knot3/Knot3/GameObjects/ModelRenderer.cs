@@ -38,8 +38,8 @@ namespace Knot3.GameObjects
 		private ModelFactory nodeFactory;
 		private ModelFactory arrowFactory;
 
-		public ModelRenderer (GameScreen state, GameObjectInfo info)
-			: base(state)
+		public ModelRenderer (GameScreen screen, GameObjectInfo info)
+			: base(screen)
 		{
 			Info = info;
 			pipes = new List<PipeModel> ();
@@ -70,7 +70,7 @@ namespace Knot3.GameObjects
 			pipes.Clear ();
 			foreach (Edge edge in edgeList) {
 				PipeModelInfo info = new PipeModelInfo (edgeList, nodeMap, edge, Info.Position);
-				PipeModel pipe = pipeFactory [state, info] as PipeModel;
+				PipeModel pipe = pipeFactory [screen, info] as PipeModel;
 				// pipe.OnDataChange = () => UpdatePipes (edges);
 				pipe.World = World;
 				pipes.Add (pipe);
@@ -80,7 +80,7 @@ namespace Knot3.GameObjects
 			for (int n = 0; n < edgeList.Count; n++) {
 				if (edgeList [n].Direction != edgeList [n + 1].Direction) {
 					NodeModelInfo info = new NodeModelInfo (edgeList, nodeMap, edgeList [n], edgeList [n + 1], Info.Position);
-					NodeModel node = nodeFactory [state, info] as NodeModel;
+					NodeModel node = nodeFactory [screen, info] as NodeModel;
 					node.World = World;
 					nodes.Add (node);
 				}
@@ -114,7 +114,7 @@ namespace Knot3.GameObjects
 				Node node2 = nodeMap.ToNode (edge);
 				foreach (Vector3 direction in validDirections) {
 					ArrowModelInfo info = new ArrowModelInfo (node1.CenterBetween (node2), direction, Info.Position);
-					ArrowModel arrow = arrowFactory [state, info] as ArrowModel;
+					ArrowModel arrow = arrowFactory [screen, info] as ArrowModel;
 					arrow.World = World;
 					arrows.Add (arrow);
 				}
@@ -177,7 +177,7 @@ namespace Knot3.GameObjects
 		public override GameObjectDistance Intersects (Ray ray)
 		{
 			GameObjectDistance nearest = null;
-			if (!state.input.GrabMouseMovement) {
+			if (!screen.input.GrabMouseMovement) {
 				foreach (PipeModel pipe in pipes) {
 					GameObjectDistance intersection = pipe.Intersects (ray);
 					if (intersection != null) {

@@ -34,7 +34,7 @@ public class ColorPicker : Widget, IMouseEventListener
     + IsMouseEventEnabled : bool
   Methods:
     // 
-    + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + ColorPicker  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + Draw  (GameTime gameTime) override
     // 
@@ -65,7 +65,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     + IsMouseEventEnabled : bool
   Methods:
     // 
-    + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + Draw  (GameTime gameTime) override
     // 
@@ -94,13 +94,13 @@ public class DropDownMenu : MenuItem
     - selected : MenuButton
   Methods:
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     + Collapse  () override
     // 
@@ -119,7 +119,7 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
 // 
 public class DropDownMenu : MenuItem
@@ -132,7 +132,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValuePosition (int dummy) : Vector2
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
@@ -140,7 +140,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValueSize (int dummy) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
     + Collapse ()
     // 
     + Draw  (GameTime gameTime)
@@ -154,7 +154,7 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
 // 
 public class ColorPicker : Widget, IMouseEventListener
@@ -177,7 +177,7 @@ public class ColorPicker : Widget, IMouseEventListener
     // 
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
     // 
-    + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    + ColorPicker  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + Draw  (GameTime gameTime)
     // 
@@ -206,7 +206,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     + Info : MenuItemInfo
   Methods:
     // 
-    + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Collapse () virtual
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
@@ -234,13 +234,13 @@ public class DropDownMenu : MenuItem
     - selected : MenuButton
   Methods:
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
     // 
     + Collapse  () override
     // 
@@ -259,7 +259,7 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
 // 
 public class DropDownMenu : MenuItem
@@ -272,7 +272,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValuePosition (int dummy) : Vector2
     // 
-    + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
@@ -280,7 +280,7 @@ public class DropDownMenu : MenuItem
     // 
     - ValueSize (int dummy) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
     + Collapse ()
     // 
     + Draw  (GameTime gameTime)
@@ -294,5 +294,5 @@ public class MenuButton : MenuItem
   Attributes:
   Methods:
     // 
-    + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    + MenuButton  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 

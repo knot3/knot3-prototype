@@ -81,11 +81,11 @@ namespace Knot3.UserInterface
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TestGame1.MenuItem"/> class.
 		/// </summary>
-		public MenuItem (GameScreen state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
-			: base(state, info, drawOrder, itemNum)
+		public MenuItem (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+			: base(screen, info, drawOrder, itemNum)
 		{
 			// create a sprite batch
-			spriteBatch = new SpriteBatch (state.device);
+			spriteBatch = new SpriteBatch (screen.device);
 		}
 
 		public override void Draw (GameTime gameTime)
@@ -94,15 +94,15 @@ namespace Knot3.UserInterface
 
 			if (IsVisible) {
 				spriteBatch.Begin ();
-				Texture2D paneTexture = Textures.Create (state.device, Color.White);
+				Texture2D paneTexture = Textures.Create (screen.device, Color.White);
 				//spriteBatch.Draw (paneTexture, bounds (), Color.Black);
 				spriteBatch.Draw (
 					paneTexture, bounds (), null, Info.BackgroundColor (), 0f, Vector2.Zero, SpriteEffects.None, 0.5f
 				);
 
-				SpriteFont font = HfGDesign.MenuFont (state);
+				SpriteFont font = HfGDesign.MenuFont (screen);
 				try {
-					Vector2 scale = Info.ScaledSize (state.viewport) / MinimumSize (font) * 0.9f;
+					Vector2 scale = Info.ScaledSize (screen.viewport) / MinimumSize (font) * 0.9f;
 					//Vector2 scale = Info.ScaledSize / MinimumSize (font) * 0.9f;
 					scale.Y = scale.X = MathHelper.Min (scale.X, scale.Y);
 					spriteBatch.DrawString (font, Info.Text, TextPosition (font, scale), Info.ForegroundColor (),
@@ -123,8 +123,8 @@ namespace Knot3.UserInterface
 
 		public Vector2 TextPosition (SpriteFont font, Vector2 scale)
 		{
-			Vector2 position = Info.ScaledPosition (state.viewport);
-			Vector2 size = Info.ScaledSize (state.viewport);
+			Vector2 position = Info.ScaledPosition (screen.viewport);
+			Vector2 size = Info.ScaledSize (screen.viewport);
 			Vector2 minimumSize = MinimumSize (font);
 			switch ((Info as WidgetInfo).AlignX) {
 			case HAlign.Left:

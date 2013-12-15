@@ -29,7 +29,7 @@ public class PipeModel : GameModel
     + OnDataChange : Action
   Methods:
     // 
-    + PipeModel (GameScreen state, PipeModelInfo info)
+    + PipeModel (GameScreen screen, PipeModelInfo info)
     // 
     + Draw (GameTime gameTime) override
     // 

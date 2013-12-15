@@ -11,7 +11,7 @@ public class LineRenderer : KnotRenderer
     + World : World
   Methods:
     // 
-    + LineRenderer  (GameState state, GameObjectInfo info)
+    + LineRenderer  (GameScreen screen, GameObjectInfo info)
     // 
     + OnEdgesChanged  (EdgeList edges)
     - DrawRoundedLines ()
@@ -28,7 +28,7 @@ public class LineRenderer : KnotRenderer
 public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
   Attributes:
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     + World : World abstract
     // 
@@ -37,7 +37,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     # nodeMap : NodeMap new
   Methods:
     // 
-    + KnotRenderer  (GameState state)
+    + KnotRenderer  (GameScreen screen)
     // 
     + OnEdgesChanged  (EdgeList edges) virtual
     // 
@@ -79,7 +79,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     // 
     + World : World abstract
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     + Info : GameObjectInfo abstract
   Methods:
@@ -92,7 +92,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     // 
     + Draw  (GameTime gameTime) abstract
     // 
-    + KnotRenderer  (GameState state)
+    + KnotRenderer  (GameScreen screen)
     // 
     + Update  (GameTime gameTime) abstract
     // 

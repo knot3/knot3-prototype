@@ -47,7 +47,7 @@ public abstract class Widget : DrawableGameScreenComponent
     + IsVisible : bool virtual
   Methods:
     // 
-    + Widget (GameScreen state, WidgetInfo info, DisplayLayer drawOrder)
+    + Widget (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
     + bounds () : Rectangle
 // 
@@ -59,7 +59,7 @@ public abstract class ItemWidget : Widget
     + ItemState : ItemState
   Methods:
     // 
-    + ItemWidget (GameScreen state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
+    + ItemWidget (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 public enum ItemState
     Unselected = 0
     Selected

@@ -2,7 +2,7 @@
 public class MovableGameObject : IGameObject
   Attributes:
     // 
-    - state : GameScreen
+    - screen : GameScreen
     // 
     - Obj : IGameObject
     // 
@@ -11,7 +11,7 @@ public class MovableGameObject : IGameObject
     + Info : GameObjectInfo
   Methods:
     // 
-    + MovableGameObject (GameScreen state, IGameObject obj)
+    + MovableGameObject (GameScreen screen, IGameObject obj)
     // 
     # CurrentGroundPlane () : Plane
     // 

@@ -11,21 +11,21 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-454 353,-454 353,5 -4,5"/>
 <!-- Box_LineRenderer -->
 <g id="node1" class="node"><title>Box_LineRenderer</title>
-<polygon fill="#fcfcda" stroke="black" points="58,-1 58,-145 276,-145 276,-1 58,-1"/>
+<polygon fill="#fcfcda" stroke="black" points="50.5,-1 50.5,-145 283.5,-145 283.5,-1 50.5,-1"/>
 <text text-anchor="middle" x="167" y="-133.8" font-family="Arial" font-size="8.00">LineRenderer</text>
-<polyline fill="none" stroke="black" points="58,-127 276,-127 "/>
-<text text-anchor="start" x="66" y="-115.8" font-family="Arial" font-size="8.00">&#45; edges : EdgeList</text>
-<text text-anchor="start" x="66" y="-105.8" font-family="Arial" font-size="8.00">&#45; basicEffect : BasicEffect</text>
-<text text-anchor="start" x="66" y="-95.8" font-family="Arial" font-size="8.00">+ Info : GameObjectInfo</text>
-<text text-anchor="start" x="66" y="-85.8" font-family="Arial" font-size="8.00">+ World : World</text>
-<polyline fill="none" stroke="black" points="58,-79 276,-79 "/>
-<text text-anchor="start" x="66" y="-67.8" font-family="Arial" font-size="8.00">+ LineRenderer (GameState state, GameObjectInfo info)</text>
-<text text-anchor="start" x="66" y="-57.8" font-family="Arial" font-size="8.00">+ OnEdgesChanged (EdgeList edges)</text>
-<text text-anchor="start" x="66" y="-47.8" font-family="Arial" font-size="8.00">&#45; DrawRoundedLines ()</text>
-<text text-anchor="start" x="66" y="-37.8" font-family="Arial" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance</text>
-<text text-anchor="start" x="66" y="-27.8" font-family="Arial" font-size="8.00">+ Center () : Vector3</text>
-<text text-anchor="start" x="66" y="-17.8" font-family="Arial" font-size="8.00">+ Draw (GameTime gameTime)</text>
-<text text-anchor="start" x="66" y="-7.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime)</text>
+<polyline fill="none" stroke="black" points="50.5,-127 283.5,-127 "/>
+<text text-anchor="start" x="58.5" y="-115.8" font-family="Arial" font-size="8.00">&#45; edges : EdgeList</text>
+<text text-anchor="start" x="58.5" y="-105.8" font-family="Arial" font-size="8.00">&#45; basicEffect : BasicEffect</text>
+<text text-anchor="start" x="58.5" y="-95.8" font-family="Arial" font-size="8.00">+ Info : GameObjectInfo</text>
+<text text-anchor="start" x="58.5" y="-85.8" font-family="Arial" font-size="8.00">+ World : World</text>
+<polyline fill="none" stroke="black" points="50.5,-79 283.5,-79 "/>
+<text text-anchor="start" x="58.5" y="-67.8" font-family="Arial" font-size="8.00">+ LineRenderer (GameScreen screen, GameObjectInfo info)</text>
+<text text-anchor="start" x="58.5" y="-57.8" font-family="Arial" font-size="8.00">+ OnEdgesChanged (EdgeList edges)</text>
+<text text-anchor="start" x="58.5" y="-47.8" font-family="Arial" font-size="8.00">&#45; DrawRoundedLines ()</text>
+<text text-anchor="start" x="58.5" y="-37.8" font-family="Arial" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance</text>
+<text text-anchor="start" x="58.5" y="-27.8" font-family="Arial" font-size="8.00">+ Center () : Vector3</text>
+<text text-anchor="start" x="58.5" y="-17.8" font-family="Arial" font-size="8.00">+ Draw (GameTime gameTime)</text>
+<text text-anchor="start" x="58.5" y="-7.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime)</text>
 </g>
 <!-- Box_KnotRenderer -->
 <g id="node2" class="node"><title>Box_KnotRenderer</title>
@@ -33,14 +33,14 @@
 <text text-anchor="middle" x="167" y="-305.8" font-family="Arial" font-size="8.00">KnotRenderer</text>
 <polyline fill="none" stroke="black" points="61.5,-299 272.5,-299 "/>
 <text text-anchor="start" x="69.5" y="-287.8" font-family="Arial" font-size="8.00">+ World : World abstract</text>
-<text text-anchor="start" x="69.5" y="-277.8" font-family="Arial" font-size="8.00"># state : GameState</text>
+<text text-anchor="start" x="69.5" y="-277.8" font-family="Arial" font-size="8.00"># screen : GameScreen</text>
 <text text-anchor="start" x="69.5" y="-267.8" font-family="Arial" font-size="8.00">+ Info : GameObjectInfo abstract</text>
 <polyline fill="none" stroke="black" points="61.5,-261 272.5,-261 "/>
 <text text-anchor="start" x="69.5" y="-249.8" font-family="Arial" font-size="8.00"># nodeMap () : NodeMap</text>
 <text text-anchor="start" x="69.5" y="-239.8" font-family="Arial" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance abstract</text>
 <text text-anchor="start" x="69.5" y="-229.8" font-family="Arial" font-size="8.00">+ Center () : Vector3 abstract</text>
 <text text-anchor="start" x="69.5" y="-219.8" font-family="Arial" font-size="8.00">+ Draw (GameTime gameTime) abstract</text>
-<text text-anchor="start" x="69.5" y="-209.8" font-family="Arial" font-size="8.00">+ KnotRenderer (GameState state)</text>
+<text text-anchor="start" x="69.5" y="-209.8" font-family="Arial" font-size="8.00">+ KnotRenderer (GameScreen screen)</text>
 <text text-anchor="start" x="69.5" y="-199.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime) abstract</text>
 <text text-anchor="start" x="69.5" y="-189.8" font-family="Arial" font-size="8.00">+ OnEdgesChanged (EdgeList edges) virtual</text>
 </g>

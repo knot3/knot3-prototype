@@ -21,8 +21,8 @@ namespace Knot3.RenderEffects
 		private RenderTarget2D lastFrame;
 		private float alpha;
 
-		public FadeEffect (GameScreen state, GameScreen oldState)
-			: base(state)
+		public FadeEffect (GameScreen screen, GameScreen oldState)
+			: base(screen)
 		{
 			if (oldState != null) {
 				lastFrame = oldState.PostProcessing.RenderTarget;
@@ -35,7 +35,7 @@ namespace Knot3.RenderEffects
 			if (lastFrame != null) {
 				alpha -= 0.05f;
 				// Console.WriteLine ("alpha=" + alpha);
-				spriteBatch.Draw (lastFrame, Vector2.Zero, new Rectangle (0, 0, state.viewport.Width, state.viewport.Height), Color.White);
+				spriteBatch.Draw (lastFrame, Vector2.Zero, new Rectangle (0, 0, screen.viewport.Width, screen.viewport.Height), Color.White);
 			}
 			if (alpha <= 0) {
 				lastFrame = null;

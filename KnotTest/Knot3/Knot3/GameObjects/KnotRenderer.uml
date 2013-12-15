@@ -2,7 +2,7 @@
 public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
   Attributes:
     // 
-    # state : GameScreen
+    # screen : GameScreen
     // 
     + World : World abstract
     // 
@@ -11,7 +11,7 @@ public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
     # nodeMap : NodeMap new
   Methods:
     // 
-    + KnotRenderer (GameScreen state)
+    + KnotRenderer (GameScreen screen)
     // 
     + OnEdgesChanged (EdgeList edges) virtual
     // 

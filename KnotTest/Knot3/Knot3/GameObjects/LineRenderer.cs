@@ -32,11 +32,11 @@ namespace Knot3.GameObjects
 		// edges
 		private EdgeList edges;
 
-		public LineRenderer (GameScreen state, GameObjectInfo info)
-			: base(state)
+		public LineRenderer (GameScreen screen, GameObjectInfo info)
+			: base(screen)
 		{
 			Info = info;
-			basicEffect = new BasicEffect (state.device);
+			basicEffect = new BasicEffect (screen.device);
 		}
 
 		public override void Update (GameTime gameTime)
@@ -96,7 +96,7 @@ namespace Knot3.GameObjects
 				vertices [4 * n + 3].Color = Color.Black;
 			}
 			basicEffect.CurrentTechnique.Passes [0].Apply ();
-			state.device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, edges.Count * 2); 
+			screen.device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, edges.Count * 2); 
 		}
 
 		#endregion

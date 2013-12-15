@@ -3,7 +3,7 @@ public class KeyHandler : GameScreenComponent
   Attributes:
   Methods:
     // 
-    + KeyHandler (GameScreen state)
+    + KeyHandler (GameScreen screen)
     // 
     private class KeyEventComponent : 
       Attributes:

@@ -2,9 +2,9 @@
 public class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
   Attributes:
     // 
-    - knotRenderEffects : List<RenderEffect>
+    - effects : List<IRenderEffect>
     // 
-    - knotRenderEffect : RenderEffect
+    - currentEffect : IRenderEffect
     // 
     + Objects : List<IGameObject>
     // 
@@ -23,7 +23,7 @@ public class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
     + Redraw : bool
   Methods:
     // 
-    + World (GameScreen state)
+    + World (GameScreen screen)
     // 
     + SelectObject (IGameObject obj, GameTime gameTime)
     // 
@@ -47,6 +47,6 @@ public class TestModel : GameModel
   Attributes:
   Methods:
     // 
-    + TestModel (GameScreen state, GameModelInfo info)
+    + TestModel (GameScreen screen, GameModelInfo info)
     // 
     + Update (GameTime gameTime) override

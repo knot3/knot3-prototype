@@ -21,8 +21,8 @@ namespace Knot3.RenderEffects
 	/// </summary>
 	public sealed class NoEffect : RenderEffect
 	{
-		public NoEffect (GameScreen state)
-			: base(state)
+		public NoEffect (GameScreen screen)
+			: base(screen)
 		{
 		}
 

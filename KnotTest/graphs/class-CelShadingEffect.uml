@@ -17,7 +17,7 @@ public class CelShadingEffect : RenderEffect
     + Color : Color
   Methods:
     // 
-    + CelShadingEffect  (GameState state)
+    + CelShadingEffect  (GameScreen screen)
     // 
     # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime)
     // 
@@ -29,7 +29,7 @@ public class CelShadingEffect : RenderEffect
 public abstract class RenderEffect : IRenderEffect
   Attributes:
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     - renderTarget : RenderTargetCache
     // 
@@ -40,7 +40,7 @@ public abstract class RenderEffect : IRenderEffect
     + RenderTarget : RenderTarget2D
   Methods:
     // 
-    + RenderEffect  (GameState state)
+    + RenderEffect  (GameScreen screen)
     // 
     + Begin  (GameTime gameTime)
     // 
@@ -85,14 +85,14 @@ public abstract class RenderEffect : IRenderEffect
     // 
     - spriteBatch : SpriteBatch
     // 
-    # state : GameState
+    # screen : GameScreen
     // 
     + RenderTarget : RenderTarget2D
   Methods:
     // 
     # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) abstract
     // 
-    + RenderEffect  (GameState state)
+    + RenderEffect  (GameScreen screen)
     // 
     + DrawModel  (GameModel model, GameTime gameTime) virtual
     // 

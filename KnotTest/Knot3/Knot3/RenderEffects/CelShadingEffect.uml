@@ -17,7 +17,7 @@ public class CelShadingEffect : RenderEffect
     + Color : Color
   Methods:
     // 
-    + CelShadingEffect (GameScreen state)
+    + CelShadingEffect (GameScreen screen)
     // 
     # DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) override
     // 
