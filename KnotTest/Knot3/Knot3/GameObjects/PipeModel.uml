@@ -1,20 +1,36 @@
+// 
 public class PipeModelInfo : GameModelInfo
   Attributes:
+    // 
     + EdgeList : EdgeList
+    // 
     + NodeMap : NodeMap
+    // 
     + Edge : Edge
+    // 
     + Direction : Vector3
+    // 
     + PositionFrom : Vector3
+    // 
     + PositionTo : Vector3
   Methods:
+    // 
     + PipeModelInfo (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
+    // 
     + Equals (GameObjectInfo other) : bool override
+// 
 public class PipeModel : GameModel
   Attributes:
+    // 
     + Info : PipeModelInfo new
+    // 
     - Bounds : BoundingSphere[]
+    // 
     + OnDataChange : Action
   Methods:
+    // 
     + PipeModel (GameState state, PipeModelInfo info)
+    // 
     + Draw (GameTime gameTime) override
+    // 
     + Intersects (Ray ray) : GameObjectDistance override

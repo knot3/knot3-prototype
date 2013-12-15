@@ -1,13 +1,24 @@
+// 
 public static class Files : 
   Attributes:
+    // 
     + Separator : char static
+    // 
     + SettingsDirectory : string static
+    // 
     + SavegameDirectory : string static
+    // 
     - baseDirectory : string static
+    // 
     + BaseDirectory : string static
   Methods:
+    // 
     + ReadFrom (string file) : IEnumerable<string> static
+    // 
     + IsPath (string filepath) : bool static
+    // 
     + ValidFilename (string humanReadableName) : string static
+    // 
     + SearchFiles (IEnumerable<string> directories, IEnumerable<string> extensions, Action<string> add) static
+    // 
     + SearchFiles (string directory, IEnumerable<string> extensions, Action<string> add) static

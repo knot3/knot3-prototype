@@ -1,10 +1,18 @@
+// 
 public class OptionScreen : MenuScreen
   Attributes:
+    // 
     - menu : VerticalMenu
+    // 
     - spriteBatch : SpriteBatch
   Methods:
+    // 
     + OptionScreen (Core.Game game)
+    // 
     + Initialize () override
+    // 
     + UpdateMenu (GameTime gameTime) override
+    // 
     + DrawMenu (GameTime gameTime) override
+    // 
     + Activate (GameTime gameTime) override

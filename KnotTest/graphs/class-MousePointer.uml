@@ -1,38 +1,61 @@
+// 
 public class MousePointer : DrawableGameStateComponent
   Attributes:
+    // 
     - spriteBatch : SpriteBatch
   Methods:
+    // 
     + MousePointer  (GameState state)
+    // 
     - DrawCursor  (GameTime gameTime)
+    // 
     + Draw  (GameTime gameTime)
 
+// 
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
   Attributes:
+    // 
     + state : GameState
+    // 
     - _index : DisplayLayer
+    // 
     + Index : DisplayLayer
   Methods:
+    // 
     + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
+// 
 public interface IGameStateComponent : Xna.IGameComponent
   Attributes:
+    // 
     + Index : DisplayLayer
   Methods:
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
   Attributes:
+    // 
     + Index : DisplayLayer
+    // 
     - _index : DisplayLayer
+    // 
     + state : GameState
   Methods:
+    // 
     + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
+// 
 public interface IGameStateComponent : Xna.IGameComponent
   Attributes:
+    // 
     + Index : DisplayLayer
   Methods:
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 

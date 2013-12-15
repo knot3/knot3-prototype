@@ -1,0 +1,18 @@
+// 
+public class ModelMousePicker : GameStateComponent
+  Attributes:
+    // 
+    - World : World
+    // 
+    - lastRayCheck : double
+    // 
+    - lastMousePosition : Vector2
+  Methods:
+    // 
+    + ModelMousePicker (GameState state, World world)
+    // 
+    + Update (GameTime gameTime) override
+    // 
+    - CheckMouseRay (GameTime gameTime)
+    // 
+    - UpdateMouseRay (GameTime gameTime)

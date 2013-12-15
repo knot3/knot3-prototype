@@ -1,0 +1,26 @@
+// 
+public class InstancingTest : RenderEffect
+  Attributes:
+    // 
+    - instanceHash : Hashtable new
+  Methods:
+    // 
+    + InstancingTest (GameState state)
+    // 
+    + Begin (Color background, GameTime gameTime) override
+    // 
+    + End (GameTime gameTime) override
+    // 
+    # DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) override
+    // 
+    private class ModelInstances : 
+      Attributes:
+        // 
+        + Model : GameModel
+        // 
+        + WorldMatrices : Matrix[]
+        // 
+        + Count : int
+      Methods:
+    // 
+    + DrawModel (GameModel model, GameTime gameTime) override

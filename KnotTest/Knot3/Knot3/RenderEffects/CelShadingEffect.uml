@@ -1,14 +1,26 @@
+// 
 public class CelShadingEffect : RenderEffect
   Attributes:
+    // 
     - celShader : Effect
+    // 
     - celMap : Texture2D
+    // 
     - lightDirection : Vector4
+    // 
     - outlineShader : Effect
+    // 
     - outlineThickness : float
+    // 
     - outlineThreshold : float
+    // 
     + Color : Color
   Methods:
+    // 
     + CelShadingEffect (GameState state)
+    // 
     # DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) override
+    // 
     + RemapModel (Model model) override
+    // 
     + DrawModel (GameModel model, GameTime gameTime) override

@@ -1,7 +1,11 @@
+// 
 public static class Colors : 
   Attributes:
   Methods:
+    // 
     + Mix (this Color a, Color b, float percent) : Color static
+    // 
     + Luminance (this Color color) : int static
+    // 
     + SortColorsByLuminance (Color left, Color right) : int static
 

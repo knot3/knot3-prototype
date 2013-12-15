@@ -1,0 +1,118 @@
+// 
+public class InstancingTest : RenderEffect
+  Attributes:
+    - ModelInstances : class
+  Methods:
+    // 
+    - instanceHash () : Hashtable
+    // 
+    + Begin  (Color background, GameTime gameTime)
+    // 
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime)
+    // 
+    + InstancingTest  (GameState state)
+    // 
+    + DrawModel  (GameModel model, GameTime gameTime)
+    // 
+    + End  (GameTime gameTime)
+
+// 
+public abstract class RenderEffect : IRenderEffect
+  Attributes:
+    // 
+    # state : GameState
+    // 
+    - renderTarget : RenderTargetCache
+    // 
+    - background : Color
+    // 
+    - spriteBatch : SpriteBatch
+    // 
+    + RenderTarget : RenderTarget2D
+  Methods:
+    // 
+    + RenderEffect  (GameState state)
+    // 
+    + Begin  (GameTime gameTime)
+    // 
+    + Begin  (Color background, GameTime gameTime) virtual
+    // 
+    + End  (GameTime gameTime) virtual
+    // 
+    + DrawLastFrame  (GameTime gameTime)
+    // 
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) abstract
+    // 
+    + RemapModel  (Model model) virtual
+    // 
+    + DrawModel  (GameModel model, GameTime gameTime) virtual
+    // 
+    # ModifyBasicEffect  (BasicEffect effect, GameModel model)
+
+// 
+public interface IRenderEffect : 
+  Attributes:
+    // 
+    + RenderTarget : RenderTarget2D
+  Methods:
+    // 
+    + Begin  (GameTime gameTime)
+    // 
+    + End  (GameTime gameTime)
+    // 
+    + RemapModel  (Model model)
+    // 
+    + DrawModel  (GameModel model, GameTime gameTime)
+    // 
+    + DrawLastFrame  (GameTime gameTime)
+
+// 
+public abstract class RenderEffect : IRenderEffect
+  Attributes:
+    // 
+    - background : Color
+    // 
+    - renderTarget : RenderTargetCache
+    // 
+    - spriteBatch : SpriteBatch
+    // 
+    # state : GameState
+    // 
+    + RenderTarget : RenderTarget2D
+  Methods:
+    // 
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) abstract
+    // 
+    + RenderEffect  (GameState state)
+    // 
+    + DrawModel  (GameModel model, GameTime gameTime) virtual
+    // 
+    + RemapModel  (Model model) virtual
+    // 
+    + Begin  (GameTime gameTime)
+    // 
+    # ModifyBasicEffect  (BasicEffect effect, GameModel model)
+    // 
+    + Begin  (Color background, GameTime gameTime) virtual
+    // 
+    + End  (GameTime gameTime) virtual
+    // 
+    + DrawLastFrame  (GameTime gameTime)
+
+// 
+public interface IRenderEffect : 
+  Attributes:
+    // 
+    + RenderTarget : RenderTarget2D
+  Methods:
+    // 
+    + Begin  (GameTime gameTime)
+    // 
+    + End  (GameTime gameTime)
+    // 
+    + RemapModel  (Model model)
+    // 
+    + DrawModel  (GameModel model, GameTime gameTime)
+    // 
+    + DrawLastFrame  (GameTime gameTime)
+

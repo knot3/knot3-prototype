@@ -1,178 +1,304 @@
+// 
 public class GameObjectInfo : IEquatable<GameObjectInfo>
   Attributes:
+    // 
     + IsMovable : bool
+    // 
     + IsSelectable : bool
+    // 
     + IsVisible : bool
+    // 
     + Position : Vector3
   Methods:
     + GameObjectInfo ()
+    // 
     + operator (GameObjectInfo o1, GameObjectInfo o2) : bool static
+    // 
     + Equals (Object obj) : bool
+    // 
     + GetHashCode () : int
+    // 
     + operator ! (GameObjectInfo o1, GameObjectInfo o2) : bool static
+    // 
     + Equals (GameObjectInfo other) : bool virtual
 
+// 
 public class GameModelInfo : GameObjectInfo
   Attributes:
+    // 
     + Modelname : string
+    // 
     + Rotation : Angles3
+    // 
     + Scale : Vector3
   Methods:
+    // 
     + GameModelInfo  (string modelname)
+    // 
     + Equals (GameObjectInfo other) : bool override
 
+// 
 public class ArrowModelInfo : GameModelInfo
   Attributes:
+    // 
     + Direction : Vector3
+    // 
     + Length : float
+    // 
     + Diameter : float
   Methods:
+    // 
     + ArrowModelInfo  (Vector3 position, Vector3 direction, Vector3 offset)
+    // 
     + Equals (GameObjectInfo other) : bool override
 
+// 
 public class NodeModelInfo : GameModelInfo
   Attributes:
+    // 
     + EdgeList : EdgeList
+    // 
     + NodeMap : NodeMap
+    // 
     + EdgeA : Edge
+    // 
     + EdgeB : Edge
   Methods:
+    // 
     + NodeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
+    // 
     + Equals (GameObjectInfo other) : bool override
 
+// 
 public class PipeModelInfo : GameModelInfo
   Attributes:
+    // 
     + EdgeList : EdgeList
+    // 
     + NodeMap : NodeMap
+    // 
     + Edge : Edge
+    // 
     + Direction : Vector3
+    // 
     + PositionFrom : Vector3
+    // 
     + PositionTo : Vector3
   Methods:
+    // 
     + PipeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
+    // 
     + Equals (GameObjectInfo other) : bool override
 
+// 
 public class ArrowModelInfo : GameModelInfo
   Attributes:
+    // 
     + Diameter : float
+    // 
     + Length : float
+    // 
     + Direction : Vector3
   Methods:
+    // 
     + ArrowModelInfo  (Vector3 position, Vector3 direction, Vector3 offset)
+    // 
     + Equals (GameObjectInfo other) : bool
 
+// 
 public class NodeModelInfo : GameModelInfo
   Attributes:
+    // 
     + EdgeA : Edge
+    // 
     + EdgeB : Edge
+    // 
     + NodeMap : NodeMap
+    // 
     + EdgeList : EdgeList
   Methods:
+    // 
     + NodeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
+    // 
     + Equals (GameObjectInfo other) : bool
 
+// 
 public class PipeModelInfo : GameModelInfo
   Attributes:
+    // 
     + Edge : Edge
+    // 
     + NodeMap : NodeMap
+    // 
     + Direction : Vector3
+    // 
     + PositionFrom : Vector3
+    // 
     + PositionTo : Vector3
+    // 
     + EdgeList : EdgeList
   Methods:
+    // 
     + PipeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
+    // 
     + Equals (GameObjectInfo other) : bool
 
+// 
 public class TexturedRectangleInfo : GameObjectInfo
   Attributes:
+    // 
     + Texturename : string
+    // 
     + Up : Vector3
+    // 
     + Left : Vector3
+    // 
     + Width : float
+    // 
     + Height : float
   Methods:
+    // 
     + TexturedRectangleInfo  (string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
+    // 
     + Equals (GameObjectInfo other) : bool override
 
+// 
 public class GameModelInfo : GameObjectInfo
   Attributes:
+    // 
     + Rotation : Angles3
+    // 
     + Scale : Vector3
+    // 
     + Modelname : string
   Methods:
+    // 
     + GameModelInfo  (string modelname)
+    // 
     + Equals (GameObjectInfo other) : bool
 
+// 
 public class ArrowModelInfo : GameModelInfo
   Attributes:
+    // 
     + Direction : Vector3
+    // 
     + Length : float
+    // 
     + Diameter : float
   Methods:
+    // 
     + ArrowModelInfo  (Vector3 position, Vector3 direction, Vector3 offset)
+    // 
     + Equals (GameObjectInfo other) : bool override
 
+// 
 public class NodeModelInfo : GameModelInfo
   Attributes:
+    // 
     + EdgeList : EdgeList
+    // 
     + NodeMap : NodeMap
+    // 
     + EdgeA : Edge
+    // 
     + EdgeB : Edge
   Methods:
+    // 
     + NodeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
+    // 
     + Equals (GameObjectInfo other) : bool override
 
+// 
 public class PipeModelInfo : GameModelInfo
   Attributes:
+    // 
     + EdgeList : EdgeList
+    // 
     + NodeMap : NodeMap
+    // 
     + Edge : Edge
+    // 
     + Direction : Vector3
+    // 
     + PositionFrom : Vector3
+    // 
     + PositionTo : Vector3
   Methods:
+    // 
     + PipeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
+    // 
     + Equals (GameObjectInfo other) : bool override
 
+// 
 public class ArrowModelInfo : GameModelInfo
   Attributes:
+    // 
     + Diameter : float
+    // 
     + Length : float
+    // 
     + Direction : Vector3
   Methods:
+    // 
     + ArrowModelInfo  (Vector3 position, Vector3 direction, Vector3 offset)
+    // 
     + Equals (GameObjectInfo other) : bool
 
+// 
 public class NodeModelInfo : GameModelInfo
   Attributes:
+    // 
     + EdgeA : Edge
+    // 
     + EdgeB : Edge
+    // 
     + NodeMap : NodeMap
+    // 
     + EdgeList : EdgeList
   Methods:
+    // 
     + NodeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
+    // 
     + Equals (GameObjectInfo other) : bool
 
+// 
 public class PipeModelInfo : GameModelInfo
   Attributes:
+    // 
     + Edge : Edge
+    // 
     + NodeMap : NodeMap
+    // 
     + Direction : Vector3
+    // 
     + PositionFrom : Vector3
+    // 
     + PositionTo : Vector3
+    // 
     + EdgeList : EdgeList
   Methods:
+    // 
     + PipeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
+    // 
     + Equals (GameObjectInfo other) : bool
 
+// 
 public class TexturedRectangleInfo : GameObjectInfo
   Attributes:
+    // 
     + Left : Vector3
+    // 
     + Up : Vector3
+    // 
     + Height : float
+    // 
     + Width : float
+    // 
     + Texturename : string
   Methods:
+    // 
     + TexturedRectangleInfo  (string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
+    // 
     + Equals (GameObjectInfo other) : bool
 

@@ -1,8 +1,13 @@
+// 
 public static class Text : 
   Attributes:
+    // 
     - lastMillis : double static
+    // 
     - lastKey : Keys static
   Methods:
+    // 
     + TryTextInput (ref string str, GameTime gameTime) : bool static
+    // 
     - TryConvertKey (Keys keyPressed, out char key) : bool static
 

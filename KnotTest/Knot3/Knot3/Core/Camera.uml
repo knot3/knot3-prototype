@@ -1,30 +1,58 @@
+// 
 public class Camera : GameStateComponent
   Attributes:
+    // 
     - World : World
+    // 
     + WorldMatrix : Matrix
+    // 
     + ViewMatrix : Matrix
+    // 
     + ProjectionMatrix : Matrix
+    // 
     + ViewFrustum : BoundingFrustum
+    // 
     + DefaultPosition : Vector3
+    // 
     - _position : Vector3
+    // 
     + Position : Vector3
+    // 
     - _target : Vector3
+    // 
     + Target : Vector3
+    // 
     + UpVector : Vector3
+    // 
     - foV : float
+    // 
     + FoV : float
+    // 
     + OnViewChanged : Action
+    // 
     + RotationAngle : Angles3
+    // 
     - AutoRotation : Angles3
+    // 
     - aspectRatio : float
+    // 
     - nearPlane : float
+    // 
     - farPlane : float
+    // 
     + TargetDistance : float
+    // 
     + TargetDirection : Vector3
+    // 
     + ArcballTarget : Vector3
   Methods:
+    // 
     + Camera (GameState state, World world)
+    // 
     + Update (GameTime gameTime) override
+    // 
     - UpdateRotation (GameTime gameTime)
+    // 
     - UpdateMatrices (GameTime gameTime)
+    // 
     + GetMouseRay (Vector2 mouse) : Ray

@@ -1,9 +1,14 @@
+// 
 public interface IKeyEventListener : 
   Attributes:
+    // 
     + ValidKeys : List<Keys>
+    // 
     + Index : DisplayLayer
+    // 
     + IsKeyEventEnabled : bool
   Methods:
+    // 
     + OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 public enum KeyEvent
     None = 0

@@ -1,7 +1,11 @@
+// 
 public static class Shaders : 
   Attributes:
   Methods:
+    // 
     - LoadEffectDotnet (GameState state, string name) : Effect static
+    // 
     - LoadEffectMono (GameState state, string name) : Effect static
+    // 
     + LoadEffect (this GameState state, string name) : Effect static
 

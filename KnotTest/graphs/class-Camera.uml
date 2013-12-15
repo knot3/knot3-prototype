@@ -1,59 +1,103 @@
+// 
 public class Camera : GameStateComponent
   Attributes:
+    // 
     - AutoRotation : Angles3
+    // 
     - _target : Vector3
+    // 
     - aspectRatio : float
+    // 
     - farPlane : float
+    // 
     - nearPlane : float
+    // 
     + Position : Vector3
+    // 
     + Target : Vector3
+    // 
     + TargetDirection : Vector3
+    // 
     + UpVector : Vector3
+    // 
     + FoV : float
+    // 
     - World : World
+    // 
     - _position : Vector3
+    // 
     - foV : float
+    // 
     + RotationAngle : Angles3
+    // 
     + ViewFrustum : BoundingFrustum
+    // 
     + ProjectionMatrix : Matrix
+    // 
     + ViewMatrix : Matrix
+    // 
     + WorldMatrix : Matrix
+    // 
     + ArcballTarget : Vector3
+    // 
     + DefaultPosition : Vector3
+    // 
     + TargetDistance : float
   Methods:
+    // 
     + OnViewChanged () : Action
+    // 
     + Camera  (GameState state, World world)
+    // 
     + GetMouseRay (Vector2 mouse) : Ray
+    // 
     - UpdateMatrices  (GameTime gameTime)
+    // 
     - UpdateRotation  (GameTime gameTime)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
   Attributes:
+    // 
     + state : GameState
+    // 
     + Index : DisplayLayer
   Methods:
+    // 
     + GameStateComponent  (GameState state, DisplayLayer index)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
+// 
 public interface IGameStateComponent : Xna.IGameComponent
   Attributes:
+    // 
     + Index : DisplayLayer
   Methods:
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
   Attributes:
+    // 
     + Index : DisplayLayer
+    // 
     + state : GameState
   Methods:
+    // 
     + GameStateComponent  (GameState state, DisplayLayer index)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
+// 
 public interface IGameStateComponent : Xna.IGameComponent
   Attributes:
+    // 
     + Index : DisplayLayer
   Methods:
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 

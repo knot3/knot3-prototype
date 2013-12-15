@@ -1,15 +1,26 @@
+// 
 public class NodeModelInfo : GameModelInfo
   Attributes:
+    // 
     + EdgeList : EdgeList
+    // 
     + NodeMap : NodeMap
+    // 
     + EdgeA : Edge
+    // 
     + EdgeB : Edge
   Methods:
+    // 
     + NodeModelInfo (EdgeList edgeList, NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
+    // 
     + Equals (GameObjectInfo other) : bool override
+// 
 public class NodeModel : GameModel
   Attributes:
+    // 
     + Info : NodeModelInfo new
   Methods:
+    // 
     + NodeModel (GameState state, NodeModelInfo info)
+    // 
     + Draw (GameTime gameTime) override

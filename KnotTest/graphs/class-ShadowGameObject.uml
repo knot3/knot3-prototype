@@ -1,43 +1,74 @@
+// 
 public class ShadowGameObject : IGameObject
   Attributes:
+    // 
     - Obj : IGameObject
+    // 
     + Info : GameObjectInfo
+    // 
     + OriginalPosition : Vector3
+    // 
     + World : World
+    // 
     # state : GameState
+    // 
     + ShadowPosition : Vector3
   Methods:
+    // 
     + Update  (GameTime gameTime) virtual
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + ShadowGameObject  (GameState state, IGameObject obj)
+    // 
     + Center () : Vector3
+    // 
     + Draw  (GameTime gameTime) virtual
 
+// 
 public interface IGameObject : 
   Attributes:
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + Update  (GameTime gameTime)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
 
+// 
 public class ShadowGameModel : ShadowGameObject
   Attributes:
+    // 
     - Model : GameModel
+    // 
     + ShadowColor : Color
+    // 
     + ShadowAlpha : float
   Methods:
+    // 
     + ShadowGameModel  (GameState state, GameModel model)
+    // 
     + Draw  (GameTime gameTime) override
 
+// 
 public class ShadowGameModel : ShadowGameObject
   Attributes:
+    // 
     + ShadowColor : Color
+    // 
     - Model : GameModel
+    // 
     + ShadowAlpha : float
   Methods:
+    // 
     + ShadowGameModel  (GameState state, GameModel model)
+    // 
     + Draw  (GameTime gameTime)
 

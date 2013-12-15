@@ -1,8 +1,14 @@
+// 
 public class FadeEffect : RenderEffect
   Attributes:
+    // 
     - lastFrame : RenderTarget2D
+    // 
     - alpha : float
+    // 
     + IsFinished : bool
   Methods:
+    // 
     + FadeEffect (GameState state, GameState oldState)
+    // 
     # DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) override

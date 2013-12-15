@@ -1,9 +1,16 @@
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
+    // 
     # OnYesClick : Action
+    // 
     # OnNoClick : Action
+    // 
     # OnCancelClick : Action
   Methods:
+    // 
     + ConfirmDialog (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # DrawDialog (GameTime gameTime) override

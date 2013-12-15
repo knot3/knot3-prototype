@@ -1,14 +1,26 @@
+// 
 public class LineRenderer : KnotRenderer
   Attributes:
+    // 
     + Info : GameObjectInfo override
+    // 
     + World : World override
+    // 
     - basicEffect : BasicEffect
+    // 
     - edges : EdgeList
   Methods:
+    // 
     + LineRenderer (GameState state, GameObjectInfo info)
+    // 
     + Update (GameTime gameTime) override
+    // 
     + OnEdgesChanged (EdgeList edges) override
+    // 
     + Draw (GameTime gameTime) override
+    // 
     - DrawRoundedLines ()
+    // 
     + Intersects (Ray ray) : GameObjectDistance override
+    // 
     + Center () : Vector3 override

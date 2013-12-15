@@ -1,0 +1,63 @@
+// 
+public class ModelMousePicker : GameStateComponent
+  Attributes:
+    // 
+    - lastMousePosition : Vector2
+    // 
+    - World : World
+    // 
+    - lastRayCheck : double
+  Methods:
+    // 
+    - UpdateMouseRay  (GameTime gameTime)
+    // 
+    + ModelMousePicker  (GameState state, World world)
+    // 
+    - CheckMouseRay  (GameTime gameTime)
+    // 
+    + Update  (GameTime gameTime)
+
+// 
+public class GameStateComponent : Xna.GameComponent, IGameStateComponent
+  Attributes:
+    // 
+    + state : GameState
+    // 
+    + Index : DisplayLayer
+  Methods:
+    // 
+    + GameStateComponent  (GameState state, DisplayLayer index)
+    // 
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+// 
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    // 
+    + Index : DisplayLayer
+  Methods:
+    // 
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+
+// 
+public class GameStateComponent : Xna.GameComponent, IGameStateComponent
+  Attributes:
+    // 
+    + Index : DisplayLayer
+    // 
+    + state : GameState
+  Methods:
+    // 
+    + GameStateComponent  (GameState state, DisplayLayer index)
+    // 
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+
+// 
+public interface IGameStateComponent : Xna.IGameComponent
+  Attributes:
+    // 
+    + Index : DisplayLayer
+  Methods:
+    // 
+    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+

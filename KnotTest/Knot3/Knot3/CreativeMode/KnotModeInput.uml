@@ -1,11 +1,20 @@
+// 
 public class KnotModeInput : Core.Input
   Attributes:
+    // 
     - World : World
+    // 
     - camera : Camera
+    // 
     - wasdSpeed : int
   Methods:
+    // 
     + KnotModeInput (GameState state, World world)
+    // 
     # UpdateKeys (GameTime gameTime) override
+    // 
     + Update (GameTime gameTime) override
+    // 
     # UpdateMouse (GameTime gameTime) override
+    // 
     - ResetMousePosition ()

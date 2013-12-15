@@ -1,68 +1,123 @@
+// 
 public class CreativeModeScreen : GameState
   Attributes:
+    // 
     - dialog : Dialog
+    // 
     - lineRenderer : LineRenderer
+    // 
     - picker : ModelMousePicker
+    // 
     - pipeRenderer : ModelRenderer
+    // 
     - pointer : MousePointer
+    // 
     - overlay : Overlay
+    // 
     - coloring : PipeColoring
+    // 
     - movement : PipeMovement
+    // 
     - world : World
+    // 
     - knotModified : bool
+    // 
     + Knot : Knot
+    // 
     - knot : Knot
   Methods:
+    // 
     - UpdateInput  (GameTime gameTime)
+    // 
     + CreativeModeScreen  (Core.Game game)
+    // 
     + Activate  (GameTime gameTime)
+    // 
     + Draw  (GameTime gameTime)
     + Initialize ()
+    // 
     + LoadFile  (string file)
     + Unload ()
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public abstract class GameState : 
   Attributes:
+    // 
     + game : Game
+    // 
     + NextState : GameState
+    // 
     + input : Input
+    // 
     + graphics : GraphicsDeviceManager
+    // 
     + device : GraphicsDevice
+    // 
     + viewport : Viewport
+    // 
     + content : ContentManager
+    // 
     + RenderEffects : RenderEffectStack
+    // 
     + PostProcessing : RenderEffect
   Methods:
+    // 
     + GameState  (Game game)
+    // 
     + Initialize  () abstract
+    // 
     + Update  (GameTime gameTime) abstract
+    // 
     + Draw  (GameTime gameTime) abstract
+    // 
     + Unload  () abstract
+    // 
     + AddGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    // 
     + RemoveGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    // 
     + Activate  (GameTime gameTime) virtual
+    // 
     + Deactivate  (GameTime gameTime) virtual
 
+// 
 public abstract class GameState : 
   Attributes:
+    // 
     + content : ContentManager
+    // 
     + NextState : GameState
+    // 
     + device : GraphicsDevice
+    // 
     + RenderEffects : RenderEffectStack
+    // 
     + viewport : Viewport
+    // 
     + game : Game
+    // 
     + graphics : GraphicsDeviceManager
+    // 
     + input : Input
+    // 
     + PostProcessing : RenderEffect
   Methods:
+    // 
     + Draw  (GameTime gameTime) abstract
     + Initialize () abstract
     + Unload () abstract
+    // 
     + Activate  (GameTime gameTime) virtual
+    // 
     + GameState  (Game game)
+    // 
     + Update  (GameTime gameTime) abstract
+    // 
     + Deactivate  (GameTime gameTime) virtual
+    // 
     + AddGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    // 
     + RemoveGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
 

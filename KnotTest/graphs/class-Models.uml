@@ -1,10 +1,16 @@
+// 
 public static class Models : 
   Attributes:
+    // 
     + Quality : string static
+    // 
     + ValidQualities : string[] static
   Methods:
     - ContentManager> contentManagers () : Dictionary<string, static
+    // 
     - invalidModels () : HashSet<string> static
+    // 
     - LoadModel (ContentManager content, IRenderEffect pp, string name) : Model static
+    // 
     + LoadModel (GameState state, string name) : Model static
 

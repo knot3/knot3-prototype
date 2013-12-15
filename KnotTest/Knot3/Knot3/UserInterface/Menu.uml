@@ -1,23 +1,44 @@
+// 
 public class Menu : Widget
   Attributes:
+    // 
     + RelativeItemSize : Func<int,Vector2>
+    // 
     + RelativeItemPosition : Func<int,Vector2>
+    // 
     + ItemForegroundColor : Func<ItemState,Color>
+    // 
     + ItemBackgroundColor : Func<ItemState,Color>
+    // 
     + ItemAlignX : HAlign?
+    // 
     + ItemAlignY : VAlign?
+    // 
     # Items : List<MenuItem>
+    // 
     - ItemDisplayLayer : DisplayLayer
+    // 
     + Count : int
+    // 
     - isVisible : bool
+    // 
     + IsVisible : bool override
   Methods:
+    // 
     + Menu (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     - assignMenuItemInfo (ref MenuItemInfo info, int num, MenuItem item)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton virtual
+    // 
     + AddDropDown (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
+    // 
     + AddDropDown (MenuItemInfo info, DistinctOptionInfo option) virtual
+    // 
     + this (int i) : MenuItem
+    // 
     + Clear ()
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + CollapseMenus (MenuItem menu)

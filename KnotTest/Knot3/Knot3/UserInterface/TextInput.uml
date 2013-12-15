@@ -1,12 +1,22 @@
+// 
 public class TextInput : Widget, IKeyEventListener
   Attributes:
+    // 
     + InputText : string
+    // 
     - font : SpriteFont
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
   Methods:
+    // 
     + TextInput (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Update (GameTime gameTime) override
+    // 
     + Draw (GameTime gameTime) override
+    // 
     + OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)

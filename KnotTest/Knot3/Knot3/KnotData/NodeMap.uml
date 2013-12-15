@@ -1,0 +1,20 @@
+// 
+public class NodeMap : 
+  Attributes:
+    // 
+    - fromMap : Hashtable new
+    // 
+    - toMap : Hashtable new
+  Methods:
+    // 
+    + NodeMap ()
+    // 
+    + NodeMap (EdgeList edges)
+    // 
+    + FromNode (Edge edge) : Node
+    // 
+    + ToNode (Edge edge) : Node
+    // 
+    + OnEdgesChanged (EdgeList edges)
+    // 
+    - BuildIndex (EdgeList edges)

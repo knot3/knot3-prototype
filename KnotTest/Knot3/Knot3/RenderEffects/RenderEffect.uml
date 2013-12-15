@@ -1,26 +1,48 @@
+// 
 public class RenderEffectStack : 
   Attributes:
+    // 
     - defaultEffect : IRenderEffect
+    // 
     - activeEffects : Stack<IRenderEffect> new
+    // 
     + Current : IRenderEffect
   Methods:
+    // 
     + RenderEffectStack (IRenderEffect defaultEffect)
+    // 
     + Push (IRenderEffect current)
+    // 
     + Pop () : IRenderEffect
+// 
 public abstract class RenderEffect : IRenderEffect
   Attributes:
+    // 
     # state : GameState
+    // 
     - renderTarget : RenderTargetCache
+    // 
     - background : Color
+    // 
     - spriteBatch : SpriteBatch
+    // 
     + RenderTarget : RenderTarget2D
   Methods:
+    // 
     + RenderEffect (GameState state)
+    // 
     + Begin (GameTime gameTime)
+    // 
     + Begin (Color background, GameTime gameTime) virtual
+    // 
     + End (GameTime gameTime) virtual
+    // 
     + DrawLastFrame (GameTime gameTime)
+    // 
     # DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) abstract
+    // 
     + RemapModel (Model model) virtual
+    // 
     + DrawModel (GameModel model, GameTime gameTime) virtual
+    // 
     # ModifyBasicEffect (BasicEffect effect, GameModel model)

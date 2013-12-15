@@ -1,36 +1,64 @@
+// 
 public class WidgetInfo : IEquatable<WidgetInfo>
   Attributes:
+    // 
     + RelativePosition : Func<Vector2>
+    // 
     + RelativeSize : Func<Vector2>
+    // 
     + RelativePadding : Func<Vector2>
+    // 
     + AlignX : HAlign
+    // 
     + AlignY : VAlign
+    // 
     + ForegroundColor : Func<Color>
+    // 
     + BackgroundColor : Func<Color>
+    // 
     + operator : bool static
+    // 
     + operator ! : bool static
   Methods:
+    // 
     + ScaledPosition (Viewport viewport) : Vector2
+    // 
     + ScaledSize (Viewport viewport) : Vector2
+    // 
     + ScaledPadding (Viewport viewport) : Vector2
+    // 
     + RelativeRectangle () : Rectangle
+    // 
     + ScaledRectangle (Viewport viewport) : Rectangle
+    // 
     + WidgetInfo ()
+    // 
     + Equals (WidgetInfo other) : bool virtual
+    // 
     + Equals (Object obj) : bool override
+    // 
     + GetHashCode () : int override
+// 
 public abstract class Widget : DrawableGameStateComponent
   Attributes:
+    // 
     + Info : WidgetInfo
+    // 
     + IsVisible : bool virtual
   Methods:
+    // 
     + Widget (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + bounds () : Rectangle
+// 
 public abstract class ItemWidget : Widget
   Attributes:
+    // 
     # ItemNum : int
+    // 
     + ItemState : ItemState
   Methods:
+    // 
     + ItemWidget (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 public enum ItemState
     Unselected = 0
