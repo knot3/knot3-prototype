@@ -1,0 +1,20 @@
+// 
+public class WidgetKeyHandler : GameScreenComponent
+  Attributes:
+  Methods:
+    // 
+    + WidgetKeyHandler (GameScreen screen)
+    // 
+    private class KeyEventComponent : 
+      Attributes:
+        // 
+        + receiver : IKeyEventListener
+        // 
+        + layer : DisplayLayer
+        // 
+        + keyEvent : KeyEvent
+        // 
+        + keys : List<Keys>
+      Methods:
+    // 
+    + Update (GameTime time) override

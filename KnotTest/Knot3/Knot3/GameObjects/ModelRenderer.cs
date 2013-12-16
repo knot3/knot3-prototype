@@ -24,23 +24,27 @@ namespace Knot3.GameObjects
 	/// Verwaltet eine Liste von Spielobjekten der Klassen PipeModel (Röhren) und NodeModel (Knotenpunkt)
 	/// für ein gegebenes KnotData.Knot-Objekt und zeichnet diese über die World-Klasse.
 	/// </summary>
-	public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
+	public sealed class ModelRenderer : IGameObject, IEnumerable<IGameObject>
 	{
-		public override GameObjectInfo Info { get; protected set; }
+		private GameScreen screen;
 
-		public override World World { get; set; }
+		public GameObjectInfo Info { get; private set; }
 
-		// pipes and knots
+		public World World { get; set; }
+
+		// pipes, nodes and arrows
+		private Knot knot;
 		private List<PipeModel> pipes;
 		private List<NodeModel> nodes;
 		private List<ArrowModel> arrows;
 		private ModelFactory pipeFactory;
 		private ModelFactory nodeFactory;
 		private ModelFactory arrowFactory;
+		private NodeMap nodeMap = new NodeMap ();
 
 		public ModelRenderer (GameScreen screen, GameObjectInfo info)
-			: base(screen)
 		{
+			this.screen = screen;
 			Info = info;
 			pipes = new List<PipeModel> ();
 			nodes = new List<NodeModel> ();
@@ -50,7 +54,16 @@ namespace Knot3.GameObjects
 			arrowFactory = new ModelFactory ((s, i) => new ArrowModel (s, i as ArrowModelInfo));
 		}
 
-		public override void Update (GameTime time)
+		public Knot Knot {
+			set {
+				knot = value;
+				knot.EdgesChanged += OnEdgesChanged;
+				knot.SelectionChanged += () => CreateArrows (knot.SelectedEdges);
+				OnEdgesChanged();
+			}
+		}
+
+		public void Update (GameTime time)
 		{
 			foreach (PipeModel pipe in pipes) {
 				pipe.Update (time);
@@ -63,13 +76,13 @@ namespace Knot3.GameObjects
 			}
 		}
 
-		public override void OnEdgesChanged (EdgeList edgeList)
+		public void OnEdgesChanged ()
 		{
-			base.OnEdgesChanged (edgeList);
+			nodeMap.OnEdgesChanged (knot);
 
 			pipes.Clear ();
-			foreach (Edge edge in edgeList) {
-				PipeModelInfo info = new PipeModelInfo (edgeList, nodeMap, edge, Info.Position);
+			foreach (Edge edge in knot) {
+				PipeModelInfo info = new PipeModelInfo (knot, nodeMap, edge, Info.Position);
 				PipeModel pipe = pipeFactory [screen, info] as PipeModel;
 				// pipe.OnDataChange = () => UpdatePipes (edges);
 				pipe.World = World;
@@ -77,27 +90,30 @@ namespace Knot3.GameObjects
 			}
 
 			nodes.Clear ();
+			WrapList<Edge> edgeList = new WrapList<Edge>(knot);
 			for (int n = 0; n < edgeList.Count; n++) {
 				if (edgeList [n].Direction != edgeList [n + 1].Direction) {
-					NodeModelInfo info = new NodeModelInfo (edgeList, nodeMap, edgeList [n], edgeList [n + 1], Info.Position);
+					NodeModelInfo info = new NodeModelInfo (nodeMap, edgeList [n], edgeList [n + 1], Info.Position);
 					NodeModel node = nodeFactory [screen, info] as NodeModel;
 					node.World = World;
 					nodes.Add (node);
 				}
 			}
 
-			CreateArrows (edgeList.SelectedEdges);
+			CreateArrows (knot.SelectedEdges);
 
 			World.Redraw = true;
 			Console.WriteLine ("Redraw=true <- PipeRenderer");
 		}
 
-		public void CreateArrows (WrapList<Edge> selectedEdges)
+		public void CreateArrows (IEnumerable<Edge> selectedEdges)
+		{
+			CreateArrows(new List<Edge>(selectedEdges));
+		}
+
+		private void CreateArrows (IList<Edge> selectedEdges)
 		{
 			arrows.Clear ();
-			//foreach (Edge edge in selectedEdges) {
-			//	CreateArrow (edge);
-			//}
 			if (selectedEdges.Count > 0) {
 				CreateArrow (selectedEdges [(int)selectedEdges.Count / 2]);
 			}
@@ -144,7 +160,7 @@ namespace Knot3.GameObjects
 
 		#region Draw
 		
-		public override void Draw (GameTime time)
+		public void Draw (GameTime time)
 		{
 			Overlay.Profiler ["# InFrustum"] = 0;
 			Overlay.Profiler ["RenderEffect"] = 0;
@@ -174,7 +190,7 @@ namespace Knot3.GameObjects
 
 		#region Intersection
 
-		public override GameObjectDistance Intersects (Ray ray)
+		public GameObjectDistance Intersects (Ray ray)
 		{
 			GameObjectDistance nearest = null;
 			if (!screen.input.GrabMouseMovement) {
@@ -198,7 +214,7 @@ namespace Knot3.GameObjects
 			return nearest;
 		}
 
-		public override Vector3 Center ()
+		public Vector3 Center ()
 		{
 			return Info.Position;
 		}

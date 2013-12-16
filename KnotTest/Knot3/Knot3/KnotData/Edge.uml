@@ -2,7 +2,7 @@
 public class Edge : 
   Attributes:
     // 
-    + Direction : Vector3
+    + Direction : Direction
     // 
     + Color : Color
     // 
@@ -41,9 +41,7 @@ public class Edge :
     + Backward : Edge static
   Methods:
     // 
-    + Edge (int x, int y, int z)
-    // 
-    + Edge (Vector3 v)
+    + Edge (Direction direction)
     // 
     + Equals (object obj) : bool override
     // 

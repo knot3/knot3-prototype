@@ -19,6 +19,7 @@ using Knot3.Settings;
 using Knot3.Utilities;
 
 using Knot3.Core;
+using System.IO;
 
 namespace Knot3.CreativeMode
 {
@@ -37,10 +38,9 @@ namespace Knot3.CreativeMode
 		private MousePointer pointer;
 		private Overlay overlay;
 		private ModelMousePicker picker;
-		private PipeMovement movement;
-		private PipeColoring coloring;
-		private LineRenderer lineRenderer;
-		private ModelRenderer pipeRenderer;
+		private EdgeMovement movement;
+		private EdgeColoring coloring;
+		private ModelRenderer renderer;
 		private Dialog dialog;
 
 		/// <summary>
@@ -73,34 +73,28 @@ namespace Knot3.CreativeMode
 			// pipe renderer
 			var knotRenderInfo = new GameObjectInfo ();
 			knotRenderInfo.Position = Vector3.Zero;
-			pipeRenderer = new ModelRenderer (this, knotRenderInfo);
-			world.Add (pipeRenderer as IGameObject);
+			renderer = new ModelRenderer (this, knotRenderInfo);
+			world.Add (renderer as IGameObject);
 			
 			// pipe movements
-			movement = new PipeMovement (this, world, knotRenderInfo);
+			movement = new EdgeMovement (this, world, knotRenderInfo);
 			world.Add (movement as IGameObject);
 
 			// pipe colors
-			coloring = new PipeColoring (this);
+			coloring = new EdgeColoring (this);
 
-			// line renderer
-			lineRenderer = new LineRenderer (this, knotRenderInfo);
-			world.Add (lineRenderer as IGameObject);
-			
 			// load nodes
 			Node.Scale = 100;
-			Knot = Knot.DefaultKnot (new EdgeListFormat ());
+			Knot = new Knot ();
 		}
 
 		public Knot Knot {
 			get { return knot; }
 			set {
 				knot = value;
-				knot.EdgesChanged += pipeRenderer.OnEdgesChanged;
-				knot.EdgesChanged += lineRenderer.OnEdgesChanged;
-				knot.EdgesChanged += (e) => knotModified = true;
-				knot.EdgesChanged (knot.Edges);
-				knot.Edges.SelectionChanged += (o) => pipeRenderer.CreateArrows (Knot.Edges.SelectedEdges);
+				renderer.Knot = knot;
+				knot.EdgesChanged += () => knotModified = true;
+				knot.EdgesChanged ();
 				movement.Knot = knot;
 				coloring.Knot = knot;
 				knotModified = false;
@@ -149,17 +143,17 @@ namespace Knot3.CreativeMode
 
 			// move edges
 			if (Keys.NumPad8.IsDown ())
-				knot.Edges.Move (knot.Edges.SelectedEdges, Vector3.Up);
+				knot.Move (Direction.Up);
 			if (Keys.NumPad2.IsDown ())
-				knot.Edges.Move (knot.Edges.SelectedEdges, Vector3.Down);
+				knot.Move (Direction.Down);
 			if (Keys.NumPad4.IsDown ())
-				knot.Edges.Move (knot.Edges.SelectedEdges, Vector3.Left);
+				knot.Move (Direction.Left);
 			if (Keys.NumPad6.IsDown ())
-				knot.Edges.Move (knot.Edges.SelectedEdges, Vector3.Right);
+				knot.Move (Direction.Right);
 			if (Keys.NumPad7.IsDown ())
-				knot.Edges.Move (knot.Edges.SelectedEdges, Vector3.Forward);
+				knot.Move (Direction.Forward);
 			if (Keys.NumPad9.IsDown ())
-				knot.Edges.Move (knot.Edges.SelectedEdges, Vector3.Backward);
+				knot.Move (Direction.Backward);
 
 			if (PostProcessing is FadeEffect && (PostProcessing as FadeEffect).IsFinished) {
 				PostProcessing = new NoEffect (this);
@@ -193,12 +187,22 @@ namespace Knot3.CreativeMode
 			Text = new string[] {
 				"Do you want to save the changes?"
 			};
-			TextInput.InputText = knot.Info.Name;
+			TextInput.InputText = knot.Name;
+			string originalName = knot.Name;
 			
 			OnYesClick += () => {
 				Console.WriteLine ("OnYesClick");
-				knot.Rename (TextInput.InputText);
-				knot.Save ();
+				if (originalName == TextInput.InputText) {
+					try {
+						knot.Save ();
+					} catch (IOException ex) {
+						Console.WriteLine (ex);
+						knot.Save (new KnotFileIO(knot));
+					}
+				} else {
+					knot.Name = TextInput.InputText;
+					knot.Save (new KnotFileIO(knot));
+				}
 				screen.NextState = GameScreens.StartScreen;
 			};
 			OnNoClick += () => {

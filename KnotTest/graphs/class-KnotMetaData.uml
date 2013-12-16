@@ -1,0 +1,15 @@
+// 
+public struct KnotMetaData : 
+  Attributes:
+    // 
+    + CountEdges : int
+    // 
+    + Name : string
+    // 
+    + File : IKnotIO
+  Methods:
+    // 
+    + KnotMetaData  (string name, int countEdges, IKnotIO file)
+    // 
+    + ToString () : string
+

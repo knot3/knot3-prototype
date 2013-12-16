@@ -9,12 +9,12 @@ public class NodeMap :
     // 
     + NodeMap ()
     // 
-    + NodeMap (EdgeList edges)
+    + NodeMap (IEnumerable<Edge> edges)
     // 
     + FromNode (Edge edge) : Node
     // 
     + ToNode (Edge edge) : Node
     // 
-    + OnEdgesChanged (EdgeList edges)
+    + OnEdgesChanged (IEnumerable<Edge> edges)
     // 
-    - BuildIndex (EdgeList edges)
+    - BuildIndex (IEnumerable<Edge> edges)

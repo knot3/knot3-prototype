@@ -15,7 +15,7 @@ public class MovableGameObject : IGameObject
     // 
     + MovableGameObject  (GameScreen screen, IGameObject obj)
     // 
-    + Update  (GameTime gameTime) virtual
+    + Update  (GameTime time) virtual
     // 
     # CurrentMouseRay () : Ray
     // 
@@ -25,7 +25,7 @@ public class MovableGameObject : IGameObject
     // 
     + Center () : Vector3
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
 
 // 
 public interface IGameObject : 
@@ -36,9 +36,9 @@ public interface IGameObject :
     + World : World
   Methods:
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
-    + Update  (GameTime gameTime)
+    + Update  (GameTime time)
     // 
     + Intersects (Ray ray) : GameObjectDistance
     // 

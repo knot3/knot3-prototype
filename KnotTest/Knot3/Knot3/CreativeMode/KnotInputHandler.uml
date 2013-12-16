@@ -1,0 +1,26 @@
+// 
+public class KnotInputHandler : GameScreenComponent, IKeyEventListener
+  Attributes:
+    // 
+    - World : World
+    // 
+    - camera : Camera
+    // 
+    - wasdSpeed : int
+    // 
+    + ValidKeys : List<Keys>
+    // 
+    + IsKeyEventEnabled : bool
+  Methods:
+    // 
+    + KnotInputHandler (GameScreen screen, World world)
+    // 
+    # UpdateKeys (GameTime time)
+    // 
+    + Update (GameTime time) override
+    // 
+    # UpdateMouse (GameTime time)
+    // 
+    - ResetMousePosition ()
+    // 
+    + OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)

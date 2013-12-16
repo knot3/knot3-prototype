@@ -7,11 +7,9 @@ public class NodeModelInfo : GameModelInfo
     + EdgeB : Edge
     // 
     + NodeMap : NodeMap
-    // 
-    + EdgeList : EdgeList
   Methods:
     // 
-    + NodeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
+    + NodeModelInfo  (NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
     // 
     + Equals (GameObjectInfo other) : bool
 

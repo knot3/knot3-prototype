@@ -1,0 +1,18 @@
+// 
+public class WidgetMouseHandler : GameScreenComponent
+  Attributes:
+  Methods:
+    // 
+    + WidgetMouseHandler (GameScreen screen)
+    // 
+    private class ClickEventComponent : 
+      Attributes:
+        // 
+        + receiver : IMouseEventListener
+        // 
+        + layer : DisplayLayer
+        // 
+        + relativePosition : Vector2
+      Methods:
+    // 
+    + Update (GameTime time) override

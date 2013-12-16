@@ -24,7 +24,7 @@ public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, I
     // 
     + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
 // 
 public interface IGameScreenComponent : Xna.IGameComponent
@@ -33,7 +33,7 @@ public interface IGameScreenComponent : Xna.IGameComponent
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
 // 
 public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
@@ -48,7 +48,7 @@ public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, I
     // 
     + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
 // 
 public interface IGameScreenComponent : Xna.IGameComponent
@@ -57,7 +57,7 @@ public interface IGameScreenComponent : Xna.IGameComponent
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
 // 
 public class ColorPicker : Widget, IMouseEventListener
@@ -80,7 +80,7 @@ public class ColorPicker : Widget, IMouseEventListener
     // 
     + ColorPicker  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + Draw  (GameTime gameTime) override
+    + Draw  (GameTime time) override
     // 
     - CreateColors (int num) : IEnumerable<Color> static
     // 
@@ -88,9 +88,9 @@ public class ColorPicker : Widget, IMouseEventListener
     // 
     - SelectColor  (Color color)
     // 
-    + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnLeftClick  (Vector2 position, ClickState click, GameTime time)
     // 
-    + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnRightClick  (Vector2 position, ClickState click, GameTime time)
     // 
     + SetHovered  (bool hovered)
 
@@ -111,11 +111,11 @@ public abstract class Dialog : Widget
     // 
     # RelativeButtonSize (int n) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
-    + Draw  (GameTime gameTime) override
+    + Draw  (GameTime time) override
     // 
-    # DrawDialog  (GameTime gameTime) abstract
+    # DrawDialog  (GameTime time) abstract
     // 
     - ButtonBackgroundColor (ItemState itemState) : Color
     // 
@@ -136,7 +136,7 @@ public class ConfirmDialog : Dialog
     // 
     + ConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    # DrawDialog  (GameTime gameTime) override
+    # DrawDialog  (GameTime time) override
 
 // 
 public class TextInputDialog : ConfirmDialog
@@ -147,7 +147,7 @@ public class TextInputDialog : ConfirmDialog
     // 
     + TextInputDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
     # TextInputPosition () : Vector2
     // 
@@ -180,7 +180,7 @@ public class TextInputDialog : ConfirmDialog
     // 
     # TextInputPosition () : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
@@ -209,7 +209,7 @@ public class ConfirmDialog : Dialog
     // 
     # OnNoClick () : Action
     // 
-    # DrawDialog  (GameTime gameTime)
+    # DrawDialog  (GameTime time)
     // 
     + ConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
 
@@ -222,7 +222,7 @@ public class TextInputDialog : ConfirmDialog
     // 
     + TextInputDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
     # TextInputPosition () : Vector2
     // 
@@ -255,7 +255,7 @@ public class TextInputDialog : ConfirmDialog
     // 
     # TextInputPosition () : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
@@ -312,7 +312,7 @@ public class Menu : Widget
     // 
     + Clear  ()
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
     + CollapseMenus  (MenuItem menu)
 
@@ -337,7 +337,7 @@ public class VerticalMenu : Menu
     // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX = null, int? sizeY = null, float padding = 0.15f)
     // 
-    + Draw  (GameTime gameTime) override
+    + Draw  (GameTime time) override
 
 // 
 public class VerticalMenu : Menu
@@ -358,7 +358,7 @@ public class VerticalMenu : Menu
     // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
@@ -379,11 +379,11 @@ public class TextInput : Widget, IKeyEventListener
     // 
     + TextInput  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + Update  (GameTime gameTime) override
+    + Update  (GameTime time) override
     // 
-    + Draw  (GameTime gameTime) override
+    + Draw  (GameTime time) override
     // 
-    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
 
 // 
 public abstract class ItemWidget : Widget
@@ -413,7 +413,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     // 
     + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
-    + Draw  (GameTime gameTime) override
+    + Draw  (GameTime time) override
     // 
     + TextPosition (SpriteFont font) : Vector2
     // 
@@ -421,11 +421,11 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     // 
     + MinimumSize (SpriteFont font) : Vector2
     // 
-    + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnLeftClick  (Vector2 position, ClickState click, GameTime time)
     // 
-    + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnRightClick  (Vector2 position, ClickState click, GameTime time)
     // 
-    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
     // 
     + SetHovered  (bool hovered)
     // 
@@ -446,11 +446,11 @@ public class DropDownMenu : MenuItem
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
     + Collapse  () override
     // 
-    + Draw  (GameTime gameTime) override
+    + Draw  (GameTime time) override
     // 
     - ValuePosition (int dummy = 0) : Vector2
     // 
@@ -486,10 +486,10 @@ public class DropDownMenu : MenuItem
     // 
     - ValueSize (int dummy) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
     + Collapse ()
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 
@@ -520,11 +520,11 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Collapse () virtual
     // 
-    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
     // 
-    + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnLeftClick  (Vector2 position, ClickState click, GameTime time)
     // 
-    + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnRightClick  (Vector2 position, ClickState click, GameTime time)
     // 
     + MinimumSize (SpriteFont font) : Vector2
     // 
@@ -532,7 +532,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
     + SetHovered  (bool hovered)
 
@@ -551,11 +551,11 @@ public class DropDownMenu : MenuItem
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
     + Collapse  () override
     // 
-    + Draw  (GameTime gameTime) override
+    + Draw  (GameTime time) override
     // 
     - ValuePosition (int dummy = 0) : Vector2
     // 
@@ -591,10 +591,10 @@ public class DropDownMenu : MenuItem
     // 
     - ValueSize (int dummy) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
     + Collapse ()
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 
@@ -630,9 +630,9 @@ public class ColorPicker : Widget, IMouseEventListener
     // 
     + ColorPicker  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
-    + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnRightClick  (Vector2 position, ClickState click, GameTime time)
     // 
     + SetHovered  (bool hovered)
     // 
@@ -640,7 +640,7 @@ public class ColorPicker : Widget, IMouseEventListener
     // 
     - SelectColor  (Color color)
     // 
-    + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnLeftClick  (Vector2 position, ClickState click, GameTime time)
 
 // 
 public abstract class Dialog : Widget
@@ -663,11 +663,11 @@ public abstract class Dialog : Widget
     // 
     # RelativeButtonPosition (int n) : Vector2
     // 
-    # DrawDialog  (GameTime gameTime) abstract
+    # DrawDialog  (GameTime time) abstract
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
 
 // 
 public class ConfirmDialog : Dialog
@@ -684,7 +684,7 @@ public class ConfirmDialog : Dialog
     // 
     + ConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    # DrawDialog  (GameTime gameTime) override
+    # DrawDialog  (GameTime time) override
 
 // 
 public class TextInputDialog : ConfirmDialog
@@ -695,7 +695,7 @@ public class TextInputDialog : ConfirmDialog
     // 
     + TextInputDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
     # TextInputPosition () : Vector2
     // 
@@ -728,7 +728,7 @@ public class TextInputDialog : ConfirmDialog
     // 
     # TextInputPosition () : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
@@ -757,7 +757,7 @@ public class ConfirmDialog : Dialog
     // 
     # OnNoClick () : Action
     // 
-    # DrawDialog  (GameTime gameTime)
+    # DrawDialog  (GameTime time)
     // 
     + ConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
 
@@ -770,7 +770,7 @@ public class TextInputDialog : ConfirmDialog
     // 
     + TextInputDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
     # TextInputPosition () : Vector2
     // 
@@ -803,7 +803,7 @@ public class TextInputDialog : ConfirmDialog
     // 
     # TextInputPosition () : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
@@ -848,7 +848,7 @@ public class Menu : Widget
     // 
     + this (int i) : MenuItem
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
     // 
     + CollapseMenus  (MenuItem menu)
     // 
@@ -880,7 +880,7 @@ public class VerticalMenu : Menu
     // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX = null, int? sizeY = null, float padding = 0.15f)
     // 
-    + Draw  (GameTime gameTime) override
+    + Draw  (GameTime time) override
 
 // 
 public class VerticalMenu : Menu
@@ -901,7 +901,7 @@ public class VerticalMenu : Menu
     // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
@@ -922,11 +922,11 @@ public class TextInput : Widget, IKeyEventListener
     // 
     + TextInput  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
-    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
     // 
-    + Update  (GameTime gameTime)
+    + Update  (GameTime time)
 
 // 
 public abstract class ItemWidget : Widget
@@ -956,7 +956,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     // 
     + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     // 
-    + Draw  (GameTime gameTime) override
+    + Draw  (GameTime time) override
     // 
     + TextPosition (SpriteFont font) : Vector2
     // 
@@ -964,11 +964,11 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     // 
     + MinimumSize (SpriteFont font) : Vector2
     // 
-    + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnLeftClick  (Vector2 position, ClickState click, GameTime time)
     // 
-    + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnRightClick  (Vector2 position, ClickState click, GameTime time)
     // 
-    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
     // 
     + SetHovered  (bool hovered)
     // 
@@ -989,11 +989,11 @@ public class DropDownMenu : MenuItem
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
     + Collapse  () override
     // 
-    + Draw  (GameTime gameTime) override
+    + Draw  (GameTime time) override
     // 
     - ValuePosition (int dummy = 0) : Vector2
     // 
@@ -1029,10 +1029,10 @@ public class DropDownMenu : MenuItem
     // 
     - ValueSize (int dummy) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
     + Collapse ()
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 
@@ -1063,11 +1063,11 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Collapse () virtual
     // 
-    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
     // 
-    + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnLeftClick  (Vector2 position, ClickState click, GameTime time)
     // 
-    + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    + OnRightClick  (Vector2 position, ClickState click, GameTime time)
     // 
     + MinimumSize (SpriteFont font) : Vector2
     // 
@@ -1075,7 +1075,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
     // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
     + SetHovered  (bool hovered)
 
@@ -1094,11 +1094,11 @@ public class DropDownMenu : MenuItem
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
     + Collapse  () override
     // 
-    + Draw  (GameTime gameTime) override
+    + Draw  (GameTime time) override
     // 
     - ValuePosition (int dummy = 0) : Vector2
     // 
@@ -1134,10 +1134,10 @@ public class DropDownMenu : MenuItem
     // 
     - ValueSize (int dummy) : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
     + Collapse ()
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
     + AddEntries  (DistinctOptionInfo option)
     // 

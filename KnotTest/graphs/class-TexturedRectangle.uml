@@ -36,7 +36,7 @@ public class TexturedRectangle : IGameObject
     // 
     + TexturedRectangle  (GameScreen screen, TexturedRectangleInfo info)
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
     # SetPosition  (Vector3 position)
     // 
@@ -44,7 +44,7 @@ public class TexturedRectangle : IGameObject
     // 
     + Center () : Vector3
     // 
-    + Update  (GameTime gameTime)
+    + Update  (GameTime time)
 
 // 
 public interface IGameObject : 
@@ -55,9 +55,9 @@ public interface IGameObject :
     + World : World
   Methods:
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
-    + Update  (GameTime gameTime)
+    + Update  (GameTime time)
     // 
     + Intersects (Ray ray) : GameObjectDistance
     // 

@@ -26,7 +26,7 @@ public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
     // 
     + GameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
 // 
 public interface IGameScreenComponent : Xna.IGameComponent
@@ -35,7 +35,7 @@ public interface IGameScreenComponent : Xna.IGameComponent
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
 // 
 public interface IKeyEventListener : 
@@ -48,7 +48,7 @@ public interface IKeyEventListener :
     + IsKeyEventEnabled : bool
   Methods:
     // 
-    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
 
 // 
 public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
@@ -61,7 +61,7 @@ public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
     // 
     + GameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
 // 
 public interface IGameScreenComponent : Xna.IGameComponent
@@ -70,5 +70,5 @@ public interface IGameScreenComponent : Xna.IGameComponent
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 

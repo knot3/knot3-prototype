@@ -21,11 +21,11 @@ using Knot3.UserInterface;
 
 namespace Knot3.GameObjects
 {
-	public class PipeColoring : GameScreenComponent, IKeyEventListener
+	public class EdgeColoring : GameScreenComponent, IKeyEventListener
 	{
 		public Knot Knot { get; set; }
 
-		public PipeColoring (GameScreen screen)
+		public EdgeColoring (GameScreen screen)
 			: base(screen, DisplayLayer.None)
 		{
 			ValidKeys = new List<Keys> ();
@@ -39,10 +39,10 @@ namespace Knot3.GameObjects
 		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
 		{
 			// change color?
-			if (Knot.Edges.SelectedEdges.Count () > 0 && Keys.C.IsDown ()) {
+			if (Knot.SelectedEdges.Count () > 0 && Keys.C.IsDown ()) {
 				ColorPicker picker = new ColorPicker (screen, new WidgetInfo (), DisplayLayer.Dialog);
 				picker.OnSelectColor = (c) => screen.RemoveGameComponents (time, picker);
-				foreach (Edge edge in Knot.Edges.SelectedEdges) {
+				foreach (Edge edge in Knot.SelectedEdges) {
 					picker.OnSelectColor += (c) => edge.Color = c;
 				}
 				screen.AddGameComponents (time, picker);

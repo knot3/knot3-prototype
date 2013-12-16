@@ -17,7 +17,7 @@
 <text text-anchor="start" x="10" y="-35.8" font-family="Arial" font-size="8.00">+ Info : NodeModelInfo</text>
 <polyline fill="none" stroke="black" points="2,-29 222,-29 "/>
 <text text-anchor="start" x="10" y="-17.8" font-family="Arial" font-size="8.00">+ NodeModel (GameScreen screen, NodeModelInfo info)</text>
-<text text-anchor="start" x="10" y="-7.8" font-family="Arial" font-size="8.00">+ Draw (GameTime gameTime)</text>
+<text text-anchor="start" x="10" y="-7.8" font-family="Arial" font-size="8.00">+ Draw (GameTime time)</text>
 </g>
 <!-- Box_GameModel -->
 <g id="node2" class="node"><title>Box_GameModel</title>
@@ -47,10 +47,10 @@
 <text text-anchor="start" x="8" y="-169.8" font-family="Arial" font-size="8.00">&#45; OnViewChanged ()</text>
 <text text-anchor="start" x="8" y="-159.8" font-family="Arial" font-size="8.00">&#45; UpdatePrecomputed ()</text>
 <text text-anchor="start" x="8" y="-149.8" font-family="Arial" font-size="8.00">+ GameModel (GameScreen screen, GameModelInfo info)</text>
-<text text-anchor="start" x="8" y="-139.8" font-family="Arial" font-size="8.00">+ Draw (GameTime gameTime) virtual</text>
+<text text-anchor="start" x="8" y="-139.8" font-family="Arial" font-size="8.00">+ Draw (GameTime time) virtual</text>
 <text text-anchor="start" x="8" y="-129.8" font-family="Arial" font-size="8.00">+ Center () : Vector3</text>
 <text text-anchor="start" x="8" y="-119.8" font-family="Arial" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance virtual</text>
-<text text-anchor="start" x="8" y="-109.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime) virtual</text>
+<text text-anchor="start" x="8" y="-109.8" font-family="Arial" font-size="8.00">+ Update (GameTime time) virtual</text>
 </g>
 <!-- Box_GameModel&#45;&gt;Box_NodeModel -->
 <g id="edge2" class="edge"><title>Box_GameModel&#45;&gt;Box_NodeModel</title>
@@ -65,8 +65,8 @@
 <text text-anchor="start" x="30.5" y="-499.8" font-family="Arial" font-size="8.00">+ Info : GameObjectInfo</text>
 <text text-anchor="start" x="30.5" y="-489.8" font-family="Arial" font-size="8.00">+ World : World</text>
 <polyline fill="none" stroke="black" points="22.5,-483 201.5,-483 "/>
-<text text-anchor="start" x="30.5" y="-471.8" font-family="Arial" font-size="8.00">+ Draw (GameTime gameTime)</text>
-<text text-anchor="start" x="30.5" y="-461.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime)</text>
+<text text-anchor="start" x="30.5" y="-471.8" font-family="Arial" font-size="8.00">+ Draw (GameTime time)</text>
+<text text-anchor="start" x="30.5" y="-461.8" font-family="Arial" font-size="8.00">+ Update (GameTime time)</text>
 <text text-anchor="start" x="30.5" y="-451.8" font-family="Arial" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance</text>
 <text text-anchor="start" x="30.5" y="-441.8" font-family="Arial" font-size="8.00">+ Center () : Vector3</text>
 </g>

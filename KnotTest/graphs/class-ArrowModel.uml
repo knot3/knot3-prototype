@@ -11,7 +11,7 @@ public class ArrowModel : GameModel
     // 
     + Intersects (Ray ray) : GameObjectDistance
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
 
 // 
 public class GameModel : IGameObject
@@ -58,9 +58,9 @@ public class GameModel : IGameObject
     // 
     + GameModel  (GameScreen screen, GameModelInfo info)
     // 
-    + Update  (GameTime gameTime) virtual
+    + Update  (GameTime time) virtual
     // 
-    + Draw  (GameTime gameTime) virtual
+    + Draw  (GameTime time) virtual
     // 
     + Intersects (Ray ray) : GameObjectDistance virtual
     // 
@@ -79,9 +79,9 @@ public interface IGameObject :
     + World : World
   Methods:
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
-    + Update  (GameTime gameTime)
+    + Update  (GameTime time)
     // 
     + Intersects (Ray ray) : GameObjectDistance
     // 
@@ -134,13 +134,13 @@ public class GameModel : IGameObject
     // 
     + GameModel  (GameScreen screen, GameModelInfo info)
     // 
-    + Draw  (GameTime gameTime) virtual
+    + Draw  (GameTime time) virtual
     // 
     + Center () : Vector3
     // 
     + Intersects (Ray ray) : GameObjectDistance virtual
     // 
-    + Update  (GameTime gameTime) virtual
+    + Update  (GameTime time) virtual
 
 // 
 public interface IGameObject : 
@@ -151,9 +151,9 @@ public interface IGameObject :
     + World : World
   Methods:
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
-    + Update  (GameTime gameTime)
+    + Update  (GameTime time)
     // 
     + Intersects (Ray ray) : GameObjectDistance
     // 

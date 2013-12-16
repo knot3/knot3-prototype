@@ -51,11 +51,11 @@ public class Camera : GameScreenComponent
     // 
     + GetMouseRay (Vector2 mouse) : Ray
     // 
-    - UpdateMatrices  (GameTime gameTime)
+    - UpdateMatrices  (GameTime time)
     // 
-    - UpdateRotation  (GameTime gameTime)
+    - UpdateRotation  (GameTime time)
     // 
-    + Update  (GameTime gameTime)
+    + Update  (GameTime time)
 
 // 
 public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
@@ -68,7 +68,7 @@ public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
     // 
     + GameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
 // 
 public interface IGameScreenComponent : Xna.IGameComponent
@@ -77,7 +77,7 @@ public interface IGameScreenComponent : Xna.IGameComponent
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
 // 
 public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
@@ -90,7 +90,7 @@ public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
     // 
     + GameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
 // 
 public interface IGameScreenComponent : Xna.IGameComponent
@@ -99,5 +99,5 @@ public interface IGameScreenComponent : Xna.IGameComponent
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 

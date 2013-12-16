@@ -29,7 +29,7 @@ namespace Knot3.KnotData
 		{
 		}
 
-		public NodeMap (EdgeList edges)
+		public NodeMap (IEnumerable<Edge> edges)
 		{
 			BuildIndex (edges);
 		}
@@ -44,19 +44,19 @@ namespace Knot3.KnotData
 			return (Node)toMap [edge];
 		}
 
-		public void OnEdgesChanged (EdgeList edges)
+		public void OnEdgesChanged (IEnumerable<Edge> edges)
 		{
 			BuildIndex (edges);
 		}
 
-		private void BuildIndex (EdgeList edges)
+		private void BuildIndex (IEnumerable<Edge> edges)
 		{
 			fromMap.Clear ();
 			toMap.Clear ();
 			float x = 0, y = 0, z = 0;
 			foreach (Edge edge in edges) {
 				fromMap [edge] = new Node ((int)x, (int)y, (int)z);
-				Vector3 v = edge.Direction;
+				Vector3 v = edge.Direction.ToVector3 ();
 				x += v.X;
 				y += v.Y;
 				z += v.Z;

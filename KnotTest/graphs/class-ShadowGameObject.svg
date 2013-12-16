@@ -52,8 +52,8 @@
 <text text-anchor="start" x="42.5" y="-369.8" font-family="Arial" font-size="8.00">+ Info : GameObjectInfo</text>
 <text text-anchor="start" x="42.5" y="-359.8" font-family="Arial" font-size="8.00">+ World : World</text>
 <polyline fill="none" stroke="black" points="34.5,-353 213.5,-353 "/>
-<text text-anchor="start" x="42.5" y="-341.8" font-family="Arial" font-size="8.00">+ Draw (GameTime gameTime)</text>
-<text text-anchor="start" x="42.5" y="-331.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime)</text>
+<text text-anchor="start" x="42.5" y="-341.8" font-family="Arial" font-size="8.00">+ Draw (GameTime time)</text>
+<text text-anchor="start" x="42.5" y="-331.8" font-family="Arial" font-size="8.00">+ Update (GameTime time)</text>
 <text text-anchor="start" x="42.5" y="-321.8" font-family="Arial" font-size="8.00">+ Intersects (Ray ray) : GameObjectDistance</text>
 <text text-anchor="start" x="42.5" y="-311.8" font-family="Arial" font-size="8.00">+ Center () : Vector3</text>
 </g>

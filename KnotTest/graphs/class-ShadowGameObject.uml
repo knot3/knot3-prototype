@@ -34,9 +34,9 @@ public interface IGameObject :
     + World : World
   Methods:
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
-    + Update  (GameTime gameTime)
+    + Update  (GameTime time)
     // 
     + Intersects (Ray ray) : GameObjectDistance
     // 
@@ -55,7 +55,37 @@ public class ShadowGameModel : ShadowGameObject
     // 
     + ShadowGameModel  (GameScreen screen, GameModel model)
     // 
-    + Draw  (GameTime gameTime) override
+    + Draw  (GameTime time) override
+
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    - Model : GameModel
+    // 
+    + ShadowColor : Color
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time) override
+
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    + ShadowColor : Color
+    // 
+    - Model : GameModel
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time)
 
 // 
 public class ShadowGameModel : ShadowGameObject

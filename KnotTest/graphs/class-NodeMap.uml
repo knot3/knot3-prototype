@@ -7,14 +7,14 @@ public class NodeMap :
     // 
     - toMap () : Hashtable
     // 
-    - BuildIndex  (EdgeList edges)
+    - BuildIndex  (IEnumerable<Edge> edges)
     // 
     + FromNode (Edge edge) : Node
     // 
     + ToNode (Edge edge) : Node
     // 
-    + NodeMap  (EdgeList edges)
+    + NodeMap  (IEnumerable<Edge> edges)
     + NodeMap ()
     // 
-    + OnEdgesChanged  (EdgeList edges)
+    + OnEdgesChanged  (IEnumerable<Edge> edges)
 

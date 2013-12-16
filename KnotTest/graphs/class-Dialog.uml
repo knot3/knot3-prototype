@@ -19,11 +19,11 @@ public abstract class Dialog : Widget
     // 
     # RelativeButtonPosition (int n) : Vector2
     // 
-    # DrawDialog  (GameTime gameTime) abstract
+    # DrawDialog  (GameTime time) abstract
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
 
 // 
 public abstract class Widget : DrawableGameScreenComponent
@@ -51,7 +51,7 @@ public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, I
     // 
     + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
 // 
 public interface IGameScreenComponent : Xna.IGameComponent
@@ -60,7 +60,7 @@ public interface IGameScreenComponent : Xna.IGameComponent
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
 // 
 public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
@@ -75,7 +75,7 @@ public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, I
     // 
     + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
 // 
 public interface IGameScreenComponent : Xna.IGameComponent
@@ -84,7 +84,7 @@ public interface IGameScreenComponent : Xna.IGameComponent
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
 // 
 public abstract class Widget : DrawableGameScreenComponent
@@ -112,7 +112,7 @@ public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, I
     // 
     + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
 // 
 public interface IGameScreenComponent : Xna.IGameComponent
@@ -121,7 +121,7 @@ public interface IGameScreenComponent : Xna.IGameComponent
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
 // 
 public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
@@ -136,7 +136,7 @@ public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, I
     // 
     + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
 // 
 public interface IGameScreenComponent : Xna.IGameComponent
@@ -145,7 +145,7 @@ public interface IGameScreenComponent : Xna.IGameComponent
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
 // 
 public class ConfirmDialog : Dialog
@@ -162,7 +162,7 @@ public class ConfirmDialog : Dialog
     // 
     + ConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    # DrawDialog  (GameTime gameTime) override
+    # DrawDialog  (GameTime time) override
 
 // 
 public class TextInputDialog : ConfirmDialog
@@ -173,7 +173,7 @@ public class TextInputDialog : ConfirmDialog
     // 
     + TextInputDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
     # TextInputPosition () : Vector2
     // 
@@ -206,7 +206,7 @@ public class TextInputDialog : ConfirmDialog
     // 
     # TextInputPosition () : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog
@@ -235,7 +235,7 @@ public class ConfirmDialog : Dialog
     // 
     # OnNoClick () : Action
     // 
-    # DrawDialog  (GameTime gameTime)
+    # DrawDialog  (GameTime time)
     // 
     + ConfirmDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
 
@@ -248,7 +248,7 @@ public class TextInputDialog : ConfirmDialog
     // 
     + TextInputDialog  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> override
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
     // 
     # TextInputPosition () : Vector2
     // 
@@ -281,7 +281,7 @@ public class TextInputDialog : ConfirmDialog
     // 
     # TextInputPosition () : Vector2
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
 // 
 public class KnotSaveConfirmDialog : TextInputDialog

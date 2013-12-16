@@ -1,0 +1,609 @@
+// 
+public abstract class GameScreen : 
+  Attributes:
+    // 
+    + content : ContentManager
+    // 
+    + NextState : GameScreen
+    // 
+    + device : GraphicsDevice
+    // 
+    + RenderEffects : RenderEffectStack
+    // 
+    + viewport : Viewport
+    // 
+    + game : Game
+    // 
+    + graphics : GraphicsDeviceManager
+    // 
+    + input : InputManager
+    // 
+    + PostProcessing : RenderEffect
+  Methods:
+    // 
+    + Draw  (GameTime time) abstract
+    + Initialize () abstract
+    + Unload () abstract
+    // 
+    + Activate  (GameTime time) virtual
+    // 
+    + GameScreen  (Game game)
+    // 
+    + Update  (GameTime time) abstract
+    // 
+    + Deactivate  (GameTime time) virtual
+    // 
+    + AddGameComponents  (GameTime time, params IGameScreenComponent[] components)
+    // 
+    + RemoveGameComponents  (GameTime time, params IGameScreenComponent[] components)
+
+// 
+public class CreativeModeScreen : GameScreen
+  Attributes:
+    // 
+    - knot : Knot
+    // 
+    - knotModified : bool
+    // 
+    - world : World
+    // 
+    - knotInput : KnotInputHandler
+    // 
+    - pointer : MousePointer
+    // 
+    - overlay : Overlay
+    // 
+    - picker : ModelMousePicker
+    // 
+    - movement : EdgeMovement
+    // 
+    - coloring : EdgeColoring
+    // 
+    - renderer : ModelRenderer
+    // 
+    - dialog : Dialog
+    // 
+    + Knot : Knot
+  Methods:
+    // 
+    + CreativeModeScreen  (Core.Game game)
+    // 
+    + Initialize  () override
+    // 
+    + LoadFile  (string file)
+    // 
+    + Update  (GameTime time) override
+    // 
+    - UpdateInput  (GameTime time)
+    // 
+    + Draw  (GameTime time) override
+    // 
+    + Activate  (GameTime time) override
+    // 
+    + Unload  () override
+
+// 
+public abstract class MenuScreen : GameScreen
+  Attributes:
+    // 
+    - spriteBatch : SpriteBatch
+    // 
+    - backColor : Color
+    // 
+    - pointer : MousePointer
+    // 
+    # LinePoints : List<Vector2>
+    // 
+    # LineWidth : int
+  Methods:
+    // 
+    + MenuScreen  (Core.Game game)
+    // 
+    + Initialize  () override
+    // 
+    + Update  (GameTime time) override
+    // 
+    + UpdateMenu  (GameTime time) abstract
+    // 
+    + Draw  (GameTime time) override
+    // 
+    + DrawMenu  (GameTime time) abstract
+    // 
+    + Activate  (GameTime time) override
+    // 
+    + Unload  () override
+    // 
+    # BackgroundColor (ItemState itemState) : Color
+    // 
+    # ForegroundColor (ItemState itemState) : Color
+
+// 
+public class StartScreen : MenuScreen
+  Attributes:
+    // 
+    # menu : Menu
+    // 
+    - logo : Texture2D
+    // 
+    - spriteBatch : SpriteBatch
+  Methods:
+    // 
+    + StartScreen  (Game game)
+    // 
+    + Initialize  () override
+    // 
+    + UpdateMenu  (GameTime time) override
+    // 
+    + DrawMenu  (GameTime time) override
+    // 
+    + Activate  (GameTime time) override
+
+// 
+public class LoadSavegameScreen : MenuScreen
+  Attributes:
+    // 
+    - menu : VerticalMenu
+    // 
+    - spriteBatch : SpriteBatch
+  Methods:
+    // 
+    + LoadSavegameScreen  (Core.Game game)
+    // 
+    + Initialize  () override
+    // 
+    - UpdateFiles  ()
+    // 
+    - AddFileToList  (string filename)
+    // 
+    - AddDefaultKnots  ()
+    // 
+    + UpdateMenu  (GameTime time) override
+    // 
+    + DrawMenu  (GameTime time) override
+    // 
+    + Activate  (GameTime time) override
+
+// 
+public class OptionScreen : MenuScreen
+  Attributes:
+    // 
+    - menu : VerticalMenu
+    // 
+    - spriteBatch : SpriteBatch
+  Methods:
+    // 
+    + OptionScreen  (Core.Game game)
+    // 
+    + Initialize  () override
+    // 
+    + UpdateMenu  (GameTime time) override
+    // 
+    + DrawMenu  (GameTime time) override
+    // 
+    + Activate  (GameTime time) override
+
+// 
+public class VideoOptionScreen : OptionScreen
+  Attributes:
+    // 
+    - menu : VerticalMenu
+    // 
+    - spriteBatch : SpriteBatch
+  Methods:
+    // 
+    + VideoOptionScreen  (Core.Game game)
+    // 
+    + Initialize  () override
+    // 
+    + Collapse  (MenuItem item)
+    // 
+    + UpdateMenu  (GameTime time) override
+    // 
+    + DrawMenu  (GameTime time) override
+    // 
+    + Activate  (GameTime time) override
+
+// 
+public class VideoOptionScreen : OptionScreen
+  Attributes:
+    // 
+    - spriteBatch : SpriteBatch
+    // 
+    - menu : VerticalMenu
+  Methods:
+    // 
+    + VideoOptionScreen  (Core.Game game)
+    // 
+    + Activate  (GameTime time)
+    // 
+    + DrawMenu  (GameTime time)
+    + Initialize ()
+    // 
+    + UpdateMenu  (GameTime time)
+    // 
+    + Collapse  (MenuItem item)
+
+// 
+public class StartScreen : MenuScreen
+  Attributes:
+    // 
+    - spriteBatch : SpriteBatch
+    // 
+    - logo : Texture2D
+    // 
+    # menu : Menu
+  Methods:
+    // 
+    + StartScreen  (Game game)
+    // 
+    + Activate  (GameTime time)
+    // 
+    + UpdateMenu  (GameTime time)
+    // 
+    + DrawMenu  (GameTime time)
+    + Initialize ()
+
+// 
+public class LoadSavegameScreen : MenuScreen
+  Attributes:
+    // 
+    - spriteBatch : SpriteBatch
+    // 
+    - menu : VerticalMenu
+  Methods:
+    // 
+    + LoadSavegameScreen  (Core.Game game)
+    // 
+    + Activate  (GameTime time)
+    // 
+    + DrawMenu  (GameTime time)
+    - AddDefaultKnots ()
+    // 
+    - AddFileToList  (string filename)
+    - UpdateFiles ()
+    + Initialize ()
+    // 
+    + UpdateMenu  (GameTime time)
+
+// 
+public class OptionScreen : MenuScreen
+  Attributes:
+    // 
+    - spriteBatch : SpriteBatch
+    // 
+    - menu : VerticalMenu
+  Methods:
+    // 
+    + OptionScreen  (Core.Game game)
+    // 
+    + Activate  (GameTime time)
+    // 
+    + DrawMenu  (GameTime time)
+    // 
+    + UpdateMenu  (GameTime time)
+    + Initialize ()
+
+// 
+public class VideoOptionScreen : OptionScreen
+  Attributes:
+    // 
+    - menu : VerticalMenu
+    // 
+    - spriteBatch : SpriteBatch
+  Methods:
+    // 
+    + VideoOptionScreen  (Core.Game game)
+    // 
+    + Initialize  () override
+    // 
+    + Collapse  (MenuItem item)
+    // 
+    + UpdateMenu  (GameTime time) override
+    // 
+    + DrawMenu  (GameTime time) override
+    // 
+    + Activate  (GameTime time) override
+
+// 
+public class VideoOptionScreen : OptionScreen
+  Attributes:
+    // 
+    - spriteBatch : SpriteBatch
+    // 
+    - menu : VerticalMenu
+  Methods:
+    // 
+    + VideoOptionScreen  (Core.Game game)
+    // 
+    + Activate  (GameTime time)
+    // 
+    + DrawMenu  (GameTime time)
+    + Initialize ()
+    // 
+    + UpdateMenu  (GameTime time)
+    // 
+    + Collapse  (MenuItem item)
+
+// 
+public class CreativeModeScreen : GameScreen
+  Attributes:
+    // 
+    - dialog : Dialog
+    // 
+    - coloring : EdgeColoring
+    // 
+    - movement : EdgeMovement
+    // 
+    - knotInput : KnotInputHandler
+    // 
+    - picker : ModelMousePicker
+    // 
+    - renderer : ModelRenderer
+    // 
+    - pointer : MousePointer
+    // 
+    - overlay : Overlay
+    // 
+    - world : World
+    // 
+    - knotModified : bool
+    // 
+    + Knot : Knot
+    // 
+    - knot : Knot
+  Methods:
+    // 
+    - UpdateInput  (GameTime time)
+    // 
+    + CreativeModeScreen  (Core.Game game)
+    // 
+    + Activate  (GameTime time)
+    // 
+    + Draw  (GameTime time)
+    + Initialize ()
+    // 
+    + LoadFile  (string file)
+    + Unload ()
+    // 
+    + Update  (GameTime time)
+
+// 
+public abstract class MenuScreen : GameScreen
+  Attributes:
+    // 
+    - backColor : Color
+    // 
+    - pointer : MousePointer
+    // 
+    # LinePoints : List<Vector2>
+    // 
+    # LineWidth : int
+    // 
+    - spriteBatch : SpriteBatch
+  Methods:
+    // 
+    + MenuScreen  (Core.Game game)
+    // 
+    + Activate  (GameTime time)
+    // 
+    + Draw  (GameTime time)
+    // 
+    # BackgroundColor (ItemState itemState) : Color
+    // 
+    # ForegroundColor (ItemState itemState) : Color
+    // 
+    + DrawMenu  (GameTime time) abstract
+    // 
+    + UpdateMenu  (GameTime time) abstract
+    + Initialize ()
+    + Unload ()
+    // 
+    + Update  (GameTime time)
+
+// 
+public class StartScreen : MenuScreen
+  Attributes:
+    // 
+    # menu : Menu
+    // 
+    - logo : Texture2D
+    // 
+    - spriteBatch : SpriteBatch
+  Methods:
+    // 
+    + StartScreen  (Game game)
+    // 
+    + Initialize  () override
+    // 
+    + UpdateMenu  (GameTime time) override
+    // 
+    + DrawMenu  (GameTime time) override
+    // 
+    + Activate  (GameTime time) override
+
+// 
+public class LoadSavegameScreen : MenuScreen
+  Attributes:
+    // 
+    - menu : VerticalMenu
+    // 
+    - spriteBatch : SpriteBatch
+  Methods:
+    // 
+    + LoadSavegameScreen  (Core.Game game)
+    // 
+    + Initialize  () override
+    // 
+    - UpdateFiles  ()
+    // 
+    - AddFileToList  (string filename)
+    // 
+    - AddDefaultKnots  ()
+    // 
+    + UpdateMenu  (GameTime time) override
+    // 
+    + DrawMenu  (GameTime time) override
+    // 
+    + Activate  (GameTime time) override
+
+// 
+public class OptionScreen : MenuScreen
+  Attributes:
+    // 
+    - menu : VerticalMenu
+    // 
+    - spriteBatch : SpriteBatch
+  Methods:
+    // 
+    + OptionScreen  (Core.Game game)
+    // 
+    + Initialize  () override
+    // 
+    + UpdateMenu  (GameTime time) override
+    // 
+    + DrawMenu  (GameTime time) override
+    // 
+    + Activate  (GameTime time) override
+
+// 
+public class VideoOptionScreen : OptionScreen
+  Attributes:
+    // 
+    - menu : VerticalMenu
+    // 
+    - spriteBatch : SpriteBatch
+  Methods:
+    // 
+    + VideoOptionScreen  (Core.Game game)
+    // 
+    + Initialize  () override
+    // 
+    + Collapse  (MenuItem item)
+    // 
+    + UpdateMenu  (GameTime time) override
+    // 
+    + DrawMenu  (GameTime time) override
+    // 
+    + Activate  (GameTime time) override
+
+// 
+public class VideoOptionScreen : OptionScreen
+  Attributes:
+    // 
+    - spriteBatch : SpriteBatch
+    // 
+    - menu : VerticalMenu
+  Methods:
+    // 
+    + VideoOptionScreen  (Core.Game game)
+    // 
+    + Activate  (GameTime time)
+    // 
+    + DrawMenu  (GameTime time)
+    + Initialize ()
+    // 
+    + UpdateMenu  (GameTime time)
+    // 
+    + Collapse  (MenuItem item)
+
+// 
+public class StartScreen : MenuScreen
+  Attributes:
+    // 
+    - spriteBatch : SpriteBatch
+    // 
+    - logo : Texture2D
+    // 
+    # menu : Menu
+  Methods:
+    // 
+    + StartScreen  (Game game)
+    // 
+    + Activate  (GameTime time)
+    // 
+    + UpdateMenu  (GameTime time)
+    // 
+    + DrawMenu  (GameTime time)
+    + Initialize ()
+
+// 
+public class LoadSavegameScreen : MenuScreen
+  Attributes:
+    // 
+    - spriteBatch : SpriteBatch
+    // 
+    - menu : VerticalMenu
+  Methods:
+    // 
+    + LoadSavegameScreen  (Core.Game game)
+    // 
+    + Activate  (GameTime time)
+    // 
+    + DrawMenu  (GameTime time)
+    - AddDefaultKnots ()
+    // 
+    - AddFileToList  (string filename)
+    - UpdateFiles ()
+    + Initialize ()
+    // 
+    + UpdateMenu  (GameTime time)
+
+// 
+public class OptionScreen : MenuScreen
+  Attributes:
+    // 
+    - spriteBatch : SpriteBatch
+    // 
+    - menu : VerticalMenu
+  Methods:
+    // 
+    + OptionScreen  (Core.Game game)
+    // 
+    + Activate  (GameTime time)
+    // 
+    + DrawMenu  (GameTime time)
+    // 
+    + UpdateMenu  (GameTime time)
+    + Initialize ()
+
+// 
+public class VideoOptionScreen : OptionScreen
+  Attributes:
+    // 
+    - menu : VerticalMenu
+    // 
+    - spriteBatch : SpriteBatch
+  Methods:
+    // 
+    + VideoOptionScreen  (Core.Game game)
+    // 
+    + Initialize  () override
+    // 
+    + Collapse  (MenuItem item)
+    // 
+    + UpdateMenu  (GameTime time) override
+    // 
+    + DrawMenu  (GameTime time) override
+    // 
+    + Activate  (GameTime time) override
+
+// 
+public class VideoOptionScreen : OptionScreen
+  Attributes:
+    // 
+    - spriteBatch : SpriteBatch
+    // 
+    - menu : VerticalMenu
+  Methods:
+    // 
+    + VideoOptionScreen  (Core.Game game)
+    // 
+    + Activate  (GameTime time)
+    // 
+    + DrawMenu  (GameTime time)
+    + Initialize ()
+    // 
+    + UpdateMenu  (GameTime time)
+    // 
+    + Collapse  (MenuItem item)
+

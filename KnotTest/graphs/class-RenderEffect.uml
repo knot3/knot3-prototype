@@ -13,23 +13,23 @@ public abstract class RenderEffect : IRenderEffect
     + RenderTarget : RenderTarget2D
   Methods:
     // 
-    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) abstract
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime time) abstract
     // 
     + RenderEffect  (GameScreen screen)
     // 
-    + DrawModel  (GameModel model, GameTime gameTime) virtual
+    + DrawModel  (GameModel model, GameTime time) virtual
     // 
     + RemapModel  (Model model) virtual
     // 
-    + Begin  (GameTime gameTime)
+    + Begin  (GameTime time)
     // 
     # ModifyBasicEffect  (BasicEffect effect, GameModel model)
     // 
-    + Begin  (Color background, GameTime gameTime) virtual
+    + Begin  (Color background, GameTime time) virtual
     // 
-    + End  (GameTime gameTime) virtual
+    + End  (GameTime time) virtual
     // 
-    + DrawLastFrame  (GameTime gameTime)
+    + DrawLastFrame  (GameTime time)
 
 // 
 public interface IRenderEffect : 
@@ -38,15 +38,15 @@ public interface IRenderEffect :
     + RenderTarget : RenderTarget2D
   Methods:
     // 
-    + Begin  (GameTime gameTime)
+    + Begin  (GameTime time)
     // 
-    + End  (GameTime gameTime)
+    + End  (GameTime time)
     // 
     + RemapModel  (Model model)
     // 
-    + DrawModel  (GameModel model, GameTime gameTime)
+    + DrawModel  (GameModel model, GameTime time)
     // 
-    + DrawLastFrame  (GameTime gameTime)
+    + DrawLastFrame  (GameTime time)
 
 // 
 public class BlurEffect : RenderEffect
@@ -57,11 +57,11 @@ public class BlurEffect : RenderEffect
     // 
     + BlurEffect  (GameScreen screen)
     // 
-    + Begin  (Color background, GameTime gameTime) override
+    + Begin  (Color background, GameTime time) override
     // 
-    + End  (GameTime gameTime) override
+    + End  (GameTime time) override
     // 
-    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) override
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime time) override
 
 // 
 public class CelShadingEffect : RenderEffect
@@ -84,11 +84,11 @@ public class CelShadingEffect : RenderEffect
     // 
     + CelShadingEffect  (GameScreen screen)
     // 
-    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) override
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime time) override
     // 
     + RemapModel  (Model model) override
     // 
-    + DrawModel  (GameModel model, GameTime gameTime) override
+    + DrawModel  (GameModel model, GameTime time) override
 
 // 
 public class FadeEffect : RenderEffect
@@ -103,7 +103,7 @@ public class FadeEffect : RenderEffect
     // 
     + FadeEffect  (GameScreen screen, GameScreen oldState)
     // 
-    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) override
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime time) override
 
 // 
 public class InstancingTest : RenderEffect
@@ -114,11 +114,11 @@ public class InstancingTest : RenderEffect
     // 
     + InstancingTest  (GameScreen screen)
     // 
-    + Begin  (Color background, GameTime gameTime) override
+    + Begin  (Color background, GameTime time) override
     // 
-    + End  (GameTime gameTime) override
+    + End  (GameTime time) override
     // 
-    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) override
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime time) override
     // 
     private class ModelInstances : 
       Attributes:
@@ -130,7 +130,7 @@ public class InstancingTest : RenderEffect
         + Count : int
       Methods:
     // 
-    + DrawModel  (GameModel model, GameTime gameTime) override
+    + DrawModel  (GameModel model, GameTime time) override
 
 // 
 public sealed class NoEffect : RenderEffect
@@ -139,7 +139,7 @@ public sealed class NoEffect : RenderEffect
     // 
     + NoEffect  (GameScreen screen)
     // 
-    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) override
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime time) override
 
 // 
 public class BlurEffect : RenderEffect
@@ -150,11 +150,11 @@ public class BlurEffect : RenderEffect
     // 
     + BlurEffect  (GameScreen screen)
     // 
-    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime)
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime time)
     // 
-    + Begin  (Color background, GameTime gameTime)
+    + Begin  (Color background, GameTime time)
     // 
-    + End  (GameTime gameTime)
+    + End  (GameTime time)
 
 // 
 public class CelShadingEffect : RenderEffect
@@ -177,9 +177,9 @@ public class CelShadingEffect : RenderEffect
     // 
     + CelShadingEffect  (GameScreen screen)
     // 
-    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime)
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime time)
     // 
-    + DrawModel  (GameModel model, GameTime gameTime)
+    + DrawModel  (GameModel model, GameTime time)
     // 
     + RemapModel  (Model model)
 
@@ -194,7 +194,7 @@ public class FadeEffect : RenderEffect
     + IsFinished : bool
   Methods:
     // 
-    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime)
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime time)
     // 
     + FadeEffect  (GameScreen screen, GameScreen oldState)
 
@@ -206,22 +206,22 @@ public class InstancingTest : RenderEffect
     // 
     - instanceHash () : Hashtable
     // 
-    + Begin  (Color background, GameTime gameTime)
+    + Begin  (Color background, GameTime time)
     // 
-    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime)
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime time)
     // 
     + InstancingTest  (GameScreen screen)
     // 
-    + DrawModel  (GameModel model, GameTime gameTime)
+    + DrawModel  (GameModel model, GameTime time)
     // 
-    + End  (GameTime gameTime)
+    + End  (GameTime time)
 
 // 
 public sealed class NoEffect : RenderEffect
   Attributes:
   Methods:
     // 
-    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime)
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime time)
     // 
     + NoEffect  (GameScreen screen)
 

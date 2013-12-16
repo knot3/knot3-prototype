@@ -1,92 +1,49 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+
 using Knot3.Utilities;
 
 namespace Knot3.KnotData
 {
-	public struct KnotInfo
+	public struct KnotMetaData
 	{
-		public string Filename;
+		public IKnotIO File;
 		public string Name;
-		public Func<int> EdgeCount;
-		public bool IsValid;
+		public int CountEdges;
+
+		public KnotMetaData (string name, int countEdges, IKnotIO file)
+		{
+			Name = name;
+			CountEdges = countEdges;
+			File = file;
+		}
 
 		public override string ToString ()
 		{
-			return "{Filename=" + Filename + ",Name=" + Name + ",EdgeCount=" + EdgeCount () + ",IsValid=" + IsValid + "}";
+			return "{File=" + File + ",Name=" + Name + ",CountEdges=" + CountEdges + "}";
 		}
 	}
 
-	/// <summary>
-	/// Ein Knoten, der aus einer Liste von Kanten (EdgeList) besteht und ein Knotenformat referenziert (IKnotFormat).
-	/// </summary>
-	public class Knot
+	public class Knot : IEnumerable<Edge>, ICloneable
 	{
-		#region Properties
+		public string Name { get; set; }
 
-		public KnotInfo Info { get; private set; }
+		public IEnumerable<Edge> SelectedEdges { get { return selectedEdges; } }
 
-		public EdgeList Edges;
-		private IKnotFormat Format;
+		private Circle<Edge> edges;
+		private IKnotIO file;
+		private List<Edge> selectedEdges;
 
-		public Action<EdgeList> EdgesChanged {
-			set { Edges.EdgesChanged = value; }
-			get { return Edges.EdgesChanged; }
-		}
+		// events
+		public Action EdgesChanged;
+		public Action SelectionChanged;
 
-		#endregion
-
-		#region Constructors
-
-		public Knot (KnotInfo info, IKnotFormat format, EdgeList edges = null)
+		public Knot ()
 		{
-			info.EdgeCount = () => this.Edges.Count;
-			Info = info;
-			Edges = edges != null ? edges : new EdgeList ();
-			Format = format;
-		}
-
-		#endregion
-
-		#region Public Methods
-
-		public void Rename (string name)
-		{
-			if (name.Length > 0 && name != Info.Name) {
-				KnotInfo info = Info;
-				info.Name = name;
-				info.Filename = Format.FindFilename(name);
-				Info = info;
-			}
-		}
-
-		public void Save() {
-			Format.SaveKnot(this);
-		}
-
-		#endregion
-
-		#region Default Knots
-
-		public static Knot RandomKnot (int count, IKnotFormat format)
-		{
-			EdgeList edges = new EdgeList ();
-			for (int i = 0; i < 3000; ++i) {
-				edges.Add (Edge.RandomEdge ());
-			}
-			edges.Compact ();
-			foreach (Edge edge in edges) {
-				edge.Color = Edge.RandomColor ();
-			}
-
-			return UntitledKnot (edges, format);
-		}
-
-		public static Knot DefaultKnot (IKnotFormat format)
-		{
-			// add some default nodes
-			EdgeList edges = new EdgeList ();
-
-			edges.AddRange (new[] {
+			Name = "Untitled";
+			edges = new Circle<Edge> (new Edge[]{
 				Edge.Up,
 				Edge.Right,
 				Edge.Down,
@@ -97,27 +54,139 @@ namespace Knot3.KnotData
 				Edge.Forward
 			}
 			);
-			edges.Compact ();
-			foreach (Edge edge in edges) {
-				edge.Color = Edge.RandomColor ();
-			}
-
-			return UntitledKnot (edges, format);
+			selectedEdges = new List<Edge> ();
 		}
-
-		private static Knot UntitledKnot (EdgeList edges, IKnotFormat format)
+		
+		public Knot (IKnotIO _file)
 		{
-			int num = new Random ().Next () % 1000;
-			string name = "Untitled #" + num;
-			Knot knot = new Knot (new KnotInfo {
-				Filename = format.FindFilename(name),
-				Name = name,
-				IsValid = true
-			}, format, edges);
-			return knot;
+			Name = _file.Name;
+			file = _file;
+			edges = new Circle<Edge> (file.Edges);
+			selectedEdges = new List<Edge> ();
+		}
+		
+		public Knot (KnotMetaData metaData)
+			: this (metaData.File)
+		{
+		}
+		
+		public object Clone ()
+		{
+			return new Knot {
+				Name = Name,
+				file = file,
+				edges = new Circle<Edge> (edges as IEnumerable<Edge>),
+				selectedEdges = new List<Edge>(selectedEdges),
+				EdgesChanged = EdgesChanged,
+				SelectionChanged = SelectionChanged,
+			};
 		}
 
-		#endregion
+		public void Move (Direction direction, int distance = 1)
+		{
+			HashSet<Edge> selected = new HashSet<Edge> (selectedEdges);
+
+			Circle<Edge> current = edges;
+			do {
+				if (!selected.Contains (current.Previous.Content) && selected.Contains (current.Content)) {
+					for (int i = 0; i < distance; ++i)
+						current.InsertBefore (new Edge (direction));
+				}
+				if (selected.Contains (current.Content) && !selected.Contains (current.Next.Content)) {
+					for (int i = 0; i < distance; ++i)
+						current.InsertAfter (new Edge (direction.ReverseDirection ()));
+				}
+
+				current = current.Next;
+			} while (current != edges);
+
+			current = edges;
+			do {
+				if (current != current.Previous.Previous && current != current.Previous.Previous
+					&& current.Previous.Content.Direction == current.Previous.Previous.Content.Direction.ReverseDirection ()) {
+					current.Previous.Previous.Remove ();
+					current.Previous.Remove ();
+				} else {
+					current = current.Next;
+				}
+			} while (current != edges);
+
+			EdgesChanged ();
+		}
+
+		public IEnumerator<Edge> GetEnumerator ()
+		{
+			return edges.GetEnumerator ();
+		}
+
+		// explicit interface implementation for nongeneric interface
+		IEnumerator IEnumerable.GetEnumerator ()
+		{
+			return GetEnumerator (); // just return the generic version
+		}
+
+		public void Save (IKnotIO file)
+		{
+			file.Save (this);
+		}
+
+		public void Save ()
+		{
+			if (file != null)
+				file.Save (this);
+			else
+				throw new IOException ("Error: IKnotIO file is null!");
+		}
+
+		private Circle<Edge> lastSelected;
+
+		public void AddRangeToSelection (Edge selectedEdge)
+		{
+			Circle<Edge> selectedCircle = null;
+			if (edges.Contains (selectedEdge, out selectedCircle)) {
+				List<Edge> forward = new List<Edge> (lastSelected.RangeTo (selectedCircle));
+				List<Edge> backward = new List<Edge> (selectedCircle.RangeTo (lastSelected));
+
+				if (forward.Count < backward.Count) {
+					foreach (Edge e in forward) {
+						if (!selectedEdges.Contains (e))
+							selectedEdges.Add (e);
+					}
+				} else {
+					foreach (Edge e in backward) {
+						if (!selectedEdges.Contains (e))
+							selectedEdges.Add (e);
+					}
+				}
+				lastSelected = selectedCircle;
+			}
+			SelectionChanged ();
+		}
+
+		public void AddToSelection (Edge edge)
+		{
+			if (!selectedEdges.Contains (edge))
+				selectedEdges.Add (edge);
+			lastSelected = edges.Find (edge);
+			SelectionChanged ();
+		}
+
+		public void ClearSelection ()
+		{
+			selectedEdges.Clear ();
+			lastSelected = null;
+			SelectionChanged ();
+		}
+
+		public bool IsSelected (Edge edge)
+		{
+			return selectedEdges.Contains (edge);
+		}
+
+		public override string ToString ()
+		{
+			return "name=" + Name + ",#edgecount=" + edges.Count + ",file=" + (file != null ? file.ToString () : "null");
+		}
 	}
 }
 

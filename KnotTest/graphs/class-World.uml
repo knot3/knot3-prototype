@@ -29,18 +29,18 @@ public class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
     // 
     + SelectedObjectDistance () : float
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     // 
-    + Update  (GameTime gameTime)
+    + Update  (GameTime time)
     // 
     + Add  (IGameObject obj)
     // 
     + GetEnumerator () : IEnumerator<IGameObject>
     + Initialize ()
     // 
-    + SelectObject  (IGameObject obj, GameTime gameTime)
+    + SelectObject  (IGameObject obj, GameTime time)
 
 // 
 public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
@@ -55,7 +55,7 @@ public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, I
     // 
     + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
 // 
 public interface IGameScreenComponent : Xna.IGameComponent
@@ -64,7 +64,7 @@ public interface IGameScreenComponent : Xna.IGameComponent
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
 // 
 public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
@@ -79,7 +79,7 @@ public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, I
     // 
     + DrawableGameScreenComponent  (GameScreen screen, DisplayLayer index)
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent> virtual
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
 // 
 public interface IGameScreenComponent : Xna.IGameComponent
@@ -88,5 +88,5 @@ public interface IGameScreenComponent : Xna.IGameComponent
     + Index : DisplayLayer
   Methods:
     // 
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameScreenComponent>
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 

@@ -2,8 +2,6 @@
 public class LoadSavegameScreen : MenuScreen
   Attributes:
     // 
-    - format : IKnotFormat
-    // 
     - menu : VerticalMenu
     // 
     - spriteBatch : SpriteBatch

@@ -24,7 +24,7 @@ public class Edge :
     // 
     + Color : Color
     // 
-    + Direction : Vector3
+    + Direction : Direction
     // 
     + ID : int
     // 
@@ -37,9 +37,7 @@ public class Edge :
     // 
     + Colors () : List<Color> static
     // 
-    + Edge  (int x, int y, int z)
-    // 
-    + Edge  (Vector3 v)
+    + Edge  (Direction direction)
     // 
     + Equals (object obj) : bool
     // 
@@ -47,7 +45,7 @@ public class Edge :
     // 
     + ToString () : string
     // 
-    + RandomColor (GameTime gameTime) : Color static
+    + RandomColor (GameTime time) : Color static
     // 
     + RandomColor () : Color static
     // 

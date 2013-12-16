@@ -1,0 +1,63 @@
+// 
+public class EdgeMovement : IGameObject, IEnumerable<IGameObject>
+  Attributes:
+    // 
+    - shadowObjects : List<ShadowGameObject>
+    // 
+    + World : World
+    // 
+    - screen : GameScreen
+    // 
+    - previousMousePosition : Vector3
+    // 
+    + Info : GameObjectInfo
+    // 
+    + Knot : Knot
+  Methods:
+    // 
+    - IEnumerable.GetEnumerator () : IEnumerator
+    // 
+    - MovePipes  (Vector3 currentMousePosition)
+    // 
+    - MoveShadowPipes  (Vector3 currentMousePosition)
+    // 
+    + EdgeMovement  (GameScreen screen, World world, GameObjectInfo info)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + GetEnumerator () : IEnumerator<IGameObject>
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
+    - ComputeDirection  (Vector3 currentMousePosition, out Direction direction, out float count)
+    // 
+    - ComputeDirection  (Vector3 currentMousePosition, out Direction direction, out int countInt)
+    - CreateShadowPipes ()
+    // 
+    - MoveShadowPipes  (Vector3 currentMousePosition, Vector3 direction3D)
+    // 
+    - TryMovePipes  (GameTime time)
+    // 
+    - TrySelectObject  (GameTime time)
+    // 
+    + Center () : Vector3
+
+// 
+public interface IGameObject : 
+  Attributes:
+    // 
+    + Info : GameObjectInfo
+    // 
+    + World : World
+  Methods:
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+

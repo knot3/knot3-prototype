@@ -1,38 +1,62 @@
 // 
-public struct KnotInfo : 
+public struct KnotMetaData : 
   Attributes:
     // 
-    + Filename : string
+    + File : IKnotIO
     // 
     + Name : string
     // 
-    + EdgeCount : Func<int>
-    // 
-    + IsValid : bool
+    + CountEdges : int
   Methods:
+    // 
+    + KnotMetaData (string name, int countEdges, IKnotIO file)
     // 
     + ToString () : string override
 // 
-public class Knot : 
+public class Knot : IEnumerable<Edge>, ICloneable
   Attributes:
     // 
-    + Info : KnotInfo
+    + Name : string
     // 
-    + Edges : EdgeList
+    + SelectedEdges : IEnumerable<Edge>
     // 
-    - Format : IKnotFormat
+    - edges : Circle<Edge>
     // 
-    + EdgesChanged : Action<EdgeList>
+    - file : IKnotIO
+    // 
+    - selectedEdges : List<Edge>
+    // 
+    + EdgesChanged : Action
+    // 
+    + SelectionChanged : Action
+    // 
+    - lastSelected : Circle<Edge>
   Methods:
     // 
-    + Knot (KnotInfo info, IKnotFormat format, EdgeList edges = null)
+    + Knot ()
     // 
-    + Rename (string name)
+    + Knot (IKnotIO _file)
+    // 
+    + : this (metaData.File) (KnotMetaData metaData) : Knot
+    // 
+    + Clone () : object
+    // 
+    + Move (Direction direction, int distance = 1)
+    // 
+    + GetEnumerator () : IEnumerator<Edge>
+    // 
+    - IEnumerable.GetEnumerator () : IEnumerator
+    // 
+    + Save (IKnotIO file)
     // 
     + Save ()
     // 
-    + RandomKnot (int count, IKnotFormat format) : Knot static
+    + AddRangeToSelection (Edge selectedEdge)
     // 
-    + DefaultKnot (IKnotFormat format) : Knot static
+    + AddToSelection (Edge edge)
     // 
-    - UntitledKnot (EdgeList edges, IKnotFormat format) : Knot static
+    + ClearSelection ()
+    // 
+    + IsSelected (Edge edge) : bool
+    // 
+    + ToString () : string override

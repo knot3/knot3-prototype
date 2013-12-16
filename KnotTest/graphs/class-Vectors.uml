@@ -3,6 +3,8 @@ public static class Vectors :
   Attributes:
   Methods:
     // 
+    + Translate (this BoundingSphere sphere, Vector3 position) : BoundingSphere static
+    // 
     + Grow (this Rectangle rect, int diff) : Rectangle static
     // 
     + PrimaryVector (this Vector2 v) : Vector2 static
@@ -24,8 +26,6 @@ public static class Vectors :
     + Scale (this BoundingSphere sphere, Vector3 scale) : BoundingSphere static
     // 
     + Scale (this BoundingSphere sphere, float scale) : BoundingSphere static
-    // 
-    + Translate (this BoundingSphere sphere, Vector3 position) : BoundingSphere static
     // 
     + Bounds (this Model model) : BoundingSphere[] static
     // 

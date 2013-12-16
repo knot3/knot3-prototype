@@ -13,6 +13,8 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+using Knot3.KnotData;
+
 namespace Knot3.Utilities
 {
 	public static class Vectors
@@ -160,7 +162,7 @@ namespace Knot3.Utilities
 
 		public static BoundingSphere Scale (this BoundingSphere sphere, Vector3 scale)
 		{
-			return new BoundingSphere (sphere.Center, sphere.Radius * scale.PrimaryVector().Length());
+			return new BoundingSphere (sphere.Center, sphere.Radius * scale.PrimaryVector ().Length ());
 		}
 
 		public static BoundingSphere Translate (this BoundingSphere sphere, Vector3 position)

@@ -1,0 +1,79 @@
+// 
+public class InputManager : GameScreenComponent
+  Attributes:
+    // 
+    - PreviousClickMouseState : MouseState static
+    // 
+    - LeftButtonClickTimer : double static
+    // 
+    - RightButtonClickTimer : double static
+    // 
+    + GrabMouseMovement : bool
+    // 
+    + LeftButton : ClickState static
+    // 
+    + RightButton : ClickState static
+    // 
+    + PreviousKeyboardState : KeyboardState static
+    // 
+    + MouseState : MouseState static
+    // 
+    + PreviousMouseState : MouseState static
+    // 
+    + CurrentInputAction : InputAction
+    // 
+    + WASDMode : WASDMode
+    // 
+    + KeyboardState : KeyboardState static
+    // 
+    + FullscreenToggled : bool static
+  Methods:
+    // 
+    + Update  (GameTime time)
+    // 
+    + InputManager  (GameScreen screen)
+
+// 
+public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
+  Attributes:
+    // 
+    + screen : GameScreen
+    // 
+    + Index : DisplayLayer
+  Methods:
+    // 
+    + GameScreenComponent  (GameScreen screen, DisplayLayer index)
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
+
+// 
+public interface IGameScreenComponent : Xna.IGameComponent
+  Attributes:
+    // 
+    + Index : DisplayLayer
+  Methods:
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+
+// 
+public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
+  Attributes:
+    // 
+    + Index : DisplayLayer
+    // 
+    + screen : GameScreen
+  Methods:
+    // 
+    + GameScreenComponent  (GameScreen screen, DisplayLayer index)
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
+
+// 
+public interface IGameScreenComponent : Xna.IGameComponent
+  Attributes:
+    // 
+    + Index : DisplayLayer
+  Methods:
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+

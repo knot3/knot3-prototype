@@ -1,0 +1,59 @@
+// 
+public class FileIO : 
+  Attributes:
+    // 
+    # Filename : string
+  Methods:
+    // 
+    + ConvertToFilename (string humanReadableName) : string virtual
+
+// 
+public class KnotFileIO : FileIO, IKnotIO
+  Attributes:
+    // 
+    - parser : KnotStringIO
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + MetaData : KnotMetaData
+    // 
+    + Name : string
+    // 
+    + FileExtensions : string[] static
+  Methods:
+    // 
+    + KnotFileIO  (Knot knot)
+    // 
+    + KnotFileIO  (string filename)
+    // 
+    + Save  (Knot knot)
+    // 
+    + ConvertToFilename (string humanReadableName) : string override
+    // 
+    + ToString () : string override
+
+// 
+public class KnotFileIO : FileIO, IKnotIO
+  Attributes:
+    // 
+    + MetaData : KnotMetaData
+    // 
+    + Name : string
+    // 
+    - parser : KnotStringIO
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + FileExtensions : string[] static
+  Methods:
+    // 
+    + KnotFileIO  (Knot knot)
+    // 
+    + Save  (Knot knot)
+    // 
+    + KnotFileIO  (string filename)
+    // 
+    + ConvertToFilename (string humanReadableName) : string
+    // 
+    + ToString () : string
+

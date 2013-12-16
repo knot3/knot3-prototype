@@ -22,13 +22,13 @@
 <text text-anchor="start" x="7.5" y="-105.8" font-family="Arial" font-size="8.00">+ VSync : bool</text>
 <polyline fill="none" stroke="black" points="-0.5,-99 166.5,-99 "/>
 <text text-anchor="start" x="7.5" y="-87.8" font-family="Arial" font-size="8.00">+ DefaultSize (1280, 720) : Vector2 static</text>
-<text text-anchor="start" x="7.5" y="-77.8" font-family="Arial" font-size="8.00"># Draw (GameTime gameTime)</text>
+<text text-anchor="start" x="7.5" y="-77.8" font-family="Arial" font-size="8.00"># Draw (GameTime time)</text>
 <text text-anchor="start" x="7.5" y="-67.8" font-family="Arial" font-size="8.00"># LoadContent ()</text>
 <text text-anchor="start" x="7.5" y="-57.8" font-family="Arial" font-size="8.00">+ Game ()</text>
-<text text-anchor="start" x="7.5" y="-47.8" font-family="Arial" font-size="8.00">&#45; UpdateInput (GameTime gameTime)</text>
+<text text-anchor="start" x="7.5" y="-47.8" font-family="Arial" font-size="8.00">&#45; UpdateInput (GameTime time)</text>
 <text text-anchor="start" x="7.5" y="-37.8" font-family="Arial" font-size="8.00"># Initialize ()</text>
 <text text-anchor="start" x="7.5" y="-27.8" font-family="Arial" font-size="8.00"># UnloadContent ()</text>
-<text text-anchor="start" x="7.5" y="-17.8" font-family="Arial" font-size="8.00"># Update (GameTime gameTime)</text>
+<text text-anchor="start" x="7.5" y="-17.8" font-family="Arial" font-size="8.00"># Update (GameTime time)</text>
 <text text-anchor="start" x="7.5" y="-7.8" font-family="Arial" font-size="8.00">+ Time (Action action) : TimeSpan static</text>
 </g>
 <!-- Box_MicrosoftXnaFrameworkGame -->

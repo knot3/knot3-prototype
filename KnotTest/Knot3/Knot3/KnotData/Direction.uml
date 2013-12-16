@@ -1,0 +1,18 @@
+public enum Direction
+    Zero = 0
+    Left
+    Right
+    Up
+    Down
+    Forward
+    Backward
+// 
+public static class DirectionExtensions : 
+  Attributes:
+  Methods:
+    // 
+    + ToDirection (this Vector3 v) : Direction static
+    // 
+    + ToVector3 (this Direction d) : Vector3 static
+    // 
+    + ReverseDirection (this Direction dir) : Direction static

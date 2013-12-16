@@ -1,0 +1,32 @@
+// 
+public class Circle<T> : IEnumerable<T>
+  Attributes:
+    // 
+    + Next : Circle<T>
+    // 
+    + Previous : Circle<T>
+    // 
+    + Content : T
+    // 
+    + Count : int
+  Methods:
+    // 
+    + InsertBefore (T obj) : Circle<T>
+    // 
+    + Contains (T obj, out Circle<T> item) : bool
+    // 
+    - IEnumerable.GetEnumerator () : IEnumerator
+    // 
+    + Circle  (IEnumerable<T> list)
+    // 
+    + Circle  (T content)
+    // 
+    + Find (T obj) : Circle<T>
+    // 
+    + InsertAfter (T obj) : Circle<T>
+    // 
+    + RangeTo (Circle<T> other) : IEnumerable<T>
+    // 
+    + GetEnumerator () : IEnumerator<T>
+    + Remove ()
+

@@ -1,0 +1,16 @@
+// 
+public class EdgeColoring : GameScreenComponent, IKeyEventListener
+  Attributes:
+    // 
+    + Knot : Knot
+    // 
+    + ValidKeys : List<Keys>
+    // 
+    + IsKeyEventEnabled : bool
+  Methods:
+    // 
+    + EdgeColoring (GameScreen screen)
+    // 
+    + Update (GameTime time) override
+    // 
+    + OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)

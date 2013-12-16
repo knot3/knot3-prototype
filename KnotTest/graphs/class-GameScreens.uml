@@ -1,0 +1,17 @@
+// 
+public static class GameScreens : 
+  Attributes:
+    // 
+    + LoadSavegameScreen : LoadSavegameScreen static
+    // 
+    + OptionScreen : OptionScreen static
+    // 
+    + StartScreen : StartScreen static
+    // 
+    + VideoOptionScreen : VideoOptionScreen static
+    // 
+    + CreativeMode : CreativeModeScreen static
+  Methods:
+    // 
+    + Initialize  (Game game) static
+

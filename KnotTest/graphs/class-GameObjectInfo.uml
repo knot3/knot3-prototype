@@ -56,8 +56,6 @@ public class ArrowModelInfo : GameModelInfo
 public class NodeModelInfo : GameModelInfo
   Attributes:
     // 
-    + EdgeList : EdgeList
-    // 
     + NodeMap : NodeMap
     // 
     + EdgeA : Edge
@@ -65,7 +63,7 @@ public class NodeModelInfo : GameModelInfo
     + EdgeB : Edge
   Methods:
     // 
-    + NodeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
+    + NodeModelInfo  (NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
     // 
     + Equals (GameObjectInfo other) : bool override
 
@@ -73,7 +71,7 @@ public class NodeModelInfo : GameModelInfo
 public class PipeModelInfo : GameModelInfo
   Attributes:
     // 
-    + EdgeList : EdgeList
+    + Knot : Knot
     // 
     + NodeMap : NodeMap
     // 
@@ -86,7 +84,7 @@ public class PipeModelInfo : GameModelInfo
     + PositionTo : Vector3
   Methods:
     // 
-    + PipeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
+    + PipeModelInfo  (Knot knot, NodeMap nodeMap, Edge edge, Vector3 offset)
     // 
     + Equals (GameObjectInfo other) : bool override
 
@@ -114,11 +112,9 @@ public class NodeModelInfo : GameModelInfo
     + EdgeB : Edge
     // 
     + NodeMap : NodeMap
-    // 
-    + EdgeList : EdgeList
   Methods:
     // 
-    + NodeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
+    + NodeModelInfo  (NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
     // 
     + Equals (GameObjectInfo other) : bool
 
@@ -136,10 +132,10 @@ public class PipeModelInfo : GameModelInfo
     // 
     + PositionTo : Vector3
     // 
-    + EdgeList : EdgeList
+    + Knot : Knot
   Methods:
     // 
-    + PipeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
+    + PipeModelInfo  (Knot knot, NodeMap nodeMap, Edge edge, Vector3 offset)
     // 
     + Equals (GameObjectInfo other) : bool
 
@@ -196,8 +192,6 @@ public class ArrowModelInfo : GameModelInfo
 public class NodeModelInfo : GameModelInfo
   Attributes:
     // 
-    + EdgeList : EdgeList
-    // 
     + NodeMap : NodeMap
     // 
     + EdgeA : Edge
@@ -205,7 +199,7 @@ public class NodeModelInfo : GameModelInfo
     + EdgeB : Edge
   Methods:
     // 
-    + NodeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
+    + NodeModelInfo  (NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
     // 
     + Equals (GameObjectInfo other) : bool override
 
@@ -213,7 +207,7 @@ public class NodeModelInfo : GameModelInfo
 public class PipeModelInfo : GameModelInfo
   Attributes:
     // 
-    + EdgeList : EdgeList
+    + Knot : Knot
     // 
     + NodeMap : NodeMap
     // 
@@ -226,7 +220,7 @@ public class PipeModelInfo : GameModelInfo
     + PositionTo : Vector3
   Methods:
     // 
-    + PipeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
+    + PipeModelInfo  (Knot knot, NodeMap nodeMap, Edge edge, Vector3 offset)
     // 
     + Equals (GameObjectInfo other) : bool override
 
@@ -254,11 +248,9 @@ public class NodeModelInfo : GameModelInfo
     + EdgeB : Edge
     // 
     + NodeMap : NodeMap
-    // 
-    + EdgeList : EdgeList
   Methods:
     // 
-    + NodeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
+    + NodeModelInfo  (NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
     // 
     + Equals (GameObjectInfo other) : bool
 
@@ -276,10 +268,10 @@ public class PipeModelInfo : GameModelInfo
     // 
     + PositionTo : Vector3
     // 
-    + EdgeList : EdgeList
+    + Knot : Knot
   Methods:
     // 
-    + PipeModelInfo  (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
+    + PipeModelInfo  (Knot knot, NodeMap nodeMap, Edge edge, Vector3 offset)
     // 
     + Equals (GameObjectInfo other) : bool
 

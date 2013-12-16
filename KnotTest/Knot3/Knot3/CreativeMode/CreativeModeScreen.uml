@@ -16,13 +16,11 @@ public class CreativeModeScreen : GameScreen
     // 
     - picker : ModelMousePicker
     // 
-    - movement : PipeMovement
+    - movement : EdgeMovement
     // 
-    - coloring : PipeColoring
+    - coloring : EdgeColoring
     // 
-    - lineRenderer : LineRenderer
-    // 
-    - pipeRenderer : ModelRenderer
+    - renderer : ModelRenderer
     // 
     - dialog : Dialog
     // 

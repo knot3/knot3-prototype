@@ -22,17 +22,17 @@ namespace Knot3.GameObjects
 {
 	public class PipeModelInfo : GameModelInfo
 	{
-		public EdgeList EdgeList;
+		public Knot Knot;
 		public NodeMap NodeMap;
 		public Edge Edge;
 		public Vector3 Direction;
 		public Vector3 PositionFrom;
 		public Vector3 PositionTo;
 
-		public PipeModelInfo (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
+		public PipeModelInfo (Knot knot, NodeMap nodeMap, Edge edge, Vector3 offset)
 			: base("pipe1")
 		{
-			EdgeList = edgeList;
+			Knot = knot;
 			NodeMap = nodeMap;
 			Edge = edge;
 			Node node1 = nodeMap.FromNode (edge);
@@ -109,7 +109,7 @@ namespace Knot3.GameObjects
 			if (World.SelectedObject == this) {
 				HighlightIntensity = 0.40f;
 				HighlightColor = Color.White;
-			} else if (Info.EdgeList.SelectedEdges.Contains (Info.Edge)) {
+			} else if (Info.Knot.SelectedEdges.Contains (Info.Edge)) {
 				HighlightIntensity = 0.80f;
 				HighlightColor = Color.White;
 			} else {

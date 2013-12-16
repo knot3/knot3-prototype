@@ -21,15 +21,13 @@ namespace Knot3.GameObjects
 {
 	public class NodeModelInfo : GameModelInfo
 	{
-		public EdgeList EdgeList;
 		public NodeMap NodeMap;
 		public Edge EdgeA;
 		public Edge EdgeB;
 
-		public NodeModelInfo (EdgeList edgeList, NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
+		public NodeModelInfo (NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
 			: base("knot1")
 		{
-			EdgeList = edgeList;
 			NodeMap = nodeMap;
 			EdgeA = edgeA;
 			EdgeB = edgeB;

@@ -1,0 +1,47 @@
+// 
+public class KnotStringIO : IKnotIO
+  Attributes:
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + MetaData : KnotMetaData
+    // 
+    + Name : string
+    // 
+    - lines : IEnumerable<string>
+    // 
+    - parentIO : IKnotIO
+    // 
+    + Content : string
+  Methods:
+    // 
+    - DecodeEdge (char c) : Edge static
+    // 
+    - EncodeEdge (Edge edge) : char static
+    // 
+    + KnotStringIO  (string content)
+    // 
+    + Save  (Knot knot)
+    // 
+    - DecodeColor (string hexString) : Color static
+    // 
+    - ToLines (Knot knot) : IEnumerable<string> static
+    // 
+    - EncodeColor (Color c) : String static
+    // 
+    + KnotStringIO  (string content, IKnotIO parentIO)
+    + ToString () : string
+
+// 
+public interface IKnotIO : 
+  Attributes:
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + MetaData : KnotMetaData
+    // 
+    + Name : string
+  Methods:
+    // 
+    + Save  (Knot knot)
+

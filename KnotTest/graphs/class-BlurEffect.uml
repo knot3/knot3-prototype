@@ -7,11 +7,11 @@ public class BlurEffect : RenderEffect
     // 
     + BlurEffect  (GameScreen screen)
     // 
-    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime)
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime time)
     // 
-    + Begin  (Color background, GameTime gameTime)
+    + Begin  (Color background, GameTime time)
     // 
-    + End  (GameTime gameTime)
+    + End  (GameTime time)
 
 // 
 public abstract class RenderEffect : IRenderEffect
@@ -30,19 +30,19 @@ public abstract class RenderEffect : IRenderEffect
     // 
     + RenderEffect  (GameScreen screen)
     // 
-    + Begin  (GameTime gameTime)
+    + Begin  (GameTime time)
     // 
-    + Begin  (Color background, GameTime gameTime) virtual
+    + Begin  (Color background, GameTime time) virtual
     // 
-    + End  (GameTime gameTime) virtual
+    + End  (GameTime time) virtual
     // 
-    + DrawLastFrame  (GameTime gameTime)
+    + DrawLastFrame  (GameTime time)
     // 
-    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) abstract
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime time) abstract
     // 
     + RemapModel  (Model model) virtual
     // 
-    + DrawModel  (GameModel model, GameTime gameTime) virtual
+    + DrawModel  (GameModel model, GameTime time) virtual
     // 
     # ModifyBasicEffect  (BasicEffect effect, GameModel model)
 
@@ -53,15 +53,15 @@ public interface IRenderEffect :
     + RenderTarget : RenderTarget2D
   Methods:
     // 
-    + Begin  (GameTime gameTime)
+    + Begin  (GameTime time)
     // 
-    + End  (GameTime gameTime)
+    + End  (GameTime time)
     // 
     + RemapModel  (Model model)
     // 
-    + DrawModel  (GameModel model, GameTime gameTime)
+    + DrawModel  (GameModel model, GameTime time)
     // 
-    + DrawLastFrame  (GameTime gameTime)
+    + DrawLastFrame  (GameTime time)
 
 // 
 public abstract class RenderEffect : IRenderEffect
@@ -78,23 +78,23 @@ public abstract class RenderEffect : IRenderEffect
     + RenderTarget : RenderTarget2D
   Methods:
     // 
-    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime gameTime) abstract
+    # DrawRenderTarget  (SpriteBatch spriteBatch, GameTime time) abstract
     // 
     + RenderEffect  (GameScreen screen)
     // 
-    + DrawModel  (GameModel model, GameTime gameTime) virtual
+    + DrawModel  (GameModel model, GameTime time) virtual
     // 
     + RemapModel  (Model model) virtual
     // 
-    + Begin  (GameTime gameTime)
+    + Begin  (GameTime time)
     // 
     # ModifyBasicEffect  (BasicEffect effect, GameModel model)
     // 
-    + Begin  (Color background, GameTime gameTime) virtual
+    + Begin  (Color background, GameTime time) virtual
     // 
-    + End  (GameTime gameTime) virtual
+    + End  (GameTime time) virtual
     // 
-    + DrawLastFrame  (GameTime gameTime)
+    + DrawLastFrame  (GameTime time)
 
 // 
 public interface IRenderEffect : 
@@ -103,13 +103,13 @@ public interface IRenderEffect :
     + RenderTarget : RenderTarget2D
   Methods:
     // 
-    + Begin  (GameTime gameTime)
+    + Begin  (GameTime time)
     // 
-    + End  (GameTime gameTime)
+    + End  (GameTime time)
     // 
     + RemapModel  (Model model)
     // 
-    + DrawModel  (GameModel model, GameTime gameTime)
+    + DrawModel  (GameModel model, GameTime time)
     // 
-    + DrawLastFrame  (GameTime gameTime)
+    + DrawLastFrame  (GameTime time)
 

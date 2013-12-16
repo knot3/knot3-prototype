@@ -20,7 +20,7 @@ using System.Collections;
 
 namespace Knot3.GameObjects
 {
-	public class PipeMovement : IGameObject, IEnumerable<IGameObject>
+	public class EdgeMovement : IGameObject, IEnumerable<IGameObject>
 	{
 		// game screen
 		private GameScreen screen;
@@ -38,15 +38,13 @@ namespace Knot3.GameObjects
 		private Vector3 previousMousePosition = Vector3.Zero;
 		private List<ShadowGameObject> shadowObjects;
 
-		public PipeMovement (GameScreen screen, World world, GameObjectInfo info)
+		public EdgeMovement (GameScreen screen, World world, GameObjectInfo info)
 		{
 			this.screen = screen;
 			this.World = world;
 			Info = info;
 			shadowObjects = new List<ShadowGameObject> ();
 		}
-
-		private HashSet<EdgeList> knownEdgeLists = new HashSet<EdgeList> ();
 
 		public void Update (GameTime time)
 		{
@@ -64,26 +62,21 @@ namespace Knot3.GameObjects
 				if (InputManager.LeftButton == ClickState.SingleClick) {
 					World.Redraw = true;
 					try {
-						Edge e = pipe.Info.Edge;
-						EdgeList edges = pipe.Info.EdgeList;
-						knownEdgeLists.Add (edges);
-						Console.WriteLine ("knownEdgeLists=" + knownEdgeLists.Count);
+						Edge selectedEdge = pipe.Info.Edge;
+						Console.WriteLine ("knot=" + Knot.Count());
 
 						// CTRL
 						if (Keys.LeftControl.IsHeldDown ()) {
-							edges.SelectedEdges.Add (e);
+							Knot.AddToSelection(selectedEdge);
 						}
 						// Shift
 						else if (Keys.LeftShift.IsHeldDown ()) {
-							if (edges.SelectedEdges.Count != 0) {
-								Edge last = edges.SelectedEdges [-1];
-								edges.SelectedEdges.AddRange (edges.Interval (last, e));
-							}
-							edges.SelectedEdges.Add (e);
+							Knot.AddRangeToSelection(selectedEdge);
 						}
 						// mouse click only
 						else {
-							edges.SelectedEdges.Set (e);
+							Knot.ClearSelection();
+							Knot.AddToSelection(selectedEdge);
 						}
 					} catch (ArgumentOutOfRangeException exp) {
 						Console.WriteLine (exp.ToString ());
@@ -139,9 +132,7 @@ namespace Knot3.GameObjects
 			else {
 				// left click clears the selection
 				if (InputManager.LeftButton == ClickState.SingleClick) {
-					foreach (EdgeList edges in knownEdgeLists) {
-						edges.SelectedEdges.Clear ();
-					}
+					Knot.ClearSelection();
 				}
 			}
 		}
@@ -151,7 +142,7 @@ namespace Knot3.GameObjects
 			shadowObjects.Clear ();
 			foreach (IEnumerable<IGameObject> container in World.Objects.OfType<IEnumerable<IGameObject>>()) {
 				foreach (PipeModel pipe in container.OfType<PipeModel>()) {
-					if (Knot.Edges.SelectedEdges.Contains (pipe.Info.Edge)) {
+					if (Knot.SelectedEdges.Contains (pipe.Info.Edge)) {
 						shadowObjects.Add (new ShadowGameModel (screen, pipe as GameModel));
 					}
 				}
@@ -161,14 +152,14 @@ namespace Knot3.GameObjects
 			}
 		}
 
-		private void ComputeDirection (Vector3 currentMousePosition, out Vector3 direction, out float count)
+		private void ComputeDirection (Vector3 currentMousePosition, out Direction direction, out float count)
 		{
 			Vector3 mouseMove = currentMousePosition - previousMousePosition;
-			direction = mouseMove.PrimaryDirection ();
+			direction = mouseMove.PrimaryDirection ().ToDirection ();
 			count = mouseMove.Length () / Node.Scale;
 		}
 
-		private void ComputeDirection (Vector3 currentMousePosition, out Vector3 direction, out int countInt)
+		private void ComputeDirection (Vector3 currentMousePosition, out Direction direction, out int countInt)
 		{
 			float countFloat;
 			ComputeDirection (currentMousePosition, out direction, out countFloat);
@@ -177,7 +168,7 @@ namespace Knot3.GameObjects
 
 		private void MoveShadowPipes (Vector3 currentMousePosition, Vector3 direction3D)
 		{
-			Vector3 dummy;
+			Direction dummy;
 			float count;
 			ComputeDirection (currentMousePosition, out dummy, out count);
 			foreach (ShadowGameModel shadowObj in shadowObjects) {
@@ -190,11 +181,11 @@ namespace Knot3.GameObjects
 
 		private void MoveShadowPipes (Vector3 currentMousePosition)
 		{
-			Vector3 direction3D;
+			Direction direction;
 			float count;
-			ComputeDirection (currentMousePosition, out direction3D, out count);
+			ComputeDirection (currentMousePosition, out direction, out count);
 			foreach (ShadowGameModel shadowObj in shadowObjects) {
-				shadowObj.ShadowPosition = shadowObj.OriginalPosition + direction3D * count * Node.Scale;
+				shadowObj.ShadowPosition = shadowObj.OriginalPosition + direction.ToVector3 () * count * Node.Scale;
 				shadowObj.ShadowAlpha = 0.3f;
 				shadowObj.ShadowColor = Color.White;
 				// Console.WriteLine ("MoveShadowPipes: " + shadowObj + ", direction=" + direction3D * count);
@@ -203,13 +194,13 @@ namespace Knot3.GameObjects
 
 		private void MovePipes (Vector3 currentMousePosition)
 		{
-			Vector3 direction3D;
+			Direction direction;
 			int count;
-			ComputeDirection (currentMousePosition, out direction3D, out count);
+			ComputeDirection (currentMousePosition, out direction, out count);
 			if (count > 0) {
 				try {
 					//Knot.Edges.SelectEdge (Info.Edge, true);
-					Knot.Edges.Move (Knot.Edges.SelectedEdges, direction3D, count);
+					Knot.Move (direction, count);
 					//Knot.Edges.SelectEdge ();
 					previousMousePosition = currentMousePosition;
 				} catch (ArgumentOutOfRangeException exp) {

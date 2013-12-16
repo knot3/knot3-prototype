@@ -4,21 +4,19 @@ public class CreativeModeScreen : GameScreen
     // 
     - dialog : Dialog
     // 
-    - knotInput : KnotInputHandler
+    - coloring : EdgeColoring
     // 
-    - lineRenderer : LineRenderer
+    - movement : EdgeMovement
+    // 
+    - knotInput : KnotInputHandler
     // 
     - picker : ModelMousePicker
     // 
-    - pipeRenderer : ModelRenderer
+    - renderer : ModelRenderer
     // 
     - pointer : MousePointer
     // 
     - overlay : Overlay
-    // 
-    - coloring : PipeColoring
-    // 
-    - movement : PipeMovement
     // 
     - world : World
     // 
@@ -29,19 +27,19 @@ public class CreativeModeScreen : GameScreen
     - knot : Knot
   Methods:
     // 
-    - UpdateInput  (GameTime gameTime)
+    - UpdateInput  (GameTime time)
     // 
     + CreativeModeScreen  (Core.Game game)
     // 
-    + Activate  (GameTime gameTime)
+    + Activate  (GameTime time)
     // 
-    + Draw  (GameTime gameTime)
+    + Draw  (GameTime time)
     + Initialize ()
     // 
     + LoadFile  (string file)
     + Unload ()
     // 
-    + Update  (GameTime gameTime)
+    + Update  (GameTime time)
 
 // 
 public abstract class GameScreen : 
@@ -70,19 +68,19 @@ public abstract class GameScreen :
     // 
     + Initialize  () abstract
     // 
-    + Update  (GameTime gameTime) abstract
+    + Update  (GameTime time) abstract
     // 
-    + Draw  (GameTime gameTime) abstract
+    + Draw  (GameTime time) abstract
     // 
     + Unload  () abstract
     // 
-    + AddGameComponents  (GameTime gameTime, params IGameScreenComponent[] components)
+    + AddGameComponents  (GameTime time, params IGameScreenComponent[] components)
     // 
-    + RemoveGameComponents  (GameTime gameTime, params IGameScreenComponent[] components)
+    + RemoveGameComponents  (GameTime time, params IGameScreenComponent[] components)
     // 
-    + Activate  (GameTime gameTime) virtual
+    + Activate  (GameTime time) virtual
     // 
-    + Deactivate  (GameTime gameTime) virtual
+    + Deactivate  (GameTime time) virtual
 
 // 
 public abstract class GameScreen : 
@@ -107,19 +105,19 @@ public abstract class GameScreen :
     + PostProcessing : RenderEffect
   Methods:
     // 
-    + Draw  (GameTime gameTime) abstract
+    + Draw  (GameTime time) abstract
     + Initialize () abstract
     + Unload () abstract
     // 
-    + Activate  (GameTime gameTime) virtual
+    + Activate  (GameTime time) virtual
     // 
     + GameScreen  (Game game)
     // 
-    + Update  (GameTime gameTime) abstract
+    + Update  (GameTime time) abstract
     // 
-    + Deactivate  (GameTime gameTime) virtual
+    + Deactivate  (GameTime time) virtual
     // 
-    + AddGameComponents  (GameTime gameTime, params IGameScreenComponent[] components)
+    + AddGameComponents  (GameTime time, params IGameScreenComponent[] components)
     // 
-    + RemoveGameComponents  (GameTime gameTime, params IGameScreenComponent[] components)
+    + RemoveGameComponents  (GameTime time, params IGameScreenComponent[] components)
 

@@ -1,0 +1,12 @@
+// 
+public interface IKnotIO : 
+  Attributes:
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + MetaData : KnotMetaData
+    // 
+    + Name : string
+  Methods:
+    // 
+    + Save (Knot knot)

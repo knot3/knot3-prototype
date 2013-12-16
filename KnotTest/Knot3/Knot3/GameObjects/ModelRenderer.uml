@@ -1,10 +1,14 @@
 // 
-public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
+public sealed class ModelRenderer : IGameObject, IEnumerable<IGameObject>
   Attributes:
     // 
-    + Info : GameObjectInfo override
+    - screen : GameScreen
     // 
-    + World : World override
+    + Info : GameObjectInfo
+    // 
+    + World : World
+    // 
+    - knot : Knot
     // 
     - pipes : List<PipeModel>
     // 
@@ -17,15 +21,21 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     - nodeFactory : ModelFactory
     // 
     - arrowFactory : ModelFactory
+    // 
+    - nodeMap : NodeMap new
+    // 
+    + Knot : Knot
   Methods:
     // 
     + ModelRenderer (GameScreen screen, GameObjectInfo info)
     // 
-    + Update (GameTime time) override
+    + Update (GameTime time)
     // 
-    + OnEdgesChanged (EdgeList edgeList) override
+    + OnEdgesChanged ()
     // 
-    + CreateArrows (WrapList<Edge> selectedEdges)
+    + CreateArrows (IEnumerable<Edge> selectedEdges)
+    // 
+    - CreateArrows (IList<Edge> selectedEdges)
     // 
     - CreateArrow (Edge edge)
     // 
@@ -33,8 +43,8 @@ public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
     // 
     - IEnumerable.GetEnumerator () : IEnumerator
     // 
-    + Draw (GameTime time) override
+    + Draw (GameTime time)
     // 
-    + Intersects (Ray ray) : GameObjectDistance override
+    + Intersects (Ray ray) : GameObjectDistance
     // 
-    + Center () : Vector3 override
+    + Center () : Vector3

@@ -1,0 +1,57 @@
+// 
+public class InputManager : GameScreenComponent
+  Attributes:
+    // 
+    + FullscreenToggled : bool static
+    // 
+    + PreviousKeyboardState : KeyboardState static
+    // 
+    + PreviousMouseState : MouseState static
+    // 
+    - LeftButtonClickTimer : double static
+    // 
+    - RightButtonClickTimer : double static
+    // 
+    - PreviousClickMouseState : MouseState static
+    // 
+    + LeftButton : ClickState static
+    // 
+    + RightButton : ClickState static
+    // 
+    + GrabMouseMovement : bool
+    // 
+    + CurrentInputAction : InputAction
+    // 
+    + WASDMode : WASDMode
+    // 
+    + MouseState : MouseState static
+    // 
+    + KeyboardState : KeyboardState static
+  Methods:
+    // 
+    + InputManager (GameScreen screen)
+    // 
+    + Update (GameTime time) override
+public enum InputAction
+    None = 0
+    ArcballMove
+    TargetMove
+    FreeMouse
+    FPSMove
+    SelectedObjectMove
+    SelectedObjectShadowMove
+public enum WASDMode
+    ArcballMode
+    FirstPersonMode
+public enum ClickState
+    None = 0
+    SingleClick
+    DoubleClick
+// 
+public static class InputExtensions : 
+  Attributes:
+  Methods:
+    // 
+    + IsDown (this Keys key) : bool static
+    // 
+    + IsHeldDown (this Keys key) : bool static

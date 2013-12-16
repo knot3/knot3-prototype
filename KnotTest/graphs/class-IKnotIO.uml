@@ -1,0 +1,130 @@
+// 
+public interface IKnotIO : 
+  Attributes:
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + MetaData : KnotMetaData
+    // 
+    + Name : string
+  Methods:
+    // 
+    + Save  (Knot knot)
+
+// 
+public class KnotFileIO : FileIO, IKnotIO
+  Attributes:
+    // 
+    - parser : KnotStringIO
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + MetaData : KnotMetaData
+    // 
+    + Name : string
+    // 
+    + FileExtensions : string[] static
+  Methods:
+    // 
+    + KnotFileIO  (Knot knot)
+    // 
+    + KnotFileIO  (string filename)
+    // 
+    + Save  (Knot knot)
+    // 
+    + ConvertToFilename (string humanReadableName) : string override
+    // 
+    + ToString () : string override
+
+// 
+public class KnotStringIO : IKnotIO
+  Attributes:
+    // 
+    + Content : string
+    // 
+    - parentIO : IKnotIO
+    // 
+    - lines : IEnumerable<string>
+    // 
+    + MetaData : KnotMetaData
+    // 
+    + Name : string
+    // 
+    + Edges : IEnumerable<Edge>
+  Methods:
+    // 
+    + KnotStringIO  (string content)
+    // 
+    + KnotStringIO  (string content, IKnotIO parentIO)
+    // 
+    + Save  (Knot knot)
+    // 
+    - ToLines (Knot knot) : IEnumerable<string> static
+    // 
+    - DecodeEdge (char c) : Edge static
+    // 
+    - EncodeEdge (Edge edge) : char static
+    // 
+    - EncodeColor (Color c) : String static
+    // 
+    - DecodeColor (string hexString) : Color static
+
+// 
+public class KnotFileIO : FileIO, IKnotIO
+  Attributes:
+    // 
+    + MetaData : KnotMetaData
+    // 
+    + Name : string
+    // 
+    - parser : KnotStringIO
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + FileExtensions : string[] static
+  Methods:
+    // 
+    + KnotFileIO  (Knot knot)
+    // 
+    + Save  (Knot knot)
+    // 
+    + KnotFileIO  (string filename)
+    // 
+    + ConvertToFilename (string humanReadableName) : string
+    // 
+    + ToString () : string
+
+// 
+public class KnotStringIO : IKnotIO
+  Attributes:
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + MetaData : KnotMetaData
+    // 
+    + Name : string
+    // 
+    - lines : IEnumerable<string>
+    // 
+    - parentIO : IKnotIO
+    // 
+    + Content : string
+  Methods:
+    // 
+    - DecodeEdge (char c) : Edge static
+    // 
+    - EncodeEdge (Edge edge) : char static
+    // 
+    + KnotStringIO  (string content)
+    // 
+    + Save  (Knot knot)
+    // 
+    - DecodeColor (string hexString) : Color static
+    // 
+    - ToLines (Knot knot) : IEnumerable<string> static
+    // 
+    - EncodeColor (Color c) : String static
+    // 
+    + KnotStringIO  (string content, IKnotIO parentIO)
+    + ToString () : string
+

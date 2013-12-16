@@ -22,9 +22,6 @@ namespace Knot3.CreativeMode
 {
 	public class LoadSavegameScreen : MenuScreen
 	{
-		// knot format
-		IKnotFormat format;
-
 		// menu
 		private VerticalMenu menu;
 
@@ -34,7 +31,6 @@ namespace Knot3.CreativeMode
 		public LoadSavegameScreen (Core.Game game)
 			: base(game)
 		{
-			format = new EdgeListFormat ();
 			menu = new VerticalMenu (this, new WidgetInfo (), DisplayLayer.Menu);
 		}
 
@@ -68,23 +64,25 @@ namespace Knot3.CreativeMode
 
 			menu.Clear ();
 			AddDefaultKnots ();
-			Files.SearchFiles (searchDirectories, format.FileExtensions, AddFileToList);
+			Files.SearchFiles (searchDirectories, KnotFileIO.FileExtensions, AddFileToList);
 		}
 
 		private void AddFileToList (string filename)
 		{
-			KnotInfo knotInfo = format.LoadInfo (filename);
+			IKnotIO file = new KnotFileIO (filename);
+			KnotMetaData meta = file.MetaData;
 			Action LoadFile = () => {
 				// delegate to load the file
-				if (knotInfo.IsValid) {
-					Console.WriteLine ("File is valid: " + knotInfo);
-					GameScreens.CreativeMode.Knot = format.LoadKnot (filename);
-					NextState = GameScreens.CreativeMode;
-				} else {
-					Console.WriteLine ("File is invalid: " + knotInfo);
-				}
+
+				//if (knotInfo.IsValid) {
+				Console.WriteLine ("File is valid: " + meta);
+				GameScreens.CreativeMode.Knot = new Knot (file);
+				NextState = GameScreens.CreativeMode;
+				//} else {
+				//	Console.WriteLine ("File is invalid: " + knotInfo);
+				//}
 			};
-			string name = knotInfo.IsValid ? knotInfo.Name : filename;
+			string name = meta.Name.Length > 0 ? meta.Name : filename;
 
 			MenuItemInfo info = new MenuItemInfo (text: name, onClick: LoadFile);
 			menu.AddButton (info);
@@ -92,22 +90,26 @@ namespace Knot3.CreativeMode
 
 		private void AddDefaultKnots ()
 		{
+			/*
 			Action RandomKnot = () => {
-				Knot knot = Knot.RandomKnot (20, format);
+				__Knot knot = __Knot.RandomKnot (20, format);
 				Console.WriteLine ("Random Knot: " + knot.Info);
 				GameScreens.CreativeMode.Knot = knot;
 				NextState = GameScreens.CreativeMode;
 			};
+			*/
 			Action DefaultKnot = () => {
-				Knot knot = Knot.DefaultKnot (format);
-				Console.WriteLine ("Default Knot: " + knot.Info);
+				Knot knot = new Knot ();
+				Console.WriteLine ("Default Knot: " + knot);
 				GameScreens.CreativeMode.Knot = knot;
 				NextState = GameScreens.CreativeMode;
 			};
 			MenuItemInfo info = new MenuItemInfo (text: "New Knot", onClick: DefaultKnot);
 			menu.AddButton (info);
+			/*
 			info = new MenuItemInfo (text: "New Random Knot", onClick: RandomKnot);
 			menu.AddButton (info);
+			*/
 		}
 		
 		public override void UpdateMenu (GameTime time)
