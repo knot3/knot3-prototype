@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.Xna.Framework;
 
@@ -9,18 +10,18 @@ namespace Knot3.KnotData
 	{
 		public string Content { get; set; }
 
-		private IKnotIO parentIO;
-
 		public KnotStringIO (string content)
 		{
 			Content = content;
-			parentIO = this;
 		}
 
-		public KnotStringIO (string content, IKnotIO parentIO)
+		public KnotStringIO (Knot knot)
 		{
-			Content = content;
-			this.parentIO = parentIO;
+			try {
+				lines = ToLines (knot);
+			} catch (Exception ex) {
+				Console.WriteLine (ex);
+			}
 		}
 
 		private IEnumerable<string> lines {
@@ -32,25 +33,16 @@ namespace Knot3.KnotData
 			}
 		}
 
-		public KnotMetaData MetaData {
+		public int CountEdges {
 			get {
-				string name = null;
-				int edgeCount = 0;
-				foreach (string line in lines) {
-					// first line is the name
-					if (name == null)
-						name = line.Trim ();
-					// every non-empty line afterwards is a node coordinate
-					else if (name.Trim ().Length > 0)
-						++edgeCount;
-				}
-				// create a new info object
-				return new KnotMetaData (name, edgeCount, parentIO);
+				return lines.Where((l) => l.Trim().Length> 0).Count () - 1;
 			}
 		}
 
 		public string Name {
-			get { return MetaData.Name; }
+			get {
+				return lines.Count() > 0 ? lines.ElementAt(0).Trim() : "";
+			}
 		}
 
 		public void Save (Knot knot)

@@ -70,7 +70,7 @@ namespace Knot3.CreativeMode
 		private void AddFileToList (string filename)
 		{
 			IKnotIO file = new KnotFileIO (filename);
-			KnotMetaData meta = file.MetaData;
+			KnotMetaData meta = new KnotMetaData(file);
 			Action LoadFile = () => {
 				// delegate to load the file
 

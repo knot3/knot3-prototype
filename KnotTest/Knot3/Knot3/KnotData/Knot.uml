@@ -11,6 +11,8 @@ public struct KnotMetaData :
     // 
     + KnotMetaData (string name, int countEdges, IKnotIO file)
     // 
+    + KnotMetaData (IKnotIO file)
+    // 
     + ToString () : string override
 // 
 public class Knot : IEnumerable<Edge>, ICloneable

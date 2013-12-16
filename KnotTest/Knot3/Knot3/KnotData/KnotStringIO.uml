@@ -4,11 +4,9 @@ public class KnotStringIO : IKnotIO
     // 
     + Content : string
     // 
-    - parentIO : IKnotIO
-    // 
     - lines : IEnumerable<string>
     // 
-    + MetaData : KnotMetaData
+    + CountEdges : int
     // 
     + Name : string
     // 
@@ -17,7 +15,7 @@ public class KnotStringIO : IKnotIO
     // 
     + KnotStringIO (string content)
     // 
-    + KnotStringIO (string content, IKnotIO parentIO)
+    + KnotStringIO (Knot knot)
     // 
     + Save (Knot knot)
     // 

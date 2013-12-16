@@ -1471,7 +1471,7 @@
 <polygon fill="#fcfcda" stroke="black" points="11836.7,-1353 11836.7,-1487 12063.7,-1487 12063.7,-1353 11836.7,-1353"/>
 <text text-anchor="middle" x="11950.2" y="-1475.8" font-family="Arial" font-size="8.00">KnotFileIO</text>
 <polyline fill="none" stroke="black" points="11836.7,-1469 12063.7,-1469 "/>
-<text text-anchor="start" x="11844.7" y="-1457.8" font-family="Arial" font-size="8.00">+ MetaData : KnotMetaData</text>
+<text text-anchor="start" x="11844.7" y="-1457.8" font-family="Arial" font-size="8.00">+ CountEdges : int</text>
 <text text-anchor="start" x="11844.7" y="-1447.8" font-family="Arial" font-size="8.00">+ Name : string</text>
 <text text-anchor="start" x="11844.7" y="-1437.8" font-family="Arial" font-size="8.00">&#45; parser : KnotStringIO</text>
 <text text-anchor="start" x="11844.7" y="-1427.8" font-family="Arial" font-size="8.00">+ Edges : IEnumerable&lt;Edge&gt;</text>
@@ -1531,7 +1531,7 @@
 <text text-anchor="middle" x="12165.2" y="-1827.8" font-family="Arial" font-size="8.00">IKnotIO</text>
 <polyline fill="none" stroke="black" points="12103.7,-1821 12226.7,-1821 "/>
 <text text-anchor="start" x="12111.7" y="-1809.8" font-family="Arial" font-size="8.00">+ Edges : IEnumerable&lt;Edge&gt;</text>
-<text text-anchor="start" x="12111.7" y="-1799.8" font-family="Arial" font-size="8.00">+ MetaData : KnotMetaData</text>
+<text text-anchor="start" x="12111.7" y="-1799.8" font-family="Arial" font-size="8.00">+ CountEdges : int</text>
 <text text-anchor="start" x="12111.7" y="-1789.8" font-family="Arial" font-size="8.00">+ Name : string</text>
 <polyline fill="none" stroke="black" points="12103.7,-1783 12226.7,-1783 "/>
 <text text-anchor="start" x="12111.7" y="-1771.8" font-family="Arial" font-size="8.00">+ Save (Knot knot)</text>
@@ -1543,42 +1543,42 @@
 </g>
 <!-- Box_KnotStringIO -->
 <g id="node74" class="node"><title>Box_KnotStringIO</title>
-<polygon fill="#fcfcda" stroke="black" points="12080.7,-1328 12080.7,-1512 12273.7,-1512 12273.7,-1328 12080.7,-1328"/>
-<text text-anchor="middle" x="12177.2" y="-1500.8" font-family="Arial" font-size="8.00">KnotStringIO</text>
-<polyline fill="none" stroke="black" points="12080.7,-1494 12273.7,-1494 "/>
-<text text-anchor="start" x="12088.7" y="-1482.8" font-family="Arial" font-size="8.00">+ Edges : IEnumerable&lt;Edge&gt;</text>
-<text text-anchor="start" x="12088.7" y="-1472.8" font-family="Arial" font-size="8.00">+ MetaData : KnotMetaData</text>
-<text text-anchor="start" x="12088.7" y="-1462.8" font-family="Arial" font-size="8.00">+ Name : string</text>
-<text text-anchor="start" x="12088.7" y="-1452.8" font-family="Arial" font-size="8.00">&#45; lines : IEnumerable&lt;string&gt;</text>
-<text text-anchor="start" x="12088.7" y="-1442.8" font-family="Arial" font-size="8.00">&#45; parentIO : IKnotIO</text>
-<text text-anchor="start" x="12088.7" y="-1432.8" font-family="Arial" font-size="8.00">+ Content : string</text>
-<polyline fill="none" stroke="black" points="12080.7,-1426 12273.7,-1426 "/>
-<text text-anchor="start" x="12088.7" y="-1414.8" font-family="Arial" font-size="8.00">&#45; DecodeEdge (char c) : Edge static</text>
-<text text-anchor="start" x="12088.7" y="-1404.8" font-family="Arial" font-size="8.00">&#45; EncodeEdge (Edge edge) : char static</text>
-<text text-anchor="start" x="12088.7" y="-1394.8" font-family="Arial" font-size="8.00">+ KnotStringIO (string content)</text>
-<text text-anchor="start" x="12088.7" y="-1384.8" font-family="Arial" font-size="8.00">+ Save (Knot knot)</text>
-<text text-anchor="start" x="12088.7" y="-1374.8" font-family="Arial" font-size="8.00">&#45; DecodeColor (string hexString) : Color static</text>
-<text text-anchor="start" x="12088.7" y="-1364.8" font-family="Arial" font-size="8.00">&#45; ToLines (Knot knot) : IEnumerable&lt;string&gt; static</text>
-<text text-anchor="start" x="12088.7" y="-1354.8" font-family="Arial" font-size="8.00">&#45; EncodeColor (Color c) : String static</text>
-<text text-anchor="start" x="12088.7" y="-1344.8" font-family="Arial" font-size="8.00">+ KnotStringIO (string content, IKnotIO parentIO)</text>
-<text text-anchor="start" x="12088.7" y="-1334.8" font-family="Arial" font-size="8.00">+ ToString () : string</text>
+<polygon fill="#fcfcda" stroke="black" points="12080.7,-1333 12080.7,-1507 12273.7,-1507 12273.7,-1333 12080.7,-1333"/>
+<text text-anchor="middle" x="12177.2" y="-1495.8" font-family="Arial" font-size="8.00">KnotStringIO</text>
+<polyline fill="none" stroke="black" points="12080.7,-1489 12273.7,-1489 "/>
+<text text-anchor="start" x="12088.7" y="-1477.8" font-family="Arial" font-size="8.00">&#45; lines : IEnumerable&lt;string&gt;</text>
+<text text-anchor="start" x="12088.7" y="-1467.8" font-family="Arial" font-size="8.00">+ Edges : IEnumerable&lt;Edge&gt;</text>
+<text text-anchor="start" x="12088.7" y="-1457.8" font-family="Arial" font-size="8.00">+ CountEdges : int</text>
+<text text-anchor="start" x="12088.7" y="-1447.8" font-family="Arial" font-size="8.00">+ Name : string</text>
+<text text-anchor="start" x="12088.7" y="-1437.8" font-family="Arial" font-size="8.00">+ Content : string</text>
+<polyline fill="none" stroke="black" points="12080.7,-1431 12273.7,-1431 "/>
+<text text-anchor="start" x="12088.7" y="-1419.8" font-family="Arial" font-size="8.00">&#45; DecodeEdge (char c) : Edge static</text>
+<text text-anchor="start" x="12088.7" y="-1409.8" font-family="Arial" font-size="8.00">&#45; EncodeEdge (Edge edge) : char static</text>
+<text text-anchor="start" x="12088.7" y="-1399.8" font-family="Arial" font-size="8.00">+ Save (Knot knot)</text>
+<text text-anchor="start" x="12088.7" y="-1389.8" font-family="Arial" font-size="8.00">&#45; DecodeColor (string hexString) : Color static</text>
+<text text-anchor="start" x="12088.7" y="-1379.8" font-family="Arial" font-size="8.00">&#45; ToLines (Knot knot) : IEnumerable&lt;string&gt; static</text>
+<text text-anchor="start" x="12088.7" y="-1369.8" font-family="Arial" font-size="8.00">&#45; EncodeColor (Color c) : String static</text>
+<text text-anchor="start" x="12088.7" y="-1359.8" font-family="Arial" font-size="8.00">+ KnotStringIO (Knot knot)</text>
+<text text-anchor="start" x="12088.7" y="-1349.8" font-family="Arial" font-size="8.00">+ KnotStringIO (string content)</text>
+<text text-anchor="start" x="12088.7" y="-1339.8" font-family="Arial" font-size="8.00">+ ToString () : string</text>
 </g>
 <!-- Box_IKnotIO&#45;&gt;Box_KnotStringIO -->
 <g id="edge132" class="edge"><title>Box_IKnotIO&#45;&gt;Box_KnotStringIO</title>
-<path fill="none" stroke="midnightblue" d="M12166.7,-1754.68C12168.6,-1694.35 12171.9,-1588.71 12174.3,-1512.23"/>
+<path fill="none" stroke="midnightblue" d="M12166.7,-1754.46C12168.6,-1692.74 12172.1,-1583.89 12174.5,-1507.16"/>
 <polygon fill="none" stroke="midnightblue" points="12163.2,-1754.57 12166.4,-1764.68 12170.2,-1754.79 12163.2,-1754.57"/>
 </g>
 <!-- Box_KnotMetaData -->
 <g id="node70" class="node"><title>Box_KnotMetaData</title>
-<polygon fill="#fcfcda" stroke="black" points="12244.2,-1760 12244.2,-1844 12468.2,-1844 12468.2,-1760 12244.2,-1760"/>
-<text text-anchor="middle" x="12356.2" y="-1832.8" font-family="Arial" font-size="8.00">KnotMetaData</text>
-<polyline fill="none" stroke="black" points="12244.2,-1826 12468.2,-1826 "/>
-<text text-anchor="start" x="12252.2" y="-1814.8" font-family="Arial" font-size="8.00">+ CountEdges : int</text>
-<text text-anchor="start" x="12252.2" y="-1804.8" font-family="Arial" font-size="8.00">+ Name : string</text>
-<text text-anchor="start" x="12252.2" y="-1794.8" font-family="Arial" font-size="8.00">+ File : IKnotIO</text>
-<polyline fill="none" stroke="black" points="12244.2,-1788 12468.2,-1788 "/>
-<text text-anchor="start" x="12252.2" y="-1776.8" font-family="Arial" font-size="8.00">+ KnotMetaData (string name, int countEdges, IKnotIO file)</text>
-<text text-anchor="start" x="12252.2" y="-1766.8" font-family="Arial" font-size="8.00">+ ToString () : string</text>
+<polygon fill="#fcfcda" stroke="black" points="12244.2,-1755 12244.2,-1849 12468.2,-1849 12468.2,-1755 12244.2,-1755"/>
+<text text-anchor="middle" x="12356.2" y="-1837.8" font-family="Arial" font-size="8.00">KnotMetaData</text>
+<polyline fill="none" stroke="black" points="12244.2,-1831 12468.2,-1831 "/>
+<text text-anchor="start" x="12252.2" y="-1819.8" font-family="Arial" font-size="8.00">+ CountEdges : int</text>
+<text text-anchor="start" x="12252.2" y="-1809.8" font-family="Arial" font-size="8.00">+ Name : string</text>
+<text text-anchor="start" x="12252.2" y="-1799.8" font-family="Arial" font-size="8.00">+ File : IKnotIO</text>
+<polyline fill="none" stroke="black" points="12244.2,-1793 12468.2,-1793 "/>
+<text text-anchor="start" x="12252.2" y="-1781.8" font-family="Arial" font-size="8.00">+ KnotMetaData (string name, int countEdges, IKnotIO file)</text>
+<text text-anchor="start" x="12252.2" y="-1771.8" font-family="Arial" font-size="8.00">+ KnotMetaData (IKnotIO file)</text>
+<text text-anchor="start" x="12252.2" y="-1761.8" font-family="Arial" font-size="8.00">+ ToString () : string</text>
 </g>
 <!-- Box_Knot -->
 <g id="node71" class="node"><title>Box_Knot</title>

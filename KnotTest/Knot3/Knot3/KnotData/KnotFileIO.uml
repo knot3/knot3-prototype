@@ -6,7 +6,7 @@ public class KnotFileIO : FileIO, IKnotIO
     // 
     + Edges : IEnumerable<Edge>
     // 
-    + MetaData : KnotMetaData
+    + CountEdges : int
     // 
     + Name : string
     // 

@@ -13,23 +13,22 @@ namespace Knot3.KnotData
 		public KnotFileIO (Knot knot)
 		{
 			Filename = ConvertToFilename (knot.Name);
-			parser = new KnotStringIO ("", this);
-			parser.Save (knot);
+			parser = new KnotStringIO (knot);
 		}
 
 		public KnotFileIO (string filename)
 		{
 			Filename = filename;
 			string content = string.Join ("\n", Files.ReadFrom (filename));
-			parser = new KnotStringIO (content, this);
+			parser = new KnotStringIO (content);
 		}
 
 		public IEnumerable<Edge> Edges {
 			get { return parser.Edges; }
 		}
 
-		public KnotMetaData MetaData {
-			get { return parser.MetaData; }
+		public int CountEdges {
+			get { return parser.CountEdges; }
 		}
 
 		public string Name {

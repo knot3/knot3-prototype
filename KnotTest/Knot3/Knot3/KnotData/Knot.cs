@@ -20,6 +20,13 @@ namespace Knot3.KnotData
 			File = file;
 		}
 
+		public KnotMetaData (IKnotIO file)
+		{
+			Name = file.Name;
+			CountEdges = file.CountEdges;
+			File = file;
+		}
+
 		public override string ToString ()
 		{
 			return "{File=" + File + ",Name=" + Name + ",CountEdges=" + CountEdges + "}";

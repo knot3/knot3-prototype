@@ -15,7 +15,7 @@ public class KnotFileIO : FileIO, IKnotIO
     // 
     + Edges : IEnumerable<Edge>
     // 
-    + MetaData : KnotMetaData
+    + CountEdges : int
     // 
     + Name : string
     // 
@@ -36,7 +36,7 @@ public class KnotFileIO : FileIO, IKnotIO
 public class KnotFileIO : FileIO, IKnotIO
   Attributes:
     // 
-    + MetaData : KnotMetaData
+    + CountEdges : int
     // 
     + Name : string
     // 

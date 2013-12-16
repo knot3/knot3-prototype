@@ -11,5 +11,7 @@ public struct KnotMetaData :
     // 
     + KnotMetaData  (string name, int countEdges, IKnotIO file)
     // 
+    + KnotMetaData  (IKnotIO file)
+    // 
     + ToString () : string
 

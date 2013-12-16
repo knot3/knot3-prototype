@@ -4,7 +4,7 @@ public interface IKnotIO :
     // 
     + Edges : IEnumerable<Edge>
     // 
-    + MetaData : KnotMetaData
+    + CountEdges : int
     // 
     + Name : string
   Methods:
@@ -19,7 +19,7 @@ public class KnotFileIO : FileIO, IKnotIO
     // 
     + Edges : IEnumerable<Edge>
     // 
-    + MetaData : KnotMetaData
+    + CountEdges : int
     // 
     + Name : string
     // 
@@ -42,11 +42,9 @@ public class KnotStringIO : IKnotIO
     // 
     + Content : string
     // 
-    - parentIO : IKnotIO
-    // 
     - lines : IEnumerable<string>
     // 
-    + MetaData : KnotMetaData
+    + CountEdges : int
     // 
     + Name : string
     // 
@@ -55,7 +53,7 @@ public class KnotStringIO : IKnotIO
     // 
     + KnotStringIO  (string content)
     // 
-    + KnotStringIO  (string content, IKnotIO parentIO)
+    + KnotStringIO  (Knot knot)
     // 
     + Save  (Knot knot)
     // 
@@ -73,7 +71,7 @@ public class KnotStringIO : IKnotIO
 public class KnotFileIO : FileIO, IKnotIO
   Attributes:
     // 
-    + MetaData : KnotMetaData
+    + CountEdges : int
     // 
     + Name : string
     // 
@@ -98,15 +96,13 @@ public class KnotFileIO : FileIO, IKnotIO
 public class KnotStringIO : IKnotIO
   Attributes:
     // 
-    + Edges : IEnumerable<Edge>
-    // 
-    + MetaData : KnotMetaData
-    // 
-    + Name : string
-    // 
     - lines : IEnumerable<string>
     // 
-    - parentIO : IKnotIO
+    + Edges : IEnumerable<Edge>
+    // 
+    + CountEdges : int
+    // 
+    + Name : string
     // 
     + Content : string
   Methods:
@@ -114,8 +110,6 @@ public class KnotStringIO : IKnotIO
     - DecodeEdge (char c) : Edge static
     // 
     - EncodeEdge (Edge edge) : char static
-    // 
-    + KnotStringIO  (string content)
     // 
     + Save  (Knot knot)
     // 
@@ -125,6 +119,8 @@ public class KnotStringIO : IKnotIO
     // 
     - EncodeColor (Color c) : String static
     // 
-    + KnotStringIO  (string content, IKnotIO parentIO)
+    + KnotStringIO  (Knot knot)
+    // 
+    + KnotStringIO  (string content)
     + ToString () : string
 

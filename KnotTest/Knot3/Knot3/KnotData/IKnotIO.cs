@@ -7,7 +7,7 @@ namespace Knot3.KnotData
 	{
 		IEnumerable<Edge> Edges { get; }
 
-		KnotMetaData MetaData { get; }
+		int CountEdges { get; }
 
 		string Name { get; }
 

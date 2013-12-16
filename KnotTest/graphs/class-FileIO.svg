@@ -23,7 +23,7 @@
 <polygon fill="#fcfcda" stroke="black" points="93.5,-1 93.5,-135 320.5,-135 320.5,-1 93.5,-1"/>
 <text text-anchor="middle" x="207" y="-123.8" font-family="Arial" font-size="8.00">KnotFileIO</text>
 <polyline fill="none" stroke="black" points="93.5,-117 320.5,-117 "/>
-<text text-anchor="start" x="101.5" y="-105.8" font-family="Arial" font-size="8.00">+ MetaData : KnotMetaData</text>
+<text text-anchor="start" x="101.5" y="-105.8" font-family="Arial" font-size="8.00">+ CountEdges : int</text>
 <text text-anchor="start" x="101.5" y="-95.8" font-family="Arial" font-size="8.00">+ Name : string</text>
 <text text-anchor="start" x="101.5" y="-85.8" font-family="Arial" font-size="8.00">&#45; parser : KnotStringIO</text>
 <text text-anchor="start" x="101.5" y="-75.8" font-family="Arial" font-size="8.00">+ Edges : IEnumerable&lt;Edge&gt;</text>

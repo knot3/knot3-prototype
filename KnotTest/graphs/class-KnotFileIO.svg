@@ -14,7 +14,7 @@
 <polygon fill="#fcfcda" stroke="black" points="113.5,-1 113.5,-135 340.5,-135 340.5,-1 113.5,-1"/>
 <text text-anchor="middle" x="227" y="-123.8" font-family="Arial" font-size="8.00">KnotFileIO</text>
 <polyline fill="none" stroke="black" points="113.5,-117 340.5,-117 "/>
-<text text-anchor="start" x="121.5" y="-105.8" font-family="Arial" font-size="8.00">+ MetaData : KnotMetaData</text>
+<text text-anchor="start" x="121.5" y="-105.8" font-family="Arial" font-size="8.00">+ CountEdges : int</text>
 <text text-anchor="start" x="121.5" y="-95.8" font-family="Arial" font-size="8.00">+ Name : string</text>
 <text text-anchor="start" x="121.5" y="-85.8" font-family="Arial" font-size="8.00">&#45; parser : KnotStringIO</text>
 <text text-anchor="start" x="121.5" y="-75.8" font-family="Arial" font-size="8.00">+ Edges : IEnumerable&lt;Edge&gt;</text>
@@ -46,7 +46,7 @@
 <text text-anchor="middle" x="329" y="-235.8" font-family="Arial" font-size="8.00">IKnotIO</text>
 <polyline fill="none" stroke="black" points="267.5,-229 390.5,-229 "/>
 <text text-anchor="start" x="275.5" y="-217.8" font-family="Arial" font-size="8.00">+ Edges : IEnumerable&lt;Edge&gt;</text>
-<text text-anchor="start" x="275.5" y="-207.8" font-family="Arial" font-size="8.00">+ MetaData : KnotMetaData</text>
+<text text-anchor="start" x="275.5" y="-207.8" font-family="Arial" font-size="8.00">+ CountEdges : int</text>
 <text text-anchor="start" x="275.5" y="-197.8" font-family="Arial" font-size="8.00">+ Name : string</text>
 <polyline fill="none" stroke="black" points="267.5,-191 390.5,-191 "/>
 <text text-anchor="start" x="275.5" y="-179.8" font-family="Arial" font-size="8.00">+ Save (Knot knot)</text>
