@@ -113,7 +113,7 @@ namespace Knot3.GameObjects
 				Node node1 = nodeMap.FromNode (edge);
 				Node node2 = nodeMap.ToNode (edge);
 				foreach (Vector3 direction in validDirections) {
-					ArrowModelInfo info = new ArrowModelInfo (node1.CenterBetween (node2), direction, Info.Position);
+					ArrowModelInfo info = new ArrowModelInfo (node1.CenterBetween (node2)-50*World.Camera.TargetDirection.PrimaryDirection(), direction, Info.Position);
 					ArrowModel arrow = arrowFactory [state, info] as ArrowModel;
 					arrow.World = World;
 					arrows.Add (arrow);
