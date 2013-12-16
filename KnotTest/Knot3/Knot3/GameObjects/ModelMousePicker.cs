@@ -20,10 +20,10 @@ using Knot3.Settings;
 namespace Knot3.GameObjects
 {
 	/// <summary>
-	/// Ein GameStateComponent, der das IGameObject aus der World selektiert, das 
+	/// Ein GameScreenComponent, der das IGameObject aus der World selektiert, das 
 	/// sich unter der aktuellen Mausposition befindet.
 	/// </summary>
-	public class ModelMousePicker : GameStateComponent
+	public class ModelMousePicker : GameScreenComponent
 	{
 		// game world
 		private World World { get; set; }
@@ -35,41 +35,41 @@ namespace Knot3.GameObjects
 		/// <summary>
 		/// Initializes a new MousePicking component.
 		/// </summary>
-		public ModelMousePicker (GameState state, World world)
-			: base(state, DisplayLayer.None)
+		public ModelMousePicker (GameScreen screen, World world)
+			: base(screen, DisplayLayer.None)
 		{
 			World = world;
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
 			// mouse ray selection
-			CheckMouseRay (gameTime);
+			CheckMouseRay (time);
 		}
 
-		private void CheckMouseRay (GameTime gameTime)
+		private void CheckMouseRay (GameTime time)
 		{
-			double millis = gameTime.TotalGameTime.TotalMilliseconds;
+			double millis = time.TotalGameTime.TotalMilliseconds;
 			if (millis > lastRayCheck + 10
-				&& (state.input.CurrentInputAction == InputAction.TargetMove
-				|| state.input.CurrentInputAction == InputAction.FreeMouse)
-				&& Core.Input.MouseState.ToVector2 () != lastMousePosition) {
+				&& (screen.input.CurrentInputAction == InputAction.TargetMove
+				|| screen.input.CurrentInputAction == InputAction.FreeMouse)
+				&& InputManager.MouseState.ToVector2 () != lastMousePosition) {
 
 				lastRayCheck = millis;
-				lastMousePosition = Core.Input.MouseState.ToVector2 ();
+				lastMousePosition = InputManager.MouseState.ToVector2 ();
 
 				Overlay.Profiler ["Ray"] = Knot3.Core.Game.Time (() => {
 
-					UpdateMouseRay (gameTime);
+					UpdateMouseRay (time);
 
 				}
 				).TotalMilliseconds;
 			}
 		}
 
-		private void UpdateMouseRay (GameTime gameTime)
+		private void UpdateMouseRay (GameTime time)
 		{
-			Ray ray = World.Camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
+			Ray ray = World.Camera.GetMouseRay (InputManager.MouseState.ToVector2 ());
 
 			GameObjectDistance nearest = null;
 			foreach (IGameObject obj in World.Objects) {
@@ -83,9 +83,9 @@ namespace Knot3.GameObjects
 				}
 			}
 			if (nearest != null) {
-				World.SelectObject (nearest.Object, gameTime);
+				World.SelectObject (nearest.Object, time);
 			} else {
-				World.SelectObject (null, gameTime);
+				World.SelectObject (null, time);
 			}
 		}
 	}

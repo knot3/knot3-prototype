@@ -1,35 +1,66 @@
+// 
 public class TexturedRectangleInfo : GameObjectInfo
   Attributes:
+    // 
     + Texturename : string
+    // 
     + Up : Vector3
+    // 
     + Left : Vector3
+    // 
     + Width : float
+    // 
     + Height : float
   Methods:
+    // 
     + TexturedRectangleInfo (string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
+    // 
     + Equals (GameObjectInfo other) : bool override
+// 
 public class TexturedRectangle : IGameObject
   Attributes:
-    # state : GameState
+    // 
+    # screen : GameScreen
+    // 
     - IGameObject.Info : GameObjectInfo
+    // 
     + Info : TexturedRectangleInfo
+    // 
     + World : World
+    // 
     - UpperLeft : Vector3
+    // 
     - LowerLeft : Vector3
+    // 
     - UpperRight : Vector3
+    // 
     - LowerRight : Vector3
+    // 
     - Normal : Vector3
+    // 
     - Vertices : VertexPositionNormalTexture[]
+    // 
     - Indexes : short[]
+    // 
     - basicEffect : BasicEffect
+    // 
     - texture : Texture2D
   Methods:
-    + TexturedRectangle (GameState state, TexturedRectangleInfo info)
-    + Update (GameTime gameTime)
-    + Draw (GameTime gameTime)
+    // 
+    + TexturedRectangle (GameScreen screen, TexturedRectangleInfo info)
+    // 
+    + Update (GameTime time)
+    // 
+    + Draw (GameTime time)
+    // 
     - FillVertices ()
+    // 
     # SetPosition (Vector3 position)
+    // 
     - Length () : Vector3
+    // 
     + Bounds () : BoundingBox[]
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3

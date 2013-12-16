@@ -1,138 +1,248 @@
+// 
 public class StartScreen : MenuScreen
   Attributes:
+    // 
     - spriteBatch : SpriteBatch
+    // 
     - logo : Texture2D
+    // 
     # menu : Menu
   Methods:
+    // 
     + StartScreen  (Game game)
-    + Activate  (GameTime gameTime)
-    + UpdateMenu  (GameTime gameTime)
-    + DrawMenu  (GameTime gameTime)
+    // 
+    + Activate  (GameTime time)
+    // 
+    + UpdateMenu  (GameTime time)
+    // 
+    + DrawMenu  (GameTime time)
     + Initialize ()
 
-public abstract class MenuScreen : GameState
+// 
+public abstract class MenuScreen : GameScreen
   Attributes:
+    // 
     - spriteBatch : SpriteBatch
+    // 
     - backColor : Color
+    // 
     - pointer : MousePointer
+    // 
     # LinePoints : List<Vector2>
+    // 
     # LineWidth : int
   Methods:
+    // 
     + MenuScreen  (Core.Game game)
+    // 
     + Initialize  () override
-    + Update  (GameTime gameTime) override
-    + UpdateMenu  (GameTime gameTime) abstract
-    + Draw  (GameTime gameTime) override
-    + DrawMenu  (GameTime gameTime) abstract
-    + Activate  (GameTime gameTime) override
+    // 
+    + Update  (GameTime time) override
+    // 
+    + UpdateMenu  (GameTime time) abstract
+    // 
+    + Draw  (GameTime time) override
+    // 
+    + DrawMenu  (GameTime time) abstract
+    // 
+    + Activate  (GameTime time) override
+    // 
     + Unload  () override
+    // 
     # BackgroundColor (ItemState itemState) : Color
+    // 
     # ForegroundColor (ItemState itemState) : Color
 
-public abstract class GameState : 
+// 
+public abstract class GameScreen : 
   Attributes:
+    // 
     + game : Game
-    + NextState : GameState
-    + input : Input
+    // 
+    + NextState : GameScreen
+    // 
+    + input : InputManager
+    // 
     + graphics : GraphicsDeviceManager
+    // 
     + device : GraphicsDevice
+    // 
     + viewport : Viewport
+    // 
     + content : ContentManager
+    // 
     + RenderEffects : RenderEffectStack
+    // 
     + PostProcessing : RenderEffect
   Methods:
-    + GameState  (Game game)
+    // 
+    + GameScreen  (Game game)
+    // 
     + Initialize  () abstract
-    + Update  (GameTime gameTime) abstract
-    + Draw  (GameTime gameTime) abstract
+    // 
+    + Update  (GameTime time) abstract
+    // 
+    + Draw  (GameTime time) abstract
+    // 
     + Unload  () abstract
-    + AddGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
-    + RemoveGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
-    + Activate  (GameTime gameTime) virtual
-    + Deactivate  (GameTime gameTime) virtual
+    // 
+    + AddGameComponents  (GameTime time, params IGameScreenComponent[] components)
+    // 
+    + RemoveGameComponents  (GameTime time, params IGameScreenComponent[] components)
+    // 
+    + Activate  (GameTime time) virtual
+    // 
+    + Deactivate  (GameTime time) virtual
 
-public abstract class GameState : 
+// 
+public abstract class GameScreen : 
   Attributes:
+    // 
     + content : ContentManager
-    + NextState : GameState
+    // 
+    + NextState : GameScreen
+    // 
     + device : GraphicsDevice
+    // 
     + RenderEffects : RenderEffectStack
+    // 
     + viewport : Viewport
+    // 
     + game : Game
+    // 
     + graphics : GraphicsDeviceManager
-    + input : Input
+    // 
+    + input : InputManager
+    // 
     + PostProcessing : RenderEffect
   Methods:
-    + Draw  (GameTime gameTime) abstract
+    // 
+    + Draw  (GameTime time) abstract
     + Initialize () abstract
     + Unload () abstract
-    + Activate  (GameTime gameTime) virtual
-    + GameState  (Game game)
-    + Update  (GameTime gameTime) abstract
-    + Deactivate  (GameTime gameTime) virtual
-    + AddGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
-    + RemoveGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    // 
+    + Activate  (GameTime time) virtual
+    // 
+    + GameScreen  (Game game)
+    // 
+    + Update  (GameTime time) abstract
+    // 
+    + Deactivate  (GameTime time) virtual
+    // 
+    + AddGameComponents  (GameTime time, params IGameScreenComponent[] components)
+    // 
+    + RemoveGameComponents  (GameTime time, params IGameScreenComponent[] components)
 
-public abstract class MenuScreen : GameState
+// 
+public abstract class MenuScreen : GameScreen
   Attributes:
+    // 
     - backColor : Color
+    // 
     - pointer : MousePointer
+    // 
     # LinePoints : List<Vector2>
+    // 
     # LineWidth : int
+    // 
     - spriteBatch : SpriteBatch
   Methods:
+    // 
     + MenuScreen  (Core.Game game)
-    + Activate  (GameTime gameTime)
-    + Draw  (GameTime gameTime)
+    // 
+    + Activate  (GameTime time)
+    // 
+    + Draw  (GameTime time)
+    // 
     # BackgroundColor (ItemState itemState) : Color
+    // 
     # ForegroundColor (ItemState itemState) : Color
-    + DrawMenu  (GameTime gameTime) abstract
-    + UpdateMenu  (GameTime gameTime) abstract
+    // 
+    + DrawMenu  (GameTime time) abstract
+    // 
+    + UpdateMenu  (GameTime time) abstract
     + Initialize ()
     + Unload ()
-    + Update  (GameTime gameTime)
+    // 
+    + Update  (GameTime time)
 
-public abstract class GameState : 
+// 
+public abstract class GameScreen : 
   Attributes:
+    // 
     + game : Game
-    + NextState : GameState
-    + input : Input
+    // 
+    + NextState : GameScreen
+    // 
+    + input : InputManager
+    // 
     + graphics : GraphicsDeviceManager
+    // 
     + device : GraphicsDevice
+    // 
     + viewport : Viewport
+    // 
     + content : ContentManager
+    // 
     + RenderEffects : RenderEffectStack
+    // 
     + PostProcessing : RenderEffect
   Methods:
-    + GameState  (Game game)
+    // 
+    + GameScreen  (Game game)
+    // 
     + Initialize  () abstract
-    + Update  (GameTime gameTime) abstract
-    + Draw  (GameTime gameTime) abstract
+    // 
+    + Update  (GameTime time) abstract
+    // 
+    + Draw  (GameTime time) abstract
+    // 
     + Unload  () abstract
-    + AddGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
-    + RemoveGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
-    + Activate  (GameTime gameTime) virtual
-    + Deactivate  (GameTime gameTime) virtual
+    // 
+    + AddGameComponents  (GameTime time, params IGameScreenComponent[] components)
+    // 
+    + RemoveGameComponents  (GameTime time, params IGameScreenComponent[] components)
+    // 
+    + Activate  (GameTime time) virtual
+    // 
+    + Deactivate  (GameTime time) virtual
 
-public abstract class GameState : 
+// 
+public abstract class GameScreen : 
   Attributes:
+    // 
     + content : ContentManager
-    + NextState : GameState
+    // 
+    + NextState : GameScreen
+    // 
     + device : GraphicsDevice
+    // 
     + RenderEffects : RenderEffectStack
+    // 
     + viewport : Viewport
+    // 
     + game : Game
+    // 
     + graphics : GraphicsDeviceManager
-    + input : Input
+    // 
+    + input : InputManager
+    // 
     + PostProcessing : RenderEffect
   Methods:
-    + Draw  (GameTime gameTime) abstract
+    // 
+    + Draw  (GameTime time) abstract
     + Initialize () abstract
     + Unload () abstract
-    + Activate  (GameTime gameTime) virtual
-    + GameState  (Game game)
-    + Update  (GameTime gameTime) abstract
-    + Deactivate  (GameTime gameTime) virtual
-    + AddGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
-    + RemoveGameComponents  (GameTime gameTime, params IGameStateComponent[] components)
+    // 
+    + Activate  (GameTime time) virtual
+    // 
+    + GameScreen  (Game game)
+    // 
+    + Update  (GameTime time) abstract
+    // 
+    + Deactivate  (GameTime time) virtual
+    // 
+    + AddGameComponents  (GameTime time, params IGameScreenComponent[] components)
+    // 
+    + RemoveGameComponents  (GameTime time, params IGameScreenComponent[] components)
 

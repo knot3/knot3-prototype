@@ -1,46 +1,88 @@
+// 
 public class PipeMovement : IGameObject, IEnumerable<IGameObject>
   Attributes:
-    - state : GameState
+    // 
+    - screen : GameScreen
+    // 
     + World : World
+    // 
     + Info : GameObjectInfo
+    // 
     + Knot : Knot
+    // 
     - previousMousePosition : Vector3
+    // 
     - shadowObjects : List<ShadowGameObject>
+    // 
     - knownEdgeLists : HashSet<EdgeList> new
   Methods:
-    + PipeMovement (GameState state, World world, GameObjectInfo info)
-    + Update (GameTime gameTime)
-    - TrySelectObject (GameTime gameTime)
-    - TryMovePipes (GameTime gameTime)
+    // 
+    + PipeMovement (GameScreen screen, World world, GameObjectInfo info)
+    // 
+    + Update (GameTime time)
+    // 
+    - TrySelectObject (GameTime time)
+    // 
+    - TryMovePipes (GameTime time)
+    // 
     - CreateShadowPipes ()
+    // 
     - ComputeDirection (Vector3 currentMousePosition, out Vector3 direction, out float count)
+    // 
     - ComputeDirection (Vector3 currentMousePosition, out Vector3 direction, out int countInt)
+    // 
+    - MoveShadowPipes (Vector3 currentMousePosition, Vector3 direction3D)
+    // 
     - MoveShadowPipes (Vector3 currentMousePosition)
+    // 
     - MovePipes (Vector3 currentMousePosition)
-    + Draw (GameTime gameTime)
+    // 
+    + Draw (GameTime time)
+    // 
     + GetEnumerator () : IEnumerator<IGameObject>
+    // 
     - IEnumerable.GetEnumerator () : IEnumerator
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
+// 
 public class ShadowGameObject : IGameObject
   Attributes:
-    # state : GameState
+    // 
+    # screen : GameScreen
+    // 
     - Obj : IGameObject
+    // 
     + World : World
+    // 
     + Info : GameObjectInfo
+    // 
     + ShadowPosition : Vector3
+    // 
     + OriginalPosition : Vector3
   Methods:
-    + ShadowGameObject (GameState state, IGameObject obj)
-    + Update (GameTime gameTime) virtual
-    + Draw (GameTime gameTime) virtual
+    // 
+    + ShadowGameObject (GameScreen screen, IGameObject obj)
+    // 
+    + Update (GameTime time) virtual
+    // 
+    + Draw (GameTime time) virtual
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
+// 
 public class ShadowGameModel : ShadowGameObject
   Attributes:
+    // 
     - Model : GameModel
+    // 
     + ShadowColor : Color
+    // 
     + ShadowAlpha : float
   Methods:
-    + ShadowGameModel (GameState state, GameModel model)
-    + Draw (GameTime gameTime) override
+    // 
+    + ShadowGameModel (GameScreen screen, GameModel model)
+    // 
+    + Draw (GameTime time) override

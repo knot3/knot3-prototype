@@ -67,16 +67,6 @@ namespace Knot3.Utilities
 			}
 		}
 
-		public static string ValidFilename (string humanReadableName)
-		{
-			char[] arr = humanReadableName.ToCharArray ();
-			arr = Array.FindAll<char> (arr, (c => (char.IsLetterOrDigit (c) 
-				|| char.IsWhiteSpace (c) 
-				|| c == '-'))
-			);
-			return new string (arr);
-		}
-
 		public static void SearchFiles (IEnumerable<string> directories, IEnumerable<string> extensions, Action<string> add)
 		{
 			foreach (string directory in directories) {

@@ -1,0 +1,8 @@
+// 
+public interface IGameScreenComponent : Xna.IGameComponent
+  Attributes:
+    // 
+    + Index : DisplayLayer
+  Methods:
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>

@@ -1,36 +1,65 @@
+// 
 public class TexturedRectangle : IGameObject
   Attributes:
+    // 
     - IGameObject.Info : GameObjectInfo
+    // 
     - basicEffect : BasicEffect
+    // 
     - texture : Texture2D
+    // 
     - LowerLeft : Vector3
+    // 
     - LowerRight : Vector3
+    // 
     - Normal : Vector3
+    // 
     - UpperRight : Vector3
+    // 
     - Vertices : VertexPositionNormalTexture[]
+    // 
     - Indexes : short[]
+    // 
     + Info : TexturedRectangleInfo
+    // 
     - UpperLeft : Vector3
-    # state : GameState
+    // 
+    # screen : GameScreen
+    // 
     + World : World
   Methods:
+    // 
     - Length () : Vector3
     - FillVertices ()
+    // 
     + Intersects (Ray ray) : GameObjectDistance
-    + TexturedRectangle  (GameState state, TexturedRectangleInfo info)
-    + Draw  (GameTime gameTime)
+    // 
+    + TexturedRectangle  (GameScreen screen, TexturedRectangleInfo info)
+    // 
+    + Draw  (GameTime time)
+    // 
     # SetPosition  (Vector3 position)
+    // 
     + Bounds () : BoundingBox[]
+    // 
     + Center () : Vector3
-    + Update  (GameTime gameTime)
+    // 
+    + Update  (GameTime time)
 
+// 
 public interface IGameObject : 
   Attributes:
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
-    + Draw  (GameTime gameTime)
-    + Update  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
 

@@ -1,0 +1,26 @@
+// 
+public class KnotFileIO : FileIO, IKnotIO
+  Attributes:
+    // 
+    - parser : KnotStringIO
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + CountEdges : int
+    // 
+    + Name : string
+    // 
+    + Hash : string
+    // 
+    + FileExtensions : string[] static
+  Methods:
+    // 
+    + KnotFileIO (Knot knot)
+    // 
+    + KnotFileIO (string filename)
+    // 
+    + Save (Knot knot)
+    // 
+    + ConvertToFilename (string humanReadableName) : string override
+    // 
+    + ToString () : string override

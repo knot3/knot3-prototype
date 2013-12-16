@@ -18,7 +18,7 @@ using Knot3.RenderEffects;
 namespace Knot3.Core
 {
 	/// <summary>
-	/// Die Haupt-Klasse des Spiels. Verwaltet den jeweils aktuellen GameState.
+	/// Die Haupt-Klasse des Spiels. Verwaltet den jeweils aktuellen GameScreen.
 	/// </summary>
 	public class Game : Microsoft.Xna.Framework.Game
 	{
@@ -26,7 +26,7 @@ namespace Knot3.Core
 		public GraphicsDeviceManager graphics { get; private set; }
 
 		// custom classes
-		public GameState State { get; private set; }
+		public GameScreen State { get; private set; }
 
 		// colors, sizes, ...
 		public static Vector2 DefaultSize = new Vector2 (1280, 720);
@@ -74,8 +74,8 @@ namespace Knot3.Core
 		/// </summary>
 		protected override void LoadContent ()
 		{
-			GameStates.Initialize (this);
-			State = GameStates.StartScreen;
+			GameScreens.Initialize (this);
+			State = GameScreens.StartScreen;
 			State.Activate (null);
 		}
 
@@ -92,28 +92,28 @@ namespace Knot3.Core
 		/// Allows the game to run logic such as updating the world,
 		/// checking for collisions, gathering input, and playing audio.
 		/// </summary>
-		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		protected override void Update (GameTime gameTime)
+		/// <param name="time">Provides a snapshot of timing values.</param>
+		protected override void Update (GameTime time)
 		{
-			// change game state?
+			// change game screen?
 			if (State != State.NextState) {
 				State.NextState.PostProcessing = new FadeEffect (State.NextState, State);
-				State.Deactivate (gameTime);
+				State.Deactivate (time);
 				State = State.NextState.NextState = State.NextState;
-				State.Activate (gameTime);
+				State.Activate (time);
 			}
 
 			// global keyboard ans mouse input 
-			UpdateInput (gameTime);
+			UpdateInput (time);
 
-			// set the next game state
-			State.Update (gameTime);
+			// set the next game screen
+			State.Update (time);
 
 			// base method
-			base.Update (gameTime);
+			base.Update (time);
 		}
 
-		private void UpdateInput (GameTime gameTime)
+		private void UpdateInput (GameTime time)
 		{
 			// allows the game to exit
 			if (Keys.F8.IsDown ()) {
@@ -125,14 +125,14 @@ namespace Knot3.Core
 		/// <summary>
 		/// This is called when the game should draw itself.
 		/// </summary>
-		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		protected override void Draw (GameTime gameTime)
+		/// <param name="time">Provides a snapshot of timing values.</param>
+		protected override void Draw (GameTime time)
 		{
-			// current game state
-			State.Draw (gameTime);
+			// current game screen
+			State.Draw (time);
 
 			// base class
-			base.Draw (gameTime);
+			base.Draw (time);
 		}
 
 		public bool VSync {

@@ -26,8 +26,8 @@ namespace Knot3.UserInterface
 		// textures
 		protected SpriteBatch spriteBatch;
 
-		public VerticalMenu (GameState state, WidgetInfo info, DisplayLayer drawOrder)
-			: base(state, info, drawOrder)
+		public VerticalMenu (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+			: base(screen, info, drawOrder)
 		{
 			info.RelativeSize = () => new Vector2 (
 				RelativeItemSize (-1).X,
@@ -39,7 +39,7 @@ namespace Knot3.UserInterface
 			};
 			Border = Border.Zero;
 
-			spriteBatch = new SpriteBatch (state.device);
+			spriteBatch = new SpriteBatch (screen.device);
 		}
 
 		public override MenuButton AddButton (MenuItemInfo info)
@@ -66,7 +66,7 @@ namespace Knot3.UserInterface
 		public void Align (Viewport viewport, float scale, Vector2? givenPosition = null, Vector2? givenItemSize = null,
 		                   float padding = 0.15f)
 		{
-			SpriteFont font = HfGDesign.MenuFont (state);
+			SpriteFont font = HfGDesign.MenuFont (screen);
 			(Info as WidgetInfo).RelativePadding = () => Vector2.One * font.LineSpacing * scale * padding;
 			Vector2 bestItemSize = Vector2.Zero;
 			foreach (MenuItem item in Items) {
@@ -103,13 +103,13 @@ namespace Knot3.UserInterface
 			Align (viewport, scale, new Vector2 (posX, posY), itemSize, padding);
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
-			base.Draw (gameTime);
+			base.Draw (time);
 
 			if (IsVisible) {
-				Point min = Info.ScaledPosition (state.viewport).ToPoint ();
-				Point size = Info.ScaledSize (state.viewport).ToPoint ();
+				Point min = Info.ScaledPosition (screen.viewport).ToPoint ();
+				Point size = Info.ScaledSize (screen.viewport).ToPoint ();
 				Rectangle[] borders = new Rectangle[]{
 					new Rectangle (min.X - (int)Border.Size.X, min.Y - (int)Border.Size.Y,
 					               (int)Border.Size.X, size.Y + (int)Border.Size.Y * 2),
@@ -120,7 +120,7 @@ namespace Knot3.UserInterface
 					new Rectangle (min.X - (int)Border.Size.X, min.Y + size.Y,
 				                   size.X + (int)Border.Size.X * 2, (int)Border.Size.Y)
 				};
-				Texture2D borderTexture = Textures.Create (state.device, Color.White);
+				Texture2D borderTexture = Textures.Create (screen.device, Color.White);
 			
 				spriteBatch.Begin ();
 				foreach (Rectangle rect in borders) {

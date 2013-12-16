@@ -26,9 +26,9 @@ namespace Knot3.GameObjects
 
 		World World { get; set; }
 
-		void Draw (GameTime gameTime);
+		void Draw (GameTime time);
 
-		void Update (GameTime gameTime);
+		void Update (GameTime time);
 
 		/// <summary>
 		/// Schneiden sich der (meist aus einer Mausposition berechnete) Ray und das Spielobjekt?

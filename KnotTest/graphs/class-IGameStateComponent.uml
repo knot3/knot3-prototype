@@ -1,1549 +1,2640 @@
+// 
 public interface IGameStateComponent : Xna.IGameComponent
   Attributes:
+    // 
     + Index : DisplayLayer
   Methods:
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
   Attributes:
+    // 
     + state : GameState
+    // 
     - _index : DisplayLayer
+    // 
     + Index : DisplayLayer
   Methods:
+    // 
     + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
+// 
 public class MousePointer : DrawableGameStateComponent
   Attributes:
+    // 
     - spriteBatch : SpriteBatch
   Methods:
+    // 
     + MousePointer  (GameState state)
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - DrawCursor  (GameTime gameTime)
 
+// 
 public class Overlay : DrawableGameStateComponent
   Attributes:
+    // 
     - spriteBatch : SpriteBatch
+    // 
     - effect : BasicEffect
+    // 
     - World : World
+    // 
     - font : SpriteFont
+    // 
     - _total_frames : int
+    // 
     - _elapsed_time : float
+    // 
     - _fps : int
+    // 
     - profiler : Hashtable static
+    // 
     + Profiler : HashtableWrapper static
   Methods:
+    // 
     + Overlay  (GameState state, World world)
+    // 
     # LoadContent  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + Update  (GameTime gameTime) override
+    // 
     - DrawCoordinates  (GameTime gameTime)
+    // 
     - DrawOverlay  (GameTime gameTime)
+    // 
     - DrawVectorCoordinates  (Vector3 vector, int width2, int width3, int width4, int height)
+    // 
     - DrawString  (string str, int width, int height, Color color)
+    // 
     - DrawString  (float n, int width, int height, Color color)
+    // 
     - UpdateFPS  (GameTime gameTime)
+    // 
     - DrawFPS  (GameTime gameTime)
+    // 
     - DrawProfiler  (GameTime gameTime)
+    // 
     public class HashtableWrapper : 
       Attributes:
       Methods:
+        // 
         + this (string str) : double
+        // 
         + ContainsKey (string str) : bool
 
+// 
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
   Attributes:
+    // 
     - knotRenderEffects : List<RenderEffect>
+    // 
     - knotRenderEffect : RenderEffect
+    // 
     + Objects : List<IGameObject>
+    // 
     - _selectedObject : IGameObject
+    // 
     + SelectedObject : IGameObject
+    // 
     + SelectionChanged : Action<IGameObject>
+    // 
     + Camera : Camera
+    // 
     - floor : TexturedRectangle
+    // 
     - _redraw : bool
+    // 
     + Redraw : bool
   Methods:
+    // 
     + World  (GameState state)
+    // 
     + SelectObject  (IGameObject obj, GameTime gameTime)
+    // 
     + SelectedObjectDistance () : float
+    // 
     + Add  (IGameObject obj)
+    // 
     + Initialize  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + Update  (GameTime gameTime) override
+    // 
     + GetEnumerator () : IEnumerator<IGameObject>
+    // 
     - IEnumerable.GetEnumerator () : IEnumerator
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
 
+// 
 public abstract class Widget : DrawableGameStateComponent
   Attributes:
+    // 
     + Info : WidgetInfo
+    // 
     + IsVisible : bool virtual
   Methods:
+    // 
     + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + bounds () : Rectangle
 
+// 
 public class ColorPicker : Widget, IMouseEventListener
   Attributes:
+    // 
     - colors : List<Color>
+    // 
     - tiles : List<Vector2>
+    // 
     - Vector2 tileSize : readonly static
+    // 
     + SelectedColor : Color
+    // 
     + OnSelectColor : Action<Color>
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsMouseEventEnabled : bool
   Methods:
+    // 
     + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - CreateColors (int num) : IEnumerable<Color> static
+    // 
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
+    // 
     - SelectColor  (Color color)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
 
+// 
 public abstract class Dialog : Widget
   Attributes:
+    // 
     + buttons : Menu
+    // 
     + Done : Action
+    // 
     # spriteBatch : SpriteBatch
   Methods:
+    // 
     + Dialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # RelativeButtonPosition (int n) : Vector2
+    // 
     # RelativeButtonSize (int n) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     # DrawDialog  (GameTime gameTime) abstract
+    // 
     - ButtonBackgroundColor (ItemState itemState) : Color
+    // 
     - ButtonForegroundColor (ItemState itemState) : Color
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
+    // 
     # OnYesClick : Action
+    // 
     # OnNoClick : Action
+    // 
     # OnCancelClick : Action
   Methods:
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # DrawDialog  (GameTime gameTime) override
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
+    // 
     # DrawDialog  (GameTime gameTime)
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class Menu : Widget
   Attributes:
+    // 
     + RelativeItemSize : Func<int,Vector2>
+    // 
     + RelativeItemPosition : Func<int,Vector2>
+    // 
     + ItemForegroundColor : Func<ItemState,Color>
+    // 
     + ItemBackgroundColor : Func<ItemState,Color>
+    // 
     + ItemAlignX : HAlign?
+    // 
     + ItemAlignY : VAlign?
+    // 
     # Items : List<MenuItem>
+    // 
     - ItemDisplayLayer : DisplayLayer
+    // 
     + Count : int
+    // 
     - isVisible : bool
+    // 
     + IsVisible : bool override
   Methods:
+    // 
     + Menu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     - assignMenuItemInfo  (ref MenuItemInfo info, int num, MenuItem item)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
+    // 
     + this (int i) : MenuItem
+    // 
     + Clear  ()
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + CollapseMenus  (MenuItem menu)
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     + Border : Border
+    // 
     # spriteBatch : SpriteBatch
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton override
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) override
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) override
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition = null, Vector2? givenItemSize = null, float padding = 0.15f)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX = null, int? sizeY = null, float padding = 0.15f)
+    // 
     + Draw  (GameTime gameTime) override
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + Border : Border
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option)
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
+// 
 public class TextInput : Widget, IKeyEventListener
   Attributes:
+    // 
     + InputText : string
+    // 
     - font : SpriteFont
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
   Methods:
+    // 
     + TextInput  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Update  (GameTime gameTime) override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 
+// 
 public abstract class ItemWidget : Widget
   Attributes:
+    // 
     # ItemNum : int
+    // 
     + ItemState : ItemState
   Methods:
+    // 
     + ItemWidget  (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     + Info : MenuItemInfo new
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + IsMouseEventEnabled : bool
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
+    // 
     + Collapse  () virtual
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsMouseEventEnabled : bool
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + Info : MenuItemInfo
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Collapse () virtual
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class ColorPicker : Widget, IMouseEventListener
   Attributes:
+    // 
     - tiles : List<Vector2>
+    // 
     + SelectedColor : Color
+    // 
     + IsMouseEventEnabled : bool
+    // 
     - colors : List<Color>
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + OnSelectColor : Action<Color>
   Methods:
+    // 
     - Vector2 tileSize (0.032f, 0.032f) : readonly static
+    // 
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
+    // 
     + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
+    // 
     - CreateColors (int num) : IEnumerable<Color> static
+    // 
     - SelectColor  (Color color)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
 
+// 
 public abstract class Dialog : Widget
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + Done : Action
+    // 
     + buttons : Menu
   Methods:
+    // 
     - ButtonBackgroundColor (ItemState itemState) : Color
+    // 
     # RelativeButtonSize (int n) : Vector2
+    // 
     + Dialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     - ButtonForegroundColor (ItemState itemState) : Color
+    // 
     # RelativeButtonPosition (int n) : Vector2
+    // 
     # DrawDialog  (GameTime gameTime) abstract
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    // 
     + Draw  (GameTime gameTime)
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
+    // 
     # OnYesClick : Action
+    // 
     # OnNoClick : Action
+    // 
     # OnCancelClick : Action
   Methods:
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # DrawDialog  (GameTime gameTime) override
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
+    // 
     # DrawDialog  (GameTime gameTime)
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class Menu : Widget
   Attributes:
+    // 
     - isVisible : bool
+    // 
     # Items : List<MenuItem>
     + Color> ItemBackgroundColor : Func<ItemState,
     + Color> ItemForegroundColor : Func<ItemState,
     + Vector2> RelativeItemPosition : Func<int,
+    // 
     + ItemAlignX : HAlign?
+    // 
     + ItemAlignY : VAlign?
+    // 
     + Count : int
+    // 
     + IsVisible : bool
+    // 
     - ItemDisplayLayer : DisplayLayer
     + Vector2> RelativeItemSize : Func<int,
   Methods:
+    // 
     - assignMenuItemInfo  (ref MenuItemInfo info, int num, MenuItem item)
+    // 
     + Menu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + this (int i) : MenuItem
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    // 
     + CollapseMenus  (MenuItem menu)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
     + Clear ()
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     + Border : Border
+    // 
     # spriteBatch : SpriteBatch
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton override
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) override
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) override
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition = null, Vector2? givenItemSize = null, float padding = 0.15f)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX = null, int? sizeY = null, float padding = 0.15f)
+    // 
     + Draw  (GameTime gameTime) override
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + Border : Border
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option)
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
+// 
 public class TextInput : Widget, IKeyEventListener
   Attributes:
+    // 
     - font : SpriteFont
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + ValidKeys : List<Keys>
+    // 
     + InputText : string
   Methods:
+    // 
     + TextInput  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public abstract class ItemWidget : Widget
   Attributes:
+    // 
     + ItemState : ItemState
+    // 
     # ItemNum : int
   Methods:
+    // 
     + ItemWidget  (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     + Info : MenuItemInfo new
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + IsMouseEventEnabled : bool
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
+    // 
     + Collapse  () virtual
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsMouseEventEnabled : bool
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + Info : MenuItemInfo
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Collapse () virtual
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class MousePointer : DrawableGameStateComponent
   Attributes:
+    // 
     - spriteBatch : SpriteBatch
   Methods:
+    // 
     + MousePointer  (GameState state)
+    // 
     - DrawCursor  (GameTime gameTime)
+    // 
     + Draw  (GameTime gameTime)
 
+// 
 public class Overlay : DrawableGameStateComponent
   Attributes:
+    // 
     - effect : BasicEffect
+    // 
     - _elapsed_time : float
+    // 
     - _fps : int
+    // 
     - World : World
     + HashtableWrapper : class
+    // 
     - _total_frames : int
+    // 
     - spriteBatch : SpriteBatch
+    // 
     - font : SpriteFont
   Methods:
+    // 
     - profiler () : Hashtable static
+    // 
     + Profiler () : HashtableWrapper static
+    // 
     - DrawFPS  (GameTime gameTime)
+    // 
     - DrawString  (float n, int width, int height, Color color)
+    // 
     - DrawVectorCoordinates  (Vector3 vector, int width2, int width3, int width4, int height)
+    // 
     - UpdateFPS  (GameTime gameTime)
+    // 
     + Overlay  (GameState state, World world)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     - DrawCoordinates  (GameTime gameTime)
+    // 
     - DrawOverlay  (GameTime gameTime)
+    // 
     - DrawProfiler  (GameTime gameTime)
+    // 
     - DrawString  (string str, int width, int height, Color color)
     # LoadContent ()
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
   Attributes:
+    // 
     - knotRenderEffect : RenderEffect
+    // 
     - _redraw : bool
+    // 
     + SelectedObject : IGameObject
+    // 
     + Objects : List<IGameObject>
+    // 
     + Redraw : bool
+    // 
     - _selectedObject : IGameObject
+    // 
     - knotRenderEffects : List<RenderEffect>
+    // 
     - floor : TexturedRectangle
+    // 
     + Camera : Camera
   Methods:
+    // 
     + SelectionChanged (o) : Action<IGameObject>
+    // 
     - IEnumerable.GetEnumerator () : IEnumerator
+    // 
     + World  (GameState state)
+    // 
     + SelectedObjectDistance () : float
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + Update  (GameTime gameTime)
+    // 
     + Add  (IGameObject obj)
+    // 
     + GetEnumerator () : IEnumerator<IGameObject>
     + Initialize ()
+    // 
     + SelectObject  (IGameObject obj, GameTime gameTime)
 
+// 
 public abstract class Widget : DrawableGameStateComponent
   Attributes:
+    // 
     + Info : WidgetInfo
+    // 
     + IsVisible : bool virtual
   Methods:
+    // 
     + bounds () : Rectangle
+    // 
     + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
 
+// 
 public class ColorPicker : Widget, IMouseEventListener
   Attributes:
+    // 
     - colors : List<Color>
+    // 
     - tiles : List<Vector2>
+    // 
     - Vector2 tileSize : readonly static
+    // 
     + SelectedColor : Color
+    // 
     + OnSelectColor : Action<Color>
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsMouseEventEnabled : bool
   Methods:
+    // 
     + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - CreateColors (int num) : IEnumerable<Color> static
+    // 
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
+    // 
     - SelectColor  (Color color)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
 
+// 
 public abstract class Dialog : Widget
   Attributes:
+    // 
     + buttons : Menu
+    // 
     + Done : Action
+    // 
     # spriteBatch : SpriteBatch
   Methods:
+    // 
     + Dialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # RelativeButtonPosition (int n) : Vector2
+    // 
     # RelativeButtonSize (int n) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     # DrawDialog  (GameTime gameTime) abstract
+    // 
     - ButtonBackgroundColor (ItemState itemState) : Color
+    // 
     - ButtonForegroundColor (ItemState itemState) : Color
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
+    // 
     # OnYesClick : Action
+    // 
     # OnNoClick : Action
+    // 
     # OnCancelClick : Action
   Methods:
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # DrawDialog  (GameTime gameTime) override
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
+    // 
     # DrawDialog  (GameTime gameTime)
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class Menu : Widget
   Attributes:
+    // 
     + RelativeItemSize : Func<int,Vector2>
+    // 
     + RelativeItemPosition : Func<int,Vector2>
+    // 
     + ItemForegroundColor : Func<ItemState,Color>
+    // 
     + ItemBackgroundColor : Func<ItemState,Color>
+    // 
     + ItemAlignX : HAlign?
+    // 
     + ItemAlignY : VAlign?
+    // 
     # Items : List<MenuItem>
+    // 
     - ItemDisplayLayer : DisplayLayer
+    // 
     + Count : int
+    // 
     - isVisible : bool
+    // 
     + IsVisible : bool override
   Methods:
+    // 
     + Menu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     - assignMenuItemInfo  (ref MenuItemInfo info, int num, MenuItem item)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
+    // 
     + this (int i) : MenuItem
+    // 
     + Clear  ()
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + CollapseMenus  (MenuItem menu)
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     + Border : Border
+    // 
     # spriteBatch : SpriteBatch
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton override
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) override
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) override
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition = null, Vector2? givenItemSize = null, float padding = 0.15f)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX = null, int? sizeY = null, float padding = 0.15f)
+    // 
     + Draw  (GameTime gameTime) override
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + Border : Border
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option)
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
+// 
 public class TextInput : Widget, IKeyEventListener
   Attributes:
+    // 
     + InputText : string
+    // 
     - font : SpriteFont
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
   Methods:
+    // 
     + TextInput  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Update  (GameTime gameTime) override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 
+// 
 public abstract class ItemWidget : Widget
   Attributes:
+    // 
     # ItemNum : int
+    // 
     + ItemState : ItemState
   Methods:
+    // 
     + ItemWidget  (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     + Info : MenuItemInfo new
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + IsMouseEventEnabled : bool
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
+    // 
     + Collapse  () virtual
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsMouseEventEnabled : bool
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + Info : MenuItemInfo
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Collapse () virtual
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class ColorPicker : Widget, IMouseEventListener
   Attributes:
+    // 
     - tiles : List<Vector2>
+    // 
     + SelectedColor : Color
+    // 
     + IsMouseEventEnabled : bool
+    // 
     - colors : List<Color>
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + OnSelectColor : Action<Color>
   Methods:
+    // 
     - Vector2 tileSize (0.032f, 0.032f) : readonly static
+    // 
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
+    // 
     + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
+    // 
     - CreateColors (int num) : IEnumerable<Color> static
+    // 
     - SelectColor  (Color color)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
 
+// 
 public abstract class Dialog : Widget
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + Done : Action
+    // 
     + buttons : Menu
   Methods:
+    // 
     - ButtonBackgroundColor (ItemState itemState) : Color
+    // 
     # RelativeButtonSize (int n) : Vector2
+    // 
     + Dialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     - ButtonForegroundColor (ItemState itemState) : Color
+    // 
     # RelativeButtonPosition (int n) : Vector2
+    // 
     # DrawDialog  (GameTime gameTime) abstract
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    // 
     + Draw  (GameTime gameTime)
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
+    // 
     # OnYesClick : Action
+    // 
     # OnNoClick : Action
+    // 
     # OnCancelClick : Action
   Methods:
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # DrawDialog  (GameTime gameTime) override
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
+    // 
     # DrawDialog  (GameTime gameTime)
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class Menu : Widget
   Attributes:
+    // 
     - isVisible : bool
+    // 
     # Items : List<MenuItem>
     + Color> ItemBackgroundColor : Func<ItemState,
     + Color> ItemForegroundColor : Func<ItemState,
     + Vector2> RelativeItemPosition : Func<int,
+    // 
     + ItemAlignX : HAlign?
+    // 
     + ItemAlignY : VAlign?
+    // 
     + Count : int
+    // 
     + IsVisible : bool
+    // 
     - ItemDisplayLayer : DisplayLayer
     + Vector2> RelativeItemSize : Func<int,
   Methods:
+    // 
     - assignMenuItemInfo  (ref MenuItemInfo info, int num, MenuItem item)
+    // 
     + Menu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + this (int i) : MenuItem
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    // 
     + CollapseMenus  (MenuItem menu)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
     + Clear ()
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     + Border : Border
+    // 
     # spriteBatch : SpriteBatch
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton override
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) override
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) override
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition = null, Vector2? givenItemSize = null, float padding = 0.15f)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX = null, int? sizeY = null, float padding = 0.15f)
+    // 
     + Draw  (GameTime gameTime) override
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + Border : Border
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option)
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
+// 
 public class TextInput : Widget, IKeyEventListener
   Attributes:
+    // 
     - font : SpriteFont
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + ValidKeys : List<Keys>
+    // 
     + InputText : string
   Methods:
+    // 
     + TextInput  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public abstract class ItemWidget : Widget
   Attributes:
+    // 
     + ItemState : ItemState
+    // 
     # ItemNum : int
   Methods:
+    // 
     + ItemWidget  (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     + Info : MenuItemInfo new
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + IsMouseEventEnabled : bool
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
+    // 
     + Collapse  () virtual
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsMouseEventEnabled : bool
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + Info : MenuItemInfo
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Collapse () virtual
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
   Attributes:
+    // 
     + state : GameState
+    // 
     + Index : DisplayLayer
   Methods:
+    // 
     + GameStateComponent  (GameState state, DisplayLayer index)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
+// 
 public class Camera : GameStateComponent
   Attributes:
+    // 
     - World : World
+    // 
     + WorldMatrix : Matrix
+    // 
     + ViewMatrix : Matrix
+    // 
     + ProjectionMatrix : Matrix
+    // 
     + ViewFrustum : BoundingFrustum
+    // 
     + DefaultPosition : Vector3
+    // 
     - _position : Vector3
+    // 
     + Position : Vector3
+    // 
     - _target : Vector3
+    // 
     + Target : Vector3
+    // 
     + UpVector : Vector3
+    // 
     - foV : float
+    // 
     + FoV : float
+    // 
     + OnViewChanged : Action
+    // 
     + RotationAngle : Angles3
+    // 
     - AutoRotation : Angles3
+    // 
     - aspectRatio : float
+    // 
     - nearPlane : float
+    // 
     - farPlane : float
+    // 
     + TargetDistance : float
+    // 
     + TargetDirection : Vector3
+    // 
     + ArcballTarget : Vector3
   Methods:
+    // 
     + Camera  (GameState state, World world)
+    // 
     + Update  (GameTime gameTime) override
+    // 
     - UpdateRotation  (GameTime gameTime)
+    // 
     - UpdateMatrices  (GameTime gameTime)
+    // 
     + GetMouseRay (Vector2 mouse) : Ray
 
+// 
 public class ClickHandler : GameStateComponent
   Attributes:
   Methods:
+    // 
     + ClickHandler  (GameState state)
+    // 
     private class ClickEventComponent : 
       Attributes:
+        // 
         + receiver : IMouseEventListener
+        // 
         + layer : DisplayLayer
+        // 
         + relativePosition : Vector2
       Methods:
+    // 
     + Update  (GameTime gameTime) override
 
+// 
 public abstract class Input : GameStateComponent, IKeyEventListener
   Attributes:
+    // 
     # FullscreenToggled : bool static
+    // 
     + PreviousKeyboardState : KeyboardState static
+    // 
     + PreviousMouseState : MouseState static
+    // 
     - LeftButtonClickTimer : double static
+    // 
     - RightButtonClickTimer : double static
+    // 
     - PreviousClickMouseState : MouseState static
+    // 
     + LeftButton : ClickState static
+    // 
     + RightButton : ClickState static
+    // 
     + GrabMouseMovement : bool
+    // 
     + CurrentInputAction : InputAction
+    // 
     + WASDMode : WASDMode
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + MouseState : MouseState static
+    // 
     + KeyboardState : KeyboardState static
   Methods:
+    // 
     + Input  (GameState state)
+    // 
     + Update  (GameTime gameTime) override
+    // 
     # UpdateKeys  (GameTime gameTime) virtual
+    // 
     # UpdateMouse  (GameTime gameTime) virtual
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 
+// 
 public class MenuScreenInput : Input
   Attributes:
   Methods:
+    // 
     + MenuScreenInput  (GameState state)
 
+// 
 public class MenuScreenInput : Input
   Attributes:
   Methods:
+    // 
     + MenuScreenInput  (GameState state)
 
+// 
 public class KeyHandler : GameStateComponent
   Attributes:
   Methods:
+    // 
     + KeyHandler  (GameState state)
+    // 
     private class KeyEventComponent : 
       Attributes:
+        // 
         + receiver : IKeyEventListener
+        // 
         + layer : DisplayLayer
+        // 
         + keyEvent : KeyEvent
+        // 
         + keys : List<Keys>
       Methods:
+    // 
     + Update  (GameTime gameTime) override
 
+// 
 public class ModelMousePicker : GameStateComponent
   Attributes:
+    // 
     - World : World
+    // 
     - lastRayCheck : double
+    // 
     - lastMousePosition : Vector2
   Methods:
+    // 
     + ModelMousePicker  (GameState state, World world)
+    // 
     + Update  (GameTime gameTime) override
+    // 
     - CheckMouseRay  (GameTime gameTime)
+    // 
     - UpdateMouseRay  (GameTime gameTime)
 
 public class MousePicker : GameStateComponent
@@ -1556,104 +2647,178 @@ public class MousePicker : GameStateComponent
     + Update  (GameTime gameTime) override
     + UpdateMouseRay  (GameTime gameTime)
 
+// 
 public class PipeColoring : GameStateComponent, IKeyEventListener
   Attributes:
+    // 
     + Knot : Knot
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
   Methods:
+    // 
     + PipeColoring  (GameState state)
+    // 
     + Update  (GameTime gameTime) override
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 
+// 
 public class Camera : GameStateComponent
   Attributes:
+    // 
     - AutoRotation : Angles3
+    // 
     - _target : Vector3
+    // 
     - aspectRatio : float
+    // 
     - farPlane : float
+    // 
     - nearPlane : float
+    // 
     + Position : Vector3
+    // 
     + Target : Vector3
+    // 
     + TargetDirection : Vector3
+    // 
     + UpVector : Vector3
+    // 
     + FoV : float
+    // 
     - World : World
+    // 
     - _position : Vector3
+    // 
     - foV : float
+    // 
     + RotationAngle : Angles3
+    // 
     + ViewFrustum : BoundingFrustum
+    // 
     + ProjectionMatrix : Matrix
+    // 
     + ViewMatrix : Matrix
+    // 
     + WorldMatrix : Matrix
+    // 
     + ArcballTarget : Vector3
+    // 
     + DefaultPosition : Vector3
+    // 
     + TargetDistance : float
   Methods:
+    // 
     + OnViewChanged () : Action
+    // 
     + Camera  (GameState state, World world)
+    // 
     + GetMouseRay (Vector2 mouse) : Ray
+    // 
     - UpdateMatrices  (GameTime gameTime)
+    // 
     - UpdateRotation  (GameTime gameTime)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public class ClickHandler : GameStateComponent
   Attributes:
     - ClickEventComponent : class
   Methods:
+    // 
     + ClickHandler  (GameState state)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public abstract class Input : GameStateComponent, IKeyEventListener
   Attributes:
+    // 
     - PreviousClickMouseState : MouseState static
+    // 
     - LeftButtonClickTimer : double static
+    // 
     - RightButtonClickTimer : double static
+    // 
     + GrabMouseMovement : bool
+    // 
     + LeftButton : ClickState static
+    // 
     + RightButton : ClickState static
+    // 
     + PreviousKeyboardState : KeyboardState static
+    // 
     + MouseState : MouseState static
+    // 
     + PreviousMouseState : MouseState static
+    // 
     # FullscreenToggled : bool static
+    // 
     + CurrentInputAction : InputAction
+    // 
     + ValidKeys : List<Keys>
+    // 
     + WASDMode : WASDMode
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + KeyboardState : KeyboardState static
   Methods:
+    // 
     # UpdateMouse  (GameTime gameTime) virtual
+    // 
     + Update  (GameTime gameTime)
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     # UpdateKeys  (GameTime gameTime) virtual
+    // 
     + Input  (GameState state)
 
+// 
 public class MenuScreenInput : Input
   Attributes:
   Methods:
+    // 
     + MenuScreenInput  (GameState state)
 
+// 
 public class MenuScreenInput : Input
   Attributes:
   Methods:
+    // 
     + MenuScreenInput  (GameState state)
 
+// 
 public class KeyHandler : GameStateComponent
   Attributes:
     - KeyEventComponent : class
   Methods:
+    // 
     + KeyHandler  (GameState state)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public class ModelMousePicker : GameStateComponent
   Attributes:
+    // 
     - lastMousePosition : Vector2
+    // 
     - World : World
+    // 
     - lastRayCheck : double
   Methods:
+    // 
     - UpdateMouseRay  (GameTime gameTime)
+    // 
     + ModelMousePicker  (GameState state, World world)
+    // 
     - CheckMouseRay  (GameTime gameTime)
+    // 
     + Update  (GameTime gameTime)
 
 public class MousePicker : GameStateComponent
@@ -1666,1556 +2831,2651 @@ public class MousePicker : GameStateComponent
     + Update  (GameTime gameTime)
     + UpdateMouseRay  (GameTime gameTime)
 
+// 
 public class PipeColoring : GameStateComponent, IKeyEventListener
   Attributes:
+    // 
     + ValidKeys : List<Keys>
+    // 
     + Knot : Knot
+    // 
     + IsKeyEventEnabled : bool
   Methods:
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + PipeColoring  (GameState state)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public abstract class DrawableGameStateComponent : Xna.DrawableGameComponent, IGameStateComponent
   Attributes:
+    // 
     + Index : DisplayLayer
+    // 
     - _index : DisplayLayer
+    // 
     + state : GameState
   Methods:
+    // 
     + DrawableGameStateComponent  (GameState state, DisplayLayer index)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
+// 
 public class MousePointer : DrawableGameStateComponent
   Attributes:
+    // 
     - spriteBatch : SpriteBatch
   Methods:
+    // 
     + MousePointer  (GameState state)
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - DrawCursor  (GameTime gameTime)
 
+// 
 public class Overlay : DrawableGameStateComponent
   Attributes:
+    // 
     - spriteBatch : SpriteBatch
+    // 
     - effect : BasicEffect
+    // 
     - World : World
+    // 
     - font : SpriteFont
+    // 
     - _total_frames : int
+    // 
     - _elapsed_time : float
+    // 
     - _fps : int
+    // 
     - profiler : Hashtable static
+    // 
     + Profiler : HashtableWrapper static
   Methods:
+    // 
     + Overlay  (GameState state, World world)
+    // 
     # LoadContent  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + Update  (GameTime gameTime) override
+    // 
     - DrawCoordinates  (GameTime gameTime)
+    // 
     - DrawOverlay  (GameTime gameTime)
+    // 
     - DrawVectorCoordinates  (Vector3 vector, int width2, int width3, int width4, int height)
+    // 
     - DrawString  (string str, int width, int height, Color color)
+    // 
     - DrawString  (float n, int width, int height, Color color)
+    // 
     - UpdateFPS  (GameTime gameTime)
+    // 
     - DrawFPS  (GameTime gameTime)
+    // 
     - DrawProfiler  (GameTime gameTime)
+    // 
     public class HashtableWrapper : 
       Attributes:
       Methods:
+        // 
         + this (string str) : double
+        // 
         + ContainsKey (string str) : bool
 
+// 
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
   Attributes:
+    // 
     - knotRenderEffects : List<RenderEffect>
+    // 
     - knotRenderEffect : RenderEffect
+    // 
     + Objects : List<IGameObject>
+    // 
     - _selectedObject : IGameObject
+    // 
     + SelectedObject : IGameObject
+    // 
     + SelectionChanged : Action<IGameObject>
+    // 
     + Camera : Camera
+    // 
     - floor : TexturedRectangle
+    // 
     - _redraw : bool
+    // 
     + Redraw : bool
   Methods:
+    // 
     + World  (GameState state)
+    // 
     + SelectObject  (IGameObject obj, GameTime gameTime)
+    // 
     + SelectedObjectDistance () : float
+    // 
     + Add  (IGameObject obj)
+    // 
     + Initialize  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + Update  (GameTime gameTime) override
+    // 
     + GetEnumerator () : IEnumerator<IGameObject>
+    // 
     - IEnumerable.GetEnumerator () : IEnumerator
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
 
+// 
 public abstract class Widget : DrawableGameStateComponent
   Attributes:
+    // 
     + Info : WidgetInfo
+    // 
     + IsVisible : bool virtual
   Methods:
+    // 
     + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + bounds () : Rectangle
 
+// 
 public class ColorPicker : Widget, IMouseEventListener
   Attributes:
+    // 
     - colors : List<Color>
+    // 
     - tiles : List<Vector2>
+    // 
     - Vector2 tileSize : readonly static
+    // 
     + SelectedColor : Color
+    // 
     + OnSelectColor : Action<Color>
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsMouseEventEnabled : bool
   Methods:
+    // 
     + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - CreateColors (int num) : IEnumerable<Color> static
+    // 
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
+    // 
     - SelectColor  (Color color)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
 
+// 
 public abstract class Dialog : Widget
   Attributes:
+    // 
     + buttons : Menu
+    // 
     + Done : Action
+    // 
     # spriteBatch : SpriteBatch
   Methods:
+    // 
     + Dialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # RelativeButtonPosition (int n) : Vector2
+    // 
     # RelativeButtonSize (int n) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     # DrawDialog  (GameTime gameTime) abstract
+    // 
     - ButtonBackgroundColor (ItemState itemState) : Color
+    // 
     - ButtonForegroundColor (ItemState itemState) : Color
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
+    // 
     # OnYesClick : Action
+    // 
     # OnNoClick : Action
+    // 
     # OnCancelClick : Action
   Methods:
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # DrawDialog  (GameTime gameTime) override
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
+    // 
     # DrawDialog  (GameTime gameTime)
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class Menu : Widget
   Attributes:
+    // 
     + RelativeItemSize : Func<int,Vector2>
+    // 
     + RelativeItemPosition : Func<int,Vector2>
+    // 
     + ItemForegroundColor : Func<ItemState,Color>
+    // 
     + ItemBackgroundColor : Func<ItemState,Color>
+    // 
     + ItemAlignX : HAlign?
+    // 
     + ItemAlignY : VAlign?
+    // 
     # Items : List<MenuItem>
+    // 
     - ItemDisplayLayer : DisplayLayer
+    // 
     + Count : int
+    // 
     - isVisible : bool
+    // 
     + IsVisible : bool override
   Methods:
+    // 
     + Menu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     - assignMenuItemInfo  (ref MenuItemInfo info, int num, MenuItem item)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
+    // 
     + this (int i) : MenuItem
+    // 
     + Clear  ()
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + CollapseMenus  (MenuItem menu)
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     + Border : Border
+    // 
     # spriteBatch : SpriteBatch
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton override
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) override
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) override
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition = null, Vector2? givenItemSize = null, float padding = 0.15f)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX = null, int? sizeY = null, float padding = 0.15f)
+    // 
     + Draw  (GameTime gameTime) override
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + Border : Border
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option)
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
+// 
 public class TextInput : Widget, IKeyEventListener
   Attributes:
+    // 
     + InputText : string
+    // 
     - font : SpriteFont
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
   Methods:
+    // 
     + TextInput  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Update  (GameTime gameTime) override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 
+// 
 public abstract class ItemWidget : Widget
   Attributes:
+    // 
     # ItemNum : int
+    // 
     + ItemState : ItemState
   Methods:
+    // 
     + ItemWidget  (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     + Info : MenuItemInfo new
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + IsMouseEventEnabled : bool
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
+    // 
     + Collapse  () virtual
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsMouseEventEnabled : bool
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + Info : MenuItemInfo
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Collapse () virtual
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class ColorPicker : Widget, IMouseEventListener
   Attributes:
+    // 
     - tiles : List<Vector2>
+    // 
     + SelectedColor : Color
+    // 
     + IsMouseEventEnabled : bool
+    // 
     - colors : List<Color>
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + OnSelectColor : Action<Color>
   Methods:
+    // 
     - Vector2 tileSize (0.032f, 0.032f) : readonly static
+    // 
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
+    // 
     + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
+    // 
     - CreateColors (int num) : IEnumerable<Color> static
+    // 
     - SelectColor  (Color color)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
 
+// 
 public abstract class Dialog : Widget
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + Done : Action
+    // 
     + buttons : Menu
   Methods:
+    // 
     - ButtonBackgroundColor (ItemState itemState) : Color
+    // 
     # RelativeButtonSize (int n) : Vector2
+    // 
     + Dialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     - ButtonForegroundColor (ItemState itemState) : Color
+    // 
     # RelativeButtonPosition (int n) : Vector2
+    // 
     # DrawDialog  (GameTime gameTime) abstract
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    // 
     + Draw  (GameTime gameTime)
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
+    // 
     # OnYesClick : Action
+    // 
     # OnNoClick : Action
+    // 
     # OnCancelClick : Action
   Methods:
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # DrawDialog  (GameTime gameTime) override
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
+    // 
     # DrawDialog  (GameTime gameTime)
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class Menu : Widget
   Attributes:
+    // 
     - isVisible : bool
+    // 
     # Items : List<MenuItem>
     + Color> ItemBackgroundColor : Func<ItemState,
     + Color> ItemForegroundColor : Func<ItemState,
     + Vector2> RelativeItemPosition : Func<int,
+    // 
     + ItemAlignX : HAlign?
+    // 
     + ItemAlignY : VAlign?
+    // 
     + Count : int
+    // 
     + IsVisible : bool
+    // 
     - ItemDisplayLayer : DisplayLayer
     + Vector2> RelativeItemSize : Func<int,
   Methods:
+    // 
     - assignMenuItemInfo  (ref MenuItemInfo info, int num, MenuItem item)
+    // 
     + Menu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + this (int i) : MenuItem
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    // 
     + CollapseMenus  (MenuItem menu)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
     + Clear ()
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     + Border : Border
+    // 
     # spriteBatch : SpriteBatch
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton override
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) override
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) override
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition = null, Vector2? givenItemSize = null, float padding = 0.15f)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX = null, int? sizeY = null, float padding = 0.15f)
+    // 
     + Draw  (GameTime gameTime) override
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + Border : Border
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option)
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
+// 
 public class TextInput : Widget, IKeyEventListener
   Attributes:
+    // 
     - font : SpriteFont
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + ValidKeys : List<Keys>
+    // 
     + InputText : string
   Methods:
+    // 
     + TextInput  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public abstract class ItemWidget : Widget
   Attributes:
+    // 
     + ItemState : ItemState
+    // 
     # ItemNum : int
   Methods:
+    // 
     + ItemWidget  (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     + Info : MenuItemInfo new
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + IsMouseEventEnabled : bool
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
+    // 
     + Collapse  () virtual
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsMouseEventEnabled : bool
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + Info : MenuItemInfo
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Collapse () virtual
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class MousePointer : DrawableGameStateComponent
   Attributes:
+    // 
     - spriteBatch : SpriteBatch
   Methods:
+    // 
     + MousePointer  (GameState state)
+    // 
     - DrawCursor  (GameTime gameTime)
+    // 
     + Draw  (GameTime gameTime)
 
+// 
 public class Overlay : DrawableGameStateComponent
   Attributes:
+    // 
     - effect : BasicEffect
+    // 
     - _elapsed_time : float
+    // 
     - _fps : int
+    // 
     - World : World
     + HashtableWrapper : class
+    // 
     - _total_frames : int
+    // 
     - spriteBatch : SpriteBatch
+    // 
     - font : SpriteFont
   Methods:
+    // 
     - profiler () : Hashtable static
+    // 
     + Profiler () : HashtableWrapper static
+    // 
     - DrawFPS  (GameTime gameTime)
+    // 
     - DrawString  (float n, int width, int height, Color color)
+    // 
     - DrawVectorCoordinates  (Vector3 vector, int width2, int width3, int width4, int height)
+    // 
     - UpdateFPS  (GameTime gameTime)
+    // 
     + Overlay  (GameState state, World world)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     - DrawCoordinates  (GameTime gameTime)
+    // 
     - DrawOverlay  (GameTime gameTime)
+    // 
     - DrawProfiler  (GameTime gameTime)
+    // 
     - DrawString  (string str, int width, int height, Color color)
     # LoadContent ()
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
   Attributes:
+    // 
     - knotRenderEffect : RenderEffect
+    // 
     - _redraw : bool
+    // 
     + SelectedObject : IGameObject
+    // 
     + Objects : List<IGameObject>
+    // 
     + Redraw : bool
+    // 
     - _selectedObject : IGameObject
+    // 
     - knotRenderEffects : List<RenderEffect>
+    // 
     - floor : TexturedRectangle
+    // 
     + Camera : Camera
   Methods:
+    // 
     + SelectionChanged (o) : Action<IGameObject>
+    // 
     - IEnumerable.GetEnumerator () : IEnumerator
+    // 
     + World  (GameState state)
+    // 
     + SelectedObjectDistance () : float
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + Update  (GameTime gameTime)
+    // 
     + Add  (IGameObject obj)
+    // 
     + GetEnumerator () : IEnumerator<IGameObject>
     + Initialize ()
+    // 
     + SelectObject  (IGameObject obj, GameTime gameTime)
 
+// 
 public abstract class Widget : DrawableGameStateComponent
   Attributes:
+    // 
     + Info : WidgetInfo
+    // 
     + IsVisible : bool virtual
   Methods:
+    // 
     + bounds () : Rectangle
+    // 
     + Widget  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
 
+// 
 public class ColorPicker : Widget, IMouseEventListener
   Attributes:
+    // 
     - colors : List<Color>
+    // 
     - tiles : List<Vector2>
+    // 
     - Vector2 tileSize : readonly static
+    // 
     + SelectedColor : Color
+    // 
     + OnSelectColor : Action<Color>
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsMouseEventEnabled : bool
   Methods:
+    // 
     + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - CreateColors (int num) : IEnumerable<Color> static
+    // 
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
+    // 
     - SelectColor  (Color color)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
 
+// 
 public abstract class Dialog : Widget
   Attributes:
+    // 
     + buttons : Menu
+    // 
     + Done : Action
+    // 
     # spriteBatch : SpriteBatch
   Methods:
+    // 
     + Dialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # RelativeButtonPosition (int n) : Vector2
+    // 
     # RelativeButtonSize (int n) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     # DrawDialog  (GameTime gameTime) abstract
+    // 
     - ButtonBackgroundColor (ItemState itemState) : Color
+    // 
     - ButtonForegroundColor (ItemState itemState) : Color
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
+    // 
     # OnYesClick : Action
+    // 
     # OnNoClick : Action
+    // 
     # OnCancelClick : Action
   Methods:
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # DrawDialog  (GameTime gameTime) override
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
+    // 
     # DrawDialog  (GameTime gameTime)
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class Menu : Widget
   Attributes:
+    // 
     + RelativeItemSize : Func<int,Vector2>
+    // 
     + RelativeItemPosition : Func<int,Vector2>
+    // 
     + ItemForegroundColor : Func<ItemState,Color>
+    // 
     + ItemBackgroundColor : Func<ItemState,Color>
+    // 
     + ItemAlignX : HAlign?
+    // 
     + ItemAlignY : VAlign?
+    // 
     # Items : List<MenuItem>
+    // 
     - ItemDisplayLayer : DisplayLayer
+    // 
     + Count : int
+    // 
     - isVisible : bool
+    // 
     + IsVisible : bool override
   Methods:
+    // 
     + Menu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     - assignMenuItemInfo  (ref MenuItemInfo info, int num, MenuItem item)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
+    // 
     + this (int i) : MenuItem
+    // 
     + Clear  ()
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + CollapseMenus  (MenuItem menu)
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     + Border : Border
+    // 
     # spriteBatch : SpriteBatch
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton override
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) override
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) override
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition = null, Vector2? givenItemSize = null, float padding = 0.15f)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX = null, int? sizeY = null, float padding = 0.15f)
+    // 
     + Draw  (GameTime gameTime) override
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + Border : Border
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option)
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
+// 
 public class TextInput : Widget, IKeyEventListener
   Attributes:
+    // 
     + InputText : string
+    // 
     - font : SpriteFont
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
   Methods:
+    // 
     + TextInput  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Update  (GameTime gameTime) override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 
+// 
 public abstract class ItemWidget : Widget
   Attributes:
+    // 
     # ItemNum : int
+    // 
     + ItemState : ItemState
   Methods:
+    // 
     + ItemWidget  (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     + Info : MenuItemInfo new
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + IsMouseEventEnabled : bool
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
+    // 
     + Collapse  () virtual
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsMouseEventEnabled : bool
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + Info : MenuItemInfo
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Collapse () virtual
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class ColorPicker : Widget, IMouseEventListener
   Attributes:
+    // 
     - tiles : List<Vector2>
+    // 
     + SelectedColor : Color
+    // 
     + IsMouseEventEnabled : bool
+    // 
     - colors : List<Color>
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + OnSelectColor : Action<Color>
   Methods:
+    // 
     - Vector2 tileSize (0.032f, 0.032f) : readonly static
+    // 
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
+    // 
     + ColorPicker  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
+    // 
     - CreateColors (int num) : IEnumerable<Color> static
+    // 
     - SelectColor  (Color color)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
 
+// 
 public abstract class Dialog : Widget
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + Done : Action
+    // 
     + buttons : Menu
   Methods:
+    // 
     - ButtonBackgroundColor (ItemState itemState) : Color
+    // 
     # RelativeButtonSize (int n) : Vector2
+    // 
     + Dialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     - ButtonForegroundColor (ItemState itemState) : Color
+    // 
     # RelativeButtonPosition (int n) : Vector2
+    // 
     # DrawDialog  (GameTime gameTime) abstract
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    // 
     + Draw  (GameTime gameTime)
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
+    // 
     # OnYesClick : Action
+    // 
     # OnNoClick : Action
+    // 
     # OnCancelClick : Action
   Methods:
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # DrawDialog  (GameTime gameTime) override
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
+    // 
     # DrawDialog  (GameTime gameTime)
+    // 
     + ConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     # TextInputPosition () : Vector2
+    // 
     # TextInputSize () : Vector2
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class TextInputDialog : ConfirmDialog
   Attributes:
+    // 
     # TextInput : TextInput
   Methods:
+    // 
     # TextInputSize () : Vector2
+    // 
     + TextInputDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # TextInputPosition () : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
+    // 
     + KnotSaveConfirmDialog  (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
 
+// 
 public class Menu : Widget
   Attributes:
+    // 
     - isVisible : bool
+    // 
     # Items : List<MenuItem>
     + Color> ItemBackgroundColor : Func<ItemState,
     + Color> ItemForegroundColor : Func<ItemState,
     + Vector2> RelativeItemPosition : Func<int,
+    // 
     + ItemAlignX : HAlign?
+    // 
     + ItemAlignY : VAlign?
+    // 
     + Count : int
+    // 
     + IsVisible : bool
+    // 
     - ItemDisplayLayer : DisplayLayer
     + Vector2> RelativeItemSize : Func<int,
   Methods:
+    // 
     - assignMenuItemInfo  (ref MenuItemInfo info, int num, MenuItem item)
+    // 
     + Menu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + this (int i) : MenuItem
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    // 
     + CollapseMenus  (MenuItem menu)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
     + Clear ()
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     + Border : Border
+    // 
     # spriteBatch : SpriteBatch
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton override
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) override
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) override
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition = null, Vector2? givenItemSize = null, float padding = 0.15f)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX = null, int? sizeY = null, float padding = 0.15f)
+    // 
     + Draw  (GameTime gameTime) override
 
+// 
 public class VerticalMenu : Menu
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + Border : Border
   Methods:
+    // 
     + VerticalMenu  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
+    // 
     + AddButton (MenuItemInfo info) : MenuButton
+    // 
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option)
+    // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
+// 
 public class TextInput : Widget, IKeyEventListener
   Attributes:
+    // 
     - font : SpriteFont
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + ValidKeys : List<Keys>
+    // 
     + InputText : string
   Methods:
+    // 
     + TextInput  (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public abstract class ItemWidget : Widget
   Attributes:
+    // 
     + ItemState : ItemState
+    // 
     # ItemNum : int
   Methods:
+    // 
     + ItemWidget  (GameState state, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     + Info : MenuItemInfo new
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + IsMouseEventEnabled : bool
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
+    // 
     + Collapse  () virtual
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
   Attributes:
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsMouseEventEnabled : bool
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + Info : MenuItemInfo
   Methods:
+    // 
     + MenuItem  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
     + Collapse () virtual
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + OnLeftClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + OnRightClick  (Vector2 position, ClickState click, GameTime gameTime)
+    // 
     + MinimumSize (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font) : Vector2
+    // 
     + TextPosition (SpriteFont font, Vector2 scale) : Vector2
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + SetHovered  (bool hovered)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
     + Collapse  () override
+    // 
     + Draw  (GameTime gameTime) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - selected : MenuButton
+    // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
+    // 
     + DropDownMenu  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
     + Collapse ()
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + AddEntries  (DistinctOptionInfo option)
+    // 
     + AddEntries  (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
 
+// 
 public class MenuButton : MenuItem
   Attributes:
   Methods:
+    // 
     + MenuButton  (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
 
+// 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
   Attributes:
+    // 
     + Index : DisplayLayer
+    // 
     + state : GameState
   Methods:
+    // 
     + GameStateComponent  (GameState state, DisplayLayer index)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
+// 
 public class Camera : GameStateComponent
   Attributes:
+    // 
     - World : World
+    // 
     + WorldMatrix : Matrix
+    // 
     + ViewMatrix : Matrix
+    // 
     + ProjectionMatrix : Matrix
+    // 
     + ViewFrustum : BoundingFrustum
+    // 
     + DefaultPosition : Vector3
+    // 
     - _position : Vector3
+    // 
     + Position : Vector3
+    // 
     - _target : Vector3
+    // 
     + Target : Vector3
+    // 
     + UpVector : Vector3
+    // 
     - foV : float
+    // 
     + FoV : float
+    // 
     + OnViewChanged : Action
+    // 
     + RotationAngle : Angles3
+    // 
     - AutoRotation : Angles3
+    // 
     - aspectRatio : float
+    // 
     - nearPlane : float
+    // 
     - farPlane : float
+    // 
     + TargetDistance : float
+    // 
     + TargetDirection : Vector3
+    // 
     + ArcballTarget : Vector3
   Methods:
+    // 
     + Camera  (GameState state, World world)
+    // 
     + Update  (GameTime gameTime) override
+    // 
     - UpdateRotation  (GameTime gameTime)
+    // 
     - UpdateMatrices  (GameTime gameTime)
+    // 
     + GetMouseRay (Vector2 mouse) : Ray
 
+// 
 public class ClickHandler : GameStateComponent
   Attributes:
   Methods:
+    // 
     + ClickHandler  (GameState state)
+    // 
     private class ClickEventComponent : 
       Attributes:
+        // 
         + receiver : IMouseEventListener
+        // 
         + layer : DisplayLayer
+        // 
         + relativePosition : Vector2
       Methods:
+    // 
     + Update  (GameTime gameTime) override
 
+// 
 public abstract class Input : GameStateComponent, IKeyEventListener
   Attributes:
+    // 
     # FullscreenToggled : bool static
+    // 
     + PreviousKeyboardState : KeyboardState static
+    // 
     + PreviousMouseState : MouseState static
+    // 
     - LeftButtonClickTimer : double static
+    // 
     - RightButtonClickTimer : double static
+    // 
     - PreviousClickMouseState : MouseState static
+    // 
     + LeftButton : ClickState static
+    // 
     + RightButton : ClickState static
+    // 
     + GrabMouseMovement : bool
+    // 
     + CurrentInputAction : InputAction
+    // 
     + WASDMode : WASDMode
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + MouseState : MouseState static
+    // 
     + KeyboardState : KeyboardState static
   Methods:
+    // 
     + Input  (GameState state)
+    // 
     + Update  (GameTime gameTime) override
+    // 
     # UpdateKeys  (GameTime gameTime) virtual
+    // 
     # UpdateMouse  (GameTime gameTime) virtual
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 
+// 
 public class MenuScreenInput : Input
   Attributes:
   Methods:
+    // 
     + MenuScreenInput  (GameState state)
 
+// 
 public class MenuScreenInput : Input
   Attributes:
   Methods:
+    // 
     + MenuScreenInput  (GameState state)
 
+// 
 public class KeyHandler : GameStateComponent
   Attributes:
   Methods:
+    // 
     + KeyHandler  (GameState state)
+    // 
     private class KeyEventComponent : 
       Attributes:
+        // 
         + receiver : IKeyEventListener
+        // 
         + layer : DisplayLayer
+        // 
         + keyEvent : KeyEvent
+        // 
         + keys : List<Keys>
       Methods:
+    // 
     + Update  (GameTime gameTime) override
 
+// 
 public class ModelMousePicker : GameStateComponent
   Attributes:
+    // 
     - World : World
+    // 
     - lastRayCheck : double
+    // 
     - lastMousePosition : Vector2
   Methods:
+    // 
     + ModelMousePicker  (GameState state, World world)
+    // 
     + Update  (GameTime gameTime) override
+    // 
     - CheckMouseRay  (GameTime gameTime)
+    // 
     - UpdateMouseRay  (GameTime gameTime)
 
 public class MousePicker : GameStateComponent
@@ -3228,104 +5488,178 @@ public class MousePicker : GameStateComponent
     + Update  (GameTime gameTime) override
     + UpdateMouseRay  (GameTime gameTime)
 
+// 
 public class PipeColoring : GameStateComponent, IKeyEventListener
   Attributes:
+    // 
     + Knot : Knot
+    // 
     + ValidKeys : List<Keys>
+    // 
     + IsKeyEventEnabled : bool
   Methods:
+    // 
     + PipeColoring  (GameState state)
+    // 
     + Update  (GameTime gameTime) override
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
 
+// 
 public class Camera : GameStateComponent
   Attributes:
+    // 
     - AutoRotation : Angles3
+    // 
     - _target : Vector3
+    // 
     - aspectRatio : float
+    // 
     - farPlane : float
+    // 
     - nearPlane : float
+    // 
     + Position : Vector3
+    // 
     + Target : Vector3
+    // 
     + TargetDirection : Vector3
+    // 
     + UpVector : Vector3
+    // 
     + FoV : float
+    // 
     - World : World
+    // 
     - _position : Vector3
+    // 
     - foV : float
+    // 
     + RotationAngle : Angles3
+    // 
     + ViewFrustum : BoundingFrustum
+    // 
     + ProjectionMatrix : Matrix
+    // 
     + ViewMatrix : Matrix
+    // 
     + WorldMatrix : Matrix
+    // 
     + ArcballTarget : Vector3
+    // 
     + DefaultPosition : Vector3
+    // 
     + TargetDistance : float
   Methods:
+    // 
     + OnViewChanged () : Action
+    // 
     + Camera  (GameState state, World world)
+    // 
     + GetMouseRay (Vector2 mouse) : Ray
+    // 
     - UpdateMatrices  (GameTime gameTime)
+    // 
     - UpdateRotation  (GameTime gameTime)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public class ClickHandler : GameStateComponent
   Attributes:
     - ClickEventComponent : class
   Methods:
+    // 
     + ClickHandler  (GameState state)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public abstract class Input : GameStateComponent, IKeyEventListener
   Attributes:
+    // 
     - PreviousClickMouseState : MouseState static
+    // 
     - LeftButtonClickTimer : double static
+    // 
     - RightButtonClickTimer : double static
+    // 
     + GrabMouseMovement : bool
+    // 
     + LeftButton : ClickState static
+    // 
     + RightButton : ClickState static
+    // 
     + PreviousKeyboardState : KeyboardState static
+    // 
     + MouseState : MouseState static
+    // 
     + PreviousMouseState : MouseState static
+    // 
     # FullscreenToggled : bool static
+    // 
     + CurrentInputAction : InputAction
+    // 
     + ValidKeys : List<Keys>
+    // 
     + WASDMode : WASDMode
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + KeyboardState : KeyboardState static
   Methods:
+    // 
     # UpdateMouse  (GameTime gameTime) virtual
+    // 
     + Update  (GameTime gameTime)
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     # UpdateKeys  (GameTime gameTime) virtual
+    // 
     + Input  (GameState state)
 
+// 
 public class MenuScreenInput : Input
   Attributes:
   Methods:
+    // 
     + MenuScreenInput  (GameState state)
 
+// 
 public class MenuScreenInput : Input
   Attributes:
   Methods:
+    // 
     + MenuScreenInput  (GameState state)
 
+// 
 public class KeyHandler : GameStateComponent
   Attributes:
     - KeyEventComponent : class
   Methods:
+    // 
     + KeyHandler  (GameState state)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public class ModelMousePicker : GameStateComponent
   Attributes:
+    // 
     - lastMousePosition : Vector2
+    // 
     - World : World
+    // 
     - lastRayCheck : double
   Methods:
+    // 
     - UpdateMouseRay  (GameTime gameTime)
+    // 
     + ModelMousePicker  (GameState state, World world)
+    // 
     - CheckMouseRay  (GameTime gameTime)
+    // 
     + Update  (GameTime gameTime)
 
 public class MousePicker : GameStateComponent
@@ -3338,13 +5672,20 @@ public class MousePicker : GameStateComponent
     + Update  (GameTime gameTime)
     + UpdateMouseRay  (GameTime gameTime)
 
+// 
 public class PipeColoring : GameStateComponent, IKeyEventListener
   Attributes:
+    // 
     + ValidKeys : List<Keys>
+    // 
     + Knot : Knot
+    // 
     + IsKeyEventEnabled : bool
   Methods:
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + PipeColoring  (GameState state)
+    // 
     + Update  (GameTime gameTime)
 

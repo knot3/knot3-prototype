@@ -1,14 +1,26 @@
+// 
 public class LoadSavegameScreen : MenuScreen
   Attributes:
-    - format : IKnotFormat
+    // 
     - menu : VerticalMenu
+    // 
     - spriteBatch : SpriteBatch
+    // 
+    - fileIndex : FileIndex
   Methods:
+    // 
     + LoadSavegameScreen (Core.Game game)
+    // 
     + Initialize () override
+    // 
     - UpdateFiles ()
+    // 
     - AddFileToList (string filename)
+    // 
     - AddDefaultKnots ()
-    + UpdateMenu (GameTime gameTime) override
-    + DrawMenu (GameTime gameTime) override
-    + Activate (GameTime gameTime) override
+    // 
+    + UpdateMenu (GameTime time) override
+    // 
+    + DrawMenu (GameTime time) override
+    // 
+    + Activate (GameTime time) override

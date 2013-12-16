@@ -66,9 +66,9 @@ namespace Knot3.RenderEffects
 	public abstract class RenderEffect : IRenderEffect
 	{
 		/// <summary>
-		/// Der zugewiesene GameState. Dieser Effekt kann nur innerhalb dieses GameState's verwendet werden.
+		/// Der zugewiesene GameScreen. Dieser Effekt kann nur innerhalb dieses GameScreen's verwendet werden.
 		/// </summary>
-		protected GameState state;
+		protected GameScreen screen;
 		private RenderTargetCache renderTarget;
 		private Color background;
 		private SpriteBatch spriteBatch;
@@ -76,14 +76,14 @@ namespace Knot3.RenderEffects
 		/// <summary>
 		/// Erstellt einen neuen RenderEffect.
 		/// </summary>
-		/// <param name='state'>
+		/// <param name='screen'>
 		/// Game State.
 		/// </param>
-		public RenderEffect (GameState state)
+		public RenderEffect (GameScreen screen)
 		{
-			this.state = state;
-			renderTarget = new RenderTargetCache (state.device);
-			spriteBatch = new SpriteBatch (state.device);
+			this.screen = screen;
+			renderTarget = new RenderTargetCache (screen.device);
+			spriteBatch = new SpriteBatch (screen.device);
 			background = Color.Transparent;
 		}
 
@@ -99,28 +99,28 @@ namespace Knot3.RenderEffects
 		/// Startet den Rendereffekt. Das bisher von XNA benutzte RenderTarget wird auf einem Stack gespeichert
 		/// (RenderTargets), und unser RenderTarget wird als aktuelles RenderTarget gesetzt.
 		/// </summary>
-		/// <param name='gameTime'>
+		/// <param name='time'>
 		/// Game time.
 		/// </param>
-		public void Begin (GameTime gameTime)
+		public void Begin (GameTime time)
 		{
-			Begin (Color.Transparent, gameTime);
+			Begin (Color.Transparent, time);
 		}
 
-		public virtual void Begin (Color background, GameTime gameTime)
+		public virtual void Begin (Color background, GameTime time)
 		{
-			state.RenderEffects.Push (this);
+			screen.RenderEffects.Push (this);
 			RenderTarget2D current = RenderTarget;
-			state.device.PushRenderTarget (current);
-			state.device.Clear (background);
+			screen.device.PushRenderTarget (current);
+			screen.device.Clear (background);
 			this.background = background;
 
-			// set the stencil state
-			state.device.DepthStencilState = DepthStencilState.Default;
-			// Setting the other states isn't really necessary but good form
-			state.device.BlendState = BlendState.Opaque;
-			state.device.RasterizerState = RasterizerState.CullCounterClockwise;
-			state.device.SamplerStates [0] = SamplerState.LinearWrap;
+			// set the stencil screen
+			screen.device.DepthStencilState = DepthStencilState.Default;
+			// Setting the other screens isn't really necessary but good form
+			screen.device.BlendState = BlendState.Opaque;
+			screen.device.RasterizerState = RasterizerState.CullCounterClockwise;
+			screen.device.SamplerStates [0] = SamplerState.LinearWrap;
 		}
 
 		/// <summary>
@@ -128,35 +128,35 @@ namespace Knot3.RenderEffects
 		/// auf einem Stack gesicherte übergeordnete RenderTarget festgelegt. Dann wird unser RendetTarget auf
 		/// das übergeordneten Rendertarget gezeichnet.
 		/// </summary>
-		/// <param name='gameTime'>
+		/// <param name='time'>
 		/// Game time.
 		/// </param>
-		public virtual void End (GameTime gameTime)
+		public virtual void End (GameTime time)
 		{
 			if (!Overlay.Profiler.ContainsKey ("RenderEffect"))
 				Overlay.Profiler ["RenderEffect"] = 0;
 			Overlay.Profiler ["RenderEffect"] += Knot3.Core.Game.Time (() => {
 
-				state.device.PopRenderTarget ();
+				screen.device.PopRenderTarget ();
 				spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 
-				DrawRenderTarget (spriteBatch, gameTime);
+				DrawRenderTarget (spriteBatch, time);
 
 				spriteBatch.End ();
-				state.RenderEffects.Pop ();
+				screen.RenderEffects.Pop ();
 
 			}
 			).TotalMilliseconds;
 		}
 		
-		public void DrawLastFrame (GameTime gameTime)
+		public void DrawLastFrame (GameTime time)
 		{
 			spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
-			DrawRenderTarget (spriteBatch, gameTime);
+			DrawRenderTarget (spriteBatch, time);
 			spriteBatch.End ();
 		}
 
-		protected abstract void DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime);
+		protected abstract void DrawRenderTarget (SpriteBatch spriteBatch, GameTime time);
 
 		/// <summary>
 		/// Die XNA-3D-Modelle haben standardmäßig einen BasicEffect-Shader als zu verwendenden Shader zugewiesen.
@@ -175,10 +175,10 @@ namespace Knot3.RenderEffects
 		/// <param name='model'>
 		/// Model.
 		/// </param>
-		/// <param name='gameTime'>
+		/// <param name='time'>
 		/// Game time.
 		/// </param>
-		public virtual void DrawModel (GameModel model, GameTime gameTime)
+		public virtual void DrawModel (GameModel model, GameTime time)
 		{
 			foreach (ModelMesh mesh in model.Model.Meshes) {
 				foreach (ModelMeshPart part in mesh.MeshParts) {

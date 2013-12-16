@@ -13,6 +13,8 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+using Knot3.KnotData;
+
 namespace Knot3.Utilities
 {
 	public static class Vectors
@@ -160,7 +162,7 @@ namespace Knot3.Utilities
 
 		public static BoundingSphere Scale (this BoundingSphere sphere, Vector3 scale)
 		{
-			return new BoundingSphere (sphere.Center, sphere.Radius * scale.PrimaryVector().Length());
+			return new BoundingSphere (sphere.Center, sphere.Radius * scale.PrimaryVector ().Length ());
 		}
 
 		public static BoundingSphere Translate (this BoundingSphere sphere, Vector3 position)
@@ -184,14 +186,14 @@ namespace Knot3.Utilities
 			return new BoundingBox (Vector3.Transform (box.Min, translation), Vector3.Transform (box.Max, translation));
 		}
 
-		public static Vector2 ToVector2 (this MouseState state)
+		public static Vector2 ToVector2 (this MouseState screen)
 		{
-			return new Vector2 (state.X, state.Y);
+			return new Vector2 (screen.X, screen.Y);
 		}
 
-		public static Point ToPoint (this MouseState state)
+		public static Point ToPoint (this MouseState screen)
 		{
-			return new Point (state.X, state.Y);
+			return new Point (screen.X, screen.Y);
 		}
 
 		public static Vector2 ToVector2 (this Viewport viewport)

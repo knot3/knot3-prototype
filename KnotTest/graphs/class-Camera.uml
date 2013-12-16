@@ -1,59 +1,103 @@
-public class Camera : GameStateComponent
+// 
+public class Camera : GameScreenComponent
   Attributes:
+    // 
     - AutoRotation : Angles3
+    // 
     - _target : Vector3
+    // 
     - aspectRatio : float
+    // 
     - farPlane : float
+    // 
     - nearPlane : float
+    // 
     + Position : Vector3
+    // 
     + Target : Vector3
+    // 
     + TargetDirection : Vector3
+    // 
     + UpVector : Vector3
+    // 
     + FoV : float
+    // 
     - World : World
+    // 
     - _position : Vector3
+    // 
     - foV : float
+    // 
     + RotationAngle : Angles3
+    // 
     + ViewFrustum : BoundingFrustum
+    // 
     + ProjectionMatrix : Matrix
+    // 
     + ViewMatrix : Matrix
+    // 
     + WorldMatrix : Matrix
+    // 
     + ArcballTarget : Vector3
+    // 
     + DefaultPosition : Vector3
+    // 
     + TargetDistance : float
   Methods:
+    // 
     + OnViewChanged () : Action
-    + Camera  (GameState state, World world)
+    // 
+    + Camera  (GameScreen screen, World world)
+    // 
     + GetMouseRay (Vector2 mouse) : Ray
-    - UpdateMatrices  (GameTime gameTime)
-    - UpdateRotation  (GameTime gameTime)
-    + Update  (GameTime gameTime)
+    // 
+    - UpdateMatrices  (GameTime time)
+    // 
+    - UpdateRotation  (GameTime time)
+    // 
+    + Update  (GameTime time)
 
-public class GameStateComponent : Xna.GameComponent, IGameStateComponent
+// 
+public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
   Attributes:
-    + state : GameState
+    // 
+    + screen : GameScreen
+    // 
     + Index : DisplayLayer
   Methods:
-    + GameStateComponent  (GameState state, DisplayLayer index)
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    // 
+    + GameScreenComponent  (GameScreen screen, DisplayLayer index)
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
-public interface IGameStateComponent : Xna.IGameComponent
+// 
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
+    // 
     + Index : DisplayLayer
   Methods:
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
-public class GameStateComponent : Xna.GameComponent, IGameStateComponent
+// 
+public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
   Attributes:
+    // 
     + Index : DisplayLayer
-    + state : GameState
+    // 
+    + screen : GameScreen
   Methods:
-    + GameStateComponent  (GameState state, DisplayLayer index)
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    // 
+    + GameScreenComponent  (GameScreen screen, DisplayLayer index)
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
-public interface IGameStateComponent : Xna.IGameComponent
+// 
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
+    // 
     + Index : DisplayLayer
   Methods:
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 

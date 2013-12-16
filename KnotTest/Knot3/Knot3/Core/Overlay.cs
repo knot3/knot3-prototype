@@ -19,9 +19,9 @@ using System.Collections;
 namespace Knot3.Core
 {
 	/// <summary>
-	/// Ein DrawableGameStateComponent, der ein Debugging-Overlay zeichnet.
+	/// Ein DrawableGameScreenComponent, der ein Debugging-Overlay zeichnet.
 	/// </summary>
-	public class Overlay : DrawableGameStateComponent
+	public class Overlay : DrawableGameScreenComponent
 	{
 		// graphics-related classes
 		private SpriteBatch spriteBatch;
@@ -35,15 +35,15 @@ namespace Knot3.Core
 		/// <summary>
 		/// Initializes a new Overlay-
 		/// </summary>
-		public Overlay (GameState state, World world)
-			: base(state, DisplayLayer.Overlay)
+		public Overlay (GameScreen screen, World world)
+			: base(screen, DisplayLayer.Overlay)
 		{
 			// game world
 			World = world;
 
 			// create a new SpriteBatch, which can be used to draw textures
-			effect = new BasicEffect (state.device);
-			spriteBatch = new SpriteBatch (state.device);
+			effect = new BasicEffect (screen.device);
+			spriteBatch = new SpriteBatch (screen.device);
 			effect.VertexColorEnabled = true;
 			effect.World = Matrix.CreateFromYawPitchRoll (0, 0, 0);
 		}
@@ -55,7 +55,7 @@ namespace Knot3.Core
 		{
 			// load fonts
 			try {
-				font = state.content.Load<SpriteFont> ("Font");
+				font = screen.content.Load<SpriteFont> ("Font");
 			} catch (ContentLoadException ex) {
 				font = null;
 				Console.WriteLine (ex.Message);
@@ -65,26 +65,26 @@ namespace Knot3.Core
 		/// <summary>
 		/// Draw the Overlay.
 		/// </summary>
-		/// <param name='gameTime'>
+		/// <param name='time'>
 		/// Game time.
 		/// </param>
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			if (Options.Default ["video", "debug-coordinates", false])
-				DrawCoordinates (gameTime);
+				DrawCoordinates (time);
 			if (Options.Default ["video", "camera-overlay", true])
-				DrawOverlay (gameTime);
+				DrawOverlay (time);
 			if (Options.Default ["video", "fps-overlay", true])
-				DrawFPS (gameTime);
-			DrawProfiler (gameTime);
+				DrawFPS (time);
+			DrawProfiler (time);
 		}
 		
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
-			UpdateFPS (gameTime);
+			UpdateFPS (time);
 		}
 
-		private void DrawCoordinates (GameTime gameTime)
+		private void DrawCoordinates (GameTime time)
 		{
 			int length = 2000;
 			var vertices = new VertexPositionColor[6];
@@ -106,10 +106,10 @@ namespace Knot3.Core
           
 			effect.CurrentTechnique.Passes [0].Apply ();
             
-			state.device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3, VertexPositionColor.VertexDeclaration);
+			screen.device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3, VertexPositionColor.VertexDeclaration);
 		}
 
-		private void DrawOverlay (GameTime gameTime)
+		private void DrawOverlay (GameTime time)
 		{
 			spriteBatch.Begin ();
 
@@ -143,8 +143,8 @@ namespace Knot3.Core
 			height += 20;
 			DrawString ("WASD: ", width1, height, Color.White);
 			string wasdMode =
-					  state.input.WASDMode == WASDMode.ArcballMode ? "Arcball"
-					: state.input.WASDMode == WASDMode.FirstPersonMode ? "FPS"
+					  screen.input.WASDMode == WASDMode.ArcballMode ? "Arcball"
+					: screen.input.WASDMode == WASDMode.FirstPersonMode ? "FPS"
 					: "unknown";
 			DrawString (wasdMode, width2, height, Color.White);
 
@@ -181,9 +181,9 @@ namespace Knot3.Core
 		float _elapsed_time = 0.0f;
 		int _fps = 0;
 
-		private void UpdateFPS (GameTime gameTime)
+		private void UpdateFPS (GameTime time)
 		{
-			_elapsed_time += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+			_elapsed_time += (float)time.ElapsedGameTime.TotalMilliseconds;
 
 			if (_elapsed_time >= 1000.0f) {
 				_fps = _total_frames;
@@ -192,23 +192,23 @@ namespace Knot3.Core
 			}
 		}
 
-		private void DrawFPS (GameTime gameTime)
+		private void DrawFPS (GameTime time)
 		{
 			_total_frames++;
 			spriteBatch.Begin ();
-			DrawString ("FPS: " + _fps, state.viewport.Width - 200, 20, Color.White);
+			DrawString ("FPS: " + _fps, screen.viewport.Width - 200, 20, Color.White);
 			spriteBatch.End ();
 		}
 
 		private static Hashtable profiler = new Hashtable ();
 		public static HashtableWrapper Profiler = new HashtableWrapper ();
 
-		private void DrawProfiler (GameTime gameTime)
+		private void DrawProfiler (GameTime time)
 		{
 			spriteBatch.Begin ();
 			int height = 40;
 			foreach (string name in profiler.Keys) {
-                DrawString(name + ": " + Profiler[name], state.viewport.Width - 200, height, Color.White);
+                DrawString(name + ": " + Profiler[name], screen.viewport.Width - 200, height, Color.White);
 				height += 20;
 			}
 			spriteBatch.End ();

@@ -24,23 +24,27 @@ namespace Knot3.GameObjects
 	/// Verwaltet eine Liste von Spielobjekten der Klassen PipeModel (Röhren) und NodeModel (Knotenpunkt)
 	/// für ein gegebenes KnotData.Knot-Objekt und zeichnet diese über die World-Klasse.
 	/// </summary>
-	public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
+	public sealed class ModelRenderer : IGameObject, IEnumerable<IGameObject>
 	{
-		public override GameObjectInfo Info { get; protected set; }
+		private GameScreen screen;
 
-		public override World World { get; set; }
+		public GameObjectInfo Info { get; private set; }
 
-		// pipes and knots
+		public World World { get; set; }
+
+		// pipes, nodes and arrows
+		private Knot knot;
 		private List<PipeModel> pipes;
 		private List<NodeModel> nodes;
 		private List<ArrowModel> arrows;
 		private ModelFactory pipeFactory;
 		private ModelFactory nodeFactory;
 		private ModelFactory arrowFactory;
+		private NodeMap nodeMap = new NodeMap ();
 
-		public ModelRenderer (GameState state, GameObjectInfo info)
-			: base(state)
+		public ModelRenderer (GameScreen screen, GameObjectInfo info)
 		{
+			this.screen = screen;
 			Info = info;
 			pipes = new List<PipeModel> ();
 			nodes = new List<NodeModel> ();
@@ -50,54 +54,66 @@ namespace Knot3.GameObjects
 			arrowFactory = new ModelFactory ((s, i) => new ArrowModel (s, i as ArrowModelInfo));
 		}
 
-		public override void Update (GameTime gameTime)
-		{
-			foreach (PipeModel pipe in pipes) {
-				pipe.Update (gameTime);
-			}
-			foreach (NodeModel node in nodes) {
-				node.Update (gameTime);
-			}
-			foreach (ArrowModel arrow in arrows) {
-				arrow.Update (gameTime);
+		public Knot Knot {
+			set {
+				knot = value;
+				knot.EdgesChanged += OnEdgesChanged;
+				knot.SelectionChanged += () => CreateArrows (knot.SelectedEdges);
+				OnEdgesChanged();
 			}
 		}
 
-		public override void OnEdgesChanged (EdgeList edgeList)
+		public void Update (GameTime time)
 		{
-			base.OnEdgesChanged (edgeList);
+			foreach (PipeModel pipe in pipes) {
+				pipe.Update (time);
+			}
+			foreach (NodeModel node in nodes) {
+				node.Update (time);
+			}
+			foreach (ArrowModel arrow in arrows) {
+				arrow.Update (time);
+			}
+		}
+
+		public void OnEdgesChanged ()
+		{
+			nodeMap.OnEdgesChanged (knot);
 
 			pipes.Clear ();
-			foreach (Edge edge in edgeList) {
-				PipeModelInfo info = new PipeModelInfo (edgeList, nodeMap, edge, Info.Position);
-				PipeModel pipe = pipeFactory [state, info] as PipeModel;
+			foreach (Edge edge in knot) {
+				PipeModelInfo info = new PipeModelInfo (knot, nodeMap, edge, Info.Position);
+				PipeModel pipe = pipeFactory [screen, info] as PipeModel;
 				// pipe.OnDataChange = () => UpdatePipes (edges);
 				pipe.World = World;
 				pipes.Add (pipe);
 			}
 
 			nodes.Clear ();
+			WrapList<Edge> edgeList = new WrapList<Edge>(knot);
 			for (int n = 0; n < edgeList.Count; n++) {
 				if (edgeList [n].Direction != edgeList [n + 1].Direction) {
-					NodeModelInfo info = new NodeModelInfo (edgeList, nodeMap, edgeList [n], edgeList [n + 1], Info.Position);
-					NodeModel node = nodeFactory [state, info] as NodeModel;
+					NodeModelInfo info = new NodeModelInfo (nodeMap, edgeList [n], edgeList [n + 1], Info.Position);
+					NodeModel node = nodeFactory [screen, info] as NodeModel;
 					node.World = World;
 					nodes.Add (node);
 				}
 			}
 
-			CreateArrows (edgeList.SelectedEdges);
+			CreateArrows (knot.SelectedEdges);
 
 			World.Redraw = true;
 			Console.WriteLine ("Redraw=true <- PipeRenderer");
 		}
 
-		public void CreateArrows (WrapList<Edge> selectedEdges)
+		public void CreateArrows (IEnumerable<Edge> selectedEdges)
+		{
+			CreateArrows(new List<Edge>(selectedEdges));
+		}
+
+		private void CreateArrows (IList<Edge> selectedEdges)
 		{
 			arrows.Clear ();
-			//foreach (Edge edge in selectedEdges) {
-			//	CreateArrow (edge);
-			//}
 			if (selectedEdges.Count > 0) {
 				CreateArrow (selectedEdges [(int)selectedEdges.Count / 2]);
 			}
@@ -113,8 +129,13 @@ namespace Knot3.GameObjects
 				Node node1 = nodeMap.FromNode (edge);
 				Node node2 = nodeMap.ToNode (edge);
 				foreach (Vector3 direction in validDirections) {
+<<<<<<< HEAD
 					ArrowModelInfo info = new ArrowModelInfo (node1.CenterBetween (node2)-50*World.Camera.TargetDirection.PrimaryDirection(), direction, Info.Position);
 					ArrowModel arrow = arrowFactory [state, info] as ArrowModel;
+=======
+					ArrowModelInfo info = new ArrowModelInfo (node1.CenterBetween (node2), direction, Info.Position);
+					ArrowModel arrow = arrowFactory [screen, info] as ArrowModel;
+>>>>>>> 569d3e25f728d73bdf9d37d9faaa72feb2a50251
 					arrow.World = World;
 					arrows.Add (arrow);
 				}
@@ -144,25 +165,25 @@ namespace Knot3.GameObjects
 
 		#region Draw
 		
-		public override void Draw (GameTime gameTime)
+		public void Draw (GameTime time)
 		{
 			Overlay.Profiler ["# InFrustum"] = 0;
 			Overlay.Profiler ["RenderEffect"] = 0;
 			Overlay.Profiler ["Pipes"] = Knot3.Core.Game.Time (() => {
 				foreach (PipeModel pipe in pipes) {
-					pipe.Draw (gameTime);
+					pipe.Draw (time);
 				}
 			}
 			).TotalMilliseconds;
 			Overlay.Profiler ["Nodes"] = Knot3.Core.Game.Time (() => {
 				foreach (NodeModel node in nodes) {
-					node.Draw (gameTime);
+					node.Draw (time);
 				}
 			}
 			).TotalMilliseconds;
 			Overlay.Profiler ["Arrows"] = Knot3.Core.Game.Time (() => {
 				foreach (ArrowModel arrow in arrows) {
-					arrow.Draw (gameTime);
+					arrow.Draw (time);
 				}
 			}
 			).TotalMilliseconds;
@@ -174,10 +195,10 @@ namespace Knot3.GameObjects
 
 		#region Intersection
 
-		public override GameObjectDistance Intersects (Ray ray)
+		public GameObjectDistance Intersects (Ray ray)
 		{
 			GameObjectDistance nearest = null;
-			if (!state.input.GrabMouseMovement) {
+			if (!screen.input.GrabMouseMovement) {
 				foreach (PipeModel pipe in pipes) {
 					GameObjectDistance intersection = pipe.Intersects (ray);
 					if (intersection != null) {
@@ -198,7 +219,7 @@ namespace Knot3.GameObjects
 			return nearest;
 		}
 
-		public override Vector3 Center ()
+		public Vector3 Center ()
 		{
 			return Info.Position;
 		}

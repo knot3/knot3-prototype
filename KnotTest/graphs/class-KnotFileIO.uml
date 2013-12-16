@@ -1,0 +1,60 @@
+// 
+public class KnotFileIO : FileIO, IKnotIO
+  Attributes:
+    // 
+    + CountEdges : int
+    // 
+    + Hash : string
+    // 
+    + Name : string
+    // 
+    - parser : KnotStringIO
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + FileExtensions : string[] static
+  Methods:
+    // 
+    + KnotFileIO  (Knot knot)
+    // 
+    + Save  (Knot knot)
+    // 
+    + KnotFileIO  (string filename)
+    // 
+    + ConvertToFilename (string humanReadableName) : string
+    // 
+    + ToString () : string
+
+// 
+public class FileIO : 
+  Attributes:
+    // 
+    # Filename : string
+  Methods:
+    // 
+    + ConvertToFilename (string humanReadableName) : string virtual
+
+// 
+public interface IKnotIO : 
+  Attributes:
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + CountEdges : int
+    // 
+    + Name : string
+    // 
+    + Hash : string
+  Methods:
+    // 
+    + Save  (Knot knot)
+
+// 
+public class FileIO : 
+  Attributes:
+    // 
+    # Filename : string
+  Methods:
+    // 
+    + ConvertToFilename (string humanReadableName) : string virtual
+

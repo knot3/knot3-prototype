@@ -1,45 +1,87 @@
+// 
 public static class Vectors : 
   Attributes:
   Methods:
-    + Grow (this Rectangle rect, int diff) : Rectangle static
-    + PrimaryVector (this Vector2 v) : Vector2 static
-    + ScaleFactor (this Viewport viewport) : Vector2 static
-    + Clamp (this Vector3 v, int minLength, int maxLength) : Vector3 static
-    + Abs (this float v) : float static
-    + Bounds (this Vector3 a, Vector3 diff) : BoundingBox static
-    + Scale (this BoundingBox box, float scale) : BoundingBox static
-    + Translate (this BoundingBox box, Vector3 position) : BoundingBox static
-    + Rotate (this BoundingSphere sphere, Angles3 rotation) : BoundingSphere static
-    + Scale (this BoundingSphere sphere, Vector3 scale) : BoundingSphere static
-    + Scale (this BoundingSphere sphere, float scale) : BoundingSphere static
+    // 
     + Translate (this BoundingSphere sphere, Vector3 position) : BoundingSphere static
+    // 
+    + Grow (this Rectangle rect, int diff) : Rectangle static
+    // 
+    + PrimaryVector (this Vector2 v) : Vector2 static
+    // 
+    + ScaleFactor (this Viewport viewport) : Vector2 static
+    // 
+    + Clamp (this Vector3 v, int minLength, int maxLength) : Vector3 static
+    // 
+    + Abs (this float v) : float static
+    // 
+    + Bounds (this Vector3 a, Vector3 diff) : BoundingBox static
+    // 
+    + Scale (this BoundingBox box, float scale) : BoundingBox static
+    // 
+    + Translate (this BoundingBox box, Vector3 position) : BoundingBox static
+    // 
+    + Rotate (this BoundingSphere sphere, Angles3 rotation) : BoundingSphere static
+    // 
+    + Scale (this BoundingSphere sphere, Vector3 scale) : BoundingSphere static
+    // 
+    + Scale (this BoundingSphere sphere, float scale) : BoundingSphere static
+    // 
     + Bounds (this Model model) : BoundingSphere[] static
+    // 
     + CylinderBounds (float length, float radius, Vector3 direction, Vector3 position) : BoundingSphere[] static
+    // 
     + Plus (this Point a, Point b) : Point static
-    + ToPoint (this MouseState state) : Point static
+    // 
+    + ToPoint (this MouseState screen) : Point static
+    // 
     + ToPoint (this Vector2 v) : Point static
+    // 
     + Scale (this Rectangle rect, Viewport viewport) : Rectangle static
+    // 
     + Shrink (this Rectangle rect, int diff) : Rectangle static
+    // 
     + Center (this Viewport viewport) : Vector2 static
+    // 
     + PrimaryDirection (this Vector2 v) : Vector2 static
+    // 
     + RelativeTo (this Vector2 v, Viewport viewport) : Vector2 static
+    // 
     + Scale (this Vector2 v, Viewport viewport) : Vector2 static
-    + ToVector2 (this MouseState state) : Vector2 static
+    // 
+    + ToVector2 (this MouseState screen) : Vector2 static
+    // 
     + ToVector2 (this Point v) : Vector2 static
+    // 
     + ToVector2 (this Viewport viewport) : Vector2 static
+    // 
     + ArcBallMove (this Vector3 vectorToMove, Vector2 mouse, Vector3 up, Vector3 forward) : Vector3 static
+    // 
     + Clamp (this Vector3 v, Vector3 lower, Vector3 higher) : Vector3 static
+    // 
     + MoveLinear (this Vector3 vectorToMove, Vector2 mouse, Vector3 up, Vector3 forward) : Vector3 static
+    // 
     + MoveLinear (this Vector3 vectorToMove, Vector3 mouse, Vector3 up, Vector3 forward) : Vector3 static
+    // 
     + PrimaryDirection (this Vector3 v) : Vector3 static
+    // 
     + PrimaryDirectionExcept (this Vector3 v, Vector3 wrongDirection) : Vector3 static
+    // 
     + PrimaryVector (this Vector3 v) : Vector3 static
+    // 
     + RotateAroundVector (this Vector3 vectorToRotate, Vector3 axis, float angleRadians) : Vector3 static
+    // 
     + RotateX (this Vector3 vectorToRotate, float angleRadians) : Vector3 static
+    // 
     + RotateY (this Vector3 vectorToRotate, float angleRadians) : Vector3 static
+    // 
     + RotateZ (this Vector3 vectorToRotate, float angleRadians) : Vector3 static
+    // 
     + Clamp (this float v, int min, int max) : float static
+    // 
     + Join (this string delimiter, List<int> list) : string static
+    // 
     + Print (this Vector3 v) : string static
+    // 
     + Swap<T>  (ref T lhs, ref T rhs) static
 

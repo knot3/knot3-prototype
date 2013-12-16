@@ -1,9 +1,15 @@
+// 
 public struct KnotInfo : 
   Attributes:
+    // 
     + EdgeCount : Func<int>
+    // 
     + IsValid : bool
+    // 
     + Name : string
+    // 
     + Filename : string
   Methods:
+    // 
     + ToString () : string
 

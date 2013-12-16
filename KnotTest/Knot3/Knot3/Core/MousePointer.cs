@@ -17,9 +17,9 @@ using Knot3.Utilities;
 namespace Knot3.Core
 {
 	/// <summary>
-	/// Ein DrawableGameStateComponent, der einen Mauszeiger zeichnet.
+	/// Ein DrawableGameScreenComponent, der einen Mauszeiger zeichnet.
 	/// </summary>
-	public class MousePointer : DrawableGameStateComponent
+	public class MousePointer : DrawableGameScreenComponent
 	{
 		// graphics-related classes
 		private SpriteBatch spriteBatch;
@@ -27,39 +27,39 @@ namespace Knot3.Core
 		/// <summary>
 		/// Initializes a new mouse pointer.
 		/// </summary>
-		/// <param name='state'>
+		/// <param name='screen'>
 		/// State.
 		/// </param>
-		public MousePointer (GameState state)
-			: base(state, DisplayLayer.Cursor)
+		public MousePointer (GameScreen screen)
+			: base(screen, DisplayLayer.Cursor)
 		{
 			// create a new SpriteBatch, which can be used to draw textures
-			spriteBatch = new SpriteBatch (state.device);
+			spriteBatch = new SpriteBatch (screen.device);
 		}
 
 		/// <summary>
 		/// Draw the Overlay.
 		/// </summary>
-		/// <param name='gameTime'>
+		/// <param name='time'>
 		/// Game time.
 		/// </param>
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
-			DrawCursor (gameTime);
+			DrawCursor (time);
 		}
 
-		private void DrawCursor (GameTime gameTime)
+		private void DrawCursor (GameTime time)
 		{
 			if (!Utilities.Mono.IsRunningOnMono ()) {
 				spriteBatch.Begin ();
             
-				Texture2D cursorTex = state.content.Load<Texture2D> ("cursor");
-				if (state.input.GrabMouseMovement || state.input.CurrentInputAction == InputAction.TargetMove
-					|| (state.input.CurrentInputAction == InputAction.ArcballMove
-					&& (Input.MouseState.LeftButton == ButtonState.Pressed || Input.MouseState.RightButton == ButtonState.Pressed))) {
-					spriteBatch.Draw (cursorTex, state.device.Viewport.Center (), Color.White);
+				Texture2D cursorTex = screen.content.Load<Texture2D> ("cursor");
+				if (screen.input.GrabMouseMovement || screen.input.CurrentInputAction == InputAction.TargetMove
+					|| (screen.input.CurrentInputAction == InputAction.ArcballMove
+					&& (InputManager.MouseState.LeftButton == ButtonState.Pressed || InputManager.MouseState.RightButton == ButtonState.Pressed))) {
+					spriteBatch.Draw (cursorTex, screen.device.Viewport.Center (), Color.White);
 				} else {
-					spriteBatch.Draw (cursorTex, new Vector2 (Input.MouseState.X, Input.MouseState.Y), Color.White);
+					spriteBatch.Draw (cursorTex, new Vector2 (InputManager.MouseState.X, InputManager.MouseState.Y), Color.White);
 				}
 
 				spriteBatch.End ();

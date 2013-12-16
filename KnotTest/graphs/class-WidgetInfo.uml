@@ -1,44 +1,77 @@
+// 
 public class WidgetInfo : IEquatable<WidgetInfo>
   Attributes:
+    // 
     + AlignX : HAlign
+    // 
     + AlignY : VAlign
+    // 
     + RelativePosition : Func<Vector2>
   Methods:
+    // 
     + BackgroundColor () : Func<Color>
+    // 
     + ForegroundColor () : Func<Color>
+    // 
     + RelativePadding () : Func<Vector2>
+    // 
     + RelativeSize () : Func<Vector2>
+    // 
     + ScaledRectangle (Viewport viewport) : Rectangle
+    // 
     + ScaledPosition (Viewport viewport) : Vector2
+    // 
     + operator (WidgetInfo o1, WidgetInfo o2) : bool static
+    // 
     + RelativeRectangle () : Rectangle
+    // 
     + ScaledPadding (Viewport viewport) : Vector2
+    // 
     + ScaledSize (Viewport viewport) : Vector2
     + WidgetInfo ()
+    // 
     + Equals (Object obj) : bool
+    // 
     + GetHashCode () : int
+    // 
     + operator ! (WidgetInfo o1, WidgetInfo o2) : bool static
+    // 
     + Equals (WidgetInfo other) : bool virtual
 
+// 
 public class MenuItemInfo : WidgetInfo
   Attributes:
+    // 
     + Text : string
+    // 
     + Keys : List<Keys> new
+    // 
     + OnClick : Action
   Methods:
+    // 
     +  (text, onClick) : this (string text, Vector2 topLeft, Vector2 bottomRight, Action onClick)
+    // 
     +  (text, onClick) : this (string text, float left, float top, float right, float bottom, Action onClick)
+    // 
     +  () : this (string text, Action onClick)
+    // 
     +  () : this (string text)
+    // 
     + MenuItemInfo  ()
+    // 
     + AddKey (Keys key) : MenuItemInfo
 
+// 
 public class MenuItemInfo : WidgetInfo
   Attributes:
+    // 
     + Text : string
   Methods:
+    // 
     + Keys () : List<Keys>
+    // 
     + OnClick () : Action
+    // 
     + AddKey (Keys key) : MenuItemInfo
     + MenuItemInfo (string text) : this()
     + MenuItemInfo (string text, Action onClick) : this()

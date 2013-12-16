@@ -1,27 +1,48 @@
+// 
 public interface IGameObject : 
   Attributes:
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
-    + Draw (GameTime gameTime)
-    + Update (GameTime gameTime)
+    // 
+    + Draw (GameTime time)
+    // 
+    + Update (GameTime time)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
+// 
 public class GameObjectInfo : IEquatable<GameObjectInfo>
   Attributes:
+    // 
     + Position : Vector3
+    // 
     + IsVisible : bool
+    // 
     + IsSelectable : bool
+    // 
     + IsMovable : bool
+    // 
     + operator : bool static
+    // 
     + operator ! : bool static
   Methods:
+    // 
     + GameObjectInfo ()
+    // 
     + Equals (GameObjectInfo other) : bool virtual
+    // 
     + Equals (Object obj) : bool override
+    // 
     + GetHashCode () : int override
+// 
 public sealed class GameObjectDistance : 
   Attributes:
+    // 
     + Object : IGameObject
+    // 
     + Distance : float
   Methods:

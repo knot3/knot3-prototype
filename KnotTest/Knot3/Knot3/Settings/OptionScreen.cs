@@ -46,15 +46,15 @@ namespace Knot3.Settings
 			menu.ItemAlignY = VAlign.Center;
 
 			MenuItemInfo info;
-			info = new MenuItemInfo (text: "Video", onClick: () => NextState = GameStates.VideoOptionScreen);
+			info = new MenuItemInfo (text: "Video", onClick: () => NextState = GameScreens.VideoOptionScreen);
 			menu.AddButton (info.AddKey (Keys.V));
-			info = new MenuItemInfo (text: "Audio", onClick: () => NextState = GameStates.OptionScreen);
+			info = new MenuItemInfo (text: "Audio", onClick: () => NextState = GameScreens.OptionScreen);
 			menu.AddButton (info.AddKey (Keys.A));
-			info = new MenuItemInfo (text: "Controls", onClick: () => NextState = GameStates.OptionScreen);
+			info = new MenuItemInfo (text: "Controls", onClick: () => NextState = GameScreens.OptionScreen);
 			menu.AddButton (info.AddKey (Keys.C));
-			info = new MenuItemInfo (text: "Knots", onClick: () => NextState = GameStates.OptionScreen);
+			info = new MenuItemInfo (text: "Knots", onClick: () => NextState = GameScreens.OptionScreen);
 			menu.AddButton (info.AddKey (Keys.K));
-			info = new MenuItemInfo (text: "Back", onClick: () => NextState = GameStates.StartScreen);
+			info = new MenuItemInfo (text: "Back", onClick: () => NextState = GameScreens.StartScreen);
 			menu.AddButton (info.AddKey (Keys.Escape));
 
 			// lines
@@ -63,11 +63,11 @@ namespace Knot3.Settings
 			);
 		}
 		
-		public override void UpdateMenu (GameTime gameTime)
+		public override void UpdateMenu (GameTime time)
 		{
 		}
 		
-		public override void DrawMenu (GameTime gameTime)
+		public override void DrawMenu (GameTime time)
 		{
 			spriteBatch.Begin ();
 
@@ -81,10 +81,10 @@ namespace Knot3.Settings
 			spriteBatch.End ();
 		}
 
-		public override void Activate (GameTime gameTime)
+		public override void Activate (GameTime time)
 		{
-			base.Activate (gameTime);
-			AddGameComponents (gameTime, menu);
+			base.Activate (time);
+			AddGameComponents (time, menu);
 		}
 	}
 }

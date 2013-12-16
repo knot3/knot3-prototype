@@ -22,17 +22,17 @@ namespace Knot3.GameObjects
 {
 	public class PipeModelInfo : GameModelInfo
 	{
-		public EdgeList EdgeList;
+		public Knot Knot;
 		public NodeMap NodeMap;
 		public Edge Edge;
 		public Vector3 Direction;
 		public Vector3 PositionFrom;
 		public Vector3 PositionTo;
 
-		public PipeModelInfo (EdgeList edgeList, NodeMap nodeMap, Edge edge, Vector3 offset)
+		public PipeModelInfo (Knot knot, NodeMap nodeMap, Edge edge, Vector3 offset)
 			: base("pipe1")
 		{
-			EdgeList = edgeList;
+			Knot = knot;
 			NodeMap = nodeMap;
 			Edge = edge;
 			Node node1 = nodeMap.FromNode (edge);
@@ -77,8 +77,8 @@ namespace Knot3.GameObjects
 
 		#endregion
 
-		public PipeModel (GameState state, PipeModelInfo info)
-			: base(state, info)
+		public PipeModel (GameScreen screen, PipeModelInfo info)
+			: base(screen, info)
 		{
 			if (Info.Direction.Y == 1) {
 				Info.Rotation += Angles3.FromDegrees (90, 0, 0);
@@ -103,20 +103,20 @@ namespace Knot3.GameObjects
 			}*/
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			BaseColor = Info.Edge.Color;
 			if (World.SelectedObject == this) {
 				HighlightIntensity = 0.40f;
 				HighlightColor = Color.White;
-			} else if (Info.EdgeList.SelectedEdges.Contains (Info.Edge)) {
+			} else if (Info.Knot.SelectedEdges.Contains (Info.Edge)) {
 				HighlightIntensity = 0.80f;
 				HighlightColor = Color.White;
 			} else {
 				HighlightIntensity = 0f;
 			}
 
-			base.Draw (gameTime);
+			base.Draw (time);
 		}
 
 		public override GameObjectDistance Intersects (Ray ray)

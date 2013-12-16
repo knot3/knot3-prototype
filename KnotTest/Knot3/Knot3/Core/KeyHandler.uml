@@ -1,12 +1,20 @@
-public class KeyHandler : GameStateComponent
+// 
+public class KeyHandler : GameScreenComponent
   Attributes:
   Methods:
-    + KeyHandler (GameState state)
+    // 
+    + KeyHandler (GameScreen screen)
+    // 
     private class KeyEventComponent : 
       Attributes:
+        // 
         + receiver : IKeyEventListener
+        // 
         + layer : DisplayLayer
+        // 
         + keyEvent : KeyEvent
+        // 
         + keys : List<Keys>
       Methods:
-    + Update (GameTime gameTime) override
+    // 
+    + Update (GameTime time) override

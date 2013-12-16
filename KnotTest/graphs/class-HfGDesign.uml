@@ -1,14 +1,25 @@
+// 
 public static class HfGDesign : 
   Attributes:
+    // 
     - menuFont : SpriteFont static
+    // 
     - texture : Texture2D static
   Methods:
+    // 
     + OutlineColor (0x3b, 0x54, 0x00) : Color static
+    // 
     + LineColor (0xb4, 0xff, 0x00) : Color static
-    + MenuFont (GameState state) : SpriteFont static
-    + DrawLines  (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameState state, GameTime gameTime) static
+    // 
+    + MenuFont (GameScreen screen) : SpriteFont static
+    // 
+    + DrawLines  (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameScreen screen, GameTime time) static
+    // 
     + CreateRectangle (Vector2 topLeft, Vector2 size) : Rectangle static
+    // 
     + CreateRectangle (int lineWidth, Vector2 topLeft, Vector2 size) : Rectangle static
+    // 
     + CreateRectangle (int lineWidth, float x, float y, float w, float h) : Rectangle static
+    // 
     + AddLinePoints  (ref List<Vector2> linePoints, float startX, float startY, params float[] xyxy) static
 

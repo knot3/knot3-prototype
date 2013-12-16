@@ -22,8 +22,8 @@ namespace Knot3.UserInterface
 		// text input
 		protected TextInput TextInput;
 
-		public TextInputDialog (GameState state, WidgetInfo info, DisplayLayer drawOrder)
-			: base(state, info, drawOrder)
+		public TextInputDialog (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+			: base(screen, info, drawOrder)
 		{
 			var textInputInfo = new WidgetInfo () {
 				RelativePosition = TextInputPosition,
@@ -32,12 +32,12 @@ namespace Knot3.UserInterface
 				ForegroundColor = () => Color.Black,
 				BackgroundColor = () => Color.White
 			};
-			TextInput = new TextInput (state, textInputInfo, DisplayLayer.SubMenu);
+			TextInput = new TextInput (screen, textInputInfo, DisplayLayer.SubMenu);
 		}
 
-		public override IEnumerable<IGameStateComponent> SubComponents (GameTime gameTime)
+		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameStateComponent component in base.SubComponents(gameTime)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
 				yield return component;
 			}
 			yield return TextInput;

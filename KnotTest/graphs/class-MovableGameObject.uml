@@ -1,26 +1,46 @@
+// 
 public class MovableGameObject : IGameObject
   Attributes:
+    // 
     - Obj : IGameObject
+    // 
     + World : World
-    - state : GameState
+    // 
+    - screen : GameScreen
+    // 
     + Info : GameObjectInfo
   Methods:
+    // 
     # CurrentGroundPlane () : Plane
-    + MovableGameObject  (GameState state, IGameObject obj)
-    + Update  (GameTime gameTime) virtual
+    // 
+    + MovableGameObject  (GameScreen screen, IGameObject obj)
+    // 
+    + Update  (GameTime time) virtual
+    // 
     # CurrentMouseRay () : Ray
+    // 
     # CurrentMousePosition (Ray ray, Plane groundPlane) : Vector3?
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
-    + Draw  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
 
+// 
 public interface IGameObject : 
   Attributes:
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
-    + Draw  (GameTime gameTime)
-    + Update  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
 

@@ -1,31 +1,58 @@
+// 
 public class WrapList<T> : IEnumerable<T>
   Attributes:
+    // 
     - list : List<T> new
+    // 
     - indexOf : Dictionary<T,int> new
+    // 
     + SelectionChanged : Action<WrapList<T>>
+    // 
     + Count : int
   Methods:
+    // 
     + WrapList ()
+    // 
     + WrapList (IEnumerable<T> elems)
+    // 
     - RebuildIndex ()
+    // 
     - WrapIndex (int i) : int
+    // 
     + this (int i) : T
+    // 
     + this (T t) : int
+    // 
     + Clear ()
+    // 
     + Add (T elem)
+    // 
     + Remove (params T[] elems)
+    // 
     + InsertAt (int i, T elem)
+    // 
     + Replace (T find, params T[] elem)
+    // 
     + AddRange (params T[] elems)
+    // 
     + AddRange (IEnumerable<T> elems)
+    // 
     + Set (params T[] elems)
+    // 
     + Set (IEnumerable<T> elems)
+    // 
     + Contains (T elem) : bool
+    // 
     + GetEnumerator () : IEnumerator<T>
+    // 
     - IEnumerable.GetEnumerator () : IEnumerator
+    // 
     + ToString () : string override
+// 
 public static class Lists : 
   Attributes:
   Methods:
+    // 
     + Times (this int count, Action action) static
+    // 
     + Times (this int count, Action<int> action) static

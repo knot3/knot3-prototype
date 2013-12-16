@@ -1,14 +1,45 @@
-public class Knot : 
+// 
+public class Knot : IEnumerable<Edge>, ICloneable
   Attributes:
-    - Format : IKnotFormat
-    + EdgesChanged : Action<EdgeList>
-    + Edges : EdgeList
-    + Info : KnotInfo
+    // 
+    - edges : Circle<Edge>
+    // 
+    - file : IKnotIO
+    // 
+    - selectedEdges : List<Edge>
+    // 
+    + EdgesChanged : Action
+    // 
+    + SelectionChanged : Action
+    // 
+    - lastSelected : Circle<Edge>
+    // 
+    + SelectedEdges : IEnumerable<Edge>
+    // 
+    + Name : string
   Methods:
-    + Knot  (KnotInfo info, IKnotFormat format, EdgeList edges)
+    // 
+    - IEnumerable.GetEnumerator () : IEnumerator
+    // 
+    + GetEnumerator () : IEnumerator<Edge>
+    // 
+    + Knot  (IKnotIO _file)
+    + Knot (KnotMetaData metaData) : this (metaData.File)
+    + Knot ()
+    // 
+    + IsSelected (Edge edge) : bool
+    // 
+    + Clone () : object
+    // 
+    + AddRangeToSelection  (Edge selectedEdge)
+    // 
+    + AddToSelection  (Edge edge)
+    + ClearSelection ()
+    // 
+    + Move  (Direction direction, int distance)
+    // 
+    + Save  (IKnotIO file)
+    // 
+    + ToString () : string
     + Save ()
-    - UntitledKnot (EdgeList edges, IKnotFormat format) : Knot static
-    + DefaultKnot (IKnotFormat format) : Knot static
-    + RandomKnot (int count, IKnotFormat format) : Knot static
-    + Rename  (string name)
 

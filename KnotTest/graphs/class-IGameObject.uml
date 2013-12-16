@@ -1,471 +1,1036 @@
+// 
 public interface IGameObject : 
   Attributes:
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
-    + Draw  (GameTime gameTime)
-    + Update  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
 
-public class GameModel : IGameObject
+// 
+public class EdgeMovement : IGameObject, IEnumerable<IGameObject>
   Attributes:
-    # state : GameState
-    - IGameObject.Info : GameObjectInfo
-    + Info : GameModelInfo
-    - _world : World
+    // 
+    - screen : GameScreen
+    // 
     + World : World
-    + Model : Model virtual
-    + BaseColor : Color
-    + HighlightColor : Color
-    + HighlightIntensity : float
-    + Alpha : float
-    - _scale : Vector3
-    - _rotation : Angles3
-    - _position : Vector3
-    - _worldMatrix : Matrix
-    - _bounds : BoundingSphere[]
-    - _inFrustum : bool
-    + WorldMatrix : Matrix
-    - Bounds : BoundingSphere[]
-    # InCameraFrustum : bool
-  Methods:
-    + GameModel  (GameState state, GameModelInfo info)
-    + Update  (GameTime gameTime) virtual
-    + Draw  (GameTime gameTime) virtual
-    + Intersects (Ray ray) : GameObjectDistance virtual
-    + Center () : Vector3
-    - UpdatePrecomputed  ()
-    - OnViewChanged  ()
-
-public class ArrowModel : GameModel
-  Attributes:
-    + Info : ArrowModelInfo new
-    - Bounds : BoundingSphere[]
-  Methods:
-    + ArrowModel  (GameState state, ArrowModelInfo info)
-    + Draw  (GameTime gameTime) override
-    + Intersects (Ray ray) : GameObjectDistance override
-
-public class NodeModel : GameModel
-  Attributes:
-    + Info : NodeModelInfo new
-  Methods:
-    + NodeModel  (GameState state, NodeModelInfo info)
-    + Draw  (GameTime gameTime) override
-
-public class PipeModel : GameModel
-  Attributes:
-    + Info : PipeModelInfo new
-    - Bounds : BoundingSphere[]
-    + OnDataChange : Action
-  Methods:
-    + PipeModel  (GameState state, PipeModelInfo info)
-    + Draw  (GameTime gameTime) override
-    + Intersects (Ray ray) : GameObjectDistance override
-
-public class TestModel : GameModel
-  Attributes:
-  Methods:
-    + TestModel  (GameState state, GameModelInfo info)
-    + Update  (GameTime gameTime) override
-
-public class ArrowModel : GameModel
-  Attributes:
-    - Bounds : BoundingSphere[]
-    + Info : ArrowModelInfo
-  Methods:
-    + ArrowModel  (GameState state, ArrowModelInfo info)
-    + Intersects (Ray ray) : GameObjectDistance
-    + Draw  (GameTime gameTime)
-
-public class NodeModel : GameModel
-  Attributes:
-    + Info : NodeModelInfo
-  Methods:
-    + NodeModel  (GameState state, NodeModelInfo info)
-    + Draw  (GameTime gameTime)
-
-public class PipeModel : GameModel
-  Attributes:
-    - Bounds : BoundingSphere[]
-    + Info : PipeModelInfo
-  Methods:
-    + OnDataChange () : Action
-    + PipeModel  (GameState state, PipeModelInfo info)
-    + Intersects (Ray ray) : GameObjectDistance
-    + Draw  (GameTime gameTime)
-
-public class TestModel : GameModel
-  Attributes:
-  Methods:
-    + Update  (GameTime gameTime)
-    + TestModel  (GameState state, GameModelInfo info)
-
-public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
-  Attributes:
-    # state : GameState
-    + World : World abstract
-    + Info : GameObjectInfo abstract
-    # nodeMap : NodeMap new
-  Methods:
-    + KnotRenderer  (GameState state)
-    + OnEdgesChanged  (EdgeList edges) virtual
-    + Update  (GameTime gameTime) abstract
-    + Draw  (GameTime gameTime) abstract
-    + Intersects (Ray ray) : GameObjectDistance abstract
-    + Center () : Vector3 abstract
-
-public class LineRenderer : KnotRenderer
-  Attributes:
-    + Info : GameObjectInfo override
-    + World : World override
-    - basicEffect : BasicEffect
-    - edges : EdgeList
-  Methods:
-    + LineRenderer  (GameState state, GameObjectInfo info)
-    + Update  (GameTime gameTime) override
-    + OnEdgesChanged  (EdgeList edges) override
-    + Draw  (GameTime gameTime) override
-    - DrawRoundedLines  ()
-    + Intersects (Ray ray) : GameObjectDistance override
-    + Center () : Vector3 override
-
-public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
-  Attributes:
-    + Info : GameObjectInfo override
-    + World : World override
-    - pipes : List<PipeModel>
-    - nodes : List<NodeModel>
-    - arrows : List<ArrowModel>
-    - pipeFactory : ModelFactory
-    - nodeFactory : ModelFactory
-    - arrowFactory : ModelFactory
-  Methods:
-    + ModelRenderer  (GameState state, GameObjectInfo info)
-    + Update  (GameTime gameTime) override
-    + OnEdgesChanged  (EdgeList edgeList) override
-    + CreateArrows  (WrapList<Edge> selectedEdges)
-    + GetEnumerator () : IEnumerator<IGameObject>
-    - IEnumerable.GetEnumerator () : IEnumerator
-    + Draw  (GameTime gameTime) override
-    + Intersects (Ray ray) : GameObjectDistance override
-    + Center () : Vector3 override
-
-public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
-  Attributes:
-    + Info : GameObjectInfo override
-    + World : World override
-    - pipes : List<PipeModel>
-    - nodes : List<NodeModel>
-    - pipeFactory : ModelFactory
-    - nodeFactory : ModelFactory
-  Methods:
-    + PipeRenderer  (GameState state, GameObjectInfo info)
-    + Update  (GameTime gameTime) override
-    + OnEdgesChanged  (EdgeList edges) override
-    + GetEnumerator () : IEnumerator<IGameObject>
-    - IEnumerable.GetEnumerator () : IEnumerator
-    + Draw  (GameTime gameTime) override
-    + Intersects (Ray ray) : GameObjectDistance override
-    + Center () : Vector3 override
-
-public class LineRenderer : KnotRenderer
-  Attributes:
-    - edges : EdgeList
-    - basicEffect : BasicEffect
+    // 
     + Info : GameObjectInfo
-    + World : World
-  Methods:
-    + LineRenderer  (GameState state, GameObjectInfo info)
-    + OnEdgesChanged  (EdgeList edges)
-    - DrawRoundedLines ()
-    + Intersects (Ray ray) : GameObjectDistance
-    + Center () : Vector3
-    + Draw  (GameTime gameTime)
-    + Update  (GameTime gameTime)
-
-public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
-  Attributes:
-    - arrows : List<ArrowModel>
-    - nodes : List<NodeModel>
-    - arrowFactory : ModelFactory
-    - nodeFactory : ModelFactory
-    - pipeFactory : ModelFactory
-    - pipes : List<PipeModel>
-    + Info : GameObjectInfo
-    + World : World
-  Methods:
-    - IEnumerable.GetEnumerator () : IEnumerator
-    + GetEnumerator () : IEnumerator<IGameObject>
-    + ModelRenderer  (GameState state, GameObjectInfo info)
-    + Draw  (GameTime gameTime)
-    + OnEdgesChanged  (EdgeList edgeList)
-    + Intersects (Ray ray) : GameObjectDistance
-    + Center () : Vector3
-    + Update  (GameTime gameTime)
-    + CreateArrows  (WrapList<Edge> selectedEdges)
-
-public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
-  Attributes:
-    - nodes : List<NodeModel>
-    - nodeFactory : ModelFactory
-    - pipeFactory : ModelFactory
-    - pipes : List<PipeModel>
-    + Info : GameObjectInfo
-    + World : World
-  Methods:
-    - IEnumerable.GetEnumerator () : IEnumerator
-    + PipeRenderer  (GameState state, GameObjectInfo info)
-    + Draw  (GameTime gameTime)
-    + OnEdgesChanged  (EdgeList edges)
-    + GetEnumerator () : IEnumerator<IGameObject>
-    + Intersects (Ray ray) : GameObjectDistance
-    + Center () : Vector3
-    + Update  (GameTime gameTime)
-
-public class MovableGameObject : IGameObject
-  Attributes:
-    - state : GameState
-    - Obj : IGameObject
-    + World : World
-    + Info : GameObjectInfo
-  Methods:
-    + MovableGameObject  (GameState state, IGameObject obj)
-    # CurrentGroundPlane () : Plane
-    # CurrentMouseRay () : Ray
-    # CurrentMousePosition (Ray ray, Plane groundPlane) : Vector3?
-    + Update  (GameTime gameTime) virtual
-    + Draw  (GameTime gameTime)
-    + Intersects (Ray ray) : GameObjectDistance
-    + Center () : Vector3
-
-public class PipeMovement : IGameObject, IEnumerable<IGameObject>
-  Attributes:
-    - state : GameState
-    + World : World
-    + Info : GameObjectInfo
+    // 
     + Knot : Knot
+    // 
     - previousMousePosition : Vector3
+    // 
     - shadowObjects : List<ShadowGameObject>
-    - knownEdgeLists : HashSet<EdgeList> new
   Methods:
-    + PipeMovement  (GameState state, World world, GameObjectInfo info)
-    + Update  (GameTime gameTime)
-    - TrySelectObject  (GameTime gameTime)
-    - TryMovePipes  (GameTime gameTime)
+    // 
+    + EdgeMovement  (GameScreen screen, World world, GameObjectInfo info)
+    // 
+    + Update  (GameTime time)
+    // 
+    - TrySelectObject  (GameTime time)
+    // 
+    - TryMovePipes  (GameTime time)
+    // 
     - CreateShadowPipes  ()
-    - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out float count)
-    - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out int countInt)
+    // 
+    - ComputeDirection  (Vector3 currentMousePosition, out Direction direction, out float count)
+    // 
+    - ComputeDirection  (Vector3 currentMousePosition, out Direction direction, out int countInt)
+    // 
+    - MoveShadowPipes  (Vector3 currentMousePosition, Vector3 direction3D)
+    // 
     - MoveShadowPipes  (Vector3 currentMousePosition)
+    // 
     - MovePipes  (Vector3 currentMousePosition)
-    + Draw  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
+    // 
     + GetEnumerator () : IEnumerator<IGameObject>
+    // 
     - IEnumerable.GetEnumerator () : IEnumerator
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
 
+// 
 public class ShadowGameObject : IGameObject
   Attributes:
-    # state : GameState
+    // 
+    # screen : GameScreen
+    // 
     - Obj : IGameObject
+    // 
     + World : World
+    // 
     + Info : GameObjectInfo
+    // 
     + ShadowPosition : Vector3
+    // 
     + OriginalPosition : Vector3
   Methods:
-    + ShadowGameObject  (GameState state, IGameObject obj)
-    + Update  (GameTime gameTime) virtual
-    + Draw  (GameTime gameTime) virtual
+    // 
+    + ShadowGameObject  (GameScreen screen, IGameObject obj)
+    // 
+    + Update  (GameTime time) virtual
+    // 
+    + Draw  (GameTime time) virtual
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
 
+// 
 public class ShadowGameModel : ShadowGameObject
   Attributes:
+    // 
     - Model : GameModel
+    // 
     + ShadowColor : Color
+    // 
     + ShadowAlpha : float
   Methods:
-    + ShadowGameModel  (GameState state, GameModel model)
-    + Draw  (GameTime gameTime) override
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time) override
 
+// 
 public class ShadowGameModel : ShadowGameObject
   Attributes:
-    + ShadowColor : Color
+    // 
     - Model : GameModel
+    // 
+    + ShadowColor : Color
+    // 
     + ShadowAlpha : float
   Methods:
-    + ShadowGameModel  (GameState state, GameModel model)
-    + Draw  (GameTime gameTime)
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time) override
 
-public class TexturedRectangle : IGameObject
+// 
+public class ShadowGameModel : ShadowGameObject
   Attributes:
-    # state : GameState
-    - IGameObject.Info : GameObjectInfo
-    + Info : TexturedRectangleInfo
-    + World : World
-    - UpperLeft : Vector3
-    - LowerLeft : Vector3
-    - UpperRight : Vector3
-    - LowerRight : Vector3
-    - Normal : Vector3
-    - Vertices : VertexPositionNormalTexture[]
-    - Indexes : short[]
-    - basicEffect : BasicEffect
-    - texture : Texture2D
+    // 
+    + ShadowColor : Color
+    // 
+    - Model : GameModel
+    // 
+    + ShadowAlpha : float
   Methods:
-    + TexturedRectangle  (GameState state, TexturedRectangleInfo info)
-    + Update  (GameTime gameTime)
-    + Draw  (GameTime gameTime)
-    - FillVertices  ()
-    # SetPosition  (Vector3 position)
-    - Length () : Vector3
-    + Bounds () : BoundingBox[]
-    + Intersects (Ray ray) : GameObjectDistance
-    + Center () : Vector3
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time)
 
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    + ShadowColor : Color
+    // 
+    - Model : GameModel
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime gameTime)
+
+// 
 public class GameModel : IGameObject
   Attributes:
+    // 
+    # screen : GameScreen
+    // 
     - IGameObject.Info : GameObjectInfo
-    - _rotation : Angles3
-    - Bounds : BoundingSphere[]
-    - _bounds : BoundingSphere[]
-    - _worldMatrix : Matrix
-    - _position : Vector3
-    - _inFrustum : bool
-    # InCameraFrustum : bool
-    + BaseColor : Color
-    + HighlightColor : Color
+    // 
     + Info : GameModelInfo
-    + WorldMatrix : Matrix
-    + World : World
-    + Alpha : float
-    + HighlightIntensity : float
-    - _scale : Vector3
+    // 
     - _world : World
-    # state : GameState
+    // 
+    + World : World
+    // 
+    + Model : Model virtual
+    // 
+    + BaseColor : Color
+    // 
+    + HighlightColor : Color
+    // 
+    + HighlightIntensity : float
+    // 
+    + Alpha : float
+    // 
+    - _scale : Vector3
+    // 
+    - _rotation : Angles3
+    // 
+    - _position : Vector3
+    // 
+    - _worldMatrix : Matrix
+    // 
+    - _bounds : BoundingSphere[]
+    // 
+    - _inFrustum : bool
+    // 
+    + WorldMatrix : Matrix
+    // 
+    - Bounds : BoundingSphere[]
+    // 
+    # InCameraFrustum : bool
+  Methods:
+    // 
+    + GameModel  (GameScreen screen, GameModelInfo info)
+    // 
+    + Update  (GameTime time) virtual
+    // 
+    + Draw  (GameTime time) virtual
+    // 
+    + Intersects (Ray ray) : GameObjectDistance virtual
+    // 
+    + Center () : Vector3
+    // 
+    - UpdatePrecomputed  ()
+    // 
+    - OnViewChanged  ()
+
+// 
+public class ArrowModel : GameModel
+  Attributes:
+    // 
+    + Info : ArrowModelInfo new
+    // 
+    - Bounds : BoundingSphere[]
+  Methods:
+    // 
+    + ArrowModel  (GameScreen screen, ArrowModelInfo info)
+    // 
+    + Draw  (GameTime time) override
+    // 
+    + Intersects (Ray ray) : GameObjectDistance override
+
+// 
+public class NodeModel : GameModel
+  Attributes:
+    // 
+    + Info : NodeModelInfo new
+  Methods:
+    // 
+    + NodeModel  (GameScreen screen, NodeModelInfo info)
+    // 
+    + Draw  (GameTime time) override
+
+// 
+public class PipeModel : GameModel
+  Attributes:
+    // 
+    + Info : PipeModelInfo new
+    // 
+    - Bounds : BoundingSphere[]
+    // 
+    + OnDataChange : Action
+  Methods:
+    // 
+    + PipeModel  (GameScreen screen, PipeModelInfo info)
+    // 
+    + Draw  (GameTime time) override
+    // 
+    + Intersects (Ray ray) : GameObjectDistance override
+
+// 
+public class TestModel : GameModel
+  Attributes:
+  Methods:
+    // 
+    + TestModel  (GameScreen screen, GameModelInfo info)
+    // 
+    + Update  (GameTime time) override
+
+// 
+public class ArrowModel : GameModel
+  Attributes:
+    // 
+    - Bounds : BoundingSphere[]
+    // 
+    + Info : ArrowModelInfo
+  Methods:
+    // 
+    + ArrowModel  (GameScreen screen, ArrowModelInfo info)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Draw  (GameTime time)
+
+// 
+public class NodeModel : GameModel
+  Attributes:
+    // 
+    + Info : NodeModelInfo
+  Methods:
+    // 
+    + NodeModel  (GameScreen screen, NodeModelInfo info)
+    // 
+    + Draw  (GameTime time)
+
+// 
+public class PipeModel : GameModel
+  Attributes:
+    // 
+    - Bounds : BoundingSphere[]
+    // 
+    + Info : PipeModelInfo
+  Methods:
+    // 
+    + OnDataChange () : Action
+    // 
+    + PipeModel  (GameScreen screen, PipeModelInfo info)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Draw  (GameTime time)
+
+// 
+public class TestModel : GameModel
+  Attributes:
+  Methods:
+    // 
+    + Update  (GameTime time)
+    // 
+    + TestModel  (GameScreen screen, GameModelInfo info)
+
+// 
+public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
+  Attributes:
+    // 
+    # screen : GameScreen
+    // 
+    + World : World abstract
+    // 
+    + Info : GameObjectInfo abstract
+    // 
+    # nodeMap : NodeMap new
+  Methods:
+    // 
+    + KnotRenderer  (GameScreen screen)
+    // 
+    + OnEdgesChanged  (EdgeList edges) virtual
+    // 
+    + Update  (GameTime time) abstract
+    // 
+    + Draw  (GameTime time) abstract
+    // 
+    + Intersects (Ray ray) : GameObjectDistance abstract
+    // 
+    + Center () : Vector3 abstract
+
+// 
+public class LineRenderer : KnotRenderer
+  Attributes:
+    // 
+    + Info : GameObjectInfo override
+    // 
+    + World : World override
+    // 
+    - basicEffect : BasicEffect
+    // 
+    - edges : EdgeList
+  Methods:
+    // 
+    + LineRenderer  (GameScreen screen, GameObjectInfo info)
+    // 
+    + Update  (GameTime time) override
+    // 
+    + OnEdgesChanged  (EdgeList edges) override
+    // 
+    + Draw  (GameTime time) override
+    // 
+    - DrawRoundedLines  ()
+    // 
+    + Intersects (Ray ray) : GameObjectDistance override
+    // 
+    + Center () : Vector3 override
+
+public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
+  Attributes:
+    + Info : GameObjectInfo override
+    + World : World override
+    - pipes : List<PipeModel>
+    - nodes : List<NodeModel>
+    - pipeFactory : ModelFactory
+    - nodeFactory : ModelFactory
+  Methods:
+    + PipeRenderer  (GameScreen screen, GameObjectInfo info)
+    + Update  (GameTime time) override
+    + OnEdgesChanged  (EdgeList edges) override
+    + GetEnumerator () : IEnumerator<IGameObject>
+    - IEnumerable.GetEnumerator () : IEnumerator
+    + Draw  (GameTime time) override
+    + Intersects (Ray ray) : GameObjectDistance override
+    + Center () : Vector3 override
+
+// 
+public class LineRenderer : KnotRenderer
+  Attributes:
+    // 
+    - edges : EdgeList
+    // 
+    - basicEffect : BasicEffect
+    // 
+    + Info : GameObjectInfo
+    // 
+    + World : World
+  Methods:
+    // 
+    + LineRenderer  (GameScreen screen, GameObjectInfo info)
+    // 
+    + OnEdgesChanged  (EdgeList edges)
+    - DrawRoundedLines ()
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+    // 
+    + Draw  (GameTime gameTime)
+    // 
+    + Update  (GameTime gameTime)
+
+public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
+  Attributes:
+    - nodes : List<NodeModel>
+    - nodeFactory : ModelFactory
+    - pipeFactory : ModelFactory
+    - pipes : List<PipeModel>
+    + Info : GameObjectInfo
+    + World : World
+  Methods:
+    - IEnumerable.GetEnumerator () : IEnumerator
+    + PipeRenderer  (GameState state, GameObjectInfo info)
+    + Draw  (GameTime gameTime)
+    + OnEdgesChanged  (EdgeList edges)
+    + GetEnumerator () : IEnumerator<IGameObject>
+    + Intersects (Ray ray) : GameObjectDistance
+    + Center () : Vector3
+    + Update  (GameTime gameTime)
+
+// 
+public sealed class ModelRenderer : IGameObject, IEnumerable<IGameObject>
+  Attributes:
+    // 
+    - screen : GameScreen
+    // 
+    + Info : GameObjectInfo
+    // 
+    + World : World
+    // 
+    - knot : Knot
+    // 
+    - pipes : List<PipeModel>
+    // 
+    - nodes : List<NodeModel>
+    // 
+    - arrows : List<ArrowModel>
+    // 
+    - pipeFactory : ModelFactory
+    // 
+    - nodeFactory : ModelFactory
+    // 
+    - arrowFactory : ModelFactory
+    // 
+    - nodeMap : NodeMap new
+    // 
+    + Knot : Knot
+  Methods:
+    // 
+    + ModelRenderer  (GameScreen screen, GameObjectInfo info)
+    // 
+    + Update  (GameTime time)
+    // 
+    + OnEdgesChanged  ()
+    // 
+    + CreateArrows  (IEnumerable<Edge> selectedEdges)
+    // 
+    - CreateArrows  (IList<Edge> selectedEdges)
+    // 
+    - CreateArrow  (Edge edge)
+    // 
+    + GetEnumerator () : IEnumerator<IGameObject>
+    // 
+    - IEnumerable.GetEnumerator () : IEnumerator
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+
+// 
+public class MovableGameObject : IGameObject
+  Attributes:
+    // 
+    - screen : GameScreen
+    // 
+    - Obj : IGameObject
+    // 
+    + World : World
+    // 
+    + Info : GameObjectInfo
+  Methods:
+    // 
+    + MovableGameObject  (GameScreen screen, IGameObject obj)
+    // 
+    # CurrentGroundPlane () : Plane
+    // 
+    # CurrentMouseRay () : Ray
+    // 
+    # CurrentMousePosition (Ray ray, Plane groundPlane) : Vector3?
+    // 
+    + Update  (GameTime time) virtual
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+
+// 
+public class PipeMovement : IGameObject, IEnumerable<IGameObject>
+  Attributes:
+    // 
+    - screen : GameScreen
+    // 
+    + World : World
+    // 
+    + Info : GameObjectInfo
+    // 
+    + Knot : Knot
+    // 
+    - previousMousePosition : Vector3
+    // 
+    - shadowObjects : List<ShadowGameObject>
+    // 
+    - knownEdgeLists : HashSet<EdgeList> new
+  Methods:
+    // 
+    + PipeMovement  (GameScreen screen, World world, GameObjectInfo info)
+    // 
+    + Update  (GameTime time)
+    // 
+    - TrySelectObject  (GameTime time)
+    // 
+    - TryMovePipes  (GameTime time)
+    // 
+    - CreateShadowPipes  ()
+    // 
+    - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out float count)
+    // 
+    - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out int countInt)
+    // 
+    - MoveShadowPipes  (Vector3 currentMousePosition, Vector3 direction3D)
+    // 
+    - MoveShadowPipes  (Vector3 currentMousePosition)
+    // 
+    - MovePipes  (Vector3 currentMousePosition)
+    // 
+    + Draw  (GameTime time)
+    // 
+    + GetEnumerator () : IEnumerator<IGameObject>
+    // 
+    - IEnumerable.GetEnumerator () : IEnumerator
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+
+// 
+public class ShadowGameObject : IGameObject
+  Attributes:
+    // 
+    # screen : GameScreen
+    // 
+    - Obj : IGameObject
+    // 
+    + World : World
+    // 
+    + Info : GameObjectInfo
+    // 
+    + ShadowPosition : Vector3
+    // 
+    + OriginalPosition : Vector3
+  Methods:
+    // 
+    + ShadowGameObject  (GameScreen screen, IGameObject obj)
+    // 
+    + Update  (GameTime time) virtual
+    // 
+    + Draw  (GameTime time) virtual
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    - Model : GameModel
+    // 
+    + ShadowColor : Color
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time) override
+
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    - Model : GameModel
+    // 
+    + ShadowColor : Color
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time) override
+
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    + ShadowColor : Color
+    // 
+    - Model : GameModel
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time)
+
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    + ShadowColor : Color
+    // 
+    - Model : GameModel
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime gameTime)
+
+// 
+public class TexturedRectangle : IGameObject
+  Attributes:
+    // 
+    # screen : GameScreen
+    // 
+    - IGameObject.Info : GameObjectInfo
+    // 
+    + Info : TexturedRectangleInfo
+    // 
+    + World : World
+    // 
+    - UpperLeft : Vector3
+    // 
+    - LowerLeft : Vector3
+    // 
+    - UpperRight : Vector3
+    // 
+    - LowerRight : Vector3
+    // 
+    - Normal : Vector3
+    // 
+    - Vertices : VertexPositionNormalTexture[]
+    // 
+    - Indexes : short[]
+    // 
+    - basicEffect : BasicEffect
+    // 
+    - texture : Texture2D
+  Methods:
+    // 
+    + TexturedRectangle  (GameScreen screen, TexturedRectangleInfo info)
+    // 
+    + Update  (GameTime time)
+    // 
+    + Draw  (GameTime time)
+    // 
+    - FillVertices  ()
+    // 
+    # SetPosition  (Vector3 position)
+    // 
+    - Length () : Vector3
+    // 
+    + Bounds () : BoundingBox[]
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+
+// 
+public class ShadowGameObject : IGameObject
+  Attributes:
+    // 
+    - Obj : IGameObject
+    // 
+    + Info : GameObjectInfo
+    // 
+    + OriginalPosition : Vector3
+    // 
+    + World : World
+    // 
+    # screen : GameScreen
+    // 
+    + ShadowPosition : Vector3
+  Methods:
+    // 
+    + Update  (GameTime time) virtual
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + ShadowGameObject  (GameScreen screen, IGameObject obj)
+    // 
+    + Center () : Vector3
+    // 
+    + Draw  (GameTime time) virtual
+
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    - Model : GameModel
+    // 
+    + ShadowColor : Color
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time) override
+
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    - Model : GameModel
+    // 
+    + ShadowColor : Color
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time) override
+
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    + ShadowColor : Color
+    // 
+    - Model : GameModel
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time)
+
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    + ShadowColor : Color
+    // 
+    - Model : GameModel
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime gameTime)
+
+// 
+public class EdgeMovement : IGameObject, IEnumerable<IGameObject>
+  Attributes:
+    // 
+    - shadowObjects : List<ShadowGameObject>
+    // 
+    + World : World
+    // 
+    - screen : GameScreen
+    // 
+    - previousMousePosition : Vector3
+    // 
+    + Info : GameObjectInfo
+    // 
+    + Knot : Knot
+  Methods:
+    // 
+    - IEnumerable.GetEnumerator () : IEnumerator
+    // 
+    - MovePipes  (Vector3 currentMousePosition)
+    // 
+    - MoveShadowPipes  (Vector3 currentMousePosition)
+    // 
+    + EdgeMovement  (GameScreen screen, World world, GameObjectInfo info)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + GetEnumerator () : IEnumerator<IGameObject>
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
+    - ComputeDirection  (Vector3 currentMousePosition, out Direction direction, out float count)
+    // 
+    - ComputeDirection  (Vector3 currentMousePosition, out Direction direction, out int countInt)
+    - CreateShadowPipes ()
+    // 
+    - MoveShadowPipes  (Vector3 currentMousePosition, Vector3 direction3D)
+    // 
+    - TryMovePipes  (GameTime time)
+    // 
+    - TrySelectObject  (GameTime time)
+    // 
+    + Center () : Vector3
+
+// 
+public class GameModel : IGameObject
+  Attributes:
+    // 
+    - IGameObject.Info : GameObjectInfo
+    // 
+    - _rotation : Angles3
+    // 
+    - Bounds : BoundingSphere[]
+    // 
+    - _bounds : BoundingSphere[]
+    // 
+    - _worldMatrix : Matrix
+    // 
+    - _position : Vector3
+    // 
+    - _inFrustum : bool
+    // 
+    # InCameraFrustum : bool
+    // 
+    + BaseColor : Color
+    // 
+    + HighlightColor : Color
+    // 
+    + Info : GameModelInfo
+    // 
+    + WorldMatrix : Matrix
+    // 
+    + World : World
+    // 
+    + Alpha : float
+    // 
+    + HighlightIntensity : float
+    // 
+    - _scale : Vector3
+    // 
+    - _world : World
+    // 
+    # screen : GameScreen
+    // 
     + Model : Model virtual
   Methods:
     - OnViewChanged ()
     - UpdatePrecomputed ()
-    + GameModel  (GameState state, GameModelInfo info)
-    + Draw  (GameTime gameTime) virtual
+    // 
+    + GameModel  (GameScreen screen, GameModelInfo info)
+    // 
+    + Draw  (GameTime time) virtual
+    // 
     + Center () : Vector3
+    // 
     + Intersects (Ray ray) : GameObjectDistance virtual
-    + Update  (GameTime gameTime) virtual
+    // 
+    + Update  (GameTime time) virtual
 
+// 
 public class ArrowModel : GameModel
   Attributes:
+    // 
     + Info : ArrowModelInfo new
+    // 
     - Bounds : BoundingSphere[]
   Methods:
-    + ArrowModel  (GameState state, ArrowModelInfo info)
-    + Draw  (GameTime gameTime) override
+    // 
+    + ArrowModel  (GameScreen screen, ArrowModelInfo info)
+    // 
+    + Draw  (GameTime time) override
+    // 
     + Intersects (Ray ray) : GameObjectDistance override
 
+// 
 public class NodeModel : GameModel
   Attributes:
+    // 
     + Info : NodeModelInfo new
   Methods:
-    + NodeModel  (GameState state, NodeModelInfo info)
-    + Draw  (GameTime gameTime) override
+    // 
+    + NodeModel  (GameScreen screen, NodeModelInfo info)
+    // 
+    + Draw  (GameTime time) override
 
+// 
 public class PipeModel : GameModel
   Attributes:
+    // 
     + Info : PipeModelInfo new
+    // 
     - Bounds : BoundingSphere[]
+    // 
     + OnDataChange : Action
   Methods:
-    + PipeModel  (GameState state, PipeModelInfo info)
-    + Draw  (GameTime gameTime) override
+    // 
+    + PipeModel  (GameScreen screen, PipeModelInfo info)
+    // 
+    + Draw  (GameTime time) override
+    // 
     + Intersects (Ray ray) : GameObjectDistance override
 
+// 
 public class TestModel : GameModel
   Attributes:
   Methods:
-    + TestModel  (GameState state, GameModelInfo info)
-    + Update  (GameTime gameTime) override
+    // 
+    + TestModel  (GameScreen screen, GameModelInfo info)
+    // 
+    + Update  (GameTime time) override
 
+// 
 public class ArrowModel : GameModel
   Attributes:
+    // 
     - Bounds : BoundingSphere[]
+    // 
     + Info : ArrowModelInfo
   Methods:
-    + ArrowModel  (GameState state, ArrowModelInfo info)
+    // 
+    + ArrowModel  (GameScreen screen, ArrowModelInfo info)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
-    + Draw  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
 
+// 
 public class NodeModel : GameModel
   Attributes:
+    // 
     + Info : NodeModelInfo
   Methods:
-    + NodeModel  (GameState state, NodeModelInfo info)
-    + Draw  (GameTime gameTime)
+    // 
+    + NodeModel  (GameScreen screen, NodeModelInfo info)
+    // 
+    + Draw  (GameTime time)
 
+// 
 public class PipeModel : GameModel
   Attributes:
+    // 
     - Bounds : BoundingSphere[]
+    // 
     + Info : PipeModelInfo
   Methods:
+    // 
     + OnDataChange () : Action
-    + PipeModel  (GameState state, PipeModelInfo info)
+    // 
+    + PipeModel  (GameScreen screen, PipeModelInfo info)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
-    + Draw  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
 
+// 
 public class TestModel : GameModel
   Attributes:
   Methods:
-    + Update  (GameTime gameTime)
-    + TestModel  (GameState state, GameModelInfo info)
+    // 
+    + Update  (GameTime time)
+    // 
+    + TestModel  (GameScreen screen, GameModelInfo info)
 
+// 
 public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
   Attributes:
+    // 
     + World : World abstract
-    # state : GameState
+    // 
+    # screen : GameScreen
+    // 
     + Info : GameObjectInfo abstract
   Methods:
+    // 
     # nodeMap () : NodeMap
+    // 
     + Intersects (Ray ray) : GameObjectDistance abstract
+    // 
     + Center () : Vector3 abstract
+    // 
     + Draw  (GameTime gameTime) abstract
-    + KnotRenderer  (GameState state)
+    // 
+    + KnotRenderer  (GameScreen screen)
+    // 
     + Update  (GameTime gameTime) abstract
+    // 
     + OnEdgesChanged  (EdgeList edges) virtual
 
+// 
 public class LineRenderer : KnotRenderer
   Attributes:
+    // 
     + Info : GameObjectInfo override
+    // 
     + World : World override
+    // 
     - basicEffect : BasicEffect
+    // 
     - edges : EdgeList
   Methods:
-    + LineRenderer  (GameState state, GameObjectInfo info)
-    + Update  (GameTime gameTime) override
+    // 
+    + LineRenderer  (GameScreen screen, GameObjectInfo info)
+    // 
+    + Update  (GameTime time) override
+    // 
     + OnEdgesChanged  (EdgeList edges) override
-    + Draw  (GameTime gameTime) override
+    // 
+    + Draw  (GameTime time) override
+    // 
     - DrawRoundedLines  ()
+    // 
     + Intersects (Ray ray) : GameObjectDistance override
-    + Center () : Vector3 override
-
-public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
-  Attributes:
-    + Info : GameObjectInfo override
-    + World : World override
-    - pipes : List<PipeModel>
-    - nodes : List<NodeModel>
-    - arrows : List<ArrowModel>
-    - pipeFactory : ModelFactory
-    - nodeFactory : ModelFactory
-    - arrowFactory : ModelFactory
-  Methods:
-    + ModelRenderer  (GameState state, GameObjectInfo info)
-    + Update  (GameTime gameTime) override
-    + OnEdgesChanged  (EdgeList edgeList) override
-    + CreateArrows  (WrapList<Edge> selectedEdges)
-    + GetEnumerator () : IEnumerator<IGameObject>
-    - IEnumerable.GetEnumerator () : IEnumerator
-    + Draw  (GameTime gameTime) override
-    + Intersects (Ray ray) : GameObjectDistance override
+    // 
     + Center () : Vector3 override
 
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
@@ -477,50 +1042,40 @@ public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
     - pipeFactory : ModelFactory
     - nodeFactory : ModelFactory
   Methods:
-    + PipeRenderer  (GameState state, GameObjectInfo info)
-    + Update  (GameTime gameTime) override
+    + PipeRenderer  (GameScreen screen, GameObjectInfo info)
+    + Update  (GameTime time) override
     + OnEdgesChanged  (EdgeList edges) override
     + GetEnumerator () : IEnumerator<IGameObject>
     - IEnumerable.GetEnumerator () : IEnumerator
-    + Draw  (GameTime gameTime) override
+    + Draw  (GameTime time) override
     + Intersects (Ray ray) : GameObjectDistance override
     + Center () : Vector3 override
 
+// 
 public class LineRenderer : KnotRenderer
   Attributes:
+    // 
     - edges : EdgeList
+    // 
     - basicEffect : BasicEffect
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
-    + LineRenderer  (GameState state, GameObjectInfo info)
+    // 
+    + LineRenderer  (GameScreen screen, GameObjectInfo info)
+    // 
     + OnEdgesChanged  (EdgeList edges)
     - DrawRoundedLines ()
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + Update  (GameTime gameTime)
-
-public class ModelRenderer : KnotRenderer, IEnumerable<IGameObject>
-  Attributes:
-    - arrows : List<ArrowModel>
-    - nodes : List<NodeModel>
-    - arrowFactory : ModelFactory
-    - nodeFactory : ModelFactory
-    - pipeFactory : ModelFactory
-    - pipes : List<PipeModel>
-    + Info : GameObjectInfo
-    + World : World
-  Methods:
-    - IEnumerable.GetEnumerator () : IEnumerator
-    + GetEnumerator () : IEnumerator<IGameObject>
-    + ModelRenderer  (GameState state, GameObjectInfo info)
-    + Draw  (GameTime gameTime)
-    + OnEdgesChanged  (EdgeList edgeList)
-    + Intersects (Ray ray) : GameObjectDistance
-    + Center () : Vector3
-    + Update  (GameTime gameTime)
-    + CreateArrows  (WrapList<Edge> selectedEdges)
 
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
   Attributes:
@@ -540,103 +1095,265 @@ public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
     + Center () : Vector3
     + Update  (GameTime gameTime)
 
+// 
+public sealed class ModelRenderer : IGameObject, IEnumerable<IGameObject>
+  Attributes:
+    // 
+    - arrows : List<ArrowModel>
+    // 
+    - nodes : List<NodeModel>
+    // 
+    - pipes : List<PipeModel>
+    // 
+    - arrowFactory : ModelFactory
+    // 
+    - nodeFactory : ModelFactory
+    // 
+    - pipeFactory : ModelFactory
+    // 
+    + Info : GameObjectInfo
+    // 
+    - screen : GameScreen
+    // 
+    - knot : Knot
+    // 
+    + Knot : Knot
+    // 
+    + World : World
+  Methods:
+    // 
+    - nodeMap () : NodeMap
+    // 
+    - IEnumerable.GetEnumerator () : IEnumerator
+    // 
+    - CreateArrow  (Edge edge)
+    // 
+    + Draw  (GameTime time)
+    + OnEdgesChanged ()
+    // 
+    + Update  (GameTime time)
+    // 
+    - CreateArrows  (IList<Edge> selectedEdges)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + GetEnumerator () : IEnumerator<IGameObject>
+    // 
+    + ModelRenderer  (GameScreen screen, GameObjectInfo info)
+    // 
+    + Center () : Vector3
+    // 
+    + CreateArrows  (IEnumerable<Edge> selectedEdges)
+
+// 
 public class MovableGameObject : IGameObject
   Attributes:
+    // 
     - Obj : IGameObject
+    // 
     + World : World
-    - state : GameState
+    // 
+    - screen : GameScreen
+    // 
     + Info : GameObjectInfo
   Methods:
+    // 
     # CurrentGroundPlane () : Plane
-    + MovableGameObject  (GameState state, IGameObject obj)
-    + Update  (GameTime gameTime) virtual
+    // 
+    + MovableGameObject  (GameScreen screen, IGameObject obj)
+    // 
+    + Update  (GameTime time) virtual
+    // 
     # CurrentMouseRay () : Ray
+    // 
     # CurrentMousePosition (Ray ray, Plane groundPlane) : Vector3?
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
-    + Draw  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
 
+// 
 public class ShadowGameObject : IGameObject
   Attributes:
+    // 
     - Obj : IGameObject
+    // 
     + Info : GameObjectInfo
+    // 
     + OriginalPosition : Vector3
+    // 
     + World : World
-    # state : GameState
+    // 
+    # screen : GameScreen
+    // 
     + ShadowPosition : Vector3
   Methods:
+    // 
     + Update  (GameTime gameTime) virtual
+    // 
     + Intersects (Ray ray) : GameObjectDistance
-    + ShadowGameObject  (GameState state, IGameObject obj)
+    // 
+    + ShadowGameObject  (GameScreen screen, IGameObject obj)
+    // 
     + Center () : Vector3
+    // 
     + Draw  (GameTime gameTime) virtual
 
+// 
 public class ShadowGameModel : ShadowGameObject
   Attributes:
+    // 
     - Model : GameModel
+    // 
     + ShadowColor : Color
+    // 
     + ShadowAlpha : float
   Methods:
-    + ShadowGameModel  (GameState state, GameModel model)
-    + Draw  (GameTime gameTime) override
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time) override
 
+// 
 public class ShadowGameModel : ShadowGameObject
   Attributes:
-    + ShadowColor : Color
+    // 
     - Model : GameModel
+    // 
+    + ShadowColor : Color
+    // 
     + ShadowAlpha : float
   Methods:
-    + ShadowGameModel  (GameState state, GameModel model)
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time) override
+
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    + ShadowColor : Color
+    // 
+    - Model : GameModel
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time)
+
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    + ShadowColor : Color
+    // 
+    - Model : GameModel
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
     + Draw  (GameTime gameTime)
 
+// 
 public class PipeMovement : IGameObject, IEnumerable<IGameObject>
   Attributes:
+    // 
     - shadowObjects : List<ShadowGameObject>
+    // 
     + World : World
-    - state : GameState
+    // 
+    - screen : GameScreen
+    // 
     - previousMousePosition : Vector3
+    // 
     + Info : GameObjectInfo
+    // 
     + Knot : Knot
   Methods:
+    // 
     - knownEdgeLists () : HashSet<EdgeList>
+    // 
     - IEnumerable.GetEnumerator () : IEnumerator
-    - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out float count)
+    // 
     - MovePipes  (Vector3 currentMousePosition)
+    // 
+    - MoveShadowPipes  (Vector3 currentMousePosition)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + GetEnumerator () : IEnumerator<IGameObject>
-    + PipeMovement  (GameState state, World world, GameObjectInfo info)
+    // 
+    + PipeMovement  (GameScreen screen, World world, GameObjectInfo info)
+    // 
     + Draw  (GameTime gameTime)
+    // 
+    - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out float count)
+    // 
     - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out int countInt)
     - CreateShadowPipes ()
-    - MoveShadowPipes  (Vector3 currentMousePosition)
+    // 
+    - MoveShadowPipes  (Vector3 currentMousePosition, Vector3 direction3D)
+    // 
     - TryMovePipes  (GameTime gameTime)
+    // 
     - TrySelectObject  (GameTime gameTime)
+    // 
     + Center () : Vector3
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public class TexturedRectangle : IGameObject
   Attributes:
+    // 
     - IGameObject.Info : GameObjectInfo
+    // 
     - basicEffect : BasicEffect
+    // 
     - texture : Texture2D
+    // 
     - LowerLeft : Vector3
+    // 
     - LowerRight : Vector3
+    // 
     - Normal : Vector3
+    // 
     - UpperRight : Vector3
+    // 
     - Vertices : VertexPositionNormalTexture[]
+    // 
     - Indexes : short[]
+    // 
     + Info : TexturedRectangleInfo
+    // 
     - UpperLeft : Vector3
-    # state : GameState
+    // 
+    # screen : GameScreen
+    // 
     + World : World
   Methods:
+    // 
     - Length () : Vector3
     - FillVertices ()
+    // 
     + Intersects (Ray ray) : GameObjectDistance
-    + TexturedRectangle  (GameState state, TexturedRectangleInfo info)
-    + Draw  (GameTime gameTime)
+    // 
+    + TexturedRectangle  (GameScreen screen, TexturedRectangleInfo info)
+    // 
+    + Draw  (GameTime time)
+    // 
     # SetPosition  (Vector3 position)
+    // 
     + Bounds () : BoundingBox[]
+    // 
     + Center () : Vector3
-    + Update  (GameTime gameTime)
+    // 
+    + Update  (GameTime time)
 

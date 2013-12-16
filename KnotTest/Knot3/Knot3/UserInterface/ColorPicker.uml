@@ -1,18 +1,34 @@
+// 
 public class ColorPicker : Widget, IMouseEventListener
   Attributes:
+    // 
     - colors : List<Color>
+    // 
     - tiles : List<Vector2>
+    // 
     - Vector2 tileSize : readonly static
+    // 
     + SelectedColor : Color
+    // 
     + OnSelectColor : Action<Color>
+    // 
     # spriteBatch : SpriteBatch
+    // 
     + IsMouseEventEnabled : bool
   Methods:
-    + ColorPicker (GameState state, WidgetInfo info, DisplayLayer drawOrder)
-    + Draw (GameTime gameTime) override
+    // 
+    + ColorPicker (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+    // 
+    + Draw (GameTime time) override
+    // 
     - CreateColors (int num) : IEnumerable<Color> static
+    // 
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
+    // 
     - SelectColor (Color color)
-    + OnLeftClick (Vector2 position, ClickState click, GameTime gameTime)
-    + OnRightClick (Vector2 position, ClickState click, GameTime gameTime)
+    // 
+    + OnLeftClick (Vector2 position, ClickState click, GameTime time)
+    // 
+    + OnRightClick (Vector2 position, ClickState click, GameTime time)
+    // 
     + SetHovered (bool hovered)

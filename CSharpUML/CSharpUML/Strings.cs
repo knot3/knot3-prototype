@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace CSharpUML
 {
@@ -59,7 +60,18 @@ namespace CSharpUML
 
 		public static string Clean (this string str)
 		{
-			return new String (str.Split("<")[0].Where (Char.IsLetterOrDigit).ToArray ());
+			return new String (str.Split ("<") [0].Where (Char.IsLetterOrDigit).ToArray ());
+		}
+		public static string ToTexCode (this string str)
+		{
+			if (str.StartsWith("_"))
+				str = str.Substring(1);
+			return str;
+		}
+
+		public static string RegexReplace (this string str, string find, string replacement)
+		{
+			return Regex.Replace (str, find, replacement);
 		}
 	}
 }

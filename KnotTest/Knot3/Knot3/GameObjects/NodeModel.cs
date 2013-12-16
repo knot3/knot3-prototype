@@ -21,15 +21,13 @@ namespace Knot3.GameObjects
 {
 	public class NodeModelInfo : GameModelInfo
 	{
-		public EdgeList EdgeList;
 		public NodeMap NodeMap;
 		public Edge EdgeA;
 		public Edge EdgeB;
 
-		public NodeModelInfo (EdgeList edgeList, NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
+		public NodeModelInfo (NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
 			: base("knot1")
 		{
-			EdgeList = edgeList;
 			NodeMap = nodeMap;
 			EdgeA = edgeA;
 			EdgeB = edgeB;
@@ -65,16 +63,16 @@ namespace Knot3.GameObjects
 
 		#endregion
 
-		public NodeModel (GameState state, NodeModelInfo info)
-			: base(state, info)
+		public NodeModel (GameScreen screen, NodeModelInfo info)
+			: base(screen, info)
 		{
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			BaseColor = Info.EdgeA.Color.Mix (Info.EdgeB.Color);
 
-			base.Draw (gameTime);
+			base.Draw (time);
 		}
 	}
 }

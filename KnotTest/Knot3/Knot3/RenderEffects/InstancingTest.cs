@@ -21,24 +21,24 @@ namespace Knot3.RenderEffects
 {
 	public class InstancingTest : RenderEffect
 	{
-		public InstancingTest (GameState state)
-			: base(state)
+		public InstancingTest (GameScreen screen)
+			: base(screen)
 		{
 		}
 
-		public override void Begin (Color background, GameTime gameTime)
+		public override void Begin (Color background, GameTime time)
 		{
-			base.Begin (background, gameTime);
+			base.Begin (background, time);
 
 			Overlay.Profiler ["DrawModel1"] = 0;
 		}
 
-		public override void End (GameTime gameTime)
+		public override void End (GameTime time)
 		{
-			base.End (gameTime);
+			base.End (time);
 		}
 
-		protected override void DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime)
+		protected override void DrawRenderTarget (SpriteBatch spriteBatch, GameTime time)
 		{
 			foreach (string key in instanceHash.Keys) {
 				ModelInstances instances = instanceHash [key] as ModelInstances;
@@ -47,18 +47,18 @@ namespace Knot3.RenderEffects
 				if (instances.Count == 0)
 					continue;
 
-				// set the stencil state
-				state.device.DepthStencilState = DepthStencilState.Default;
-				// Setting the other states isn't really necessary but good form
-				state.device.BlendState = BlendState.Opaque;
-				state.device.RasterizerState = RasterizerState.CullCounterClockwise;
-				state.device.SamplerStates [0] = SamplerState.LinearWrap;
+				// set the stencil screen
+				screen.device.DepthStencilState = DepthStencilState.Default;
+				// Setting the other screens isn't really necessary but good form
+				screen.device.BlendState = BlendState.Opaque;
+				screen.device.RasterizerState = RasterizerState.CullCounterClockwise;
+				screen.device.SamplerStates [0] = SamplerState.LinearWrap;
 
 				foreach (ModelMesh mesh in model.Model.Meshes) {
 					foreach (ModelMeshPart part in mesh.MeshParts) {
 						// set the vertex and index buffers only once, for all objects
-						state.device.SetVertexBuffer (part.VertexBuffer);
-						state.device.Indices = part.IndexBuffer;
+						screen.device.SetVertexBuffer (part.VertexBuffer);
+						screen.device.Indices = part.IndexBuffer;
 
 						BasicEffect effect = part.Effect as BasicEffect;
 						ModifyBasicEffect (effect, model);
@@ -73,7 +73,7 @@ namespace Knot3.RenderEffects
 							foreach (EffectPass pass in part.Effect.CurrentTechnique.Passes) {
 								pass.Apply ();
 
-								state.device.DrawIndexedPrimitives (
+								screen.device.DrawIndexedPrimitives (
 									PrimitiveType.TriangleList, part.VertexOffset, 0, part.NumVertices,
 									part.StartIndex, part.PrimitiveCount //, instances.Length
 								);
@@ -97,7 +97,7 @@ namespace Knot3.RenderEffects
 			public int Count;
 		};
 
-		public override void DrawModel (GameModel model, GameTime gameTime)
+		public override void DrawModel (GameModel model, GameTime time)
 		{
 			//Overlay.Profiler ["DrawModel1"] += Knot3.Core.Game.Time (() => {
 

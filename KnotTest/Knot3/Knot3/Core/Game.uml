@@ -1,18 +1,34 @@
+// 
 public class Game : Microsoft.Xna.Framework.Game
   Attributes:
+    // 
     + graphics : GraphicsDeviceManager
-    + State : GameState
+    // 
+    + State : GameScreen
+    // 
     + DefaultSize : Vector2 static
+    // 
     + Debug : bool static
+    // 
     + VSync : bool
+    // 
     - isFullscreen : bool
+    // 
     + IsFullscreen : bool
   Methods:
+    // 
     + Game ()
+    // 
     # Initialize () override
+    // 
     # LoadContent () override
+    // 
     # UnloadContent () override
-    # Update (GameTime gameTime) override
-    - UpdateInput (GameTime gameTime)
-    # Draw (GameTime gameTime) override
+    // 
+    # Update (GameTime time) override
+    // 
+    - UpdateInput (GameTime time)
+    // 
+    # Draw (GameTime time) override
+    // 
     + Time (Action action) : TimeSpan static

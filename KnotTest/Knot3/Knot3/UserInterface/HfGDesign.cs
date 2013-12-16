@@ -24,14 +24,14 @@ namespace Knot3.UserInterface
 		private static Texture2D texture;
 		private static SpriteFont menuFont;
 
-		public static SpriteFont MenuFont (GameState state)
+		public static SpriteFont MenuFont (GameScreen screen)
 		{
 			if (menuFont != null) {
 				return menuFont;
 			} else {
 				// load fonts
 				try {
-					menuFont = state.content.Load<SpriteFont> ("MenuFont");
+					menuFont = screen.content.Load<SpriteFont> ("MenuFont");
 				} catch (ContentLoadException ex) {
 					menuFont = null;
 					Console.WriteLine (ex.Message);
@@ -40,11 +40,11 @@ namespace Knot3.UserInterface
 			}
 		}
 
-		public static void DrawLines (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameState state, GameTime gameTime)
+		public static void DrawLines (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameScreen screen, GameTime time)
 		{
-			lineWidth = (int)new Vector2 (lineWidth, lineWidth).Scale (state.viewport).X;
+			lineWidth = (int)new Vector2 (lineWidth, lineWidth).Scale (screen.viewport).X;
 			if (texture == null)
-				texture = Textures.Create (state.device, Color.White);
+				texture = Textures.Create (screen.device, Color.White);
 
 			if (linePoints.Count >= 2) {
 				Rectangle[] rects = new Rectangle[linePoints.Count - 1];
@@ -53,8 +53,8 @@ namespace Knot3.UserInterface
 					Vector2 nodeB = linePoints [i];
 					if (nodeA.X == nodeB.X || nodeA.Y == nodeB.Y) {
 						Vector2 direction = (nodeB - nodeA).PrimaryDirection ();
-						Vector2 position = nodeA.Scale (state.viewport);
-						int length = (int)(nodeB - nodeA).Scale (state.viewport).Length ();
+						Vector2 position = nodeA.Scale (screen.viewport);
+						int length = (int)(nodeB - nodeA).Scale (screen.viewport).Length ();
 						if (direction.X == 0 && direction.Y > 0) {
 							rects [i - 1] = CreateRectangle (lineWidth, position.X, position.Y, 0, length);
 						} else if (direction.X == 0 && direction.Y < 0) {

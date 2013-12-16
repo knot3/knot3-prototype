@@ -1,43 +1,104 @@
+// 
 public class ShadowGameObject : IGameObject
   Attributes:
+    // 
     - Obj : IGameObject
+    // 
     + Info : GameObjectInfo
+    // 
     + OriginalPosition : Vector3
+    // 
     + World : World
-    # state : GameState
+    // 
+    # screen : GameScreen
+    // 
     + ShadowPosition : Vector3
   Methods:
+    // 
     + Update  (GameTime gameTime) virtual
+    // 
     + Intersects (Ray ray) : GameObjectDistance
-    + ShadowGameObject  (GameState state, IGameObject obj)
+    // 
+    + ShadowGameObject  (GameScreen screen, IGameObject obj)
+    // 
     + Center () : Vector3
+    // 
     + Draw  (GameTime gameTime) virtual
 
+// 
 public interface IGameObject : 
   Attributes:
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
-    + Draw  (GameTime gameTime)
-    + Update  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
 
+// 
 public class ShadowGameModel : ShadowGameObject
   Attributes:
+    // 
     - Model : GameModel
+    // 
     + ShadowColor : Color
+    // 
     + ShadowAlpha : float
   Methods:
-    + ShadowGameModel  (GameState state, GameModel model)
-    + Draw  (GameTime gameTime) override
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time) override
 
+// 
 public class ShadowGameModel : ShadowGameObject
   Attributes:
-    + ShadowColor : Color
+    // 
     - Model : GameModel
+    // 
+    + ShadowColor : Color
+    // 
     + ShadowAlpha : float
   Methods:
-    + ShadowGameModel  (GameState state, GameModel model)
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time) override
+
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    + ShadowColor : Color
+    // 
+    - Model : GameModel
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
+    + Draw  (GameTime time)
+
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    + ShadowColor : Color
+    // 
+    - Model : GameModel
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
     + Draw  (GameTime gameTime)
 

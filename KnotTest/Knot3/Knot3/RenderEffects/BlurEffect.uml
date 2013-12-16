@@ -1,8 +1,14 @@
+// 
 public class BlurEffect : RenderEffect
   Attributes:
+    // 
     - testEffect : Effect static
   Methods:
-    + BlurEffect (GameState state)
-    + Begin (Color background, GameTime gameTime) override
-    + End (GameTime gameTime) override
-    # DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime) override
+    // 
+    + BlurEffect (GameScreen screen)
+    // 
+    + Begin (Color background, GameTime time) override
+    // 
+    + End (GameTime time) override
+    // 
+    # DrawRenderTarget (SpriteBatch spriteBatch, GameTime time) override

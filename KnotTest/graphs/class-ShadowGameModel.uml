@@ -1,59 +1,191 @@
+// 
 public class ShadowGameModel : ShadowGameObject
   Attributes:
+    // 
     + ShadowColor : Color
+    // 
     - Model : GameModel
+    // 
     + ShadowAlpha : float
   Methods:
-    + ShadowGameModel  (GameState state, GameModel model)
+    // 
+    + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
     + Draw  (GameTime gameTime)
 
+// 
 public class ShadowGameObject : IGameObject
   Attributes:
-    # state : GameState
+    // 
+    # screen : GameScreen
+    // 
     - Obj : IGameObject
+    // 
     + World : World
+    // 
     + Info : GameObjectInfo
+    // 
     + ShadowPosition : Vector3
+    // 
     + OriginalPosition : Vector3
   Methods:
-    + ShadowGameObject  (GameState state, IGameObject obj)
-    + Update  (GameTime gameTime) virtual
-    + Draw  (GameTime gameTime) virtual
+    // 
+    + ShadowGameObject  (GameScreen screen, IGameObject obj)
+    // 
+    + Update  (GameTime time) virtual
+    // 
+    + Draw  (GameTime time) virtual
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
 
+// 
 public interface IGameObject : 
   Attributes:
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
-    + Draw  (GameTime gameTime)
-    + Update  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
 
+// 
 public class ShadowGameObject : IGameObject
   Attributes:
+    // 
+    # screen : GameScreen
+    // 
     - Obj : IGameObject
-    + Info : GameObjectInfo
-    + OriginalPosition : Vector3
+    // 
     + World : World
-    # state : GameState
+    // 
+    + Info : GameObjectInfo
+    // 
     + ShadowPosition : Vector3
+    // 
+    + OriginalPosition : Vector3
   Methods:
-    + Update  (GameTime gameTime) virtual
+    // 
+    + ShadowGameObject  (GameScreen screen, IGameObject obj)
+    // 
+    + Update  (GameTime time) virtual
+    // 
+    + Draw  (GameTime time) virtual
+    // 
     + Intersects (Ray ray) : GameObjectDistance
-    + ShadowGameObject  (GameState state, IGameObject obj)
+    // 
     + Center () : Vector3
-    + Draw  (GameTime gameTime) virtual
 
+// 
 public interface IGameObject : 
   Attributes:
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
-    + Draw  (GameTime gameTime)
-    + Update  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+
+// 
+public class ShadowGameObject : IGameObject
+  Attributes:
+    // 
+    - Obj : IGameObject
+    // 
+    + Info : GameObjectInfo
+    // 
+    + OriginalPosition : Vector3
+    // 
+    + World : World
+    // 
+    # screen : GameScreen
+    // 
+    + ShadowPosition : Vector3
+  Methods:
+    // 
+    + Update  (GameTime time) virtual
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + ShadowGameObject  (GameScreen screen, IGameObject obj)
+    // 
+    + Center () : Vector3
+    // 
+    + Draw  (GameTime time) virtual
+
+// 
+public interface IGameObject : 
+  Attributes:
+    // 
+    + Info : GameObjectInfo
+    // 
+    + World : World
+  Methods:
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+
+// 
+public class ShadowGameObject : IGameObject
+  Attributes:
+    // 
+    - Obj : IGameObject
+    // 
+    + Info : GameObjectInfo
+    // 
+    + OriginalPosition : Vector3
+    // 
+    + World : World
+    // 
+    # screen : GameScreen
+    // 
+    + ShadowPosition : Vector3
+  Methods:
+    // 
+    + Update  (GameTime gameTime) virtual
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + ShadowGameObject  (GameScreen screen, IGameObject obj)
+    // 
+    + Center () : Vector3
+    // 
+    + Draw  (GameTime gameTime) virtual
+
+// 
+public interface IGameObject : 
+  Attributes:
+    // 
+    + Info : GameObjectInfo
+    // 
+    + World : World
+  Methods:
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
 

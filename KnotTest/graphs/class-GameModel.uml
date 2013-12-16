@@ -1,104 +1,176 @@
+// 
 public class GameModel : IGameObject
   Attributes:
+    // 
     - IGameObject.Info : GameObjectInfo
+    // 
     - _rotation : Angles3
+    // 
     - Bounds : BoundingSphere[]
+    // 
     - _bounds : BoundingSphere[]
+    // 
     - _worldMatrix : Matrix
+    // 
     - _position : Vector3
+    // 
     - _inFrustum : bool
+    // 
     # InCameraFrustum : bool
+    // 
     + BaseColor : Color
+    // 
     + HighlightColor : Color
+    // 
     + Info : GameModelInfo
+    // 
     + WorldMatrix : Matrix
+    // 
     + World : World
+    // 
     + Alpha : float
+    // 
     + HighlightIntensity : float
+    // 
     - _scale : Vector3
+    // 
     - _world : World
-    # state : GameState
+    // 
+    # screen : GameScreen
+    // 
     + Model : Model virtual
   Methods:
     - OnViewChanged ()
     - UpdatePrecomputed ()
-    + GameModel  (GameState state, GameModelInfo info)
-    + Draw  (GameTime gameTime) virtual
+    // 
+    + GameModel  (GameScreen screen, GameModelInfo info)
+    // 
+    + Draw  (GameTime time) virtual
+    // 
     + Center () : Vector3
+    // 
     + Intersects (Ray ray) : GameObjectDistance virtual
-    + Update  (GameTime gameTime) virtual
+    // 
+    + Update  (GameTime time) virtual
 
+// 
 public interface IGameObject : 
   Attributes:
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
-    + Draw  (GameTime gameTime)
-    + Update  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
 
+// 
 public class ArrowModel : GameModel
   Attributes:
+    // 
     + Info : ArrowModelInfo new
+    // 
     - Bounds : BoundingSphere[]
   Methods:
-    + ArrowModel  (GameState state, ArrowModelInfo info)
-    + Draw  (GameTime gameTime) override
+    // 
+    + ArrowModel  (GameScreen screen, ArrowModelInfo info)
+    // 
+    + Draw  (GameTime time) override
+    // 
     + Intersects (Ray ray) : GameObjectDistance override
 
+// 
 public class NodeModel : GameModel
   Attributes:
+    // 
     + Info : NodeModelInfo new
   Methods:
-    + NodeModel  (GameState state, NodeModelInfo info)
-    + Draw  (GameTime gameTime) override
+    // 
+    + NodeModel  (GameScreen screen, NodeModelInfo info)
+    // 
+    + Draw  (GameTime time) override
 
+// 
 public class PipeModel : GameModel
   Attributes:
+    // 
     + Info : PipeModelInfo new
+    // 
     - Bounds : BoundingSphere[]
+    // 
     + OnDataChange : Action
   Methods:
-    + PipeModel  (GameState state, PipeModelInfo info)
-    + Draw  (GameTime gameTime) override
+    // 
+    + PipeModel  (GameScreen screen, PipeModelInfo info)
+    // 
+    + Draw  (GameTime time) override
+    // 
     + Intersects (Ray ray) : GameObjectDistance override
 
+// 
 public class TestModel : GameModel
   Attributes:
   Methods:
-    + TestModel  (GameState state, GameModelInfo info)
-    + Update  (GameTime gameTime) override
+    // 
+    + TestModel  (GameScreen screen, GameModelInfo info)
+    // 
+    + Update  (GameTime time) override
 
+// 
 public class ArrowModel : GameModel
   Attributes:
+    // 
     - Bounds : BoundingSphere[]
+    // 
     + Info : ArrowModelInfo
   Methods:
-    + ArrowModel  (GameState state, ArrowModelInfo info)
+    // 
+    + ArrowModel  (GameScreen screen, ArrowModelInfo info)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
-    + Draw  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
 
+// 
 public class NodeModel : GameModel
   Attributes:
+    // 
     + Info : NodeModelInfo
   Methods:
-    + NodeModel  (GameState state, NodeModelInfo info)
-    + Draw  (GameTime gameTime)
+    // 
+    + NodeModel  (GameScreen screen, NodeModelInfo info)
+    // 
+    + Draw  (GameTime time)
 
+// 
 public class PipeModel : GameModel
   Attributes:
+    // 
     - Bounds : BoundingSphere[]
+    // 
     + Info : PipeModelInfo
   Methods:
+    // 
     + OnDataChange () : Action
-    + PipeModel  (GameState state, PipeModelInfo info)
+    // 
+    + PipeModel  (GameScreen screen, PipeModelInfo info)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
-    + Draw  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
 
+// 
 public class TestModel : GameModel
   Attributes:
   Methods:
-    + Update  (GameTime gameTime)
-    + TestModel  (GameState state, GameModelInfo info)
+    // 
+    + Update  (GameTime time)
+    // 
+    + TestModel  (GameScreen screen, GameModelInfo info)
 

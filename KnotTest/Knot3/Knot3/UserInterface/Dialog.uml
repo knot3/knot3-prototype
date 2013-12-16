@@ -1,14 +1,26 @@
+// 
 public abstract class Dialog : Widget
   Attributes:
+    // 
     + buttons : Menu
+    // 
     + Done : Action
+    // 
     # spriteBatch : SpriteBatch
   Methods:
-    + Dialog (GameState state, WidgetInfo info, DisplayLayer drawOrder)
+    // 
+    + Dialog (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     # RelativeButtonPosition (int n) : Vector2
+    // 
     # RelativeButtonSize (int n) : Vector2
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
-    + Draw (GameTime gameTime) override
-    # DrawDialog (GameTime gameTime) abstract
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
+    // 
+    + Draw (GameTime time) override
+    // 
+    # DrawDialog (GameTime time) abstract
+    // 
     - ButtonBackgroundColor (ItemState itemState) : Color
+    // 
     - ButtonForegroundColor (ItemState itemState) : Color

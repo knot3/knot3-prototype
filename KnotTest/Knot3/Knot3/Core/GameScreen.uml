@@ -1,0 +1,56 @@
+// 
+public abstract class GameScreen : 
+  Attributes:
+    // 
+    + game : Game
+    // 
+    + NextState : GameScreen
+    // 
+    + input : InputManager
+    // 
+    + graphics : GraphicsDeviceManager
+    // 
+    + device : GraphicsDevice
+    // 
+    + viewport : Viewport
+    // 
+    + content : ContentManager
+    // 
+    + RenderEffects : RenderEffectStack
+    // 
+    + PostProcessing : RenderEffect
+  Methods:
+    // 
+    + GameScreen (Game game)
+    // 
+    + Initialize () abstract
+    // 
+    + Update (GameTime time) abstract
+    // 
+    + Draw (GameTime time) abstract
+    // 
+    + Unload () abstract
+    // 
+    + AddGameComponents (GameTime time, params IGameScreenComponent[] components)
+    // 
+    + RemoveGameComponents (GameTime time, params IGameScreenComponent[] components)
+    // 
+    + Activate (GameTime time) virtual
+    // 
+    + Deactivate (GameTime time) virtual
+// 
+public static class GameScreens : 
+  Attributes:
+    // 
+    + CreativeMode : CreativeModeScreen static
+    // 
+    + StartScreen : StartScreen static
+    // 
+    + OptionScreen : OptionScreen static
+    // 
+    + VideoOptionScreen : VideoOptionScreen static
+    // 
+    + LoadSavegameScreen : LoadSavegameScreen static
+  Methods:
+    // 
+    + Initialize (Game game) static

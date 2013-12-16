@@ -1,0 +1,14 @@
+// 
+public interface IKnotIO : 
+  Attributes:
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + CountEdges : int
+    // 
+    + Name : string
+    // 
+    + Hash : string
+  Methods:
+    // 
+    + Save (Knot knot)

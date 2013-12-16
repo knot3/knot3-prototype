@@ -1,28 +1,52 @@
-public class World : DrawableGameStateComponent, IEnumerable<IGameObject>
+// 
+public class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
   Attributes:
-    - knotRenderEffects : List<RenderEffect>
-    - knotRenderEffect : RenderEffect
+    // 
+    - effects : List<IRenderEffect>
+    // 
+    - currentEffect : IRenderEffect
+    // 
     + Objects : List<IGameObject>
+    // 
     - _selectedObject : IGameObject
+    // 
     + SelectedObject : IGameObject
+    // 
     + SelectionChanged : Action<IGameObject>
+    // 
     + Camera : Camera
+    // 
     - floor : TexturedRectangle
+    // 
     - _redraw : bool
+    // 
     + Redraw : bool
   Methods:
-    + World (GameState state)
-    + SelectObject (IGameObject obj, GameTime gameTime)
+    // 
+    + World (GameScreen screen)
+    // 
+    + SelectObject (IGameObject obj, GameTime time)
+    // 
     + SelectedObjectDistance () : float
+    // 
     + Add (IGameObject obj)
+    // 
     + Initialize () override
-    + Draw (GameTime gameTime) override
-    + Update (GameTime gameTime) override
+    // 
+    + Draw (GameTime time) override
+    // 
+    + Update (GameTime time) override
+    // 
     + GetEnumerator () : IEnumerator<IGameObject>
+    // 
     - IEnumerable.GetEnumerator () : IEnumerator
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
+// 
 public class TestModel : GameModel
   Attributes:
   Methods:
-    + TestModel (GameState state, GameModelInfo info)
-    + Update (GameTime gameTime) override
+    // 
+    + TestModel (GameScreen screen, GameModelInfo info)
+    // 
+    + Update (GameTime time) override

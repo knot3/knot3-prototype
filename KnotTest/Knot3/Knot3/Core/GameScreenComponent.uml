@@ -1,0 +1,12 @@
+// 
+public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
+  Attributes:
+    // 
+    + screen : GameScreen
+    // 
+    + Index : DisplayLayer
+  Methods:
+    // 
+    + GameScreenComponent (GameScreen screen, DisplayLayer index)
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual

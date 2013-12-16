@@ -12,16 +12,16 @@ namespace Knot3.Utilities
 		private static Keys lastKey = Keys.None;
 		private static double lastMillis = 0;
 
-		public static bool TryTextInput (ref string str, GameTime gameTime)
+		public static bool TryTextInput (ref string str, GameTime time)
 		{
 			bool catched = false;
 			if (lastKey != Keys.None) {
-				if (Core.Input.KeyboardState.IsKeyUp (lastKey))
+				if (InputManager.KeyboardState.IsKeyUp (lastKey))
 					lastKey = Keys.None;
-				else if ((gameTime.TotalGameTime.TotalMilliseconds - lastMillis) > 200)
+				else if ((time.TotalGameTime.TotalMilliseconds - lastMillis) > 200)
 					lastKey = Keys.None;
 			}
-			Keys[] keys = Core.Input.KeyboardState.GetPressedKeys ();
+			Keys[] keys = InputManager.KeyboardState.GetPressedKeys ();
 			if (lastKey == Keys.None) {
 				for (int i = 0; i < keys.Length; ++i) {
 					if (keys [i] != Keys.LeftShift && keys [i] != Keys.RightShift) {
@@ -42,7 +42,7 @@ namespace Knot3.Utilities
 					}
 				}
 
-				lastMillis = gameTime.TotalGameTime.TotalMilliseconds;
+				lastMillis = time.TotalGameTime.TotalMilliseconds;
 			}
 			return catched;
 		}

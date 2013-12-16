@@ -33,47 +33,47 @@ namespace Knot3.UserInterface
 		// textures
 		protected SpriteBatch spriteBatch;
 
-		public TextInput (GameState state, WidgetInfo info, DisplayLayer drawOrder)
-			: base(state, info, drawOrder)
+		public TextInput (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+			: base(screen, info, drawOrder)
 		{
 			// load fonts
-			font = HfGDesign.MenuFont (state);
+			font = HfGDesign.MenuFont (screen);
 
-			spriteBatch = new SpriteBatch (state.device);
+			spriteBatch = new SpriteBatch (screen.device);
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
 
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			spriteBatch.Begin ();
 			// background
-			Rectangle rect = Info.ScaledRectangle (state.viewport);
+			Rectangle rect = Info.ScaledRectangle (screen.viewport);
 			spriteBatch.Draw (
-				Textures.Create (state.device, HfGDesign.LineColor), rect.Grow (1), Color.White
+				Textures.Create (screen.device, HfGDesign.LineColor), rect.Grow (1), Color.White
 			);
 			spriteBatch.Draw (
-				Textures.Create (state.device, Info.BackgroundColor ()), rect, Color.White
+				Textures.Create (screen.device, Info.BackgroundColor ()), rect, Color.White
 			);
 
 			// text
 			Vector2 scale =
-				(Info.ScaledSize (state.viewport) - Info.ScaledPadding (state.viewport) * 2)
+				(Info.ScaledSize (screen.viewport) - Info.ScaledPadding (screen.viewport) * 2)
 				/ font.MeasureString (InputText);
 			spriteBatch.DrawString (
-				font, InputText, (Info.RelativePosition () + Info.RelativePadding ()).Scale (state.viewport),
+				font, InputText, (Info.RelativePosition () + Info.RelativePadding ()).Scale (screen.viewport),
 				Info.ForegroundColor (), 0, Vector2.Zero, MathHelper.Min (scale.X, scale.Y),
 				SpriteEffects.None, 1f
 			);
 			spriteBatch.End ();
 		}
 
-		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
 		{
-			Text.TryTextInput (ref InputText, gameTime);
+			Text.TryTextInput (ref InputText, time);
 		}
 
 		public List<Keys> ValidKeys { get { return Text.ValidKeys; } }

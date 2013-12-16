@@ -1,0 +1,20 @@
+// 
+public class NodeMap : 
+  Attributes:
+  Methods:
+    // 
+    - fromMap () : Hashtable
+    // 
+    - toMap () : Hashtable
+    // 
+    - BuildIndex  (IEnumerable<Edge> edges)
+    // 
+    + FromNode (Edge edge) : Node
+    // 
+    + ToNode (Edge edge) : Node
+    // 
+    + NodeMap  (IEnumerable<Edge> edges)
+    + NodeMap ()
+    // 
+    + OnEdgesChanged  (IEnumerable<Edge> edges)
+

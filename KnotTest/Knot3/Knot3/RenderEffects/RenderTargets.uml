@@ -1,13 +1,22 @@
+// 
 public static class RenderTargets : 
   Attributes:
+    // 
     - RenderTargetStack : Stack<RenderTarget2D> static
   Methods:
+    // 
     + PushRenderTarget (this GraphicsDevice device, RenderTarget2D current) static
+    // 
     + PopRenderTarget (this GraphicsDevice device) : RenderTarget2D static
+// 
 public sealed class RenderTargetCache : 
   Attributes:
+    // 
     - device : GraphicsDevice
+    // 
     - renderTargets : Dictionary<Point,RenderTarget2D>
+    // 
     + CurrentRenderTarget : RenderTarget2D
   Methods:
+    // 
     + RenderTargetCache (GraphicsDevice device)

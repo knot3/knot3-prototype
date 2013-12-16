@@ -62,8 +62,8 @@ namespace Knot3.GameObjects
 
 		#endregion
 
-		public ArrowModel (GameState state, ArrowModelInfo info)
-			: base(state, info)
+		public ArrowModel (GameScreen screen, ArrowModelInfo info)
+			: base(screen, info)
 		{
 			if (Info.Direction.Y == 1) {
 				Info.Rotation += Angles3.FromDegrees (90, 0, 0);
@@ -80,7 +80,7 @@ namespace Knot3.GameObjects
 			                                 info.Position - info.Direction * Info.Length / 2);
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
 			BaseColor = Color.Red;
 			if (World.SelectedObject == this) {
@@ -90,7 +90,7 @@ namespace Knot3.GameObjects
 				HighlightIntensity = 0f;
 			}
 
-			base.Draw (gameTime);
+			base.Draw (time);
 		}
 
 		public override GameObjectDistance Intersects (Ray ray)

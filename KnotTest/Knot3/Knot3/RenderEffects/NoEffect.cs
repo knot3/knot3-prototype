@@ -21,12 +21,12 @@ namespace Knot3.RenderEffects
 	/// </summary>
 	public sealed class NoEffect : RenderEffect
 	{
-		public NoEffect (GameState state)
-			: base(state)
+		public NoEffect (GameScreen screen)
+			: base(screen)
 		{
 		}
 
-		protected override void DrawRenderTarget (SpriteBatch spriteBatch, GameTime gameTime)
+		protected override void DrawRenderTarget (SpriteBatch spriteBatch, GameTime time)
 		{
 			spriteBatch.Draw (RenderTarget, Vector2.Zero, Color.White);
 		}

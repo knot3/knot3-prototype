@@ -1,73 +1,124 @@
+// 
 public class LineRenderer : KnotRenderer
   Attributes:
+    // 
     - edges : EdgeList
+    // 
     - basicEffect : BasicEffect
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
-    + LineRenderer  (GameState state, GameObjectInfo info)
+    // 
+    + LineRenderer  (GameScreen screen, GameObjectInfo info)
+    // 
     + OnEdgesChanged  (EdgeList edges)
     - DrawRoundedLines ()
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
   Attributes:
-    # state : GameState
+    // 
+    # screen : GameScreen
+    // 
     + World : World abstract
+    // 
     + Info : GameObjectInfo abstract
+    // 
     # nodeMap : NodeMap new
   Methods:
-    + KnotRenderer  (GameState state)
+    // 
+    + KnotRenderer  (GameScreen screen)
+    // 
     + OnEdgesChanged  (EdgeList edges) virtual
-    + Update  (GameTime gameTime) abstract
-    + Draw  (GameTime gameTime) abstract
+    // 
+    + Update  (GameTime time) abstract
+    // 
+    + Draw  (GameTime time) abstract
+    // 
     + Intersects (Ray ray) : GameObjectDistance abstract
+    // 
     + Center () : Vector3 abstract
 
+// 
 public interface IEdgeChangeListener : 
   Attributes:
   Methods:
+    // 
     + OnEdgesChanged  (EdgeList edges)
 
+// 
 public interface IGameObject : 
   Attributes:
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
-    + Draw  (GameTime gameTime)
-    + Update  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
 
+// 
 public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
   Attributes:
+    // 
     + World : World abstract
-    # state : GameState
+    // 
+    # screen : GameScreen
+    // 
     + Info : GameObjectInfo abstract
   Methods:
+    // 
     # nodeMap () : NodeMap
+    // 
     + Intersects (Ray ray) : GameObjectDistance abstract
+    // 
     + Center () : Vector3 abstract
+    // 
     + Draw  (GameTime gameTime) abstract
-    + KnotRenderer  (GameState state)
+    // 
+    + KnotRenderer  (GameScreen screen)
+    // 
     + Update  (GameTime gameTime) abstract
+    // 
     + OnEdgesChanged  (EdgeList edges) virtual
 
+// 
 public interface IEdgeChangeListener : 
   Attributes:
   Methods:
+    // 
     + OnEdgesChanged  (EdgeList edges)
 
+// 
 public interface IGameObject : 
   Attributes:
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
-    + Draw  (GameTime gameTime)
-    + Update  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
 

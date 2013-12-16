@@ -1,0 +1,25 @@
+// 
+public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
+  Attributes:
+    // 
+    + screen : GameScreen
+    // 
+    - _index : DisplayLayer
+    // 
+    + Index : DisplayLayer
+  Methods:
+    // 
+    + DrawableGameScreenComponent (GameScreen screen, DisplayLayer index)
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
+public enum DisplayLayer
+    None
+    Background
+    World
+    Dialog
+    Menu
+    MenuItem
+    SubMenu
+    SubMenuItem
+    Overlay
+    Cursor

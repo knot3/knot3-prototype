@@ -1,27 +1,50 @@
-public class CreativeModeScreen : GameState
+// 
+public class CreativeModeScreen : GameScreen
   Attributes:
+    // 
     - knot : Knot
+    // 
     - knotModified : bool
+    // 
     - world : World
+    // 
+    - knotInput : KnotInputHandler
+    // 
     - pointer : MousePointer
+    // 
     - overlay : Overlay
+    // 
     - picker : ModelMousePicker
-    - movement : PipeMovement
-    - coloring : PipeColoring
-    - lineRenderer : LineRenderer
-    - pipeRenderer : ModelRenderer
+    // 
+    - movement : EdgeMovement
+    // 
+    - coloring : EdgeColoring
+    // 
+    - renderer : ModelRenderer
+    // 
     - dialog : Dialog
+    // 
     + Knot : Knot
   Methods:
+    // 
     + CreativeModeScreen (Core.Game game)
+    // 
     + Initialize () override
+    // 
     + LoadFile (string file)
-    + Update (GameTime gameTime) override
-    - UpdateInput (GameTime gameTime)
-    + Draw (GameTime gameTime) override
-    + Activate (GameTime gameTime) override
+    // 
+    + Update (GameTime time) override
+    // 
+    - UpdateInput (GameTime time)
+    // 
+    + Draw (GameTime time) override
+    // 
+    + Activate (GameTime time) override
+    // 
     + Unload () override
+// 
 public class KnotSaveConfirmDialog : TextInputDialog
   Attributes:
   Methods:
-    + KnotSaveConfirmDialog (GameState state, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
+    // 
+    + KnotSaveConfirmDialog (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)

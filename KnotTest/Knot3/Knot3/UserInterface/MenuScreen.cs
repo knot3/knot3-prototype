@@ -16,7 +16,7 @@ using Knot3.Core;
 
 namespace Knot3.UserInterface
 {
-	public abstract class MenuScreen : GameState
+	public abstract class MenuScreen : GameScreen
 	{
 		// graphics-related attributes
 		private SpriteBatch spriteBatch;
@@ -43,42 +43,39 @@ namespace Knot3.UserInterface
 			// create a new SpriteBatch, which can be used to draw textures
 			spriteBatch = new SpriteBatch (graphics.GraphicsDevice);
 
-			// input
-			input = new MenuScreenInput (this);
-
 			// pointer
 			pointer = new MousePointer (this);
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
 			// subclass...
-			UpdateMenu (gameTime);
+			UpdateMenu (time);
 		}
 
-		public abstract void UpdateMenu (GameTime gameTime);
+		public abstract void UpdateMenu (GameTime time);
 		
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
-			PostProcessing.Begin (backColor, gameTime);
+			PostProcessing.Begin (backColor, time);
 
 			// subclass...
-			DrawMenu (gameTime);
+			DrawMenu (time);
 
 			// lines
 			spriteBatch.Begin ();
-			HfGDesign.DrawLines (ref LinePoints, LineWidth, spriteBatch, this, gameTime);
+			HfGDesign.DrawLines (ref LinePoints, LineWidth, spriteBatch, this, time);
 			spriteBatch.End ();
 
-			PostProcessing.End (gameTime);
+			PostProcessing.End (time);
 		}
 
-		public abstract void DrawMenu (GameTime gameTime);
+		public abstract void DrawMenu (GameTime time);
 
-		public override void Activate (GameTime gameTime)
+		public override void Activate (GameTime time)
 		{
-			base.Activate (gameTime);
-			AddGameComponents (gameTime, input, pointer);
+			base.Activate (time);
+			AddGameComponents (time, pointer);
 		}
 
 		public override void Unload ()

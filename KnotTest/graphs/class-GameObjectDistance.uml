@@ -1,6 +1,9 @@
+// 
 public sealed class GameObjectDistance : 
   Attributes:
+    // 
     + Distance : float
+    // 
     + Object : IGameObject
   Methods:
 

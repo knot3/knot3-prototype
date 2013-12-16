@@ -22,19 +22,18 @@ namespace Knot3.CreativeMode
 {
 	public class LoadSavegameScreen : MenuScreen
 	{
-		// knot format
-		IKnotFormat format;
-
 		// menu
 		private VerticalMenu menu;
 
 		// textures
 		private SpriteBatch spriteBatch;
 
+		// files
+		private FileIndex fileIndex;
+
 		public LoadSavegameScreen (Core.Game game)
 			: base(game)
 		{
-			format = new EdgeListFormat ();
 			menu = new VerticalMenu (this, new WidgetInfo (), DisplayLayer.Menu);
 		}
 
@@ -60,6 +59,8 @@ namespace Knot3.CreativeMode
 
 		private void UpdateFiles ()
 		{
+			fileIndex = new FileIndex (Files.SavegameDirectory + Files.Separator + "index.txt");
+
 			string[] searchDirectories = new string[] {
 				Files.BaseDirectory,
 				Files.SavegameDirectory
@@ -68,60 +69,79 @@ namespace Knot3.CreativeMode
 
 			menu.Clear ();
 			AddDefaultKnots ();
-			Files.SearchFiles (searchDirectories, format.FileExtensions, AddFileToList);
+			Files.SearchFiles (searchDirectories, KnotFileIO.FileExtensions, AddFileToList);
 		}
 
 		private void AddFileToList (string filename)
 		{
-			KnotInfo knotInfo = format.LoadInfo (filename);
-			Action LoadFile = () => {
-				// delegate to load the file
-				if (knotInfo.IsValid) {
-					Console.WriteLine ("File is valid: " + knotInfo);
-					GameStates.CreativeMode.Knot = format.LoadKnot (filename);
-					NextState = GameStates.CreativeMode;
-				} else {
-					Console.WriteLine ("File is invalid: " + knotInfo);
+			IKnotIO file = new KnotFileIO (filename);
+			bool isValid = fileIndex.Contains (file.Hash);
+			if (!isValid) {
+				try {
+					new Knot (file);
+					isValid = true;
+					fileIndex.Add (file.Hash);
+				} catch (Exception ex) {
+					Console.WriteLine (ex);
+					isValid = false;
 				}
-			};
-			string name = knotInfo.IsValid ? knotInfo.Name : filename;
+			}
+			if (isValid) {
+				KnotMetaData meta = new KnotMetaData (file);
+				Action LoadFile = () => {
+					// delegate to load the file
 
-			MenuItemInfo info = new MenuItemInfo (text: name, onClick: LoadFile);
-			menu.AddButton (info);
+					//if (knotInfo.IsValid) {
+					Console.WriteLine ("File is valid: " + meta);
+					GameScreens.CreativeMode.Knot = new Knot (file);
+					NextState = GameScreens.CreativeMode;
+					//} else {
+					//	Console.WriteLine ("File is invalid: " + knotInfo);
+					//}
+				};
+				string name = meta.Name.Length > 0 ? meta.Name : filename;
+
+				MenuItemInfo info = new MenuItemInfo (text: name, onClick: LoadFile);
+				menu.AddButton (info);
+			}
 		}
 
 		private void AddDefaultKnots ()
 		{
+			/*
 			Action RandomKnot = () => {
-				Knot knot = Knot.RandomKnot (20, format);
+				__Knot knot = __Knot.RandomKnot (20, format);
 				Console.WriteLine ("Random Knot: " + knot.Info);
-				GameStates.CreativeMode.Knot = knot;
-				NextState = GameStates.CreativeMode;
+				GameScreens.CreativeMode.Knot = knot;
+				NextState = GameScreens.CreativeMode;
 			};
+			*/
 			Action DefaultKnot = () => {
-				Knot knot = Knot.DefaultKnot (format);
-				Console.WriteLine ("Default Knot: " + knot.Info);
-				GameStates.CreativeMode.Knot = knot;
-				NextState = GameStates.CreativeMode;
+				Knot knot = new Knot ();
+				Console.WriteLine ("Default Knot: " + knot);
+				GameScreens.CreativeMode.Knot = knot;
+				NextState = GameScreens.CreativeMode;
 			};
 			MenuItemInfo info = new MenuItemInfo (text: "New Knot", onClick: DefaultKnot);
 			menu.AddButton (info);
+			/*
 			info = new MenuItemInfo (text: "New Random Knot", onClick: RandomKnot);
 			menu.AddButton (info);
+			*/
 		}
 		
-		public override void UpdateMenu (GameTime gameTime)
+		public override void UpdateMenu (GameTime time)
 		{
 			// menu
-			menu.Update (gameTime);
+			menu.Update (time);
 
 			// when is escape is pressed, go to start screen
 			if (Keys.Escape.IsDown ()) {
-				NextState = GameStates.StartScreen;
+				NextState = GameScreens.StartScreen;
 			}
 		}
 		
-		public override void DrawMenu (GameTime gameTime)
+		public override void DrawMenu (GameTime time)
 		{
 			spriteBatch.Begin ();
 
@@ -137,11 +157,11 @@ namespace Knot3.CreativeMode
 			spriteBatch.End ();
 		}
 
-		public override void Activate (GameTime gameTime)
+		public override void Activate (GameTime time)
 		{
 			UpdateFiles ();
-			base.Activate (gameTime);
-			AddGameComponents (gameTime, menu);
+			base.Activate (time);
+			AddGameComponents (time, menu);
 		}
 	}
 }

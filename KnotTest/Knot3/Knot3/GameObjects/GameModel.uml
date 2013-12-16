@@ -1,37 +1,70 @@
+// 
 public class GameModelInfo : GameObjectInfo
   Attributes:
+    // 
     + Modelname : string
+    // 
     + Rotation : Angles3
+    // 
     + Scale : Vector3
   Methods:
+    // 
     + GameModelInfo (string modelname)
+    // 
     + Equals (GameObjectInfo other) : bool override
+// 
 public class GameModel : IGameObject
   Attributes:
-    # state : GameState
+    // 
+    # screen : GameScreen
+    // 
     - IGameObject.Info : GameObjectInfo
+    // 
     + Info : GameModelInfo
+    // 
     - _world : World
+    // 
     + World : World
+    // 
     + Model : Model virtual
+    // 
     + BaseColor : Color
+    // 
     + HighlightColor : Color
+    // 
     + HighlightIntensity : float
+    // 
     + Alpha : float
+    // 
     - _scale : Vector3
+    // 
     - _rotation : Angles3
+    // 
     - _position : Vector3
+    // 
     - _worldMatrix : Matrix
+    // 
     - _bounds : BoundingSphere[]
+    // 
     - _inFrustum : bool
+    // 
     + WorldMatrix : Matrix
+    // 
     - Bounds : BoundingSphere[]
+    // 
     # InCameraFrustum : bool
   Methods:
-    + GameModel (GameState state, GameModelInfo info)
-    + Update (GameTime gameTime) virtual
-    + Draw (GameTime gameTime) virtual
+    // 
+    + GameModel (GameScreen screen, GameModelInfo info)
+    // 
+    + Update (GameTime time) virtual
+    // 
+    + Draw (GameTime time) virtual
+    // 
     + Intersects (Ray ray) : GameObjectDistance virtual
+    // 
     + Center () : Vector3
+    // 
     - UpdatePrecomputed ()
+    // 
     - OnViewChanged ()

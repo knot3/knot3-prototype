@@ -1,0 +1,136 @@
+// 
+public interface IKnotIO : 
+  Attributes:
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + CountEdges : int
+    // 
+    + Name : string
+    // 
+    + Hash : string
+  Methods:
+    // 
+    + Save  (Knot knot)
+
+// 
+public class KnotFileIO : FileIO, IKnotIO
+  Attributes:
+    // 
+    - parser : KnotStringIO
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + CountEdges : int
+    // 
+    + Name : string
+    // 
+    + Hash : string
+    // 
+    + FileExtensions : string[] static
+  Methods:
+    // 
+    + KnotFileIO  (Knot knot)
+    // 
+    + KnotFileIO  (string filename)
+    // 
+    + Save  (Knot knot)
+    // 
+    + ConvertToFilename (string humanReadableName) : string override
+    // 
+    + ToString () : string override
+
+// 
+public class KnotStringIO : IKnotIO
+  Attributes:
+    // 
+    + Content : string
+    // 
+    - lines : IEnumerable<string>
+    // 
+    + CountEdges : int
+    // 
+    + Name : string
+    // 
+    + Hash : string
+    // 
+    + Edges : IEnumerable<Edge>
+  Methods:
+    // 
+    + KnotStringIO  (string content)
+    // 
+    + KnotStringIO  (Knot knot)
+    // 
+    + Save  (Knot knot)
+    // 
+    - ToLines (Knot knot) : IEnumerable<string> static
+    // 
+    - DecodeEdge (char c) : Edge static
+    // 
+    - EncodeEdge (Edge edge) : char static
+    // 
+    - EncodeColor (Color c) : String static
+    // 
+    - DecodeColor (string hexString) : Color static
+
+// 
+public class KnotFileIO : FileIO, IKnotIO
+  Attributes:
+    // 
+    + CountEdges : int
+    // 
+    + Hash : string
+    // 
+    + Name : string
+    // 
+    - parser : KnotStringIO
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + FileExtensions : string[] static
+  Methods:
+    // 
+    + KnotFileIO  (Knot knot)
+    // 
+    + Save  (Knot knot)
+    // 
+    + KnotFileIO  (string filename)
+    // 
+    + ConvertToFilename (string humanReadableName) : string
+    // 
+    + ToString () : string
+
+// 
+public class KnotStringIO : IKnotIO
+  Attributes:
+    // 
+    - lines : IEnumerable<string>
+    // 
+    + Edges : IEnumerable<Edge>
+    // 
+    + CountEdges : int
+    // 
+    + Hash : string
+    // 
+    + Name : string
+    // 
+    + Content : string
+  Methods:
+    // 
+    - DecodeEdge (char c) : Edge static
+    // 
+    - EncodeEdge (Edge edge) : char static
+    // 
+    - DecodeColor (string hexString) : Color static
+    // 
+    - ToLines (Knot knot) : IEnumerable<string> static
+    // 
+    - EncodeColor (Color c) : String static
+    // 
+    + KnotStringIO  (Knot knot)
+    // 
+    + KnotStringIO  (string content)
+    + ToString () : string
+    // 
+    + Save  (Knot knot)
+

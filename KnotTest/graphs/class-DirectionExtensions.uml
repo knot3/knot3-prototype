@@ -1,0 +1,11 @@
+// 
+public static class DirectionExtensions : 
+  Attributes:
+  Methods:
+    // 
+    + ReverseDirection (this Direction dir) : Direction static
+    // 
+    + ToDirection (this Vector3 v) : Direction static
+    // 
+    + ToVector3 (this Direction d) : Vector3 static
+

@@ -1,86 +1,155 @@
+// 
 public class TestModel : GameModel
   Attributes:
   Methods:
-    + Update  (GameTime gameTime)
-    + TestModel  (GameState state, GameModelInfo info)
+    // 
+    + Update  (GameTime time)
+    // 
+    + TestModel  (GameScreen screen, GameModelInfo info)
 
+// 
 public class GameModel : IGameObject
   Attributes:
-    # state : GameState
+    // 
+    # screen : GameScreen
+    // 
     - IGameObject.Info : GameObjectInfo
+    // 
     + Info : GameModelInfo
+    // 
     - _world : World
+    // 
     + World : World
+    // 
     + Model : Model virtual
+    // 
     + BaseColor : Color
+    // 
     + HighlightColor : Color
+    // 
     + HighlightIntensity : float
+    // 
     + Alpha : float
+    // 
     - _scale : Vector3
+    // 
     - _rotation : Angles3
+    // 
     - _position : Vector3
+    // 
     - _worldMatrix : Matrix
+    // 
     - _bounds : BoundingSphere[]
+    // 
     - _inFrustum : bool
+    // 
     + WorldMatrix : Matrix
+    // 
     - Bounds : BoundingSphere[]
+    // 
     # InCameraFrustum : bool
   Methods:
-    + GameModel  (GameState state, GameModelInfo info)
-    + Update  (GameTime gameTime) virtual
-    + Draw  (GameTime gameTime) virtual
+    // 
+    + GameModel  (GameScreen screen, GameModelInfo info)
+    // 
+    + Update  (GameTime time) virtual
+    // 
+    + Draw  (GameTime time) virtual
+    // 
     + Intersects (Ray ray) : GameObjectDistance virtual
+    // 
     + Center () : Vector3
+    // 
     - UpdatePrecomputed  ()
+    // 
     - OnViewChanged  ()
 
+// 
 public interface IGameObject : 
   Attributes:
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
-    + Draw  (GameTime gameTime)
-    + Update  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
 
+// 
 public class GameModel : IGameObject
   Attributes:
+    // 
     - IGameObject.Info : GameObjectInfo
+    // 
     - _rotation : Angles3
+    // 
     - Bounds : BoundingSphere[]
+    // 
     - _bounds : BoundingSphere[]
+    // 
     - _worldMatrix : Matrix
+    // 
     - _position : Vector3
+    // 
     - _inFrustum : bool
+    // 
     # InCameraFrustum : bool
+    // 
     + BaseColor : Color
+    // 
     + HighlightColor : Color
+    // 
     + Info : GameModelInfo
+    // 
     + WorldMatrix : Matrix
+    // 
     + World : World
+    // 
     + Alpha : float
+    // 
     + HighlightIntensity : float
+    // 
     - _scale : Vector3
+    // 
     - _world : World
-    # state : GameState
+    // 
+    # screen : GameScreen
+    // 
     + Model : Model virtual
   Methods:
     - OnViewChanged ()
     - UpdatePrecomputed ()
-    + GameModel  (GameState state, GameModelInfo info)
-    + Draw  (GameTime gameTime) virtual
+    // 
+    + GameModel  (GameScreen screen, GameModelInfo info)
+    // 
+    + Draw  (GameTime time) virtual
+    // 
     + Center () : Vector3
+    // 
     + Intersects (Ray ray) : GameObjectDistance virtual
-    + Update  (GameTime gameTime) virtual
+    // 
+    + Update  (GameTime time) virtual
 
+// 
 public interface IGameObject : 
   Attributes:
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
-    + Draw  (GameTime gameTime)
-    + Update  (GameTime gameTime)
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
 

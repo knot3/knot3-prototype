@@ -1,21 +1,38 @@
+// 
 public class DropDownMenu : MenuItem
   Attributes:
+    // 
     - dropdown : VerticalMenu
+    // 
     - selected : MenuButton
   Methods:
-    + DropDownMenu (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
+    + DropDownMenu (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + AddEntries (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)
+    // 
     + AddEntries (DistinctOptionInfo option)
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> override
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> override
+    // 
     + Collapse () override
-    + Draw (GameTime gameTime) override
+    // 
+    + Draw (GameTime time) override
+    // 
     - ValuePosition (int dummy = 0) : Vector2
+    // 
     - ValueSize (int dummy = 0) : Vector2
+    // 
     - DropDownBackgroundColor (ItemState itemState) : Color
+    // 
     - DropDownForegroundColor (ItemState itemState) : Color
+// 
 public class DropDownMenuItem : 
   Attributes:
+    // 
     + Text : string
+    // 
     + OnSelected : Action
   Methods:
+    // 
     + DropDownMenuItem (string text, Action onSelected)

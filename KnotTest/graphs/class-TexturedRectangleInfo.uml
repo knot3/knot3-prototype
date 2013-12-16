@@ -1,39 +1,68 @@
+// 
 public class TexturedRectangleInfo : GameObjectInfo
   Attributes:
+    // 
     + Left : Vector3
+    // 
     + Up : Vector3
+    // 
     + Height : float
+    // 
     + Width : float
+    // 
     + Texturename : string
   Methods:
+    // 
     + TexturedRectangleInfo  (string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
+    // 
     + Equals (GameObjectInfo other) : bool
 
+// 
 public class GameObjectInfo : IEquatable<GameObjectInfo>
   Attributes:
+    // 
     + Position : Vector3
+    // 
     + IsVisible : bool
+    // 
     + IsSelectable : bool
+    // 
     + IsMovable : bool
+    // 
     + operator : bool static
+    // 
     + operator ! : bool static
   Methods:
+    // 
     + GameObjectInfo  ()
+    // 
     + Equals (GameObjectInfo other) : bool virtual
+    // 
     + Equals (Object obj) : bool override
+    // 
     + GetHashCode () : int override
 
+// 
 public class GameObjectInfo : IEquatable<GameObjectInfo>
   Attributes:
+    // 
     + IsMovable : bool
+    // 
     + IsSelectable : bool
+    // 
     + IsVisible : bool
+    // 
     + Position : Vector3
   Methods:
     + GameObjectInfo ()
+    // 
     + operator (GameObjectInfo o1, GameObjectInfo o2) : bool static
+    // 
     + Equals (Object obj) : bool
+    // 
     + GetHashCode () : int
+    // 
     + operator ! (GameObjectInfo o1, GameObjectInfo o2) : bool static
+    // 
     + Equals (GameObjectInfo other) : bool virtual
 

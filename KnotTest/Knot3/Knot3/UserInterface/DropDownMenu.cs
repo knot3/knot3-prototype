@@ -23,11 +23,11 @@ namespace Knot3.UserInterface
 		private VerticalMenu dropdown;
 		private MenuButton selected;
 
-		public DropDownMenu (GameState state, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
-			: base(state, drawOrder, itemNum, info)
+		public DropDownMenu (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+			: base(screen, drawOrder, itemNum, info)
 		{
 			// drop-down menu
-			dropdown = new VerticalMenu (state, new WidgetInfo (), DisplayLayer.SubMenu);
+			dropdown = new VerticalMenu (screen, new WidgetInfo (), DisplayLayer.SubMenu);
 			
 			dropdown.ItemForegroundColor = DropDownForegroundColor;
 			dropdown.ItemBackgroundColor = DropDownBackgroundColor;
@@ -43,14 +43,14 @@ namespace Knot3.UserInterface
 				RelativeSize = () => ValueSize (0),
 				OnClick = () => info.OnClick (),
 			};
-			selected = new MenuButton (state, DisplayLayer.MenuItem, 0, valueInfo);
+			selected = new MenuButton (screen, DisplayLayer.MenuItem, 0, valueInfo);
 			selected.Info.ForegroundColor = () => DropDownForegroundColor (selected.ItemState);
 			selected.Info.BackgroundColor = () => DropDownBackgroundColor (selected.ItemState);
 
 			// action to open the drop-down menu
 			info.OnClick = () =>
 			{
-				GameStates.VideoOptionScreen.Collapse (this);
+				GameScreens.VideoOptionScreen.Collapse (this);
 				if (dropdown.IsVisible == true) {
 					dropdown.IsVisible = false;
 				} else {
@@ -84,9 +84,9 @@ namespace Knot3.UserInterface
 			selected.Info.Text = option.Value;
 		}
 		
-		public override IEnumerable<IGameStateComponent> SubComponents (GameTime gameTime)
+		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameStateComponent component in base.SubComponents(gameTime)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
 				yield return component;
 			}
 			yield return selected;
@@ -98,15 +98,15 @@ namespace Knot3.UserInterface
 			dropdown.IsVisible = false;
 		}
 
-		public override void Draw (GameTime gameTime)
+		public override void Draw (GameTime time)
 		{
-			base.Draw (gameTime);
+			base.Draw (time);
 
 			if (IsVisible && dropdown.IsVisible) {
 				// draw dropdown menu
 				Vector2 position = ValuePosition ();
 				Vector2 size = ValueSize ();
-				dropdown.Align (state.viewport, 1f, (int)position.X, (int)position.Y, (int)size.X, (int)size.Y, 0f);
+				dropdown.Align (screen.viewport, 1f, (int)position.X, (int)position.Y, (int)size.X, (int)size.Y, 0f);
 			}
 		}
 

@@ -53,7 +53,7 @@ namespace Knot3.GameObjects
 	{
 		#region Attributes and Properties
 
-		protected GameState state;
+		protected GameScreen screen;
 
 		GameObjectInfo IGameObject.Info { get { return Info; } }
 
@@ -75,14 +75,14 @@ namespace Knot3.GameObjects
 
 		#region Constructors
 
-		public TexturedRectangle (GameState state, TexturedRectangleInfo info)
+		public TexturedRectangle (GameScreen screen, TexturedRectangleInfo info)
 		{
-			this.state = state;
+			this.screen = screen;
 			Info = info;
 			SetPosition (Info.Position);
 
-			basicEffect = new BasicEffect (state.device);
-			texture = Textures.LoadTexture (state.content, info.Texturename);
+			basicEffect = new BasicEffect (screen.device);
+			texture = Textures.LoadTexture (screen.content, info.Texturename);
 			if (texture != null) {
 				FillVertices ();
 			}
@@ -92,7 +92,7 @@ namespace Knot3.GameObjects
 
 		#region Update
 		
-		public void Update (GameTime gameTime)
+		public void Update (GameTime time)
 		{
 		}
 
@@ -100,7 +100,7 @@ namespace Knot3.GameObjects
 
 		#region Draw
 
-		public void Draw (GameTime gameTime)
+		public void Draw (GameTime time)
 		{
 			if (Info.IsVisible) {
 				basicEffect.World = World.Camera.WorldMatrix;
@@ -120,7 +120,7 @@ namespace Knot3.GameObjects
 				foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes) {
 					pass.Apply ();
 
-					state.device.DrawUserIndexedPrimitives<VertexPositionNormalTexture> (
+					screen.device.DrawUserIndexedPrimitives<VertexPositionNormalTexture> (
                     PrimitiveType.TriangleList, Vertices, 0, Vertices.Length, Indexes, 0, Indexes.Length / 3
 					);
 				}

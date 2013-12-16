@@ -1,11 +1,18 @@
-public class ClickHandler : GameStateComponent
+// 
+public class ClickHandler : GameScreenComponent
   Attributes:
   Methods:
-    + ClickHandler (GameState state)
+    // 
+    + ClickHandler (GameScreen screen)
+    // 
     private class ClickEventComponent : 
       Attributes:
+        // 
         + receiver : IMouseEventListener
+        // 
         + layer : DisplayLayer
+        // 
         + relativePosition : Vector2
       Methods:
-    + Update (GameTime gameTime) override
+    // 
+    + Update (GameTime time) override

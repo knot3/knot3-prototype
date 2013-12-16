@@ -1,0 +1,83 @@
+// 
+public class KnotInputHandler : GameScreenComponent, IKeyEventListener
+  Attributes:
+    // 
+    - wasdSpeed : int
+    // 
+    - camera : Camera
+    // 
+    - World : World
+    // 
+    + ValidKeys : List<Keys>
+    // 
+    + IsKeyEventEnabled : bool
+  Methods:
+    // 
+    # UpdateMouse  (GameTime time)
+    // 
+    + KnotInputHandler  (GameScreen screen, World world)
+    // 
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
+    - ResetMousePosition ()
+    // 
+    # UpdateKeys  (GameTime time)
+    // 
+    + Update  (GameTime time)
+
+// 
+public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
+  Attributes:
+    // 
+    + screen : GameScreen
+    // 
+    + Index : DisplayLayer
+  Methods:
+    // 
+    + GameScreenComponent  (GameScreen screen, DisplayLayer index)
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
+
+// 
+public interface IGameScreenComponent : Xna.IGameComponent
+  Attributes:
+    // 
+    + Index : DisplayLayer
+  Methods:
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+
+// 
+public interface IKeyEventListener : 
+  Attributes:
+    // 
+    + ValidKeys : List<Keys>
+    // 
+    + Index : DisplayLayer
+    // 
+    + IsKeyEventEnabled : bool
+  Methods:
+    // 
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
+
+// 
+public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
+  Attributes:
+    // 
+    + Index : DisplayLayer
+    // 
+    + screen : GameScreen
+  Methods:
+    // 
+    + GameScreenComponent  (GameScreen screen, DisplayLayer index)
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
+
+// 
+public interface IGameScreenComponent : Xna.IGameComponent
+  Attributes:
+    // 
+    + Index : DisplayLayer
+  Methods:
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+

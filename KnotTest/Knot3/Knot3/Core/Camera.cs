@@ -19,10 +19,10 @@ using Knot3.GameObjects;
 namespace Knot3.Core
 {
 	/// <summary>
-	/// Ein GameStateComponent, der bei jedem Update die View-, World- und Projectionmatrizen auf Basis der 
+	/// Ein GameScreenComponent, der bei jedem Update die View-, World- und Projectionmatrizen auf Basis der 
 	/// aktuellen Kameraposition neu berechnet.
 	/// </summary>
-	public class Camera : GameStateComponent
+	public class Camera : GameScreenComponent
 	{
 		World World { get; set; }
 
@@ -117,11 +117,11 @@ namespace Knot3.Core
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Knot3.Core.Camera"/> class.
 		/// </summary>
-		/// <param name='state'>
+		/// <param name='screen'>
 		/// Game State.
 		/// </param>
-		public Camera (GameState state, World world)
-			: base(state, DisplayLayer.None)
+		public Camera (GameScreen screen, World world)
+			: base(screen, DisplayLayer.None)
 		{
 			World = world;
 			DefaultPosition = new Vector3 (400, 400, 700);
@@ -130,26 +130,26 @@ namespace Knot3.Core
 			UpVector = Vector3.Up;
  
 			FoV = MathHelper.ToDegrees (MathHelper.PiOver4);
-			aspectRatio = state.viewport.AspectRatio;
+			aspectRatio = screen.viewport.AspectRatio;
 			nearPlane = 0.5f;
 			farPlane = 10000.0f;
 			
 			UpdateMatrices (null);
 		}
 
-		public override void Update (GameTime gameTime)
+		public override void Update (GameTime time)
 		{
-			UpdateRotation (gameTime);
-			UpdateMatrices (gameTime);
+			UpdateRotation (time);
+			UpdateMatrices (time);
 		}
 
-		private void UpdateRotation (GameTime gameTime)
+		private void UpdateRotation (GameTime time)
 		{
 			// auto rotation
 			RotationAngle += AutoRotation;
 		}
 
-		private void UpdateMatrices (GameTime gameTime)
+		private void UpdateMatrices (GameTime time)
 		{ 
 			// setting up rotation
 			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
@@ -204,7 +204,7 @@ namespace Knot3.Core
 		/// </param>
 		public Ray GetMouseRay (Vector2 mouse)
 		{
-			Viewport viewport = state.viewport;
+			Viewport viewport = screen.viewport;
 
 			Vector3 nearPoint = new Vector3 (mouse, 0);
 			Vector3 farPoint = new Vector3 (mouse, 1);

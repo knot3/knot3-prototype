@@ -1,20 +1,36 @@
+// 
 public struct Node : IEquatable<Node>, ICloneable
   Attributes:
+    // 
     + X : int
+    // 
     + Y : int
+    // 
     + Z : int
+    // 
     + Scale : int static
   Methods:
+    // 
     + GetHashCode () : int
     + Node (int x, int y, int z) : this()
+    // 
     + CenterBetween (Node other) : Vector3
+    // 
     + Vector () : Vector3
+    // 
     + Equals (Node other) : bool
+    // 
     + Clone () : object
+    // 
     + Equals (object obj) : bool
+    // 
     + ToString () : string
+    // 
     + operator (Node a, Vector3 b) : Node static
+    // 
     - operator (Node a, Node b) : Vector3 static
+    // 
     + operator ! (Node a, Node b) : bool static
+    // 
     + operator (Node a, Node b) : bool static
 

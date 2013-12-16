@@ -1,46 +1,74 @@
-public class PipeColoring : GameStateComponent, IKeyEventListener
+// 
+public class PipeColoring : GameScreenComponent, IKeyEventListener
   Attributes:
+    // 
     + ValidKeys : List<Keys>
+    // 
     + Knot : Knot
+    // 
     + IsKeyEventEnabled : bool
   Methods:
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
-    + PipeColoring  (GameState state)
+    // 
+    + PipeColoring  (GameScreen screen)
+    // 
     + Update  (GameTime gameTime)
 
-public class GameStateComponent : Xna.GameComponent, IGameStateComponent
+// 
+public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
   Attributes:
-    + state : GameState
+    // 
+    + screen : GameScreen
+    // 
     + Index : DisplayLayer
   Methods:
-    + GameStateComponent  (GameState state, DisplayLayer index)
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    // 
+    + GameScreenComponent  (GameScreen screen, DisplayLayer index)
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
-public interface IGameStateComponent : Xna.IGameComponent
+// 
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
+    // 
     + Index : DisplayLayer
   Methods:
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 
+// 
 public interface IKeyEventListener : 
   Attributes:
+    // 
     + ValidKeys : List<Keys>
+    // 
     + Index : DisplayLayer
+    // 
     + IsKeyEventEnabled : bool
   Methods:
-    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
 
-public class GameStateComponent : Xna.GameComponent, IGameStateComponent
+// 
+public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
   Attributes:
+    // 
     + Index : DisplayLayer
-    + state : GameState
+    // 
+    + screen : GameScreen
   Methods:
-    + GameStateComponent  (GameState state, DisplayLayer index)
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
+    // 
+    + GameScreenComponent  (GameScreen screen, DisplayLayer index)
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent> virtual
 
-public interface IGameStateComponent : Xna.IGameComponent
+// 
+public interface IGameScreenComponent : Xna.IGameComponent
   Attributes:
+    // 
     + Index : DisplayLayer
   Methods:
-    + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent>
+    // 
+    + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
 

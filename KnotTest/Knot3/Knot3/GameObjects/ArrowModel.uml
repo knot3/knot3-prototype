@@ -1,0 +1,28 @@
+// 
+public class ArrowModelInfo : GameModelInfo
+  Attributes:
+    // 
+    + Direction : Vector3
+    // 
+    + Length : float
+    // 
+    + Diameter : float
+  Methods:
+    // 
+    + ArrowModelInfo (Vector3 position, Vector3 direction, Vector3 offset)
+    // 
+    + Equals (GameObjectInfo other) : bool override
+// 
+public class ArrowModel : GameModel
+  Attributes:
+    // 
+    + Info : ArrowModelInfo new
+    // 
+    - Bounds : BoundingSphere[]
+  Methods:
+    // 
+    + ArrowModel (GameScreen screen, ArrowModelInfo info)
+    // 
+    + Draw (GameTime time) override
+    // 
+    + Intersects (Ray ray) : GameObjectDistance override

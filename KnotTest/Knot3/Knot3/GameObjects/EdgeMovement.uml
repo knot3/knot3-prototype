@@ -1,0 +1,86 @@
+// 
+public class EdgeMovement : IGameObject, IEnumerable<IGameObject>
+  Attributes:
+    // 
+    - screen : GameScreen
+    // 
+    + World : World
+    // 
+    + Info : GameObjectInfo
+    // 
+    + Knot : Knot
+    // 
+    - previousMousePosition : Vector3
+    // 
+    - shadowObjects : List<ShadowGameObject>
+  Methods:
+    // 
+    + EdgeMovement (GameScreen screen, World world, GameObjectInfo info)
+    // 
+    + Update (GameTime time)
+    // 
+    - TrySelectObject (GameTime time)
+    // 
+    - TryMovePipes (GameTime time)
+    // 
+    - CreateShadowPipes ()
+    // 
+    - ComputeDirection (Vector3 currentMousePosition, out Direction direction, out float count)
+    // 
+    - ComputeDirection (Vector3 currentMousePosition, out Direction direction, out int countInt)
+    // 
+    - MoveShadowPipes (Vector3 currentMousePosition, Vector3 direction3D)
+    // 
+    - MoveShadowPipes (Vector3 currentMousePosition)
+    // 
+    - MovePipes (Vector3 currentMousePosition)
+    // 
+    + Draw (GameTime time)
+    // 
+    + GetEnumerator () : IEnumerator<IGameObject>
+    // 
+    - IEnumerable.GetEnumerator () : IEnumerator
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+// 
+public class ShadowGameObject : IGameObject
+  Attributes:
+    // 
+    # screen : GameScreen
+    // 
+    - Obj : IGameObject
+    // 
+    + World : World
+    // 
+    + Info : GameObjectInfo
+    // 
+    + ShadowPosition : Vector3
+    // 
+    + OriginalPosition : Vector3
+  Methods:
+    // 
+    + ShadowGameObject (GameScreen screen, IGameObject obj)
+    // 
+    + Update (GameTime time) virtual
+    // 
+    + Draw (GameTime time) virtual
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+// 
+public class ShadowGameModel : ShadowGameObject
+  Attributes:
+    // 
+    - Model : GameModel
+    // 
+    + ShadowColor : Color
+    // 
+    + ShadowAlpha : float
+  Methods:
+    // 
+    + ShadowGameModel (GameScreen screen, GameModel model)
+    // 
+    + Draw (GameTime time) override

@@ -22,7 +22,7 @@ namespace Knot3.GameObjects
 	/// </summary>
 	public class MovableGameObject : IGameObject
 	{
-		private GameState state;
+		private GameScreen screen;
 		private IGameObject Obj;
 
 		public World World {
@@ -30,9 +30,9 @@ namespace Knot3.GameObjects
 			set {}
 		}
 
-		public MovableGameObject (GameState state, IGameObject obj)
+		public MovableGameObject (GameScreen screen, IGameObject obj)
 		{
- 			this.state = state;
+ 			this.screen = screen;
 			Obj = obj;
 			Obj.Info.IsMovable = true;
 		}
@@ -57,7 +57,7 @@ namespace Knot3.GameObjects
 
 		protected Ray CurrentMouseRay ()
 		{
-			Ray ray = World.Camera.GetMouseRay (Core.Input.MouseState.ToVector2 ());
+			Ray ray = World.Camera.GetMouseRay (InputManager.MouseState.ToVector2 ());
 			return ray;
 		}
 
@@ -74,13 +74,13 @@ namespace Knot3.GameObjects
 			}
 		}
 
-		public virtual void Update (GameTime gameTime)
+		public virtual void Update (GameTime time)
 		{
 			// check whether is object is movable and whether it is selected
 			bool isSelected = World.SelectedObject == this || World.SelectedObject == Obj;
 			if (Info.IsVisible && Info.IsMovable && isSelected) {
 				// is SelectedObjectMove the current input action?
-				if (state.input.CurrentInputAction == InputAction.SelectedObjectMove) {
+				if (screen.input.CurrentInputAction == InputAction.SelectedObjectMove) {
 					Plane groundPlane = CurrentGroundPlane ();
 					Ray ray = CurrentMouseRay ();
 					Vector3? newPosition = CurrentMousePosition (ray, groundPlane);
@@ -90,16 +90,16 @@ namespace Knot3.GameObjects
 				}
 			}
 
-			Obj.Update (gameTime);
+			Obj.Update (time);
 		}
 
 		#endregion
 
 		#region Draw
 
-		public void Draw (GameTime gameTime)
+		public void Draw (GameTime time)
 		{
-			Obj.Draw (gameTime);
+			Obj.Draw (time);
 		}
 
 		#endregion
