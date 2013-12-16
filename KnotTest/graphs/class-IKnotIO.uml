@@ -7,6 +7,8 @@ public interface IKnotIO :
     + CountEdges : int
     // 
     + Name : string
+    // 
+    + Hash : string
   Methods:
     // 
     + Save  (Knot knot)
@@ -22,6 +24,8 @@ public class KnotFileIO : FileIO, IKnotIO
     + CountEdges : int
     // 
     + Name : string
+    // 
+    + Hash : string
     // 
     + FileExtensions : string[] static
   Methods:
@@ -48,6 +52,8 @@ public class KnotStringIO : IKnotIO
     // 
     + Name : string
     // 
+    + Hash : string
+    // 
     + Edges : IEnumerable<Edge>
   Methods:
     // 
@@ -72,6 +78,8 @@ public class KnotFileIO : FileIO, IKnotIO
   Attributes:
     // 
     + CountEdges : int
+    // 
+    + Hash : string
     // 
     + Name : string
     // 
@@ -102,6 +110,8 @@ public class KnotStringIO : IKnotIO
     // 
     + CountEdges : int
     // 
+    + Hash : string
+    // 
     + Name : string
     // 
     + Content : string
@@ -110,8 +120,6 @@ public class KnotStringIO : IKnotIO
     - DecodeEdge (char c) : Edge static
     // 
     - EncodeEdge (Edge edge) : char static
-    // 
-    + Save  (Knot knot)
     // 
     - DecodeColor (string hexString) : Color static
     // 
@@ -123,4 +131,6 @@ public class KnotStringIO : IKnotIO
     // 
     + KnotStringIO  (string content)
     + ToString () : string
+    // 
+    + Save  (Knot knot)
 

@@ -10,6 +10,8 @@ public class KnotStringIO : IKnotIO
     // 
     + Name : string
     // 
+    + Hash : string
+    // 
     + Edges : IEnumerable<Edge>
   Methods:
     // 

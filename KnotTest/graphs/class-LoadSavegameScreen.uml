@@ -2,17 +2,19 @@
 public class LoadSavegameScreen : MenuScreen
   Attributes:
     // 
+    - fileIndex : FileIndex
+    // 
     - spriteBatch : SpriteBatch
     // 
     - menu : VerticalMenu
   Methods:
+    - AddDefaultKnots ()
     // 
     + LoadSavegameScreen  (Core.Game game)
     // 
     + Activate  (GameTime time)
     // 
     + DrawMenu  (GameTime time)
-    - AddDefaultKnots ()
     // 
     - AddFileToList  (string filename)
     - UpdateFiles ()

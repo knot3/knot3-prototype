@@ -11,6 +11,8 @@ namespace Knot3.KnotData
 
 		string Name { get; }
 
+		string Hash { get; }
+
 		void Save (Knot knot);
 	}
 }

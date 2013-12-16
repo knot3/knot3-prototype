@@ -185,6 +185,7 @@
     <Compile Include="Knot3\GameObjects\EdgeMovement.cs" />
     <Compile Include="Knot3\GameObjects\EdgeColoring.cs" />
     <Compile Include="Knot3\KnotData\Direction.cs" />
+    <Compile Include="Knot3\KnotData\FileIndex.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

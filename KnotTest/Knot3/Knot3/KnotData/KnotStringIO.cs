@@ -29,20 +29,24 @@ namespace Knot3.KnotData
 				return Content.Split (new char[] {'\r','\n'}, StringSplitOptions.RemoveEmptyEntries);
 			}
 			set {
-				Content = string.Join("\n", value);
+				Content = string.Join ("\n", value);
 			}
 		}
 
 		public int CountEdges {
 			get {
-				return lines.Where((l) => l.Trim().Length> 0).Count () - 1;
+				return lines.Where ((l) => l.Trim ().Length > 0).Count () - 1;
 			}
 		}
 
 		public string Name {
 			get {
-				return lines.Count() > 0 ? lines.ElementAt(0).Trim() : "";
+				return lines.Count () > 0 ? lines.ElementAt (0).Trim () : "";
 			}
+		}
+
+		public string Hash {
+			get { return Content.ToMD5Hash (); }
 		}
 
 		public void Save (Knot knot)

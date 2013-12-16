@@ -19,6 +19,8 @@ public class KnotFileIO : FileIO, IKnotIO
     // 
     + Name : string
     // 
+    + Hash : string
+    // 
     + FileExtensions : string[] static
   Methods:
     // 
@@ -37,6 +39,8 @@ public class KnotFileIO : FileIO, IKnotIO
   Attributes:
     // 
     + CountEdges : int
+    // 
+    + Hash : string
     // 
     + Name : string
     // 

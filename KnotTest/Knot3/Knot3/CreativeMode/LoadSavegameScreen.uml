@@ -5,6 +5,8 @@ public class LoadSavegameScreen : MenuScreen
     - menu : VerticalMenu
     // 
     - spriteBatch : SpriteBatch
+    // 
+    - fileIndex : FileIndex
   Methods:
     // 
     + LoadSavegameScreen (Core.Game game)

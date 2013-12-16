@@ -28,6 +28,9 @@ namespace Knot3.CreativeMode
 		// textures
 		private SpriteBatch spriteBatch;
 
+		// files
+		private FileIndex fileIndex;
+
 		public LoadSavegameScreen (Core.Game game)
 			: base(game)
 		{
@@ -56,6 +59,8 @@ namespace Knot3.CreativeMode
 
 		private void UpdateFiles ()
 		{
+			fileIndex = new FileIndex (Files.SavegameDirectory + Files.Separator + "index.txt");
+
 			string[] searchDirectories = new string[] {
 				Files.BaseDirectory,
 				Files.SavegameDirectory
@@ -70,22 +75,35 @@ namespace Knot3.CreativeMode
 		private void AddFileToList (string filename)
 		{
 			IKnotIO file = new KnotFileIO (filename);
-			KnotMetaData meta = new KnotMetaData(file);
-			Action LoadFile = () => {
-				// delegate to load the file
+			bool isValid = fileIndex.Contains (file.Hash);
+			if (!isValid) {
+				try {
+					new Knot (file);
+					isValid = true;
+					fileIndex.Add (file.Hash);
+				} catch (Exception ex) {
+					Console.WriteLine (ex);
+					isValid = false;
+				}
+			}
+			if (isValid) {
+				KnotMetaData meta = new KnotMetaData (file);
+				Action LoadFile = () => {
+					// delegate to load the file
 
-				//if (knotInfo.IsValid) {
-				Console.WriteLine ("File is valid: " + meta);
-				GameScreens.CreativeMode.Knot = new Knot (file);
-				NextState = GameScreens.CreativeMode;
-				//} else {
-				//	Console.WriteLine ("File is invalid: " + knotInfo);
-				//}
-			};
-			string name = meta.Name.Length > 0 ? meta.Name : filename;
+					//if (knotInfo.IsValid) {
+					Console.WriteLine ("File is valid: " + meta);
+					GameScreens.CreativeMode.Knot = new Knot (file);
+					NextState = GameScreens.CreativeMode;
+					//} else {
+					//	Console.WriteLine ("File is invalid: " + knotInfo);
+					//}
+				};
+				string name = meta.Name.Length > 0 ? meta.Name : filename;
 
-			MenuItemInfo info = new MenuItemInfo (text: name, onClick: LoadFile);
-			menu.AddButton (info);
+				MenuItemInfo info = new MenuItemInfo (text: name, onClick: LoadFile);
+				menu.AddButton (info);
+			}
 		}
 
 		private void AddDefaultKnots ()

@@ -7,6 +7,8 @@ public interface IKnotIO :
     + CountEdges : int
     // 
     + Name : string
+    // 
+    + Hash : string
   Methods:
     // 
     + Save (Knot knot)

@@ -35,6 +35,10 @@ namespace Knot3.KnotData
 			get { return parser.Name; }
 		}
 
+		public string Hash {
+			get { return parser.Hash; }
+		}
+
 		public void Save (Knot knot)
 		{
 			Console.WriteLine ("KnotFileIO.Save(" + knot + ")");
