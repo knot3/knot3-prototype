@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Knot3/Knot3/KnotData/KnotFileIO.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Knot3/Knot3/CreativeMode/CreativeModeScreen.cs">
     <Files>
       <File FileName="Knot3/Knot3/KnotData/KnotFileIO.cs" Line="26" Column="1" />
       <File FileName="Knot3/Knot3/KnotData/KnotStringIO.cs" Line="51" Column="1" />
@@ -13,6 +13,7 @@
       <File FileName="Knot3/Knot3/KnotData/FileIO.cs" Line="5" Column="1" />
       <File FileName="Knot3/Knot3/CreativeMode/CreativeModeScreen.cs" Line="219" Column="22" />
       <File FileName="Knot3/Knot3/UserInterface/ConfirmDialog.cs" Line="42" Column="6" />
+      <File FileName="Knot3/Knot3/GameObjects/ModelRenderer.cs" Line="129" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
