@@ -1,0 +1,7 @@
+// 
+public static class StringExtensions : 
+  Attributes:
+  Methods:
+    // 
+    + ToMD5Hash (this string TextToHash) : string static
+

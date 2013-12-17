@@ -1,0 +1,24 @@
+// 
+public class FileIndex : 
+  Attributes:
+    // 
+    - hashes : HashSet<string>
+    // 
+    - filename : string
+  Methods:
+    // 
+    + FileIndex (string filename)
+    // 
+    + Add (string hash)
+    // 
+    + Remove (string hash)
+    // 
+    + Contains (string hash) : bool
+    // 
+    - Save ()
+// 
+public static class StringExtensions : 
+  Attributes:
+  Methods:
+    // 
+    + ToMD5Hash (this string TextToHash) : string static

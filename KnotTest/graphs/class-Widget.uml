@@ -127,6 +127,8 @@ public class ConfirmDialog : Dialog
     // 
     # Text : string[]
     // 
+    # CanClose : bool
+    // 
     # OnYesClick : Action
     // 
     # OnNoClick : Action
@@ -199,6 +201,8 @@ public class KnotSaveConfirmDialog : TextInputDialog
 // 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
+    # CanClose : bool
     // 
     # Text : string[]
   Methods:
@@ -675,6 +679,8 @@ public class ConfirmDialog : Dialog
     // 
     # Text : string[]
     // 
+    # CanClose : bool
+    // 
     # OnYesClick : Action
     // 
     # OnNoClick : Action
@@ -747,6 +753,8 @@ public class KnotSaveConfirmDialog : TextInputDialog
 // 
 public class ConfirmDialog : Dialog
   Attributes:
+    // 
+    # CanClose : bool
     // 
     # Text : string[]
   Methods:

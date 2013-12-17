@@ -1,0 +1,8 @@
+// 
+public static class FileUtility : 
+  Attributes:
+  Methods:
+    // 
+    + GetHash (string filename) : string static
+    // 
+    + ConvertToFilename (string humanReadableName) : string static

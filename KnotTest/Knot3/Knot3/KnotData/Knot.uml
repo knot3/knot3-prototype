@@ -1,17 +1,19 @@
 // 
-public struct KnotMetaData : 
+public class KnotMetaData : 
   Attributes:
     // 
-    + File : IKnotIO
+    - name : string
+    // 
+    + CountEdges : Func<int>
+    // 
+    + Format : IKnotIO
+    // 
+    + Filename : string
     // 
     + Name : string
-    // 
-    + CountEdges : int
   Methods:
     // 
-    + KnotMetaData (string name, int countEdges, IKnotIO file)
-    // 
-    + KnotMetaData (IKnotIO file)
+    + KnotMetaData (string name, Func<int> countEdges, IKnotIO format, string filename)
     // 
     + ToString () : string override
 // 
@@ -20,11 +22,11 @@ public class Knot : IEnumerable<Edge>, ICloneable
     // 
     + Name : string
     // 
+    + MetaData : KnotMetaData
+    // 
     + SelectedEdges : IEnumerable<Edge>
     // 
     - edges : Circle<Edge>
-    // 
-    - file : IKnotIO
     // 
     - selectedEdges : List<Edge>
     // 
@@ -37,9 +39,7 @@ public class Knot : IEnumerable<Edge>, ICloneable
     // 
     + Knot ()
     // 
-    + Knot (IKnotIO _file)
-    // 
-    + : this (metaData.File) (KnotMetaData metaData) : Knot
+    + Knot (KnotMetaData metaData, IEnumerable<Edge> edges)
     // 
     + Clone () : object
     // 

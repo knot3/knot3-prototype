@@ -1,17 +1,19 @@
 // 
-public struct KnotMetaData : 
+public class KnotMetaData : 
   Attributes:
     // 
-    + CountEdges : int
+    + CountEdges : Func<int>
+    // 
+    + Format : IKnotIO
+    // 
+    + Filename : string
+    // 
+    - name : string
     // 
     + Name : string
-    // 
-    + File : IKnotIO
   Methods:
     // 
-    + KnotMetaData  (string name, int countEdges, IKnotIO file)
-    // 
-    + KnotMetaData  (IKnotIO file)
+    + KnotMetaData  (string name, Func<int> countEdges, IKnotIO format, string filename)
     // 
     + ToString () : string
 

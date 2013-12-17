@@ -1,8 +1,0 @@
-// 
-public class FileIO : 
-  Attributes:
-    // 
-    # Filename : string
-  Methods:
-    // 
-    + ConvertToFilename (string humanReadableName) : string virtual

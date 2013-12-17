@@ -1,16 +1,14 @@
 // 
-public class KnotStringIO : IKnotIO
+public class KnotStringIO : 
   Attributes:
-    // 
-    + Content : string
-    // 
-    - lines : IEnumerable<string>
-    // 
-    + CountEdges : int
     // 
     + Name : string
     // 
-    + Hash : string
+    - edgeLines : IEnumerable<string>
+    // 
+    + Content : string
+    // 
+    + CountEdges : int
     // 
     + Edges : IEnumerable<Edge>
   Methods:
@@ -18,15 +16,3 @@ public class KnotStringIO : IKnotIO
     + KnotStringIO (string content)
     // 
     + KnotStringIO (Knot knot)
-    // 
-    + Save (Knot knot)
-    // 
-    - ToLines (Knot knot) : IEnumerable<string> static
-    // 
-    - DecodeEdge (char c) : Edge static
-    // 
-    - EncodeEdge (Edge edge) : char static
-    // 
-    - EncodeColor (Color c) : String static
-    // 
-    - DecodeColor (string hexString) : Color static

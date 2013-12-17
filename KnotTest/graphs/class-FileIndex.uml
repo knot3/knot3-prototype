@@ -1,0 +1,18 @@
+// 
+public class FileIndex : 
+  Attributes:
+    // 
+    - filename : string
+    // 
+    - hashes : HashSet<string>
+  Methods:
+    // 
+    + FileIndex  (string filename)
+    // 
+    + Contains (string hash) : bool
+    // 
+    + Remove  (string hash)
+    - Save ()
+    // 
+    + Add  (string hash)
+

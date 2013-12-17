@@ -4,6 +4,8 @@ public class ConfirmDialog : Dialog
     // 
     # Text : string[]
     // 
+    # CanClose : bool
+    // 
     # OnYesClick : Action
     // 
     # OnNoClick : Action

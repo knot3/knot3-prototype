@@ -1,14 +1,10 @@
 // 
 public interface IKnotIO : 
   Attributes:
-    // 
-    + Edges : IEnumerable<Edge>
-    // 
-    + CountEdges : int
-    // 
-    + Name : string
-    // 
-    + Hash : string
   Methods:
+    // 
+    + Load (string filename) : Knot
+    // 
+    + LoadMetaData (string filename) : KnotMetaData
     // 
     + Save (Knot knot)

@@ -7,6 +7,8 @@ public class LoadSavegameScreen : MenuScreen
     - spriteBatch : SpriteBatch
     // 
     - fileIndex : FileIndex
+    // 
+    - fileFormat : IKnotIO
   Methods:
     // 
     + LoadSavegameScreen (Core.Game game)

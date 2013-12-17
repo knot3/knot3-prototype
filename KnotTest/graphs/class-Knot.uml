@@ -4,13 +4,13 @@ public class Knot : IEnumerable<Edge>, ICloneable
     // 
     - edges : Circle<Edge>
     // 
-    - file : IKnotIO
-    // 
     - selectedEdges : List<Edge>
     // 
     + EdgesChanged : Action
     // 
     + SelectionChanged : Action
+    // 
+    + MetaData : KnotMetaData
     // 
     - lastSelected : Circle<Edge>
     // 
@@ -23,8 +23,7 @@ public class Knot : IEnumerable<Edge>, ICloneable
     // 
     + GetEnumerator () : IEnumerator<Edge>
     // 
-    + Knot  (IKnotIO _file)
-    + Knot (KnotMetaData metaData) : this (metaData.File)
+    + Knot  (KnotMetaData metaData, IEnumerable<Edge> edges)
     + Knot ()
     // 
     + IsSelected (Edge edge) : bool

@@ -2,6 +2,8 @@
 public class ConfirmDialog : Dialog
   Attributes:
     // 
+    # CanClose : bool
+    // 
     # Text : string[]
   Methods:
     // 

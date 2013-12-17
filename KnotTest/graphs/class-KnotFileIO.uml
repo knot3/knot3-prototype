@@ -1,60 +1,24 @@
 // 
-public class KnotFileIO : FileIO, IKnotIO
+public class KnotFileIO : IKnotIO
   Attributes:
-    // 
-    + CountEdges : int
-    // 
-    + Hash : string
-    // 
-    + Name : string
-    // 
-    - parser : KnotStringIO
-    // 
-    + Edges : IEnumerable<Edge>
-    // 
     + FileExtensions : string[] static
   Methods:
     // 
-    + KnotFileIO  (Knot knot)
+    + LoadMetaData (string filename) : KnotMetaData
+    // 
+    + Load (string filename) : Knot
+    + ToString () : string
     // 
     + Save  (Knot knot)
-    // 
-    + KnotFileIO  (string filename)
-    // 
-    + ConvertToFilename (string humanReadableName) : string
-    // 
-    + ToString () : string
-
-// 
-public class FileIO : 
-  Attributes:
-    // 
-    # Filename : string
-  Methods:
-    // 
-    + ConvertToFilename (string humanReadableName) : string virtual
 
 // 
 public interface IKnotIO : 
   Attributes:
-    // 
-    + Edges : IEnumerable<Edge>
-    // 
-    + CountEdges : int
-    // 
-    + Name : string
-    // 
-    + Hash : string
   Methods:
+    // 
+    + Load (string filename) : Knot
+    // 
+    + LoadMetaData (string filename) : KnotMetaData
     // 
     + Save  (Knot knot)
-
-// 
-public class FileIO : 
-  Attributes:
-    // 
-    # Filename : string
-  Methods:
-    // 
-    + ConvertToFilename (string humanReadableName) : string virtual
 

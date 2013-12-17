@@ -171,20 +171,21 @@
 </g>
 <!-- Box_ConfirmDialog -->
 <g id="node6" class="node"><title>Box_ConfirmDialog</title>
-<polygon fill="#fcfcda" stroke="black" points="1068.5,-330 1068.5,-424 1377.5,-424 1377.5,-330 1068.5,-330"/>
-<text text-anchor="middle" x="1223" y="-412.8" font-family="Arial" font-size="8.00">ConfirmDialog</text>
-<polyline fill="none" stroke="black" points="1068.5,-406 1377.5,-406 "/>
-<text text-anchor="start" x="1076.5" y="-394.8" font-family="Arial" font-size="8.00"># Text : string[]</text>
-<polyline fill="none" stroke="black" points="1068.5,-388 1377.5,-388 "/>
-<text text-anchor="start" x="1076.5" y="-376.8" font-family="Arial" font-size="8.00"># OnYesClick () : Action</text>
-<text text-anchor="start" x="1076.5" y="-366.8" font-family="Arial" font-size="8.00"># OnCancelClick () : Action</text>
-<text text-anchor="start" x="1076.5" y="-356.8" font-family="Arial" font-size="8.00"># OnNoClick () : Action</text>
-<text text-anchor="start" x="1076.5" y="-346.8" font-family="Arial" font-size="8.00"># DrawDialog (GameTime time)</text>
-<text text-anchor="start" x="1076.5" y="-336.8" font-family="Arial" font-size="8.00">+ ConfirmDialog (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)</text>
+<polygon fill="#fcfcda" stroke="black" points="1068.5,-325 1068.5,-429 1377.5,-429 1377.5,-325 1068.5,-325"/>
+<text text-anchor="middle" x="1223" y="-417.8" font-family="Arial" font-size="8.00">ConfirmDialog</text>
+<polyline fill="none" stroke="black" points="1068.5,-411 1377.5,-411 "/>
+<text text-anchor="start" x="1076.5" y="-399.8" font-family="Arial" font-size="8.00"># CanClose : bool</text>
+<text text-anchor="start" x="1076.5" y="-389.8" font-family="Arial" font-size="8.00"># Text : string[]</text>
+<polyline fill="none" stroke="black" points="1068.5,-383 1377.5,-383 "/>
+<text text-anchor="start" x="1076.5" y="-371.8" font-family="Arial" font-size="8.00"># OnYesClick () : Action</text>
+<text text-anchor="start" x="1076.5" y="-361.8" font-family="Arial" font-size="8.00"># OnCancelClick () : Action</text>
+<text text-anchor="start" x="1076.5" y="-351.8" font-family="Arial" font-size="8.00"># OnNoClick () : Action</text>
+<text text-anchor="start" x="1076.5" y="-341.8" font-family="Arial" font-size="8.00"># DrawDialog (GameTime time)</text>
+<text text-anchor="start" x="1076.5" y="-331.8" font-family="Arial" font-size="8.00">+ ConfirmDialog (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)</text>
 </g>
 <!-- Box_Dialog&#45;&gt;Box_ConfirmDialog -->
 <g id="edge16" class="edge"><title>Box_Dialog&#45;&gt;Box_ConfirmDialog</title>
-<path fill="none" stroke="midnightblue" d="M1223,-541.592C1223,-502.566 1223,-457.362 1223,-424.212"/>
+<path fill="none" stroke="midnightblue" d="M1223,-541.587C1223,-504.475 1223,-461.776 1223,-429.17"/>
 <polygon fill="none" stroke="midnightblue" points="1219.5,-541.893 1223,-551.893 1226.5,-541.893 1219.5,-541.893"/>
 </g>
 <!-- Box_TextInputDialog -->
@@ -201,8 +202,8 @@
 </g>
 <!-- Box_ConfirmDialog&#45;&gt;Box_TextInputDialog -->
 <g id="edge18" class="edge"><title>Box_ConfirmDialog&#45;&gt;Box_TextInputDialog</title>
-<path fill="none" stroke="midnightblue" d="M1223,-319.491C1223,-285.437 1223,-243.045 1223,-212.11"/>
-<polygon fill="none" stroke="midnightblue" points="1219.5,-319.769 1223,-329.769 1226.5,-319.77 1219.5,-319.769"/>
+<path fill="none" stroke="midnightblue" d="M1223,-314.708C1223,-281.543 1223,-241.631 1223,-212.131"/>
+<polygon fill="none" stroke="midnightblue" points="1219.5,-314.765 1223,-324.765 1226.5,-314.765 1219.5,-314.765"/>
 </g>
 <!-- Box_KnotSaveConfirmDialog -->
 <g id="node8" class="node"><title>Box_KnotSaveConfirmDialog</title>

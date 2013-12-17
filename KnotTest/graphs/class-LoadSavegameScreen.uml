@@ -4,6 +4,8 @@ public class LoadSavegameScreen : MenuScreen
     // 
     - fileIndex : FileIndex
     // 
+    - fileFormat : IKnotIO
+    // 
     - spriteBatch : SpriteBatch
     // 
     - menu : VerticalMenu
