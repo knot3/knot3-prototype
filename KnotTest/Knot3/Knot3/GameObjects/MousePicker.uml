@@ -1,9 +1,0 @@
-public class MousePicker : GameScreenComponent
-  Attributes:
-    - World : World
-    - lastRayCheck : double
-    - lastMousePosition : Vector2
-  Methods:
-    + MousePicker (GameScreen screen, World world)
-    + Update (GameTime time) override
-    + UpdateMouseRay (GameTime time)

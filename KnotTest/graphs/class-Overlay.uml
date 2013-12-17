@@ -17,9 +17,7 @@ public class Overlay : DrawableGameScreenComponent
     // 
     - font : SpriteFont
   Methods:
-    // 
     - profiler () : Hashtable static
-    // 
     + Profiler () : HashtableWrapper static
     // 
     - DrawFPS  (GameTime time)

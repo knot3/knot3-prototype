@@ -1,11 +1,8 @@
-// 
 public class ClickHandler : GameStateComponent
   Attributes:
     - ClickEventComponent : class
   Methods:
-    // 
     + ClickHandler  (GameState state)
-    // 
     + Update  (GameTime gameTime)
 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent

@@ -156,7 +156,6 @@ public class PipeModel : GameModel
     // 
     + Info : PipeModelInfo
   Methods:
-    // 
     + OnDataChange () : Action
     // 
     + PipeModel  (GameScreen screen, PipeModelInfo info)

@@ -55,13 +55,11 @@ public class GameObjectInfo : IEquatable<GameObjectInfo>
     + Position : Vector3
   Methods:
     + GameObjectInfo ()
-    // 
     + operator (GameObjectInfo o1, GameObjectInfo o2) : bool static
     // 
     + Equals (Object obj) : bool
     // 
     + GetHashCode () : int
-    // 
     + operator ! (GameObjectInfo o1, GameObjectInfo o2) : bool static
     // 
     + Equals (GameObjectInfo other) : bool virtual

@@ -2,15 +2,17 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Knot3/Knot3/KnotData/KnotFileIO.cs">
     <Files>
-      <File FileName="Knot3/Knot3/KnotData/KnotFileIO.cs" Line="50" Column="70" />
-      <File FileName="Knot3/Knot3/KnotData/KnotStringIO.cs" Line="9" Column="27" />
-      <File FileName="Knot3/Knot3/KnotData/Knot.cs" Line="27" Column="71" />
-      <File FileName="Knot3/Knot3/KnotData/FileUtility.cs" Line="7" Column="16" />
-      <File FileName="Knot3/Knot3/KnotData/IKnotIO.cs" Line="7" Column="3" />
-      <File FileName="Knot3/Knot3/CreativeMode/LoadSavegameScreen.cs" Line="81" Column="22" />
+      <File FileName="Knot3/Knot3/KnotData/KnotFileIO.cs" Line="26" Column="1" />
+      <File FileName="Knot3/Knot3/KnotData/KnotStringIO.cs" Line="51" Column="1" />
+      <File FileName="Knot3/Knot3/KnotData/Knot.cs" Line="59" Column="34" />
+      <File FileName="Knot3/Knot3/KnotData/FileUtility.cs" Line="9" Column="17" />
+      <File FileName="Knot3/Knot3/KnotData/IKnotIO.cs" Line="10" Column="46" />
+      <File FileName="Knot3/Knot3/CreativeMode/LoadSavegameScreen.cs" Line="105" Column="29" />
       <File FileName="Knot3/Knot3/KnotData/FileIndex.cs" Line="21" Column="24" />
       <File FileName="Knot3/Knot3/Utilities/Files.cs" Line="11" Column="4" />
-      <File FileName="Knot3/Knot3/KnotData/FileIO.cs" Line="5" Column="2" />
+      <File FileName="Knot3/Knot3/KnotData/FileIO.cs" Line="5" Column="1" />
+      <File FileName="Knot3/Knot3/CreativeMode/CreativeModeScreen.cs" Line="219" Column="22" />
+      <File FileName="Knot3/Knot3/UserInterface/ConfirmDialog.cs" Line="42" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

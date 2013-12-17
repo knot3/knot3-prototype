@@ -1,18 +1,11 @@
-// 
 public class PipeColoring : GameScreenComponent, IKeyEventListener
   Attributes:
-    // 
     + ValidKeys : List<Keys>
-    // 
     + Knot : Knot
-    // 
     + IsKeyEventEnabled : bool
   Methods:
-    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
-    // 
     + PipeColoring  (GameScreen screen)
-    // 
     + Update  (GameTime gameTime)
 
 // 

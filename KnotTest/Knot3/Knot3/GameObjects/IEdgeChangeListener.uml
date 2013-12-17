@@ -1,6 +1,0 @@
-// 
-public interface IEdgeChangeListener : 
-  Attributes:
-  Methods:
-    // 
-    + OnEdgesChanged (EdgeList edges)

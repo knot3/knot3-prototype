@@ -6,7 +6,6 @@ public class DistinctOptionInfo : OptionInfo
     // 
     + Value : string
   Methods:
-    // 
     + DistinctOptionInfo  (string section, string name, string defaultValue, string[] validValues, Action<string> onChange)
 
 // 
@@ -44,7 +43,6 @@ public class OptionInfo :
     // 
     + Value : string virtual
   Methods:
-    // 
     + OptionInfo  (string section, string name, string defaultValue, Action<string> onChange)
 
 // 
@@ -66,6 +64,5 @@ public class BooleanOptionInfo : DistinctOptionInfo
     // 
     + ValidValues : string[] static
   Methods:
-    // 
     + BooleanOptionInfo  (string section, string name, bool defaultValue, Action<bool> onChange)
 

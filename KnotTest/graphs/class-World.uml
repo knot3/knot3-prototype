@@ -20,7 +20,6 @@ public class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
     // 
     + Camera : Camera
   Methods:
-    // 
     + SelectionChanged (o) : Action<IGameObject>
     // 
     - IEnumerable.GetEnumerator () : IEnumerator

@@ -6,7 +6,6 @@ public class RenderEffectStack :
     // 
     + Current : IRenderEffect
   Methods:
-    // 
     - activeEffects () : Stack<IRenderEffect>
     // 
     + RenderEffectStack  (IRenderEffect defaultEffect)

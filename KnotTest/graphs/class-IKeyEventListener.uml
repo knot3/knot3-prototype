@@ -12,65 +12,6 @@ public interface IKeyEventListener :
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
 
 // 
-public abstract class Input : GameScreenComponent, IKeyEventListener
-  Attributes:
-    // 
-    # FullscreenToggled : bool static
-    // 
-    + PreviousKeyboardState : KeyboardState static
-    // 
-    + PreviousMouseState : MouseState static
-    // 
-    - LeftButtonClickTimer : double static
-    // 
-    - RightButtonClickTimer : double static
-    // 
-    - PreviousClickMouseState : MouseState static
-    // 
-    + LeftButton : ClickState static
-    // 
-    + RightButton : ClickState static
-    // 
-    + GrabMouseMovement : bool
-    // 
-    + CurrentInputAction : InputAction
-    // 
-    + WASDMode : WASDMode
-    // 
-    + ValidKeys : List<Keys>
-    // 
-    + IsKeyEventEnabled : bool
-    // 
-    + MouseState : MouseState static
-    // 
-    + KeyboardState : KeyboardState static
-  Methods:
-    // 
-    + Input  (GameScreen screen)
-    // 
-    + Update  (GameTime time) override
-    // 
-    # UpdateKeys  (GameTime time) virtual
-    // 
-    # UpdateMouse  (GameTime time) virtual
-    // 
-    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
-
-// 
-public class MenuScreenInput : Input
-  Attributes:
-  Methods:
-    // 
-    + MenuScreenInput  (GameScreen screen)
-
-// 
-public class MenuScreenInput : Input
-  Attributes:
-  Methods:
-    // 
-    + MenuScreenInput  (GameState state)
-
-// 
 public class KnotInputHandler : GameScreenComponent, IKeyEventListener
   Attributes:
     // 
@@ -109,23 +50,6 @@ public class EdgeColoring : GameScreenComponent, IKeyEventListener
   Methods:
     // 
     + EdgeColoring  (GameScreen screen)
-    // 
-    + Update  (GameTime time) override
-    // 
-    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
-
-// 
-public class PipeColoring : GameScreenComponent, IKeyEventListener
-  Attributes:
-    // 
-    + Knot : Knot
-    // 
-    + ValidKeys : List<Keys>
-    // 
-    + IsKeyEventEnabled : bool
-  Methods:
-    // 
-    + PipeColoring  (GameScreen screen)
     // 
     + Update  (GameTime time) override
     // 
@@ -210,7 +134,6 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
-    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -218,7 +141,6 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
-    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
@@ -260,63 +182,33 @@ public class TextInput : Widget, IKeyEventListener
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
 
-// 
 public abstract class Input : GameStateComponent, IKeyEventListener
   Attributes:
-    // 
     - PreviousClickMouseState : MouseState static
-    // 
     - LeftButtonClickTimer : double static
-    // 
     - RightButtonClickTimer : double static
-    // 
     + GrabMouseMovement : bool
-    // 
     + LeftButton : ClickState static
-    // 
     + RightButton : ClickState static
-    // 
     + PreviousKeyboardState : KeyboardState static
-    // 
     + MouseState : MouseState static
-    // 
     + PreviousMouseState : MouseState static
-    // 
     # FullscreenToggled : bool static
-    // 
     + CurrentInputAction : InputAction
-    // 
     + ValidKeys : List<Keys>
-    // 
     + WASDMode : WASDMode
-    // 
     + IsKeyEventEnabled : bool
-    // 
     + KeyboardState : KeyboardState static
   Methods:
-    // 
     # UpdateMouse  (GameTime gameTime) virtual
-    // 
     + Update  (GameTime gameTime)
-    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
-    // 
     # UpdateKeys  (GameTime gameTime) virtual
-    // 
     + Input  (GameState state)
 
-// 
 public class MenuScreenInput : Input
   Attributes:
   Methods:
-    // 
-    + MenuScreenInput  (GameScreen screen)
-
-// 
-public class MenuScreenInput : Input
-  Attributes:
-  Methods:
-    // 
     + MenuScreenInput  (GameState state)
 
 // 
@@ -362,21 +254,14 @@ public class EdgeColoring : GameScreenComponent, IKeyEventListener
     // 
     + Update  (GameTime time)
 
-// 
 public class PipeColoring : GameScreenComponent, IKeyEventListener
   Attributes:
-    // 
     + ValidKeys : List<Keys>
-    // 
     + Knot : Knot
-    // 
     + IsKeyEventEnabled : bool
   Methods:
-    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
-    // 
     + PipeColoring  (GameScreen screen)
-    // 
     + Update  (GameTime gameTime)
 
 // 
@@ -457,7 +342,6 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
-    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -465,7 +349,6 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
-    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>

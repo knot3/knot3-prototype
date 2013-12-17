@@ -14,7 +14,6 @@ public class Game : Microsoft.Xna.Framework.Game
     // 
     + VSync : bool
   Methods:
-    // 
     + DefaultSize (1280, 720) : Vector2 static
     // 
     # Draw  (GameTime time)

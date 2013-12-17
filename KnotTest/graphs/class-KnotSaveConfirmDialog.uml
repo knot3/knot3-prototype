@@ -345,11 +345,8 @@ public class ConfirmDialog : Dialog
     // 
     # Text : string[]
   Methods:
-    // 
     # OnYesClick () : Action
-    // 
     # OnCancelClick () : Action
-    // 
     # OnNoClick () : Action
     // 
     # DrawDialog  (GameTime time)
@@ -994,11 +991,8 @@ public class ConfirmDialog : Dialog
     // 
     # Text : string[]
   Methods:
-    // 
     # OnYesClick () : Action
-    // 
     # OnCancelClick () : Action
-    // 
     # OnNoClick () : Action
     // 
     # DrawDialog  (GameTime time)

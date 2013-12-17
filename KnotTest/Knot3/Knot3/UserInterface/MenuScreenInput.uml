@@ -1,6 +1,0 @@
-// 
-public class MenuScreenInput : Input
-  Attributes:
-  Methods:
-    // 
-    + MenuScreenInput (GameScreen screen)

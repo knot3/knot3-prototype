@@ -10,7 +10,6 @@ public class ShadowGameModel : ShadowGameObject
   Methods:
     // 
     + ShadowGameModel  (GameScreen screen, GameModel model)
-    // 
     + Draw  (GameTime gameTime)
 
 // 
@@ -61,50 +60,6 @@ public interface IGameObject :
 public class ShadowGameObject : IGameObject
   Attributes:
     // 
-    # screen : GameScreen
-    // 
-    - Obj : IGameObject
-    // 
-    + World : World
-    // 
-    + Info : GameObjectInfo
-    // 
-    + ShadowPosition : Vector3
-    // 
-    + OriginalPosition : Vector3
-  Methods:
-    // 
-    + ShadowGameObject  (GameScreen screen, IGameObject obj)
-    // 
-    + Update  (GameTime time) virtual
-    // 
-    + Draw  (GameTime time) virtual
-    // 
-    + Intersects (Ray ray) : GameObjectDistance
-    // 
-    + Center () : Vector3
-
-// 
-public interface IGameObject : 
-  Attributes:
-    // 
-    + Info : GameObjectInfo
-    // 
-    + World : World
-  Methods:
-    // 
-    + Draw  (GameTime time)
-    // 
-    + Update  (GameTime time)
-    // 
-    + Intersects (Ray ray) : GameObjectDistance
-    // 
-    + Center () : Vector3
-
-// 
-public class ShadowGameObject : IGameObject
-  Attributes:
-    // 
     - Obj : IGameObject
     // 
     + Info : GameObjectInfo
@@ -161,7 +116,6 @@ public class ShadowGameObject : IGameObject
     // 
     + ShadowPosition : Vector3
   Methods:
-    // 
     + Update  (GameTime gameTime) virtual
     // 
     + Intersects (Ray ray) : GameObjectDistance
@@ -169,7 +123,6 @@ public class ShadowGameObject : IGameObject
     + ShadowGameObject  (GameScreen screen, IGameObject obj)
     // 
     + Center () : Vector3
-    // 
     + Draw  (GameTime gameTime) virtual
 
 // 

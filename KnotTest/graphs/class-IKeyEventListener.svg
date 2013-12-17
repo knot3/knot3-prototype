@@ -11,270 +11,265 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-544 1833,-544 1833,5 -4,5"/>
 <!-- Box_IKeyEventListener -->
 <g id="node1" class="node"><title>Box_IKeyEventListener</title>
-<polygon fill="#dafcda" stroke="black" points="731.5,-465 731.5,-539 996.5,-539 996.5,-465 731.5,-465"/>
-<text text-anchor="middle" x="864" y="-527.8" font-family="Arial" font-size="8.00">IKeyEventListener</text>
-<polyline fill="none" stroke="black" points="731.5,-521 996.5,-521 "/>
-<text text-anchor="start" x="739.5" y="-509.8" font-family="Arial" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
-<text text-anchor="start" x="739.5" y="-499.8" font-family="Arial" font-size="8.00">+ Index : DisplayLayer</text>
-<text text-anchor="start" x="739.5" y="-489.8" font-family="Arial" font-size="8.00">+ IsKeyEventEnabled : bool</text>
-<polyline fill="none" stroke="black" points="731.5,-483 996.5,-483 "/>
-<text text-anchor="start" x="739.5" y="-471.8" font-family="Arial" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime time)</text>
-</g>
-<!-- Box_Input -->
-<g id="node2" class="node"><title>Box_Input</title>
-<polygon fill="#fcfcda" stroke="black" points="-0.5,-193 -0.5,-427 286.5,-427 286.5,-193 -0.5,-193"/>
-<text text-anchor="middle" x="143" y="-415.8" font-family="Arial" font-size="8.00">Input</text>
-<polyline fill="none" stroke="black" points="-0.5,-409 286.5,-409 "/>
-<text text-anchor="start" x="7.5" y="-397.8" font-family="Arial" font-size="8.00">&#45; PreviousClickMouseState : MouseState static</text>
-<text text-anchor="start" x="7.5" y="-387.8" font-family="Arial" font-size="8.00">&#45; LeftButtonClickTimer : double static</text>
-<text text-anchor="start" x="7.5" y="-377.8" font-family="Arial" font-size="8.00">&#45; RightButtonClickTimer : double static</text>
-<text text-anchor="start" x="7.5" y="-367.8" font-family="Arial" font-size="8.00">+ GrabMouseMovement : bool</text>
-<text text-anchor="start" x="7.5" y="-357.8" font-family="Arial" font-size="8.00">+ LeftButton : ClickState static</text>
-<text text-anchor="start" x="7.5" y="-347.8" font-family="Arial" font-size="8.00">+ RightButton : ClickState static</text>
-<text text-anchor="start" x="7.5" y="-337.8" font-family="Arial" font-size="8.00">+ PreviousKeyboardState : KeyboardState static</text>
-<text text-anchor="start" x="7.5" y="-327.8" font-family="Arial" font-size="8.00">+ MouseState : MouseState static</text>
-<text text-anchor="start" x="7.5" y="-317.8" font-family="Arial" font-size="8.00">+ PreviousMouseState : MouseState static</text>
-<text text-anchor="start" x="7.5" y="-307.8" font-family="Arial" font-size="8.00"># FullscreenToggled : bool static</text>
-<text text-anchor="start" x="7.5" y="-297.8" font-family="Arial" font-size="8.00">+ CurrentInputAction : InputAction</text>
-<text text-anchor="start" x="7.5" y="-287.8" font-family="Arial" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
-<text text-anchor="start" x="7.5" y="-277.8" font-family="Arial" font-size="8.00">+ WASDMode : WASDMode</text>
-<text text-anchor="start" x="7.5" y="-267.8" font-family="Arial" font-size="8.00">+ IsKeyEventEnabled : bool</text>
-<text text-anchor="start" x="7.5" y="-257.8" font-family="Arial" font-size="8.00">+ KeyboardState : KeyboardState static</text>
-<polyline fill="none" stroke="black" points="-0.5,-251 286.5,-251 "/>
-<text text-anchor="start" x="7.5" y="-239.8" font-family="Arial" font-size="8.00"># UpdateMouse (GameTime gameTime) virtual</text>
-<text text-anchor="start" x="7.5" y="-229.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime)</text>
-<text text-anchor="start" x="7.5" y="-219.8" font-family="Arial" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime gameTime)</text>
-<text text-anchor="start" x="7.5" y="-209.8" font-family="Arial" font-size="8.00"># UpdateKeys (GameTime gameTime) virtual</text>
-<text text-anchor="start" x="7.5" y="-199.8" font-family="Arial" font-size="8.00">+ Input (GameState state)</text>
-</g>
-<!-- Box_IKeyEventListener&#45;&gt;Box_Input -->
-<g id="edge4" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_Input</title>
-<path fill="none" stroke="midnightblue" d="M721.302,-485.335C559.231,-466.125 314.548,-436.144 295,-428 292.225,-426.844 289.456,-425.623 286.698,-424.344"/>
-<polygon fill="none" stroke="midnightblue" points="721.028,-488.827 731.37,-486.527 721.851,-481.876 721.028,-488.827"/>
+<polygon fill="#dafcda" stroke="black" points="606.5,-465 606.5,-539 871.5,-539 871.5,-465 606.5,-465"/>
+<text text-anchor="middle" x="739" y="-527.8" font-family="Arial" font-size="8.00">IKeyEventListener</text>
+<polyline fill="none" stroke="black" points="606.5,-521 871.5,-521 "/>
+<text text-anchor="start" x="614.5" y="-509.8" font-family="Arial" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
+<text text-anchor="start" x="614.5" y="-499.8" font-family="Arial" font-size="8.00">+ Index : DisplayLayer</text>
+<text text-anchor="start" x="614.5" y="-489.8" font-family="Arial" font-size="8.00">+ IsKeyEventEnabled : bool</text>
+<polyline fill="none" stroke="black" points="606.5,-483 871.5,-483 "/>
+<text text-anchor="start" x="614.5" y="-471.8" font-family="Arial" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime time)</text>
 </g>
 <!-- Box_KnotInputHandler -->
-<g id="node4" class="node"><title>Box_KnotInputHandler</title>
-<polygon fill="#fcfcda" stroke="black" points="303.5,-238 303.5,-382 568.5,-382 568.5,-238 303.5,-238"/>
-<text text-anchor="middle" x="436" y="-370.8" font-family="Arial" font-size="8.00">KnotInputHandler</text>
-<polyline fill="none" stroke="black" points="303.5,-364 568.5,-364 "/>
-<text text-anchor="start" x="311.5" y="-352.8" font-family="Arial" font-size="8.00">&#45; wasdSpeed : int</text>
-<text text-anchor="start" x="311.5" y="-342.8" font-family="Arial" font-size="8.00">&#45; camera : Camera</text>
-<text text-anchor="start" x="311.5" y="-332.8" font-family="Arial" font-size="8.00">&#45; World : World</text>
-<text text-anchor="start" x="311.5" y="-322.8" font-family="Arial" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
-<text text-anchor="start" x="311.5" y="-312.8" font-family="Arial" font-size="8.00">+ IsKeyEventEnabled : bool</text>
-<polyline fill="none" stroke="black" points="303.5,-306 568.5,-306 "/>
-<text text-anchor="start" x="311.5" y="-294.8" font-family="Arial" font-size="8.00"># UpdateMouse (GameTime time)</text>
-<text text-anchor="start" x="311.5" y="-284.8" font-family="Arial" font-size="8.00">+ KnotInputHandler (GameScreen screen, World world)</text>
-<text text-anchor="start" x="311.5" y="-274.8" font-family="Arial" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime time)</text>
-<text text-anchor="start" x="311.5" y="-264.8" font-family="Arial" font-size="8.00">&#45; ResetMousePosition ()</text>
-<text text-anchor="start" x="311.5" y="-254.8" font-family="Arial" font-size="8.00"># UpdateKeys (GameTime time)</text>
-<text text-anchor="start" x="311.5" y="-244.8" font-family="Arial" font-size="8.00">+ Update (GameTime time)</text>
+<g id="node2" class="node"><title>Box_KnotInputHandler</title>
+<polygon fill="#fcfcda" stroke="black" points="-0.5,-238 -0.5,-382 264.5,-382 264.5,-238 -0.5,-238"/>
+<text text-anchor="middle" x="132" y="-370.8" font-family="Arial" font-size="8.00">KnotInputHandler</text>
+<polyline fill="none" stroke="black" points="-0.5,-364 264.5,-364 "/>
+<text text-anchor="start" x="7.5" y="-352.8" font-family="Arial" font-size="8.00">&#45; wasdSpeed : int</text>
+<text text-anchor="start" x="7.5" y="-342.8" font-family="Arial" font-size="8.00">&#45; camera : Camera</text>
+<text text-anchor="start" x="7.5" y="-332.8" font-family="Arial" font-size="8.00">&#45; World : World</text>
+<text text-anchor="start" x="7.5" y="-322.8" font-family="Arial" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
+<text text-anchor="start" x="7.5" y="-312.8" font-family="Arial" font-size="8.00">+ IsKeyEventEnabled : bool</text>
+<polyline fill="none" stroke="black" points="-0.5,-306 264.5,-306 "/>
+<text text-anchor="start" x="7.5" y="-294.8" font-family="Arial" font-size="8.00"># UpdateMouse (GameTime time)</text>
+<text text-anchor="start" x="7.5" y="-284.8" font-family="Arial" font-size="8.00">+ KnotInputHandler (GameScreen screen, World world)</text>
+<text text-anchor="start" x="7.5" y="-274.8" font-family="Arial" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime time)</text>
+<text text-anchor="start" x="7.5" y="-264.8" font-family="Arial" font-size="8.00">&#45; ResetMousePosition ()</text>
+<text text-anchor="start" x="7.5" y="-254.8" font-family="Arial" font-size="8.00"># UpdateKeys (GameTime time)</text>
+<text text-anchor="start" x="7.5" y="-244.8" font-family="Arial" font-size="8.00">+ Update (GameTime time)</text>
 </g>
 <!-- Box_IKeyEventListener&#45;&gt;Box_KnotInputHandler -->
-<g id="edge10" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_KnotInputHandler</title>
-<path fill="none" stroke="midnightblue" d="M721.545,-478.401C673.922,-467.133 621.639,-450.933 577,-428 553.434,-415.893 530.328,-399.233 509.86,-382.244"/>
-<polygon fill="none" stroke="midnightblue" points="720.786,-481.818 731.317,-480.661 722.362,-474.998 720.786,-481.818"/>
+<g id="edge4" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_KnotInputHandler</title>
+<path fill="none" stroke="midnightblue" d="M596.235,-481.211C464.766,-461.776 287.851,-434.76 273,-428 248.16,-416.693 224.185,-399.777 203.267,-382.259"/>
+<polygon fill="none" stroke="midnightblue" points="596.01,-484.716 606.414,-482.714 597.033,-477.791 596.01,-484.716"/>
 </g>
 <!-- Box_EdgeColoring -->
-<g id="node5" class="node"><title>Box_EdgeColoring</title>
-<polygon fill="#fcfcda" stroke="black" points="585.5,-263 585.5,-357 850.5,-357 850.5,-263 585.5,-263"/>
-<text text-anchor="middle" x="718" y="-345.8" font-family="Arial" font-size="8.00">EdgeColoring</text>
-<polyline fill="none" stroke="black" points="585.5,-339 850.5,-339 "/>
-<text text-anchor="start" x="593.5" y="-327.8" font-family="Arial" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
-<text text-anchor="start" x="593.5" y="-317.8" font-family="Arial" font-size="8.00">+ Knot : Knot</text>
-<text text-anchor="start" x="593.5" y="-307.8" font-family="Arial" font-size="8.00">+ IsKeyEventEnabled : bool</text>
-<polyline fill="none" stroke="black" points="585.5,-301 850.5,-301 "/>
-<text text-anchor="start" x="593.5" y="-289.8" font-family="Arial" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime time)</text>
-<text text-anchor="start" x="593.5" y="-279.8" font-family="Arial" font-size="8.00">+ EdgeColoring (GameScreen screen)</text>
-<text text-anchor="start" x="593.5" y="-269.8" font-family="Arial" font-size="8.00">+ Update (GameTime time)</text>
+<g id="node3" class="node"><title>Box_EdgeColoring</title>
+<polygon fill="#fcfcda" stroke="black" points="281.5,-263 281.5,-357 546.5,-357 546.5,-263 281.5,-263"/>
+<text text-anchor="middle" x="414" y="-345.8" font-family="Arial" font-size="8.00">EdgeColoring</text>
+<polyline fill="none" stroke="black" points="281.5,-339 546.5,-339 "/>
+<text text-anchor="start" x="289.5" y="-327.8" font-family="Arial" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
+<text text-anchor="start" x="289.5" y="-317.8" font-family="Arial" font-size="8.00">+ Knot : Knot</text>
+<text text-anchor="start" x="289.5" y="-307.8" font-family="Arial" font-size="8.00">+ IsKeyEventEnabled : bool</text>
+<polyline fill="none" stroke="black" points="281.5,-301 546.5,-301 "/>
+<text text-anchor="start" x="289.5" y="-289.8" font-family="Arial" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime time)</text>
+<text text-anchor="start" x="289.5" y="-279.8" font-family="Arial" font-size="8.00">+ EdgeColoring (GameScreen screen)</text>
+<text text-anchor="start" x="289.5" y="-269.8" font-family="Arial" font-size="8.00">+ Update (GameTime time)</text>
 </g>
 <!-- Box_IKeyEventListener&#45;&gt;Box_EdgeColoring -->
-<g id="edge14" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_EdgeColoring</title>
-<path fill="none" stroke="midnightblue" d="M829.615,-456.781C806.805,-426.785 776.933,-387.501 753.832,-357.122"/>
-<polygon fill="none" stroke="midnightblue" points="827.011,-459.139 835.85,-464.98 832.583,-454.902 827.011,-459.139"/>
-</g>
-<!-- Box_PipeColoring -->
-<g id="node6" class="node"><title>Box_PipeColoring</title>
-<polygon fill="#fcfcda" stroke="black" points="867.5,-263 867.5,-357 1154.5,-357 1154.5,-263 867.5,-263"/>
-<text text-anchor="middle" x="1011" y="-345.8" font-family="Arial" font-size="8.00">PipeColoring</text>
-<polyline fill="none" stroke="black" points="867.5,-339 1154.5,-339 "/>
-<text text-anchor="start" x="875.5" y="-327.8" font-family="Arial" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
-<text text-anchor="start" x="875.5" y="-317.8" font-family="Arial" font-size="8.00">+ Knot : Knot</text>
-<text text-anchor="start" x="875.5" y="-307.8" font-family="Arial" font-size="8.00">+ IsKeyEventEnabled : bool</text>
-<polyline fill="none" stroke="black" points="867.5,-301 1154.5,-301 "/>
-<text text-anchor="start" x="875.5" y="-289.8" font-family="Arial" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime gameTime)</text>
-<text text-anchor="start" x="875.5" y="-279.8" font-family="Arial" font-size="8.00">+ PipeColoring (GameScreen screen)</text>
-<text text-anchor="start" x="875.5" y="-269.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime)</text>
-</g>
-<!-- Box_IKeyEventListener&#45;&gt;Box_PipeColoring -->
-<g id="edge18" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_PipeColoring</title>
-<path fill="none" stroke="midnightblue" d="M898.62,-456.781C921.586,-426.785 951.663,-387.501 974.922,-357.122"/>
-<polygon fill="none" stroke="midnightblue" points="895.643,-454.913 892.343,-464.98 901.201,-459.168 895.643,-454.913"/>
+<g id="edge8" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_EdgeColoring</title>
+<path fill="none" stroke="midnightblue" d="M620.944,-460.949C598.43,-451.347 575.51,-440.283 555,-428 521.864,-408.155 488.552,-380.708 462.633,-357.279"/>
+<polygon fill="none" stroke="midnightblue" points="619.643,-464.199 630.219,-464.834 622.347,-457.743 619.643,-464.199"/>
 </g>
 <!-- Box_MenuItem -->
-<g id="node7" class="node"><title>Box_MenuItem</title>
-<polygon fill="#fcfcda" stroke="black" points="1171.5,-218 1171.5,-402 1518.5,-402 1518.5,-218 1171.5,-218"/>
-<text text-anchor="middle" x="1345" y="-390.8" font-family="Arial" font-size="8.00">MenuItem</text>
-<polyline fill="none" stroke="black" points="1171.5,-384 1518.5,-384 "/>
-<text text-anchor="start" x="1179.5" y="-372.8" font-family="Arial" font-size="8.00"># spriteBatch : SpriteBatch</text>
-<text text-anchor="start" x="1179.5" y="-362.8" font-family="Arial" font-size="8.00">+ IsMouseEventEnabled : bool</text>
-<text text-anchor="start" x="1179.5" y="-352.8" font-family="Arial" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
-<text text-anchor="start" x="1179.5" y="-342.8" font-family="Arial" font-size="8.00">+ IsKeyEventEnabled : bool</text>
-<text text-anchor="start" x="1179.5" y="-332.8" font-family="Arial" font-size="8.00">+ Info : MenuItemInfo</text>
-<polyline fill="none" stroke="black" points="1171.5,-326 1518.5,-326 "/>
-<text text-anchor="start" x="1179.5" y="-314.8" font-family="Arial" font-size="8.00">+ MenuItem (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)</text>
-<text text-anchor="start" x="1179.5" y="-304.8" font-family="Arial" font-size="8.00">+ Collapse () virtual</text>
-<text text-anchor="start" x="1179.5" y="-294.8" font-family="Arial" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime time)</text>
-<text text-anchor="start" x="1179.5" y="-284.8" font-family="Arial" font-size="8.00">+ OnLeftClick (Vector2 position, ClickState click, GameTime time)</text>
-<text text-anchor="start" x="1179.5" y="-274.8" font-family="Arial" font-size="8.00">+ OnRightClick (Vector2 position, ClickState click, GameTime time)</text>
-<text text-anchor="start" x="1179.5" y="-264.8" font-family="Arial" font-size="8.00">+ MinimumSize (SpriteFont font) : Vector2</text>
-<text text-anchor="start" x="1179.5" y="-254.8" font-family="Arial" font-size="8.00">+ TextPosition (SpriteFont font) : Vector2</text>
-<text text-anchor="start" x="1179.5" y="-244.8" font-family="Arial" font-size="8.00">+ TextPosition (SpriteFont font, Vector2 scale) : Vector2</text>
-<text text-anchor="start" x="1179.5" y="-234.8" font-family="Arial" font-size="8.00">+ Draw (GameTime time)</text>
-<text text-anchor="start" x="1179.5" y="-224.8" font-family="Arial" font-size="8.00">+ SetHovered (bool hovered)</text>
+<g id="node4" class="node"><title>Box_MenuItem</title>
+<polygon fill="#fcfcda" stroke="black" points="867.5,-218 867.5,-402 1214.5,-402 1214.5,-218 867.5,-218"/>
+<text text-anchor="middle" x="1041" y="-390.8" font-family="Arial" font-size="8.00">MenuItem</text>
+<polyline fill="none" stroke="black" points="867.5,-384 1214.5,-384 "/>
+<text text-anchor="start" x="875.5" y="-372.8" font-family="Arial" font-size="8.00"># spriteBatch : SpriteBatch</text>
+<text text-anchor="start" x="875.5" y="-362.8" font-family="Arial" font-size="8.00">+ IsMouseEventEnabled : bool</text>
+<text text-anchor="start" x="875.5" y="-352.8" font-family="Arial" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
+<text text-anchor="start" x="875.5" y="-342.8" font-family="Arial" font-size="8.00">+ IsKeyEventEnabled : bool</text>
+<text text-anchor="start" x="875.5" y="-332.8" font-family="Arial" font-size="8.00">+ Info : MenuItemInfo</text>
+<polyline fill="none" stroke="black" points="867.5,-326 1214.5,-326 "/>
+<text text-anchor="start" x="875.5" y="-314.8" font-family="Arial" font-size="8.00">+ MenuItem (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)</text>
+<text text-anchor="start" x="875.5" y="-304.8" font-family="Arial" font-size="8.00">+ Collapse () virtual</text>
+<text text-anchor="start" x="875.5" y="-294.8" font-family="Arial" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime time)</text>
+<text text-anchor="start" x="875.5" y="-284.8" font-family="Arial" font-size="8.00">+ OnLeftClick (Vector2 position, ClickState click, GameTime time)</text>
+<text text-anchor="start" x="875.5" y="-274.8" font-family="Arial" font-size="8.00">+ OnRightClick (Vector2 position, ClickState click, GameTime time)</text>
+<text text-anchor="start" x="875.5" y="-264.8" font-family="Arial" font-size="8.00">+ MinimumSize (SpriteFont font) : Vector2</text>
+<text text-anchor="start" x="875.5" y="-254.8" font-family="Arial" font-size="8.00">+ TextPosition (SpriteFont font) : Vector2</text>
+<text text-anchor="start" x="875.5" y="-244.8" font-family="Arial" font-size="8.00">+ TextPosition (SpriteFont font, Vector2 scale) : Vector2</text>
+<text text-anchor="start" x="875.5" y="-234.8" font-family="Arial" font-size="8.00">+ Draw (GameTime time)</text>
+<text text-anchor="start" x="875.5" y="-224.8" font-family="Arial" font-size="8.00">+ SetHovered (bool hovered)</text>
 </g>
 <!-- Box_IKeyEventListener&#45;&gt;Box_MenuItem -->
-<g id="edge24" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_MenuItem</title>
-<path fill="none" stroke="midnightblue" d="M1006.64,-476.848C1057.22,-465.305 1113.78,-449.329 1163,-428 1180.1,-420.588 1197.4,-411.631 1214.17,-402.003"/>
-<polygon fill="none" stroke="midnightblue" points="1005.6,-473.495 996.605,-479.098 1007.13,-480.325 1005.6,-473.495"/>
+<g id="edge14" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_MenuItem</title>
+<path fill="none" stroke="midnightblue" d="M808.21,-459.689C824.886,-449.393 842.617,-438.36 859,-428 872.208,-419.647 885.917,-410.902 899.617,-402.11"/>
+<polygon fill="none" stroke="midnightblue" points="806.273,-456.772 799.597,-465 809.946,-462.73 806.273,-456.772"/>
 </g>
 <!-- Box_TextInput -->
-<g id="node10" class="node"><title>Box_TextInput</title>
-<polygon fill="#fcfcda" stroke="black" points="1536,-248 1536,-372 1828,-372 1828,-248 1536,-248"/>
-<text text-anchor="middle" x="1682" y="-360.8" font-family="Arial" font-size="8.00">TextInput</text>
-<polyline fill="none" stroke="black" points="1536,-354 1828,-354 "/>
-<text text-anchor="start" x="1544" y="-342.8" font-family="Arial" font-size="8.00">&#45; font : SpriteFont</text>
-<text text-anchor="start" x="1544" y="-332.8" font-family="Arial" font-size="8.00"># spriteBatch : SpriteBatch</text>
-<text text-anchor="start" x="1544" y="-322.8" font-family="Arial" font-size="8.00">+ IsKeyEventEnabled : bool</text>
-<text text-anchor="start" x="1544" y="-312.8" font-family="Arial" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
-<text text-anchor="start" x="1544" y="-302.8" font-family="Arial" font-size="8.00">+ InputText : string</text>
-<polyline fill="none" stroke="black" points="1536,-296 1828,-296 "/>
-<text text-anchor="start" x="1544" y="-284.8" font-family="Arial" font-size="8.00">+ TextInput (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)</text>
-<text text-anchor="start" x="1544" y="-274.8" font-family="Arial" font-size="8.00">+ Draw (GameTime time)</text>
-<text text-anchor="start" x="1544" y="-264.8" font-family="Arial" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime time)</text>
-<text text-anchor="start" x="1544" y="-254.8" font-family="Arial" font-size="8.00">+ Update (GameTime time)</text>
+<g id="node7" class="node"><title>Box_TextInput</title>
+<polygon fill="#fcfcda" stroke="black" points="1232,-248 1232,-372 1524,-372 1524,-248 1232,-248"/>
+<text text-anchor="middle" x="1378" y="-360.8" font-family="Arial" font-size="8.00">TextInput</text>
+<polyline fill="none" stroke="black" points="1232,-354 1524,-354 "/>
+<text text-anchor="start" x="1240" y="-342.8" font-family="Arial" font-size="8.00">&#45; font : SpriteFont</text>
+<text text-anchor="start" x="1240" y="-332.8" font-family="Arial" font-size="8.00"># spriteBatch : SpriteBatch</text>
+<text text-anchor="start" x="1240" y="-322.8" font-family="Arial" font-size="8.00">+ IsKeyEventEnabled : bool</text>
+<text text-anchor="start" x="1240" y="-312.8" font-family="Arial" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
+<text text-anchor="start" x="1240" y="-302.8" font-family="Arial" font-size="8.00">+ InputText : string</text>
+<polyline fill="none" stroke="black" points="1232,-296 1524,-296 "/>
+<text text-anchor="start" x="1240" y="-284.8" font-family="Arial" font-size="8.00">+ TextInput (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)</text>
+<text text-anchor="start" x="1240" y="-274.8" font-family="Arial" font-size="8.00">+ Draw (GameTime time)</text>
+<text text-anchor="start" x="1240" y="-264.8" font-family="Arial" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime time)</text>
+<text text-anchor="start" x="1240" y="-254.8" font-family="Arial" font-size="8.00">+ Update (GameTime time)</text>
 </g>
 <!-- Box_IKeyEventListener&#45;&gt;Box_TextInput -->
-<g id="edge32" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_TextInput</title>
-<path fill="none" stroke="midnightblue" d="M1006.61,-488.033C1194.24,-469.372 1503.17,-437.544 1527,-428 1559.34,-415.049 1590.75,-393.418 1616.74,-372.188"/>
-<polygon fill="none" stroke="midnightblue" points="1006.26,-484.551 996.657,-489.022 1006.95,-491.516 1006.26,-484.551"/>
+<g id="edge22" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_TextInput</title>
+<path fill="none" stroke="midnightblue" d="M881.811,-476.439C907.163,-472.125 933.339,-467.813 958,-464 1075.46,-445.837 1113.2,-473.503 1223,-428 1255.02,-414.729 1286.25,-393.168 1312.19,-372.084"/>
+<polygon fill="none" stroke="midnightblue" points="881.031,-473.022 871.764,-478.157 882.211,-479.922 881.031,-473.022"/>
 </g>
-<!-- Box_MenuScreenInput -->
-<g id="node3" class="node"><title>Box_MenuScreenInput</title>
-<polygon fill="#fcfcda" stroke="black" points="65.5,-51 65.5,-105 220.5,-105 220.5,-51 65.5,-51"/>
-<text text-anchor="middle" x="143" y="-93.8" font-family="Arial" font-size="8.00">MenuScreenInput</text>
-<polyline fill="none" stroke="black" points="65.5,-87 220.5,-87 "/>
-<text text-anchor="middle" x="143" y="-75.8" font-family="Arial" font-size="8.00"> </text>
-<polyline fill="none" stroke="black" points="65.5,-69 220.5,-69 "/>
-<text text-anchor="start" x="73.5" y="-57.8" font-family="Arial" font-size="8.00">+ MenuScreenInput (GameState state)</text>
+<!-- Box_Input -->
+<g id="node8" class="node"><title>Box_Input</title>
+<polygon fill="#fcfcda" stroke="black" points="1541.5,-193 1541.5,-427 1828.5,-427 1828.5,-193 1541.5,-193"/>
+<text text-anchor="middle" x="1685" y="-415.8" font-family="Arial" font-size="8.00">Input</text>
+<polyline fill="none" stroke="black" points="1541.5,-409 1828.5,-409 "/>
+<text text-anchor="start" x="1549.5" y="-397.8" font-family="Arial" font-size="8.00">&#45; PreviousClickMouseState : MouseState static</text>
+<text text-anchor="start" x="1549.5" y="-387.8" font-family="Arial" font-size="8.00">&#45; LeftButtonClickTimer : double static</text>
+<text text-anchor="start" x="1549.5" y="-377.8" font-family="Arial" font-size="8.00">&#45; RightButtonClickTimer : double static</text>
+<text text-anchor="start" x="1549.5" y="-367.8" font-family="Arial" font-size="8.00">+ GrabMouseMovement : bool</text>
+<text text-anchor="start" x="1549.5" y="-357.8" font-family="Arial" font-size="8.00">+ LeftButton : ClickState static</text>
+<text text-anchor="start" x="1549.5" y="-347.8" font-family="Arial" font-size="8.00">+ RightButton : ClickState static</text>
+<text text-anchor="start" x="1549.5" y="-337.8" font-family="Arial" font-size="8.00">+ PreviousKeyboardState : KeyboardState static</text>
+<text text-anchor="start" x="1549.5" y="-327.8" font-family="Arial" font-size="8.00">+ MouseState : MouseState static</text>
+<text text-anchor="start" x="1549.5" y="-317.8" font-family="Arial" font-size="8.00">+ PreviousMouseState : MouseState static</text>
+<text text-anchor="start" x="1549.5" y="-307.8" font-family="Arial" font-size="8.00"># FullscreenToggled : bool static</text>
+<text text-anchor="start" x="1549.5" y="-297.8" font-family="Arial" font-size="8.00">+ CurrentInputAction : InputAction</text>
+<text text-anchor="start" x="1549.5" y="-287.8" font-family="Arial" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
+<text text-anchor="start" x="1549.5" y="-277.8" font-family="Arial" font-size="8.00">+ WASDMode : WASDMode</text>
+<text text-anchor="start" x="1549.5" y="-267.8" font-family="Arial" font-size="8.00">+ IsKeyEventEnabled : bool</text>
+<text text-anchor="start" x="1549.5" y="-257.8" font-family="Arial" font-size="8.00">+ KeyboardState : KeyboardState static</text>
+<polyline fill="none" stroke="black" points="1541.5,-251 1828.5,-251 "/>
+<text text-anchor="start" x="1549.5" y="-239.8" font-family="Arial" font-size="8.00"># UpdateMouse (GameTime gameTime) virtual</text>
+<text text-anchor="start" x="1549.5" y="-229.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime)</text>
+<text text-anchor="start" x="1549.5" y="-219.8" font-family="Arial" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime gameTime)</text>
+<text text-anchor="start" x="1549.5" y="-209.8" font-family="Arial" font-size="8.00"># UpdateKeys (GameTime gameTime) virtual</text>
+<text text-anchor="start" x="1549.5" y="-199.8" font-family="Arial" font-size="8.00">+ Input (GameState state)</text>
 </g>
-<!-- Box_Input&#45;&gt;Box_MenuScreenInput -->
-<g id="edge6" class="edge"><title>Box_Input&#45;&gt;Box_MenuScreenInput</title>
-<path fill="none" stroke="midnightblue" d="M143,-182.976C143,-153.55 143,-125.079 143,-105.23"/>
-<polygon fill="none" stroke="midnightblue" points="139.5,-182.98 143,-192.98 146.5,-182.981 139.5,-182.98"/>
+<!-- Box_IKeyEventListener&#45;&gt;Box_Input -->
+<g id="edge26" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_Input</title>
+<path fill="none" stroke="midnightblue" d="M881.607,-474.938C906.981,-470.785 933.217,-466.917 958,-464 1085.15,-449.034 1413.24,-473.26 1533,-428 1535.81,-426.937 1538.62,-425.803 1541.41,-424.604"/>
+<polygon fill="none" stroke="midnightblue" points="880.846,-471.516 871.553,-476.605 881.991,-478.422 880.846,-471.516"/>
+</g>
+<!-- Box_PipeColoring -->
+<g id="node10" class="node"><title>Box_PipeColoring</title>
+<polygon fill="#fcfcda" stroke="black" points="563.5,-263 563.5,-357 850.5,-357 850.5,-263 563.5,-263"/>
+<text text-anchor="middle" x="707" y="-345.8" font-family="Arial" font-size="8.00">PipeColoring</text>
+<polyline fill="none" stroke="black" points="563.5,-339 850.5,-339 "/>
+<text text-anchor="start" x="571.5" y="-327.8" font-family="Arial" font-size="8.00">+ ValidKeys : List&lt;Keys&gt;</text>
+<text text-anchor="start" x="571.5" y="-317.8" font-family="Arial" font-size="8.00">+ Knot : Knot</text>
+<text text-anchor="start" x="571.5" y="-307.8" font-family="Arial" font-size="8.00">+ IsKeyEventEnabled : bool</text>
+<polyline fill="none" stroke="black" points="563.5,-301 850.5,-301 "/>
+<text text-anchor="start" x="571.5" y="-289.8" font-family="Arial" font-size="8.00">+ OnKeyEvent (List&lt;Keys&gt; key, KeyEvent keyEvent, GameTime gameTime)</text>
+<text text-anchor="start" x="571.5" y="-279.8" font-family="Arial" font-size="8.00">+ PipeColoring (GameScreen screen)</text>
+<text text-anchor="start" x="571.5" y="-269.8" font-family="Arial" font-size="8.00">+ Update (GameTime gameTime)</text>
+</g>
+<!-- Box_IKeyEventListener&#45;&gt;Box_PipeColoring -->
+<g id="edge32" class="edge"><title>Box_IKeyEventListener&#45;&gt;Box_PipeColoring</title>
+<path fill="none" stroke="midnightblue" d="M731.141,-454.846C726.185,-425.11 719.809,-386.852 714.854,-357.122"/>
+<polygon fill="none" stroke="midnightblue" points="727.734,-455.692 732.83,-464.98 734.638,-454.541 727.734,-455.692"/>
 </g>
 <!-- Box_DropDownMenu -->
-<g id="node8" class="node"><title>Box_DropDownMenu</title>
-<polygon fill="#fcfcda" stroke="black" points="1350,-1 1350,-155 1722,-155 1722,-1 1350,-1"/>
-<text text-anchor="middle" x="1536" y="-143.8" font-family="Arial" font-size="8.00">DropDownMenu</text>
-<polyline fill="none" stroke="black" points="1350,-137 1722,-137 "/>
-<text text-anchor="start" x="1358" y="-125.8" font-family="Arial" font-size="8.00">&#45; selected : MenuButton</text>
-<text text-anchor="start" x="1358" y="-115.8" font-family="Arial" font-size="8.00">&#45; dropdown : VerticalMenu</text>
-<polyline fill="none" stroke="black" points="1350,-109 1722,-109 "/>
-<text text-anchor="start" x="1358" y="-97.8" font-family="Arial" font-size="8.00">&#45; ValuePosition (int dummy) : Vector2</text>
-<text text-anchor="start" x="1358" y="-87.8" font-family="Arial" font-size="8.00">+ DropDownMenu (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)</text>
-<text text-anchor="start" x="1358" y="-77.8" font-family="Arial" font-size="8.00">&#45; DropDownBackgroundColor (ItemState itemState) : Color</text>
-<text text-anchor="start" x="1358" y="-67.8" font-family="Arial" font-size="8.00">&#45; DropDownForegroundColor (ItemState itemState) : Color</text>
-<text text-anchor="start" x="1358" y="-57.8" font-family="Arial" font-size="8.00">&#45; ValueSize (int dummy) : Vector2</text>
-<text text-anchor="start" x="1358" y="-47.8" font-family="Arial" font-size="8.00">+ SubComponents (GameTime time) : IEnumerable&lt;IGameScreenComponent&gt;</text>
-<text text-anchor="start" x="1358" y="-37.8" font-family="Arial" font-size="8.00">+ Collapse ()</text>
-<text text-anchor="start" x="1358" y="-27.8" font-family="Arial" font-size="8.00">+ Draw (GameTime time)</text>
-<text text-anchor="start" x="1358" y="-17.8" font-family="Arial" font-size="8.00">+ AddEntries (DistinctOptionInfo option)</text>
-<text text-anchor="start" x="1358" y="-7.8" font-family="Arial" font-size="8.00">+ AddEntries (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)</text>
+<g id="node5" class="node"><title>Box_DropDownMenu</title>
+<polygon fill="#fcfcda" stroke="black" points="1037,-1 1037,-155 1409,-155 1409,-1 1037,-1"/>
+<text text-anchor="middle" x="1223" y="-143.8" font-family="Arial" font-size="8.00">DropDownMenu</text>
+<polyline fill="none" stroke="black" points="1037,-137 1409,-137 "/>
+<text text-anchor="start" x="1045" y="-125.8" font-family="Arial" font-size="8.00">&#45; selected : MenuButton</text>
+<text text-anchor="start" x="1045" y="-115.8" font-family="Arial" font-size="8.00">&#45; dropdown : VerticalMenu</text>
+<polyline fill="none" stroke="black" points="1037,-109 1409,-109 "/>
+<text text-anchor="start" x="1045" y="-97.8" font-family="Arial" font-size="8.00">&#45; ValuePosition (int dummy) : Vector2</text>
+<text text-anchor="start" x="1045" y="-87.8" font-family="Arial" font-size="8.00">+ DropDownMenu (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)</text>
+<text text-anchor="start" x="1045" y="-77.8" font-family="Arial" font-size="8.00">&#45; DropDownBackgroundColor (ItemState itemState) : Color</text>
+<text text-anchor="start" x="1045" y="-67.8" font-family="Arial" font-size="8.00">&#45; DropDownForegroundColor (ItemState itemState) : Color</text>
+<text text-anchor="start" x="1045" y="-57.8" font-family="Arial" font-size="8.00">&#45; ValueSize (int dummy) : Vector2</text>
+<text text-anchor="start" x="1045" y="-47.8" font-family="Arial" font-size="8.00">+ SubComponents (GameTime time) : IEnumerable&lt;IGameScreenComponent&gt;</text>
+<text text-anchor="start" x="1045" y="-37.8" font-family="Arial" font-size="8.00">+ Collapse ()</text>
+<text text-anchor="start" x="1045" y="-27.8" font-family="Arial" font-size="8.00">+ Draw (GameTime time)</text>
+<text text-anchor="start" x="1045" y="-17.8" font-family="Arial" font-size="8.00">+ AddEntries (DistinctOptionInfo option)</text>
+<text text-anchor="start" x="1045" y="-7.8" font-family="Arial" font-size="8.00">+ AddEntries (DropDownMenuItem[] entries, DropDownMenuItem defaultEntry)</text>
 </g>
 <!-- Box_MenuItem&#45;&gt;Box_DropDownMenu -->
-<g id="edge26" class="edge"><title>Box_MenuItem&#45;&gt;Box_DropDownMenu</title>
-<path fill="none" stroke="midnightblue" d="M1427.2,-210.149C1442.31,-191.8 1457.87,-172.9 1472.33,-155.336"/>
-<polygon fill="none" stroke="midnightblue" points="1424.42,-208.029 1420.76,-217.974 1429.82,-212.479 1424.42,-208.029"/>
+<g id="edge16" class="edge"><title>Box_MenuItem&#45;&gt;Box_DropDownMenu</title>
+<path fill="none" stroke="midnightblue" d="M1119.72,-209.658C1133.99,-191.462 1148.68,-172.743 1162.33,-155.336"/>
+<polygon fill="none" stroke="midnightblue" points="1116.61,-207.946 1113.19,-217.974 1122.12,-212.267 1116.61,-207.946"/>
 </g>
 <!-- Box_MenuButton -->
-<g id="node9" class="node"><title>Box_MenuButton</title>
-<polygon fill="#fcfcda" stroke="black" points="976,-51 976,-105 1332,-105 1332,-51 976,-51"/>
-<text text-anchor="middle" x="1154" y="-93.8" font-family="Arial" font-size="8.00">MenuButton</text>
-<polyline fill="none" stroke="black" points="976,-87 1332,-87 "/>
-<text text-anchor="middle" x="1154" y="-75.8" font-family="Arial" font-size="8.00"> </text>
-<polyline fill="none" stroke="black" points="976,-69 1332,-69 "/>
-<text text-anchor="start" x="984" y="-57.8" font-family="Arial" font-size="8.00">+ MenuButton (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)</text>
+<g id="node6" class="node"><title>Box_MenuButton</title>
+<polygon fill="#fcfcda" stroke="black" points="663,-51 663,-105 1019,-105 1019,-51 663,-51"/>
+<text text-anchor="middle" x="841" y="-93.8" font-family="Arial" font-size="8.00">MenuButton</text>
+<polyline fill="none" stroke="black" points="663,-87 1019,-87 "/>
+<text text-anchor="middle" x="841" y="-75.8" font-family="Arial" font-size="8.00"> </text>
+<polyline fill="none" stroke="black" points="663,-69 1019,-69 "/>
+<text text-anchor="start" x="671" y="-57.8" font-family="Arial" font-size="8.00">+ MenuButton (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)</text>
 </g>
 <!-- Box_MenuItem&#45;&gt;Box_MenuButton -->
-<g id="edge28" class="edge"><title>Box_MenuItem&#45;&gt;Box_MenuButton</title>
-<path fill="none" stroke="midnightblue" d="M1262.56,-209.861C1231.1,-171.648 1197.71,-131.093 1176.4,-105.21"/>
-<polygon fill="none" stroke="midnightblue" points="1260.18,-212.479 1269.24,-217.974 1265.58,-208.029 1260.18,-212.479"/>
+<g id="edge18" class="edge"><title>Box_MenuItem&#45;&gt;Box_MenuButton</title>
+<path fill="none" stroke="midnightblue" d="M955.087,-210.341C922.024,-171.987 886.864,-131.202 864.457,-105.21"/>
+<polygon fill="none" stroke="midnightblue" points="952.487,-212.685 961.667,-217.974 957.789,-208.115 952.487,-212.685"/>
+</g>
+<!-- Box_MenuScreenInput -->
+<g id="node9" class="node"><title>Box_MenuScreenInput</title>
+<polygon fill="#fcfcda" stroke="black" points="1607.5,-51 1607.5,-105 1762.5,-105 1762.5,-51 1607.5,-51"/>
+<text text-anchor="middle" x="1685" y="-93.8" font-family="Arial" font-size="8.00">MenuScreenInput</text>
+<polyline fill="none" stroke="black" points="1607.5,-87 1762.5,-87 "/>
+<text text-anchor="middle" x="1685" y="-75.8" font-family="Arial" font-size="8.00"> </text>
+<polyline fill="none" stroke="black" points="1607.5,-69 1762.5,-69 "/>
+<text text-anchor="start" x="1615.5" y="-57.8" font-family="Arial" font-size="8.00">+ MenuScreenInput (GameState state)</text>
+</g>
+<!-- Box_Input&#45;&gt;Box_MenuScreenInput -->
+<g id="edge28" class="edge"><title>Box_Input&#45;&gt;Box_MenuScreenInput</title>
+<path fill="none" stroke="midnightblue" d="M1685,-182.976C1685,-153.55 1685,-125.079 1685,-105.23"/>
+<polygon fill="none" stroke="midnightblue" points="1681.5,-182.98 1685,-192.98 1688.5,-182.981 1681.5,-182.98"/>
 </g>
 <!-- Box_GameScreenComponent -->
 <g id="node11" class="node"><title>Box_GameScreenComponent</title>
-<polygon fill="#ffffff" stroke="black" points="424,-493 424,-511 528,-511 528,-493 424,-493"/>
-<text text-anchor="middle" x="476" y="-499.8" font-family="Arial" font-size="8.00">GameScreenComponent</text>
-</g>
-<!-- Box_GameScreenComponent&#45;&gt;Box_Input -->
-<g id="edge2" class="edge"><title>Box_GameScreenComponent&#45;&gt;Box_Input</title>
-<path fill="none" stroke="midnightblue" d="M437.726,-489.767C400.096,-476.964 341.676,-454.981 295,-428 292.252,-426.412 289.499,-424.779 286.745,-423.107"/>
-<polygon fill="none" stroke="midnightblue" points="436.699,-493.114 447.293,-492.977 438.926,-486.478 436.699,-493.114"/>
+<polygon fill="#ffffff" stroke="black" points="362,-493 362,-511 466,-511 466,-493 362,-493"/>
+<text text-anchor="middle" x="414" y="-499.8" font-family="Arial" font-size="8.00">GameScreenComponent</text>
 </g>
 <!-- Box_GameScreenComponent&#45;&gt;Box_KnotInputHandler -->
-<g id="edge8" class="edge"><title>Box_GameScreenComponent&#45;&gt;Box_KnotInputHandler</title>
-<path fill="none" stroke="midnightblue" d="M472.045,-483.018C467.162,-459.576 458.571,-418.341 451.001,-382.007"/>
-<polygon fill="none" stroke="midnightblue" points="468.658,-483.921 474.124,-492.997 475.511,-482.493 468.658,-483.921"/>
+<g id="edge2" class="edge"><title>Box_GameScreenComponent&#45;&gt;Box_KnotInputHandler</title>
+<path fill="none" stroke="midnightblue" d="M384.355,-488.719C355.083,-475.087 309.529,-452.462 273,-428 252.445,-414.235 231.413,-397.99 212.077,-382.028"/>
+<polygon fill="none" stroke="midnightblue" points="383.073,-491.982 393.621,-492.987 386.002,-485.624 383.073,-491.982"/>
 </g>
 <!-- Box_GameScreenComponent&#45;&gt;Box_EdgeColoring -->
-<g id="edge12" class="edge"><title>Box_GameScreenComponent&#45;&gt;Box_EdgeColoring</title>
-<path fill="none" stroke="midnightblue" d="M497.316,-486.989C517.963,-472.308 550.021,-449.137 577,-428 606.022,-405.263 637.557,-379.023 663.431,-357.069"/>
-<polygon fill="none" stroke="midnightblue" points="495.088,-484.278 488.952,-492.915 499.135,-489.989 495.088,-484.278"/>
+<g id="edge6" class="edge"><title>Box_GameScreenComponent&#45;&gt;Box_EdgeColoring</title>
+<path fill="none" stroke="midnightblue" d="M414,-482.96C414,-453.882 414,-397.525 414,-357.036"/>
+<polygon fill="none" stroke="midnightblue" points="410.5,-482.997 414,-492.997 417.5,-482.997 410.5,-482.997"/>
 </g>
 <!-- Box_GameScreenComponent&#45;&gt;Box_PipeColoring -->
-<g id="edge16" class="edge"><title>Box_GameScreenComponent&#45;&gt;Box_PipeColoring</title>
-<path fill="none" stroke="midnightblue" d="M538.431,-493.544C631.747,-480.3 802.666,-453.529 859,-428 897.188,-410.694 934.464,-381.997 962.544,-357.237"/>
-<polygon fill="none" stroke="midnightblue" points="537.688,-490.114 528.274,-494.976 538.665,-497.046 537.688,-490.114"/>
+<g id="edge30" class="edge"><title>Box_GameScreenComponent&#45;&gt;Box_PipeColoring</title>
+<path fill="none" stroke="midnightblue" d="M442.963,-488.663C472.068,-474.834 517.819,-451.922 555,-428 588.292,-406.58 623.332,-379.707 651.368,-357.018"/>
+<polygon fill="none" stroke="midnightblue" points="441.323,-485.566 433.767,-492.992 444.305,-491.899 441.323,-485.566"/>
 </g>
 <!-- Box_ItemWidget -->
 <g id="node12" class="node"><title>Box_ItemWidget</title>
-<polygon fill="#ffffff" stroke="black" points="1271,-493 1271,-511 1327,-511 1327,-493 1271,-493"/>
-<text text-anchor="middle" x="1299" y="-499.8" font-family="Arial" font-size="8.00">ItemWidget</text>
+<polygon fill="#ffffff" stroke="black" points="967,-493 967,-511 1023,-511 1023,-493 967,-493"/>
+<text text-anchor="middle" x="995" y="-499.8" font-family="Arial" font-size="8.00">ItemWidget</text>
 </g>
 <!-- Box_ItemWidget&#45;&gt;Box_MenuItem -->
-<g id="edge20" class="edge"><title>Box_ItemWidget&#45;&gt;Box_MenuItem</title>
-<path fill="none" stroke="midnightblue" d="M1303.5,-483.211C1308.09,-464.076 1315.54,-432.944 1322.88,-402.313"/>
-<polygon fill="none" stroke="midnightblue" points="1300.08,-482.457 1301.16,-492.997 1306.89,-484.088 1300.08,-482.457"/>
+<g id="edge10" class="edge"><title>Box_ItemWidget&#45;&gt;Box_MenuItem</title>
+<path fill="none" stroke="midnightblue" d="M999.501,-483.211C1004.09,-464.076 1011.54,-432.944 1018.88,-402.313"/>
+<polygon fill="none" stroke="midnightblue" points="996.083,-482.457 997.157,-492.997 1002.89,-484.088 996.083,-482.457"/>
 </g>
 <!-- Box_IMouseEventListener -->
 <g id="node13" class="node"><title>Box_IMouseEventListener</title>
-<polygon fill="#ffffff" stroke="black" points="1345,-493 1345,-511 1437,-511 1437,-493 1345,-493"/>
-<text text-anchor="middle" x="1391" y="-499.8" font-family="Arial" font-size="8.00">IMouseEventListener</text>
+<polygon fill="#ffffff" stroke="black" points="1041,-493 1041,-511 1133,-511 1133,-493 1041,-493"/>
+<text text-anchor="middle" x="1087" y="-499.8" font-family="Arial" font-size="8.00">IMouseEventListener</text>
 </g>
 <!-- Box_IMouseEventListener&#45;&gt;Box_MenuItem -->
-<g id="edge22" class="edge"><title>Box_IMouseEventListener&#45;&gt;Box_MenuItem</title>
-<path fill="none" stroke="midnightblue" d="M1386.5,-483.211C1381.91,-464.076 1374.46,-432.944 1367.12,-402.313"/>
-<polygon fill="none" stroke="midnightblue" points="1383.11,-484.088 1388.84,-492.997 1389.92,-482.457 1383.11,-484.088"/>
+<g id="edge12" class="edge"><title>Box_IMouseEventListener&#45;&gt;Box_MenuItem</title>
+<path fill="none" stroke="midnightblue" d="M1082.5,-483.211C1077.91,-464.076 1070.46,-432.944 1063.12,-402.313"/>
+<polygon fill="none" stroke="midnightblue" points="1079.11,-484.088 1084.84,-492.997 1085.92,-482.457 1079.11,-484.088"/>
 </g>
 <!-- Box_Widget -->
 <g id="node14" class="node"><title>Box_Widget</title>
-<polygon fill="#ffffff" stroke="black" points="1661.5,-493 1661.5,-511 1702.5,-511 1702.5,-493 1661.5,-493"/>
-<text text-anchor="middle" x="1682" y="-499.8" font-family="Arial" font-size="8.00">Widget</text>
+<polygon fill="#ffffff" stroke="black" points="1357.5,-493 1357.5,-511 1398.5,-511 1398.5,-493 1357.5,-493"/>
+<text text-anchor="middle" x="1378" y="-499.8" font-family="Arial" font-size="8.00">Widget</text>
 </g>
 <!-- Box_Widget&#45;&gt;Box_TextInput -->
-<g id="edge30" class="edge"><title>Box_Widget&#45;&gt;Box_TextInput</title>
-<path fill="none" stroke="midnightblue" d="M1682,-482.802C1682,-457.168 1682,-410.537 1682,-372.171"/>
-<polygon fill="none" stroke="midnightblue" points="1678.5,-482.997 1682,-492.997 1685.5,-482.997 1678.5,-482.997"/>
+<g id="edge20" class="edge"><title>Box_Widget&#45;&gt;Box_TextInput</title>
+<path fill="none" stroke="midnightblue" d="M1378,-482.802C1378,-457.168 1378,-410.537 1378,-372.171"/>
+<polygon fill="none" stroke="midnightblue" points="1374.5,-482.997 1378,-492.997 1381.5,-482.997 1374.5,-482.997"/>
 </g>
 <!-- Box_GameStateComponent -->
 <g id="node15" class="node"><title>Box_GameStateComponent</title>
-<polygon fill="#ffffff" stroke="black" points="94.5,-493 94.5,-511 191.5,-511 191.5,-493 94.5,-493"/>
-<text text-anchor="middle" x="143" y="-499.8" font-family="Arial" font-size="8.00">GameStateComponent</text>
+<polygon fill="#ffffff" stroke="black" points="1636.5,-493 1636.5,-511 1733.5,-511 1733.5,-493 1636.5,-493"/>
+<text text-anchor="middle" x="1685" y="-499.8" font-family="Arial" font-size="8.00">GameStateComponent</text>
 </g>
 <!-- Box_GameStateComponent&#45;&gt;Box_Input -->
-<g id="edge34" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_Input</title>
-<path fill="none" stroke="midnightblue" d="M143,-482.859C143,-468.924 143,-448.762 143,-427.091"/>
-<polygon fill="none" stroke="midnightblue" points="139.5,-482.997 143,-492.997 146.5,-482.997 139.5,-482.997"/>
+<g id="edge24" class="edge"><title>Box_GameStateComponent&#45;&gt;Box_Input</title>
+<path fill="none" stroke="midnightblue" d="M1685,-482.859C1685,-468.924 1685,-448.762 1685,-427.091"/>
+<polygon fill="none" stroke="midnightblue" points="1681.5,-482.997 1685,-492.997 1688.5,-482.997 1681.5,-482.997"/>
 </g>
 </g>
 </svg>

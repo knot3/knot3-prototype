@@ -34,7 +34,6 @@ public class Knot : IEnumerable<Edge>, ICloneable
     // 
     + AddToSelection  (Edge edge)
     + ClearSelection ()
-    // 
     + Move  (Direction direction, int distance)
     // 
     + Save  (IKnotIO file)
