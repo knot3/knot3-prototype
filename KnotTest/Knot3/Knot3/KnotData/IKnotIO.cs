@@ -5,13 +5,9 @@ namespace Knot3.KnotData
 {
 	public interface IKnotIO
 	{
-		IEnumerable<Edge> Edges { get; }
+		Knot Load(string filename);
 
-		int CountEdges { get; }
-
-		string Name { get; }
-
-		string Hash { get; }
+		KnotMetaData LoadMetaData(string filename);
 
 		void Save (Knot knot);
 	}

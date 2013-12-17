@@ -192,18 +192,36 @@ namespace Knot3.CreativeMode
 			
 			OnYesClick += () => {
 				Console.WriteLine ("OnYesClick");
-				if (originalName == TextInput.InputText) {
+
+				if (TextInput.InputText.Length == 0) {
+					Console.WriteLine ("Name is empty!");
+					CanClose = false;
+
+				} else if (originalName.Length > 0 && originalName == TextInput.InputText) {
+					Console.WriteLine ("Name has not been changed: " + TextInput.InputText);
 					try {
 						knot.Save ();
 					} catch (IOException ex) {
 						Console.WriteLine (ex);
-						knot.Save (new KnotFileIO(knot));
+						knot.Save (new KnotFileIO ());
 					}
+					CanClose = true;
+
 				} else {
-					knot.Name = TextInput.InputText;
-					knot.Save (new KnotFileIO(knot));
+					Console.WriteLine ("Name has been changed: " + TextInput.InputText);
+					try {
+						knot.Name = TextInput.InputText;
+						knot.Save ();
+					} catch (IOException ex) {
+						Console.WriteLine (ex);
+						knot.Save (new KnotFileIO ());
+					}
+					CanClose = true;
 				}
-				screen.NextState = GameScreens.StartScreen;
+
+				if (CanClose) {
+					screen.NextState = GameScreens.StartScreen;
+				}
 			};
 			OnNoClick += () => {
 				Console.WriteLine ("OnNoClick");

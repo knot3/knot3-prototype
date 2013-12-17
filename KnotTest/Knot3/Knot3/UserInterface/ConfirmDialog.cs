@@ -21,6 +21,7 @@ namespace Knot3.UserInterface
 	{
 		// text
 		protected string[] Text;
+		protected bool CanClose = true;
 
 		// actions
 		protected Action OnYesClick = () => {};
@@ -36,7 +37,9 @@ namespace Knot3.UserInterface
 			// actions
 			Action onYesClick = () => {
 				OnYesClick ();
-				Done ();
+				if (CanClose) {
+					Done ();
+				}
 			};
 			Action onNoClick = () => {
 				OnNoClick ();

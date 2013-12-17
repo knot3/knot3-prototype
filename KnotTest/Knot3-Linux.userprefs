@@ -1,55 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Knot3/Knot3/Core/Input.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Knot3/Knot3/KnotData/KnotFileIO.cs">
     <Files>
-      <File FileName="Knot3/Knot3/Core/StartScreen.cs" Line="38" Column="23" />
-      <File FileName="Knot3/Knot3/UserInterface/ColorPicker.cs" Line="67" Column="24" />
-      <File FileName="Knot3/Knot3/UserInterface/HfGDesign.cs" Line="98" Column="3" />
-      <File FileName="Knot3/Knot3/UserInterface/Dialog.cs" Line="31" Column="4" />
-      <File FileName="Knot3/Knot3/UserInterface/TextInput.cs" Line="23" Column="30" />
-      <File FileName="Knot3/Knot3/UserInterface/ConfirmDialog.cs" Line="51" Column="12" />
-      <File FileName="Knot3/Knot3/Settings/OptionScreen.cs" Line="46" Column="36" />
-      <File FileName="Knot3/Knot3/GameObjects/PipeColoring.cs" Line="40" Column="4" />
-      <File FileName="Knot3/Knot3/GameObjects/ModelFactory.cs" Line="22" Column="16" />
-      <File FileName="Knot3/Knot3/Core/Game.cs" Line="163" Column="49" />
-      <File FileName="Knot3/Knot3/Core/Overlay.cs" Line="229" Column="23" />
-      <File FileName="../../../BTSync/instances.fx" Line="100" Column="17" />
-      <File FileName="Knot3/Knot3/RenderEffects/RenderEffect.cs" Line="143" Column="21" />
-      <File FileName="Knot3/Knot3/Core/Camera.cs" Line="224" Column="14" />
-      <File FileName="Knot3/Knot3/CreativeMode/KnotModeInput.cs" Line="224" Column="38" />
-      <File FileName="Knot3/Knot3/RenderEffects/InstancingTest.cs" Line="41" Column="43" />
-      <File FileName="Knot3/Knot3/GameObjects/GameModel.cs" Line="195" Column="5" />
-      <File FileName="Knot3/Knot3/GameObjects/LineRenderer.cs" Line="47" Column="4" />
-      <File FileName="Knot3/Knot3/Core/GameStateComponent.cs" Line="29" Column="23" />
-      <File FileName="Knot3/Knot3/Core/DrawableGameStateComponent.cs" Line="48" Column="23" />
-      <File FileName="Knot3/Knot3/Core/IGameStateComponent.cs" Line="17" Column="30" />
-      <File FileName="Knot3/Knot3/Core/GameState.cs" Line="51" Column="20" />
-      <File FileName="Knot3/Knot3/Core/ClickHandler.cs" Line="19" Column="23" />
-      <File FileName="Knot3/Knot3/Core/KeyHandler.cs" Line="24" Column="4" />
-      <File FileName="Knot3/Knot3/Core/IMouseEventListener.cs" Line="22" Column="7" />
-      <File FileName="Knot3/Knot3/RenderEffects/IRenderEffect.cs" Line="25" Column="1" />
-      <File FileName="Knot3/Knot3/RenderEffects/BlurEffect.cs" Line="40" Column="43" />
-      <File FileName="Knot3/Knot3/RenderEffects/FadeEffect.cs" Line="36" Column="18" />
-      <File FileName="Knot3/Knot3/RenderEffects/CelShadingEffect.cs" Line="67" Column="43" />
-      <File FileName="Knot3/Knot3/GameObjects/ModelRenderer.cs" Line="108" Column="16" />
-      <File FileName="Knot3/Knot3/KnotData/EdgeList.cs" Line="161" Column="35" />
-      <File FileName="Knot3/Knot3/KnotData/NodeMap.cs" Line="64" Column="5" />
-      <File FileName="Knot3/Knot3/KnotData/Knot.cs" Line="32" Column="16" />
-      <File FileName="Knot3/Knot3/KnotData/KnotListFormat.cs" Line="194" Column="24" />
-      <File FileName="Knot3/Knot3/KnotData/EdgeListFormat.cs" Line="173" Column="39" />
-      <File FileName="Knot3/Knot3/GameObjects/PipeMovement.cs" Line="181" Column="3" />
-      <File FileName="Knot3/Knot3/GameObjects/NodeModel.cs" Line="38" Column="26" />
-      <File FileName="Knot3/Knot3/GameObjects/PipeModel.cs" Line="118" Column="4" />
-      <File FileName="Knot3/Knot3/GameObjects/ArrowModel.cs" Line="93" Column="25" />
-      <File FileName="Knot3/Knot3/CreativeMode/CreativeModeScreen.cs" Line="102" Column="34" />
-      <File FileName="Knot3/Knot3/GameObjects/ModelMousePicker.cs" Line="75" Column="48" />
-      <File FileName="Knot3/Knot3/GameObjects/World.cs" Line="56" Column="19" />
-      <File FileName="Knot3/Knot3/Utilities/WrapList.cs" Line="18" Column="41" />
-      <File FileName="Knot3/Knot3/KnotData/Edge.cs" Line="116" Column="4" />
-      <File FileName="Knot3/Knot3/GameObjects/KnotRenderer.cs" Line="30" Column="26" />
-      <File FileName="Knot3/Knot3/KnotData/Node.cs" Line="112" Column="58" />
-      <File FileName="Knot3/Knot3/Utilities/Angles3.cs" Line="29" Column="1" />
-      <File FileName="Knot3/Knot3/Core/Input.cs" Line="41" Column="53" />
+      <File FileName="Knot3/Knot3/KnotData/KnotFileIO.cs" Line="50" Column="70" />
+      <File FileName="Knot3/Knot3/KnotData/KnotStringIO.cs" Line="9" Column="27" />
+      <File FileName="Knot3/Knot3/KnotData/Knot.cs" Line="27" Column="71" />
+      <File FileName="Knot3/Knot3/KnotData/FileUtility.cs" Line="7" Column="16" />
+      <File FileName="Knot3/Knot3/KnotData/IKnotIO.cs" Line="7" Column="3" />
+      <File FileName="Knot3/Knot3/CreativeMode/LoadSavegameScreen.cs" Line="81" Column="22" />
+      <File FileName="Knot3/Knot3/KnotData/FileIndex.cs" Line="21" Column="24" />
+      <File FileName="Knot3/Knot3/Utilities/Files.cs" Line="11" Column="4" />
+      <File FileName="Knot3/Knot3/KnotData/FileIO.cs" Line="5" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

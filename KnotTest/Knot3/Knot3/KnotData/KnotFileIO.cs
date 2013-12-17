@@ -6,52 +6,33 @@ using Knot3.Utilities;
 
 namespace Knot3.KnotData
 {
-	public class KnotFileIO : FileIO, IKnotIO
+	public class KnotFileIO : IKnotIO
 	{
-		private KnotStringIO parser;
 
-		public KnotFileIO (Knot knot)
+		public Knot Load (string filename)
 		{
-			Filename = ConvertToFilename (knot.Name);
-			parser = new KnotStringIO (knot);
+			KnotStringIO parser = new KnotStringIO (string.Join ("\n", Files.ReadFrom (filename)));
+			return new Knot (
+				new KnotMetaData (parser.Name, () => parser.CountEdges, this, filename),
+				parser.Edges
+			);
 		}
 
-		public KnotFileIO (string filename)
+		public KnotMetaData LoadMetaData (string filename)
 		{
-			Filename = filename;
-			string content = string.Join ("\n", Files.ReadFrom (filename));
-			parser = new KnotStringIO (content);
-		}
-
-		public IEnumerable<Edge> Edges {
-			get { return parser.Edges; }
-		}
-
-		public int CountEdges {
-			get { return parser.CountEdges; }
-		}
-
-		public string Name {
-			get { return parser.Name; }
-		}
-
-		public string Hash {
-			get { return parser.Hash; }
+			KnotStringIO parser = new KnotStringIO (string.Join ("\n", Files.ReadFrom (filename)));
+			return new KnotMetaData (parser.Name, () => parser.CountEdges, this, filename);
 		}
 
 		public void Save (Knot knot)
 		{
-			Console.WriteLine ("KnotFileIO.Save(" + knot + ")");
-			if (parser.Name != knot.Name) {
-				Filename = ConvertToFilename (knot.Name);
+			KnotStringIO parser = new KnotStringIO (knot);
+			Console.WriteLine ("KnotFileIO.Save(" + knot + ") = #" + parser.Content.Length);
+			if (knot.MetaData.Filename == null) {
+				throw new IOException ("Error! knot has no filename: " + knot);
+			} else {
+				File.WriteAllText (knot.MetaData.Filename, parser.Content);
 			}
-			parser.Save (knot);
-			File.WriteAllText (Filename, parser.Content);
-		}
-
-		public override string ConvertToFilename (string humanReadableName)
-		{
-			return Files.SavegameDirectory + Files.Separator + base.ConvertToFilename (humanReadableName) + ".knot";
 		}
 
 		public static string[] FileExtensions {
@@ -65,7 +46,7 @@ namespace Knot3.KnotData
 
 		public override string ToString ()
 		{
-			return "KnotFileIO(filename=" + Filename + ")";
+			return "KnotFileIO()";
 		}
 	}
 }

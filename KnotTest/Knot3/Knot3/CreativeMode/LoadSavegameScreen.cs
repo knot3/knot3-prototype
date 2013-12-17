@@ -30,6 +30,7 @@ namespace Knot3.CreativeMode
 
 		// files
 		private FileIndex fileIndex;
+		private IKnotIO fileFormat;
 
 		public LoadSavegameScreen (Core.Game game)
 			: base(game)
@@ -59,6 +60,7 @@ namespace Knot3.CreativeMode
 
 		private void UpdateFiles ()
 		{
+			fileFormat = new KnotFileIO ();
 			fileIndex = new FileIndex (Files.SavegameDirectory + Files.Separator + "index.txt");
 
 			string[] searchDirectories = new string[] {
@@ -74,26 +76,27 @@ namespace Knot3.CreativeMode
 
 		private void AddFileToList (string filename)
 		{
-			IKnotIO file = new KnotFileIO (filename);
-			bool isValid = fileIndex.Contains (file.Hash);
+			string hashcode = FileUtility.GetHash(filename);
+			bool isValid = fileIndex.Contains (hashcode);
 			if (!isValid) {
 				try {
-					new Knot (file);
+					// load the knot and look for exceptions
+					fileFormat.Load (filename);
 					isValid = true;
-					fileIndex.Add (file.Hash);
+					fileIndex.Add (hashcode);
 				} catch (Exception ex) {
 					Console.WriteLine (ex);
 					isValid = false;
 				}
 			}
 			if (isValid) {
-				KnotMetaData meta = new KnotMetaData (file);
+				KnotMetaData meta = fileFormat.LoadMetaData(filename);
 				Action LoadFile = () => {
 					// delegate to load the file
 
 					//if (knotInfo.IsValid) {
 					Console.WriteLine ("File is valid: " + meta);
-					GameScreens.CreativeMode.Knot = new Knot (file);
+					GameScreens.CreativeMode.Knot = fileFormat.Load(filename);
 					NextState = GameScreens.CreativeMode;
 					//} else {
 					//	Console.WriteLine ("File is invalid: " + knotInfo);

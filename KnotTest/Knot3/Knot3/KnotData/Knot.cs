@@ -7,40 +7,47 @@ using Knot3.Utilities;
 
 namespace Knot3.KnotData
 {
-	public struct KnotMetaData
+	public class KnotMetaData
 	{
-		public IKnotIO File;
-		public string Name;
-		public int CountEdges;
+		private string name;
+		public Func<int> CountEdges;
+		public IKnotIO Format;
+		public string Filename;
 
-		public KnotMetaData (string name, int countEdges, IKnotIO file)
+		public KnotMetaData (string name, Func<int> countEdges, IKnotIO format, string filename)
 		{
-			Name = name;
+			this.name = name;
 			CountEdges = countEdges;
-			File = file;
+			Format = format;
+			Filename = filename;
 		}
 
-		public KnotMetaData (IKnotIO file)
-		{
-			Name = file.Name;
-			CountEdges = file.CountEdges;
-			File = file;
+		public string Name {
+			get { return name; }
+			set {
+				name = value;
+				Filename = Files.SavegameDirectory + Files.Separator + FileUtility.ConvertToFilename (name) + ".knot";
+			}
 		}
 
 		public override string ToString ()
 		{
-			return "{File=" + File + ",Name=" + Name + ",CountEdges=" + CountEdges + "}";
+			return "{Name=" + Name + ",CountEdges=" + CountEdges + ",Format=" + Format + ",Filename=" + Filename + "}";
 		}
 	}
 
 	public class Knot : IEnumerable<Edge>, ICloneable
 	{
-		public string Name { get; set; }
+		public string Name {
+			get { return MetaData.Name; }
+			set { MetaData.Name = value; }
+		}
+
+		public KnotMetaData MetaData { get; private set; }
 
 		public IEnumerable<Edge> SelectedEdges { get { return selectedEdges; } }
 
 		private Circle<Edge> edges;
-		private IKnotIO file;
 		private List<Edge> selectedEdges;
 
 		// events
@@ -49,7 +56,7 @@ namespace Knot3.KnotData
 
 		public Knot ()
 		{
-			Name = "Untitled";
+			MetaData = new KnotMetaData ("", () => edges.Count, null, null);
 			edges = new Circle<Edge> (new Edge[]{
 				Edge.Up,
 				Edge.Right,
@@ -64,25 +71,25 @@ namespace Knot3.KnotData
 			selectedEdges = new List<Edge> ();
 		}
 		
-		public Knot (IKnotIO _file)
+		public Knot (KnotMetaData metaData, IEnumerable<Edge> edges)
 		{
-			Name = _file.Name;
-			file = _file;
-			edges = new Circle<Edge> (file.Edges);
+			MetaData = metaData;
+			MetaData.CountEdges = () => this.edges.Count;
+			this.edges = new Circle<Edge> (edges);
 			selectedEdges = new List<Edge> ();
-		}
-		
-		public Knot (KnotMetaData metaData)
-			: this (metaData.File)
-		{
 		}
 		
 		public object Clone ()
 		{
+			Circle<Edge> newCircle = new Circle<Edge> (edges as IEnumerable<Edge>);
 			return new Knot {
-				Name = Name,
-				file = file,
-				edges = new Circle<Edge> (edges as IEnumerable<Edge>),
+				MetaData = new KnotMetaData(
+					MetaData.Name,
+					() => newCircle.Count,
+					MetaData.Format,
+					MetaData.Filename
+				),
+				edges = newCircle,
 				selectedEdges = new List<Edge>(selectedEdges),
 				EdgesChanged = EdgesChanged,
 				SelectionChanged = SelectionChanged,
@@ -139,10 +146,12 @@ namespace Knot3.KnotData
 
 		public void Save ()
 		{
-			if (file != null)
-				file.Save (this);
+			if (MetaData.Format == null)
+				throw new IOException ("Error: Knot: MetaData.Format is null!");
+			else if (MetaData.Filename == null)
+				throw new IOException ("Error: Knot: MetaData.Filename is null!");
 			else
-				throw new IOException ("Error: IKnotIO file is null!");
+				MetaData.Format.Save (this);
 		}
 
 		private Circle<Edge> lastSelected;
@@ -192,7 +201,9 @@ namespace Knot3.KnotData
 
 		public override string ToString ()
 		{
-			return "name=" + Name + ",#edgecount=" + edges.Count + ",file=" + (file != null ? file.ToString () : "null");
+			return "Knot(name=" + Name + ",#edgecount=" + edges.Count
+				+ ",format=" + (MetaData.Format != null ? MetaData.ToString () : "null")
+				+ ")";
 		}
 	}
 }

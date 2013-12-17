@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
+using System.IO;
 
 namespace Knot3.KnotData
 {
-	public class KnotStringIO : IKnotIO
+	public class KnotStringIO
 	{
-		public string Content { get; set; }
+		public string Name;
+		private IEnumerable<string> edgeLines;
 
 		public KnotStringIO (string content)
 		{
@@ -17,66 +19,58 @@ namespace Knot3.KnotData
 
 		public KnotStringIO (Knot knot)
 		{
+			Name = knot.Name;
 			try {
-				lines = ToLines (knot);
+				edgeLines = ToLines (knot);
 			} catch (Exception ex) {
 				Console.WriteLine (ex);
 			}
 		}
-
-		private IEnumerable<string> lines {
+		
+		public string Content {
 			get {
-				return Content.Split (new char[] {'\r','\n'}, StringSplitOptions.RemoveEmptyEntries);
+				return Name + "\n" + string.Join ("\n", edgeLines);
 			}
 			set {
-				Content = string.Join ("\n", value);
+				if (value.Length >= 2) {
+					string[] parts = value.Split (new char[] {'\r','\n'}, StringSplitOptions.RemoveEmptyEntries);
+					Name = parts [0];
+					edgeLines = parts.Skip (1);
+				} else if (value.Length == 1) {
+					Name = value;
+					edgeLines = new string[]{};
+				}
 			}
 		}
 
 		public int CountEdges {
 			get {
-				return lines.Where ((l) => l.Trim ().Length > 0).Count () - 1;
-			}
-		}
-
-		public string Name {
-			get {
-				return lines.Count () > 0 ? lines.ElementAt (0).Trim () : "";
-			}
-		}
-
-		public string Hash {
-			get { return Content.ToMD5Hash (); }
-		}
-
-		public void Save (Knot knot)
-		{
-			Console.WriteLine ("KnotStringIO.Save(" + knot + ")");
-			try {
-				lines = ToLines (knot);
-			} catch (Exception ex) {
-				Console.WriteLine (ex);
+				return edgeLines.Where ((l) => l.Trim ().Length > 0).Count ();
 			}
 		}
 
 		public IEnumerable<Edge> Edges {
 			get {
-				int i = 0;
-				foreach (string line in lines) {
-					if (i >= 1) {
-						Edge edge = DecodeEdge (line [0]);
-						edge.Color = DecodeColor (line.Substring (1, 8));
-						yield return edge;
-					}
-					++i;
+				Console.WriteLine ("KnotStringIO.Edges[get] = " + edgeLines.Count ());
+				foreach (string line in edgeLines) {
+					Edge edge = DecodeEdge (line [0]);
+					edge.Color = DecodeColor (line.Substring (1, 8));
+					yield return edge;
+				}
+			}
+			set {
+				Console.WriteLine ("KnotStringIO.Edges[set] = #" + value.Count ());
+				try {
+					edgeLines = ToLines (value);
+				} catch (Exception ex) {
+					Console.WriteLine (ex);
 				}
 			}
 		}
 
-		private static IEnumerable<string> ToLines (Knot knot)
+		private static IEnumerable<string> ToLines (IEnumerable<Edge> edges)
 		{
-			yield return knot.Name;
-			foreach (Edge edge in knot) {
+			foreach (Edge edge in edges) {
 				yield return EncodeEdge (edge) + EncodeColor (edge.Color);
 			}
 		}
@@ -97,7 +91,7 @@ namespace Knot3.KnotData
 			case 'z':
 				return Edge.Forward;
 			default:
-				throw new FormatException ("Failed to decode Edge: '" + c + "'!");
+				throw new IOException ("Failed to decode Edge: '" + c + "'!");
 			}
 		}
 
@@ -116,7 +110,7 @@ namespace Knot3.KnotData
 			else if (edge.Direction == Direction.Forward)
 				return  'z';
 			else
-				throw new FormatException ("Failed to encode Edge: '" + edge + "'!");
+				throw new IOException ("Failed to encode Edge: '" + edge + "'!");
 		}
 
 		private static String EncodeColor (Color c)
@@ -140,7 +134,7 @@ namespace Knot3.KnotData
 				color.G = (byte)(hex >> 8);
 				color.B = (byte)(hex);
 			} else {
-				throw new FormatException ("Invald hex representation of an ARGB or RGB color value.");
+				throw new IOException ("Invald hex representation of an ARGB or RGB color value.");
 			}
 			return color;
 		}
