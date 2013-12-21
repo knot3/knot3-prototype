@@ -16,6 +16,7 @@ public class StartScreen : MenuScreen
     + UpdateMenu  (GameTime time)
     // 
     + DrawMenu  (GameTime time)
+    // 
     + Initialize ()
 
 // 
@@ -118,7 +119,9 @@ public abstract class GameScreen :
   Methods:
     // 
     + Draw  (GameTime time) abstract
+    // 
     + Initialize () abstract
+    // 
     + Unload () abstract
     // 
     + Activate  (GameTime time) virtual
@@ -161,7 +164,9 @@ public abstract class MenuScreen : GameScreen
     + DrawMenu  (GameTime time) abstract
     // 
     + UpdateMenu  (GameTime time) abstract
+    // 
     + Initialize ()
+    // 
     + Unload ()
     // 
     + Update  (GameTime time)
@@ -231,7 +236,9 @@ public abstract class GameScreen :
   Methods:
     // 
     + Draw  (GameTime time) abstract
+    // 
     + Initialize () abstract
+    // 
     + Unload () abstract
     // 
     + Activate  (GameTime time) virtual

@@ -37,10 +37,10 @@ namespace Knot3.CreativeMode
 		private KnotInputHandler knotInput;
 		private MousePointer pointer;
 		private Overlay overlay;
-		private ModelMousePicker picker;
+		private ModelMouseHandler picker;
 		private EdgeMovement movement;
 		private EdgeColoring coloring;
-		private ModelRenderer renderer;
+		private KnotRenderer renderer;
 		private Dialog dialog;
 
 		/// <summary>
@@ -68,12 +68,12 @@ namespace Knot3.CreativeMode
 			// pointer
 			pointer = new MousePointer (this);
 			// picker
-			picker = new ModelMousePicker (this, world);
+			picker = new ModelMouseHandler (this, world);
 
 			// pipe renderer
 			var knotRenderInfo = new GameObjectInfo ();
 			knotRenderInfo.Position = Vector3.Zero;
-			renderer = new ModelRenderer (this, knotRenderInfo);
+			renderer = new KnotRenderer (this, knotRenderInfo);
 			world.Add (renderer as IGameObject);
 			
 			// pipe movements

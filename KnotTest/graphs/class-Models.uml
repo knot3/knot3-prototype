@@ -6,7 +6,9 @@ public static class Models :
     // 
     + ValidQualities : string[] static
   Methods:
+    // 
     - ContentManager> contentManagers () : Dictionary<string, static
+    // 
     - invalidModels () : HashSet<string> static
     // 
     - LoadModel (ContentManager content, IRenderEffect pp, string name) : Model static

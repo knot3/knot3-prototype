@@ -1,12 +1,21 @@
+// 
 public class KnotListFormat : IKnotFormat
   Attributes:
+    // 
     + FileExtensions : string[]
   Methods:
+    // 
     - ParseLine  (string line, out Node? node, out Color? color) static
+    // 
     + LoadKnot (string filename) : Knot
+    // 
     + KnotListFormat ()
+    // 
     + FindFilename (string knotName) : string
+    // 
     + SaveKnot  (Knot knot)
+    // 
     - ParseLines  (WrapList<string> lines, EdgeList edges) static
+    // 
     + LoadInfo (string filename) : KnotInfo
 

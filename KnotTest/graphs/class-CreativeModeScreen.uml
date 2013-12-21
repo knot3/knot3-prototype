@@ -10,9 +10,9 @@ public class CreativeModeScreen : GameScreen
     // 
     - knotInput : KnotInputHandler
     // 
-    - picker : ModelMousePicker
+    - renderer : KnotRenderer
     // 
-    - renderer : ModelRenderer
+    - picker : ModelMouseHandler
     // 
     - pointer : MousePointer
     // 
@@ -34,9 +34,11 @@ public class CreativeModeScreen : GameScreen
     + Activate  (GameTime time)
     // 
     + Draw  (GameTime time)
+    // 
     + Initialize ()
     // 
     + LoadFile  (string file)
+    // 
     + Unload ()
     // 
     + Update  (GameTime time)
@@ -106,7 +108,9 @@ public abstract class GameScreen :
   Methods:
     // 
     + Draw  (GameTime time) abstract
+    // 
     + Initialize () abstract
+    // 
     + Unload () abstract
     // 
     + Activate  (GameTime time) virtual

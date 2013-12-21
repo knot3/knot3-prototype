@@ -1,9 +1,11 @@
 // 
 public class IniFile : IDisposable
   Attributes:
+    // 
     + Dictionary<string, string>> Data : Dictionary<string,
     // 
     - Filename : string
+    // 
     + this [string section, string key, string defaultValue : string
   Methods:
     // 
@@ -12,6 +14,8 @@ public class IniFile : IDisposable
     + IniFile  (string filename)
     // 
     # Dispose  (bool disposing) virtual
+    // 
     + Dispose ()
+    // 
     + Save ()
 

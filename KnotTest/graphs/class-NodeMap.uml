@@ -2,7 +2,9 @@
 public class NodeMap : 
   Attributes:
   Methods:
+    // 
     - fromMap () : Hashtable
+    // 
     - toMap () : Hashtable
     // 
     - BuildIndex  (IEnumerable<Edge> edges)
@@ -12,6 +14,7 @@ public class NodeMap :
     + ToNode (Edge edge) : Node
     // 
     + NodeMap  (IEnumerable<Edge> edges)
+    // 
     + NodeMap ()
     // 
     + OnEdgesChanged  (IEnumerable<Edge> edges)

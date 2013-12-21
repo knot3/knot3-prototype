@@ -1,18 +1,30 @@
+// 
 public class MousePicker : GameStateComponent
   Attributes:
+    // 
     - lastMousePosition : Vector2
+    // 
     - World : World
+    // 
     - lastRayCheck : double
   Methods:
+    // 
     + MousePicker  (GameState state, World world)
+    // 
     + Update  (GameTime gameTime)
+    // 
     + UpdateMouseRay  (GameTime gameTime)
 
+// 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
   Attributes:
+    // 
     + Index : DisplayLayer
+    // 
     + state : GameState
   Methods:
+    // 
     + GameStateComponent  (GameState state, DisplayLayer index)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 

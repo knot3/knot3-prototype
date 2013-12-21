@@ -1,61 +1,104 @@
+// 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
   Attributes:
+    // 
     + Index : DisplayLayer
+    // 
     + state : GameState
   Methods:
+    // 
     + GameStateComponent  (GameState state, DisplayLayer index)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 
+// 
 public class ClickHandler : GameStateComponent
   Attributes:
+    // 
     - ClickEventComponent : class
   Methods:
+    // 
     + ClickHandler  (GameState state)
+    // 
     + Update  (GameTime gameTime)
 
-public abstract class Input : GameStateComponent, IKeyEventListener
+// 
+public abstract class Core.Input : GameStateComponent, IKeyEventListener
   Attributes:
+    // 
     - PreviousClickMouseState : MouseState static
+    // 
     - LeftButtonClickTimer : double static
+    // 
     - RightButtonClickTimer : double static
+    // 
     + GrabMouseMovement : bool
+    // 
     + LeftButton : ClickState static
+    // 
     + RightButton : ClickState static
+    // 
     + PreviousKeyboardState : KeyboardState static
+    // 
     + MouseState : MouseState static
+    // 
     + PreviousMouseState : MouseState static
+    // 
     # FullscreenToggled : bool static
+    // 
     + CurrentInputAction : InputAction
+    // 
     + ValidKeys : List<Keys>
+    // 
     + WASDMode : WASDMode
+    // 
     + IsKeyEventEnabled : bool
+    // 
     + KeyboardState : KeyboardState static
   Methods:
+    // 
     # UpdateMouse  (GameTime gameTime) virtual
+    // 
     + Update  (GameTime gameTime)
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     # UpdateKeys  (GameTime gameTime) virtual
+    // 
     + Input  (GameState state)
 
+// 
 public class MenuScreenInput : Input
   Attributes:
   Methods:
+    // 
     + MenuScreenInput  (GameState state)
 
+// 
 public class KeyHandler : GameStateComponent
   Attributes:
+    // 
     - KeyEventComponent : class
   Methods:
+    // 
     + KeyHandler  (GameState state)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public class MousePicker : GameStateComponent
   Attributes:
+    // 
     - lastMousePosition : Vector2
+    // 
     - World : World
+    // 
     - lastRayCheck : double
   Methods:
+    // 
     + MousePicker  (GameState state, World world)
+    // 
     + Update  (GameTime gameTime)
+    // 
     + UpdateMouseRay  (GameTime gameTime)
 

@@ -196,7 +196,7 @@ namespace Knot3.Core
 		public static StartScreen StartScreen;
 		public static OptionScreen OptionScreen;
 		public static VideoOptionScreen VideoOptionScreen;
-		public static LoadSavegameScreen LoadSavegameScreen;
+		public static CreativeLoadScreen LoadSavegameScreen;
 
 		public static void Initialize (Game game)
 		{
@@ -204,7 +204,7 @@ namespace Knot3.Core
 			StartScreen = new StartScreen (game);
 			OptionScreen = new OptionScreen (game);
 			VideoOptionScreen = new VideoOptionScreen (game);
-			LoadSavegameScreen = new LoadSavegameScreen (game);
+			LoadSavegameScreen = new CreativeLoadScreen (game);
 			CreativeMode.Initialize ();
 			StartScreen.Initialize ();
 			OptionScreen.Initialize ();

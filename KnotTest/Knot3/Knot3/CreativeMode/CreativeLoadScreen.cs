@@ -20,7 +20,7 @@ using Knot3.KnotData;
 
 namespace Knot3.CreativeMode
 {
-	public class LoadSavegameScreen : MenuScreen
+	public class CreativeLoadScreen : MenuScreen
 	{
 		// menu
 		private VerticalMenu menu;
@@ -32,7 +32,7 @@ namespace Knot3.CreativeMode
 		private FileIndex fileIndex;
 		private IKnotIO fileFormat;
 
-		public LoadSavegameScreen (Core.Game game)
+		public CreativeLoadScreen (Core.Game game)
 			: base(game)
 		{
 			menu = new VerticalMenu (this, new WidgetInfo (), DisplayLayer.Menu);

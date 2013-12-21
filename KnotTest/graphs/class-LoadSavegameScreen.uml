@@ -10,6 +10,7 @@ public class LoadSavegameScreen : MenuScreen
     // 
     - menu : VerticalMenu
   Methods:
+    // 
     - AddDefaultKnots ()
     // 
     + LoadSavegameScreen  (Core.Game game)
@@ -19,7 +20,9 @@ public class LoadSavegameScreen : MenuScreen
     + DrawMenu  (GameTime time)
     // 
     - AddFileToList  (string filename)
+    // 
     - UpdateFiles ()
+    // 
     + Initialize ()
     // 
     + UpdateMenu  (GameTime time)
@@ -124,7 +127,9 @@ public abstract class GameScreen :
   Methods:
     // 
     + Draw  (GameTime time) abstract
+    // 
     + Initialize () abstract
+    // 
     + Unload () abstract
     // 
     + Activate  (GameTime time) virtual
@@ -167,7 +172,9 @@ public abstract class MenuScreen : GameScreen
     + DrawMenu  (GameTime time) abstract
     // 
     + UpdateMenu  (GameTime time) abstract
+    // 
     + Initialize ()
+    // 
     + Unload ()
     // 
     + Update  (GameTime time)
@@ -237,7 +244,9 @@ public abstract class GameScreen :
   Methods:
     // 
     + Draw  (GameTime time) abstract
+    // 
     + Initialize () abstract
+    // 
     + Unload () abstract
     // 
     + Activate  (GameTime time) virtual

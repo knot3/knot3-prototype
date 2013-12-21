@@ -14,6 +14,7 @@ public class ShadowGameObject : IGameObject
     // 
     + ShadowPosition : Vector3
   Methods:
+    // 
     + Update  (GameTime gameTime) virtual
     // 
     + Intersects (Ray ray) : GameObjectDistance
@@ -21,6 +22,7 @@ public class ShadowGameObject : IGameObject
     + ShadowGameObject  (GameScreen screen, IGameObject obj)
     // 
     + Center () : Vector3
+    // 
     + Draw  (GameTime gameTime) virtual
 
 // 
@@ -82,5 +84,6 @@ public class ShadowGameModel : ShadowGameObject
   Methods:
     // 
     + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
     + Draw  (GameTime gameTime)
 

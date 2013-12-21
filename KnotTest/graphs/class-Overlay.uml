@@ -9,6 +9,7 @@ public class Overlay : DrawableGameScreenComponent
     - _fps : int
     // 
     - World : World
+    // 
     + HashtableWrapper : class
     // 
     - _total_frames : int
@@ -17,7 +18,9 @@ public class Overlay : DrawableGameScreenComponent
     // 
     - font : SpriteFont
   Methods:
+    // 
     - profiler () : Hashtable static
+    // 
     + Profiler () : HashtableWrapper static
     // 
     - DrawFPS  (GameTime time)
@@ -39,6 +42,7 @@ public class Overlay : DrawableGameScreenComponent
     - DrawProfiler  (GameTime time)
     // 
     - DrawString  (string str, int width, int height, Color color)
+    // 
     # LoadContent ()
     // 
     + Update  (GameTime time)

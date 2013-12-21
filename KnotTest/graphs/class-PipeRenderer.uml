@@ -1,34 +1,154 @@
+// 
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
   Attributes:
+    // 
     - nodes : List<NodeModel>
+    // 
     - nodeFactory : ModelFactory
+    // 
     - pipeFactory : ModelFactory
+    // 
     - pipes : List<PipeModel>
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
+    // 
     - IEnumerable.GetEnumerator () : IEnumerator
+    // 
     + PipeRenderer  (GameState state, GameObjectInfo info)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + OnEdgesChanged  (EdgeList edges)
+    // 
     + GetEnumerator () : IEnumerator<IGameObject>
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
+    // 
     + Update  (GameTime gameTime)
 
-public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
+// 
+public sealed class KnotRenderer : IGameObject, IEnumerable<IGameObject>
   Attributes:
-    + World : World abstract
-    # screen : GameScreen
-    + Info : GameObjectInfo abstract
+    // 
+    - screen : GameScreen
+    // 
+    + Info : GameObjectInfo
+    // 
+    + World : World
+    // 
+    - knot : Knot
+    // 
+    - pipes : List<PipeModel>
+    // 
+    - nodes : List<NodeModel>
+    // 
+    - arrows : List<ArrowModel>
+    // 
+    - pipeFactory : ModelFactory
+    // 
+    - nodeFactory : ModelFactory
+    // 
+    - arrowFactory : ModelFactory
+    // 
+    - nodeMap : NodeMap new
+    // 
+    + Knot : Knot
   Methods:
-    # nodeMap () : NodeMap
-    + Intersects (Ray ray) : GameObjectDistance abstract
-    + Center () : Vector3 abstract
-    + Draw  (GameTime gameTime) abstract
-    + KnotRenderer  (GameScreen screen)
-    + Update  (GameTime gameTime) abstract
-    + OnEdgesChanged  (EdgeList edges) virtual
+    // 
+    + KnotRenderer  (GameScreen screen, GameObjectInfo info)
+    // 
+    + Update  (GameTime time)
+    // 
+    + OnEdgesChanged  ()
+    // 
+    + CreateArrows  (IEnumerable<Edge> selectedEdges)
+    // 
+    - CreateArrows  (IList<Edge> selectedEdges)
+    // 
+    - CreateArrow  (Edge edge)
+    // 
+    + GetEnumerator () : IEnumerator<IGameObject>
+    // 
+    - IEnumerable.GetEnumerator () : IEnumerator
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+
+// 
+public interface IGameObject : 
+  Attributes:
+    // 
+    + Info : GameObjectInfo
+    // 
+    + World : World
+  Methods:
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Update  (GameTime time)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+
+// 
+public sealed class KnotRenderer : IGameObject, IEnumerable<IGameObject>
+  Attributes:
+    // 
+    - arrows : List<ArrowModel>
+    // 
+    - nodes : List<NodeModel>
+    // 
+    - pipes : List<PipeModel>
+    // 
+    - arrowFactory : ModelFactory
+    // 
+    - nodeFactory : ModelFactory
+    // 
+    - pipeFactory : ModelFactory
+    // 
+    + Info : GameObjectInfo
+    // 
+    - screen : GameScreen
+    // 
+    - knot : Knot
+    // 
+    + Knot : Knot
+    // 
+    + World : World
+  Methods:
+    // 
+    - nodeMap () : NodeMap
+    // 
+    - IEnumerable.GetEnumerator () : IEnumerator
+    // 
+    - CreateArrow  (Edge edge)
+    // 
+    + Draw  (GameTime time)
+    // 
+    + OnEdgesChanged ()
+    // 
+    + Update  (GameTime time)
+    // 
+    - CreateArrows  (IList<Edge> selectedEdges)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + GetEnumerator () : IEnumerator<IGameObject>
+    // 
+    + KnotRenderer  (GameScreen screen, GameObjectInfo info)
+    // 
+    + Center () : Vector3
+    // 
+    + CreateArrows  (IEnumerable<Edge> selectedEdges)
 
 // 
 public interface IGameObject : 

@@ -44,6 +44,7 @@ public class Camera : GameScreenComponent
     // 
     + TargetDistance : float
   Methods:
+    // 
     + OnViewChanged () : Action
     // 
     + Camera  (GameScreen screen, World world)

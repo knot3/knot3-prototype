@@ -12,6 +12,7 @@ public struct Node : IEquatable<Node>, ICloneable
   Methods:
     // 
     + GetHashCode () : int
+    // 
     + Node (int x, int y, int z) : this()
     // 
     + CenterBetween (Node other) : Vector3
@@ -29,6 +30,7 @@ public struct Node : IEquatable<Node>, ICloneable
     + operator (Node a, Vector3 b) : Node static
     // 
     - operator (Node a, Node b) : Vector3 static
+    // 
     + operator ! (Node a, Node b) : bool static
     // 
     + operator (Node a, Node b) : bool static

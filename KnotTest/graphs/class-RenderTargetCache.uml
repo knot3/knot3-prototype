@@ -1,6 +1,7 @@
 // 
 public sealed class RenderTargetCache : 
   Attributes:
+    // 
     - RenderTarget2D> renderTargets : Dictionary<Point,
     // 
     + CurrentRenderTarget : RenderTarget2D

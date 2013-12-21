@@ -210,6 +210,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -217,9 +218,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -251,6 +254,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
   Methods:
     // 
     + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Collapse () virtual
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
@@ -313,6 +317,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -320,9 +325,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)

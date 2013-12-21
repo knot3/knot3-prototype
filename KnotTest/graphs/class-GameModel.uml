@@ -40,7 +40,9 @@ public class GameModel : IGameObject
     // 
     + Model : Model virtual
   Methods:
+    // 
     - OnViewChanged ()
+    // 
     - UpdatePrecomputed ()
     // 
     + GameModel  (GameScreen screen, GameModelInfo info)
@@ -156,6 +158,7 @@ public class PipeModel : GameModel
     // 
     + Info : PipeModelInfo
   Methods:
+    // 
     + OnDataChange () : Action
     // 
     + PipeModel  (GameScreen screen, PipeModelInfo info)

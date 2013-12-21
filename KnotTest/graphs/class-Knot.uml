@@ -24,6 +24,7 @@ public class Knot : IEnumerable<Edge>, ICloneable
     + GetEnumerator () : IEnumerator<Edge>
     // 
     + Knot  (KnotMetaData metaData, IEnumerable<Edge> edges)
+    // 
     + Knot ()
     // 
     + IsSelected (Edge edge) : bool
@@ -33,11 +34,14 @@ public class Knot : IEnumerable<Edge>, ICloneable
     + AddRangeToSelection  (Edge selectedEdge)
     // 
     + AddToSelection  (Edge edge)
+    // 
     + ClearSelection ()
+    // 
     + Move  (Direction direction, int distance)
     // 
     + Save  (IKnotIO file)
     // 
     + ToString () : string
+    // 
     + Save ()
 

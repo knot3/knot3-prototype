@@ -50,7 +50,7 @@ public static class GameScreens :
     // 
     + VideoOptionScreen : VideoOptionScreen static
     // 
-    + LoadSavegameScreen : LoadSavegameScreen static
+    + LoadSavegameScreen : CreativeLoadScreen static
   Methods:
     // 
     + Initialize (Game game) static

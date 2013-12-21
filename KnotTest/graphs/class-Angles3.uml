@@ -10,6 +10,7 @@ public struct Angles3 : IEquatable<Angles3>
     // 
     + X : float
   Methods:
+    // 
     - zero (0f, 0f, 0f) : Angles3 static
     // 
     + Angles3  (float x, float y, float z)
@@ -43,6 +44,7 @@ public struct Angles3 : IEquatable<Angles3>
     + operator / (Angles3 value, float divider) : Angles3 static
     // 
     + operator / (Angles3 value1, Angles3 value2) : Angles3 static
+    // 
     + operator ! (Angles3 value1, Angles3 value2) : bool static
     // 
     + operator (Angles3 value1, Angles3 value2) : bool static

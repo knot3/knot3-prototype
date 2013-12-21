@@ -12,6 +12,7 @@ public class FileIndex :
     + Contains (string hash) : bool
     // 
     + Remove  (string hash)
+    // 
     - Save ()
     // 
     + Add  (string hash)

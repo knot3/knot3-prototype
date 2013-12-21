@@ -201,8 +201,10 @@ public class FadeEffect : RenderEffect
 // 
 public class InstancingTest : RenderEffect
   Attributes:
+    // 
     - ModelInstances : class
   Methods:
+    // 
     - instanceHash () : Hashtable
     // 
     + Begin  (Color background, GameTime time)
@@ -410,8 +412,10 @@ public class FadeEffect : RenderEffect
 // 
 public class InstancingTest : RenderEffect
   Attributes:
+    // 
     - ModelInstances : class
   Methods:
+    // 
     - instanceHash () : Hashtable
     // 
     + Begin  (Color background, GameTime time)

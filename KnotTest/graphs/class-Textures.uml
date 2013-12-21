@@ -2,6 +2,7 @@
 public static class Textures : 
   Attributes:
   Methods:
+    // 
     - Texture2D> textureCache () : Dictionary<string, static
     // 
     + Create (GraphicsDevice graphicsDevice, Color color) : Texture2D static

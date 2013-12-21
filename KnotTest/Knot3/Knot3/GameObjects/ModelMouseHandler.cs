@@ -23,7 +23,7 @@ namespace Knot3.GameObjects
 	/// Ein GameScreenComponent, der das IGameObject aus der World selektiert, das 
 	/// sich unter der aktuellen Mausposition befindet.
 	/// </summary>
-	public class ModelMousePicker : GameScreenComponent
+	public class ModelMouseHandler : GameScreenComponent
 	{
 		// game world
 		private World World { get; set; }
@@ -35,7 +35,7 @@ namespace Knot3.GameObjects
 		/// <summary>
 		/// Initializes a new MousePicking component.
 		/// </summary>
-		public ModelMousePicker (GameScreen screen, World world)
+		public ModelMouseHandler (GameScreen screen, World world)
 			: base(screen, DisplayLayer.None)
 		{
 			World = world;

@@ -60,14 +60,25 @@ public abstract class ItemWidget : Widget
   Methods:
     // 
     + ItemWidget (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
+// 
 public enum ItemState
+    // 
     Unselected = 0
+    // 
     Selected
+// 
 public enum HAlign
+    // 
     Left = 0
+    // 
     Center
+    // 
     Right
+// 
 public enum VAlign
+    // 
     Top
+    // 
     Center
+    // 
     Bottom

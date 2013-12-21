@@ -1,15 +1,24 @@
+// 
 public class ClickHandler : GameStateComponent
   Attributes:
+    // 
     - ClickEventComponent : class
   Methods:
+    // 
     + ClickHandler  (GameState state)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
   Attributes:
+    // 
     + Index : DisplayLayer
+    // 
     + state : GameState
   Methods:
+    // 
     + GameStateComponent  (GameState state, DisplayLayer index)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 

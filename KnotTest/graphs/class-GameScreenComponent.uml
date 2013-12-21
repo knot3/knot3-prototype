@@ -199,6 +199,52 @@ public class EdgeColoring : GameScreenComponent, IKeyEventListener
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
 
 // 
+public class KnotInputHandler : GameScreenComponent, IKeyEventListener
+  Attributes:
+    // 
+    - World : World
+    // 
+    - camera : Camera
+    // 
+    - wasdSpeed : int
+    // 
+    + ValidKeys : List<Keys>
+    // 
+    + IsKeyEventEnabled : bool
+  Methods:
+    // 
+    + KnotInputHandler  (GameScreen screen, World world)
+    // 
+    # UpdateKeys  (GameTime time)
+    // 
+    + Update  (GameTime time) override
+    // 
+    # UpdateMouse  (GameTime time)
+    // 
+    - ResetMousePosition  ()
+    // 
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
+
+// 
+public class ModelMouseHandler : GameScreenComponent
+  Attributes:
+    // 
+    - World : World
+    // 
+    - lastRayCheck : double
+    // 
+    - lastMousePosition : Vector2
+  Methods:
+    // 
+    + ModelMouseHandler  (GameScreen screen, World world)
+    // 
+    + Update  (GameTime time) override
+    // 
+    - CheckMouseRay  (GameTime time)
+    // 
+    - UpdateMouseRay  (GameTime time)
+
+// 
 public class ModelMousePicker : GameScreenComponent
   Attributes:
     // 
@@ -263,6 +309,7 @@ public class Camera : GameScreenComponent
     // 
     + TargetDistance : float
   Methods:
+    // 
     + OnViewChanged () : Action
     // 
     + Camera  (GameScreen screen, World world)
@@ -313,6 +360,7 @@ public class InputManager : GameScreenComponent
 // 
 public class WidgetKeyHandler : GameScreenComponent
   Attributes:
+    // 
     - KeyEventComponent : class
   Methods:
     // 
@@ -323,6 +371,7 @@ public class WidgetKeyHandler : GameScreenComponent
 // 
 public class WidgetMouseHandler : GameScreenComponent
   Attributes:
+    // 
     - ClickEventComponent : class
   Methods:
     // 
@@ -350,6 +399,7 @@ public class KnotInputHandler : GameScreenComponent, IKeyEventListener
     + KnotInputHandler  (GameScreen screen, World world)
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
+    // 
     - ResetMousePosition ()
     // 
     # UpdateKeys  (GameTime time)
@@ -374,6 +424,52 @@ public class EdgeColoring : GameScreenComponent, IKeyEventListener
     + Update  (GameTime time)
 
 // 
+public class KnotInputHandler : GameScreenComponent, IKeyEventListener
+  Attributes:
+    // 
+    - wasdSpeed : int
+    // 
+    - camera : Camera
+    // 
+    - World : World
+    // 
+    + ValidKeys : List<Keys>
+    // 
+    + IsKeyEventEnabled : bool
+  Methods:
+    // 
+    # UpdateMouse  (GameTime time)
+    // 
+    + KnotInputHandler  (GameScreen screen, World world)
+    // 
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
+    // 
+    - ResetMousePosition ()
+    // 
+    # UpdateKeys  (GameTime time)
+    // 
+    + Update  (GameTime time)
+
+// 
+public class ModelMouseHandler : GameScreenComponent
+  Attributes:
+    // 
+    - lastMousePosition : Vector2
+    // 
+    - World : World
+    // 
+    - lastRayCheck : double
+  Methods:
+    // 
+    - UpdateMouseRay  (GameTime time)
+    // 
+    + ModelMouseHandler  (GameScreen screen, World world)
+    // 
+    - CheckMouseRay  (GameTime time)
+    // 
+    + Update  (GameTime time)
+
+// 
 public class ModelMousePicker : GameScreenComponent
   Attributes:
     // 
@@ -392,13 +488,20 @@ public class ModelMousePicker : GameScreenComponent
     // 
     + Update  (GameTime time)
 
+// 
 public class PipeColoring : GameScreenComponent, IKeyEventListener
   Attributes:
+    // 
     + ValidKeys : List<Keys>
+    // 
     + Knot : Knot
+    // 
     + IsKeyEventEnabled : bool
   Methods:
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + PipeColoring  (GameScreen screen)
+    // 
     + Update  (GameTime gameTime)
 

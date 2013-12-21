@@ -1,0 +1,50 @@
+// 
+public sealed class KnotRenderer : IGameObject, IEnumerable<IGameObject>
+  Attributes:
+    // 
+    - screen : GameScreen
+    // 
+    + Info : GameObjectInfo
+    // 
+    + World : World
+    // 
+    - knot : Knot
+    // 
+    - pipes : List<PipeModel>
+    // 
+    - nodes : List<NodeModel>
+    // 
+    - arrows : List<ArrowModel>
+    // 
+    - pipeFactory : ModelFactory
+    // 
+    - nodeFactory : ModelFactory
+    // 
+    - arrowFactory : ModelFactory
+    // 
+    - nodeMap : NodeMap new
+    // 
+    + Knot : Knot
+  Methods:
+    // 
+    + KnotRenderer (GameScreen screen, GameObjectInfo info)
+    // 
+    + Update (GameTime time)
+    // 
+    + OnEdgesChanged ()
+    // 
+    + CreateArrows (IEnumerable<Edge> selectedEdges)
+    // 
+    - CreateArrows (IList<Edge> selectedEdges)
+    // 
+    - CreateArrow (Edge edge)
+    // 
+    + GetEnumerator () : IEnumerator<IGameObject>
+    // 
+    - IEnumerable.GetEnumerator () : IEnumerator
+    // 
+    + Draw (GameTime time)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3

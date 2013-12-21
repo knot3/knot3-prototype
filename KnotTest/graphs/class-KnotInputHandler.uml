@@ -18,6 +18,7 @@ public class KnotInputHandler : GameScreenComponent, IKeyEventListener
     + KnotInputHandler  (GameScreen screen, World world)
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
+    // 
     - ResetMousePosition ()
     // 
     # UpdateKeys  (GameTime time)

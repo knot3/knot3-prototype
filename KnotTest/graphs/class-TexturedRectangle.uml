@@ -30,6 +30,7 @@ public class TexturedRectangle : IGameObject
   Methods:
     // 
     - Length () : Vector3
+    // 
     - FillVertices ()
     // 
     + Intersects (Ray ray) : GameObjectDistance

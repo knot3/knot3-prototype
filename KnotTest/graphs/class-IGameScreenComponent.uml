@@ -295,8 +295,11 @@ public class ConfirmDialog : Dialog
     // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
     // 
     # DrawDialog  (GameTime time)
@@ -439,6 +442,7 @@ public class VerticalMenu : Menu
   Methods:
     // 
     + VerticalMenu  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
     // 
     + AddButton (MenuItemInfo info) : MenuButton
@@ -448,6 +452,7 @@ public class VerticalMenu : Menu
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
     // 
     + Draw  (GameTime time)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
 // 
@@ -563,6 +568,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -570,9 +576,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -604,6 +612,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
   Methods:
     // 
     + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Collapse () virtual
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
@@ -666,6 +675,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -673,9 +683,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -707,6 +719,7 @@ public class ColorPicker : Widget, IMouseEventListener
     // 
     + OnSelectColor : Action<Color>
   Methods:
+    // 
     - Vector2 tileSize (0.032f, 0.032f) : readonly static
     // 
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
@@ -837,8 +850,11 @@ public class ConfirmDialog : Dialog
     // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
     // 
     # DrawDialog  (GameTime time)
@@ -910,8 +926,11 @@ public class Menu : Widget
     - isVisible : bool
     // 
     # Items : List<MenuItem>
+    // 
     + Color> ItemBackgroundColor : Func<ItemState,
+    // 
     + Color> ItemForegroundColor : Func<ItemState,
+    // 
     + Vector2> RelativeItemPosition : Func<int,
     // 
     + ItemAlignX : HAlign?
@@ -923,6 +942,7 @@ public class Menu : Widget
     + IsVisible : bool
     // 
     - ItemDisplayLayer : DisplayLayer
+    // 
     + Vector2> RelativeItemSize : Func<int,
   Methods:
     // 
@@ -941,6 +961,7 @@ public class Menu : Widget
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
     // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
+    // 
     + Clear ()
 
 // 
@@ -976,6 +997,7 @@ public class VerticalMenu : Menu
   Methods:
     // 
     + VerticalMenu  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
     // 
     + AddButton (MenuItemInfo info) : MenuButton
@@ -985,6 +1007,7 @@ public class VerticalMenu : Menu
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
     // 
     + Draw  (GameTime time)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
 // 
@@ -1100,6 +1123,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -1107,9 +1131,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -1141,6 +1167,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
   Methods:
     // 
     + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Collapse () virtual
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
@@ -1203,6 +1230,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -1210,9 +1238,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -1252,6 +1282,7 @@ public class Overlay : DrawableGameScreenComponent
     - _fps : int
     // 
     - World : World
+    // 
     + HashtableWrapper : class
     // 
     - _total_frames : int
@@ -1260,7 +1291,9 @@ public class Overlay : DrawableGameScreenComponent
     // 
     - font : SpriteFont
   Methods:
+    // 
     - profiler () : Hashtable static
+    // 
     + Profiler () : HashtableWrapper static
     // 
     - DrawFPS  (GameTime time)
@@ -1282,6 +1315,7 @@ public class Overlay : DrawableGameScreenComponent
     - DrawProfiler  (GameTime time)
     // 
     - DrawString  (string str, int width, int height, Color color)
+    // 
     # LoadContent ()
     // 
     + Update  (GameTime time)
@@ -1308,6 +1342,7 @@ public class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
     // 
     + Camera : Camera
   Methods:
+    // 
     + SelectionChanged (o) : Action<IGameObject>
     // 
     - IEnumerable.GetEnumerator () : IEnumerator
@@ -1325,6 +1360,7 @@ public class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
     + Add  (IGameObject obj)
     // 
     + GetEnumerator () : IEnumerator<IGameObject>
+    // 
     + Initialize ()
     // 
     + SelectObject  (IGameObject obj, GameTime time)
@@ -1489,8 +1525,11 @@ public class ConfirmDialog : Dialog
     // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
     // 
     # DrawDialog  (GameTime time)
@@ -1633,6 +1672,7 @@ public class VerticalMenu : Menu
   Methods:
     // 
     + VerticalMenu  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
     // 
     + AddButton (MenuItemInfo info) : MenuButton
@@ -1642,6 +1682,7 @@ public class VerticalMenu : Menu
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
     // 
     + Draw  (GameTime time)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
 // 
@@ -1757,6 +1798,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -1764,9 +1806,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -1798,6 +1842,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
   Methods:
     // 
     + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Collapse () virtual
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
@@ -1860,6 +1905,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -1867,9 +1913,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -1901,6 +1949,7 @@ public class ColorPicker : Widget, IMouseEventListener
     // 
     + OnSelectColor : Action<Color>
   Methods:
+    // 
     - Vector2 tileSize (0.032f, 0.032f) : readonly static
     // 
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
@@ -2031,8 +2080,11 @@ public class ConfirmDialog : Dialog
     // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
     // 
     # DrawDialog  (GameTime time)
@@ -2104,8 +2156,11 @@ public class Menu : Widget
     - isVisible : bool
     // 
     # Items : List<MenuItem>
+    // 
     + Color> ItemBackgroundColor : Func<ItemState,
+    // 
     + Color> ItemForegroundColor : Func<ItemState,
+    // 
     + Vector2> RelativeItemPosition : Func<int,
     // 
     + ItemAlignX : HAlign?
@@ -2117,6 +2172,7 @@ public class Menu : Widget
     + IsVisible : bool
     // 
     - ItemDisplayLayer : DisplayLayer
+    // 
     + Vector2> RelativeItemSize : Func<int,
   Methods:
     // 
@@ -2135,6 +2191,7 @@ public class Menu : Widget
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
     // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
+    // 
     + Clear ()
 
 // 
@@ -2170,6 +2227,7 @@ public class VerticalMenu : Menu
   Methods:
     // 
     + VerticalMenu  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
     // 
     + AddButton (MenuItemInfo info) : MenuButton
@@ -2179,6 +2237,7 @@ public class VerticalMenu : Menu
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
     // 
     + Draw  (GameTime time)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
 // 
@@ -2294,6 +2353,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -2301,9 +2361,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -2335,6 +2397,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
   Methods:
     // 
     + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Collapse () virtual
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
@@ -2397,6 +2460,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -2404,9 +2468,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -2614,6 +2680,52 @@ public class EdgeColoring : GameScreenComponent, IKeyEventListener
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
 
 // 
+public class KnotInputHandler : GameScreenComponent, IKeyEventListener
+  Attributes:
+    // 
+    - World : World
+    // 
+    - camera : Camera
+    // 
+    - wasdSpeed : int
+    // 
+    + ValidKeys : List<Keys>
+    // 
+    + IsKeyEventEnabled : bool
+  Methods:
+    // 
+    + KnotInputHandler  (GameScreen screen, World world)
+    // 
+    # UpdateKeys  (GameTime time)
+    // 
+    + Update  (GameTime time) override
+    // 
+    # UpdateMouse  (GameTime time)
+    // 
+    - ResetMousePosition  ()
+    // 
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
+
+// 
+public class ModelMouseHandler : GameScreenComponent
+  Attributes:
+    // 
+    - World : World
+    // 
+    - lastRayCheck : double
+    // 
+    - lastMousePosition : Vector2
+  Methods:
+    // 
+    + ModelMouseHandler  (GameScreen screen, World world)
+    // 
+    + Update  (GameTime time) override
+    // 
+    - CheckMouseRay  (GameTime time)
+    // 
+    - UpdateMouseRay  (GameTime time)
+
+// 
 public class ModelMousePicker : GameScreenComponent
   Attributes:
     // 
@@ -2678,6 +2790,7 @@ public class Camera : GameScreenComponent
     // 
     + TargetDistance : float
   Methods:
+    // 
     + OnViewChanged () : Action
     // 
     + Camera  (GameScreen screen, World world)
@@ -2728,6 +2841,7 @@ public class InputManager : GameScreenComponent
 // 
 public class WidgetKeyHandler : GameScreenComponent
   Attributes:
+    // 
     - KeyEventComponent : class
   Methods:
     // 
@@ -2738,6 +2852,7 @@ public class WidgetKeyHandler : GameScreenComponent
 // 
 public class WidgetMouseHandler : GameScreenComponent
   Attributes:
+    // 
     - ClickEventComponent : class
   Methods:
     // 
@@ -2765,6 +2880,7 @@ public class KnotInputHandler : GameScreenComponent, IKeyEventListener
     + KnotInputHandler  (GameScreen screen, World world)
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
+    // 
     - ResetMousePosition ()
     // 
     # UpdateKeys  (GameTime time)
@@ -2789,6 +2905,52 @@ public class EdgeColoring : GameScreenComponent, IKeyEventListener
     + Update  (GameTime time)
 
 // 
+public class KnotInputHandler : GameScreenComponent, IKeyEventListener
+  Attributes:
+    // 
+    - wasdSpeed : int
+    // 
+    - camera : Camera
+    // 
+    - World : World
+    // 
+    + ValidKeys : List<Keys>
+    // 
+    + IsKeyEventEnabled : bool
+  Methods:
+    // 
+    # UpdateMouse  (GameTime time)
+    // 
+    + KnotInputHandler  (GameScreen screen, World world)
+    // 
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
+    // 
+    - ResetMousePosition ()
+    // 
+    # UpdateKeys  (GameTime time)
+    // 
+    + Update  (GameTime time)
+
+// 
+public class ModelMouseHandler : GameScreenComponent
+  Attributes:
+    // 
+    - lastMousePosition : Vector2
+    // 
+    - World : World
+    // 
+    - lastRayCheck : double
+  Methods:
+    // 
+    - UpdateMouseRay  (GameTime time)
+    // 
+    + ModelMouseHandler  (GameScreen screen, World world)
+    // 
+    - CheckMouseRay  (GameTime time)
+    // 
+    + Update  (GameTime time)
+
+// 
 public class ModelMousePicker : GameScreenComponent
   Attributes:
     // 
@@ -2807,14 +2969,21 @@ public class ModelMousePicker : GameScreenComponent
     // 
     + Update  (GameTime time)
 
+// 
 public class PipeColoring : GameScreenComponent, IKeyEventListener
   Attributes:
+    // 
     + ValidKeys : List<Keys>
+    // 
     + Knot : Knot
+    // 
     + IsKeyEventEnabled : bool
   Methods:
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + PipeColoring  (GameScreen screen)
+    // 
     + Update  (GameTime gameTime)
 
 // 
@@ -3105,8 +3274,11 @@ public class ConfirmDialog : Dialog
     // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
     // 
     # DrawDialog  (GameTime time)
@@ -3249,6 +3421,7 @@ public class VerticalMenu : Menu
   Methods:
     // 
     + VerticalMenu  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
     // 
     + AddButton (MenuItemInfo info) : MenuButton
@@ -3258,6 +3431,7 @@ public class VerticalMenu : Menu
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
     // 
     + Draw  (GameTime time)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
 // 
@@ -3373,6 +3547,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -3380,9 +3555,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -3414,6 +3591,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
   Methods:
     // 
     + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Collapse () virtual
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
@@ -3476,6 +3654,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -3483,9 +3662,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -3517,6 +3698,7 @@ public class ColorPicker : Widget, IMouseEventListener
     // 
     + OnSelectColor : Action<Color>
   Methods:
+    // 
     - Vector2 tileSize (0.032f, 0.032f) : readonly static
     // 
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
@@ -3647,8 +3829,11 @@ public class ConfirmDialog : Dialog
     // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
     // 
     # DrawDialog  (GameTime time)
@@ -3720,8 +3905,11 @@ public class Menu : Widget
     - isVisible : bool
     // 
     # Items : List<MenuItem>
+    // 
     + Color> ItemBackgroundColor : Func<ItemState,
+    // 
     + Color> ItemForegroundColor : Func<ItemState,
+    // 
     + Vector2> RelativeItemPosition : Func<int,
     // 
     + ItemAlignX : HAlign?
@@ -3733,6 +3921,7 @@ public class Menu : Widget
     + IsVisible : bool
     // 
     - ItemDisplayLayer : DisplayLayer
+    // 
     + Vector2> RelativeItemSize : Func<int,
   Methods:
     // 
@@ -3751,6 +3940,7 @@ public class Menu : Widget
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
     // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
+    // 
     + Clear ()
 
 // 
@@ -3786,6 +3976,7 @@ public class VerticalMenu : Menu
   Methods:
     // 
     + VerticalMenu  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
     // 
     + AddButton (MenuItemInfo info) : MenuButton
@@ -3795,6 +3986,7 @@ public class VerticalMenu : Menu
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
     // 
     + Draw  (GameTime time)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
 // 
@@ -3910,6 +4102,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -3917,9 +4110,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -3951,6 +4146,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
   Methods:
     // 
     + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Collapse () virtual
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
@@ -4013,6 +4209,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -4020,9 +4217,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -4062,6 +4261,7 @@ public class Overlay : DrawableGameScreenComponent
     - _fps : int
     // 
     - World : World
+    // 
     + HashtableWrapper : class
     // 
     - _total_frames : int
@@ -4070,7 +4270,9 @@ public class Overlay : DrawableGameScreenComponent
     // 
     - font : SpriteFont
   Methods:
+    // 
     - profiler () : Hashtable static
+    // 
     + Profiler () : HashtableWrapper static
     // 
     - DrawFPS  (GameTime time)
@@ -4092,6 +4294,7 @@ public class Overlay : DrawableGameScreenComponent
     - DrawProfiler  (GameTime time)
     // 
     - DrawString  (string str, int width, int height, Color color)
+    // 
     # LoadContent ()
     // 
     + Update  (GameTime time)
@@ -4118,6 +4321,7 @@ public class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
     // 
     + Camera : Camera
   Methods:
+    // 
     + SelectionChanged (o) : Action<IGameObject>
     // 
     - IEnumerable.GetEnumerator () : IEnumerator
@@ -4135,6 +4339,7 @@ public class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
     + Add  (IGameObject obj)
     // 
     + GetEnumerator () : IEnumerator<IGameObject>
+    // 
     + Initialize ()
     // 
     + SelectObject  (IGameObject obj, GameTime time)
@@ -4299,8 +4504,11 @@ public class ConfirmDialog : Dialog
     // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
     // 
     # DrawDialog  (GameTime time)
@@ -4443,6 +4651,7 @@ public class VerticalMenu : Menu
   Methods:
     // 
     + VerticalMenu  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
     // 
     + AddButton (MenuItemInfo info) : MenuButton
@@ -4452,6 +4661,7 @@ public class VerticalMenu : Menu
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
     // 
     + Draw  (GameTime time)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
 // 
@@ -4567,6 +4777,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -4574,9 +4785,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -4608,6 +4821,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
   Methods:
     // 
     + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Collapse () virtual
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
@@ -4670,6 +4884,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -4677,9 +4892,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -4711,6 +4928,7 @@ public class ColorPicker : Widget, IMouseEventListener
     // 
     + OnSelectColor : Action<Color>
   Methods:
+    // 
     - Vector2 tileSize (0.032f, 0.032f) : readonly static
     // 
     - CreateTiles (IEnumerable<Color> _colors) : IEnumerable<Vector2> static
@@ -4841,8 +5059,11 @@ public class ConfirmDialog : Dialog
     // 
     # Text : string[]
   Methods:
+    // 
     # OnYesClick () : Action
+    // 
     # OnCancelClick () : Action
+    // 
     # OnNoClick () : Action
     // 
     # DrawDialog  (GameTime time)
@@ -4914,8 +5135,11 @@ public class Menu : Widget
     - isVisible : bool
     // 
     # Items : List<MenuItem>
+    // 
     + Color> ItemBackgroundColor : Func<ItemState,
+    // 
     + Color> ItemForegroundColor : Func<ItemState,
+    // 
     + Vector2> RelativeItemPosition : Func<int,
     // 
     + ItemAlignX : HAlign?
@@ -4927,6 +5151,7 @@ public class Menu : Widget
     + IsVisible : bool
     // 
     - ItemDisplayLayer : DisplayLayer
+    // 
     + Vector2> RelativeItemSize : Func<int,
   Methods:
     // 
@@ -4945,6 +5170,7 @@ public class Menu : Widget
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
     // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
+    // 
     + Clear ()
 
 // 
@@ -4980,6 +5206,7 @@ public class VerticalMenu : Menu
   Methods:
     // 
     + VerticalMenu  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
     // 
     + AddButton (MenuItemInfo info) : MenuButton
@@ -4989,6 +5216,7 @@ public class VerticalMenu : Menu
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
     // 
     + Draw  (GameTime time)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
 // 
@@ -5104,6 +5332,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -5111,9 +5340,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -5145,6 +5376,7 @@ public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListe
   Methods:
     // 
     + MenuItem  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
+    // 
     + Collapse () virtual
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
@@ -5207,6 +5439,7 @@ public class DropDownMenu : MenuItem
     // 
     - dropdown : VerticalMenu
   Methods:
+    // 
     - ValuePosition (int dummy) : Vector2
     // 
     + DropDownMenu  (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
@@ -5214,9 +5447,11 @@ public class DropDownMenu : MenuItem
     - DropDownBackgroundColor (ItemState itemState) : Color
     // 
     - DropDownForegroundColor (ItemState itemState) : Color
+    // 
     - ValueSize (int dummy) : Vector2
     // 
     + SubComponents (GameTime time) : IEnumerable<IGameScreenComponent>
+    // 
     + Collapse ()
     // 
     + Draw  (GameTime time)
@@ -5424,6 +5659,52 @@ public class EdgeColoring : GameScreenComponent, IKeyEventListener
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
 
 // 
+public class KnotInputHandler : GameScreenComponent, IKeyEventListener
+  Attributes:
+    // 
+    - World : World
+    // 
+    - camera : Camera
+    // 
+    - wasdSpeed : int
+    // 
+    + ValidKeys : List<Keys>
+    // 
+    + IsKeyEventEnabled : bool
+  Methods:
+    // 
+    + KnotInputHandler  (GameScreen screen, World world)
+    // 
+    # UpdateKeys  (GameTime time)
+    // 
+    + Update  (GameTime time) override
+    // 
+    # UpdateMouse  (GameTime time)
+    // 
+    - ResetMousePosition  ()
+    // 
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
+
+// 
+public class ModelMouseHandler : GameScreenComponent
+  Attributes:
+    // 
+    - World : World
+    // 
+    - lastRayCheck : double
+    // 
+    - lastMousePosition : Vector2
+  Methods:
+    // 
+    + ModelMouseHandler  (GameScreen screen, World world)
+    // 
+    + Update  (GameTime time) override
+    // 
+    - CheckMouseRay  (GameTime time)
+    // 
+    - UpdateMouseRay  (GameTime time)
+
+// 
 public class ModelMousePicker : GameScreenComponent
   Attributes:
     // 
@@ -5488,6 +5769,7 @@ public class Camera : GameScreenComponent
     // 
     + TargetDistance : float
   Methods:
+    // 
     + OnViewChanged () : Action
     // 
     + Camera  (GameScreen screen, World world)
@@ -5538,6 +5820,7 @@ public class InputManager : GameScreenComponent
 // 
 public class WidgetKeyHandler : GameScreenComponent
   Attributes:
+    // 
     - KeyEventComponent : class
   Methods:
     // 
@@ -5548,6 +5831,7 @@ public class WidgetKeyHandler : GameScreenComponent
 // 
 public class WidgetMouseHandler : GameScreenComponent
   Attributes:
+    // 
     - ClickEventComponent : class
   Methods:
     // 
@@ -5575,6 +5859,7 @@ public class KnotInputHandler : GameScreenComponent, IKeyEventListener
     + KnotInputHandler  (GameScreen screen, World world)
     // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
+    // 
     - ResetMousePosition ()
     // 
     # UpdateKeys  (GameTime time)
@@ -5599,6 +5884,52 @@ public class EdgeColoring : GameScreenComponent, IKeyEventListener
     + Update  (GameTime time)
 
 // 
+public class KnotInputHandler : GameScreenComponent, IKeyEventListener
+  Attributes:
+    // 
+    - wasdSpeed : int
+    // 
+    - camera : Camera
+    // 
+    - World : World
+    // 
+    + ValidKeys : List<Keys>
+    // 
+    + IsKeyEventEnabled : bool
+  Methods:
+    // 
+    # UpdateMouse  (GameTime time)
+    // 
+    + KnotInputHandler  (GameScreen screen, World world)
+    // 
+    + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime time)
+    // 
+    - ResetMousePosition ()
+    // 
+    # UpdateKeys  (GameTime time)
+    // 
+    + Update  (GameTime time)
+
+// 
+public class ModelMouseHandler : GameScreenComponent
+  Attributes:
+    // 
+    - lastMousePosition : Vector2
+    // 
+    - World : World
+    // 
+    - lastRayCheck : double
+  Methods:
+    // 
+    - UpdateMouseRay  (GameTime time)
+    // 
+    + ModelMouseHandler  (GameScreen screen, World world)
+    // 
+    - CheckMouseRay  (GameTime time)
+    // 
+    + Update  (GameTime time)
+
+// 
 public class ModelMousePicker : GameScreenComponent
   Attributes:
     // 
@@ -5617,13 +5948,20 @@ public class ModelMousePicker : GameScreenComponent
     // 
     + Update  (GameTime time)
 
+// 
 public class PipeColoring : GameScreenComponent, IKeyEventListener
   Attributes:
+    // 
     + ValidKeys : List<Keys>
+    // 
     + Knot : Knot
+    // 
     + IsKeyEventEnabled : bool
   Methods:
+    // 
     + OnKeyEvent  (List<Keys> key, KeyEvent keyEvent, GameTime gameTime)
+    // 
     + PipeColoring  (GameScreen screen)
+    // 
     + Update  (GameTime gameTime)
 

@@ -6,7 +6,9 @@ public static class HfGDesign :
     // 
     - texture : Texture2D static
   Methods:
+    // 
     + OutlineColor (0x3b, 0x54, 0x00) : Color static
+    // 
     + LineColor (0xb4, 0xff, 0x00) : Color static
     // 
     + MenuFont (GameScreen screen) : SpriteFont static

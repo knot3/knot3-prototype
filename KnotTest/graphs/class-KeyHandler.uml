@@ -1,15 +1,24 @@
+// 
 public class KeyHandler : GameStateComponent
   Attributes:
+    // 
     - KeyEventComponent : class
   Methods:
+    // 
     + KeyHandler  (GameState state)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public class GameStateComponent : Xna.GameComponent, IGameStateComponent
   Attributes:
+    // 
     + Index : DisplayLayer
+    // 
     + state : GameState
   Methods:
+    // 
     + GameStateComponent  (GameState state, DisplayLayer index)
+    // 
     + SubComponents (GameTime gameTime) : IEnumerable<IGameStateComponent> virtual
 

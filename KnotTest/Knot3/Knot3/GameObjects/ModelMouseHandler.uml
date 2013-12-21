@@ -1,0 +1,18 @@
+// 
+public class ModelMouseHandler : GameScreenComponent
+  Attributes:
+    // 
+    - World : World
+    // 
+    - lastRayCheck : double
+    // 
+    - lastMousePosition : Vector2
+  Methods:
+    // 
+    + ModelMouseHandler (GameScreen screen, World world)
+    // 
+    + Update (GameTime time) override
+    // 
+    - CheckMouseRay (GameTime time)
+    // 
+    - UpdateMouseRay (GameTime time)

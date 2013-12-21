@@ -24,7 +24,7 @@ namespace Knot3.GameObjects
 	/// Verwaltet eine Liste von Spielobjekten der Klassen PipeModel (Röhren) und NodeModel (Knotenpunkt)
 	/// für ein gegebenes KnotData.Knot-Objekt und zeichnet diese über die World-Klasse.
 	/// </summary>
-	public sealed class ModelRenderer : IGameObject, IEnumerable<IGameObject>
+	public sealed class KnotRenderer : IGameObject, IEnumerable<IGameObject>
 	{
 		private GameScreen screen;
 
@@ -42,7 +42,7 @@ namespace Knot3.GameObjects
 		private ModelFactory arrowFactory;
 		private NodeMap nodeMap = new NodeMap ();
 
-		public ModelRenderer (GameScreen screen, GameObjectInfo info)
+		public KnotRenderer (GameScreen screen, GameObjectInfo info)
 		{
 			this.screen = screen;
 			Info = info;

@@ -129,7 +129,9 @@ public class GameModel : IGameObject
     // 
     + Model : Model virtual
   Methods:
+    // 
     - OnViewChanged ()
+    // 
     - UpdatePrecomputed ()
     // 
     + GameModel  (GameScreen screen, GameModelInfo info)

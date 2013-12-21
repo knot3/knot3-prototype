@@ -1,6 +1,7 @@
 // 
 public class WidgetKeyHandler : GameScreenComponent
   Attributes:
+    // 
     - KeyEventComponent : class
   Methods:
     // 

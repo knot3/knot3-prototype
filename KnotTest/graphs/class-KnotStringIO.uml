@@ -12,14 +12,20 @@ public class KnotStringIO :
     // 
     + Name : string
   Methods:
+    // 
     - DecodeEdge (char c) : Edge static
+    // 
     - EncodeEdge (Edge edge) : char static
     // 
     + KnotStringIO  (string content)
+    // 
     - DecodeColor (string hexString) : Color static
+    // 
     - ToLines (IEnumerable<Edge> edges) : IEnumerable<string> static
+    // 
     - EncodeColor (Color c) : String static
     // 
     + KnotStringIO  (Knot knot)
+    // 
     + ToString () : string
 

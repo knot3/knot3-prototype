@@ -24,6 +24,7 @@ public sealed class ModelRenderer : IGameObject, IEnumerable<IGameObject>
     // 
     + World : World
   Methods:
+    // 
     - nodeMap () : NodeMap
     // 
     - IEnumerable.GetEnumerator () : IEnumerator
@@ -31,6 +32,7 @@ public sealed class ModelRenderer : IGameObject, IEnumerable<IGameObject>
     - CreateArrow  (Edge edge)
     // 
     + Draw  (GameTime time)
+    // 
     + OnEdgesChanged ()
     // 
     + Update  (GameTime time)

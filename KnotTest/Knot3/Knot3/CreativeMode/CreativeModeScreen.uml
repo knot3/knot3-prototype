@@ -14,13 +14,13 @@ public class CreativeModeScreen : GameScreen
     // 
     - overlay : Overlay
     // 
-    - picker : ModelMousePicker
+    - picker : ModelMouseHandler
     // 
     - movement : EdgeMovement
     // 
     - coloring : EdgeColoring
     // 
-    - renderer : ModelRenderer
+    - renderer : KnotRenderer
     // 
     - dialog : Dialog
     // 

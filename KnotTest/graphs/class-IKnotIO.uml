@@ -23,12 +23,14 @@ public class KnotFileIO : IKnotIO
 // 
 public class KnotFileIO : IKnotIO
   Attributes:
+    // 
     + FileExtensions : string[] static
   Methods:
     // 
     + LoadMetaData (string filename) : KnotMetaData
     // 
     + Load (string filename) : Knot
+    // 
     + ToString () : string
     // 
     + Save  (Knot knot)

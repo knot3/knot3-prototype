@@ -2,6 +2,7 @@
 public static class RenderTargets : 
   Attributes:
   Methods:
+    // 
     - RenderTargetStack () : Stack<RenderTarget2D> static
     // 
     + PopRenderTarget (this GraphicsDevice device) : RenderTarget2D static

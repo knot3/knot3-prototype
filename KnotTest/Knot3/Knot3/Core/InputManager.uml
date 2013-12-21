@@ -32,20 +32,35 @@ public class InputManager : GameScreenComponent
     + InputManager (GameScreen screen)
     // 
     + Update (GameTime time) override
+// 
 public enum InputAction
+    // 
     None = 0
+    // 
     ArcballMove
+    // 
     TargetMove
+    // 
     FreeMouse
+    // 
     FPSMove
+    // 
     SelectedObjectMove
+    // 
     SelectedObjectShadowMove
+// 
 public enum WASDMode
+    // 
     ArcballMode
+    // 
     FirstPersonMode
+// 
 public enum ClickState
+    // 
     None = 0
+    // 
     SingleClick
+    // 
     DoubleClick
 // 
 public static class InputExtensions : 

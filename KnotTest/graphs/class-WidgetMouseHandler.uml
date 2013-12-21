@@ -1,6 +1,7 @@
 // 
 public class WidgetMouseHandler : GameScreenComponent
   Attributes:
+    // 
     - ClickEventComponent : class
   Methods:
     // 

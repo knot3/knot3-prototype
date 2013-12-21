@@ -4,14 +4,21 @@ public class MenuItemInfo : WidgetInfo
     // 
     + Text : string
   Methods:
+    // 
     + Keys () : List<Keys>
+    // 
     + OnClick () : Action
     // 
     + AddKey (Keys key) : MenuItemInfo
+    // 
     + MenuItemInfo (string text) : this()
+    // 
     + MenuItemInfo (string text, Action onClick) : this()
+    // 
     + MenuItemInfo (string text, Vector2 topLeft, Vector2 bottomRight, Action onClick) : this(text, onClick)
+    // 
     + MenuItemInfo (string text, float left, float top, float right, float bottom, Action onClick) : this(text, onClick)
+    // 
     + MenuItemInfo ()
 
 // 
@@ -65,14 +72,19 @@ public class WidgetInfo : IEquatable<WidgetInfo>
     // 
     + RelativePosition : Func<Vector2>
   Methods:
+    // 
     + BackgroundColor () : Func<Color>
+    // 
     + ForegroundColor () : Func<Color>
+    // 
     + RelativePadding () : Func<Vector2>
+    // 
     + RelativeSize () : Func<Vector2>
     // 
     + ScaledRectangle (Viewport viewport) : Rectangle
     // 
     + ScaledPosition (Viewport viewport) : Vector2
+    // 
     + operator (WidgetInfo o1, WidgetInfo o2) : bool static
     // 
     + RelativeRectangle () : Rectangle
@@ -80,11 +92,13 @@ public class WidgetInfo : IEquatable<WidgetInfo>
     + ScaledPadding (Viewport viewport) : Vector2
     // 
     + ScaledSize (Viewport viewport) : Vector2
+    // 
     + WidgetInfo ()
     // 
     + Equals (Object obj) : bool
     // 
     + GetHashCode () : int
+    // 
     + operator ! (WidgetInfo o1, WidgetInfo o2) : bool static
     // 
     + Equals (WidgetInfo other) : bool virtual

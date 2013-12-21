@@ -131,6 +131,7 @@ public class ShadowGameModel : ShadowGameObject
   Methods:
     // 
     + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
     + Draw  (GameTime gameTime)
 
 // 
@@ -276,6 +277,7 @@ public class PipeModel : GameModel
     // 
     + Info : PipeModelInfo
   Methods:
+    // 
     + OnDataChange () : Action
     // 
     + PipeModel  (GameScreen screen, PipeModelInfo info)
@@ -292,6 +294,117 @@ public class TestModel : GameModel
     + Update  (GameTime time)
     // 
     + TestModel  (GameScreen screen, GameModelInfo info)
+
+// 
+public sealed class KnotRenderer : IGameObject, IEnumerable<IGameObject>
+  Attributes:
+    // 
+    - screen : GameScreen
+    // 
+    + Info : GameObjectInfo
+    // 
+    + World : World
+    // 
+    - knot : Knot
+    // 
+    - pipes : List<PipeModel>
+    // 
+    - nodes : List<NodeModel>
+    // 
+    - arrows : List<ArrowModel>
+    // 
+    - pipeFactory : ModelFactory
+    // 
+    - nodeFactory : ModelFactory
+    // 
+    - arrowFactory : ModelFactory
+    // 
+    - nodeMap : NodeMap new
+    // 
+    + Knot : Knot
+  Methods:
+    // 
+    + KnotRenderer  (GameScreen screen, GameObjectInfo info)
+    // 
+    + Update  (GameTime time)
+    // 
+    + OnEdgesChanged  ()
+    // 
+    + CreateArrows  (IEnumerable<Edge> selectedEdges)
+    // 
+    - CreateArrows  (IList<Edge> selectedEdges)
+    // 
+    - CreateArrow  (Edge edge)
+    // 
+    + GetEnumerator () : IEnumerator<IGameObject>
+    // 
+    - IEnumerable.GetEnumerator () : IEnumerator
+    // 
+    + Draw  (GameTime time)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+
+// 
+public class LineRenderer : KnotRenderer
+  Attributes:
+    // 
+    - edges : EdgeList
+    // 
+    - basicEffect : BasicEffect
+    // 
+    + Info : GameObjectInfo
+    // 
+    + World : World
+  Methods:
+    // 
+    + LineRenderer  (GameScreen screen, GameObjectInfo info)
+    // 
+    + OnEdgesChanged  (EdgeList edges)
+    // 
+    - DrawRoundedLines ()
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+    // 
+    + Draw  (GameTime gameTime)
+    // 
+    + Update  (GameTime gameTime)
+
+// 
+public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
+  Attributes:
+    // 
+    - nodes : List<NodeModel>
+    // 
+    - nodeFactory : ModelFactory
+    // 
+    - pipeFactory : ModelFactory
+    // 
+    - pipes : List<PipeModel>
+    // 
+    + Info : GameObjectInfo
+    // 
+    + World : World
+  Methods:
+    // 
+    - IEnumerable.GetEnumerator () : IEnumerator
+    // 
+    + PipeRenderer  (GameState state, GameObjectInfo info)
+    // 
+    + Draw  (GameTime gameTime)
+    // 
+    + OnEdgesChanged  (EdgeList edges)
+    // 
+    + GetEnumerator () : IEnumerator<IGameObject>
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + Center () : Vector3
+    // 
+    + Update  (GameTime gameTime)
 
 // 
 public sealed class ModelRenderer : IGameObject, IEnumerable<IGameObject>
@@ -491,6 +604,7 @@ public class ShadowGameModel : ShadowGameObject
   Methods:
     // 
     + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
     + Draw  (GameTime gameTime)
 
 // 
@@ -529,6 +643,7 @@ public class EdgeMovement : IGameObject, IEnumerable<IGameObject>
     - ComputeDirection  (Vector3 currentMousePosition, out Direction direction, out float count)
     // 
     - ComputeDirection  (Vector3 currentMousePosition, out Direction direction, out int countInt)
+    // 
     - CreateShadowPipes ()
     // 
     - MoveShadowPipes  (Vector3 currentMousePosition, Vector3 direction3D)
@@ -581,7 +696,9 @@ public class GameModel : IGameObject
     // 
     + Model : Model virtual
   Methods:
+    // 
     - OnViewChanged ()
+    // 
     - UpdatePrecomputed ()
     // 
     + GameModel  (GameScreen screen, GameModelInfo info)
@@ -680,6 +797,7 @@ public class PipeModel : GameModel
     // 
     + Info : PipeModelInfo
   Methods:
+    // 
     + OnDataChange () : Action
     // 
     + PipeModel  (GameScreen screen, PipeModelInfo info)
@@ -697,51 +815,115 @@ public class TestModel : GameModel
     // 
     + TestModel  (GameScreen screen, GameModelInfo info)
 
-public abstract class KnotRenderer : IEdgeChangeListener, IGameObject
+// 
+public sealed class KnotRenderer : IGameObject, IEnumerable<IGameObject>
   Attributes:
-    + World : World abstract
-    # screen : GameScreen
-    + Info : GameObjectInfo abstract
+    // 
+    - arrows : List<ArrowModel>
+    // 
+    - nodes : List<NodeModel>
+    // 
+    - pipes : List<PipeModel>
+    // 
+    - arrowFactory : ModelFactory
+    // 
+    - nodeFactory : ModelFactory
+    // 
+    - pipeFactory : ModelFactory
+    // 
+    + Info : GameObjectInfo
+    // 
+    - screen : GameScreen
+    // 
+    - knot : Knot
+    // 
+    + Knot : Knot
+    // 
+    + World : World
   Methods:
-    # nodeMap () : NodeMap
-    + Intersects (Ray ray) : GameObjectDistance abstract
-    + Center () : Vector3 abstract
-    + Draw  (GameTime gameTime) abstract
-    + KnotRenderer  (GameScreen screen)
-    + Update  (GameTime gameTime) abstract
-    + OnEdgesChanged  (EdgeList edges) virtual
+    // 
+    - nodeMap () : NodeMap
+    // 
+    - IEnumerable.GetEnumerator () : IEnumerator
+    // 
+    - CreateArrow  (Edge edge)
+    // 
+    + Draw  (GameTime time)
+    // 
+    + OnEdgesChanged ()
+    // 
+    + Update  (GameTime time)
+    // 
+    - CreateArrows  (IList<Edge> selectedEdges)
+    // 
+    + Intersects (Ray ray) : GameObjectDistance
+    // 
+    + GetEnumerator () : IEnumerator<IGameObject>
+    // 
+    + KnotRenderer  (GameScreen screen, GameObjectInfo info)
+    // 
+    + Center () : Vector3
+    // 
+    + CreateArrows  (IEnumerable<Edge> selectedEdges)
 
+// 
 public class LineRenderer : KnotRenderer
   Attributes:
+    // 
     - edges : EdgeList
+    // 
     - basicEffect : BasicEffect
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
+    // 
     + LineRenderer  (GameScreen screen, GameObjectInfo info)
+    // 
     + OnEdgesChanged  (EdgeList edges)
+    // 
     - DrawRoundedLines ()
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + Update  (GameTime gameTime)
 
+// 
 public class PipeRenderer : KnotRenderer, IEnumerable<IGameObject>
   Attributes:
+    // 
     - nodes : List<NodeModel>
+    // 
     - nodeFactory : ModelFactory
+    // 
     - pipeFactory : ModelFactory
+    // 
     - pipes : List<PipeModel>
+    // 
     + Info : GameObjectInfo
+    // 
     + World : World
   Methods:
+    // 
     - IEnumerable.GetEnumerator () : IEnumerator
+    // 
     + PipeRenderer  (GameState state, GameObjectInfo info)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     + OnEdgesChanged  (EdgeList edges)
+    // 
     + GetEnumerator () : IEnumerator<IGameObject>
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + Center () : Vector3
+    // 
     + Update  (GameTime gameTime)
 
 // 
@@ -770,6 +952,7 @@ public sealed class ModelRenderer : IGameObject, IEnumerable<IGameObject>
     // 
     + World : World
   Methods:
+    // 
     - nodeMap () : NodeMap
     // 
     - IEnumerable.GetEnumerator () : IEnumerator
@@ -777,6 +960,7 @@ public sealed class ModelRenderer : IGameObject, IEnumerable<IGameObject>
     - CreateArrow  (Edge edge)
     // 
     + Draw  (GameTime time)
+    // 
     + OnEdgesChanged ()
     // 
     + Update  (GameTime time)
@@ -838,6 +1022,7 @@ public class ShadowGameObject : IGameObject
     // 
     + ShadowPosition : Vector3
   Methods:
+    // 
     + Update  (GameTime gameTime) virtual
     // 
     + Intersects (Ray ray) : GameObjectDistance
@@ -845,6 +1030,7 @@ public class ShadowGameObject : IGameObject
     + ShadowGameObject  (GameScreen screen, IGameObject obj)
     // 
     + Center () : Vector3
+    // 
     + Draw  (GameTime gameTime) virtual
 
 // 
@@ -889,32 +1075,56 @@ public class ShadowGameModel : ShadowGameObject
   Methods:
     // 
     + ShadowGameModel  (GameScreen screen, GameModel model)
+    // 
     + Draw  (GameTime gameTime)
 
+// 
 public class PipeMovement : IGameObject, IEnumerable<IGameObject>
   Attributes:
+    // 
     - shadowObjects : List<ShadowGameObject>
+    // 
     + World : World
+    // 
     - screen : GameScreen
+    // 
     - previousMousePosition : Vector3
+    // 
     + Info : GameObjectInfo
+    // 
     + Knot : Knot
   Methods:
+    // 
     - knownEdgeLists () : HashSet<EdgeList>
+    // 
     - IEnumerable.GetEnumerator () : IEnumerator
+    // 
     - MovePipes  (Vector3 currentMousePosition)
+    // 
     - MoveShadowPipes  (Vector3 currentMousePosition)
+    // 
     + Intersects (Ray ray) : GameObjectDistance
+    // 
     + GetEnumerator () : IEnumerator<IGameObject>
+    // 
     + PipeMovement  (GameScreen screen, World world, GameObjectInfo info)
+    // 
     + Draw  (GameTime gameTime)
+    // 
     - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out float count)
+    // 
     - ComputeDirection  (Vector3 currentMousePosition, out Vector3 direction, out int countInt)
+    // 
     - CreateShadowPipes ()
+    // 
     - MoveShadowPipes  (Vector3 currentMousePosition, Vector3 direction3D)
+    // 
     - TryMovePipes  (GameTime gameTime)
+    // 
     - TrySelectObject  (GameTime gameTime)
+    // 
     + Center () : Vector3
+    // 
     + Update  (GameTime gameTime)
 
 // 
@@ -949,6 +1159,7 @@ public class TexturedRectangle : IGameObject
   Methods:
     // 
     - Length () : Vector3
+    // 
     - FillVertices ()
     // 
     + Intersects (Ray ray) : GameObjectDistance

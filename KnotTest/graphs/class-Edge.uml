@@ -30,8 +30,11 @@ public class Edge :
     // 
     + Zero : Edge static
   Methods:
+    // 
     - r () : Random static
+    // 
     + DefaultColor () : Color static
+    // 
     + Colors () : List<Color> static
     // 
     + Edge  (Direction direction)
@@ -47,6 +50,8 @@ public class Edge :
     + RandomColor () : Color static
     // 
     + RandomEdge () : Edge static
+    // 
     + operator ! (Edge a, Edge b) : bool static
+    // 
     + operator (Edge a, Edge b) : bool static
 

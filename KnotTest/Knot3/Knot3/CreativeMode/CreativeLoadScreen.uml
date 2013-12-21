@@ -1,0 +1,28 @@
+// 
+public class CreativeLoadScreen : MenuScreen
+  Attributes:
+    // 
+    - menu : VerticalMenu
+    // 
+    - spriteBatch : SpriteBatch
+    // 
+    - fileIndex : FileIndex
+    // 
+    - fileFormat : IKnotIO
+  Methods:
+    // 
+    + CreativeLoadScreen (Core.Game game)
+    // 
+    + Initialize () override
+    // 
+    - UpdateFiles ()
+    // 
+    - AddFileToList (string filename)
+    // 
+    - AddDefaultKnots ()
+    // 
+    + UpdateMenu (GameTime time) override
+    // 
+    + DrawMenu (GameTime time) override
+    // 
+    + Activate (GameTime time) override

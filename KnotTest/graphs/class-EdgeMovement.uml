@@ -34,6 +34,7 @@ public class EdgeMovement : IGameObject, IEnumerable<IGameObject>
     - ComputeDirection  (Vector3 currentMousePosition, out Direction direction, out float count)
     // 
     - ComputeDirection  (Vector3 currentMousePosition, out Direction direction, out int countInt)
+    // 
     - CreateShadowPipes ()
     // 
     - MoveShadowPipes  (Vector3 currentMousePosition, Vector3 direction3D)

@@ -5,8 +5,11 @@ public class Menu : Widget
     - isVisible : bool
     // 
     # Items : List<MenuItem>
+    // 
     + Color> ItemBackgroundColor : Func<ItemState,
+    // 
     + Color> ItemForegroundColor : Func<ItemState,
+    // 
     + Vector2> RelativeItemPosition : Func<int,
     // 
     + ItemAlignX : HAlign?
@@ -18,6 +21,7 @@ public class Menu : Widget
     + IsVisible : bool
     // 
     - ItemDisplayLayer : DisplayLayer
+    // 
     + Vector2> RelativeItemSize : Func<int,
   Methods:
     // 
@@ -36,6 +40,7 @@ public class Menu : Widget
     + AddDropDown  (MenuItemInfo info, DistinctOptionInfo option) virtual
     // 
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem) virtual
+    // 
     + Clear ()
 
 // 
@@ -193,6 +198,7 @@ public class VerticalMenu : Menu
   Methods:
     // 
     + VerticalMenu  (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
+    // 
     + Align  (Viewport viewport, float scale, int posX, int posY, int? sizeX)
     // 
     + AddButton (MenuItemInfo info) : MenuButton
@@ -202,5 +208,6 @@ public class VerticalMenu : Menu
     + AddDropDown  (MenuItemInfo info, DropDownMenuItem[] items, DropDownMenuItem defaultItem)
     // 
     + Draw  (GameTime time)
+    // 
     + Align  (Viewport viewport, float scale, Vector2? givenPosition)
 
