@@ -46,16 +46,16 @@
 <text text-anchor="start" x="7.5" y="-446.3" font-family="Arial" font-size="8.00">+ device : GraphicsDevice</text>
 <text text-anchor="start" x="7.5" y="-436.3" font-family="Arial" font-size="8.00">+ RenderEffects : RenderEffectStack</text>
 <text text-anchor="start" x="7.5" y="-426.3" font-family="Arial" font-size="8.00">+ viewport : Viewport</text>
-<text text-anchor="start" x="7.5" y="-416.3" font-family="Arial" font-size="8.00">+ game : Game</text>
-<text text-anchor="start" x="7.5" y="-406.3" font-family="Arial" font-size="8.00">+ graphics : GraphicsDeviceManager</text>
-<text text-anchor="start" x="7.5" y="-396.3" font-family="Arial" font-size="8.00">+ input : InputManager</text>
+<text text-anchor="start" x="7.5" y="-416.3" font-family="Arial" font-size="8.00">+ graphics : GraphicsDeviceManager</text>
+<text text-anchor="start" x="7.5" y="-406.3" font-family="Arial" font-size="8.00">+ input : InputManager</text>
+<text text-anchor="start" x="7.5" y="-396.3" font-family="Arial" font-size="8.00">+ game : Knot3Game</text>
 <text text-anchor="start" x="7.5" y="-386.3" font-family="Arial" font-size="8.00">+ PostProcessing : RenderEffect</text>
 <polyline fill="none" stroke="black" points="-0.5,-379.5 354.5,-379.5 "/>
 <text text-anchor="start" x="7.5" y="-368.3" font-family="Arial" font-size="8.00">+ Draw (GameTime time) abstract</text>
 <text text-anchor="start" x="7.5" y="-358.3" font-family="Arial" font-size="8.00">+ Initialize () abstract</text>
 <text text-anchor="start" x="7.5" y="-348.3" font-family="Arial" font-size="8.00">+ Unload () abstract</text>
 <text text-anchor="start" x="7.5" y="-338.3" font-family="Arial" font-size="8.00">+ Activate (GameTime time) virtual</text>
-<text text-anchor="start" x="7.5" y="-328.3" font-family="Arial" font-size="8.00">+ GameScreen (Game game)</text>
+<text text-anchor="start" x="7.5" y="-328.3" font-family="Arial" font-size="8.00">+ GameScreen (Knot3Game game)</text>
 <text text-anchor="start" x="7.5" y="-318.3" font-family="Arial" font-size="8.00">+ Update (GameTime time) abstract</text>
 <text text-anchor="start" x="7.5" y="-308.3" font-family="Arial" font-size="8.00">+ Deactivate (GameTime time) virtual</text>
 <text text-anchor="start" x="7.5" y="-298.3" font-family="Arial" font-size="8.00">+ AddGameComponents (GameTime time, params IGameScreenComponent[] components)</text>

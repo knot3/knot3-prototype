@@ -47,7 +47,7 @@ public class CreativeModeScreen : GameScreen
 public abstract class GameScreen : 
   Attributes:
     // 
-    + game : Game
+    + game : Knot3Game
     // 
     + NextState : GameScreen
     // 
@@ -66,7 +66,7 @@ public abstract class GameScreen :
     + PostProcessing : RenderEffect
   Methods:
     // 
-    + GameScreen  (Game game)
+    + GameScreen  (Knot3Game game)
     // 
     + Initialize  () abstract
     // 
@@ -98,11 +98,11 @@ public abstract class GameScreen :
     // 
     + viewport : Viewport
     // 
-    + game : Game
-    // 
     + graphics : GraphicsDeviceManager
     // 
     + input : InputManager
+    // 
+    + game : Knot3Game
     // 
     + PostProcessing : RenderEffect
   Methods:
@@ -115,7 +115,7 @@ public abstract class GameScreen :
     // 
     + Activate  (GameTime time) virtual
     // 
-    + GameScreen  (Game game)
+    + GameScreen  (Knot3Game game)
     // 
     + Update  (GameTime time) abstract
     // 

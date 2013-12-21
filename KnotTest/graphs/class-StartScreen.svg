@@ -11,18 +11,18 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-602 359,-602 359,5 -4,5"/>
 <!-- Box_StartScreen -->
 <g id="node1" class="node"><title>Box_StartScreen</title>
-<polygon fill="#fcfcda" stroke="black" points="111.5,-1 111.5,-115 242.5,-115 242.5,-1 111.5,-1"/>
+<polygon fill="#fcfcda" stroke="black" points="107.5,-1 107.5,-115 246.5,-115 246.5,-1 107.5,-1"/>
 <text text-anchor="middle" x="177" y="-103.8" font-family="Arial" font-size="8.00">StartScreen</text>
-<polyline fill="none" stroke="black" points="111.5,-97 242.5,-97 "/>
-<text text-anchor="start" x="119.5" y="-85.8" font-family="Arial" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
-<text text-anchor="start" x="119.5" y="-75.8" font-family="Arial" font-size="8.00">&#45; logo : Texture2D</text>
-<text text-anchor="start" x="119.5" y="-65.8" font-family="Arial" font-size="8.00"># menu : Menu</text>
-<polyline fill="none" stroke="black" points="111.5,-59 242.5,-59 "/>
-<text text-anchor="start" x="119.5" y="-47.8" font-family="Arial" font-size="8.00">+ StartScreen (Game game)</text>
-<text text-anchor="start" x="119.5" y="-37.8" font-family="Arial" font-size="8.00">+ Activate (GameTime time)</text>
-<text text-anchor="start" x="119.5" y="-27.8" font-family="Arial" font-size="8.00">+ UpdateMenu (GameTime time)</text>
-<text text-anchor="start" x="119.5" y="-17.8" font-family="Arial" font-size="8.00">+ DrawMenu (GameTime time)</text>
-<text text-anchor="start" x="119.5" y="-7.8" font-family="Arial" font-size="8.00">+ Initialize ()</text>
+<polyline fill="none" stroke="black" points="107.5,-97 246.5,-97 "/>
+<text text-anchor="start" x="115.5" y="-85.8" font-family="Arial" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
+<text text-anchor="start" x="115.5" y="-75.8" font-family="Arial" font-size="8.00">&#45; logo : Texture2D</text>
+<text text-anchor="start" x="115.5" y="-65.8" font-family="Arial" font-size="8.00"># menu : Menu</text>
+<polyline fill="none" stroke="black" points="107.5,-59 246.5,-59 "/>
+<text text-anchor="start" x="115.5" y="-47.8" font-family="Arial" font-size="8.00">+ StartScreen (Knot3Game game)</text>
+<text text-anchor="start" x="115.5" y="-37.8" font-family="Arial" font-size="8.00">+ Activate (GameTime time)</text>
+<text text-anchor="start" x="115.5" y="-27.8" font-family="Arial" font-size="8.00">+ UpdateMenu (GameTime time)</text>
+<text text-anchor="start" x="115.5" y="-17.8" font-family="Arial" font-size="8.00">+ DrawMenu (GameTime time)</text>
+<text text-anchor="start" x="115.5" y="-7.8" font-family="Arial" font-size="8.00">+ Initialize ()</text>
 </g>
 <!-- Box_MenuScreen -->
 <g id="node2" class="node"><title>Box_MenuScreen</title>
@@ -35,7 +35,7 @@
 <text text-anchor="start" x="91" y="-277.8" font-family="Arial" font-size="8.00"># LineWidth : int</text>
 <text text-anchor="start" x="91" y="-267.8" font-family="Arial" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
 <polyline fill="none" stroke="black" points="83,-261 271,-261 "/>
-<text text-anchor="start" x="91" y="-249.8" font-family="Arial" font-size="8.00">+ MenuScreen (Core.Game game)</text>
+<text text-anchor="start" x="91" y="-249.8" font-family="Arial" font-size="8.00">+ MenuScreen (Core.Knot3Game game)</text>
 <text text-anchor="start" x="91" y="-239.8" font-family="Arial" font-size="8.00">+ Activate (GameTime time)</text>
 <text text-anchor="start" x="91" y="-229.8" font-family="Arial" font-size="8.00">+ Draw (GameTime time)</text>
 <text text-anchor="start" x="91" y="-219.8" font-family="Arial" font-size="8.00"># BackgroundColor (ItemState itemState) : Color</text>
@@ -61,16 +61,16 @@
 <text text-anchor="start" x="7.5" y="-548.3" font-family="Arial" font-size="8.00">+ device : GraphicsDevice</text>
 <text text-anchor="start" x="7.5" y="-538.3" font-family="Arial" font-size="8.00">+ RenderEffects : RenderEffectStack</text>
 <text text-anchor="start" x="7.5" y="-528.3" font-family="Arial" font-size="8.00">+ viewport : Viewport</text>
-<text text-anchor="start" x="7.5" y="-518.3" font-family="Arial" font-size="8.00">+ game : Game</text>
-<text text-anchor="start" x="7.5" y="-508.3" font-family="Arial" font-size="8.00">+ graphics : GraphicsDeviceManager</text>
-<text text-anchor="start" x="7.5" y="-498.3" font-family="Arial" font-size="8.00">+ input : InputManager</text>
+<text text-anchor="start" x="7.5" y="-518.3" font-family="Arial" font-size="8.00">+ graphics : GraphicsDeviceManager</text>
+<text text-anchor="start" x="7.5" y="-508.3" font-family="Arial" font-size="8.00">+ input : InputManager</text>
+<text text-anchor="start" x="7.5" y="-498.3" font-family="Arial" font-size="8.00">+ game : Knot3Game</text>
 <text text-anchor="start" x="7.5" y="-488.3" font-family="Arial" font-size="8.00">+ PostProcessing : RenderEffect</text>
 <polyline fill="none" stroke="black" points="-0.5,-481.5 354.5,-481.5 "/>
 <text text-anchor="start" x="7.5" y="-470.3" font-family="Arial" font-size="8.00">+ Draw (GameTime time) abstract</text>
 <text text-anchor="start" x="7.5" y="-460.3" font-family="Arial" font-size="8.00">+ Initialize () abstract</text>
 <text text-anchor="start" x="7.5" y="-450.3" font-family="Arial" font-size="8.00">+ Unload () abstract</text>
 <text text-anchor="start" x="7.5" y="-440.3" font-family="Arial" font-size="8.00">+ Activate (GameTime time) virtual</text>
-<text text-anchor="start" x="7.5" y="-430.3" font-family="Arial" font-size="8.00">+ GameScreen (Game game)</text>
+<text text-anchor="start" x="7.5" y="-430.3" font-family="Arial" font-size="8.00">+ GameScreen (Knot3Game game)</text>
 <text text-anchor="start" x="7.5" y="-420.3" font-family="Arial" font-size="8.00">+ Update (GameTime time) abstract</text>
 <text text-anchor="start" x="7.5" y="-410.3" font-family="Arial" font-size="8.00">+ Deactivate (GameTime time) virtual</text>
 <text text-anchor="start" x="7.5" y="-400.3" font-family="Arial" font-size="8.00">+ AddGameComponents (GameTime time, params IGameScreenComponent[] components)</text>

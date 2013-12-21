@@ -13,5 +13,5 @@ public static class GameScreens :
     + CreativeMode : CreativeModeScreen static
   Methods:
     // 
-    + Initialize  (Game game) static
+    + Initialize  (Knot3Game game) static
 

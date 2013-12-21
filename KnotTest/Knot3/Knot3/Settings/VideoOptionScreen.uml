@@ -7,7 +7,7 @@ public class VideoOptionScreen : OptionScreen
     - spriteBatch : SpriteBatch
   Methods:
     // 
-    + VideoOptionScreen (Core.Game game)
+    + VideoOptionScreen (Core.Knot3Game game)
     // 
     + Initialize () override
     // 

@@ -11,32 +11,32 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-744 359,-744 359,5 -4,5"/>
 <!-- Box_OptionScreen -->
 <g id="node1" class="node"><title>Box_OptionScreen</title>
-<polygon fill="#fcfcda" stroke="black" points="105.5,-153 105.5,-257 248.5,-257 248.5,-153 105.5,-153"/>
+<polygon fill="#fcfcda" stroke="black" points="95,-153 95,-257 259,-257 259,-153 95,-153"/>
 <text text-anchor="middle" x="177" y="-245.8" font-family="Arial" font-size="8.00">OptionScreen</text>
-<polyline fill="none" stroke="black" points="105.5,-239 248.5,-239 "/>
-<text text-anchor="start" x="113.5" y="-227.8" font-family="Arial" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
-<text text-anchor="start" x="113.5" y="-217.8" font-family="Arial" font-size="8.00">&#45; menu : VerticalMenu</text>
-<polyline fill="none" stroke="black" points="105.5,-211 248.5,-211 "/>
-<text text-anchor="start" x="113.5" y="-199.8" font-family="Arial" font-size="8.00">+ OptionScreen (Core.Game game)</text>
-<text text-anchor="start" x="113.5" y="-189.8" font-family="Arial" font-size="8.00">+ Activate (GameTime time)</text>
-<text text-anchor="start" x="113.5" y="-179.8" font-family="Arial" font-size="8.00">+ DrawMenu (GameTime time)</text>
-<text text-anchor="start" x="113.5" y="-169.8" font-family="Arial" font-size="8.00">+ UpdateMenu (GameTime time)</text>
-<text text-anchor="start" x="113.5" y="-159.8" font-family="Arial" font-size="8.00">+ Initialize ()</text>
+<polyline fill="none" stroke="black" points="95,-239 259,-239 "/>
+<text text-anchor="start" x="103" y="-227.8" font-family="Arial" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
+<text text-anchor="start" x="103" y="-217.8" font-family="Arial" font-size="8.00">&#45; menu : VerticalMenu</text>
+<polyline fill="none" stroke="black" points="95,-211 259,-211 "/>
+<text text-anchor="start" x="103" y="-199.8" font-family="Arial" font-size="8.00">+ OptionScreen (Core.Knot3Game game)</text>
+<text text-anchor="start" x="103" y="-189.8" font-family="Arial" font-size="8.00">+ Activate (GameTime time)</text>
+<text text-anchor="start" x="103" y="-179.8" font-family="Arial" font-size="8.00">+ DrawMenu (GameTime time)</text>
+<text text-anchor="start" x="103" y="-169.8" font-family="Arial" font-size="8.00">+ UpdateMenu (GameTime time)</text>
+<text text-anchor="start" x="103" y="-159.8" font-family="Arial" font-size="8.00">+ Initialize ()</text>
 </g>
 <!-- Box_VideoOptionScreen -->
 <g id="node4" class="node"><title>Box_VideoOptionScreen</title>
-<polygon fill="#fcfcda" stroke="black" points="95,-1 95,-115 259,-115 259,-1 95,-1"/>
+<polygon fill="#fcfcda" stroke="black" points="84.5,-1 84.5,-115 269.5,-115 269.5,-1 84.5,-1"/>
 <text text-anchor="middle" x="177" y="-103.8" font-family="Arial" font-size="8.00">VideoOptionScreen</text>
-<polyline fill="none" stroke="black" points="95,-97 259,-97 "/>
-<text text-anchor="start" x="103" y="-85.8" font-family="Arial" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
-<text text-anchor="start" x="103" y="-75.8" font-family="Arial" font-size="8.00">&#45; menu : VerticalMenu</text>
-<polyline fill="none" stroke="black" points="95,-69 259,-69 "/>
-<text text-anchor="start" x="103" y="-57.8" font-family="Arial" font-size="8.00">+ VideoOptionScreen (Core.Game game)</text>
-<text text-anchor="start" x="103" y="-47.8" font-family="Arial" font-size="8.00">+ Activate (GameTime time)</text>
-<text text-anchor="start" x="103" y="-37.8" font-family="Arial" font-size="8.00">+ DrawMenu (GameTime time)</text>
-<text text-anchor="start" x="103" y="-27.8" font-family="Arial" font-size="8.00">+ Initialize ()</text>
-<text text-anchor="start" x="103" y="-17.8" font-family="Arial" font-size="8.00">+ UpdateMenu (GameTime time)</text>
-<text text-anchor="start" x="103" y="-7.8" font-family="Arial" font-size="8.00">+ Collapse (MenuItem item)</text>
+<polyline fill="none" stroke="black" points="84.5,-97 269.5,-97 "/>
+<text text-anchor="start" x="92.5" y="-85.8" font-family="Arial" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
+<text text-anchor="start" x="92.5" y="-75.8" font-family="Arial" font-size="8.00">&#45; menu : VerticalMenu</text>
+<polyline fill="none" stroke="black" points="84.5,-69 269.5,-69 "/>
+<text text-anchor="start" x="92.5" y="-57.8" font-family="Arial" font-size="8.00">+ VideoOptionScreen (Core.Knot3Game game)</text>
+<text text-anchor="start" x="92.5" y="-47.8" font-family="Arial" font-size="8.00">+ Activate (GameTime time)</text>
+<text text-anchor="start" x="92.5" y="-37.8" font-family="Arial" font-size="8.00">+ DrawMenu (GameTime time)</text>
+<text text-anchor="start" x="92.5" y="-27.8" font-family="Arial" font-size="8.00">+ Initialize ()</text>
+<text text-anchor="start" x="92.5" y="-17.8" font-family="Arial" font-size="8.00">+ UpdateMenu (GameTime time)</text>
+<text text-anchor="start" x="92.5" y="-7.8" font-family="Arial" font-size="8.00">+ Collapse (MenuItem item)</text>
 </g>
 <!-- Box_OptionScreen&#45;&gt;Box_VideoOptionScreen -->
 <g id="edge6" class="edge"><title>Box_OptionScreen&#45;&gt;Box_VideoOptionScreen</title>
@@ -54,7 +54,7 @@
 <text text-anchor="start" x="91" y="-419.8" font-family="Arial" font-size="8.00"># LineWidth : int</text>
 <text text-anchor="start" x="91" y="-409.8" font-family="Arial" font-size="8.00">&#45; spriteBatch : SpriteBatch</text>
 <polyline fill="none" stroke="black" points="83,-403 271,-403 "/>
-<text text-anchor="start" x="91" y="-391.8" font-family="Arial" font-size="8.00">+ MenuScreen (Core.Game game)</text>
+<text text-anchor="start" x="91" y="-391.8" font-family="Arial" font-size="8.00">+ MenuScreen (Core.Knot3Game game)</text>
 <text text-anchor="start" x="91" y="-381.8" font-family="Arial" font-size="8.00">+ Activate (GameTime time)</text>
 <text text-anchor="start" x="91" y="-371.8" font-family="Arial" font-size="8.00">+ Draw (GameTime time)</text>
 <text text-anchor="start" x="91" y="-361.8" font-family="Arial" font-size="8.00"># BackgroundColor (ItemState itemState) : Color</text>
@@ -80,16 +80,16 @@
 <text text-anchor="start" x="7.5" y="-690.3" font-family="Arial" font-size="8.00">+ device : GraphicsDevice</text>
 <text text-anchor="start" x="7.5" y="-680.3" font-family="Arial" font-size="8.00">+ RenderEffects : RenderEffectStack</text>
 <text text-anchor="start" x="7.5" y="-670.3" font-family="Arial" font-size="8.00">+ viewport : Viewport</text>
-<text text-anchor="start" x="7.5" y="-660.3" font-family="Arial" font-size="8.00">+ game : Game</text>
-<text text-anchor="start" x="7.5" y="-650.3" font-family="Arial" font-size="8.00">+ graphics : GraphicsDeviceManager</text>
-<text text-anchor="start" x="7.5" y="-640.3" font-family="Arial" font-size="8.00">+ input : InputManager</text>
+<text text-anchor="start" x="7.5" y="-660.3" font-family="Arial" font-size="8.00">+ graphics : GraphicsDeviceManager</text>
+<text text-anchor="start" x="7.5" y="-650.3" font-family="Arial" font-size="8.00">+ input : InputManager</text>
+<text text-anchor="start" x="7.5" y="-640.3" font-family="Arial" font-size="8.00">+ game : Knot3Game</text>
 <text text-anchor="start" x="7.5" y="-630.3" font-family="Arial" font-size="8.00">+ PostProcessing : RenderEffect</text>
 <polyline fill="none" stroke="black" points="-0.5,-623.5 354.5,-623.5 "/>
 <text text-anchor="start" x="7.5" y="-612.3" font-family="Arial" font-size="8.00">+ Draw (GameTime time) abstract</text>
 <text text-anchor="start" x="7.5" y="-602.3" font-family="Arial" font-size="8.00">+ Initialize () abstract</text>
 <text text-anchor="start" x="7.5" y="-592.3" font-family="Arial" font-size="8.00">+ Unload () abstract</text>
 <text text-anchor="start" x="7.5" y="-582.3" font-family="Arial" font-size="8.00">+ Activate (GameTime time) virtual</text>
-<text text-anchor="start" x="7.5" y="-572.3" font-family="Arial" font-size="8.00">+ GameScreen (Game game)</text>
+<text text-anchor="start" x="7.5" y="-572.3" font-family="Arial" font-size="8.00">+ GameScreen (Knot3Game game)</text>
 <text text-anchor="start" x="7.5" y="-562.3" font-family="Arial" font-size="8.00">+ Update (GameTime time) abstract</text>
 <text text-anchor="start" x="7.5" y="-552.3" font-family="Arial" font-size="8.00">+ Deactivate (GameTime time) virtual</text>
 <text text-anchor="start" x="7.5" y="-542.3" font-family="Arial" font-size="8.00">+ AddGameComponents (GameTime time, params IGameScreenComponent[] components)</text>

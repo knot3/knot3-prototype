@@ -28,7 +28,7 @@ namespace Knot3.Core
 		/// <summary>
 		/// The game.
 		/// </summary>
-		public Game game;
+		public Knot3Game game;
 
 		/// <summary>
 		/// Gets or sets the next game screen.
@@ -44,7 +44,7 @@ namespace Knot3.Core
 		/// <param name='game'>
 		/// The Game.
 		/// </param>
-		public GameScreen (Game game)
+		public GameScreen (Knot3Game game)
 		{
 			this.game = game;
 			this.NextState = this;
@@ -198,7 +198,7 @@ namespace Knot3.Core
 		public static VideoOptionScreen VideoOptionScreen;
 		public static CreativeLoadScreen LoadSavegameScreen;
 
-		public static void Initialize (Game game)
+		public static void Initialize (Knot3Game game)
 		{
 			CreativeMode = new CreativeModeScreen (game);
 			StartScreen = new StartScreen (game);

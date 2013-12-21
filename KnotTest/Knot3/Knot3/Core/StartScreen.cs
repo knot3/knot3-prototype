@@ -29,7 +29,7 @@ namespace Knot3.Core
 		private Texture2D logo;
 		private SpriteBatch spriteBatch;
 
-		public StartScreen (Game game)
+		public StartScreen (Knot3Game game)
 			: base(game)
 		{
 			menu = new Menu (this, new WidgetInfo (), DisplayLayer.Menu);

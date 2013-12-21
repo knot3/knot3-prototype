@@ -26,7 +26,7 @@ namespace Knot3.Settings
 		// textures
 		private SpriteBatch spriteBatch;
 
-		public OptionScreen (Core.Game game)
+		public OptionScreen (Core.Knot3Game game)
 			: base(game)
 		{
 			menu = new VerticalMenu (this, new WidgetInfo (), DisplayLayer.Menu);

@@ -31,7 +31,7 @@ namespace Knot3.UserInterface
 		protected List<Vector2> LinePoints;
 		protected int LineWidth;
 
-		public MenuScreen (Core.Game game)
+		public MenuScreen (Core.Knot3Game game)
 			: base(game)
 		{
 			LinePoints = new List<Vector2> ();

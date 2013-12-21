@@ -20,7 +20,7 @@ namespace Knot3.Core
 	/// <summary>
 	/// Die Haupt-Klasse des Spiels. Verwaltet den jeweils aktuellen GameScreen.
 	/// </summary>
-	public class Game : Microsoft.Xna.Framework.Game
+	public class Knot3Game : Microsoft.Xna.Framework.Game
 	{
 		// graphics-related classes
 		public GraphicsDeviceManager graphics { get; private set; }
@@ -37,7 +37,7 @@ namespace Knot3.Core
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TestGame1.Game"/> class.
 		/// </summary>
-		public Game ()
+		public Knot3Game ()
 		{
 			graphics = new GraphicsDeviceManager (this);
 
@@ -159,8 +159,8 @@ namespace Knot3.Core
 						graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
 						graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
 					} else {
-						graphics.PreferredBackBufferWidth = (int)Game.DefaultSize.X;
-						graphics.PreferredBackBufferHeight = (int)Game.DefaultSize.Y;
+						graphics.PreferredBackBufferWidth = (int)Knot3Game.DefaultSize.X;
+						graphics.PreferredBackBufferHeight = (int)Knot3Game.DefaultSize.Y;
 					}
 					graphics.ApplyChanges ();
 					graphics.ToggleFullScreen ();

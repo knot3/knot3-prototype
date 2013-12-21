@@ -20,7 +20,7 @@
 <text text-anchor="start" x="7.5" y="-35.8" font-family="Arial" font-size="8.00">+ VideoOptionScreen : VideoOptionScreen static</text>
 <text text-anchor="start" x="7.5" y="-25.8" font-family="Arial" font-size="8.00">+ CreativeMode : CreativeModeScreen static</text>
 <polyline fill="none" stroke="black" points="-0.5,-19 208.5,-19 "/>
-<text text-anchor="start" x="7.5" y="-7.8" font-family="Arial" font-size="8.00">+ Initialize (Game game) static</text>
+<text text-anchor="start" x="7.5" y="-7.8" font-family="Arial" font-size="8.00">+ Initialize (Knot3Game game) static</text>
 </g>
 </g>
 </svg>

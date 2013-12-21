@@ -135,7 +135,7 @@ namespace Knot3.RenderEffects
 		{
 			if (!Overlay.Profiler.ContainsKey ("RenderEffect"))
 				Overlay.Profiler ["RenderEffect"] = 0;
-			Overlay.Profiler ["RenderEffect"] += Knot3.Core.Game.Time (() => {
+			Overlay.Profiler ["RenderEffect"] += Knot3.Core.Knot3Game.Time (() => {
 
 				screen.device.PopRenderTarget ();
 				spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);

@@ -9,7 +9,7 @@ public class StartScreen : MenuScreen
     - spriteBatch : SpriteBatch
   Methods:
     // 
-    + StartScreen (Game game)
+    + StartScreen (Knot3Game game)
     // 
     + Initialize () override
     // 

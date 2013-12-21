@@ -14,7 +14,7 @@
 <polygon fill="#fcfcda" stroke="black" points="0,-1 0,-55 138,-55 138,-1 0,-1"/>
 <text text-anchor="middle" x="69" y="-43.8" font-family="Arial" font-size="8.00">Program</text>
 <polyline fill="none" stroke="black" points="0,-37 138,-37 "/>
-<text text-anchor="start" x="8" y="-25.8" font-family="Arial" font-size="8.00">&#45; game : Game static</text>
+<text text-anchor="start" x="8" y="-25.8" font-family="Arial" font-size="8.00">&#45; game : Knot3Game static</text>
 <polyline fill="none" stroke="black" points="0,-19 138,-19 "/>
 <text text-anchor="start" x="8" y="-7.8" font-family="Arial" font-size="8.00">&#45; void Main () : [STAThread] static</text>
 </g>

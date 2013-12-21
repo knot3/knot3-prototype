@@ -13,7 +13,7 @@ public abstract class MenuScreen : GameScreen
     # LineWidth : int
   Methods:
     // 
-    + MenuScreen (Core.Game game)
+    + MenuScreen (Core.Knot3Game game)
     // 
     + Initialize () override
     // 

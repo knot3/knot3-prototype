@@ -9,7 +9,7 @@ public class StartScreen : MenuScreen
     # menu : Menu
   Methods:
     // 
-    + StartScreen  (Game game)
+    + StartScreen  (Knot3Game game)
     // 
     + Activate  (GameTime time)
     // 
@@ -34,7 +34,7 @@ public abstract class MenuScreen : GameScreen
     # LineWidth : int
   Methods:
     // 
-    + MenuScreen  (Core.Game game)
+    + MenuScreen  (Core.Knot3Game game)
     // 
     + Initialize  () override
     // 
@@ -58,7 +58,7 @@ public abstract class MenuScreen : GameScreen
 public abstract class GameScreen : 
   Attributes:
     // 
-    + game : Game
+    + game : Knot3Game
     // 
     + NextState : GameScreen
     // 
@@ -77,7 +77,7 @@ public abstract class GameScreen :
     + PostProcessing : RenderEffect
   Methods:
     // 
-    + GameScreen  (Game game)
+    + GameScreen  (Knot3Game game)
     // 
     + Initialize  () abstract
     // 
@@ -109,11 +109,11 @@ public abstract class GameScreen :
     // 
     + viewport : Viewport
     // 
-    + game : Game
-    // 
     + graphics : GraphicsDeviceManager
     // 
     + input : InputManager
+    // 
+    + game : Knot3Game
     // 
     + PostProcessing : RenderEffect
   Methods:
@@ -126,7 +126,7 @@ public abstract class GameScreen :
     // 
     + Activate  (GameTime time) virtual
     // 
-    + GameScreen  (Game game)
+    + GameScreen  (Knot3Game game)
     // 
     + Update  (GameTime time) abstract
     // 
@@ -151,7 +151,7 @@ public abstract class MenuScreen : GameScreen
     - spriteBatch : SpriteBatch
   Methods:
     // 
-    + MenuScreen  (Core.Game game)
+    + MenuScreen  (Core.Knot3Game game)
     // 
     + Activate  (GameTime time)
     // 
@@ -175,7 +175,7 @@ public abstract class MenuScreen : GameScreen
 public abstract class GameScreen : 
   Attributes:
     // 
-    + game : Game
+    + game : Knot3Game
     // 
     + NextState : GameScreen
     // 
@@ -194,7 +194,7 @@ public abstract class GameScreen :
     + PostProcessing : RenderEffect
   Methods:
     // 
-    + GameScreen  (Game game)
+    + GameScreen  (Knot3Game game)
     // 
     + Initialize  () abstract
     // 
@@ -226,11 +226,11 @@ public abstract class GameScreen :
     // 
     + viewport : Viewport
     // 
-    + game : Game
-    // 
     + graphics : GraphicsDeviceManager
     // 
     + input : InputManager
+    // 
+    + game : Knot3Game
     // 
     + PostProcessing : RenderEffect
   Methods:
@@ -243,7 +243,7 @@ public abstract class GameScreen :
     // 
     + Activate  (GameTime time) virtual
     // 
-    + GameScreen  (Game game)
+    + GameScreen  (Knot3Game game)
     // 
     + Update  (GameTime time) abstract
     // 

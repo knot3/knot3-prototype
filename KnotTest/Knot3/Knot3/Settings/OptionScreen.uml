@@ -7,7 +7,7 @@ public class OptionScreen : MenuScreen
     - spriteBatch : SpriteBatch
   Methods:
     // 
-    + OptionScreen (Core.Game game)
+    + OptionScreen (Core.Knot3Game game)
     // 
     + Initialize () override
     // 

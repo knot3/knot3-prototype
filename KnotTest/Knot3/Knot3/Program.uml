@@ -2,7 +2,7 @@
 private static class Program : 
   Attributes:
     // 
-    - game : Game static
+    - game : Knot3Game static
   Methods:
     // 
     - void Main () : [STAThread]static

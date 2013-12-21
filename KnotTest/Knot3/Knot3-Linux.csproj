@@ -92,7 +92,6 @@
     <Compile Include="Knot3\UserInterface\MenuItem.cs" />
     <Compile Include="Knot3\Core\Camera.cs" />
     <Compile Include="Knot3\Core\DrawableGameScreenComponent.cs" />
-    <Compile Include="Knot3\Core\Game.cs" />
     <Compile Include="Knot3\Core\GameScreen.cs" />
     <Compile Include="Knot3\Core\GameScreenComponent.cs" />
     <Compile Include="Knot3\Core\IGameScreenComponent.cs" />
@@ -126,6 +125,7 @@
     <Compile Include="Knot3\GameObjects\ModelMouseHandler.cs" />
     <Compile Include="Knot3\CreativeMode\CreativeLoadScreen.cs" />
     <Compile Include="Knot3\GameObjects\KnotInputHandler.cs" />
+    <Compile Include="Knot3\Core\Knot3Game.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />

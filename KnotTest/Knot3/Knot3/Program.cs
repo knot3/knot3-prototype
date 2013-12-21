@@ -8,7 +8,7 @@ namespace Knot3
 {
 	static class Program
 	{
-		private static Game game;
+		private static Knot3Game game;
 
 		/// <summary>
 		/// The main entry point for the application.
@@ -16,7 +16,7 @@ namespace Knot3
 		[STAThread]
 		static void Main ()
 		{
-			game = new Game ();
+			game = new Knot3Game ();
 			game.Run ();
 		}
 	}

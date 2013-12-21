@@ -2,7 +2,7 @@
 public abstract class GameScreen : 
   Attributes:
     // 
-    + game : Game
+    + game : Knot3Game
     // 
     + NextState : GameScreen
     // 
@@ -21,7 +21,7 @@ public abstract class GameScreen :
     + PostProcessing : RenderEffect
   Methods:
     // 
-    + GameScreen (Game game)
+    + GameScreen (Knot3Game game)
     // 
     + Initialize () abstract
     // 
@@ -53,4 +53,4 @@ public static class GameScreens :
     + LoadSavegameScreen : CreativeLoadScreen static
   Methods:
     // 
-    + Initialize (Game game) static
+    + Initialize (Knot3Game game) static
