@@ -222,7 +222,7 @@ namespace CSharpUML
 			List<string> lines = new List<string> ();
 			lines.AddRange (UmlObject.TexHeader);
 			foreach (string package in Packages.PackageMap.Keys) {
-				lines.Add (@"\section{Package " + package + @"}");
+				lines.Add (@"\section{Paket " + package + @"}");
                 
 				lines.Add (@"\subsection{Klassen}");
 				foreach (UmlClass obj in allObjects.OfType<UmlClass>().Where((c) => Packages.IsInPackage(package, c.Name))) {
@@ -258,6 +258,14 @@ namespace CSharpUML
 			newCommand (ref lines, "CountEnums", "" + allObjects.OfType<UmlEnum> ()
                 .Count ()
 			);
+            newCommand(ref lines, "CountAll", ""
+                + (allObjects.OfType<UmlClass>()
+                .Where((o) => o.type == ClassType.Class).Count()
+                + allObjects.OfType<UmlClass>()
+                .Where((o) => o.type == ClassType.Interface).Count()
+                + allObjects.OfType<UmlEnum>() /* Strukturen? */
+                .Count())
+            );
 
 			Files.WriteLines (Path.GetDirectoryName (target) + "/Definitionen.gentex", lines);
 
