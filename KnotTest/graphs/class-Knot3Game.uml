@@ -1,0 +1,35 @@
+// 
+public class Knot3Game : Microsoft.Xna.Framework.Game
+  Attributes:
+    // 
+    + IsFullscreen : bool
+    // 
+    + Debug : bool static
+    // 
+    - isFullscreen : bool
+    // 
+    + State : GameScreen
+    // 
+    + graphics : GraphicsDeviceManager
+    // 
+    + VSync : bool
+  Methods:
+    // 
+    + DefaultSize (1280, 720) : Vector2 static
+    // 
+    # Draw  (GameTime time)
+    // 
+    # LoadContent ()
+    // 
+    + Knot3Game ()
+    // 
+    - UpdateInput  (GameTime time)
+    // 
+    # Initialize ()
+    // 
+    # UnloadContent ()
+    // 
+    # Update  (GameTime time)
+    // 
+    + Time (Action action) : TimeSpan static
+
