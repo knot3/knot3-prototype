@@ -58,7 +58,7 @@ namespace Knot3.GameObjects
 				lastRayCheck = millis;
 				lastMousePosition = InputManager.MouseState.ToVector2 ();
 
-				Overlay.Profiler ["Ray"] = Knot3.Core.Game.Time (() => {
+				Overlay.Profiler ["Ray"] = Knot3.Core.Knot3Game.Time (() => {
 
 					UpdateMouseRay (time);
 

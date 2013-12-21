@@ -49,7 +49,7 @@ namespace Knot3.CreativeMode
 		/// <param name='game'>
 		/// Game.
 		/// </param>
-		public CreativeModeScreen (Core.Game game)
+		public CreativeModeScreen (Core.Knot3Game game)
 			: base(game)
 		{
 		}

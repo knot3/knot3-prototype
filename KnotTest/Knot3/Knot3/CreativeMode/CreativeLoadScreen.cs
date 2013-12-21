@@ -32,7 +32,7 @@ namespace Knot3.CreativeMode
 		private FileIndex fileIndex;
 		private IKnotIO fileFormat;
 
-		public CreativeLoadScreen (Core.Game game)
+		public CreativeLoadScreen (Core.Knot3Game game)
 			: base(game)
 		{
 			menu = new VerticalMenu (this, new WidgetInfo (), DisplayLayer.Menu);

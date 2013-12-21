@@ -164,19 +164,19 @@ namespace Knot3.GameObjects
 		{
 			Overlay.Profiler ["# InFrustum"] = 0;
 			Overlay.Profiler ["RenderEffect"] = 0;
-			Overlay.Profiler ["Pipes"] = Knot3.Core.Game.Time (() => {
+			Overlay.Profiler ["Pipes"] = Knot3.Core.Knot3Game.Time (() => {
 				foreach (PipeModel pipe in pipes) {
 					pipe.Draw (time);
 				}
 			}
 			).TotalMilliseconds;
-			Overlay.Profiler ["Nodes"] = Knot3.Core.Game.Time (() => {
+			Overlay.Profiler ["Nodes"] = Knot3.Core.Knot3Game.Time (() => {
 				foreach (NodeModel node in nodes) {
 					node.Draw (time);
 				}
 			}
 			).TotalMilliseconds;
-			Overlay.Profiler ["Arrows"] = Knot3.Core.Game.Time (() => {
+			Overlay.Profiler ["Arrows"] = Knot3.Core.Knot3Game.Time (() => {
 				foreach (ArrowModel arrow in arrows) {
 					arrow.Draw (time);
 				}
