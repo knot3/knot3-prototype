@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Knot3/Knot3/Core/Knot3Game.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Knot3/Knot3/GameObjects/KnotRenderer.cs">
     <Files>
       <File FileName="Knot3/Knot3/KnotData/KnotFileIO.cs" Line="26" Column="1" />
       <File FileName="Knot3/Knot3/KnotData/KnotStringIO.cs" Line="51" Column="1" />
