@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Knot3/Knot3/Core/Camera.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Knot3/Knot3/Core/Knot3Game.cs">
     <Files>
       <File FileName="Knot3/Knot3/KnotData/KnotFileIO.cs" Line="26" Column="1" />
       <File FileName="Knot3/Knot3/KnotData/KnotStringIO.cs" Line="51" Column="1" />
@@ -9,13 +9,17 @@
       <File FileName="Knot3/Knot3/KnotData/IKnotIO.cs" Line="10" Column="46" />
       <File FileName="Knot3/Knot3/CreativeMode/CreativeLoadScreen.cs" Line="23" Column="33" />
       <File FileName="Knot3/Knot3/KnotData/FileIndex.cs" Line="21" Column="24" />
-      <File FileName="Knot3/Knot3/Utilities/Files.cs" Line="11" Column="4" />
+      <File FileName="Knot3/Knot3/Utilities/Files.cs" Line="31" Column="50" />
       <File FileName="Knot3/Knot3/CreativeMode/CreativeModeScreen.cs" Line="219" Column="22" />
       <File FileName="Knot3/Knot3/UserInterface/ConfirmDialog.cs" Line="42" Column="6" />
       <File FileName="Knot3/Knot3/GameObjects/KnotRenderer.cs" Line="27" Column="34" />
       <File FileName="Knot3/Knot3/GameObjects/ModelMouseHandler.cs" Line="26" Column="32" />
       <File FileName="Knot3/Knot3/Core/Knot3Game.cs" Line="23" Column="24" />
       <File FileName="Knot3/Knot3/Core/Camera.cs" Line="160" Column="3" />
+      <File FileName="Knot3/Knot3/Settings/Options.cs" Line="1" Column="1" />
+      <File FileName="Knot3/Knot3/Settings/IniFile.cs" Line="1" Column="1" />
+      <File FileName="Knot3/Knot3/Settings/OptionScreen.cs" Line="1" Column="1" />
+      <File FileName="Knot3/Knot3/Utilities/Mono.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
