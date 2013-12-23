@@ -40,7 +40,7 @@ namespace Knot3.Core
 			base.Initialize ();
 
 			// logo
-			logo = Textures.LoadTexture (content, "logo");
+			logo = TextureHelper.LoadTexture (content, "logo");
 
 			// create a new SpriteBatch, which can be used to draw textures
 			spriteBatch = new SpriteBatch (device);
@@ -48,8 +48,8 @@ namespace Knot3.Core
 			// menu
 			menu.ItemForegroundColor = ForegroundColor;
 			menu.ItemBackgroundColor = BackgroundColor;
-			menu.ItemAlignX = HAlign.Center;
-			menu.ItemAlignY = VAlign.Center;
+			menu.ItemAlignX = HorizontalAlignment.Center;
+			menu.ItemAlignY = VerticalAlignment.Center;
 
 			menu.AddButton (new MenuItemInfo (
 				text: "Creative", left: 0.700f, top: 0.250f, right: 0.960f, bottom: 0.380f,
@@ -92,9 +92,9 @@ namespace Knot3.Core
 			spriteBatch.End ();
 		}
 
-		public override void Activate (GameTime time)
+		public override void Entered (GameTime time)
 		{
-			base.Activate (time);
+			base.Entered (time);
 			AddGameComponents (time, menu);
 		}
 	}

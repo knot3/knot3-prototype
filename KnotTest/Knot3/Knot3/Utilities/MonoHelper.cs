@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Knot3.Utilities
 {
-	public static class Mono
+	public static class MonoHelper
 	{
 		public static bool IsRunningOnMono ()
 		{

@@ -23,7 +23,7 @@ namespace Knot3.Core
 	public abstract class DrawableGameScreenComponent : Xna.DrawableGameComponent, IGameScreenComponent
 	{
 		public DrawableGameScreenComponent (GameScreen screen, DisplayLayer index)
-			: base(screen.game)
+			: base(screen.game)	
 		{
 			this.screen = screen;
 			this.Index = index;

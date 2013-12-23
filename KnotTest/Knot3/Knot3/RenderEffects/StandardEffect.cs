@@ -19,9 +19,9 @@ namespace Knot3.RenderEffects
 	/// <summary>
 	/// Ein RenderEffect, der keinen besonderen Effekt anwendet.
 	/// </summary>
-	public sealed class NoEffect : RenderEffect
+	public sealed class StandardEffect : RenderEffect
 	{
-		public NoEffect (GameScreen screen)
+		public StandardEffect (GameScreen screen)
 			: base(screen)
 		{
 		}

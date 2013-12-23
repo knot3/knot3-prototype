@@ -79,7 +79,7 @@ namespace Knot3.GameObjects
 		/// <value>
 		/// The model.
 		/// </value>
-		public virtual Model Model { get { return Models.LoadModel (screen, Info.Modelname); } }
+		public virtual Model Model { get { return ModelHelper.LoadModel (screen, Info.Modelname); } }
 
 		public Color BaseColor;
 		public Color HighlightColor;
@@ -120,7 +120,7 @@ namespace Knot3.GameObjects
 				if (InCameraFrustum) {
 					Overlay.Profiler ["# InFrustum"]++;
 
-					screen.RenderEffects.Current.DrawModel (this, time);
+					screen.CurrentRenderEffects.Current.DrawModel (this, time);
 				}
 			}
 		}

@@ -120,7 +120,7 @@ namespace Knot3.UserInterface
 					new Rectangle (min.X - (int)Border.Size.X, min.Y + size.Y,
 				                   size.X + (int)Border.Size.X * 2, (int)Border.Size.Y)
 				};
-				Texture2D borderTexture = Textures.Create (screen.device, Color.White);
+				Texture2D borderTexture = TextureHelper.Create (screen.device, Color.White);
 			
 				spriteBatch.Begin ();
 				foreach (Rectangle rect in borders) {

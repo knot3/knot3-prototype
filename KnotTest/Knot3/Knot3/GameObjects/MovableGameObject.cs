@@ -57,7 +57,7 @@ namespace Knot3.GameObjects
 
 		protected Ray CurrentMouseRay ()
 		{
-			Ray ray = World.Camera.GetMouseRay (InputManager.MouseState.ToVector2 ());
+			Ray ray = World.Camera.GetMouseRay (InputManager.CurrentMouseState.ToVector2 ());
 			return ray;
 		}
 

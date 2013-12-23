@@ -139,9 +139,10 @@ namespace Knot3.KnotData
 			return GetEnumerator (); // just return the generic version
 		}
 
-		public void Save (IKnotIO file)
+		public void Save (IKnotIO format, string filename)
 		{
-			file.Save (this);
+			MetaData.Filename = filename;
+			format.Save (this);
 		}
 
 		public void Save ()

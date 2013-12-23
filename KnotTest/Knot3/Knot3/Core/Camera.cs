@@ -93,7 +93,6 @@ namespace Knot3.Core
 		}
 
 		public Vector3 UpVector { get; private set; }
-
 		private float foV;
 
 		/// <summary>
@@ -108,8 +107,7 @@ namespace Knot3.Core
 		}
 
 		public Action OnViewChanged = () => {};
-		public Angles3 RotationAngle = Angles3.Zero;
-		private Angles3 AutoRotation = Angles3.Zero;
+		public Angles3 Rotation = Angles3.Zero;
 		private float aspectRatio;
 		private float nearPlane;
 		private float farPlane;
@@ -139,21 +137,14 @@ namespace Knot3.Core
 
 		public override void Update (GameTime time)
 		{
-			UpdateRotation (time);
 			UpdateMatrices (time);
-		}
-
-		private void UpdateRotation (GameTime time)
-		{
-			// auto rotation
-			RotationAngle += AutoRotation;
 		}
 
 		private void UpdateMatrices (GameTime time)
 		{ 
 			// setting up rotation
 			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
-			WorldMatrix = Matrix.CreateFromYawPitchRoll (RotationAngle.Y, RotationAngle.X, RotationAngle.Z);
+			WorldMatrix = Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z);
 			ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FoV), aspectRatio, nearPlane, farPlane);
 			ViewFrustum = new BoundingFrustum (ViewMatrix * ProjectionMatrix);
 		}

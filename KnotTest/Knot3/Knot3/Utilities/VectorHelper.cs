@@ -17,7 +17,7 @@ using Knot3.KnotData;
 
 namespace Knot3.Utilities
 {
-	public static class Vectors
+	public static class VectorHelper
 	{
 		public static Vector3 ArcBallMove (this Vector3 vectorToMove, Vector2 mouse, Vector3 up, Vector3 forward)
 		{
@@ -293,119 +293,6 @@ namespace Knot3.Utilities
 				//Console.WriteLine ("sphere[" + offset + "]=" + Bounds [offset]);
 			}
 			return bounds;
-		}
-	}
-
-	static class SwapExtension
-	{
-		public static T Swap<T> (this T x, ref T y)
-		{
-			T t = y;
-			y = x;
-			return t;
-		}
-	}
-
-	public static class FrustumHelper
-	{
-
-		public static Vector3 GetNegativeVertex (this BoundingBox aabb, ref Vector3 normal)
-		{
-			Vector3 p = aabb.Max;
-			if (normal.X >= 0)
-				p.X = aabb.Min.X;
-			if (normal.Y >= 0)
-				p.Y = aabb.Min.Y;
-			if (normal.Z >= 0)
-				p.Z = aabb.Min.Z;
-
-			return p;
-		}
-
-		public static Vector3 GetPositiveVertex (this BoundingBox aabb, ref Vector3 normal)
-		{
-			Vector3 p = aabb.Min;
-			if (normal.X >= 0)
-				p.X = aabb.Max.X;
-			if (normal.Y >= 0)
-				p.Y = aabb.Max.Y;
-			if (normal.Z >= 0)
-				p.Z = aabb.Max.Z;
-
-			return p;
-		}
-
-		public static bool FastIntersects (this BoundingFrustum boundingfrustum, ref BoundingSphere aabb)
-		{
-			if (boundingfrustum == null)
-				return false;
-			var box = BoundingBox.CreateFromSphere (aabb);
-			return boundingfrustum.FastIntersects (ref box);
-		}
-
-		public static bool FastIntersects (this BoundingFrustum boundingfrustum, ref BoundingBox aabb)
-		{
-			if (boundingfrustum == null)
-				return false; 
-
-			Plane plane;
-			Vector3 normal, p;
-
-			plane = boundingfrustum.Bottom;
-			normal = plane.Normal;
-			normal.X = -normal.X;
-			normal.Y = -normal.Y;
-			normal.Z = -normal.Z;
-			p = aabb.GetPositiveVertex (ref normal);
-			if (-plane.D + normal.X * p.X + normal.Y * p.Y + normal.Z * p.Z < 0)
-				return false;
-
-			plane = boundingfrustum.Far;
-			normal = plane.Normal;
-			normal.X = -normal.X;
-			normal.Y = -normal.Y;
-			normal.Z = -normal.Z;
-			p = aabb.GetPositiveVertex (ref normal);
-			if (-plane.D + normal.X * p.X + normal.Y * p.Y + normal.Z * p.Z < 0)
-				return false;
-
-			plane = boundingfrustum.Left;
-			normal = plane.Normal;
-			normal.X = -normal.X;
-			normal.Y = -normal.Y;
-			normal.Z = -normal.Z;
-			p = aabb.GetPositiveVertex (ref normal);
-			if (-plane.D + normal.X * p.X + normal.Y * p.Y + normal.Z * p.Z < 0)
-				return false;
-
-			plane = boundingfrustum.Near;
-			normal = plane.Normal;
-			normal.X = -normal.X;
-			normal.Y = -normal.Y;
-			normal.Z = -normal.Z;
-			p = aabb.GetPositiveVertex (ref normal);
-			if (-plane.D + normal.X * p.X + normal.Y * p.Y + normal.Z * p.Z < 0)
-				return false;
-
-			plane = boundingfrustum.Right;
-			normal = plane.Normal;
-			normal.X = -normal.X;
-			normal.Y = -normal.Y;
-			normal.Z = -normal.Z;
-			p = aabb.GetPositiveVertex (ref normal);
-			if (-plane.D + normal.X * p.X + normal.Y * p.Y + normal.Z * p.Z < 0)
-				return false;
-
-			plane = boundingfrustum.Top;
-			normal = plane.Normal;
-			normal.X = -normal.X;
-			normal.Y = -normal.Y;
-			normal.Z = -normal.Z;
-			p = aabb.GetPositiveVertex (ref normal);
-			if (-plane.D + normal.X * p.X + normal.Y * p.Y + normal.Z * p.Z < 0)
-				return false;
-
-			return true;
 		}
 	}
 }

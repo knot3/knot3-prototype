@@ -42,8 +42,8 @@ namespace Knot3.Settings
 			// menu
 			menu.ItemForegroundColor = ForegroundColor;
 			menu.ItemBackgroundColor = BackgroundColor;
-			menu.ItemAlignX = HAlign.Left;
-			menu.ItemAlignY = VAlign.Center;
+			menu.ItemAlignX = HorizontalAlignment.Left;
+			menu.ItemAlignY = VerticalAlignment.Center;
 
 			menu.AddDropDown (new MenuItemInfo (text: "Debug Mode"),
 			                  new BooleanOptionInfo ("game", "debug", false));
@@ -72,7 +72,7 @@ namespace Knot3.Settings
 			                  new BooleanOptionInfo ("video", "vsync", true, setVSync));
 
 			menu.AddDropDown (new MenuItemInfo (text: "Model Quality"),
-			                  new DistinctOptionInfo ("video", "model-quality", Models.Quality, Models.ValidQualities));
+			                  new DistinctOptionInfo ("video", "model-quality", ModelHelper.Quality, ModelHelper.ValidQualities));
 			menu.AddDropDown (new MenuItemInfo (text: "Cel Shading"),
 			                  new BooleanOptionInfo ("video", "cel-shading", true));
 		}
@@ -98,9 +98,9 @@ namespace Knot3.Settings
 			spriteBatch.End ();
 		}
 
-		public override void Activate (GameTime time)
+		public override void Entered (GameTime time)
 		{
-			base.Activate (time);
+			base.Entered (time);
 			AddGameComponents (time, menu);
 		}
 	}

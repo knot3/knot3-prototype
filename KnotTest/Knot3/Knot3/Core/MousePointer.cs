@@ -56,10 +56,10 @@ namespace Knot3.Core
 				Texture2D cursorTex = screen.content.Load<Texture2D> ("cursor");
 				if (screen.input.GrabMouseMovement || screen.input.CurrentInputAction == InputAction.TargetMove
 					|| (screen.input.CurrentInputAction == InputAction.ArcballMove
-					&& (InputManager.MouseState.LeftButton == ButtonState.Pressed || InputManager.MouseState.RightButton == ButtonState.Pressed))) {
+					&& (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed || InputManager.CurrentMouseState.RightButton == ButtonState.Pressed))) {
 					spriteBatch.Draw (cursorTex, screen.device.Viewport.Center (), Color.White);
 				} else {
-					spriteBatch.Draw (cursorTex, new Vector2 (InputManager.MouseState.X, InputManager.MouseState.Y), Color.White);
+					spriteBatch.Draw (cursorTex, new Vector2 (InputManager.CurrentMouseState.X, InputManager.CurrentMouseState.Y), Color.White);
 				}
 
 				spriteBatch.End ();

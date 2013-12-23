@@ -155,8 +155,8 @@ namespace Knot3.CreativeMode
 			if (Keys.NumPad9.IsDown ())
 				knot.Move (Direction.Backward);
 
-			if (PostProcessing is FadeEffect && (PostProcessing as FadeEffect).IsFinished) {
-				PostProcessing = new NoEffect (this);
+			if (PostProcessingEffect is FadeEffect && (PostProcessingEffect as FadeEffect).IsFinished) {
+				PostProcessingEffect = new StandardEffect (this);
 				world.Redraw = true;
 			}
 		}
@@ -166,9 +166,9 @@ namespace Knot3.CreativeMode
 			// all drawing is done in game components
 		}
 
-		public override void Activate (GameTime time)
+		public override void Entered (GameTime time)
 		{
-			base.Activate (time);
+			base.Entered (time);
 			AddGameComponents (time, knotInput, overlay, pointer, world, picker, coloring);
 		}
 
@@ -203,7 +203,7 @@ namespace Knot3.CreativeMode
 						knot.Save ();
 					} catch (IOException ex) {
 						Console.WriteLine (ex);
-						knot.Save (new KnotFileIO ());
+						knot.Save (new KnotFileIO (), knot.MetaData.Filename);
 					}
 					CanClose = true;
 
@@ -214,7 +214,7 @@ namespace Knot3.CreativeMode
 						knot.Save ();
 					} catch (IOException ex) {
 						Console.WriteLine (ex);
-						knot.Save (new KnotFileIO ());
+						knot.Save (new KnotFileIO (), knot.MetaData.Filename);
 					}
 					CanClose = true;
 				}

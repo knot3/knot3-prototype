@@ -28,23 +28,23 @@ namespace Knot3.Core
 					IMouseEventListener receiver = _component as IMouseEventListener;
 					// mouse input
 					Rectangle bounds = receiver.bounds ();
-					bool hovered = bounds.Contains (InputManager.MouseState.ToPoint ());
+					bool hovered = bounds.Contains (InputManager.CurrentMouseState.ToPoint ());
 					receiver.SetHovered (hovered);
 					if (hovered && receiver.IsMouseEventEnabled && (best == null || receiver.Index > best.layer)) {
 						best = new ClickEventComponent {
 							receiver = receiver,
 							layer = receiver.Index,
-							relativePosition = InputManager.MouseState.ToVector2()-bounds.Location.ToVector2()
+							relativePosition = InputManager.CurrentMouseState.ToVector2()-bounds.Location.ToVector2()
 						};
 					}
 				}
 			}
 			if (best != null) {
-				if (InputManager.LeftButton != ClickState.None) {
-					best.receiver.OnLeftClick (best.relativePosition, InputManager.LeftButton, time);
+				if (InputManager.LeftMouseButton != ClickState.None) {
+					best.receiver.OnLeftClick (best.relativePosition, InputManager.LeftMouseButton, time);
 				}
-				if (InputManager.RightButton != ClickState.None) {
-					best.receiver.OnRightClick (best.relativePosition, InputManager.LeftButton, time);
+				if (InputManager.RightMouseButton != ClickState.None) {
+					best.receiver.OnRightClick (best.relativePosition, InputManager.RightMouseButton, time);
 				}
 			}
 		}

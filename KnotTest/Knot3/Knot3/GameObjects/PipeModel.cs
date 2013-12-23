@@ -37,8 +37,8 @@ namespace Knot3.GameObjects
 			Edge = edge;
 			Node node1 = nodeMap.FromNode (edge);
 			Node node2 = nodeMap.ToNode (edge);
-			PositionFrom = node1.Vector () + offset;
-			PositionTo = node2.Vector () + offset;
+			PositionFrom = node1.ToVector () + offset;
+			PositionTo = node2.ToVector () + offset;
 			Position = node1.CenterBetween (node2) + offset;
 			Direction = PositionTo - PositionFrom;
 			Direction.Normalize ();
@@ -93,7 +93,7 @@ namespace Knot3.GameObjects
 
 			float length = (info.PositionTo - info.PositionFrom).Length ();
 			float radius = Info.Scale.PrimaryVector ().Length ();
-			Bounds = Vectors.CylinderBounds (length, radius, Info.Direction, info.PositionFrom);
+			Bounds = VectorHelper.CylinderBounds (length, radius, Info.Direction, info.PositionFrom);
 
 			/*float distance = radius / 4;
 			Bounds = new BoundingSphere[(int)(length / distance)];

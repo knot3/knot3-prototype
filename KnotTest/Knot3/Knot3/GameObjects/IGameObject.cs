@@ -101,10 +101,5 @@ namespace Knot3.GameObjects
 		}
 	}
 
-	public sealed class GameObjectDistance
-	{
-		public IGameObject Object;
-		public float Distance;
-	}
 }
 

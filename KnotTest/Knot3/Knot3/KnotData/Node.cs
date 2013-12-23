@@ -100,15 +100,15 @@ namespace Knot3.KnotData
 
 		#region Public Methods
 
-		public Vector3 Vector ()
+		public Vector3 ToVector ()
 		{
 			return new Vector3 (X * Scale, Y * Scale, Z * Scale);
 		}
 
 		public Vector3 CenterBetween (Node other)
 		{
-			Vector3 positionFrom = this.Vector ();
-			Vector3 positionTo = other.Vector ();
+			Vector3 positionFrom = this.ToVector ();
+			Vector3 positionTo = other.ToVector ();
 			return positionFrom + (positionTo - positionFrom) / 2;
 		}
 

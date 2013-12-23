@@ -44,7 +44,7 @@ namespace Knot3.UserInterface
 		{
 			lineWidth = (int)new Vector2 (lineWidth, lineWidth).Scale (screen.viewport).X;
 			if (texture == null)
-				texture = Textures.Create (screen.device, Color.White);
+				texture = TextureHelper.Create (screen.device, Color.White);
 
 			if (linePoints.Count >= 2) {
 				Rectangle[] rects = new Rectangle[linePoints.Count - 1];

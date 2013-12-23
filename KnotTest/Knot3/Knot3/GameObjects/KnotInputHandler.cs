@@ -183,22 +183,22 @@ namespace Knot3.CreativeMode
 			if (InputManager.FullscreenToggled) {
 				InputManager.FullscreenToggled = false;
 
-			} else if (InputManager.MouseState != InputManager.PreviousMouseState) {
+			} else if (InputManager.CurrentMouseState != InputManager.PreviousMouseState) {
 
 				// mouse movements
 				Vector2 mouseMove = new Vector2 (
-					InputManager.MouseState.X - InputManager.PreviousMouseState.X,
-					InputManager.MouseState.Y - InputManager.PreviousMouseState.Y
+					InputManager.CurrentMouseState.X - InputManager.PreviousMouseState.X,
+					InputManager.CurrentMouseState.Y - InputManager.PreviousMouseState.Y
 				);
 
 				InputAction action;
 				// grab mouse movement
 				if (screen.input.GrabMouseMovement) {
 					// left mouse button pressed
-					if (InputManager.MouseState.LeftButton == ButtonState.Pressed)
+					if (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed)
 						action = InputAction.ArcballMove;
 					// right mouse button pressed
-					else if (InputManager.MouseState.RightButton == ButtonState.Pressed)
+					else if (InputManager.CurrentMouseState.RightButton == ButtonState.Pressed)
 						action = InputAction.ArcballMove;
 					// no mouse button
 					else
@@ -207,19 +207,19 @@ namespace Knot3.CreativeMode
 				// don't grab mouse movement
 				else {
 					// left mouse button pressed
-					if (InputManager.MouseState.LeftButton == ButtonState.Pressed) {
+					if (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
 						if (World.SelectedObject != null && World.SelectedObject.Info.IsMovable)
 							action = InputAction.SelectedObjectShadowMove;
 						else
 							action = InputAction.FreeMouse;
-					} else if (InputManager.MouseState.LeftButton == ButtonState.Released && InputManager.PreviousMouseState.LeftButton == ButtonState.Pressed) {
+					} else if (InputManager.CurrentMouseState.LeftButton == ButtonState.Released && InputManager.PreviousMouseState.LeftButton == ButtonState.Pressed) {
 						if (World.SelectedObject != null && World.SelectedObject.Info.IsMovable)
 							action = InputAction.SelectedObjectMove;
 						else
 							action = InputAction.FreeMouse;
 					}
 					// right mouse button pressed
-					else if (InputManager.MouseState.RightButton == ButtonState.Pressed)
+					else if (InputManager.CurrentMouseState.RightButton == ButtonState.Pressed)
 						action = InputAction.ArcballMove;
 					// no mouse button
 					else
@@ -245,10 +245,10 @@ namespace Knot3.CreativeMode
 				screen.input.CurrentInputAction = action;
 
 				// scroll wheel zoom
-				if (InputManager.MouseState.ScrollWheelValue < InputManager.PreviousMouseState.ScrollWheelValue) {
+				if (InputManager.CurrentMouseState.ScrollWheelValue < InputManager.PreviousMouseState.ScrollWheelValue) {
 					camera.TargetDistance += 40;
 					World.Redraw = true;
-				} else if (InputManager.MouseState.ScrollWheelValue > InputManager.PreviousMouseState.ScrollWheelValue) {
+				} else if (InputManager.CurrentMouseState.ScrollWheelValue > InputManager.PreviousMouseState.ScrollWheelValue) {
 					camera.TargetDistance -= 40;
 					World.Redraw = true;
 				}
@@ -257,10 +257,10 @@ namespace Knot3.CreativeMode
 
 		private void ResetMousePosition ()
 		{
-			if (InputManager.MouseState != InputManager.PreviousMouseState) {
+			if (InputManager.CurrentMouseState != InputManager.PreviousMouseState) {
 				if (screen.input.GrabMouseMovement || (screen.input.CurrentInputAction == InputAction.ArcballMove)) {
 					Mouse.SetPosition (screen.viewport.Width / 2, screen.viewport.Height / 2);
-					InputManager.MouseState = Mouse.GetState ();
+					InputManager.CurrentMouseState = Mouse.GetState ();
 				}
 			}
 		}

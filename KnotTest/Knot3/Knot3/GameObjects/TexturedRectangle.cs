@@ -82,7 +82,7 @@ namespace Knot3.GameObjects
 			SetPosition (Info.Position);
 
 			basicEffect = new BasicEffect (screen.device);
-			texture = Textures.LoadTexture (screen.content, info.Texturename);
+			texture = TextureHelper.LoadTexture (screen.content, info.Texturename);
 			if (texture != null) {
 				FillVertices ();
 			}

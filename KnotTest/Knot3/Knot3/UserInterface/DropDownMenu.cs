@@ -31,8 +31,8 @@ namespace Knot3.UserInterface
 			
 			dropdown.ItemForegroundColor = DropDownForegroundColor;
 			dropdown.ItemBackgroundColor = DropDownBackgroundColor;
-			dropdown.ItemAlignX = HAlign.Left;
-			dropdown.ItemAlignY = VAlign.Center;
+			dropdown.ItemAlignX = HorizontalAlignment.Left;
+			dropdown.ItemAlignY = VerticalAlignment.Center;
 			dropdown.Border = new Border (new Color (0xb4, 0xff, 0x00), 5, 5, 0, 0);
 			dropdown.IsVisible = false;
 

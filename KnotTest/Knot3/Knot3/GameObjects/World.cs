@@ -126,14 +126,14 @@ namespace Knot3.GameObjects
 			// knot render effects
 			effects = new List<IRenderEffect> ();
 			effects.Add (new InstancingTest (screen));
-			effects.Add (new NoEffect (screen));
+			effects.Add (new StandardEffect (screen));
 			effects.Add (new BlurEffect (screen));
 			effects.Add (new CelShadingEffect (screen));
 
 			if (Options.Default ["video", "cel-shading", true]) {
 				currentEffect = new CelShadingEffect (screen);
 			} else {
-				currentEffect = new NoEffect (screen);
+				currentEffect = new StandardEffect (screen);
 			}
 		}
 
@@ -151,7 +151,7 @@ namespace Knot3.GameObjects
 
 				// begin the post processing effect scope
 				Color background = currentEffect is CelShadingEffect ? Color.CornflowerBlue : Color.Black;
-				screen.PostProcessing.Begin (background, time);
+				screen.PostProcessingEffect.Begin (background, time);
 
 				// begin the knot render effect
 				currentEffect.Begin (time);
@@ -165,15 +165,15 @@ namespace Knot3.GameObjects
 				currentEffect.End (time);
 			
 				// end of the post processing effect
-				screen.PostProcessing.End (time);
+				screen.PostProcessingEffect.End (time);
 			} else {
-				screen.PostProcessing.DrawLastFrame (time);
+				screen.PostProcessingEffect.DrawLastFrame (time);
 			}
 		}
 
 		public override void Update (GameTime time)
 		{
-			if (screen.PostProcessing is FadeEffect)
+			if (screen.PostProcessingEffect is FadeEffect)
 				Redraw = true;
 
 			// run the update method on all game objects

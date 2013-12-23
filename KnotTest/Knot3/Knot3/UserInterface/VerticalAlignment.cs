@@ -29,8 +29,8 @@ namespace Knot3.UserInterface
 		public Func<Vector2> RelativePadding = () => Vector2.Zero;
 
 		// alignment
-		public HAlign AlignX = HAlign.Left;
-		public VAlign AlignY = VAlign.Center;
+		public HorizontalAlignment AlignX = HorizontalAlignment.Left;
+		public VerticalAlignment AlignY = VerticalAlignment.Center;
 
 		// colors
 		public Func<Color> ForegroundColor = () => Color.Transparent;
@@ -51,11 +51,6 @@ namespace Knot3.UserInterface
 		public Vector2 ScaledPadding (Viewport viewport)
 		{
 			return RelativePadding ().Scale (viewport);
-		}
-
-		public Rectangle RelativeRectangle ()
-		{
-			return HfGDesign.CreateRectangle (RelativePosition (), RelativeSize ());
 		}
 
 		public Rectangle ScaledRectangle (Viewport viewport)
@@ -171,7 +166,7 @@ namespace Knot3.UserInterface
 	/// <summary>
 	/// Horizontale Ausrichtung eines Widgets.
 	/// </summary>
-	public enum HAlign
+	public enum HorizontalAlignment
 	{
 		Left = 0,
 		Center,
@@ -181,7 +176,7 @@ namespace Knot3.UserInterface
 	/// <summary>
 	/// Vertikale Ausrichtung eines Widgets.
 	/// </summary>
-	public enum VAlign
+	public enum VerticalAlignment
 	{
 		Top,
 		Center,

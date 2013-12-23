@@ -26,8 +26,8 @@ namespace Knot3.UserInterface
 		// fonts and colors
 		public Func<ItemState, Color> ItemForegroundColor = null;
 		public Func<ItemState, Color> ItemBackgroundColor = null;
-		public HAlign? ItemAlignX = null;
-		public VAlign? ItemAlignY = null;
+		public HorizontalAlignment? ItemAlignX = null;
+		public VerticalAlignment? ItemAlignY = null;
 
 		// menu-related attributes
 		protected List<MenuItem> Items;

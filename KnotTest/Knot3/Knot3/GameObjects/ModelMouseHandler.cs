@@ -26,7 +26,7 @@ namespace Knot3.GameObjects
 	public class ModelMouseHandler : GameScreenComponent
 	{
 		// game world
-		private World World { get; set; }
+		private World World;
 
 		// ray check
 		private double lastRayCheck = 0;
@@ -53,10 +53,10 @@ namespace Knot3.GameObjects
 			if (millis > lastRayCheck + 10
 				&& (screen.input.CurrentInputAction == InputAction.TargetMove
 				|| screen.input.CurrentInputAction == InputAction.FreeMouse)
-				&& InputManager.MouseState.ToVector2 () != lastMousePosition) {
+				&& InputManager.CurrentMouseState.ToVector2 () != lastMousePosition) {
 
 				lastRayCheck = millis;
-				lastMousePosition = InputManager.MouseState.ToVector2 ();
+				lastMousePosition = InputManager.CurrentMouseState.ToVector2 ();
 
 				Overlay.Profiler ["Ray"] = Knot3.Core.Knot3Game.Time (() => {
 
@@ -69,7 +69,7 @@ namespace Knot3.GameObjects
 
 		private void UpdateMouseRay (GameTime time)
 		{
-			Ray ray = World.Camera.GetMouseRay (InputManager.MouseState.ToVector2 ());
+			Ray ray = World.Camera.GetMouseRay (InputManager.CurrentMouseState.ToVector2 ());
 
 			GameObjectDistance nearest = null;
 			foreach (IGameObject obj in World.Objects) {

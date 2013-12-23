@@ -94,7 +94,7 @@ namespace Knot3.UserInterface
 
 			if (IsVisible) {
 				spriteBatch.Begin ();
-				Texture2D paneTexture = Textures.Create (screen.device, Color.White);
+				Texture2D paneTexture = TextureHelper.Create (screen.device, Color.White);
 				//spriteBatch.Draw (paneTexture, bounds (), Color.Black);
 				spriteBatch.Draw (
 					paneTexture, bounds (), null, Info.BackgroundColor (), 0f, Vector2.Zero, SpriteEffects.None, 0.5f
@@ -127,14 +127,14 @@ namespace Knot3.UserInterface
 			Vector2 size = Info.ScaledSize (screen.viewport);
 			Vector2 minimumSize = MinimumSize (font);
 			switch ((Info as WidgetInfo).AlignX) {
-			case HAlign.Left:
+			case HorizontalAlignment.Left:
 				position.Y += (size.Y - minimumSize.Y * scale.Y) / 2;
 				//textPosition.X += font.LineSpacing * scale.Y * 0.5f;
 				break;
-			case HAlign.Center:
+			case HorizontalAlignment.Center:
 				position += (size - minimumSize * scale) / 2;
 				break;
-			case HAlign.Right:
+			case HorizontalAlignment.Right:
 				position.Y += (size.Y - minimumSize.Y * scale.Y) / 2;
 				position.X += size.X - minimumSize.X * scale.X;
 				break;

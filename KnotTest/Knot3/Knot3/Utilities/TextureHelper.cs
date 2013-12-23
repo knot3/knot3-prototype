@@ -17,7 +17,7 @@ using Knot3.RenderEffects;
 
 namespace Knot3.Utilities
 {
-	public static class Textures
+	public static class TextureHelper
 	{
 		#region Real Textures
 		
@@ -70,23 +70,5 @@ namespace Knot3.Utilities
 		#endregion
 	}
 
-	public static class Colors
-	{
-		public static Color Mix (this Color a, Color b, float percent = 0.5f)
-		{
-			percent = MathHelper.Clamp (percent, 0f, 1f);
-			return new Color (a.ToVector3 () * (1f - percent) + b.ToVector3 () * percent);
-		}
-
-		public static int Luminance (this Color color)
-		{
-			return (color.R * 3 + color.B + color.G * 4) >> 3;
-		}
-
-		public static int SortColorsByLuminance (Color left, Color right)
-		{
-			return left.Luminance ().CompareTo (right.Luminance ());
-		}
-	}
 }
 

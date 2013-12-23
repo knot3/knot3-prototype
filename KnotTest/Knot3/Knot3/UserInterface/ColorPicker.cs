@@ -29,11 +29,11 @@ namespace Knot3.UserInterface
 		{
 			info.BackgroundColor = () => Color.Black;
 			info.ForegroundColor = () => Color.White;
-			info.AlignX = HAlign.Left;
-			info.AlignY = VAlign.Top;
+			info.AlignX = HorizontalAlignment.Left;
+			info.AlignY = VerticalAlignment.Top;
 			// colors
 			colors = new List<Color> (CreateColors (64));
-			colors.Sort (Utilities.Colors.SortColorsByLuminance);
+			colors.Sort (Utilities.ColorHelper.SortColorsByLuminance);
 			tiles = new List<Vector2> (CreateTiles (colors));
 
 			// create a new SpriteBatch, which can be used to draw textures
@@ -54,7 +54,7 @@ namespace Knot3.UserInterface
 				// background
 				Rectangle rect = Info.ScaledRectangle (screen.viewport);
 				spriteBatch.Draw (
-					Textures.Create (screen.device, Color.Black), rect.Grow (2), Color.White
+					TextureHelper.Create (screen.device, Color.Black), rect.Grow (2), Color.White
 				);
 
 				// color tiles
@@ -65,7 +65,7 @@ namespace Knot3.UserInterface
 						tileSize.Scale (screen.viewport)
 					);
 					spriteBatch.Draw (
-						Textures.Create (screen.device, colors [i]), rect.Shrink (1), Color.White
+						TextureHelper.Create (screen.device, colors [i]), rect.Shrink (1), Color.White
 					);
 
 					++i;

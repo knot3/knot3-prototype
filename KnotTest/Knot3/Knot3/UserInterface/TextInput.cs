@@ -53,10 +53,10 @@ namespace Knot3.UserInterface
 			// background
 			Rectangle rect = Info.ScaledRectangle (screen.viewport);
 			spriteBatch.Draw (
-				Textures.Create (screen.device, HfGDesign.LineColor), rect.Grow (1), Color.White
+				TextureHelper.Create (screen.device, HfGDesign.LineColor), rect.Grow (1), Color.White
 			);
 			spriteBatch.Draw (
-				Textures.Create (screen.device, Info.BackgroundColor ()), rect, Color.White
+				TextureHelper.Create (screen.device, Info.BackgroundColor ()), rect, Color.White
 			);
 
 			// text

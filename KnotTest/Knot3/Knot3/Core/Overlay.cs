@@ -116,9 +116,9 @@ namespace Knot3.Core
 			int height = 20;
 			int width1 = 20, width2 = 150, width3 = 210, width4 = 270;
 			DrawString ("Rotation: ", width1, height, Color.White);
-			DrawString (World.Camera.RotationAngle.ToDegrees ().X, width2, height, Color.Green);
-			DrawString (World.Camera.RotationAngle.ToDegrees ().Y, width3, height, Color.Red);
-			DrawString (World.Camera.RotationAngle.ToDegrees ().Z, width4, height, Color.Yellow);
+			DrawString (World.Camera.Rotation.ToDegrees ().X, width2, height, Color.Green);
+			DrawString (World.Camera.Rotation.ToDegrees ().Y, width3, height, Color.Red);
+			DrawString (World.Camera.Rotation.ToDegrees ().Z, width4, height, Color.Yellow);
 			height += 20;
 			DrawString ("Camera Position: ", width1, height, Color.White);
 			DrawVectorCoordinates (World.Camera.Position, width2, width3, width4, height);

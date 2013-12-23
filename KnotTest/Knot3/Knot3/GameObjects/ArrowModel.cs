@@ -76,7 +76,7 @@ namespace Knot3.GameObjects
 				Info.Rotation += Angles3.FromDegrees (0, 270, 0);
 			}
 
-			Bounds = Vectors.CylinderBounds (Info.Length, Info.Diameter / 2, Info.Direction,
+			Bounds = VectorHelper.CylinderBounds (Info.Length, Info.Diameter / 2, Info.Direction,
 			                                 info.Position - info.Direction * Info.Length / 2);
 		}
 

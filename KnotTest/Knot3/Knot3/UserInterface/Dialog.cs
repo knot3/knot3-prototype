@@ -42,8 +42,8 @@ namespace Knot3.UserInterface
 			buttons = new Menu (screen, menuInfo, DisplayLayer.Menu);
 			buttons.ItemForegroundColor = ButtonForegroundColor;
 			buttons.ItemBackgroundColor = ButtonBackgroundColor;
-			buttons.ItemAlignX = HAlign.Center;
-			buttons.ItemAlignY = VAlign.Center;
+			buttons.ItemAlignX = HorizontalAlignment.Center;
+			buttons.ItemAlignY = VerticalAlignment.Center;
 		}
 
 		protected Vector2 RelativeButtonPosition (int n)
@@ -77,10 +77,10 @@ namespace Knot3.UserInterface
 				// background
 				Rectangle rect = Info.ScaledRectangle (screen.viewport);
 				spriteBatch.Draw (
-					Textures.Create (screen.device, HfGDesign.LineColor), rect.Grow (3), Color.White
+					TextureHelper.Create (screen.device, HfGDesign.LineColor), rect.Grow (3), Color.White
 				);
 				spriteBatch.Draw (
-					Textures.Create (screen.device, Info.BackgroundColor ()), rect, Color.Black * 0.95f
+					TextureHelper.Create (screen.device, Info.BackgroundColor ()), rect, Color.Black * 0.95f
 				);
 
 				DrawDialog (time);

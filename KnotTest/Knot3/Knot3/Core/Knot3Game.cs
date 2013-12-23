@@ -23,7 +23,7 @@ namespace Knot3.Core
 	public class Knot3Game : Microsoft.Xna.Framework.Game
 	{
 		// graphics-related classes
-		public GraphicsDeviceManager graphics { get; private set; }
+		public GraphicsDeviceManager Graphics { get; private set; }
 
 		// custom classes
 		public GameScreen State { get; private set; }
@@ -39,14 +39,14 @@ namespace Knot3.Core
 		/// </summary>
 		public Knot3Game ()
 		{
-			graphics = new GraphicsDeviceManager (this);
+			Graphics = new GraphicsDeviceManager (this);
 
-			graphics.PreferredBackBufferWidth = (int)DefaultSize.X;
-			graphics.PreferredBackBufferHeight = (int)DefaultSize.Y;
+			Graphics.PreferredBackBufferWidth = (int)DefaultSize.X;
+			Graphics.PreferredBackBufferHeight = (int)DefaultSize.Y;
 
-			graphics.IsFullScreen = false;
+			Graphics.IsFullScreen = false;
 			isFullscreen = false;
-			graphics.ApplyChanges ();
+			Graphics.ApplyChanges ();
 
 			Content.RootDirectory = "Content";
 			Window.Title = "Test Game 1";
@@ -61,8 +61,8 @@ namespace Knot3.Core
 			VSync = true;
 
 			// anti aliasing
-			graphics.GraphicsDevice.PresentationParameters.MultiSampleCount = 4;
-			graphics.PreferMultiSampling = true;
+			Graphics.GraphicsDevice.PresentationParameters.MultiSampleCount = 4;
+			Graphics.PreferMultiSampling = true;
 
 			// base method
 			base.Initialize ();
@@ -76,7 +76,7 @@ namespace Knot3.Core
 		{
 			GameScreens.Initialize (this);
 			State = GameScreens.StartScreen;
-			State.Activate (null);
+			State.Entered (null);
 		}
 
 		/// <summary>
@@ -97,10 +97,10 @@ namespace Knot3.Core
 		{
 			// change game screen?
 			if (State != State.NextState) {
-				State.NextState.PostProcessing = new FadeEffect (State.NextState, State);
-				State.Deactivate (time);
+				State.NextState.PostProcessingEffect = new FadeEffect (State.NextState, State);
+				State.BeforeExit (time);
 				State = State.NextState.NextState = State.NextState;
-				State.Activate (time);
+				State.Entered (time);
 			}
 
 			// global keyboard ans mouse input 
@@ -137,12 +137,12 @@ namespace Knot3.Core
 
 		public bool VSync {
 			get {
-				return graphics.SynchronizeWithVerticalRetrace;
+				return Graphics.SynchronizeWithVerticalRetrace;
 			}
 			set {
-				graphics.SynchronizeWithVerticalRetrace = value;
+				Graphics.SynchronizeWithVerticalRetrace = value;
 				this.IsFixedTimeStep = value;
-				graphics.ApplyChanges ();
+				Graphics.ApplyChanges ();
 			}
 		}
 
@@ -156,15 +156,15 @@ namespace Knot3.Core
 				if (value != isFullscreen) {
 					Console.WriteLine ("Fullscreen Toggle");
 					if (value) {
-						graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
-						graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
+						Graphics.PreferredBackBufferWidth = Graphics.GraphicsDevice.DisplayMode.Width;
+						Graphics.PreferredBackBufferHeight = Graphics.GraphicsDevice.DisplayMode.Height;
 					} else {
-						graphics.PreferredBackBufferWidth = (int)Knot3Game.DefaultSize.X;
-						graphics.PreferredBackBufferHeight = (int)Knot3Game.DefaultSize.Y;
+						Graphics.PreferredBackBufferWidth = (int)Knot3Game.DefaultSize.X;
+						Graphics.PreferredBackBufferHeight = (int)Knot3Game.DefaultSize.Y;
 					}
-					graphics.ApplyChanges ();
-					graphics.ToggleFullScreen ();
-					graphics.ApplyChanges ();
+					Graphics.ApplyChanges ();
+					Graphics.ToggleFullScreen ();
+					Graphics.ApplyChanges ();
 					isFullscreen = value;
 				}
 			}

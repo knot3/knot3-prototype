@@ -57,7 +57,7 @@ namespace Knot3.UserInterface
 		
 		public override void Draw (GameTime time)
 		{
-			PostProcessing.Begin (backColor, time);
+			PostProcessingEffect.Begin (backColor, time);
 
 			// subclass...
 			DrawMenu (time);
@@ -67,14 +67,14 @@ namespace Knot3.UserInterface
 			HfGDesign.DrawLines (ref LinePoints, LineWidth, spriteBatch, this, time);
 			spriteBatch.End ();
 
-			PostProcessing.End (time);
+			PostProcessingEffect.End (time);
 		}
 
 		public abstract void DrawMenu (GameTime time);
 
-		public override void Activate (GameTime time)
+		public override void Entered (GameTime time)
 		{
-			base.Activate (time);
+			base.Entered (time);
 			AddGameComponents (time, pointer);
 		}
 

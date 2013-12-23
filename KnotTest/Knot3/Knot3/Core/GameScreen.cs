@@ -48,8 +48,8 @@ namespace Knot3.Core
 		{
 			this.game = game;
 			this.NextState = this;
-			this.RenderEffects = new RenderEffectStack (defaultEffect: new NoEffect (this));
-			this.PostProcessing = new NoEffect (this);
+			this.CurrentRenderEffects = new RenderEffectStack (defaultEffect: new StandardEffect (this));
+			this.PostProcessingEffect = new StandardEffect (this);
 			this.input = new InputManager (this);
 		}
 
@@ -67,7 +67,7 @@ namespace Knot3.Core
 		/// <value>
 		/// The graphics device manager.
 		/// </value>
-		public GraphicsDeviceManager graphics { get { return game.graphics; } }
+		public GraphicsDeviceManager graphics { get { return game.Graphics; } }
 
 		/// <summary>
 		/// Gets the graphics device for this game screen.
@@ -99,12 +99,12 @@ namespace Knot3.Core
 		/// <value>
 		/// The currently active render effects.
 		/// </value>
-		public RenderEffectStack RenderEffects { get; private set; }
+		public RenderEffectStack CurrentRenderEffects { get; private set; }
 
 		/// <summary>
 		/// The post processing effect of this game screen.
 		/// </summary>
-		public RenderEffect PostProcessing;
+		public RenderEffect PostProcessingEffect;
 
 		/// <summary>
 		/// Initialize the game screen.
@@ -168,7 +168,7 @@ namespace Knot3.Core
 		/// <param name='time'>
 		/// The Game time.
 		/// </param>
-		public virtual void Activate (GameTime time)
+		public virtual void Entered (GameTime time)
 		{
 			Console.WriteLine ("Activate: " + this);
 			AddGameComponents (time, input, new WidgetKeyHandler (this), new WidgetMouseHandler (this));
@@ -180,7 +180,7 @@ namespace Knot3.Core
 		/// <param name='time'>
 		/// The Game time.
 		/// </param>
-		public virtual void Deactivate (GameTime time)
+		public virtual void BeforeExit (GameTime time)
 		{
 			Console.WriteLine ("Deactivate: " + this);
 			game.Components.Clear ();

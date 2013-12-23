@@ -18,7 +18,7 @@ using Knot3.RenderEffects;
 
 namespace Knot3.Utilities
 {
-	public static class Models
+	public static class ModelHelper
 	{
 		public static string[] ValidQualities = new string[] {
 				"low",
@@ -36,14 +36,14 @@ namespace Knot3.Utilities
 		public static Model LoadModel (GameScreen screen, string name)
 		{
 			ContentManager content;
-			if (contentManagers.ContainsKey (screen.RenderEffects.Current.ToString ()))
-				content = contentManagers [screen.RenderEffects.Current.ToString ()];
+			if (contentManagers.ContainsKey (screen.CurrentRenderEffects.Current.ToString ()))
+				content = contentManagers [screen.CurrentRenderEffects.Current.ToString ()];
 			else
-				contentManagers [screen.RenderEffects.Current.ToString ()] = content = new ContentManager (screen.content.ServiceProvider, screen.content.RootDirectory);
+				contentManagers [screen.CurrentRenderEffects.Current.ToString ()] = content = new ContentManager (screen.content.ServiceProvider, screen.content.RootDirectory);
 
-			Model model = LoadModel (content, screen.RenderEffects.Current, name + "-" + Quality);
+			Model model = LoadModel (content, screen.CurrentRenderEffects.Current, name + "-" + Quality);
 			if (model == null)
-				model = LoadModel (content, screen.RenderEffects.Current, name);
+				model = LoadModel (content, screen.CurrentRenderEffects.Current, name);
 			return model;
 		}
 

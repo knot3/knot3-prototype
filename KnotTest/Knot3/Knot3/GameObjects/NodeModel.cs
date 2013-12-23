@@ -32,7 +32,7 @@ namespace Knot3.GameObjects
 			EdgeA = edgeA;
 			EdgeB = edgeB;
 			IsVisible = edgeA.Direction != edgeB.Direction;
-			Position = nodeMap.ToNode (edgeA).Vector ();
+			Position = nodeMap.ToNode (edgeA).ToVector () + offset;
 			Scale = Vector3.One * 5f;
 		}
 

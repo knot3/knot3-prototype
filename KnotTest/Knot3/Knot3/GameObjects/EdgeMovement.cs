@@ -59,7 +59,7 @@ namespace Knot3.GameObjects
 				PipeModel pipe = World.SelectedObject as PipeModel;
 
 				// pipe selection
-				if (InputManager.LeftButton == ClickState.SingleClick) {
+				if (InputManager.LeftMouseButton == ClickState.SingleClick) {
 					World.Redraw = true;
 					try {
 						Edge selectedEdge = pipe.Info.Edge;
@@ -97,7 +97,7 @@ namespace Knot3.GameObjects
 					World.Camera.ViewMatrix, World.Camera.WorldMatrix
 				);
 				Vector3 currentMousePosition = screen.viewport.Unproject (
-					new Vector3 (InputManager.MouseState.ToVector2 (), screenLocation.Z),
+					new Vector3 (InputManager.CurrentMouseState.ToVector2 (), screenLocation.Z),
 					World.Camera.ProjectionMatrix, World.Camera.ViewMatrix, Matrix.Identity
 				);
 
@@ -131,7 +131,7 @@ namespace Knot3.GameObjects
 			// selected object is not a PipeModel
 			else {
 				// left click clears the selection
-				if (InputManager.LeftButton == ClickState.SingleClick) {
+				if (InputManager.LeftMouseButton == ClickState.SingleClick) {
 					Knot.ClearSelection();
 				}
 			}
@@ -244,117 +244,6 @@ namespace Knot3.GameObjects
 		#endregion
 	}
 	
-	public class ShadowGameObject : IGameObject
-	{
-		// game screen
-		protected GameScreen screen;
-
-		// the decorated object
-		private IGameObject Obj;
-
-		// game world
-		public World World {
-			get { return Obj.World; }
-			set {}
-		}
-
-		// info
-		public GameObjectInfo Info { get; private set; }
-
-		public ShadowGameObject (GameScreen screen, IGameObject obj)
-		{
- this.screen = screen;
-			Info = new GameObjectInfo ();
-			Obj = obj;
-			Info.IsVisible = true;
-			Info.IsSelectable = false;
-			Info.IsMovable = false;
-		}
-
-		public Vector3 ShadowPosition {
-			get {
-				return Info.Position;
-			}
-			set {
-				Info.Position = value;
-			}
-		}
-
-		public Vector3 OriginalPosition {
-			get {
-				return Obj.Info.Position;
-			}
-		}
-
-		#region Update
-
-		public virtual void Update (GameTime time)
-		{
-			Info.IsVisible = Math.Abs ((ShadowPosition - Obj.Info.Position).Length ()) > 50;
-		}
-
-		#endregion
-
-		#region Draw
-
-		public virtual void Draw (GameTime time)
-		{
-			Vector3 originalPositon = Obj.Info.Position;
-			Obj.Info.Position = ShadowPosition;
-			Obj.Draw (time);
-			Obj.Info.Position = originalPositon;
-		}
-
-		#endregion
-
-		#region Intersection
-
-		public GameObjectDistance Intersects (Ray ray)
-		{
-			return null;
-			//return Obj.Intersects (ray);
-		}
-
-		public Vector3 Center ()
-		{
-			return Obj.Center ();
-		}
-
-		#endregion
-	}
 	
-	public class ShadowGameModel : ShadowGameObject
-	{
-		private GameModel Model;
-
-		public Color ShadowColor { get; set; }
-
-		public float ShadowAlpha { get; set; }
-
-		public ShadowGameModel (GameScreen screen, GameModel model)
-			: base(screen, model)
-		{
-			Model = model;
-		}
-
-		public override void Draw (GameTime time)
-		{
-			// swap position, colors, alpha
-			Vector3 originalPositon = Model.Info.Position;
-			Model.Info.Position = ShadowPosition;
-			float originalHighlightIntensity = Model.HighlightIntensity;
-			Model.HighlightIntensity = 0f;
-			float originalAlpha = Model.Alpha;
-			Model.Alpha = ShadowAlpha;
-
-			// draw
-			screen.RenderEffects.Current.DrawModel (Model, time);
-
-			// swap everything back
-			Model.Info.Position = originalPositon;
-			Model.HighlightIntensity = originalHighlightIntensity;
-			Model.Alpha = originalAlpha;
-		}
-	}
 }
 

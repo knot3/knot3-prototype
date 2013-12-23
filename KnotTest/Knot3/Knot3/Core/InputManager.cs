@@ -41,11 +41,11 @@ namespace Knot3.Core
 		/// <summary>
 		/// Der aktuelle ClickState des linken Mouse Buttons.
 		/// </summary>
-		public static ClickState LeftButton;
+		public static ClickState LeftMouseButton;
 		/// <summary>
 		/// Der aktuelle ClickState des rechten Mouse Buttons.
 		/// </summary>
-		public static ClickState RightButton;
+		public static ClickState RightMouseButton;
 
 		#endregion
 
@@ -72,47 +72,47 @@ namespace Knot3.Core
 			WASDMode = WASDMode.ArcballMode;
 			CurrentInputAction = InputAction.FreeMouse;
 
-			PreviousKeyboardState = KeyboardState = Keyboard.GetState ();
-			PreviousMouseState = MouseState = Mouse.GetState ();
+			PreviousKeyboardState = CurrentKeyboardState = Keyboard.GetState ();
+			PreviousMouseState = CurrentMouseState = Mouse.GetState ();
 		}
 
 		public override void Update (GameTime time)
 		{
 			// update saved screen.
-			PreviousKeyboardState = KeyboardState;
-			PreviousMouseState = MouseState;
-			KeyboardState = Keyboard.GetState ();
-			MouseState = Mouse.GetState ();
+			PreviousKeyboardState = CurrentKeyboardState;
+			PreviousMouseState = CurrentMouseState;
+			CurrentKeyboardState = Keyboard.GetState ();
+			CurrentMouseState = Mouse.GetState ();
 
 			if (time != null) {
 				bool mouseMoved;
-				if (MouseState != PreviousMouseState) {
+				if (CurrentMouseState != PreviousMouseState) {
 					// mouse movements
-					Vector2 mouseMove = MouseState.ToVector2 () - PreviousClickMouseState.ToVector2 ();
+					Vector2 mouseMove = CurrentMouseState.ToVector2 () - PreviousClickMouseState.ToVector2 ();
 					mouseMoved = mouseMove.Length () > 3;
 				} else {
 					mouseMoved = false;
 				}
 
 				LeftButtonClickTimer += time.ElapsedGameTime.TotalMilliseconds;
-				if (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton != ButtonState.Pressed) {
-					LeftButton = LeftButtonClickTimer < 500 && !mouseMoved
+				if (CurrentMouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton != ButtonState.Pressed) {
+					LeftMouseButton = LeftButtonClickTimer < 500 && !mouseMoved
 						? ClickState.DoubleClick : ClickState.SingleClick;
 					LeftButtonClickTimer = 0;
 					PreviousClickMouseState = PreviousMouseState;
-					Console.WriteLine ("LeftButton=" + LeftButton.ToString ());
+					Console.WriteLine ("LeftButton=" + LeftMouseButton.ToString ());
 				} else {
-					LeftButton = ClickState.None;
+					LeftMouseButton = ClickState.None;
 				}
 				RightButtonClickTimer += time.ElapsedGameTime.TotalMilliseconds;
-				if (MouseState.RightButton == ButtonState.Pressed && PreviousMouseState.RightButton != ButtonState.Pressed) {
-					RightButton = RightButtonClickTimer < 500 && !mouseMoved
+				if (CurrentMouseState.RightButton == ButtonState.Pressed && PreviousMouseState.RightButton != ButtonState.Pressed) {
+					RightMouseButton = RightButtonClickTimer < 500 && !mouseMoved
 						? ClickState.DoubleClick : ClickState.SingleClick;
 					RightButtonClickTimer = 0;
 					PreviousClickMouseState = PreviousMouseState;
-					Console.WriteLine ("RightButton=" + RightButton.ToString ());
+					Console.WriteLine ("RightButton=" + RightMouseButton.ToString ());
 				} else {
-					RightButton = ClickState.None;
+					RightMouseButton = ClickState.None;
 				}
 			}
 
@@ -126,12 +126,12 @@ namespace Knot3.Core
 		/// <summary>
 		/// Der aktuelle Status der Maus.
 		/// </summary>
-		public static MouseState MouseState { get; set; }
+		public static MouseState CurrentMouseState { get; set; }
 
 		/// <summary>
 		/// Der aktuelle Status der Tastatur.
 		/// </summary>
-		public static KeyboardState KeyboardState { get; private set; }
+		public static KeyboardState CurrentKeyboardState { get; private set; }
 	}
 
 	/// <summary>
@@ -169,77 +169,5 @@ namespace Knot3.Core
 		SelectedObjectShadowMove
 	}
 
-	/// <summary>
-	/// Die aktuelle Belegung für die Tasten W,A,S,D und angrenzende Tasten.
-	/// </summary>
-	public enum WASDMode
-	{
-		/// <summary>
-		/// W,A,S,D bewegen die Kamera "wie auf einer Kugel-Oberfläche", das heißt in einem festen Radius, um ein Objekt.
-		/// </summary>
-		ArcballMode,
-		/// <summary>
-		/// W,A,S,D bewegen die Kamera wie in einem First Person Shooter.
-		/// </summary>
-		FirstPersonMode
-	}
-
-	/// <summary>
-	/// Das Enum ClickState steht entweder für einen Doppelklick, einen einfachen Klick oder gar kein Klick.
-	/// </summary>
-	public enum ClickState
-	{
-		/// <summary>
-		/// Kein Klick.
-		/// </summary>
-		None = 0,
-		/// <summary>
-		/// Ein einfacher Klick.
-		/// </summary>
-		SingleClick,
-		/// <summary>
-		/// Ein Doppelklick.
-		/// </summary>
-		DoubleClick
-	}
-
-	public static class InputExtensions
-	{
-		/// <summary>
-		/// Wurde die aktuelle Taste gedrückt und war sie im letzten Frame nicht gedrückt?
-		/// </summary>
-		/// <returns>
-		/// <c>true</c> if the specified key is down; otherwise, <c>false</c>.
-		/// </returns>
-		/// <param name='key'>
-		/// If set to <c>true</c> key.
-		/// </param>
-		public static bool IsDown (this Keys key)
-		{
-			// Is the key down?
-			if (InputManager.KeyboardState.IsKeyDown (key)) {
-				// If not down last update, key has just been pressed.
-				if (!InputManager.PreviousKeyboardState.IsKeyDown (key)) {
-					return true;
-				}
-			}
-			return false;
-		}
-
-		/// <summary>
-		/// Wird die aktuelle Taste gedrückt gehalten?
-		/// </summary>
-		/// <returns>
-		/// <c>true</c> if the specified key is held down; otherwise, <c>false</c>.
-		/// </returns>
-		/// <param name='key'>
-		/// If set to <c>true</c> key.
-		/// </param>
-		public static bool IsHeldDown (this Keys key)
-		{
-			// Is the key down?
-			return InputManager.KeyboardState.IsKeyDown (key);
-		}
-	}
 }
 

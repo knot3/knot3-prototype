@@ -109,7 +109,7 @@ namespace Knot3.RenderEffects
 
 		public virtual void Begin (Color background, GameTime time)
 		{
-			screen.RenderEffects.Push (this);
+			screen.CurrentRenderEffects.Push (this);
 			RenderTarget2D current = RenderTarget;
 			screen.device.PushRenderTarget (current);
 			screen.device.Clear (background);
@@ -143,7 +143,7 @@ namespace Knot3.RenderEffects
 				DrawRenderTarget (spriteBatch, time);
 
 				spriteBatch.End ();
-				screen.RenderEffects.Pop ();
+				screen.CurrentRenderEffects.Pop ();
 
 			}
 			).TotalMilliseconds;

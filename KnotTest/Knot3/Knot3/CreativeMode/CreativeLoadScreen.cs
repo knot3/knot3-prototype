@@ -48,8 +48,8 @@ namespace Knot3.CreativeMode
 			// menu
 			menu.ItemForegroundColor = ForegroundColor;
 			menu.ItemBackgroundColor = BackgroundColor;
-			menu.ItemAlignX = HAlign.Left;
-			menu.ItemAlignY = VAlign.Center;
+			menu.ItemAlignX = HorizontalAlignment.Left;
+			menu.ItemAlignY = VerticalAlignment.Center;
 
 			// lines
 			HfGDesign.AddLinePoints (ref LinePoints, 0, 50, new float[]{
@@ -160,10 +160,10 @@ namespace Knot3.CreativeMode
 			spriteBatch.End ();
 		}
 
-		public override void Activate (GameTime time)
+		public override void Entered (GameTime time)
 		{
 			UpdateFiles ();
-			base.Activate (time);
+			base.Entered (time);
 			AddGameComponents (time, menu);
 		}
 	}

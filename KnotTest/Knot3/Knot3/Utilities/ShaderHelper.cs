@@ -16,11 +16,11 @@ using Knot3.Core;
 
 namespace Knot3.Utilities
 {
-	public static class Shaders
+	public static class ShaderHelper
 	{
 		public static Effect LoadEffect (this GameScreen screen, string name)
 		{
-			if (Mono.IsRunningOnMono ())
+			if (MonoHelper.IsRunningOnMono ())
 				return LoadEffectMono (screen, name);
 			else
 				return LoadEffectDotnet (screen, name);

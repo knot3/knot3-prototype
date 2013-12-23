@@ -42,8 +42,8 @@ namespace Knot3.Settings
 			// menu
 			menu.ItemForegroundColor = ForegroundColor;
 			menu.ItemBackgroundColor = BackgroundColor;
-			menu.ItemAlignX = HAlign.Left;
-			menu.ItemAlignY = VAlign.Center;
+			menu.ItemAlignX = HorizontalAlignment.Left;
+			menu.ItemAlignY = VerticalAlignment.Center;
 
 			MenuItemInfo info;
 			info = new MenuItemInfo (text: "Video", onClick: () => NextState = GameScreens.VideoOptionScreen);
@@ -81,9 +81,9 @@ namespace Knot3.Settings
 			spriteBatch.End ();
 		}
 
-		public override void Activate (GameTime time)
+		public override void Entered (GameTime time)
 		{
-			base.Activate (time);
+			base.Entered (time);
 			AddGameComponents (time, menu);
 		}
 	}

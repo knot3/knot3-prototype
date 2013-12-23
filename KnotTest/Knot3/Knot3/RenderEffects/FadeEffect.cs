@@ -25,7 +25,7 @@ namespace Knot3.RenderEffects
 			: base(screen)
 		{
 			if (oldState != null) {
-				lastFrame = oldState.PostProcessing.RenderTarget;
+				lastFrame = oldState.PostProcessingEffect.RenderTarget;
 				alpha = 1.0f;
 			}
 		}
