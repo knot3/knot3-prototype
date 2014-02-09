@@ -1,5 +1,0 @@
-public static class UmlClassExtensions : 
-  Attributes:
-  Methods:
-    + ToCode (this ClassType type, string before, string after) : string static
-

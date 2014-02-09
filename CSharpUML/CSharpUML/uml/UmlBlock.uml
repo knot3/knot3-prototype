@@ -1,5 +1,0 @@
-public class UmlBlock : Block<UmlBlock>
-  Attributes:
-  Methods:
-    + UmlBlock (string name, UmlBlock[] content)
-    + UmlBlock (string name)

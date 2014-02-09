@@ -1,5 +1,0 @@
-public interface IParser : 
-  Attributes:
-  Methods:
-    + Parse (IEnumerable<string> lines) : IEnumerable<IUmlObject>
-    + Parse (string filename) : IEnumerable<IUmlObject>
