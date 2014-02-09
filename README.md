@@ -1,4 +1,4 @@
-# knot-prototype
+# Knot3 (Prototype)
 
 This is the first implementation of Knot3 from Oct 2013 aka "the prototype", developed by [KIT](http://www.kit.edu) student
 [Tobias Schulz](https://github.com/tobiasschulz).
