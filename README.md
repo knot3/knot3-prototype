@@ -1,6 +1,6 @@
 # knot-prototype
 
-This is the first implementation of Knot3 from Oct 2013 aka "the prototype", developed by [Karlsruhe Institute of Technology](http://www.kit.edu) student
+This is the first implementation of Knot3 from Oct 2013 aka "the prototype", developed by [KIT](http://www.kit.edu) student
 [Tobias Schulz](https://github.com/tobiasschulz).
 
 It is API compatible to the version of Knot3 which was later released by six students
