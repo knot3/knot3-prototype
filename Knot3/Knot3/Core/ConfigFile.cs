@@ -16,14 +16,15 @@ namespace Knot3.Settings
 		{
 			// load ini file
 			Filename = filename;
-			
+
 			// create a new ini parser
 			using (StreamWriter w = File.AppendText(Filename)) {
 			}
 			ini = new IniFile (Filename);
 		}
 
-		public bool this [string section, string option, bool defaultValue = false] {
+		public bool this [string section, string option, bool defaultValue = false]
+		{
 			get {
 				return this [section, option, defaultValue ? True : False] == True ? true : false;
 			}
@@ -32,7 +33,8 @@ namespace Knot3.Settings
 			}
 		}
 
-		public string this [string section, string option, string defaultValue = null] {
+		public string this [string section, string option, string defaultValue = null]
+		{
 			get {
 				return ini [section, option, defaultValue];
 			}
@@ -44,5 +46,4 @@ namespace Knot3.Settings
 		public static string True = "on";
 		public static string False = "off";
 	}
-	
 }

@@ -15,8 +15,7 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace Knot3.Utilities
 {
-	public struct Angles3 : IEquatable<Angles3>
-	{
+	public struct Angles3 : IEquatable<Angles3> {
 		#region Public Fields
 
 		public float X;
@@ -49,7 +48,8 @@ namespace Knot3.Utilities
 
 		#endregion
 
-		public static Angles3 Zero {
+		public static Angles3 Zero
+		{
 			get { return zero; }
 		}
 
@@ -58,10 +58,10 @@ namespace Knot3.Utilities
 		public Angles3 ToDegrees ()
 		{
 			return new Angles3 (
-					(int)MathHelper.ToDegrees (X) % 360,
-					(int)MathHelper.ToDegrees (Y) % 360,
-					(int)MathHelper.ToDegrees (Z) % 360
-			);
+			           (int)MathHelper.ToDegrees (X) % 360,
+			           (int)MathHelper.ToDegrees (Y) % 360,
+			           (int)MathHelper.ToDegrees (Z) % 360
+			       );
 		}
 
 		public Vector3 ToVector ()
@@ -72,10 +72,10 @@ namespace Knot3.Utilities
 		public static Angles3 FromDegrees (float x, float y, float z)
 		{
 			return new Angles3 (
-					MathHelper.ToRadians (x),
-					MathHelper.ToRadians (y),
-					MathHelper.ToRadians (z)
-			);
+			           MathHelper.ToRadians (x),
+			           MathHelper.ToRadians (y),
+			           MathHelper.ToRadians (z)
+			       );
 		}
 
 		public override bool Equals (object obj)
@@ -94,14 +94,14 @@ namespace Knot3.Utilities
 		}
 
 		#endregion
-				
-        #region Operators
+
+		#region Operators
 
 		public static bool operator == (Angles3 value1, Angles3 value2)
 		{
 			return value1.X == value2.X
-				&& value1.Y == value2.Y
-				&& value1.Z == value2.Z;
+			       && value1.Y == value2.Y
+			       && value1.Z == value2.Z;
 		}
 
 		public static bool operator != (Angles3 value1, Angles3 value2)
@@ -172,7 +172,6 @@ namespace Knot3.Utilities
 			return value;
 		}
 
-        #endregion
+		#endregion
 	}
 }
-

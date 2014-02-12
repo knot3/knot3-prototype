@@ -22,7 +22,8 @@ namespace Knot3.KnotData
 			Filename = filename;
 		}
 
-		public string Name {
+		public string Name
+		{
 			get { return name; }
 			set {
 				name = value;
@@ -38,7 +39,8 @@ namespace Knot3.KnotData
 
 	public class Knot : IEnumerable<Edge>, ICloneable
 	{
-		public string Name {
+		public string Name
+		{
 			get { return MetaData.Name; }
 			set { MetaData.Name = value; }
 		}
@@ -57,7 +59,7 @@ namespace Knot3.KnotData
 		public Knot ()
 		{
 			MetaData = new KnotMetaData ("", () => edges.Count, null, null);
-			edges = new Circle<Edge> (new Edge[]{
+			edges = new Circle<Edge> (new Edge[] {
 				Edge.Up,
 				Edge.Right,
 				Edge.Down,
@@ -67,10 +69,10 @@ namespace Knot3.KnotData
 				Edge.Down,
 				Edge.Forward
 			}
-			);
+			                         );
 			selectedEdges = new List<Edge> ();
 		}
-		
+
 		public Knot (KnotMetaData metaData, IEnumerable<Edge> edges)
 		{
 			MetaData = metaData;
@@ -78,16 +80,16 @@ namespace Knot3.KnotData
 			this.edges = new Circle<Edge> (edges);
 			selectedEdges = new List<Edge> ();
 		}
-		
+
 		public object Clone ()
 		{
 			Circle<Edge> newCircle = new Circle<Edge> (edges as IEnumerable<Edge>);
 			return new Knot {
 				MetaData = new KnotMetaData(
-					MetaData.Name,
-					() => newCircle.Count,
-					MetaData.Format,
-					MetaData.Filename
+				    MetaData.Name,
+				    () => newCircle.Count,
+				    MetaData.Format,
+				    MetaData.Filename
 				),
 				edges = newCircle,
 				selectedEdges = new List<Edge>(selectedEdges),
@@ -103,27 +105,32 @@ namespace Knot3.KnotData
 			Circle<Edge> current = edges;
 			do {
 				if (!selected.Contains (current.Previous.Content) && selected.Contains (current.Content)) {
-					for (int i = 0; i < distance; ++i)
+					for (int i = 0; i < distance; ++i) {
 						current.InsertBefore (new Edge (direction));
+					}
 				}
 				if (selected.Contains (current.Content) && !selected.Contains (current.Next.Content)) {
-					for (int i = 0; i < distance; ++i)
+					for (int i = 0; i < distance; ++i) {
 						current.InsertAfter (new Edge (direction.ReverseDirection ()));
+					}
 				}
 
 				current = current.Next;
-			} while (current != edges);
+			}
+			while (current != edges);
 
 			current = edges;
 			do {
 				if (current != current.Previous.Previous && current != current.Previous.Previous
-					&& current.Previous.Content.Direction == current.Previous.Previous.Content.Direction.ReverseDirection ()) {
+				        && current.Previous.Content.Direction == current.Previous.Previous.Content.Direction.ReverseDirection ()) {
 					current.Previous.Previous.Remove ();
 					current.Previous.Remove ();
-				} else {
+				}
+				else {
 					current = current.Next;
 				}
-			} while (current != edges);
+			}
+			while (current != edges);
 
 			EdgesChanged ();
 		}
@@ -147,12 +154,15 @@ namespace Knot3.KnotData
 
 		public void Save ()
 		{
-			if (MetaData.Format == null)
+			if (MetaData.Format == null) {
 				throw new IOException ("Error: Knot: MetaData.Format is null!");
-			else if (MetaData.Filename == null)
+			}
+			else if (MetaData.Filename == null) {
 				throw new IOException ("Error: Knot: MetaData.Filename is null!");
-			else
+			}
+			else {
 				MetaData.Format.Save (this);
+			}
 		}
 
 		private Circle<Edge> lastSelected;
@@ -166,13 +176,16 @@ namespace Knot3.KnotData
 
 				if (forward.Count < backward.Count) {
 					foreach (Edge e in forward) {
-						if (!selectedEdges.Contains (e))
+						if (!selectedEdges.Contains (e)) {
 							selectedEdges.Add (e);
+						}
 					}
-				} else {
+				}
+				else {
 					foreach (Edge e in backward) {
-						if (!selectedEdges.Contains (e))
+						if (!selectedEdges.Contains (e)) {
 							selectedEdges.Add (e);
+						}
 					}
 				}
 				lastSelected = selectedCircle;
@@ -182,8 +195,9 @@ namespace Knot3.KnotData
 
 		public void AddToSelection (Edge edge)
 		{
-			if (!selectedEdges.Contains (edge))
+			if (!selectedEdges.Contains (edge)) {
 				selectedEdges.Add (edge);
+			}
 			lastSelected = edges.Find (edge);
 			SelectionChanged ();
 		}
@@ -203,9 +217,8 @@ namespace Knot3.KnotData
 		public override string ToString ()
 		{
 			return "Knot(name=" + Name + ",#edgecount=" + edges.Count
-				+ ",format=" + (MetaData.Format != null ? MetaData.ToString () : "null")
-				+ ")";
+			       + ",format=" + (MetaData.Format != null ? MetaData.ToString () : "null")
+			       + ")";
 		}
 	}
 }
-

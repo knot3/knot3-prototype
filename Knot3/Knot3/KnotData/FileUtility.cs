@@ -14,12 +14,11 @@ namespace Knot3.KnotData
 		public static string ConvertToFilename (string humanReadableName)
 		{
 			char[] arr = humanReadableName.ToCharArray ();
-			arr = Array.FindAll<char> (arr, (c => (char.IsLetterOrDigit (c) 
-				|| char.IsWhiteSpace (c) 
-				|| c == '-'))
-			);
+			arr = Array.FindAll<char> (arr, (c => (char.IsLetterOrDigit (c)
+			                                       || char.IsWhiteSpace (c)
+			                                       || c == '-'))
+			                          );
 			return new string (arr);
 		}
 	}
 }
-

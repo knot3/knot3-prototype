@@ -46,12 +46,15 @@ namespace Knot3.RenderEffects
 			return removed;
 		}
 
-		public IRenderEffect Current {
+		public IRenderEffect Current
+		{
 			get {
-				if (activeEffects.Count > 0)
+				if (activeEffects.Count > 0) {
 					return activeEffects.Peek ();
-				else
+				}
+				else {
 					return defaultEffect;
+				}
 			}
 		}
 
@@ -133,10 +136,10 @@ namespace Knot3.RenderEffects
 		/// </param>
 		public virtual void End (GameTime time)
 		{
-			if (!Overlay.Profiler.ContainsKey ("RenderEffect"))
+			if (!Overlay.Profiler.ContainsKey ("RenderEffect")) {
 				Overlay.Profiler ["RenderEffect"] = 0;
+			}
 			Overlay.Profiler ["RenderEffect"] += Knot3.Core.Knot3Game.Time (() => {
-
 				screen.device.PopRenderTarget ();
 				spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 
@@ -144,11 +147,10 @@ namespace Knot3.RenderEffects
 
 				spriteBatch.End ();
 				screen.CurrentRenderEffects.Pop ();
-
 			}
-			).TotalMilliseconds;
+			                                                               ).TotalMilliseconds;
 		}
-		
+
 		public void DrawLastFrame (GameTime time)
 		{
 			spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
@@ -198,7 +200,8 @@ namespace Knot3.RenderEffects
 			// lighting
 			if (Keys.L.IsHeldDown ()) {
 				effect.LightingEnabled = false;
-			} else {
+			}
+			else {
 				effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
 			}
 
@@ -211,17 +214,18 @@ namespace Knot3.RenderEffects
 			if (model.BaseColor != Color.Transparent) {
 				if (model.HighlightIntensity != 0f) {
 					effect.DiffuseColor = model.BaseColor.Mix (model.HighlightColor, model.HighlightIntensity).ToVector3 ();
-				} else {
+				}
+				else {
 					effect.DiffuseColor = model.BaseColor.ToVector3 ();
 				}
 			}
 			if (background == Color.Transparent) {
 				effect.Alpha = model.Alpha;
-			} else {
+			}
+			else {
 				effect.DiffuseColor = new Color (effect.DiffuseColor).Mix (background, 1f - model.Alpha).ToVector3 ();
 			}
 			effect.FogEnabled = false;
 		}
 	}
 }
-

@@ -26,7 +26,7 @@ namespace Knot3.GameObjects
 		public Edge EdgeB;
 
 		public NodeModelInfo (NodeMap nodeMap, Edge edgeA, Edge edgeB, Vector3 offset)
-			: base("knot1")
+		: base("knot1")
 		{
 			NodeMap = nodeMap;
 			EdgeA = edgeA;
@@ -38,20 +38,24 @@ namespace Knot3.GameObjects
 
 		public override bool Equals (GameObjectInfo other)
 		{
-			if (other == null) 
+			if (other == null) {
 				return false;
+			}
 
 			if (other is NodeModelInfo) {
-				if (this.EdgeA == (other as NodeModelInfo).EdgeA && this.EdgeB == (other as NodeModelInfo).EdgeB && base.Equals (other))
+				if (this.EdgeA == (other as NodeModelInfo).EdgeA && this.EdgeB == (other as NodeModelInfo).EdgeB && base.Equals (other)) {
 					return true;
-				else
+				}
+				else {
 					return false;
-			} else {
+				}
+			}
+			else {
 				return base.Equals (other);
 			}
 		}
 	}
-	
+
 	/// <summary>
 	/// Ein NodeModel, das ein kugelförmiges Verbindungsstück zwischen zwei Röhren zeichnet.
 	/// </summary>
@@ -64,7 +68,7 @@ namespace Knot3.GameObjects
 		#endregion
 
 		public NodeModel (GameScreen screen, NodeModelInfo info)
-			: base(screen, info)
+		: base(screen, info)
 		{
 		}
 
@@ -76,4 +80,3 @@ namespace Knot3.GameObjects
 		}
 	}
 }
-

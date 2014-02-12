@@ -22,7 +22,7 @@ namespace Knot3.RenderEffects
 		private float alpha;
 
 		public FadeEffect (GameScreen screen, GameScreen oldState)
-			: base(screen)
+		: base(screen)
 		{
 			if (oldState != null) {
 				lastFrame = oldState.PostProcessingEffect.RenderTarget;
@@ -41,11 +41,10 @@ namespace Knot3.RenderEffects
 				lastFrame = null;
 				alpha = 0.0f;
 			}
-			
+
 			spriteBatch.Draw (RenderTarget, Vector2.Zero, Color.White * (1 - alpha));
 		}
 
 		public bool IsFinished { get { return alpha <= 0; } }
 	}
 }
-

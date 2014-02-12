@@ -103,7 +103,7 @@ namespace Knot3.Core
 				State.Entered (time);
 			}
 
-			// global keyboard ans mouse input 
+			// global keyboard ans mouse input
 			UpdateInput (time);
 
 			// set the next game screen
@@ -135,7 +135,8 @@ namespace Knot3.Core
 			base.Draw (time);
 		}
 
-		public bool VSync {
+		public bool VSync
+		{
 			get {
 				return Graphics.SynchronizeWithVerticalRetrace;
 			}
@@ -148,7 +149,8 @@ namespace Knot3.Core
 
 		private bool isFullscreen;
 
-		public bool IsFullscreen {
+		public bool IsFullscreen
+		{
 			get {
 				return isFullscreen;
 			}
@@ -158,7 +160,8 @@ namespace Knot3.Core
 					if (value) {
 						Graphics.PreferredBackBufferWidth = Graphics.GraphicsDevice.DisplayMode.Width;
 						Graphics.PreferredBackBufferHeight = Graphics.GraphicsDevice.DisplayMode.Height;
-					} else {
+					}
+					else {
 						Graphics.PreferredBackBufferWidth = (int)Knot3Game.DefaultSize.X;
 						Graphics.PreferredBackBufferHeight = (int)Knot3Game.DefaultSize.Y;
 					}

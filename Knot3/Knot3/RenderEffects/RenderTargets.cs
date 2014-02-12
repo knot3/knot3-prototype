@@ -31,10 +31,12 @@ namespace Knot3.RenderEffects
 		public static RenderTarget2D PopRenderTarget (this GraphicsDevice device)
 		{
 			RenderTarget2D removed = RenderTargetStack.Pop ();
-			if (RenderTargetStack.Count () > 0)
+			if (RenderTargetStack.Count () > 0) {
 				device.SetRenderTarget (RenderTargetStack.Peek ());
-			else
+			}
+			else {
 				device.SetRenderTarget (null);
+			}
 			return removed;
 		}
 
@@ -54,13 +56,14 @@ namespace Knot3.RenderEffects
 			renderTargets = new Dictionary<Point, RenderTarget2D> ();
 		}
 
-		public RenderTarget2D CurrentRenderTarget {
+		public RenderTarget2D CurrentRenderTarget
+		{
 			get {
 				PresentationParameters pp = device.PresentationParameters;
 				Point resolution = new Point (pp.BackBufferWidth, pp.BackBufferHeight);
 				if (!renderTargets.ContainsKey (resolution)) {
 					renderTargets [resolution] = new RenderTarget2D (device, resolution.X, resolution.Y,
-                    false, SurfaceFormat.Color, DepthFormat.Depth24, 1, RenderTargetUsage.PreserveContents);
+					        false, SurfaceFormat.Color, DepthFormat.Depth24, 1, RenderTargetUsage.PreserveContents);
 				}
 				return renderTargets [resolution];
 			}
@@ -69,4 +72,3 @@ namespace Knot3.RenderEffects
 		#endregion
 	}
 }
-

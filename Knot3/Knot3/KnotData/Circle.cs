@@ -28,7 +28,8 @@ namespace Knot3.KnotData
 					Content = obj;
 					Previous = this;
 					Next = this;
-				} else {
+				}
+				else {
 					inserted = inserted.InsertAfter (obj);
 				}
 				first = false;
@@ -62,14 +63,16 @@ namespace Knot3.KnotData
 			Next.Previous = Previous;
 		}
 
-		public int Count {
+		public int Count
+		{
 			get {
 				Circle<T> current = this;
 				int count = 0;
 				do {
 					++count;
 					current = current.Next;
-				} while (current != this);
+				}
+				while (current != this);
 				return count;
 			}
 		}
@@ -88,7 +91,8 @@ namespace Knot3.KnotData
 					return current;
 				}
 				current = current.Next;
-			} while (current != this);
+			}
+			while (current != this);
 			return null;
 		}
 
@@ -98,7 +102,8 @@ namespace Knot3.KnotData
 			do {
 				yield return current.Content;
 				current = current.Next;
-			} while (current != other && current != this);
+			}
+			while (current != other && current != this);
 		}
 
 		public IEnumerator<T> GetEnumerator ()
@@ -108,7 +113,8 @@ namespace Knot3.KnotData
 				Console.WriteLine (this + " => " + current.Content);
 				yield return current.Content;
 				current = current.Next;
-			} while (current != this);
+			}
+			while (current != this);
 		}
 
 		// explicit interface implementation for nongeneric interface
@@ -118,4 +124,3 @@ namespace Knot3.KnotData
 		}
 	}
 }
-

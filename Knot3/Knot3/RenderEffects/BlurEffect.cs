@@ -22,7 +22,7 @@ namespace Knot3.RenderEffects
 		private static Effect testEffect;
 
 		public BlurEffect (GameScreen screen)
-			: base(screen)
+		: base(screen)
 		{
 			testEffect = screen.LoadEffect ("blur");
 		}
@@ -51,4 +51,3 @@ namespace Knot3.RenderEffects
 		}
 	}
 }
-

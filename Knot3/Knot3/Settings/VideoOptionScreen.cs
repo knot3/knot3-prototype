@@ -27,11 +27,11 @@ namespace Knot3.Settings
 		private SpriteBatch spriteBatch;
 
 		public VideoOptionScreen (Core.Knot3Game game)
-			: base(game)
+		: base(game)
 		{
 			menu = new VerticalMenu (this, new WidgetInfo (), DisplayLayer.Menu);
 		}
-		
+
 		public override void Initialize ()
 		{
 			base.Initialize ();
@@ -58,10 +58,10 @@ namespace Knot3.Settings
 
 			string currentResolution = viewport.Width + "x" + viewport.Height;
 			string[] resolutions = { "1280x720", "1920x1080", "1366x768", "1024x768", "1280x800", "1680x1050", "1440x900", "1600x900",
-			};
+			                       };
 			Array.Sort (resolutions);
 			menu.AddDropDown (new MenuItemInfo (text: "Resolution"),
-                              new DistinctOptionInfo ("video", "resolution", currentResolution, resolutions));
+			                  new DistinctOptionInfo ("video", "resolution", currentResolution, resolutions));
 
 			Action<bool> setFullscreen = (val) => game.IsFullscreen = val;
 			menu.AddDropDown (new MenuItemInfo (text: "Fullscreen"),
@@ -85,7 +85,7 @@ namespace Knot3.Settings
 		public override void UpdateMenu (GameTime time)
 		{
 		}
-		
+
 		public override void DrawMenu (GameTime time)
 		{
 			base.DrawMenu (time);
@@ -105,4 +105,3 @@ namespace Knot3.Settings
 		}
 	}
 }
-

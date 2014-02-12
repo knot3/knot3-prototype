@@ -29,10 +29,10 @@ namespace Knot3.UserInterface
 		protected Action OnCancelClick = () => {};
 
 		public ConfirmDialog (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
-			: base(screen, info, drawOrder)
+		: base(screen, info, drawOrder)
 		{
 			// text
-			Text = new string[]{};
+			Text = new string[] {};
 
 			// actions
 			Action onYesClick = () => {
@@ -79,15 +79,14 @@ namespace Knot3.UserInterface
 				float scale = 0.15f * screen.viewport.ScaleFactor ().Length ();
 				Vector2 size = font.MeasureString (line).RelativeTo (screen.viewport) * scale;
 				Vector2 pos = new Vector2 (
-					(Info.RelativeSize ().X - size.X) / 2,
-					Info.RelativePadding ().Y + size.Y * i
+				    (Info.RelativeSize ().X - size.X) / 2,
+				    Info.RelativePadding ().Y + size.Y * i
 				);
 				spriteBatch.DrawString (
-					font, line, Info.ScaledPosition (screen.viewport) + pos.Scale (screen.viewport),
-					Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0
+				    font, line, Info.ScaledPosition (screen.viewport) + pos.Scale (screen.viewport),
+				    Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0
 				);
 			}
 		}
 	}
 }
-

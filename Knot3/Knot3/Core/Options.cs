@@ -11,13 +11,14 @@ namespace Knot3.Settings
 	{
 		private static ConfigFile _default;
 
-		public static ConfigFile Default {
+		public static ConfigFile Default
+		{
 			get {
-				if (_default == null)
+				if (_default == null) {
 					_default = new ConfigFile (Files.SettingsDirectory + Files.Separator + "knot3.ini");
+				}
 				return _default;
 			}
 		}
 	}
 }
-

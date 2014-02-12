@@ -25,19 +25,21 @@ namespace Knot3.GameObjects
 		private GameScreen screen;
 		private IGameObject Obj;
 
-		public World World {
+		public World World
+		{
 			get { return Obj.World; }
 			set {}
 		}
 
 		public MovableGameObject (GameScreen screen, IGameObject obj)
 		{
- 			this.screen = screen;
+			this.screen = screen;
 			Obj = obj;
 			Obj.Info.IsMovable = true;
 		}
 
-		public GameObjectInfo Info {
+		public GameObjectInfo Info
+		{
 			get {
 				return Obj.Info;
 			}
@@ -48,8 +50,8 @@ namespace Knot3.GameObjects
 		protected Plane CurrentGroundPlane ()
 		{
 			Plane groundPlane = new Plane (
-				Info.Position, Info.Position + Vector3.Up,
-				Info.Position + Vector3.Normalize (Vector3.Cross (Vector3.Up, Info.Position - World.Camera.Position))
+			    Info.Position, Info.Position + Vector3.Up,
+			    Info.Position + Vector3.Normalize (Vector3.Cross (Vector3.Up, Info.Position - World.Camera.Position))
 			);
 			//Console.WriteLine ("groundPlane=" + groundPlane);
 			return groundPlane;
@@ -69,7 +71,8 @@ namespace Knot3.GameObjects
 				Vector3 planePosition = ray.Position + ray.Direction * planeDistance.Value;
 				float currentLength = (planePosition - World.Camera.Position).Length ();
 				return World.Camera.Position + (planePosition - World.Camera.Position) * previousLength / currentLength;
-			} else {
+			}
+			else {
 				return null;
 			}
 		}
@@ -119,4 +122,3 @@ namespace Knot3.GameObjects
 		#endregion
 	}
 }
-

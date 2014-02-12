@@ -20,10 +20,12 @@ namespace Knot3.Utilities
 	{
 		public static Effect LoadEffect (this GameScreen screen, string name)
 		{
-			if (MonoHelper.IsRunningOnMono ())
+			if (MonoHelper.IsRunningOnMono ()) {
 				return LoadEffectMono (screen, name);
-			else
+			}
+			else {
 				return LoadEffectDotnet (screen, name);
+			}
 		}
 
 		private static Effect LoadEffectMono (GameScreen screen, string name)
@@ -37,4 +39,3 @@ namespace Knot3.Utilities
 		}
 	}
 }
-

@@ -33,7 +33,7 @@ namespace Knot3.CreativeMode
 		private IKnotIO fileFormat;
 
 		public CreativeLoadScreen (Core.Knot3Game game)
-			: base(game)
+		: base(game)
 		{
 			menu = new VerticalMenu (this, new WidgetInfo (), DisplayLayer.Menu);
 		}
@@ -52,10 +52,10 @@ namespace Knot3.CreativeMode
 			menu.ItemAlignY = VerticalAlignment.Center;
 
 			// lines
-			HfGDesign.AddLinePoints (ref LinePoints, 0, 50, new float[]{
+			HfGDesign.AddLinePoints (ref LinePoints, 0, 50, new float[] {
 				30, 970, 970, 50, 1000
 			}
-			);
+			                        );
 		}
 
 		private void UpdateFiles ()
@@ -84,7 +84,8 @@ namespace Knot3.CreativeMode
 					fileFormat.Load (filename);
 					isValid = true;
 					fileIndex.Add (hashcode);
-				} catch (Exception ex) {
+				}
+				catch (Exception ex) {
 					Console.WriteLine (ex);
 					isValid = false;
 				}
@@ -132,7 +133,7 @@ namespace Knot3.CreativeMode
 			menu.AddButton (info);
 			*/
 		}
-		
+
 		public override void UpdateMenu (GameTime time)
 		{
 			// menu
@@ -143,15 +144,15 @@ namespace Knot3.CreativeMode
 				NextState = GameScreens.StartScreen;
 			}
 		}
-		
+
 		public override void DrawMenu (GameTime time)
 		{
 			spriteBatch.Begin ();
 
 			// text
 			spriteBatch.DrawString (
-				HfGDesign.MenuFont (this), "Load Savegames", new Vector2 (0.050f, 0.050f).Scale (viewport), Color.White,
-				0, Vector2.Zero, 0.25f * viewport.ScaleFactor ().Length (), SpriteEffects.None, 0
+			    HfGDesign.MenuFont (this), "Load Savegames", new Vector2 (0.050f, 0.050f).Scale (viewport), Color.White,
+			    0, Vector2.Zero, 0.25f * viewport.ScaleFactor ().Length (), SpriteEffects.None, 0
 			);
 
 			// menu
@@ -168,4 +169,3 @@ namespace Knot3.CreativeMode
 		}
 	}
 }
-

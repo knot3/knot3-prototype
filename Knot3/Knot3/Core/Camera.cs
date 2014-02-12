@@ -19,7 +19,7 @@ using Knot3.GameObjects;
 namespace Knot3.Core
 {
 	/// <summary>
-	/// Ein GameScreenComponent, der bei jedem Update die View-, World- und Projectionmatrizen auf Basis der 
+	/// Ein GameScreenComponent, der bei jedem Update die View-, World- und Projectionmatrizen auf Basis der
 	/// aktuellen Kameraposition neu berechnet.
 	/// </summary>
 	public class Camera : GameScreenComponent
@@ -68,7 +68,8 @@ namespace Knot3.Core
 		/// <value>
 		/// The current camera position.
 		/// </value>
-		public Vector3 Position {
+		public Vector3 Position
+		{
 			get { return _position; }
 			set {
 				OnViewChanged ();
@@ -84,7 +85,8 @@ namespace Knot3.Core
 		/// <value>
 		/// The current camera target.
 		/// </value>
-		public Vector3 Target {
+		public Vector3 Target
+		{
 			get { return _target; }
 			set {
 				OnViewChanged ();
@@ -101,7 +103,8 @@ namespace Knot3.Core
 		/// <value>
 		/// The field of view.
 		/// </value>
-		public float FoV {
+		public float FoV
+		{
 			get { return foV; }
 			set { foV = MathHelper.Clamp (value, 40, 100); }
 		}
@@ -119,19 +122,19 @@ namespace Knot3.Core
 		/// Game State.
 		/// </param>
 		public Camera (GameScreen screen, World world)
-			: base(screen, DisplayLayer.None)
+		: base(screen, DisplayLayer.None)
 		{
 			World = world;
 			DefaultPosition = new Vector3 (400, 400, 700);
 			Position = DefaultPosition;
 			Target = new Vector3 (0, 0, 0);
 			UpVector = Vector3.Up;
- 
+
 			FoV = MathHelper.ToDegrees (MathHelper.PiOver4);
 			aspectRatio = screen.viewport.AspectRatio;
 			nearPlane = 0.5f;
 			farPlane = 10000.0f;
-			
+
 			UpdateMatrices (null);
 		}
 
@@ -141,7 +144,7 @@ namespace Knot3.Core
 		}
 
 		private void UpdateMatrices (GameTime time)
-		{ 
+		{
 			// setting up rotation
 			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
 			WorldMatrix = Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z);
@@ -155,7 +158,8 @@ namespace Knot3.Core
 		/// <value>
 		/// The target distance.
 		/// </value>
-		public float TargetDistance {
+		public float TargetDistance
+		{
 			get {
 				Vector3 toTarget = Target - Position;
 				return toTarget.Length ();
@@ -164,7 +168,8 @@ namespace Knot3.Core
 				Vector3 toPosition = Position - Target;
 				if (Math.Abs (value) > 300) {
 					Position = Target + toPosition * value / toPosition.Length ();
-				} else {
+				}
+				else {
 					Position = Target + toPosition * 300 / toPosition.Length ();
 				}
 			}
@@ -176,7 +181,8 @@ namespace Knot3.Core
 		/// <value>
 		/// The target direction.
 		/// </value>
-		public Vector3 TargetDirection {
+		public Vector3 TargetDirection
+		{
 			get {
 				Vector3 toTarget = Target - Position;
 				toTarget.Normalize ();
@@ -215,14 +221,16 @@ namespace Knot3.Core
 		/// <value>
 		/// The current arcball target's position.
 		/// </value>
-		public Vector3 ArcballTarget {
+		public Vector3 ArcballTarget
+		{
 			get {
-				if (World.SelectedObject != null)
+				if (World.SelectedObject != null) {
 					return World.SelectedObject.Center ();
-				else
+				}
+				else {
 					return Vector3.Zero;
+				}
 			}
 		}
 	}
 }
-

@@ -32,7 +32,7 @@ namespace Knot3.UserInterface
 		protected int LineWidth;
 
 		public MenuScreen (Core.Knot3Game game)
-			: base(game)
+		: base(game)
 		{
 			LinePoints = new List<Vector2> ();
 			LineWidth = 6;
@@ -54,7 +54,7 @@ namespace Knot3.UserInterface
 		}
 
 		public abstract void UpdateMenu (GameTime time);
-		
+
 		public override void Draw (GameTime time)
 		{
 			PostProcessingEffect.Begin (backColor, time);
@@ -89,11 +89,12 @@ namespace Knot3.UserInterface
 
 		protected Color ForegroundColor (ItemState itemState)
 		{
-			if (itemState == ItemState.Selected)
+			if (itemState == ItemState.Selected) {
 				return Color.White;
-			else
+			}
+			else {
 				return Color.White * 0.7f;
+			}
 		}
 	}
 }
-

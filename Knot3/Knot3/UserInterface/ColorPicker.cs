@@ -25,7 +25,7 @@ namespace Knot3.UserInterface
 		protected SpriteBatch spriteBatch;
 
 		public ColorPicker (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
-			: base(screen, info, drawOrder)
+		: base(screen, info, drawOrder)
 		{
 			info.BackgroundColor = () => Color.Black;
 			info.ForegroundColor = () => Color.White;
@@ -54,23 +54,23 @@ namespace Knot3.UserInterface
 				// background
 				Rectangle rect = Info.ScaledRectangle (screen.viewport);
 				spriteBatch.Draw (
-					TextureHelper.Create (screen.device, Color.Black), rect.Grow (2), Color.White
+				    TextureHelper.Create (screen.device, Color.Black), rect.Grow (2), Color.White
 				);
 
 				// color tiles
 				int i = 0;
 				foreach (Vector2 tile in tiles) {
 					rect = HfGDesign.CreateRectangle (
-						Info.ScaledPosition (screen.viewport) + tile.Scale (screen.viewport),
-						tileSize.Scale (screen.viewport)
-					);
+					           Info.ScaledPosition (screen.viewport) + tile.Scale (screen.viewport),
+					           tileSize.Scale (screen.viewport)
+					       );
 					spriteBatch.Draw (
-						TextureHelper.Create (screen.device, colors [i]), rect.Shrink (1), Color.White
+					    TextureHelper.Create (screen.device, colors [i]), rect.Shrink (1), Color.White
 					);
 
 					++i;
 				}
-			
+
 				spriteBatch.End ();
 			}
 		}
@@ -120,11 +120,11 @@ namespace Knot3.UserInterface
 			int i = 0;
 			foreach (Vector2 tile in tiles) {
 				Console.WriteLine ("ColorPicker: tile=" + tile + "  "
-					+ (tile.X <= position.X) + " " + (tile.X + tileSize.X > position.X) + " " + (
-					tile.Y <= position.Y) + " " + (tile.Y + tileSize.Y > position.Y)
-				);
+				                   + (tile.X <= position.X) + " " + (tile.X + tileSize.X > position.X) + " " + (
+				                       tile.Y <= position.Y) + " " + (tile.Y + tileSize.Y > position.Y)
+				                  );
 				if (tile.X <= position.X && tile.X + tileSize.X > position.X
-					&& tile.Y <= position.Y && tile.Y + tileSize.Y > position.Y) {
+				        && tile.Y <= position.Y && tile.Y + tileSize.Y > position.Y) {
 					Console.WriteLine ("ColorPicker: color=" + colors [i]);
 
 					SelectColor (colors [i]);
@@ -144,4 +144,3 @@ namespace Knot3.UserInterface
 		public bool IsMouseEventEnabled { get { return IsVisible; } }
 	}
 }
-

@@ -20,8 +20,7 @@ namespace Knot3.Core
 	/// <summary>
 	/// Die aktuelle Belegung für die Tasten W,A,S,D und angrenzende Tasten.
 	/// </summary>
-	public enum WASDMode
-	{
+	public enum WASDMode {
 		/// <summary>
 		/// W,A,S,D bewegen die Kamera "wie auf einer Kugel-Oberfläche", das heißt in einem festen Radius, um ein Objekt.
 		/// </summary>
@@ -31,5 +30,4 @@ namespace Knot3.Core
 		/// </summary>
 		FirstPersonMode
 	}
-
 }

@@ -32,15 +32,19 @@ namespace Knot3.GameObjects
 
 		public override bool Equals (GameObjectInfo other)
 		{
-			if (other == null) 
+			if (other == null) {
 				return false;
+			}
 
 			if (other is GameModelInfo) {
-				if (this.Modelname == (other as GameModelInfo).Modelname && base.Equals (other))
+				if (this.Modelname == (other as GameModelInfo).Modelname && base.Equals (other)) {
 					return true;
-				else
+				}
+				else {
 					return false;
-			} else {
+				}
+			}
+			else {
 				return base.Equals (other);
 			}
 		}
@@ -64,7 +68,8 @@ namespace Knot3.GameObjects
 
 		private World _world;
 
-		public World World {
+		public World World
+		{
 			get { return _world; }
 			set {
 				_world = value;
@@ -101,11 +106,11 @@ namespace Knot3.GameObjects
 			HighlightIntensity = 0f;
 			Alpha = 1f;
 		}
-		
+
 		#endregion
 
 		#region Update
-		
+
 		public virtual void Update (GameTime time)
 		{
 		}
@@ -152,7 +157,7 @@ namespace Knot3.GameObjects
 			}
 			return center / Info.Scale + Info.Position;
 		}
-		
+
 		#endregion
 
 		#region Cache
@@ -164,21 +169,24 @@ namespace Knot3.GameObjects
 		private BoundingSphere[] _bounds;
 		private bool _inFrustum;
 
-		public Matrix WorldMatrix {
+		public Matrix WorldMatrix
+		{
 			get {
 				UpdatePrecomputed ();
 				return _worldMatrix;
 			}
 		}
 
-		private BoundingSphere[] Bounds {
+		private BoundingSphere[] Bounds
+		{
 			get {
 				UpdatePrecomputed ();
 				return _bounds;
 			}
 		}
 
-		protected bool InCameraFrustum {
+		protected bool InCameraFrustum
+		{
 			get {
 				return _inFrustum;
 			}
@@ -187,11 +195,10 @@ namespace Knot3.GameObjects
 		private void UpdatePrecomputed ()
 		{
 			if (Info.Scale != _scale || Info.Rotation != _rotation || Info.Position != _position) {
-
 				// world matrix
 				_worldMatrix = Matrix.CreateScale (Info.Scale)
-					* Matrix.CreateFromYawPitchRoll (Info.Rotation.Y, Info.Rotation.X, Info.Rotation.Z)
-					* Matrix.CreateTranslation (Info.Position);
+				               * Matrix.CreateFromYawPitchRoll (Info.Rotation.Y, Info.Rotation.X, Info.Rotation.Z)
+				               * Matrix.CreateTranslation (Info.Position);
 
 				// bounding spheres
 				_bounds = Model.Bounds ().ToArray ();
@@ -222,4 +229,3 @@ namespace Knot3.GameObjects
 		#endregion
 	}
 }
-

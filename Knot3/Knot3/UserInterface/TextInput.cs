@@ -17,7 +17,6 @@ using Knot3.RenderEffects;
 using Knot3.GameObjects;
 using Knot3.Settings;
 using Knot3.Utilities;
-
 using Knot3.Core;
 
 namespace Knot3.UserInterface
@@ -26,7 +25,7 @@ namespace Knot3.UserInterface
 	{
 		// text input
 		public string InputText = "";
-		
+
 		// textures
 		private SpriteFont font;
 
@@ -34,7 +33,7 @@ namespace Knot3.UserInterface
 		protected SpriteBatch spriteBatch;
 
 		public TextInput (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
-			: base(screen, info, drawOrder)
+		: base(screen, info, drawOrder)
 		{
 			// load fonts
 			font = HfGDesign.MenuFont (screen);
@@ -44,7 +43,6 @@ namespace Knot3.UserInterface
 
 		public override void Update (GameTime time)
 		{
-
 		}
 
 		public override void Draw (GameTime time)
@@ -53,20 +51,20 @@ namespace Knot3.UserInterface
 			// background
 			Rectangle rect = Info.ScaledRectangle (screen.viewport);
 			spriteBatch.Draw (
-				TextureHelper.Create (screen.device, HfGDesign.LineColor), rect.Grow (1), Color.White
+			    TextureHelper.Create (screen.device, HfGDesign.LineColor), rect.Grow (1), Color.White
 			);
 			spriteBatch.Draw (
-				TextureHelper.Create (screen.device, Info.BackgroundColor ()), rect, Color.White
+			    TextureHelper.Create (screen.device, Info.BackgroundColor ()), rect, Color.White
 			);
 
 			// text
 			Vector2 scale =
-				(Info.ScaledSize (screen.viewport) - Info.ScaledPadding (screen.viewport) * 2)
-				/ font.MeasureString (InputText);
+			    (Info.ScaledSize (screen.viewport) - Info.ScaledPadding (screen.viewport) * 2)
+			    / font.MeasureString (InputText);
 			spriteBatch.DrawString (
-				font, InputText, (Info.RelativePosition () + Info.RelativePadding ()).Scale (screen.viewport),
-				Info.ForegroundColor (), 0, Vector2.Zero, MathHelper.Min (scale.X, scale.Y),
-				SpriteEffects.None, 1f
+			    font, InputText, (Info.RelativePosition () + Info.RelativePadding ()).Scale (screen.viewport),
+			    Info.ForegroundColor (), 0, Vector2.Zero, MathHelper.Min (scale.X, scale.Y),
+			    SpriteEffects.None, 1f
 			);
 			spriteBatch.End ();
 		}
@@ -81,4 +79,3 @@ namespace Knot3.UserInterface
 		public bool IsKeyEventEnabled { get { return IsVisible; } }
 	}
 }
-

@@ -24,12 +24,14 @@ namespace Knot3.Utilities
 			return filepath.Contains (Path.DirectorySeparatorChar) || filepath.Contains (Path.AltDirectorySeparatorChar);
 		}
 
-		public static string SettingsDirectory {
+		public static string SettingsDirectory
+		{
 			get {
 				string directory;
 				if (Mono.IsRunningOnMono ()) {
 					directory = Environment.GetEnvironmentVariable ("HOME") + "/.knot3/";
-				} else {
+				}
+				else {
 					directory = Environment.GetFolderPath (System.Environment.SpecialFolder.Personal) + "\\Knot3\\";
 				}
 				Directory.CreateDirectory (directory);
@@ -37,7 +39,8 @@ namespace Knot3.Utilities
 			}
 		}
 
-		public static string SavegameDirectory {
+		public static string SavegameDirectory
+		{
 			get {
 				string directory = SettingsDirectory + Separator + "Savegames";
 				Directory.CreateDirectory (directory);
@@ -47,11 +50,13 @@ namespace Knot3.Utilities
 
 		private static string baseDirectory = null;
 
-		public static string BaseDirectory {
+		public static string BaseDirectory
+		{
 			get {
 				if (baseDirectory != null) {
 					return baseDirectory;
-				} else {
+				}
+				else {
 					string cwd = Directory.GetCurrentDirectory ();
 					string[] binDirectories = new string[] {"Debug", "Release", "bin"};
 					foreach (string dir in binDirectories) {
@@ -78,11 +83,10 @@ namespace Knot3.Utilities
 		{
 			Directory.CreateDirectory (directory);
 			var files = Directory.GetFiles (directory, "*.*", SearchOption.AllDirectories)
-				.Where (s => extensions.Any (e => s.EndsWith (e)));
+			            .Where (s => extensions.Any (e => s.EndsWith (e)));
 			foreach (string file in files) {
 				add (file);
 			}
 		}
 	}
 }
-

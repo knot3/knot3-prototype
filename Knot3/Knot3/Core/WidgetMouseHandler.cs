@@ -9,7 +9,7 @@ namespace Knot3.Core
 	public class WidgetMouseHandler : GameScreenComponent
 	{
 		public WidgetMouseHandler (GameScreen screen)
-			: base(screen, DisplayLayer.None)
+		: base(screen, DisplayLayer.None)
 		{
 		}
 
@@ -50,4 +50,3 @@ namespace Knot3.Core
 		}
 	}
 }
-

@@ -18,21 +18,20 @@ using Knot3.Utilities;
 namespace Knot3.Core
 {
 	/// <summary>
-    /// Eine Wertesammlung der möglichen Klickzustände einer Maustaste.
-    /// </summary>
-    public enum ClickState
-    {
-        /// <summary>
-        /// Wenn der Klickzustand nicht zugeordnet werden konnte. Undefiniert.
-        /// </summary>
-        None=0,
-        /// <summary>
-        /// Ein Einzelklick.
-        /// </summary>
-        SingleClick=1,
-        /// <summary>
-        /// Ein Doppelklick.
-        /// </summary>
-        DoubleClick=2,
-    }
+	/// Eine Wertesammlung der möglichen Klickzustände einer Maustaste.
+	/// </summary>
+	public enum ClickState {
+		/// <summary>
+		/// Wenn der Klickzustand nicht zugeordnet werden konnte. Undefiniert.
+		/// </summary>
+		None=0,
+		/// <summary>
+		/// Ein Einzelklick.
+		/// </summary>
+		SingleClick=1,
+		/// <summary>
+		/// Ein Doppelklick.
+		/// </summary>
+		DoubleClick=2,
+	}
 }

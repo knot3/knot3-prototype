@@ -22,7 +22,7 @@ namespace Knot3.RenderEffects
 	public sealed class StandardEffect : RenderEffect
 	{
 		public StandardEffect (GameScreen screen)
-			: base(screen)
+		: base(screen)
 		{
 		}
 
@@ -32,4 +32,3 @@ namespace Knot3.RenderEffects
 		}
 	}
 }
-

@@ -26,4 +26,3 @@ namespace Knot3.RenderEffects
 		void DrawLastFrame (GameTime time);
 	}
 }
-

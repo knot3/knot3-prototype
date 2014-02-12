@@ -17,7 +17,6 @@ using Knot3.RenderEffects;
 
 namespace Knot3.Utilities
 {
-
 	public static class ColorHelper
 	{
 		public static Color Mix (this Color a, Color b, float percent = 0.5f)

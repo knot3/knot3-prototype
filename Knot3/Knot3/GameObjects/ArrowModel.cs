@@ -27,7 +27,7 @@ namespace Knot3.GameObjects
 		public float Diameter = 8f;
 
 		public ArrowModelInfo (Vector3 position, Vector3 direction, Vector3 offset)
-			: base("pipe1")
+		: base("pipe1")
 		{
 			Direction = direction.PrimaryDirection ();
 			Position = position + Direction * Node.Scale / 3 + offset;
@@ -38,20 +38,24 @@ namespace Knot3.GameObjects
 
 		public override bool Equals (GameObjectInfo other)
 		{
-			if (other == null) 
+			if (other == null) {
 				return false;
+			}
 
 			if (other is ArrowModelInfo) {
-				if (this.Position == other.Position && this.Direction == (other as ArrowModelInfo).Direction && base.Equals (other))
+				if (this.Position == other.Position && this.Direction == (other as ArrowModelInfo).Direction && base.Equals (other)) {
 					return true;
-				else
+				}
+				else {
 					return false;
-			} else {
+				}
+			}
+			else {
 				return base.Equals (other);
 			}
 		}
 	}
-	
+
 	public class ArrowModel : GameModel
 	{
 		#region Attributes and Properties
@@ -63,21 +67,23 @@ namespace Knot3.GameObjects
 		#endregion
 
 		public ArrowModel (GameScreen screen, ArrowModelInfo info)
-			: base(screen, info)
+		: base(screen, info)
 		{
 			if (Info.Direction.Y == 1) {
 				Info.Rotation += Angles3.FromDegrees (90, 0, 0);
-			} else if (Info.Direction.Y == -1) {
+			}
+			else if (Info.Direction.Y == -1) {
 				Info.Rotation += Angles3.FromDegrees (270, 0, 0);
 			}
 			if (Info.Direction.X == 1) {
 				Info.Rotation += Angles3.FromDegrees (0, 90, 0);
-			} else if (Info.Direction.X == -1) {
+			}
+			else if (Info.Direction.X == -1) {
 				Info.Rotation += Angles3.FromDegrees (0, 270, 0);
 			}
 
 			Bounds = VectorHelper.CylinderBounds (Info.Length, Info.Diameter / 2, Info.Direction,
-			                                 info.Position - info.Direction * Info.Length / 2);
+			                                      info.Position - info.Direction * Info.Length / 2);
 		}
 
 		public override void Draw (GameTime time)
@@ -86,7 +92,8 @@ namespace Knot3.GameObjects
 			if (World.SelectedObject == this) {
 				HighlightIntensity = 1f;
 				HighlightColor = Color.Orange;
-			} else {
+			}
+			else {
 				HighlightIntensity = 0f;
 			}
 
@@ -108,4 +115,3 @@ namespace Knot3.GameObjects
 		}
 	}
 }
-

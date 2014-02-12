@@ -25,4 +25,3 @@ namespace Knot3.Core
 		None = 0, KeyDown, KeyHeldDown
 	}
 }
-

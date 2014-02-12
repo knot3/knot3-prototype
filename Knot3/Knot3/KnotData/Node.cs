@@ -9,8 +9,7 @@ namespace Knot3.KnotData
 	/// <summary>
 	/// Ein Knotenpunkt auf dem 3D-Raster.
 	/// </summary>
-	public struct Node : IEquatable<Node>, ICloneable
-	{
+	public struct Node : IEquatable<Node>, ICloneable {
 		#region Properties
 
 		public int X { get; private set; }
@@ -66,17 +65,18 @@ namespace Knot3.KnotData
 		{
 			return !(a == b);
 		}
-		
+
 		public bool Equals (Node other)
 		{
 			return this.X == other.X && this.Y == other.Y && this.Z == other.Z;
 		}
-		
+
 		public override bool Equals (object obj)
 		{
 			if (obj is Node) {
 				return Equals ((Node)obj);
-			} else {
+			}
+			else {
 				return false;
 			}
 		}
@@ -115,4 +115,3 @@ namespace Knot3.KnotData
 		#endregion
 	}
 }
-

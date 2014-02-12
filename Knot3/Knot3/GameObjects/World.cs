@@ -16,6 +16,7 @@ using Knot3.Core;
 using Knot3.Utilities;
 using Knot3.RenderEffects;
 using Knot3.Settings;
+
 using System.Collections;
 
 namespace Knot3.GameObjects
@@ -46,7 +47,8 @@ namespace Knot3.GameObjects
 		/// <value>
 		/// The selected object.
 		/// </value>
-		public IGameObject SelectedObject {
+		public IGameObject SelectedObject
+		{
 			get {
 				return _selectedObject;
 			}
@@ -76,7 +78,7 @@ namespace Knot3.GameObjects
 		/// Initializes a new Overlay
 		/// </summary>
 		public World (GameScreen screen)
-			: base(screen, DisplayLayer.World)
+		: base(screen, DisplayLayer.World)
 		{
 			// camera
 			Camera = new Camera (screen, this);
@@ -88,8 +90,8 @@ namespace Knot3.GameObjects
 			Vector3 size = new Vector3 (2000, 0, 2000);
 			Vector3 position = new Vector3 (-1000, -100, -1000);
 			var floorInfo = new TexturedRectangleInfo (
-				texturename: "floor", origin: position + new Vector3 (size.X, 0, size.Z) / 2,
-				left: Vector3.Left, width: size.X, up: Vector3.Forward, height: size.Z
+			    texturename: "floor", origin: position + new Vector3 (size.X, 0, size.Z) / 2,
+			    left: Vector3.Left, width: size.X, up: Vector3.Forward, height: size.Z
 			) {
 				IsVisible = false
 			};
@@ -110,7 +112,8 @@ namespace Knot3.GameObjects
 			if (SelectedObject != null) {
 				Vector3 toTarget = SelectedObject.Center () - Camera.Position;
 				return toTarget.Length ();
-			} else {
+			}
+			else {
 				return 0;
 			}
 		}
@@ -132,18 +135,20 @@ namespace Knot3.GameObjects
 
 			if (Options.Default ["video", "cel-shading", true]) {
 				currentEffect = new CelShadingEffect (screen);
-			} else {
+			}
+			else {
 				currentEffect = new StandardEffect (screen);
 			}
 		}
 
 		private bool _redraw = true;
 
-		public bool Redraw {
+		public bool Redraw
+		{
 			get { return _redraw; }
 			set { _redraw = value; }
 		}
-		
+
 		public override void Draw (GameTime time)
 		{
 			if (Redraw) {
@@ -163,18 +168,20 @@ namespace Knot3.GameObjects
 
 				// end of the knot render effect
 				currentEffect.End (time);
-			
+
 				// end of the post processing effect
 				screen.PostProcessingEffect.End (time);
-			} else {
+			}
+			else {
 				screen.PostProcessingEffect.DrawLastFrame (time);
 			}
 		}
 
 		public override void Update (GameTime time)
 		{
-			if (screen.PostProcessingEffect is FadeEffect)
+			if (screen.PostProcessingEffect is FadeEffect) {
 				Redraw = true;
+			}
 
 			// run the update method on all game objects
 			foreach (IGameObject obj in Objects) {
@@ -216,7 +223,7 @@ namespace Knot3.GameObjects
 			// is the floor visible?
 			floor.Info.IsVisible = Options.Default ["video", "debug-floor", false];
 		}
-		
+
 		public IEnumerator<IGameObject> GetEnumerator ()
 		{
 			foreach (IGameObject obj in Objects) {
@@ -238,11 +245,11 @@ namespace Knot3.GameObjects
 			yield return Camera;
 		}
 	}
-	
+
 	public class TestModel : GameModel
 	{
 		public TestModel (GameScreen screen, GameModelInfo info)
-			: base(screen, info)
+		: base(screen, info)
 		{
 		}
 
@@ -255,4 +262,3 @@ namespace Knot3.GameObjects
 		}
 	}
 }
-

@@ -11,7 +11,7 @@ namespace Knot3.Core
 	public class WidgetKeyHandler : GameScreenComponent
 	{
 		public WidgetKeyHandler (GameScreen screen)
-			: base(screen, DisplayLayer.None)
+		: base(screen, DisplayLayer.None)
 		{
 		}
 
@@ -28,7 +28,6 @@ namespace Knot3.Core
 			KeyEventComponent best = null;
 			foreach (IGameScreenComponent component in screen.game.Components) {
 				if (component is IKeyEventListener) {
-
 					// keyboard input
 					IKeyEventListener receiver = component as IKeyEventListener;
 					KeyEvent keyEvent = KeyEvent.None;
@@ -38,20 +37,20 @@ namespace Knot3.Core
 						if (key.IsDown ()) {
 							keysInvolved.Add (key);
 							keyEvent = KeyEvent.KeyDown;
-						} else if (key.IsHeldDown ()) {
+						}
+						else if (key.IsHeldDown ()) {
 							keysInvolved.Add (key);
 							keyEvent = KeyEvent.KeyHeldDown;
 						}
 					}
 
-                    if (keysInvolved.Count > 0 && receiver.IsKeyEventEnabled && (best == null || (int)component.Index >= (int)best.layer))
-                    {
+					if (keysInvolved.Count > 0 && receiver.IsKeyEventEnabled && (best == null || (int)component.Index >= (int)best.layer)) {
 						best = new KeyEventComponent {
 							receiver = receiver,
 							layer = receiver.Index,
 							keyEvent = keyEvent,
 							keys = keysInvolved
-						}; 
+						};
 					}
 				}
 			}
@@ -61,4 +60,3 @@ namespace Knot3.Core
 		}
 	}
 }
-

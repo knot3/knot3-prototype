@@ -16,6 +16,7 @@ using Knot3.Core;
 using Knot3.Utilities;
 using Knot3.KnotData;
 using Knot3.RenderEffects;
+
 using System.Collections;
 
 namespace Knot3.GameObjects
@@ -54,7 +55,8 @@ namespace Knot3.GameObjects
 			arrowFactory = new ModelFactory ((s, i) => new ArrowModel (s, i as ArrowModelInfo));
 		}
 
-		public Knot Knot {
+		public Knot Knot
+		{
 			set {
 				knot = value;
 				knot.EdgesChanged += OnEdgesChanged;
@@ -121,7 +123,7 @@ namespace Knot3.GameObjects
 
 		private void CreateArrow (Edge edge)
 		{
-			Vector3[] validDirections = new Vector3[]{
+			Vector3[] validDirections = new Vector3[] {
 				Vector3.Up, Vector3.Down, Vector3.Left, Vector3.Right, Vector3.Backward, Vector3.Forward
 			};
 
@@ -134,11 +136,12 @@ namespace Knot3.GameObjects
 					arrow.World = World;
 					arrows.Add (arrow);
 				}
-			} catch (NullReferenceException ex) {
+			}
+			catch (NullReferenceException ex) {
 				Console.WriteLine (ex.ToString ());
 			}
 		}
-		
+
 		public IEnumerator<IGameObject> GetEnumerator ()
 		{
 			foreach (PipeModel pipe in pipes) {
@@ -159,7 +162,7 @@ namespace Knot3.GameObjects
 		}
 
 		#region Draw
-		
+
 		public void Draw (GameTime time)
 		{
 			Overlay.Profiler ["# InFrustum"] = 0;
@@ -169,19 +172,19 @@ namespace Knot3.GameObjects
 					pipe.Draw (time);
 				}
 			}
-			).TotalMilliseconds;
+			                                                       ).TotalMilliseconds;
 			Overlay.Profiler ["Nodes"] = Knot3.Core.Knot3Game.Time (() => {
 				foreach (NodeModel node in nodes) {
 					node.Draw (time);
 				}
 			}
-			).TotalMilliseconds;
+			                                                       ).TotalMilliseconds;
 			Overlay.Profiler ["Arrows"] = Knot3.Core.Knot3Game.Time (() => {
 				foreach (ArrowModel arrow in arrows) {
 					arrow.Draw (time);
 				}
 			}
-			).TotalMilliseconds;
+			                                                        ).TotalMilliseconds;
 			Overlay.Profiler ["# Pipes"] = pipes.Count ();
 			Overlay.Profiler ["# Nodes"] = nodes.Count ();
 		}
@@ -222,4 +225,3 @@ namespace Knot3.GameObjects
 		#endregion
 	}
 }
-

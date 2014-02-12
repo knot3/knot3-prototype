@@ -32,20 +32,24 @@ namespace Knot3.GameObjects
 
 		public override bool Equals (GameObjectInfo other)
 		{
-			if (other == null) 
+			if (other == null) {
 				return false;
+			}
 
 			if (other is GameModelInfo) {
-				if (this.Texturename == (other as GameModelInfo).Modelname && base.Equals (other))
+				if (this.Texturename == (other as GameModelInfo).Modelname && base.Equals (other)) {
 					return true;
-				else
+				}
+				else {
 					return false;
-			} else {
+				}
+			}
+			else {
 				return base.Equals (other);
 			}
 		}
 	}
-	
+
 	/// <summary>
 	/// Eine frei in der Spielwelt liegende Textur, die auf ein Rechteck gezeichnet wird.
 	/// </summary>
@@ -91,7 +95,7 @@ namespace Knot3.GameObjects
 		#endregion
 
 		#region Update
-		
+
 		public void Update (GameTime time)
 		{
 		}
@@ -121,7 +125,7 @@ namespace Knot3.GameObjects
 					pass.Apply ();
 
 					screen.device.DrawUserIndexedPrimitives<VertexPositionNormalTexture> (
-                    PrimitiveType.TriangleList, Vertices, 0, Vertices.Length, Indexes, 0, Indexes.Length / 3
+					    PrimitiveType.TriangleList, Vertices, 0, Vertices.Length, Indexes, 0, Indexes.Length / 3
 					);
 				}
 			}
@@ -154,7 +158,6 @@ namespace Knot3.GameObjects
 			Vertices [3].Position = UpperRight;
 			Vertices [3].TextureCoordinate = textureUpperRight;
 
-
 			// Set the index buffer for each vertex, using
 			// clockwise winding
 			Indexes = new short[12];
@@ -164,7 +167,7 @@ namespace Knot3.GameObjects
 			Indexes [3] = 2;
 			Indexes [4] = 1;
 			Indexes [5] = 3;
-			
+
 			Indexes [6] = 2;
 			Indexes [7] = 1;
 			Indexes [8] = 0;
@@ -190,12 +193,12 @@ namespace Knot3.GameObjects
 		{
 			return Info.Left * Info.Width + Info.Up * Info.Height;
 		}
-		
+
 		public BoundingBox[] Bounds ()
 		{
 			//Console.WriteLine ("LowerLeft=" + LowerLeft + ", UpperRight=" + UpperRight + ", BoundingBox=" + LowerLeft.Bounds (UpperRight - LowerLeft));
 			//return LowerLeft.Bounds (UpperRight - LowerLeft + new Vector3 (1, 1, 1));
-			return new BoundingBox[]{
+			return new BoundingBox[] {
 				LowerLeft.Bounds (UpperRight - LowerLeft), LowerRight.Bounds (UpperLeft - LowerRight),
 				UpperRight.Bounds (LowerLeft - UpperRight), UpperLeft.Bounds (LowerRight - UpperLeft)
 			};
@@ -221,4 +224,3 @@ namespace Knot3.GameObjects
 		}
 	}
 }
-

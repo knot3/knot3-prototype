@@ -4,6 +4,7 @@ using System.Text;
 using System.Collections.Generic;
 
 using Knot3.Utilities;
+
 using System.IO;
 
 namespace Knot3.KnotData
@@ -18,7 +19,8 @@ namespace Knot3.KnotData
 			this.filename = filename;
 			try {
 				hashes = new HashSet<string> (Files.ReadFrom (filename));
-			} catch (IOException) {
+			}
+			catch (IOException) {
 				hashes = new HashSet<string> ();
 			}
 		}
@@ -56,10 +58,9 @@ namespace Knot3.KnotData
 
 			MD5 md5 = new MD5CryptoServiceProvider ();
 			byte[] textToHash = Encoding.Default.GetBytes (TextToHash);
-			byte[] result = md5.ComputeHash (textToHash); 
+			byte[] result = md5.ComputeHash (textToHash);
 
-			return System.BitConverter.ToString (result); 
-		} 
+			return System.BitConverter.ToString (result);
+		}
 	}
 }
-

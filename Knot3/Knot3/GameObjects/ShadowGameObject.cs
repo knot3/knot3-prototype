@@ -16,6 +16,7 @@ using Knot3.Utilities;
 using Knot3.KnotData;
 using Knot3.RenderEffects;
 using Knot3.Core;
+
 using System.Collections;
 
 namespace Knot3.GameObjects
@@ -29,7 +30,8 @@ namespace Knot3.GameObjects
 		private IGameObject Obj;
 
 		// game world
-		public World World {
+		public World World
+		{
 			get { return Obj.World; }
 			set {}
 		}
@@ -39,7 +41,7 @@ namespace Knot3.GameObjects
 
 		public ShadowGameObject (GameScreen screen, IGameObject obj)
 		{
- this.screen = screen;
+			this.screen = screen;
 			Info = new GameObjectInfo ();
 			Obj = obj;
 			Info.IsVisible = true;
@@ -47,7 +49,8 @@ namespace Knot3.GameObjects
 			Info.IsMovable = false;
 		}
 
-		public Vector3 ShadowPosition {
+		public Vector3 ShadowPosition
+		{
 			get {
 				return Info.Position;
 			}
@@ -56,7 +59,8 @@ namespace Knot3.GameObjects
 			}
 		}
 
-		public Vector3 OriginalPosition {
+		public Vector3 OriginalPosition
+		{
 			get {
 				return Obj.Info.Position;
 			}
@@ -97,5 +101,4 @@ namespace Knot3.GameObjects
 
 		#endregion
 	}
-	
 }

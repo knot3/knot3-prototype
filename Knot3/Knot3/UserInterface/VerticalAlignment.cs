@@ -65,37 +65,44 @@ namespace Knot3.UserInterface
 
 		public virtual bool Equals (WidgetInfo other)
 		{
-			if (other == null) 
+			if (other == null) {
 				return false;
+			}
 
-			if (this.RelativePosition () == other.RelativePosition () && this.RelativeSize () == other.RelativeSize ())
+			if (this.RelativePosition () == other.RelativePosition () && this.RelativeSize () == other.RelativeSize ()) {
 				return true;
-			else
+			}
+			else {
 				return false;
+			}
 		}
 
 		public override bool Equals (Object obj)
 		{
-			if (obj == null) 
+			if (obj == null) {
 				return false;
+			}
 
 			WidgetInfo widgetObj = obj as WidgetInfo;
-			if (widgetObj == null)
+			if (widgetObj == null) {
 				return false;
-			else   
-				return Equals (widgetObj);   
+			}
+			else {
+				return Equals (widgetObj);
+			}
 		}
 
 		public override int GetHashCode ()
 		{
 			return this.RelativePosition ().GetHashCode ()
-				+ this.RelativeSize ().GetHashCode ();
+			       + this.RelativeSize ().GetHashCode ();
 		}
 
 		public static bool operator == (WidgetInfo o1, WidgetInfo o2)
 		{
-			if ((object)o1 == null || ((object)o2) == null)
+			if ((object)o1 == null || ((object)o2) == null) {
 				return Object.Equals (o1, o2);
+			}
 
 			return o2.Equals (o2);
 		}
@@ -118,7 +125,7 @@ namespace Knot3.UserInterface
 		public virtual bool IsVisible { get; set; }
 
 		public Widget (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
-			: base(screen, drawOrder)
+		: base(screen, drawOrder)
 		{
 			Info = info;
 			IsVisible = true;
@@ -142,7 +149,7 @@ namespace Knot3.UserInterface
 		public ItemState ItemState;
 
 		public ItemWidget (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, int itemNum)
-			: base(screen, info, drawOrder)
+		: base(screen, info, drawOrder)
 		{
 			ItemNum = itemNum;
 		}
@@ -151,8 +158,7 @@ namespace Knot3.UserInterface
 	/// <summary>
 	/// Status einem ItemWidget's.
 	/// </summary>
-	public enum ItemState
-	{
+	public enum ItemState {
 		/// <summary>
 		/// Das Widget ist nicht selektiert.
 		/// </summary>
@@ -166,8 +172,7 @@ namespace Knot3.UserInterface
 	/// <summary>
 	/// Horizontale Ausrichtung eines Widgets.
 	/// </summary>
-	public enum HorizontalAlignment
-	{
+	public enum HorizontalAlignment {
 		Left = 0,
 		Center,
 		Right
@@ -176,11 +181,9 @@ namespace Knot3.UserInterface
 	/// <summary>
 	/// Vertikale Ausrichtung eines Widgets.
 	/// </summary>
-	public enum VerticalAlignment
-	{
+	public enum VerticalAlignment {
 		Top,
 		Center,
 		Bottom
 	}
 }
-

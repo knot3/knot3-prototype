@@ -61,25 +61,31 @@ namespace Knot3.GameObjects
 
 		public virtual bool Equals (GameObjectInfo other)
 		{
-			if (other == null) 
+			if (other == null) {
 				return false;
+			}
 
-			if (this.Position == other.Position)
+			if (this.Position == other.Position) {
 				return true;
-			else
+			}
+			else {
 				return false;
+			}
 		}
 
 		public override bool Equals (Object obj)
 		{
-			if (obj == null) 
+			if (obj == null) {
 				return false;
+			}
 
 			GameObjectInfo personObj = obj as GameObjectInfo;
-			if (personObj == null)
+			if (personObj == null) {
 				return false;
-			else   
-				return Equals (personObj);   
+			}
+			else {
+				return Equals (personObj);
+			}
 		}
 
 		public override int GetHashCode ()
@@ -89,8 +95,9 @@ namespace Knot3.GameObjects
 
 		public static bool operator == (GameObjectInfo o1, GameObjectInfo o2)
 		{
-			if ((object)o1 == null || ((object)o2) == null)
+			if ((object)o1 == null || ((object)o2) == null) {
 				return Object.Equals (o1, o2);
+			}
 
 			return o2.Equals (o2);
 		}
@@ -100,6 +107,4 @@ namespace Knot3.GameObjects
 			return ! (o1 == o2);
 		}
 	}
-
 }
-

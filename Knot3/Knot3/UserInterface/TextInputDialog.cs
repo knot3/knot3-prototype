@@ -23,7 +23,7 @@ namespace Knot3.UserInterface
 		protected TextInput TextInput;
 
 		public TextInputDialog (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
-			: base(screen, info, drawOrder)
+		: base(screen, info, drawOrder)
 		{
 			var textInputInfo = new WidgetInfo () {
 				RelativePosition = TextInputPosition,
@@ -48,9 +48,9 @@ namespace Knot3.UserInterface
 			Vector2 buttonPosition = RelativeButtonPosition (0);
 			Vector2 textInputSize = TextInputSize ();
 			return new Vector2 (
-				buttonPosition.X,
-				buttonPosition.Y - textInputSize.Y - Info.RelativePadding ().Y
-			);
+			           buttonPosition.X,
+			           buttonPosition.Y - textInputSize.Y - Info.RelativePadding ().Y
+			       );
 		}
 
 		protected Vector2 TextInputSize ()
@@ -60,4 +60,3 @@ namespace Knot3.UserInterface
 		}
 	}
 }
-

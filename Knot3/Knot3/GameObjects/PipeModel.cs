@@ -30,7 +30,7 @@ namespace Knot3.GameObjects
 		public Vector3 PositionTo;
 
 		public PipeModelInfo (Knot knot, NodeMap nodeMap, Edge edge, Vector3 offset)
-			: base("pipe1")
+		: base("pipe1")
 		{
 			Knot = knot;
 			NodeMap = nodeMap;
@@ -49,20 +49,24 @@ namespace Knot3.GameObjects
 
 		public override bool Equals (GameObjectInfo other)
 		{
-			if (other == null) 
+			if (other == null) {
 				return false;
+			}
 
 			if (other is PipeModelInfo) {
-				if (this.Edge == (other as PipeModelInfo).Edge && base.Equals (other))
+				if (this.Edge == (other as PipeModelInfo).Edge && base.Equals (other)) {
 					return true;
-				else
+				}
+				else {
 					return false;
-			} else {
+				}
+			}
+			else {
 				return base.Equals (other);
 			}
 		}
 	}
-	
+
 	/// <summary>
 	/// Ein GameModel, das eine 3D-Röhre zeichnet.
 	/// </summary>
@@ -78,16 +82,18 @@ namespace Knot3.GameObjects
 		#endregion
 
 		public PipeModel (GameScreen screen, PipeModelInfo info)
-			: base(screen, info)
+		: base(screen, info)
 		{
 			if (Info.Direction.Y == 1) {
 				Info.Rotation += Angles3.FromDegrees (90, 0, 0);
-			} else if (Info.Direction.Y == -1) {
+			}
+			else if (Info.Direction.Y == -1) {
 				Info.Rotation += Angles3.FromDegrees (270, 0, 0);
 			}
 			if (Info.Direction.X == 1) {
 				Info.Rotation += Angles3.FromDegrees (0, 90, 0);
-			} else if (Info.Direction.X == -1) {
+			}
+			else if (Info.Direction.X == -1) {
 				Info.Rotation += Angles3.FromDegrees (0, 270, 0);
 			}
 
@@ -109,10 +115,12 @@ namespace Knot3.GameObjects
 			if (World.SelectedObject == this) {
 				HighlightIntensity = 0.40f;
 				HighlightColor = Color.White;
-			} else if (Info.Knot.SelectedEdges.Contains (Info.Edge)) {
+			}
+			else if (Info.Knot.SelectedEdges.Contains (Info.Edge)) {
 				HighlightIntensity = 0.80f;
 				HighlightColor = Color.White;
-			} else {
+			}
+			else {
 				HighlightIntensity = 0f;
 			}
 
@@ -134,4 +142,3 @@ namespace Knot3.GameObjects
 		}
 	}
 }
-

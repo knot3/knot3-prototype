@@ -12,4 +12,3 @@ namespace Knot3.KnotData
 		void Save (Knot knot);
 	}
 }
-

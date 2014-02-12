@@ -16,6 +16,7 @@ using Knot3.Utilities;
 using Knot3.KnotData;
 using Knot3.RenderEffects;
 using Knot3.Core;
+
 using System.Collections;
 
 namespace Knot3.GameObjects
@@ -29,7 +30,7 @@ namespace Knot3.GameObjects
 		public float ShadowAlpha { get; set; }
 
 		public ShadowGameModel (GameScreen screen, GameModel model)
-			: base(screen, model)
+		: base(screen, model)
 		{
 			Model = model;
 		}

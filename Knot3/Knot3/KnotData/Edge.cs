@@ -40,7 +40,7 @@ namespace Knot3.KnotData
 		/// </value>
 		public int ID { get; private set; }
 
-		private static int LastID = 0; 
+		private static int LastID = 0;
 
 		#endregion
 
@@ -77,7 +77,7 @@ namespace Knot3.KnotData
 		{
 			return !(a == b);
 		}
-		
+
 		public override bool Equals (object obj)
 		{
 			Edge other = obj as Edge;
@@ -117,10 +117,11 @@ namespace Knot3.KnotData
 		}
 
 		#endregion
-		
+
 		#region Static Properties
-		
-		public static List<Color> Colors = new List<Color> (){
+
+		public static List<Color> Colors = new List<Color> ()
+		{
 			Color.Red, Color.Green, Color.Blue, Color.Yellow, Color.Orange
 		};
 		public static Color DefaultColor = RandomColor ();
@@ -148,4 +149,3 @@ namespace Knot3.KnotData
 		#endregion
 	}
 }
-

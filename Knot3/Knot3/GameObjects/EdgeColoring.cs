@@ -16,7 +16,9 @@ using Knot3.Utilities;
 using Knot3.KnotData;
 using Knot3.RenderEffects;
 using Knot3.Core;
+
 using System.Collections;
+
 using Knot3.UserInterface;
 
 namespace Knot3.GameObjects
@@ -26,7 +28,7 @@ namespace Knot3.GameObjects
 		public Knot Knot { get; set; }
 
 		public EdgeColoring (GameScreen screen)
-			: base(screen, DisplayLayer.None)
+		: base(screen, DisplayLayer.None)
 		{
 			ValidKeys = new List<Keys> ();
 			ValidKeys.Add (Keys.C);
@@ -35,7 +37,7 @@ namespace Knot3.GameObjects
 		public override void Update (GameTime time)
 		{
 		}
-		
+
 		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
 		{
 			// change color?
@@ -54,4 +56,3 @@ namespace Knot3.GameObjects
 		public bool IsKeyEventEnabled { get { return true; } }
 	}
 }
-

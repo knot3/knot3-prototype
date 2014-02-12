@@ -30,11 +30,11 @@ namespace Knot3.Core
 		private SpriteBatch spriteBatch;
 
 		public StartScreen (Knot3Game game)
-			: base(game)
+		: base(game)
 		{
 			menu = new Menu (this, new WidgetInfo (), DisplayLayer.Menu);
 		}
-		
+
 		public override void Initialize ()
 		{
 			base.Initialize ();
@@ -52,38 +52,38 @@ namespace Knot3.Core
 			menu.ItemAlignY = VerticalAlignment.Center;
 
 			menu.AddButton (new MenuItemInfo (
-				text: "Creative", left: 0.700f, top: 0.250f, right: 0.960f, bottom: 0.380f,
-			    onClick: () => NextState = GameScreens.LoadSavegameScreen).AddKey (Keys.Space)
-			);
+			                    text: "Creative", left: 0.700f, top: 0.250f, right: 0.960f, bottom: 0.380f,
+			                    onClick: () => NextState = GameScreens.LoadSavegameScreen).AddKey (Keys.Space)
+			               );
 			menu.AddButton (new MenuItemInfo (
-				text: "Challenge", left: 0.000f, top: 0.050f, right: 0.380f, bottom: 0.190f,
-			    onClick: () => NextState = GameScreens.CreativeMode).AddKey (Keys.RightWindows)
-			);
+			                    text: "Challenge", left: 0.000f, top: 0.050f, right: 0.380f, bottom: 0.190f,
+			                    onClick: () => NextState = GameScreens.CreativeMode).AddKey (Keys.RightWindows)
+			               );
 			menu.AddButton (new MenuItemInfo (
-				text: "Options", left: 0.260f, top: 0.840f, right: 0.480f, bottom: 0.950f,
-			    onClick: () => NextState = GameScreens.OptionScreen).AddKey (Keys.O)
-			);
+			                    text: "Options", left: 0.260f, top: 0.840f, right: 0.480f, bottom: 0.950f,
+			                    onClick: () => NextState = GameScreens.OptionScreen).AddKey (Keys.O)
+			               );
 			menu.AddButton (new MenuItemInfo (
-				text: "Exit", left: 0.800f, top: 0.535f, right: 0.980f, bottom: 0.790f,
-			    onClick: () => game.Exit ()).AddKey (Keys.Escape)
-			);
+			                    text: "Exit", left: 0.800f, top: 0.535f, right: 0.980f, bottom: 0.790f,
+			                    onClick: () => game.Exit ()).AddKey (Keys.Escape)
+			               );
 
 			// lines
-			HfGDesign.AddLinePoints (ref LinePoints, 0, 50, 
-				380, 250, 960, 380, 700, 160, 1000
-			);
+			HfGDesign.AddLinePoints (ref LinePoints, 0, 50,
+			                         380, 250, 960, 380, 700, 160, 1000
+			                        );
 			HfGDesign.AddLinePoints (ref LinePoints, 0, 190,
-				620, 855, 800, 535, 980, 790,
-				480, 950, 260, 840, 520, 1000
-			);
+			                         620, 855, 800, 535, 980, 790,
+			                         480, 950, 260, 840, 520, 1000
+			                        );
 		}
-		
+
 		public override void UpdateMenu (GameTime time)
 		{
 			// menu
 			menu.Update (time);
 		}
-		
+
 		public override void DrawMenu (GameTime time)
 		{
 			spriteBatch.Begin ();
@@ -99,4 +99,3 @@ namespace Knot3.Core
 		}
 	}
 }
-

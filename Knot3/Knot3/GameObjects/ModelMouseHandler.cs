@@ -20,7 +20,7 @@ using Knot3.Settings;
 namespace Knot3.GameObjects
 {
 	/// <summary>
-	/// Ein GameScreenComponent, der das IGameObject aus der World selektiert, das 
+	/// Ein GameScreenComponent, der das IGameObject aus der World selektiert, das
 	/// sich unter der aktuellen Mausposition befindet.
 	/// </summary>
 	public class ModelMouseHandler : GameScreenComponent
@@ -36,7 +36,7 @@ namespace Knot3.GameObjects
 		/// Initializes a new MousePicking component.
 		/// </summary>
 		public ModelMouseHandler (GameScreen screen, World world)
-			: base(screen, DisplayLayer.None)
+		: base(screen, DisplayLayer.None)
 		{
 			World = world;
 		}
@@ -51,19 +51,16 @@ namespace Knot3.GameObjects
 		{
 			double millis = time.TotalGameTime.TotalMilliseconds;
 			if (millis > lastRayCheck + 10
-				&& (screen.input.CurrentInputAction == InputAction.TargetMove
-				|| screen.input.CurrentInputAction == InputAction.FreeMouse)
-				&& InputManager.CurrentMouseState.ToVector2 () != lastMousePosition) {
-
+			        && (screen.input.CurrentInputAction == InputAction.TargetMove
+			            || screen.input.CurrentInputAction == InputAction.FreeMouse)
+			        && InputManager.CurrentMouseState.ToVector2 () != lastMousePosition) {
 				lastRayCheck = millis;
 				lastMousePosition = InputManager.CurrentMouseState.ToVector2 ();
 
 				Overlay.Profiler ["Ray"] = Knot3.Core.Knot3Game.Time (() => {
-
 					UpdateMouseRay (time);
-
 				}
-				).TotalMilliseconds;
+				                                                     ).TotalMilliseconds;
 			}
 		}
 
@@ -84,10 +81,10 @@ namespace Knot3.GameObjects
 			}
 			if (nearest != null) {
 				World.SelectObject (nearest.Object, time);
-			} else {
+			}
+			else {
 				World.SelectObject (null, time);
 			}
 		}
 	}
 }
-

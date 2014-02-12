@@ -33,25 +33,31 @@ namespace Knot3.UserInterface
 		protected List<MenuItem> Items;
 
 		public Menu (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
-			: base(screen, info, drawOrder)
+		: base(screen, info, drawOrder)
 		{
 			Items = new List<MenuItem> ();
 		}
 
 		private void assignMenuItemInfo (ref MenuItemInfo info, int num, MenuItem item)
 		{
-			if (RelativeItemPosition != null)
+			if (RelativeItemPosition != null) {
 				info.RelativePosition = () => RelativeItemPosition (num);
-			if (RelativeItemSize != null)
+			}
+			if (RelativeItemSize != null) {
 				info.RelativeSize = () => RelativeItemSize (num);
-			if (ItemForegroundColor != null)
+			}
+			if (ItemForegroundColor != null) {
 				info.ForegroundColor = () => ItemForegroundColor (item.ItemState);
-			if (ItemBackgroundColor != null)
+			}
+			if (ItemBackgroundColor != null) {
 				info.BackgroundColor = () => ItemBackgroundColor (item.ItemState);
-			if (ItemAlignX.HasValue)
+			}
+			if (ItemAlignX.HasValue) {
 				info.AlignX = ItemAlignX.Value;
-			if (ItemAlignY.HasValue)
+			}
+			if (ItemAlignY.HasValue) {
 				info.AlignY = ItemAlignY.Value;
+			}
 		}
 
 		public virtual MenuButton AddButton (MenuItemInfo info)
@@ -81,16 +87,20 @@ namespace Knot3.UserInterface
 			Items.Add (item);
 		}
 
-		private DisplayLayer ItemDisplayLayer {
+		private DisplayLayer ItemDisplayLayer
+		{
 			get {
-				if (DrawOrder == (int)DisplayLayer.SubMenu)
+				if (DrawOrder == (int)DisplayLayer.SubMenu) {
 					return DisplayLayer.SubMenuItem;
-				else
+				}
+				else {
 					return DisplayLayer.MenuItem;
+				}
 			}
 		}
 
-		public MenuItem this [int i] {
+		public MenuItem this [int i]
+		{
 			get {
 				while (i < 0) {
 					i += Items.Count;
@@ -121,7 +131,7 @@ namespace Knot3.UserInterface
 				yield return item;
 			}
 		}
-       
+
 		public void CollapseMenus (MenuItem menu)
 		{
 			foreach (MenuItem item in Items) {
@@ -133,7 +143,8 @@ namespace Knot3.UserInterface
 
 		private bool isVisible;
 
-		public override bool IsVisible {
+		public override bool IsVisible
+		{
 			get {
 				return isVisible;
 			}
@@ -148,4 +159,3 @@ namespace Knot3.UserInterface
 		}
 	}
 }
-

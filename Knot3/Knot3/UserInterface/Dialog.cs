@@ -27,7 +27,7 @@ namespace Knot3.UserInterface
 		protected SpriteBatch spriteBatch;
 
 		public Dialog (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder)
-			: base(screen, info, drawOrder)
+		: base(screen, info, drawOrder)
 		{
 			IsVisible = true;
 			Done = () => {
@@ -50,9 +50,9 @@ namespace Knot3.UserInterface
 		{
 			Vector2 buttonSize = RelativeButtonSize (n);
 			return new Vector2 (
-				Info.RelativePosition ().X + Info.RelativePadding ().X * (1 + n) + buttonSize.X * n,
-				Info.RelativePosition ().Y + Info.RelativeSize ().Y - buttonSize.Y - Info.RelativePadding ().Y
-			);
+			           Info.RelativePosition ().X + Info.RelativePadding ().X * (1 + n) + buttonSize.X * n,
+			           Info.RelativePosition ().Y + Info.RelativeSize ().Y - buttonSize.Y - Info.RelativePadding ().Y
+			       );
 		}
 
 		protected Vector2 RelativeButtonSize (int n)
@@ -77,14 +77,14 @@ namespace Knot3.UserInterface
 				// background
 				Rectangle rect = Info.ScaledRectangle (screen.viewport);
 				spriteBatch.Draw (
-					TextureHelper.Create (screen.device, HfGDesign.LineColor), rect.Grow (3), Color.White
+				    TextureHelper.Create (screen.device, HfGDesign.LineColor), rect.Grow (3), Color.White
 				);
 				spriteBatch.Draw (
-					TextureHelper.Create (screen.device, Info.BackgroundColor ()), rect, Color.Black * 0.95f
+				    TextureHelper.Create (screen.device, Info.BackgroundColor ()), rect, Color.Black * 0.95f
 				);
 
 				DrawDialog (time);
-			
+
 				spriteBatch.End ();
 			}
 		}
@@ -93,19 +93,22 @@ namespace Knot3.UserInterface
 
 		private Color ButtonBackgroundColor (ItemState itemState)
 		{
-			if (itemState == ItemState.Selected)
+			if (itemState == ItemState.Selected) {
 				return HfGDesign.LineColor * 0.6f;
-			else
+			}
+			else {
 				return HfGDesign.LineColor * 0.8f;
+			}
 		}
 
 		private Color ButtonForegroundColor (ItemState itemState)
 		{
-			if (itemState == ItemState.Selected)
+			if (itemState == ItemState.Selected) {
 				return Color.Black;
-			else
+			}
+			else {
 				return Color.Black;
+			}
 		}
 	}
 }
-

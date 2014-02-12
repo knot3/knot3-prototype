@@ -7,7 +7,6 @@ using Knot3.Utilities;
 
 namespace Knot3.Settings
 {
-
 	public class OptionInfo
 	{
 		public string Section { get; private set; }
@@ -18,7 +17,8 @@ namespace Knot3.Settings
 
 		public Action<string> OnChange { get; protected set; }
 
-		public virtual string Value {
+		public virtual string Value
+		{
 			get {
 				Console.WriteLine ("OptionInfo: " + Section + "." + Name + " => " + ConfigFile [Section, Name, DefaultValue]);
 				return ConfigFile [Section, Name, DefaultValue];
@@ -42,5 +42,4 @@ namespace Knot3.Settings
 			OnChange = onChange != null ? onChange : (str) => {};
 		}
 	}
-	
 }

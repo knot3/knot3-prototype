@@ -4,7 +4,9 @@ using System.Linq;
 using System.Diagnostics;
 
 using Microsoft.Xna.Framework;
+
 using Xna = Microsoft.Xna.Framework;
+
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
@@ -23,7 +25,7 @@ namespace Knot3.Core
 	public class GameScreenComponent : Xna.GameComponent, IGameScreenComponent
 	{
 		public GameScreenComponent (GameScreen screen, DisplayLayer index)
-			: base(screen.game)
+		: base(screen.game)
 		{
 			this.screen = screen;
 			this.Index = index;
@@ -45,4 +47,3 @@ namespace Knot3.Core
 		public DisplayLayer Index { get; set; }
 	}
 }
-

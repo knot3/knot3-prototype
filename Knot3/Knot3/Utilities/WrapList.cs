@@ -35,7 +35,8 @@ namespace Knot3.Utilities
 			return (i + list.Count) % list.Count;
 		}
 
-		public T this [int i] {
+		public T this [int i]
+		{
 			set {
 				i = WrapIndex (i);
 				list [i] = value;
@@ -47,7 +48,8 @@ namespace Knot3.Utilities
 			}
 		}
 
-		public int this [T t] {
+		public int this [T t]
+		{
 			get {
 				return indexOf [t];
 			}
@@ -142,13 +144,13 @@ namespace Knot3.Utilities
 		{
 			string str = "";
 			foreach (T elem in list) {
-				if (str.Length > 0)
+				if (str.Length > 0) {
 					str += ", ";
+				}
 				str += elem;
 			}
 			return str;
 		}
-
 	}
 
 	public static class Lists
@@ -168,4 +170,3 @@ namespace Knot3.Utilities
 		}
 	}
 }
-

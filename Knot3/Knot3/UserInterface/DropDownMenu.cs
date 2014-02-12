@@ -24,11 +24,11 @@ namespace Knot3.UserInterface
 		private MenuButton selected;
 
 		public DropDownMenu (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
-			: base(screen, drawOrder, itemNum, info)
+		: base(screen, drawOrder, itemNum, info)
 		{
 			// drop-down menu
 			dropdown = new VerticalMenu (screen, new WidgetInfo (), DisplayLayer.SubMenu);
-			
+
 			dropdown.ItemForegroundColor = DropDownForegroundColor;
 			dropdown.ItemBackgroundColor = DropDownBackgroundColor;
 			dropdown.ItemAlignX = HorizontalAlignment.Left;
@@ -48,12 +48,12 @@ namespace Knot3.UserInterface
 			selected.Info.BackgroundColor = () => DropDownBackgroundColor (selected.ItemState);
 
 			// action to open the drop-down menu
-			info.OnClick = () =>
-			{
+			info.OnClick = () => {
 				GameScreens.VideoOptionScreen.Collapse (this);
 				if (dropdown.IsVisible == true) {
 					dropdown.IsVisible = false;
-				} else {
+				}
+				else {
 					dropdown.IsVisible = true;
 				}
 			};
@@ -83,7 +83,7 @@ namespace Knot3.UserInterface
 			}
 			selected.Info.Text = option.Value;
 		}
-		
+
 		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
 			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
@@ -129,10 +129,12 @@ namespace Knot3.UserInterface
 
 		private Color DropDownForegroundColor (ItemState itemState)
 		{
-			if (itemState == ItemState.Selected)
+			if (itemState == ItemState.Selected) {
 				return Color.White;
-			else
+			}
+			else {
 				return Color.Gray;
+			}
 		}
 	}
 
@@ -148,4 +150,3 @@ namespace Knot3.UserInterface
 		}
 	}
 }
-

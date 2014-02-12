@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
+
 using Xna = Microsoft.Xna.Framework;
 
 namespace Knot3.Core
@@ -17,4 +18,3 @@ namespace Knot3.Core
 		DisplayLayer Index { get; }
 	}
 }
-

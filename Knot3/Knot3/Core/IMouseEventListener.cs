@@ -6,7 +6,7 @@ namespace Knot3.Core
 {
 	/// <summary>
 	/// Dieses Interface wird von Klassen implementiert, die Mausklicks abfangen. Es enthält Informationen über
-	/// den Bereich des Bildschirms, auf dem sich das Objekt befindet, sowie über den Z-Index des 
+	/// den Bereich des Bildschirms, auf dem sich das Objekt befindet, sowie über den Z-Index des
 	/// anklickbaren Objekts.
 	/// </summary>
 	public interface IMouseEventListener
@@ -24,4 +24,3 @@ namespace Knot3.Core
 		bool IsMouseEventEnabled { get; }
 	}
 }
-

@@ -17,8 +17,8 @@ using Knot3.RenderEffects;
 using Knot3.GameObjects;
 using Knot3.Settings;
 using Knot3.Utilities;
-
 using Knot3.Core;
+
 using System.IO;
 
 namespace Knot3.CreativeMode
@@ -50,7 +50,7 @@ namespace Knot3.CreativeMode
 		/// Game.
 		/// </param>
 		public CreativeModeScreen (Core.Knot3Game game)
-			: base(game)
+		: base(game)
 		{
 		}
 
@@ -75,7 +75,7 @@ namespace Knot3.CreativeMode
 			knotRenderInfo.Position = Vector3.Zero;
 			renderer = new KnotRenderer (this, knotRenderInfo);
 			world.Add (renderer as IGameObject);
-			
+
 			// pipe movements
 			movement = new EdgeMovement (this, world, knotRenderInfo);
 			world.Add (movement as IGameObject);
@@ -88,7 +88,8 @@ namespace Knot3.CreativeMode
 			Knot = new Knot ();
 		}
 
-		public Knot Knot {
+		public Knot Knot
+		{
 			get { return knot; }
 			set {
 				knot = value;
@@ -110,7 +111,8 @@ namespace Knot3.CreativeMode
 		{
 			if (dialog != null) {
 				// dialog
-			} else {
+			}
+			else {
 				UpdateInput (time);
 			}
 		}
@@ -122,12 +124,13 @@ namespace Knot3.CreativeMode
 				if (knotModified) {
 					if (dialog != null && dialog is KnotSaveConfirmDialog) {
 						dialog.Done ();
-					} else {
+					}
+					else {
 						dialog = new KnotSaveConfirmDialog (
-							screen: this, 
-							info: new WidgetInfo (),
-							drawOrder: DisplayLayer.Dialog,
-							knot: knot
+						    screen: this,
+						    info: new WidgetInfo (),
+						    drawOrder: DisplayLayer.Dialog,
+						    knot: knot
 						);
 						AddGameComponents (time, dialog);
 						dialog.Done += () => {
@@ -135,25 +138,32 @@ namespace Knot3.CreativeMode
 							dialog = null;
 						};
 					}
-				} else {
+				}
+				else {
 					NextState = GameScreens.StartScreen;
 				}
 				return;
 			}
 
 			// move edges
-			if (Keys.NumPad8.IsDown ())
+			if (Keys.NumPad8.IsDown ()) {
 				knot.Move (Direction.Up);
-			if (Keys.NumPad2.IsDown ())
+			}
+			if (Keys.NumPad2.IsDown ()) {
 				knot.Move (Direction.Down);
-			if (Keys.NumPad4.IsDown ())
+			}
+			if (Keys.NumPad4.IsDown ()) {
 				knot.Move (Direction.Left);
-			if (Keys.NumPad6.IsDown ())
+			}
+			if (Keys.NumPad6.IsDown ()) {
 				knot.Move (Direction.Right);
-			if (Keys.NumPad7.IsDown ())
+			}
+			if (Keys.NumPad7.IsDown ()) {
 				knot.Move (Direction.Forward);
-			if (Keys.NumPad9.IsDown ())
+			}
+			if (Keys.NumPad9.IsDown ()) {
 				knot.Move (Direction.Backward);
+			}
 
 			if (PostProcessingEffect is FadeEffect && (PostProcessingEffect as FadeEffect).IsFinished) {
 				PostProcessingEffect = new StandardEffect (this);
@@ -180,7 +190,7 @@ namespace Knot3.CreativeMode
 	public class KnotSaveConfirmDialog : TextInputDialog
 	{
 		public KnotSaveConfirmDialog (GameScreen screen, WidgetInfo info, DisplayLayer drawOrder, Knot knot)
-			: base(screen, info, drawOrder)
+		: base(screen, info, drawOrder)
 		{
 			Info.RelativeSize = () => new Vector2 (0.500f, 0.250f);
 			Info.RelativePadding = () => new Vector2 (0.016f, 0.016f);
@@ -189,30 +199,32 @@ namespace Knot3.CreativeMode
 			};
 			TextInput.InputText = knot.Name;
 			string originalName = knot.Name;
-			
+
 			OnYesClick += () => {
 				Console.WriteLine ("OnYesClick");
 
 				if (TextInput.InputText.Length == 0) {
 					Console.WriteLine ("Name is empty!");
 					CanClose = false;
-
-				} else if (originalName.Length > 0 && originalName == TextInput.InputText) {
+				}
+				else if (originalName.Length > 0 && originalName == TextInput.InputText) {
 					Console.WriteLine ("Name has not been changed: " + TextInput.InputText);
 					try {
 						knot.Save ();
-					} catch (IOException ex) {
+					}
+					catch (IOException ex) {
 						Console.WriteLine (ex);
 						knot.Save (new KnotFileIO (), knot.MetaData.Filename);
 					}
 					CanClose = true;
-
-				} else {
+				}
+				else {
 					Console.WriteLine ("Name has been changed: " + TextInput.InputText);
 					try {
 						knot.Name = TextInput.InputText;
 						knot.Save ();
-					} catch (IOException ex) {
+					}
+					catch (IOException ex) {
 						Console.WriteLine (ex);
 						knot.Save (new KnotFileIO (), knot.MetaData.Filename);
 					}
@@ -230,4 +242,3 @@ namespace Knot3.CreativeMode
 		}
 	}
 }
-

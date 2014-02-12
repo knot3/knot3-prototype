@@ -8,14 +8,13 @@ namespace Knot3.KnotData
 {
 	public class KnotFileIO : IKnotIO
 	{
-
 		public Knot Load (string filename)
 		{
 			KnotStringIO parser = new KnotStringIO (string.Join ("\n", Files.ReadFrom (filename)));
 			return new Knot (
-				new KnotMetaData (parser.Name, () => parser.CountEdges, this, filename),
-				parser.Edges
-			);
+			           new KnotMetaData (parser.Name, () => parser.CountEdges, this, filename),
+			           parser.Edges
+			       );
 		}
 
 		public KnotMetaData LoadMetaData (string filename)
@@ -30,12 +29,14 @@ namespace Knot3.KnotData
 			Console.WriteLine ("KnotFileIO.Save(" + knot + ") = #" + parser.Content.Length);
 			if (knot.MetaData.Filename == null) {
 				throw new IOException ("Error! knot has no filename: " + knot);
-			} else {
+			}
+			else {
 				File.WriteAllText (knot.MetaData.Filename, parser.Content);
 			}
 		}
 
-		public static string[] FileExtensions {
+		public static string[] FileExtensions
+		{
 			get {
 				return new string[] {
 					".knot",
@@ -50,4 +51,3 @@ namespace Knot3.KnotData
 		}
 	}
 }
-

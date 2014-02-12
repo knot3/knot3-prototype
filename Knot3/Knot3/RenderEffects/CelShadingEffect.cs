@@ -30,16 +30,15 @@ namespace Knot3.RenderEffects
 		float outlineThickness = 1.0f;  // current outline thickness
 		float outlineThreshold = 0.2f;  // current edge detection threshold
 
-
 		public CelShadingEffect (GameScreen screen)
-			: base(screen)
+		: base(screen)
 		{
 			/* Set our light direction for the cel-shader
-             */
+			 */
 			lightDirection = new Vector4 (0.0f, 0.0f, 1.0f, 1.0f);
 
 			/* Load and initialize the cel-shader effect
-             */
+			 */
 			celShader = screen.LoadEffect ("CelShader");
 			celShader.Parameters ["LightDirection"].SetValue (lightDirection);
 			celMap = screen.content.Load<Texture2D> ("CelMap");
@@ -47,15 +46,16 @@ namespace Knot3.RenderEffects
 			celShader.Parameters ["CelMap"].SetValue (celMap);
 
 			/* Load and initialize the outline shader effect
-             */
+			 */
 			outlineShader = screen.LoadEffect ("OutlineShader");
 			outlineShader.Parameters ["Thickness"].SetValue (outlineThickness);
 			outlineShader.Parameters ["Threshold"].SetValue (outlineThreshold);
 			outlineShader.Parameters ["ScreenSize"].SetValue (
-                new Vector2 (screen.viewport.Bounds.Width, screen.viewport.Bounds.Height));
+			    new Vector2 (screen.viewport.Bounds.Width, screen.viewport.Bounds.Height));
 		}
 
-		public Color Color {
+		public Color Color
+		{
 			get {
 				return new Color (celShader.Parameters ["Color"].GetValueVector4 ());
 			}
@@ -94,7 +94,8 @@ namespace Knot3.RenderEffects
 			if (model.BaseColor != Color.Transparent) {
 				if (model.HighlightIntensity != 0f) {
 					Color = model.BaseColor.Mix (model.HighlightColor, model.HighlightIntensity);
-				} else {
+				}
+				else {
 					Color = model.BaseColor;
 				}
 			}
@@ -105,4 +106,3 @@ namespace Knot3.RenderEffects
 		}
 	}
 }
-

@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Settings;
 using Knot3.GameObjects;
+
 using System.Collections;
 
 namespace Knot3.Core
@@ -36,7 +37,7 @@ namespace Knot3.Core
 		/// Initializes a new Overlay-
 		/// </summary>
 		public Overlay (GameScreen screen, World world)
-			: base(screen, DisplayLayer.Overlay)
+		: base(screen, DisplayLayer.Overlay)
 		{
 			// game world
 			World = world;
@@ -56,7 +57,8 @@ namespace Knot3.Core
 			// load fonts
 			try {
 				font = screen.content.Load<SpriteFont> ("Font");
-			} catch (ContentLoadException ex) {
+			}
+			catch (ContentLoadException ex) {
 				font = null;
 				Console.WriteLine (ex.Message);
 			}
@@ -70,15 +72,18 @@ namespace Knot3.Core
 		/// </param>
 		public override void Draw (GameTime time)
 		{
-			if (Options.Default ["video", "debug-coordinates", false])
+			if (Options.Default ["video", "debug-coordinates", false]) {
 				DrawCoordinates (time);
-			if (Options.Default ["video", "camera-overlay", true])
+			}
+			if (Options.Default ["video", "camera-overlay", true]) {
 				DrawOverlay (time);
-			if (Options.Default ["video", "fps-overlay", true])
+			}
+			if (Options.Default ["video", "fps-overlay", true]) {
 				DrawFPS (time);
+			}
 			DrawProfiler (time);
 		}
-		
+
 		public override void Update (GameTime time)
 		{
 			UpdateFPS (time);
@@ -100,12 +105,12 @@ namespace Knot3.Core
 			vertices [4].Color = Color.Yellow;
 			vertices [5].Position = new Vector3 (0, 0, +length);
 			vertices [5].Color = Color.Yellow;
-            
+
 			effect.View = World.Camera.ViewMatrix;
 			effect.Projection = World.Camera.ProjectionMatrix;
-          
+
 			effect.CurrentTechnique.Passes [0].Apply ();
-            
+
 			screen.device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3, VertexPositionColor.VertexDeclaration);
 		}
 
@@ -143,9 +148,9 @@ namespace Knot3.Core
 			height += 20;
 			DrawString ("WASD: ", width1, height, Color.White);
 			string wasdMode =
-					  screen.input.WASDMode == WASDMode.ArcballMode ? "Arcball"
-					: screen.input.WASDMode == WASDMode.FirstPersonMode ? "FPS"
-					: "unknown";
+			    screen.input.WASDMode == WASDMode.ArcballMode ? "Arcball"
+			    : screen.input.WASDMode == WASDMode.FirstPersonMode ? "FPS"
+			    : "unknown";
 			DrawString (wasdMode, width2, height, Color.White);
 
 			spriteBatch.End ();
@@ -163,10 +168,11 @@ namespace Knot3.Core
 			if (font != null) {
 				try {
 					spriteBatch.DrawString (font, str, new Vector2 (width, height), color);
-
-				} catch (ArgumentException exp) {
+				}
+				catch (ArgumentException exp) {
 					Console.WriteLine (exp.ToString ());
-				} catch (InvalidOperationException exp) {
+				}
+				catch (InvalidOperationException exp) {
 					Console.WriteLine (exp.ToString ());
 				}
 			}
@@ -176,7 +182,7 @@ namespace Knot3.Core
 		{
 			DrawString ("" + n, width, height, color);
 		}
-		
+
 		int _total_frames = 0;
 		float _elapsed_time = 0.0f;
 		int _fps = 0;
@@ -208,7 +214,7 @@ namespace Knot3.Core
 			spriteBatch.Begin ();
 			int height = 40;
 			foreach (string name in profiler.Keys) {
-                DrawString(name + ": " + Profiler[name], screen.viewport.Width - 200, height, Color.White);
+				DrawString(name + ": " + Profiler[name], screen.viewport.Width - 200, height, Color.White);
 				height += 20;
 			}
 			spriteBatch.End ();
@@ -216,7 +222,8 @@ namespace Knot3.Core
 
 		public class HashtableWrapper
 		{
-			public double this [string str] {
+			public double this [string str]
+			{
 				get {
 					return (double)profiler [str];
 				}
@@ -225,10 +232,10 @@ namespace Knot3.Core
 				}
 			}
 
-			public bool ContainsKey (string str) {
+			public bool ContainsKey (string str)
+			{
 				return profiler.ContainsKey(str);
 			}
 		}
 	}
 }
-

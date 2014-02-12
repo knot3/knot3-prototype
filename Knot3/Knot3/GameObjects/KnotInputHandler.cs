@@ -29,7 +29,7 @@ namespace Knot3.CreativeMode
 		private int wasdSpeed = 10;
 
 		public KnotInputHandler (GameScreen screen, World world)
-			: base(screen, DisplayLayer.None)
+		: base(screen, DisplayLayer.None)
 		{
 			// game world
 			World = world;
@@ -41,12 +41,12 @@ namespace Knot3.CreativeMode
 			// keys to accept
 			ValidKeys = new List<Keys> ();
 			ValidKeys.AddRange (
-				new []{
-					Keys.A, Keys.D, Keys.W, Keys.S, Keys.R, Keys.F, Keys.Q, Keys.E, Keys.A, Keys.D, Keys.W,
-					Keys.S, Keys.R, Keys.F, Keys.Q, Keys.E,
-					Keys.Left, Keys.Right, Keys.Up, Keys.Down, Keys.OemPlus, Keys.OemMinus, Keys.Enter,
-					Keys.LeftAlt, Keys.Tab
-				}
+			new [] {
+				Keys.A, Keys.D, Keys.W, Keys.S, Keys.R, Keys.F, Keys.Q, Keys.E, Keys.A, Keys.D, Keys.W,
+				Keys.S, Keys.R, Keys.F, Keys.Q, Keys.E,
+				Keys.Left, Keys.Right, Keys.Up, Keys.Down, Keys.OemPlus, Keys.OemMinus, Keys.Enter,
+				Keys.LeftAlt, Keys.Tab
+			}
 			);
 		}
 
@@ -61,50 +61,71 @@ namespace Knot3.CreativeMode
 
 			// W,A,S,D,Q,E
 			if (screen.input.WASDMode == WASDMode.ArcballMode) {
-				if (Keys.A.IsHeldDown ())
+				if (Keys.A.IsHeldDown ()) {
 					arcballMove += new Vector2 (-1, 0);
-				if (Keys.D.IsHeldDown ())
+				}
+				if (Keys.D.IsHeldDown ()) {
 					arcballMove += new Vector2 (1, 0);
-				if (Keys.W.IsHeldDown ())
+				}
+				if (Keys.W.IsHeldDown ()) {
 					arcballMove += new Vector2 (0, -1);
-				if (Keys.S.IsHeldDown ())
+				}
+				if (Keys.S.IsHeldDown ()) {
 					arcballMove += new Vector2 (0, 1);
-				if (Keys.R.IsHeldDown ())
+				}
+				if (Keys.R.IsHeldDown ()) {
 					keyboardMove += new Vector3 (0, 0, -1);
-				if (Keys.F.IsHeldDown ())
+				}
+				if (Keys.F.IsHeldDown ()) {
 					keyboardMove += new Vector3 (0, 0, 1);
-				if (Keys.Q.IsHeldDown ())
+				}
+				if (Keys.Q.IsHeldDown ()) {
 					selfRotate += new Vector2 (-1, 0);
-				if (Keys.E.IsHeldDown ())
+				}
+				if (Keys.E.IsHeldDown ()) {
 					selfRotate += new Vector2 (1, 0);
-			} else if (screen.input.WASDMode == WASDMode.FirstPersonMode) {
-				if (Keys.A.IsHeldDown ())
+				}
+			}
+			else if (screen.input.WASDMode == WASDMode.FirstPersonMode) {
+				if (Keys.A.IsHeldDown ()) {
 					keyboardMove += new Vector3 (-1, 0, 0);
-				if (Keys.D.IsHeldDown ())
+				}
+				if (Keys.D.IsHeldDown ()) {
 					keyboardMove += new Vector3 (1, 0, 0);
-				if (Keys.W.IsHeldDown ())
+				}
+				if (Keys.W.IsHeldDown ()) {
 					keyboardMove += new Vector3 (0, -1, 0);
-				if (Keys.S.IsHeldDown ())
+				}
+				if (Keys.S.IsHeldDown ()) {
 					keyboardMove += new Vector3 (0, 1, 0);
-				if (Keys.R.IsHeldDown ())
+				}
+				if (Keys.R.IsHeldDown ()) {
 					keyboardMove += new Vector3 (0, 0, -1);
-				if (Keys.F.IsHeldDown ())
+				}
+				if (Keys.F.IsHeldDown ()) {
 					keyboardMove += new Vector3 (0, 0, 1);
-				if (Keys.Q.IsHeldDown ())
+				}
+				if (Keys.Q.IsHeldDown ()) {
 					selfRotate += new Vector2 (-1, 0);
-				if (Keys.E.IsHeldDown ())
+				}
+				if (Keys.E.IsHeldDown ()) {
 					selfRotate += new Vector2 (1, 0);
+				}
 			}
 
 			// Arrow Keys
-			if (Keys.Left.IsHeldDown ())
+			if (Keys.Left.IsHeldDown ()) {
 				keyboardMove += new Vector3 (-1, 0, 0);
-			if (Keys.Right.IsHeldDown ())
+			}
+			if (Keys.Right.IsHeldDown ()) {
 				keyboardMove += new Vector3 (1, 0, 0);
-			if (Keys.Up.IsHeldDown ())
+			}
+			if (Keys.Up.IsHeldDown ()) {
 				keyboardMove += new Vector3 (0, -1, 0);
-			if (Keys.Down.IsHeldDown ())
+			}
+			if (Keys.Down.IsHeldDown ()) {
 				keyboardMove += new Vector3 (0, 1, 0);
+			}
 
 			// apply keyboard movements
 			if (keyboardMove.Length () > 0) {
@@ -121,16 +142,16 @@ namespace Knot3.CreativeMode
 				camera.Target = new Vector3 (camera.ArcballTarget.X, camera.Target.Y, camera.ArcballTarget.Z);
 				camera.TargetDistance = camera.TargetDistance.Clamp (500, 10000);
 				camera.Position = camera.ArcballTarget + (camera.Position - camera.ArcballTarget).ArcBallMove (
-						arcballMove, camera.UpVector, camera.TargetDirection
-				);
+				                      arcballMove, camera.UpVector, camera.TargetDirection
+				                  );
 				screen.input.CurrentInputAction = InputAction.ArcballMove;
 			}
 
 			// apply arcball movements to the camera
 			if (selfRotate.Length () > 0) {
 				camera.Target = camera.Position + (camera.Target - camera.Position).ArcBallMove (
-						selfRotate, camera.UpVector, camera.TargetDirection
-				);
+				                    selfRotate, camera.UpVector, camera.TargetDirection
+				                );
 				screen.input.CurrentInputAction = InputAction.ArcballMove;
 			}
 
@@ -182,61 +203,70 @@ namespace Knot3.CreativeMode
 			// fullscreen recently toggled?
 			if (InputManager.FullscreenToggled) {
 				InputManager.FullscreenToggled = false;
-
-			} else if (InputManager.CurrentMouseState != InputManager.PreviousMouseState) {
-
+			}
+			else if (InputManager.CurrentMouseState != InputManager.PreviousMouseState) {
 				// mouse movements
 				Vector2 mouseMove = new Vector2 (
-					InputManager.CurrentMouseState.X - InputManager.PreviousMouseState.X,
-					InputManager.CurrentMouseState.Y - InputManager.PreviousMouseState.Y
+				    InputManager.CurrentMouseState.X - InputManager.PreviousMouseState.X,
+				    InputManager.CurrentMouseState.Y - InputManager.PreviousMouseState.Y
 				);
 
 				InputAction action;
 				// grab mouse movement
 				if (screen.input.GrabMouseMovement) {
 					// left mouse button pressed
-					if (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed)
+					if (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
 						action = InputAction.ArcballMove;
+					}
 					// right mouse button pressed
-					else if (InputManager.CurrentMouseState.RightButton == ButtonState.Pressed)
+					else if (InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
 						action = InputAction.ArcballMove;
+					}
 					// no mouse button
-					else
+					else {
 						action = InputAction.TargetMove;
+					}
 				}
 				// don't grab mouse movement
 				else {
 					// left mouse button pressed
 					if (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
-						if (World.SelectedObject != null && World.SelectedObject.Info.IsMovable)
+						if (World.SelectedObject != null && World.SelectedObject.Info.IsMovable) {
 							action = InputAction.SelectedObjectShadowMove;
-						else
+						}
+						else {
 							action = InputAction.FreeMouse;
-					} else if (InputManager.CurrentMouseState.LeftButton == ButtonState.Released && InputManager.PreviousMouseState.LeftButton == ButtonState.Pressed) {
-						if (World.SelectedObject != null && World.SelectedObject.Info.IsMovable)
+						}
+					}
+					else if (InputManager.CurrentMouseState.LeftButton == ButtonState.Released && InputManager.PreviousMouseState.LeftButton == ButtonState.Pressed) {
+						if (World.SelectedObject != null && World.SelectedObject.Info.IsMovable) {
 							action = InputAction.SelectedObjectMove;
-						else
+						}
+						else {
 							action = InputAction.FreeMouse;
+						}
 					}
 					// right mouse button pressed
-					else if (InputManager.CurrentMouseState.RightButton == ButtonState.Pressed)
+					else if (InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
 						action = InputAction.ArcballMove;
+					}
 					// no mouse button
-					else
+					else {
 						action = InputAction.FreeMouse;
+					}
 				}
 
 				switch (action) {
-				// arcball move
+					// arcball move
 				case InputAction.ArcballMove:
 					camera.Target = new Vector3 (camera.ArcballTarget.X, camera.Target.Y, camera.ArcballTarget.Z);
 					camera.TargetDistance = camera.TargetDistance.Clamp (500, 10000);
 					camera.Position = camera.ArcballTarget + (camera.Position - camera.ArcballTarget).ArcBallMove (
-						mouseMove, camera.UpVector, camera.TargetDirection
-					);
+					                      mouseMove, camera.UpVector, camera.TargetDirection
+					                  );
 					World.Redraw = true;
 					break;
-				// move the target vector
+					// move the target vector
 				case InputAction.TargetMove:
 					camera.Target = camera.Target.MoveLinear (mouseMove, camera.UpVector, camera.TargetDirection);
 					World.Redraw = true;
@@ -248,7 +278,8 @@ namespace Knot3.CreativeMode
 				if (InputManager.CurrentMouseState.ScrollWheelValue < InputManager.PreviousMouseState.ScrollWheelValue) {
 					camera.TargetDistance += 40;
 					World.Redraw = true;
-				} else if (InputManager.CurrentMouseState.ScrollWheelValue > InputManager.PreviousMouseState.ScrollWheelValue) {
+				}
+				else if (InputManager.CurrentMouseState.ScrollWheelValue > InputManager.PreviousMouseState.ScrollWheelValue) {
 					camera.TargetDistance -= 40;
 					World.Redraw = true;
 				}
@@ -275,4 +306,3 @@ namespace Knot3.CreativeMode
 		public bool IsKeyEventEnabled { get { return true; } }
 	}
 }
-

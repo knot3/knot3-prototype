@@ -27,11 +27,11 @@ namespace Knot3.Settings
 		private SpriteBatch spriteBatch;
 
 		public OptionScreen (Core.Knot3Game game)
-			: base(game)
+		: base(game)
 		{
 			menu = new VerticalMenu (this, new WidgetInfo (), DisplayLayer.Menu);
 		}
-		
+
 		public override void Initialize ()
 		{
 			base.Initialize ();
@@ -59,21 +59,21 @@ namespace Knot3.Settings
 
 			// lines
 			HfGDesign.AddLinePoints (ref LinePoints, 0, 50,
-				30, 970, 970, 50, 1000
-			);
+			                         30, 970, 970, 50, 1000
+			                        );
 		}
-		
+
 		public override void UpdateMenu (GameTime time)
 		{
 		}
-		
+
 		public override void DrawMenu (GameTime time)
 		{
 			spriteBatch.Begin ();
 
 			// text
 			spriteBatch.DrawString (HfGDesign.MenuFont (this), "Options", new Vector2 (0.050f, 0.050f).Scale (viewport), Color.White,
-					0, Vector2.Zero, 0.25f * viewport.ScaleFactor ().Length (), SpriteEffects.None, 0);
+			                        0, Vector2.Zero, 0.25f * viewport.ScaleFactor ().Length (), SpriteEffects.None, 0);
 
 			// menu
 			menu.Align (viewport, 1f, 100, 180, 0, 60);
@@ -88,4 +88,3 @@ namespace Knot3.Settings
 		}
 	}
 }
-

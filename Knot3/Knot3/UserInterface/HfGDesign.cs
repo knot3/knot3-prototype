@@ -28,11 +28,13 @@ namespace Knot3.UserInterface
 		{
 			if (menuFont != null) {
 				return menuFont;
-			} else {
+			}
+			else {
 				// load fonts
 				try {
 					menuFont = screen.content.Load<SpriteFont> ("MenuFont");
-				} catch (ContentLoadException ex) {
+				}
+				catch (ContentLoadException ex) {
 					menuFont = null;
 					Console.WriteLine (ex.Message);
 				}
@@ -43,8 +45,9 @@ namespace Knot3.UserInterface
 		public static void DrawLines (ref List<Vector2> linePoints, int lineWidth, SpriteBatch spriteBatch, GameScreen screen, GameTime time)
 		{
 			lineWidth = (int)new Vector2 (lineWidth, lineWidth).Scale (screen.viewport).X;
-			if (texture == null)
+			if (texture == null) {
 				texture = TextureHelper.Create (screen.device, Color.White);
+			}
 
 			if (linePoints.Count >= 2) {
 				Rectangle[] rects = new Rectangle[linePoints.Count - 1];
@@ -57,11 +60,14 @@ namespace Knot3.UserInterface
 						int length = (int)(nodeB - nodeA).Scale (screen.viewport).Length ();
 						if (direction.X == 0 && direction.Y > 0) {
 							rects [i - 1] = CreateRectangle (lineWidth, position.X, position.Y, 0, length);
-						} else if (direction.X == 0 && direction.Y < 0) {
+						}
+						else if (direction.X == 0 && direction.Y < 0) {
 							rects [i - 1] = CreateRectangle (lineWidth, position.X, position.Y - length, 0, length);
-						} else if (direction.Y == 0 && direction.X > 0) {
+						}
+						else if (direction.Y == 0 && direction.X > 0) {
 							rects [i - 1] = CreateRectangle (lineWidth, position.X, position.Y, length, 0);
-						} else if (direction.Y == 0 && direction.X < 0) {
+						}
+						else if (direction.Y == 0 && direction.X < 0) {
 							rects [i - 1] = CreateRectangle (lineWidth, position.X - length, position.Y, length, 0);
 						}
 					}
@@ -78,12 +84,15 @@ namespace Knot3.UserInterface
 
 		public static Rectangle CreateRectangle (int lineWidth, float x, float y, float w, float h)
 		{
-			if (w == 0)
+			if (w == 0) {
 				return new Rectangle ((int)x - lineWidth / 2, (int)y - lineWidth / 2, lineWidth, (int)h + lineWidth);
-			else if (h == 0)
+			}
+			else if (h == 0) {
 				return new Rectangle ((int)x - lineWidth / 2, (int)y - lineWidth / 2, (int)w + lineWidth, lineWidth);
-			else
+			}
+			else {
 				return new Rectangle ((int)x, (int)y, (int)w, (int)h);
+			}
 		}
 
 		public static Rectangle CreateRectangle (int lineWidth, Vector2 topLeft, Vector2 size)
@@ -99,21 +108,23 @@ namespace Knot3.UserInterface
 		public static void AddLinePoints (ref List<Vector2> linePoints, float startX, float startY, params float[] xyxy)
 		{
 			Vector2 start = new Vector2 (startX, startY);
-			if (start.X > 1 || start.Y > 1)
+			if (start.X > 1 || start.Y > 1) {
 				start /= 1000f;
+			}
 			linePoints.Add (start);
 			Vector2 current = start;
 			for (int i = 0; i < xyxy.Count(); ++i) {
 				// this is a new X value
-				if (i % 2 == 0) 
+				if (i % 2 == 0) {
 					current.X = xyxy [i] > 1 ? xyxy [i] / 1000f : xyxy [i];
+				}
 				// this is a new Y value
-				else
+				else {
 					current.Y = xyxy [i] > 1 ? xyxy [i] / 1000f : xyxy [i];
+				}
 
 				linePoints.Add (current);
 			}
 		}
 	}
 }
-

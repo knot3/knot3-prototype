@@ -24,39 +24,39 @@ namespace Knot3.UserInterface
 
 		// keys to listen on
 		public List<Keys> Keys = new List<Keys> ();
-		
+
 		// click action
 		public Action OnClick = () => {};
 
 		public MenuItemInfo (string text, Vector2 topLeft, Vector2 bottomRight, Action onClick)
-			: this(text, onClick)
+		: this(text, onClick)
 		{
 			RelativePosition = () => topLeft;
 			RelativeSize = () => (bottomRight - topLeft);
 		}
 
 		public MenuItemInfo (string text, float left, float top, float right, float bottom, Action onClick)
-			: this(text, onClick)
+		: this(text, onClick)
 		{
 			RelativePosition = () => new Vector2 (left, top);
 			RelativeSize = () => new Vector2 (right - left, bottom - top);
 		}
 
 		public MenuItemInfo (string text, Action onClick)
-			: this()
+		: this()
 		{
 			Text = text;
 			OnClick = onClick;
 		}
 
 		public MenuItemInfo (string text)
-			: this()
+		: this()
 		{
 			Text = text;
 		}
 
 		public MenuItemInfo ()
-			: base()
+		: base()
 		{
 		}
 
@@ -70,7 +70,8 @@ namespace Knot3.UserInterface
 	public abstract class MenuItem : ItemWidget, IMouseEventListener, IKeyEventListener
 	{
 		// info
-		public new MenuItemInfo Info {
+		public new MenuItemInfo Info
+		{
 			get { return base.Info as MenuItemInfo; }
 			set { base.Info = value; }
 		}
@@ -82,7 +83,7 @@ namespace Knot3.UserInterface
 		/// Initializes a new instance of the <see cref="TestGame1.MenuItem"/> class.
 		/// </summary>
 		public MenuItem (GameScreen screen, DisplayLayer drawOrder, int itemNum, MenuItemInfo info)
-			: base(screen, info, drawOrder, itemNum)
+		: base(screen, info, drawOrder, itemNum)
 		{
 			// create a sprite batch
 			spriteBatch = new SpriteBatch (screen.device);
@@ -97,7 +98,7 @@ namespace Knot3.UserInterface
 				Texture2D paneTexture = TextureHelper.Create (screen.device, Color.White);
 				//spriteBatch.Draw (paneTexture, bounds (), Color.Black);
 				spriteBatch.Draw (
-					paneTexture, bounds (), null, Info.BackgroundColor (), 0f, Vector2.Zero, SpriteEffects.None, 0.5f
+				    paneTexture, bounds (), null, Info.BackgroundColor (), 0f, Vector2.Zero, SpriteEffects.None, 0.5f
 				);
 
 				SpriteFont font = HfGDesign.MenuFont (screen);
@@ -106,10 +107,12 @@ namespace Knot3.UserInterface
 					//Vector2 scale = Info.ScaledSize / MinimumSize (font) * 0.9f;
 					scale.Y = scale.X = MathHelper.Min (scale.X, scale.Y);
 					spriteBatch.DrawString (font, Info.Text, TextPosition (font, scale), Info.ForegroundColor (),
-						0, Vector2.Zero, scale, SpriteEffects.None, 0.6f);
-				} catch (ArgumentException exp) {
+					                        0, Vector2.Zero, scale, SpriteEffects.None, 0.6f);
+				}
+				catch (ArgumentException exp) {
 					Console.WriteLine (exp.ToString ());
-				} catch (InvalidOperationException exp) {
+				}
+				catch (InvalidOperationException exp) {
 					Console.WriteLine (exp.ToString ());
 				}
 				spriteBatch.End ();
@@ -179,4 +182,3 @@ namespace Knot3.UserInterface
 		}
 	}
 }
-
