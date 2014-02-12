@@ -28,7 +28,7 @@ namespace Knot3.Utilities
 		{
 			get {
 				string directory;
-				if (Mono.IsRunningOnMono ()) {
+				if (MonoHelper.IsRunningOnMono ()) {
 					directory = Environment.GetEnvironmentVariable ("HOME") + "/.knot3/";
 				}
 				else {

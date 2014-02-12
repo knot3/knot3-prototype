@@ -50,7 +50,7 @@ namespace Knot3.Core
 
 		private void DrawCursor (GameTime time)
 		{
-			if (!Utilities.Mono.IsRunningOnMono ()) {
+			if (!MonoHelper.IsRunningOnMono ()) {
 				spriteBatch.Begin ();
 
 				Texture2D cursorTex = screen.content.Load<Texture2D> ("cursor");
